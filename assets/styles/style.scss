@@ -1,0 +1,107 @@
+/*!
+Theme Name: kapital
+Theme URI: https://benchmark.co.uk/barebones
+Author: Benchmark Studios
+Author URI: https://benchmark.co.uk/
+Description: Téma kapitálu - redizajn 2024
+Version: 1.0
+License: MIT
+License URI: https://mit-license.org/
+Text Domain: kapital
+*/
+
+@charset 'UTF-8';
+
+
+// Include functions first
+@import "bootstrap/scss/functions";
+
+// Customize some defaults
+
+@import "custom_colors.scss";
+@import "custom_variables.scss";
+// Required
+@import "bootstrap/scss/variables";
+@import "wordpress_fixes";
+//@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+
+//@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+//@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+// @import "bootstrap/scss/tables";
+// @import "bootstrap/scss/forms";
+//@import "bootstrap/scss/buttons";
+//@import "bootstrap/scss/transitions";
+//@import "bootstrap/scss/dropdown";
+// @import "bootstrap/scss/button-group";
+// @import "bootstrap/scss/nav";
+// @import "bootstrap/scss/navbar"; // Requires nav
+// @import "bootstrap/scss/card";
+// @import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+// @import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/list-group";
+//@import "bootstrap/scss/close";
+// @import "bootstrap/scss/toasts";
+//@import "bootstrap/scss/modal"; // Requires transitions
+// @import "bootstrap/scss/tooltip";
+//@import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+//@import "bootstrap/scss/offcanvas"; // Requires transitions
+// @import "bootstrap/scss/placeholders";
+
+// Helpers
+// @import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+
+
+
+/* 
+// 1. Configuration
+@import 'config/variables';
+@import 'config/mixins';
+
+// 2. Vendors
+@import 'vendor/simple-grid/simple-grid';
+
+// 3. Utilities
+@import 'utils/reset';
+@import 'utils/responsive';
+@import 'utils/helpers';
+@import 'utils/defaults';
+
+// 4. Base stuff
+@import 'base/base';
+@import 'base/grid';
+@import 'base/fonts';
+@import 'base/images';
+@import 'base/forms';
+@import 'base/lists';
+@import 'base/typography';
+
+// 5. Layout-related sections
+@import 'layout/main';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/sections';
+
+// 6 .Components
+@import 'components/buttons';
+@import 'components/nav';
+@import 'components/alerts';
+
+// 7. Page-specific styles
+@import 'pages/home';
+ */
