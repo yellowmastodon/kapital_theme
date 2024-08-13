@@ -1,0 +1,9 @@
+Čísla, kde treba upraviť popisku kvôli kontrole:
+
+23-08 Rosa
+23-06 FES
+22-10 Rosa
+20-12 NBM
+
+Manualne vytvorit sériu: 
+Knihy ohrožený druh
