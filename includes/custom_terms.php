@@ -189,10 +189,10 @@ function register_serie_taxonomy() {
 }
 
 /**
- * Renames "category" taxonomy to "rubrika", plural "rubriky"
+ * Renames "rubrika" taxonomy
  */
 
-function rename_category_taxonomy() {
+function register_rubriky_taxonomy() {
 
 	$labels = array(
 		'name'                       => _x( 'Rubriky', 'Taxonomy General Name', 'kapital' ),
@@ -217,10 +217,19 @@ function rename_category_taxonomy() {
 		'items_list_navigation'      => __( 'Navigácia zoznamu rubrík', 'kapital' ),
         'desc_field_description'     => __( 'Popis rubriky sa zobrazí medzi názvom a zoznamom článkov.', 'kapital' )
 	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'show_in_rest'               => true,
+        'rewrite'                    => ['slug' => 'rubriky']
 
-    global $wp_taxonomies;
-    $wp_taxonomies['category']->labels = (object)array_merge((array)$wp_taxonomies['category']->labels, $labels);
-    $wp_taxonomies['category']->label = 'Rubriky';
+	);
+	register_taxonomy( 'rubrika', array( 'post' ), $args );
 
 }
 
@@ -445,18 +454,19 @@ function disable_kses() {
 }
 
 function kapital_register_custom_taxonomies(){
+	register_rubriky_taxonomy();
     register_zanre_taxonomy();
     register_serie_taxonomy();
     register_cisla_taxonomy();
     register_partneri_taxonomy();
 	register_jazyk_taxonomy();
-    rename_category_taxonomy();
     disable_kses();
     register_podcast_serie_taxonomy();
 	register_redakcia_pozicia();
+	unregister_taxonomy_for_object_type( 'category', 'post' );
 }
 
-add_filter( 'custom_menu_order', '__return_true' );
+//add_filter( 'custom_menu_order', '__return_true' );
 add_filter( 'menu_order', 'reorder_post_submenu' );
 add_action("category_edit_form_fields", 'tinymce_on_description', 10, 2);
 add_action( 'init', 'kapital_register_custom_taxonomies', 1 );
