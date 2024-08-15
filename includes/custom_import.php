@@ -1,8 +1,8 @@
 <?php function kapital_custom_menu_import()
 {
     add_menu_page(
-    'Importovať články (test)',                 //$page_title
-    'Importovať články (test)',                 //$menu_title
+    'Remap kategórií článkov (test)',                 //$page_title
+    'Remap kategórií článkov (test)',                 //$menu_title
     'edit_posts',                        //$capability
     'custom_import_test',                     //$icon_url
     'kapital_render_custom_menu_import', //$callback
@@ -20,7 +20,6 @@ function kapital_render_custom_menu_import(){
         'post_type' => 'post',
         'posts_per_page' => -1,
     );
-
     $query = new WP_Query( $args );
     $json_file_path = get_theme_file_path('/includes/remap_terms.json');
     $remap_json = json_decode(file_get_contents($json_file_path), true);
@@ -86,7 +85,22 @@ function kapital_render_custom_menu_import(){
                 //var_dump($hashtag);
             } else {
                 $old_terms_display .= $old_term->slug . ', ';
-                $json_key = array_search($old_term->slug, array_column($remap_json, 'ogslug'));
+                $json_key = null;
+                $json_keys = array();
+                $json_keys = array_keys(array_column($remap_json, 'ogslug'), $old_term->slug);
+                echo '<br>////old_slug ';
+                var_dump($old_term->slug);
+                echo ' ' . get_the_title($post_id) . ' ';
+                var_dump($json_keys);
+                foreach ($json_keys as $key){
+                    if ($remap_json[$key]['ogslug'] == $old_term->slug){
+                        $json_key = $key;
+                    }
+                }
+                var_dump($remap_json[$key]['ogslug']);
+                var_dump($remap_json[$key]['newposttypeslug']);
+                echo '////';
+                //var_dump($json_key);
                 //var_dump($remap_json[$json_key]);
                 $new_terms_display .= $remap_json[$json_key]['newslug'] . ' (' . $remap_json[$json_key]['newcategorytypeslug'] . '), ';
             }
@@ -105,8 +119,8 @@ add_action( 'admin_menu', 'kapital_custom_menu_import', 0 );
 function kapital_custom_menu_import_real()
 {
     add_menu_page(
-    'Importovať články',                 //$page_title
-    'Importovať články',                 //$menu_title
+    'Remap kategórií článkov',                 //$page_title
+    'Remap kategórií článkov',                 //$menu_title
     'edit_posts',                        //$capability
     'custom_import',                     //$icon_url
     'kapital_custom_import',            //$callback
@@ -127,13 +141,14 @@ function kapital_custom_import(){
     $query = new WP_Query( $args );
     $json_file_path = get_theme_file_path('/includes/remap_terms.json');
     $remap_json = json_decode(file_get_contents($json_file_path), true);
-    $available_taxonomies = get_taxonomies(array(), 'names');
+    //$available_taxonomies = get_taxonomies(array(), 'names');
     while ($query->have_posts()){
         $query->the_post();
         $post_id = get_the_ID();
         $old_terms = get_the_terms($post_id, 'category');
         foreach($old_terms as $old_term){
-            $old_term_id = $old_term->ID;
+            $old_term_id = $old_term->term_id;
+            //var_dump($old_term_id);
             $old_term_slug = $old_term->slug;
             $old_term_name = $old_term->name;
             //CISLO
@@ -144,10 +159,20 @@ function kapital_custom_import(){
                 }
             //!CISLO
             } else {
-                $json_key = array_search($old_term->slug, array_column($remap_json, 'ogslug'), true);
+                $json_key = null;
+                $json_keys = array_keys(array_column($remap_json, 'ogslug'), $old_term->slug);
+                foreach ($json_keys as $key){
+                    if ($remap_json[$key]['ogslug'] === $old_term->slug){
+                        $json_key = $key;
+                    }
+                }
                 if (isset($remap_json[$json_key]['newposttypeslug'])){
                     //PODCAST
                     if ($remap_json[$json_key]['newposttypeslug'] == 'podcast'){
+                       /* default importer assigns 'filmovy' to 'filmovy-2' so we need to filter it.
+                       * all that have "ogparentcategory" : "kapitalx" should be podcasts
+                       */
+                        
                         remap_podcast($old_term_slug, $old_term_id, $old_term_name, $post_id);
                         if(!in_array($old_term_id, $old_terms_to_delete)){
                             array_push($old_terms_to_delete, $old_term_id);
@@ -167,7 +192,9 @@ function kapital_custom_import(){
                     }
                 //IF no post type defined - POST
                 } else {
-                    remap_other_cats($post_id, $remap_json[$json_key]);
+                    if (isset($json_key)){
+                        remap_other_cats($post_id, $remap_json[$json_key]);
+                    }
                 }
             }
         }
@@ -176,7 +203,6 @@ function kapital_custom_import(){
     foreach ($old_terms_to_delete as $old_term){
         wp_delete_term($old_term, 'category');
     }
-
     wp_reset_postdata();
 }
 
@@ -217,7 +243,7 @@ function cislo_remap_cat($old_term_slug, $old_term_id, $old_term_name, $post_id)
         $new_term = wp_insert_term($old_term_name, 'cislo', array('slug'=>$old_term_slug));
         $new_term_id = $new_term['term_id'];
         if(isset($hashtag) && !empty($hashtag)){
-            update_field('hashtag', $vizual, 'cislo_' . (string)$new_term_id);
+            update_field('hashtag', $hashtag, 'cislo_' . (string)$new_term_id);
         }
         if (isset($vizual) && !empty($vizual)){
             update_field('ending_text', $vizual,  'cislo_' . (string)$new_term_id);
