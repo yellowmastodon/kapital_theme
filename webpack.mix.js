@@ -48,7 +48,7 @@ mix.browserSync({
     host: 'https://localhost/kapital_new/',
     files: [
         "style.css",
-        "/js/scripts.min.js",
+        "js/scripts.min.js",
         "*.php"
     ]
     }
