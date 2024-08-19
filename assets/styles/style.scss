@@ -33,7 +33,7 @@ Text Domain: kapital
 
 @import "bootstrap/scss/type";
 // @import "bootstrap/scss/images";
-@import "bootstrap/scss/containers";
+//@import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
@@ -54,7 +54,7 @@ $theme-colors: $temporary-colors;
 // @import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
-//@import "bootstrap/scss/close";
+@import "bootstrap/scss/close";
 // @import "bootstrap/scss/toasts";
 //@import "bootstrap/scss/modal"; // Requires transitions
 // @import "bootstrap/scss/tooltip";
@@ -65,12 +65,14 @@ $theme-colors: $temporary-colors;
 // @import "bootstrap/scss/placeholders";
 
 // Helpers
-// @import "bootstrap/scss/helpers";
+ @import "bootstrap/scss/helpers";
 
 // Utilities
 @import "bootstrap/scss/utilities/api";
 
-
-@import "custom_styles.scss";
+//replaces containers with content max width and margin auto
+@import "default_align_max_widths";
+@import "custom_styles";
+@import "post";
 @import "wordpress_fixes";
 

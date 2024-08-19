@@ -4,14 +4,38 @@
 //
 $prefix: 'kptl-';
 
+$spacer: 1rem;
+$grid-gutter-width: $spacer;
+
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1400px,
+  xxl: 1650px,
+);
 
 //font
-$font-family-sans-serif: "Kontrast Grotesk";
+$font-family-sans-serif: "Kontrast Grotesk", sans-serif;
 //$font-family-base: 'Roboto Serif', 'sans-serif';
-$font-family-base: "Kontrast Grotesk";
+$font-family-base: "Kontrast Grotesk", sans-serif;
 
-$font-size-root: clamp(1.063rem, 0.233vw + 1.01rem, 1.25rem);
+$font-size-root: clamp(0.938rem, 0.192vw + 0.894rem, 1.125rem);
+
+$line-height-base: 1.7;
 $enable-dark-mode: false;
+$enable-container-classess: false;
 
 //color
 $pink: #ffc2fe;
@@ -19,18 +43,30 @@ $red: #ff0033;
 $primary: $pink;
 $secondary: #EBEBEB;
 $white: #fff;
+$body-color: #000;
+
 //button
 $btn-border-radius: var(--#{$prefix}border-radius-pill);
 $btn-font-weight: 700;
-
-$link-color: $red;
-$focus-ring-color: $red;
-$focus-ring-width: .25rem;
-$focus-ring-opacity: 1;
-$focus-ring-box-shadow: 0 0 0 $focus-ring-width $focus-ring-color;
+$btn-padding-x: .8rem;
+$btn-padding-y: .4rem;
+$link-color: $body-color;
+$link-hover-color: $red;
 
 //offcanvas
 $offcanvas-bg-color: $primary;
 $offcanvas-backdrop-bg: $white;
 $offcanvas-border-color: $primary;
 $offcanvas-border-width: 0px;
+
+
+//close
+$btn-close-width:            1em;
+$btn-close-height:           $btn-close-width;
+$btn-close-padding-x:        .25em;
+$btn-close-padding-y:        $btn-close-padding-x;
+$btn-close-color:            $red;
+$btn-close-opacity:          1;
+$btn-close-hover-opacity:    .75;
+$btn-close-focus-opacity:    1;
+$btn-close-disabled-opacity: .25;

@@ -1,0 +1,79 @@
+//replaces containers with content max width and margin auto
+
+
+//redefine container, as we are not using default bootstrap;
+.container {
+    width: 100%;
+    padding-right: $spacer;
+    padding-left: $spacer;
+}
+
+/* $grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1400px,
+  xxl: 1680px,
+); */
+
+
+//600px on 1440px display, for body text in single post
+$align-normal-sizes: (
+    xs: 600px,
+    xxl: 750px 
+);
+
+//800px on 1440px display, for featured images, perex, etc. in single post
+$align-wide-sizes: (
+    xs: 800px,
+    xxl: 900px 
+);
+
+//post archives
+
+$align-wider-sizes: (
+    lg: 900px,
+    xl: 1100px,
+    xxl: 1320px
+);
+
+$align-widest-sizes: (
+    xl: 1260,
+    xxl: 1550px
+);
+
+@mixin make-sizes($class-name, $sizes-list, $make-columns: false){
+    .#{$class-name}{
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    //columns that can be aligned with specific size by adding one column to the left and one to the right, in .row.justify-content-center
+    @if $make-columns{
+        .col-#{$class-name}{
+            width: 100%;
+        }
+    }
+    @each $breakpoint, $max-width in $sizes-list{
+        @include media-breakpoint-up($breakpoint, $grid-breakpoints){
+            .#{$class-name}{
+                max-width: $max-width !important;
+            }
+            @if $make-columns{
+                .col-#{$class-name}{
+                    max-width: $max-width !important;
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                    margin-left: $grid-gutter-width / 2;
+                    margin-right: $grid-gutter-width / 2;
+                }
+            }
+        }
+    }
+}
+
+@include make-sizes('align-normal', $align-normal-sizes);
+@include make-sizes('align-wide', $align-wide-sizes);
+@include make-sizes('align-wider', $align-wider-sizes, true);
+@include make-sizes('align-widest', $align-widest-sizes, true);

@@ -1,9 +1,52 @@
+html{
+    background-color: var(--#{$prefix}primary);
+}
 
+a{
+    transition: color .05s linear;
+}
 
-.btn:not(.btn-menu){
+.btn:not(.btn-menu) {
     text-transform: uppercase;
 }
 
-.btn-primary{
-    @include button-variant($primary, $primary, $body-color, $red, $red, $white);
+//override default focus
+*:not(.offcanvas):focus-visible{
+    outline: 2px solid var(--#{$prefix}red);  
+    &:active{
+        outline-color: darken($red, 10);
+    }
 }
+
+.btn-primary {
+    @include button-variant($primary, $primary, $body-color, var(--#{$prefix}red), var(--#{$prefix}red), $white);
+}
+//header
+@import "header";
+
+*{
+&[class*="marker-"]::before{
+        content: "";
+        display: inline-block;
+        margin-right: $spacer / 2;
+        width: .5em;
+        height: .5em;
+        border-radius: 9999px;
+        vertical-align: .025em;
+}
+}
+
+
+@each $name, $color in $colors {
+    .marker-#{$name} {
+        &::before{
+            background-color: var(--#{$prefix}#{$name});
+        }
+        &:hover{
+            &::before{
+                background-color: lighten($color, 10);
+            }
+        }
+    }
+}
+

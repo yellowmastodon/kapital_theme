@@ -1,0 +1,176 @@
+
+body.admin-bar { 
+    & > #horizontal-nav{
+        top: 32px;  
+    }
+    & .offcanvas{
+        padding-top: 32px;
+    }
+}  
+
+#top-header{
+    margin-bottom: -2px; //fix rendering issues
+}
+
+#main-logo{
+    fill: var(--#{$prefix}red);
+}
+
+//use default collapse for hiding top header but override
+#top-header.collapse:not(.show){
+    @include visually-hidden;
+    display: unset !important;
+    nav{
+        display: none !important;
+    }
+}
+
+#quick-menu {
+    .menu-item a {
+        text-decoration: none !important;
+        @extend .rounded-pill;
+        padding: $btn-padding-y $btn-padding-x;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1;
+        background-color: var(--#{$prefix}white); 
+        //override focus because outline is partially hidden by next element      
+        &:focus-visible{
+            box-shadow: var(--#{$prefix}red)0 0 0 2px inset;
+            outline: none;
+        }
+    }
+}
+
+@each $breakpoint, $container-max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+        .row .col-container {
+            max-width: $container-max-width;
+        }
+    }
+}
+
+$horizontal-nav-padding: 6px;
+#horizontal-nav {
+    padding-top: $horizontal-nav-padding;
+    padding-bottom: $horizontal-nav-padding;
+    z-index: $zindex-fixed;
+    line-height: 1;
+    top: 0;
+}
+
+@include media-breakpoint-down('md'){
+    #horizontal-nav{
+        padding-top: $spacer / 2;
+        padding-bottom: $spacer / 2;
+    }
+}
+
+#horizontal-nav, #top-header{
+    *:not([class^="offcanvas"]) {
+        transition: color .2s ease, fill .2 ease, background-color .2 ease;
+    }
+}
+
+//shown and hidden with js adding and removing opacity-0
+#horizontal-nav-logo{
+    transition: opacity .1s ease, fill .2 ease;
+    svg{
+        height: 1.2rem;
+        margin-top: -.1rem;
+        margin-bottom: -.1rem;
+    }
+}
+
+//centered independently of .row on md-breakpoint
+@include media-breakpoint-only('md'){
+    #horizontal-nav-logo{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+.btn-menu {
+    @extend .rounded-pill;
+    background-color: transparent;
+    display: inline-block;
+    border: none;
+    font-weight: bold;
+    padding: $btn-padding-y $btn-padding-x;
+    //padding and negative margin used for focus box-shadow styling
+    &:not(.default-x-margin){
+        margin-left: (-$btn-padding-x);
+        margin-right: (-$btn-padding-x);
+    }
+    .hamburger {
+        width: 1rem;
+        display: inline-block;
+        //this alignment works with Kontrast Grotesk
+        vertical-align: -.05em;
+        .line {
+            height: 2px;
+            background-color: $body-color;
+            &:not(:last-child){
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+    svg{
+        height: 1rem;
+        fill: var(--#{$prefix}body-color)
+    }
+
+    &:hover {
+        color: var(--#{$prefix}red);
+        .hamburger .line {
+            background-color: var(--#{$prefix}red);
+        }
+        svg{
+            fill: var(--#{$prefix}red);   
+        }
+    }
+    &:active {
+        .hamburger .line {
+            background-color: darken($red, 10);
+        }
+    }
+
+}
+.btn-menu, a{
+        &:active{
+            color: darken($red, 10);
+            svg{
+                fill: darken($red, 10);
+            }
+        }
+}
+
+/* fix usage in row (overriden padding)
+* can create problems in wrapping rows
+* solution:
+* wrap elements in that case in .col
+*/
+.row .btn-menu+.btn-menu{
+    margin-left: ($spacer - $btn-padding-x);
+}
+//other classes not used in layout, can be generated manually the same way
+.row.gx-4 .btn-menu+.btn-menu{
+    margin-left: (map-get($spacers, 4) - $btn-padding-x);
+}
+
+
+@include media-breakpoint-down('sm'){
+    .btn-podpora{
+        margin-left: (-$btn-padding-x);
+        margin-right: (-$btn-padding-x);
+    }
+}
+@include media-breakpoint-up('sm'){
+    .btn-podpora{
+        background-color: var(--#{$prefix}white);
+    }
+
+}
