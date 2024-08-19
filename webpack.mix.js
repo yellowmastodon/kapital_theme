@@ -18,20 +18,32 @@ mix.
     .options({
         processCssUrls: false,
     })
-    .purgeCss({
+     .purgeCss({
         content: [
             '*.php',
         ],
         safelist: {
             standard: [
-                /^text-/,
+                /^btn-/,
+                /^text/,
                 /^bg-/,
-                /^visible-/,
-                /^hidden-/,
-                /^btn/,
+                /^has-/,
+                /^align-/,
+                /^p.-/,
+                /^m.-/,
+                /^g.-/,
+                /^fw-/,
+                /^col-/,
+                /^d-/,
+                /^offcanvas/,
+                /visible$/,
+            ],
+            deep: [
+                /^quick-menu/,
+                /^offcanvas/
             ]
         }
-    });
+    }); 
 
 // JS
 
