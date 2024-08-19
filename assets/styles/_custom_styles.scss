@@ -1,0 +1,9 @@
+
+
+.btn:not(.btn-menu){
+    text-transform: uppercase;
+}
+
+.btn-primary{
+    @include button-variant($primary, $primary, $body-color, $red, $red, $white);
+}

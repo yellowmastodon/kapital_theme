@@ -19,13 +19,3 @@ import $ from 'jquery';
 // import 'bootstrap/js/dist/tab';
 // import 'bootstrap/js/dist/toast';
 // import 'bootstrap/js/dist/tooltip';
-
-
-const toggleMenu = (event) => {
-    event.preventDefault();
-    $('.js-menu-toggle').toggleClass('open');
-    $('body').toggleClass('menu-open');
-    $('.header__navigation').fadeToggle();
-};
-
-$('.js-menu-toggle').on('click', toggleMenu);

@@ -1,11 +1,36 @@
 /**
 * https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 */
-
+//
 $prefix: 'kptl-';
-$pink: #FFC2FE;
-$red: #FF0033;
+
+
+//font
+$font-family-sans-serif: "Kontrast Grotesk";
+//$font-family-base: 'Roboto Serif', 'sans-serif';
+$font-family-base: "Kontrast Grotesk";
+
+$font-size-root: clamp(1.063rem, 0.233vw + 1.01rem, 1.25rem);
+$enable-dark-mode: false;
+
+//color
+$pink: #ffc2fe;
+$red: #ff0033;
 $primary: $pink;
 $secondary: #EBEBEB;
+$white: #fff;
+//button
+$btn-border-radius: var(--#{$prefix}border-radius-pill);
+$btn-font-weight: 700;
 
 $link-color: $red;
+$focus-ring-color: $red;
+$focus-ring-width: .25rem;
+$focus-ring-opacity: 1;
+$focus-ring-box-shadow: 0 0 0 $focus-ring-width $focus-ring-color;
+
+//offcanvas
+$offcanvas-bg-color: $primary;
+$offcanvas-backdrop-bg: $white;
+$offcanvas-border-color: $primary;
+$offcanvas-border-width: 0px;

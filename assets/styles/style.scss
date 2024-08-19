@@ -17,12 +17,13 @@ Text Domain: kapital
 @import "bootstrap/scss/functions";
 
 // Customize some defaults
-
+@import "font_face.scss";
 @import "custom_variables.scss";
 @import "custom_colors.scss";
+
 // Required
 @import "bootstrap/scss/variables";
-@import "wordpress_fixes";
+
 //@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
@@ -30,13 +31,16 @@ Text Domain: kapital
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 
-//@import "bootstrap/scss/type";
+@import "bootstrap/scss/type";
 // @import "bootstrap/scss/images";
-//@import "bootstrap/scss/containers";
+@import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
+$temporary-colors: $theme-colors;
+$theme-colors: ();
 @import "bootstrap/scss/buttons";
+$theme-colors: $temporary-colors;
 @import "bootstrap/scss/transitions";
 //@import "bootstrap/scss/dropdown";
 // @import "bootstrap/scss/button-group";
@@ -67,41 +71,6 @@ Text Domain: kapital
 @import "bootstrap/scss/utilities/api";
 
 
+@import "custom_styles.scss";
+@import "wordpress_fixes";
 
-/* 
-// 1. Configuration
-@import 'config/variables';
-@import 'config/mixins';
-
-// 2. Vendors
-@import 'vendor/simple-grid/simple-grid';
-
-// 3. Utilities
-@import 'utils/reset';
-@import 'utils/responsive';
-@import 'utils/helpers';
-@import 'utils/defaults';
-
-// 4. Base stuff
-@import 'base/base';
-@import 'base/grid';
-@import 'base/fonts';
-@import 'base/images';
-@import 'base/forms';
-@import 'base/lists';
-@import 'base/typography';
-
-// 5. Layout-related sections
-@import 'layout/main';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/sections';
-
-// 6 .Components
-@import 'components/buttons';
-@import 'components/nav';
-@import 'components/alerts';
-
-// 7. Page-specific styles
-@import 'pages/home';
- */
