@@ -1,11 +1,9 @@
 <?php get_header(); ?>
 
 <main class="main" role="main">
-    <div class="container">
-
         <?php while ( have_posts() ) : the_post(); ?>
 
-            <article <?php post_class(); ?>>
+            <article <?php post_class(["main-content", "container", "mt-5"]); ?>>
 
                 <header class="post__header" role="heading">
                     <h1 class="post__title"><?php the_title(); ?></h1>
@@ -22,7 +20,6 @@
 
         <?php endwhile; ?>
 
-    </div>
 </main>
 
 <?php get_footer(); ?>

@@ -463,10 +463,75 @@ function kapital_register_custom_taxonomies(){
     disable_kses();
     register_podcast_serie_taxonomy();
 	register_redakcia_pozicia();
-	unregister_taxonomy_for_object_type( 'category', 'post' );
+	//unregister_taxonomy_for_object_type( 'category', 'post' );
 }
 
 //add_filter( 'custom_menu_order', '__return_true' );
 add_filter( 'menu_order', 'reorder_post_submenu' );
 add_action("category_edit_form_fields", 'tinymce_on_description', 10, 2);
 add_action( 'init', 'kapital_register_custom_taxonomies', 1 );
+
+
+/**
+ * Default taxonomy description field using WP editor
+ *
+ * @link    https://codex.wordpress.org/Javascript_Reference/wp.editor
+ * @return  void
+ */
+
+$taxonomy='cislo';
+function html_taxonomy_description()
+{
+	?>
+	<script>
+		jQuery(document).ready(function($) {
+			let field = 'tag-description';
+			if ( document.getElementById(field) == undefined ) {
+				field = 'description';
+			}
+
+			wp.editor.initialize(field, {
+				tinymce: {
+					toolbar1: 'formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+					plugins: 'link,lists,textcolor,colorpicker',
+					menubar: false,
+					statusbar: false,
+					height: 300,
+				},
+				quicktags: true,
+				mediaButtons: true,
+			});
+
+			$('#submit').mousedown( e => {
+				console.debug('submit.mousedown', e);
+				e.preventDefault();
+	
+				tinyMCE.triggerSave();
+	
+				$(e.currentTarget).trigger('click');
+			});
+		});
+	</script>
+	<?php
+}
+foreach (['parner', 'cislo', 'seria', 'rubrika', 'jazyk', 'podcast-seria', 'pozicia'] as $taxonomy){
+	add_action( "{$taxonomy}_edit_form_fields", 'html_taxonomy_description' );
+	add_action( "{$taxonomy}_add_form_fields", 'html_taxonomy_description' );
+}
+
+/**
+ * Loading editor assets
+ *
+ * @return  void
+ */
+function wp_editor_includes()
+{
+    global $pagenow, $current_screen;
+
+    if ( in_array($pagenow, array('edit-tags.php', 'term.php')) )
+	{
+		wp_enqueue_editor();
+		wp_enqueue_media();
+	}
+}
+add_action( 'init', 'wp_editor_includes' );
