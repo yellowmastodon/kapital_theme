@@ -10,12 +10,12 @@ require_once 'includes/class-wp-bootstrap-navwalker.php';
 require_once 'includes/custom_post_types.php';
 require_once 'includes/custom_terms.php';
 require_once 'includes/custom_import.php';
-add_filter( 'http_request_host_is_external', '__return_true' );
+require_once 'includes/old-site-functions.php';
 
 
 
 /**
- * Add support for useful stuff
+ * Add support for useful stuff and set image sizes
  */
 
 if ( function_exists( 'add_theme_support' ) ) {
@@ -26,6 +26,8 @@ if ( function_exists( 'add_theme_support' ) ) {
     // Add Thumbnail Theme Support
     add_theme_support( 'post-thumbnails' );
     // add_image_size( 'custom-size', 700, 200, true );
+    add_theme_support( 'align-wide' );
+    add_theme_support( 'align-full' );
 
     // Add Support for post formats
     // add_theme_support( 'post-formats', ['post'] );
@@ -34,6 +36,30 @@ if ( function_exists( 'add_theme_support' ) ) {
     // Localisation Support
     load_theme_textdomain( 'kapital', get_template_directory() . '/languages' );
 }
+
+/**
+ * Set image sizes
+ */
+
+ add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
+ function wpdocs_theme_setup() {
+     add_image_size( 'placeholder', 1, 1, true); // 300 pixels wide (and unlimited height)
+ }
+
+//only default image sizes on theme switch
+function kapital_switch_theme() {
+	update_option( 'thumbnail_size_w', 320 );
+	update_option( 'thumbnail_size_h', 320 );
+    update_option( 'thumbnail_crop', 0 );
+    update_option( 'medium_size_w', 640 );
+	update_option( 'medium_size_h', 640 );
+    update_option( 'medium_crop', 0 );
+    update_option( 'large_size_w', 1280 );
+	update_option( 'large_size_h', 1280 );
+    update_option( 'large_crop', 0 );
+}
+
+add_action('switch_theme', 'kapital_switch_theme');
 
 
 /**
@@ -56,10 +82,12 @@ remove_action('wp_print_styles', 'print_emoji_styles');
  */
 
 function barebones_enqueue_scripts() {
-    // wp_enqueue_style( 'fonts', '//fonts.googleapis.com/css?family=Font+Family' );
-    // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' );
-    wp_deregister_script('jquery');
-    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/style.css?' . filemtime( get_stylesheet_directory() . '/style.css' ) );
+   // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' );
+    //remove jquery from front end
+    if( !current_user_can('edit_posts') ){
+        wp_deregister_script('jquery');
+    } 
+    wp_enqueue_style( 'styles', get_stylesheet_directory_uri() . '/style.css?' . filemtime( get_stylesheet_directory() . '/style.css' ), [], null );
     wp_enqueue_script( 'scripts', get_stylesheet_directory_uri() . '/js/scripts.min.js?' . filemtime( get_stylesheet_directory() . '/js/scripts.min.js' ), [], null, true );
 }
 
@@ -127,8 +155,8 @@ function deregister_styles() {
 function kapital_register_nav_menus() {
     register_nav_menus([
         'main'   => __('Hlavné menu', 'kapital'),
-        'short'  => __('Rýchle menu', 'kapital'),
-        'quick-serie-link' => __('Série horizontálnej navigácii', 'kapital'),
+        'quick'  => __('Rýchle menu', 'kapital'),
+        'quick-serie-link' => __('Série v horizontálnej navigácii', 'kapital'),
         'footer' => 'Footer',
     ]);
 }
@@ -140,25 +168,6 @@ add_action( 'customize_register', function( $wp_customize ) {
     $section->description .= "<p>Hlavné menu sa zobrazí .</p>";
 }, 12 );
 
-
-
-/**
- * Nav menu args
- *
- * @param array $args
- * @return void
- */
-
-function barebones_nav_menu_args( $args ) {
-    $args['container'] = false;
-    $args['container_class'] = false;
-    $args['menu_id'] = false;
-    $args['items_wrap'] = '<ul class="%2$s">%3$s</ul>';
-
-    return $args;
-}
-
-add_filter('wp_nav_menu_args', 'barebones_nav_menu_args');
 
 
 /**
