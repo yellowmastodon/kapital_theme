@@ -1,8 +1,3 @@
-/**
- * Mobile navigation toggle
- * @param {mixed} event
- */
-
 // Import just what we need
 
 // import 'bootstrap/js/dist/alert';
@@ -25,6 +20,13 @@ let topHeaderLogoBottom;
 let topHeaderCollapsed;
 let horizontalNavLogoShown;
 let topHeaderCollapse;
+let isTouchDevice = false;
+
+window.addEventListener('touchstart', function setTouchDevice() { 
+    isTouchDevice = true;
+    window.removeEventListener('touchstart', setTouchDevice);
+    console.log(isTouchDevice);
+});
 
 /** top header is shown onload only on front page
  * horizontal nav logo is shown only when top header is not visible
@@ -79,3 +81,9 @@ window.onscroll = function () {
         showHorizontalNavLogo();
     }
 };
+
+// for 
+window.addEventListener("wheel", event => {
+    const delta = Math.sign(event.deltaY);
+    console.info(delta);
+});
