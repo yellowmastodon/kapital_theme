@@ -21,7 +21,7 @@
 //600px on 1440px display, for body text in single post
 $align-normal-sizes: (
     xs: 600px,
-    xxl: 750px 
+    xxl: 700px, 
 );
 
 //800px on 1440px display, for featured images, perex, etc. in single post
@@ -31,7 +31,6 @@ $align-wide-sizes: (
 );
 
 //post archives
-
 $align-wider-sizes: (
     lg: 900px,
     xl: 1100px,
