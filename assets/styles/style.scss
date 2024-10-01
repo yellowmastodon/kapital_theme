@@ -61,8 +61,13 @@ $theme-colors: $temporary-colors;
 //@import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
 // @import "bootstrap/scss/spinners";
+//make offcanvas not responsive
+$temporary-breakpoints: $grid-breakpoints;
+$grid-breakpoints: (sm: 0);
 @import "bootstrap/scss/offcanvas"; // Requires transitions
+$grid-breakpoints: $temporary-breakpoints;
 // @import "bootstrap/scss/placeholders";
+
 
 // Helpers
  @import "bootstrap/scss/helpers";
