@@ -4,13 +4,15 @@
  * Custom functions / External files
  */
 
-require_once 'includes/custom-functions.php';
-require_once 'includes/block-editor-functions.php';
 require_once 'includes/class-wp-bootstrap-navwalker.php';
 require_once 'includes/custom_post_types.php';
 require_once 'includes/custom_terms.php';
 require_once 'includes/custom_import.php';
 require_once 'includes/old-site-functions.php';
+//require_once 'includes/cmb-example-functions.php';
+
+
+require_once 'block-editor/block-editor-functions.php';
 
 
 

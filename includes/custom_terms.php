@@ -4,6 +4,7 @@
 * term_meta managed by ACF
 */
 
+
 /**
  * Registers taxonomy: "Žánre"
  */
@@ -35,7 +36,7 @@ function register_zanre_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
@@ -47,6 +48,57 @@ function register_zanre_taxonomy() {
 	);
 	register_taxonomy( 'zaner', array( 'post' ), $args );
 }
+
+
+/**
+ * Registers taxonomy: "Autorstvo" (replaces the author)
+ */
+
+function register_author_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Autorstvo', 'Taxonomy General Name', 'kapital' ),
+		'singular_name'              => _x( 'Autorstvo', 'Taxonomy Singular Name', 'kapital' ),
+		'menu_name'                  => __( 'Autorstvo', 'kapital' ),
+		'all_items'                  => __( 'Všetko autorstvo', 'kapital' ),
+		'parent_item'                => __( 'Nadradené autorstvo', 'kapital' ),
+		'parent_item_colon'          => __( 'Nadradené autorstvo:', 'kapital' ),
+		'new_item_name'              => __( 'Nové autortsvo', 'kapital' ),
+		'add_new_item'               => __( 'Pridať nové autorstvo', 'kapital' ),
+		'edit_item'                  => __( 'Upraviť autorstvo', 'kapital' ),
+		'update_item'                => __( 'Aktualizovať autorstvo', 'kapital' ),
+		'view_item'                  => __( 'Zobraziť autorstvo', 'kapital' ),
+		'separate_items_with_commas' => __( 'Autorstvo oddelené čiarkami', 'kapital' ),
+		'add_or_remove_items'        => __( 'Pridať alebo odstrániť autorstvoˇ', 'kapital' ),
+		'choose_from_most_used'      => __( 'Vyberte z najpoužívanejších', 'kapital' ),
+		'popular_items'              => __( 'Najpoužívanejšie autorstvo', 'kapital' ),
+		'search_items'               => __( 'Vyhľadať autorstvo', 'kapital' ),
+		'not_found'                  => __( 'Autorstvo nenájdené', 'kapital' ),
+		'no_terms'                   => __( 'Žiadne autorstvo', 'kapital' ),
+		'items_list'                 => __( 'Zoznam autorstva', 'kapital' ),
+		'items_list_navigation'      => __( 'Navigácia zoznamu autorstva', 'kapital' ),
+	);
+	$rewrite = array(
+		'slug'                       => 'autorstvo',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'query_var'                  => 'autorstvo',
+		'rewrite'                    => $rewrite,
+		'show_in_rest'               => true,
+	);
+	register_taxonomy( 'autorstvo', array( 'post' ), $args );
+
+}
+include plugin_dir_path(__FILE__) . 'author_taxonomy_functions.php';
 
 /**
  * Registers taxonomy: "Partneri"
@@ -79,7 +131,7 @@ function register_partneri_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
@@ -124,7 +176,7 @@ function register_cisla_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
@@ -168,19 +220,16 @@ function register_serie_taxonomy() {
         'desc_field_description'     => __( 'Popis série sa zobrazí medzi názvom a zoznamom článkov.', 'kapital' )
 
 	);
-	$rewrite = array(
-		'slug'                       => 'tematicke-serie',
-		'with_front'                 => true,
-		'hierarchical'               => false,
-	);
+
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => false,
+		'meta_box_cb'				 => 'post_categories_meta_box',
 		'rewrite'                    => ['slug' => 'serie'],
 		'show_in_rest'               => true,
 	);
@@ -265,7 +314,7 @@ function register_jazyk_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
@@ -315,13 +364,13 @@ function register_podcast_serie_taxonomy() {
 	);
 	$args = array(
 		'labels'                     => $labels,
-		'hierarchical'               => true,
+		'hierarchical'               => false,
 		'public'                     => true,
 		'show_ui'                    => true,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => false,
-		'rewrite'                    => ['slug' => 'serie'],
+		'rewrite'                    => $rewrite,
 		'show_in_rest'               => true,
 	);
 	register_taxonomy( 'podcast-seria', array( 'podcast' ), $args );
@@ -454,6 +503,7 @@ function disable_kses() {
 }
 
 function kapital_register_custom_taxonomies(){
+	register_author_taxonomy();
 	register_rubriky_taxonomy();
     register_zanre_taxonomy();
     register_serie_taxonomy();
