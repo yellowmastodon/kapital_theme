@@ -1,17 +1,25 @@
-<?php function kapital_custom_menu_import()
+<?php 
+/** Not really import, used to remap everything to new structure
+ * old site used only categories
+ * new site uses custom taxonomies and custom post types
+ */
+
+
+
+ function kapital_custom_menu_import()
 {
     add_menu_page(
     'Remap kategórií článkov (test)',                 //$page_title
     'Remap kategórií článkov (test)',                 //$menu_title
     'edit_posts',                        //$capability
     'custom_import_test',                     //$icon_url
-    'kapital_render_custom_menu_import', //$callback
+    'kapital_render_custom_menu_import_test', //$callback
     'dashicons-database-import',         //$icon_url
     '7'                                  //$position
   );
 }
 
-function kapital_render_custom_menu_import(){
+function kapital_render_custom_menu_import_test(){
 /*     if (!current_user_can('edit_posts'))  {
         wp_die( __('You do not have sufficient pilchards to access this page.')    );
       }
@@ -28,19 +36,93 @@ function kapital_render_custom_menu_import(){
     $prev_cislo_slug = '';
     //$available_taxonomies = get_taxonomies(array(), 'names');
     //var_dump($available_taxonomies);
-    echo '<table class="all_posts">' . '<tr><td></td><td>Názov</td><td>Staré kategórie</td><td>Nové kategórie</td><td>Ilustrák</td><td>Obálka</td><td>hashtag</td><td>Vizuál</td></tr>';
+    echo '<table class="all_posts">' . '<tr><td></td><td>Názov</td><td>Autorstvo</td><td>Staré kategórie</td><td>Nové kategórie</td><td>Ilustrák</td><td>Obálka</td><td>hashtag</td><td>Vizuál</td></tr>';
     while ($query->have_posts()){
         $query->the_post();
+        global $post;
         $post_id = get_the_ID();
         $old_terms = get_the_terms($post_id, 'category');
         $old_terms_display = '';
         $new_terms_display = '';
+        $old_author = array();
         $cover_image = array();
         $hashtag_match = array();
         $hashtag = '';
         $cislo_featured_image = '';
         $vizual_match = array();
         $vizual = '';
+        $old_author_ID = $post->post_author;
+        $old_author = get_userdata($old_author_ID);
+        $old_author_display_name = $old_author->data->display_name;
+
+        /** explode authors with multiple people into separate entries
+        * výnimky:
+        * Študentstvo a absolventstvo VŠVU a VŠMU
+        * Martin Šurkala a kol.
+        */
+        if ($old_author_display_name == 'Martin Šurkala a kol.' || $old_author_display_name == 'Študentstvo a absolventstvo VŠVU a VŠMU'){
+            $old_author_display_name_exploded = array($old_author_display_name);
+        } else{
+            $old_author_display_name_exploded = preg_split('/(\sa\s|,\s|\s\&\s)/', $old_author_display_name);
+        }
+        $new_authors = array();
+        foreach($old_author_display_name_exploded as $key => $author){
+            //$new_author = $new_author . $author . ' | ';
+            //exists in DB test:
+            //args: https://developer.wordpress.org/reference/classes/wp_term_query/__construct/
+            $existing_term = get_terms(
+                array(
+                    'taxonomy'          => 'autorstvo',
+                    'fields'             => 'all',
+                    'hide_empty'        => false,
+                    'meta_query' => array(
+                        array(
+                            'key'       => '_author_full_name',
+                            'value'     => $author,
+                        )
+                    )
+                )
+            );
+            if(sizeof($existing_term) > 0){
+                $new_author = "";
+                $new_author = $existing_term[0]->term_id;
+                //var_dump($existing_term);
+            } else {
+                $new_author = array();
+                if (sizeof($old_author_display_name_exploded)>1){
+                    $author_exploded = preg_split('/\s/', $author, 2);
+                    //this might mismatch, but does not matter for front end, as the display name should be correct
+                    if(sizeof($author_exploded) > 1){
+                        $new_author["first_name"] = $author_exploded[0];
+                        $new_author["last_name"] = $author_exploded[1];
+                    } else {
+                        $new_author["first_name"] = "";
+                        $new_author["last_name"] = $author_exploded[0];
+                    }
+                    $new_author["full_name"] = $author;
+                    $new_author["slug"] = sanitize_title(preg_replace('/\s/', '' , $author));
+                } else {
+                    $new_author = array();
+                    $new_author["slug"] = $old_author->data->user_nicename;
+                    $new_author["full_name"] = $author;
+                    $new_author["first_name"] = get_user_meta($old_author->data->ID, 'first_name', true);
+                    $new_author["last_name"] = get_user_meta($old_author->data->ID, 'last_name', true);
+                    if ($new_author["last_name"] == ''){
+                        if ($new_author["first_name"] !== ''){
+                            $new_author["last_name"] = $new_author["first_name"];
+                            $new_author["first_name"] = '';
+                        } else {
+                            $new_author["last_name"] = $new_author["full_name"];
+                            $new_author["first_name"] = '';
+                        }
+                    }
+                }
+                 //var_dump($new_author);
+            }
+            array_push($new_authors, $new_author); 
+        }
+
+
         foreach($old_terms as $old_term){
             //echo $old_term->slug . '<br>';
             if (str_starts_with($old_term->slug, '20')){
@@ -48,7 +130,6 @@ function kapital_render_custom_menu_import(){
                 $old_terms_display .= $old_term->name . ', ';
                 $new_terms_display .= $old_term->slug . ' (číslo), ';
                 $cislo_page = get_page_by_path($old_term->slug);
-                //var_dump($cislo_page);
                 if (!$cislo_page){
                     $cislo_page = get_page_by_path('archiv/' . $old_term->slug, OBJECT, 'page');
                     if (!$cislo_page){
@@ -74,7 +155,6 @@ function kapital_render_custom_menu_import(){
                     $vizual = $vizual_match[1][0];
                     //$vizual = $cislo_page->post_content;
                 };
-                //var_dump($vizual_match);
                 if ($old_term->slug == $prev_cislo_slug){
                     $vizual = '--||--';
                 }
@@ -82,30 +162,23 @@ function kapital_render_custom_menu_import(){
                     $hashtag = '#0800212212';
                 }
                 $prev_cislo_slug = $old_term->slug;
-                //var_dump($hashtag);
             } else {
                 $old_terms_display .= $old_term->slug . ', ';
                 $json_key = null;
                 $json_keys = array();
                 $json_keys = array_keys(array_column($remap_json, 'ogslug'), $old_term->slug);
-                echo '<br>////old_slug ';
-                var_dump($old_term->slug);
-                echo ' ' . get_the_title($post_id) . ' ';
-                var_dump($json_keys);
+                //echo '<br>////old_slug ';
+                //echo ' ' . get_the_title($post_id) . ' ';
                 foreach ($json_keys as $key){
                     if ($remap_json[$key]['ogslug'] == $old_term->slug){
                         $json_key = $key;
                     }
                 }
-                var_dump($remap_json[$key]['ogslug']);
-                var_dump($remap_json[$key]['newposttypeslug']);
-                echo '////';
-                //var_dump($json_key);
-                //var_dump($remap_json[$json_key]);
+                //echo '////';
                 $new_terms_display .= $remap_json[$json_key]['newslug'] . ' (' . $remap_json[$json_key]['newcategorytypeslug'] . '), ';
             }
         }
-        echo '<tr><td>' . $i  . '</td><td>' . get_the_title() . '</td><td>' . $old_terms_display . '<td>' . $new_terms_display . '</td><td class="thumb_image">' . wp_get_attachment_image($cislo_featured_image, 'medium') . '</td><td class="thumb_image">' . wp_get_attachment_image($cover_image[1], 'thumbnail') . '</td><td>'. $hashtag .'</td><td class="vizual-column">' . $vizual . '</td></tr>';
+        echo '<tr><td>' . $i  . '</td><td>' . get_the_title() . '</td><td>'. var_export($new_authors, true) . '</td><td>' . $old_terms_display . '<td>' . $new_terms_display . '</td><td class="thumb_image">' . wp_get_attachment_image($cislo_featured_image, 'medium') . '</td><td class="thumb_image">' . wp_get_attachment_image($cover_image[1], 'thumbnail') . '</td><td>'. $hashtag .'</td><td class="vizual-column">' . $vizual . '</td></tr>';
         $i++;
     }
     echo '</table>
@@ -133,6 +206,10 @@ add_action( 'admin_menu', 'kapital_custom_menu_import_real', 0 );
 
 
 function kapital_custom_import(){
+    
+
+
+
     $old_terms_to_delete = array();
     $args = array(
         'post_type' => 'post',
@@ -142,10 +219,134 @@ function kapital_custom_import(){
     $json_file_path = get_theme_file_path('/includes/remap_terms.json');
     $remap_json = json_decode(file_get_contents($json_file_path), true);
     //$available_taxonomies = get_taxonomies(array(), 'names');
+    //remove save author actions as it gets values from inputs, that are non existent here
+    remove_action('created_autorstvo', 'author_save_term_fields');
+    remove_action('edited_autorstvo', 'author_save_term_fields');
+    $more_exceptions = array(
+        array('old_author' => 'Kristína Országhová David Koronczi', 'new_authors' => array('Kristína Országhová', 'David Koronczi')),
+        array('old_author' => 'Tomáš Hučko Lukáš Likavčan', 'new_authors' => array('Tomáš Hučko', 'Lukáš Likavčan')),
+        array('old_author' => 'Matej Sotník Kristína Országhová', 'new_authors' => array('Matej Sotník', 'Kristína Országhová')),
+        array('old_author' => 'Tomáš Hučko Michaela Pašteková', 'new_authors' => array('Tomáš Hučko', 'Michaela Hučko Pašteková')),
+        array('old_author' => 'Kristína Országhová Lukáš Likavčan', 'new_authors' => array('Kristína Országhová', 'Lukáš Likavčan')),
+        array('old_author' => 'Tomáš Hučko Lukáš Likavčan Kristína Országhová Dávid Koronczi', 'new_authors' => array('Tomáš Hučko', 'Lukáš Likavčan', 'Kristína Országhová', 'Dávid Koronczi')),
+        array('old_author' => 'Tomáš Hučko Barbora Bírová', 'new_authors' => array('Tomáš Hučko', 'Barbora Bírová')),
+        array('old_author' => 'Táňa Sedláková Michaela Pašteková Tomáš Hučko', 'new_authors' => array('Táňa Sedláková', 'Michaela Hučko Pašteková', 'Tomáš Hučko')),
+    );
     while ($query->have_posts()){
         $query->the_post();
         $post_id = get_the_ID();
         $old_terms = get_the_terms($post_id, 'category');
+
+        ///authors
+        global $post;
+        $old_author_ID = $post->post_author;
+        $old_author = get_userdata($old_author_ID);
+        $old_author_display_name = $old_author->data->display_name;
+
+        /** explode authors with multiple people into separate entries
+        * exceptions:
+        * Študentstvo a absolventstvo VŠVU a VŠMU
+        * Martin Šurkala a kol.
+        * more exceptions - multiple author separated only by whitespace:
+        * SELECT * FROM `nrkxtj_users` WHERE `display_name` REGEXP '[^\\,\\s]*\\s[^,a\\s]*\\s[^,\\s]*\\s.*';
+        * Kristína Országhová David Koronczi
+        * Tomáš Hučko Lukáš Likavčan
+        * Matej Sotník Kristína Országhová
+        * Matej Sotník Michael Papcun
+        * Tomáš Hučko Michaela Pašteková
+        * Kristína Országhová Lukáš Likavčan
+        * Tomáš Hučko Lukáš Likavčan Kristína Országhová Dávid Koronczi
+        * Tomáš Hučko Barbora Bírová
+        * Táňa Sedláková Michaela Pašteková Tomáš Hučko
+        * Rozpustilý*í: Káťa Kortus a Ela Plíhalová //let it be... no simple solution
+        * */
+        $exceptions_key = array_search($old_author_display_name, array_column($more_exceptions, 'old_author'));
+
+        if ($old_author_display_name == 'Martin Šurkala a kol.' || $old_author_display_name == 'Študentstvo a absolventstvo VŠVU a VŠMU'){
+            $old_author_display_name_exploded = array($old_author_display_name);
+        } elseif($exceptions_key){
+            $old_author_display_name_exploded = $more_exceptions[$exceptions_key]['new_authors'];
+        } else{
+            $old_author_display_name_exploded = preg_split('/(\sa\s|,\s|\s\&\s|\s\&amp;\s)/', $old_author_display_name);
+        }
+        $new_authors = array();
+        foreach($old_author_display_name_exploded as $key => $author){
+            //exception Michaela Hučko Pašteková - in split occurs as Michaela Pašteková
+            if ($author === 'Michaela Pašteková'){
+                $author = 'Michaela Hučko Pašteková';
+            }
+            //exists in DB test:
+            //args: https://developer.wordpress.org/reference/classes/wp_term_query/__construct/
+            $existing_term = get_terms(
+                array(
+                    'taxonomy'          => 'autorstvo',
+                    'fields'             => 'all',
+                    'hide_empty'        => false,
+                    'meta_query' => array(
+                        array(
+                            'key'       => '_author_full_name',
+                            'value'     => $author,
+                        )
+                    )
+                )
+            );
+             //if exists in
+            if(sizeof($existing_term) > 0){
+                $new_author_id = "";
+                $new_author_id = $existing_term[0]->term_id;
+                wp_set_object_terms($post_id, $new_author_id, 'autorstvo', true);
+                //var_dump($existing_term);
+            } else {
+                $new_author = array();
+                if (sizeof($old_author_display_name_exploded)>1){
+                    $author_exploded = preg_split('/\s/', $author, 2);
+                    //this might mismatch, but does not matter for front end, as the display name should be correct
+                    if(sizeof($author_exploded) > 1){
+                        $new_author["first_name"] = $author_exploded[0];
+                        $new_author["last_name"] = $author_exploded[1];
+                    } else {
+                        $new_author["first_name"] = "";
+                        $new_author["last_name"] = $author_exploded[0];
+                    }
+                    $new_author["full_name"] = $author;
+                    $new_author["slug"] = sanitize_title(preg_replace('/\s/', '' , $author));
+                } else {
+                    $new_author = array();
+                    $new_author["slug"] = $old_author->data->user_nicename;
+                    $new_author["full_name"] = $author;
+                    $new_author["first_name"] = get_user_meta($old_author->data->ID, 'first_name', true);
+                    $new_author["last_name"] = get_user_meta($old_author->data->ID, 'last_name', true);
+
+                    /** last_name is needed for custom term
+                     * some users did not have it
+                     * */
+                    if ($new_author["last_name"] == ''){
+                        if ($new_author["first_name"] !== ''){
+                            $new_author["last_name"] = $new_author["first_name"];
+                            $new_author["first_name"] = '';
+                        } else {
+                            $new_author["last_name"] = $new_author["full_name"];
+                            $new_author["first_name"] = '';
+                        }
+                    }
+                }
+                /** Last name used as term name for sorting purposes
+                 * but we need to also pass last_name as argument, as saving involves a filter
+                 * see autorstvo_insert_term() in author_taxonomy_functions.php
+                 * */
+                $new_term = wp_insert_term($new_author["last_name"], 'autorstvo', array(
+                    'slug'=>$new_author["slug"],
+                    'last_name'=> $new_author["last_name"],
+                ));
+                $new_term_id = $new_term['term_id'];
+                wp_set_object_terms($post_id, $new_term_id, 'autorstvo', true);
+                $meta = (object)[];
+                $meta->first_name = $new_author["first_name"];
+                $meta->last_name = $new_author["last_name"];
+                update_term_meta($new_term_id,'_author_name_meta',$meta); //first and last name saved as object for one query
+                update_term_meta($new_term_id,'_author_full_name',$new_author["full_name"]); //full name saved as separate key to allow meta query
+            }
+        }        
         foreach($old_terms as $old_term){
             $old_term_id = $old_term->term_id;
             //var_dump($old_term_id);
@@ -296,7 +497,7 @@ function remap_other_cats($post_id, $remap_array){
     if (isset($remap_array['newcategorytypeslug'])){
         switch ($remap_array['newcategorytypeslug']) {
             case 'rubriky':
-                $current_term_taxonomy = 'category';
+                $current_term_taxonomy = 'rubrika';
             break;
             case 'zanre':
                 $current_term_taxonomy = "zaner";
@@ -308,7 +509,7 @@ function remap_other_cats($post_id, $remap_array){
                 $current_term_taxonomy = "seria";
             break;
             case 'specialny-tag':
-                $current_term_taxonomy = "category";
+                $current_term_taxonomy = "rubrika";
             break;
             case 'partneri':
                 $current_term_taxonomy = "partner";
