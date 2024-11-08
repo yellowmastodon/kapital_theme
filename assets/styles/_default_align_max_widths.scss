@@ -43,24 +43,38 @@ $align-widest-sizes: (
 );
 
 @mixin make-sizes($class-name, $sizes-list, $make-columns: false){
-    .#{$class-name}{
+    .align#{$class-name}{
         width: 100%;
         margin-right: auto;
         margin-left: auto;
     }
     //columns that can be aligned with specific size by adding one column to the left and one to the right, in .row.justify-content-center
     @if $make-columns{
-        .col-#{$class-name}{
+        .col-align#{$class-name}{
             width: 100%;
         }
     }
     @each $breakpoint, $max-width in $sizes-list{
         @include media-breakpoint-up($breakpoint, $grid-breakpoints){
-            .#{$class-name}{
+            .align#{$class-name}{
                 max-width: $max-width !important;
             }
+            //for block editor
+            @if $class-name == 'wide'{
+                .wp-block[data-align="wide"]{
+                    max-width: $max-width !important;
+                    & *{
+                        max-width: 100%;
+                    }
+                    .block-editor-inner-blocks{
+                        .wp-block{
+                            max-width: inherit !important;
+                        }
+                    }
+                }
+            }
             @if $make-columns{
-                .col-#{$class-name}{
+                .col-align#{$class-name}{
                     max-width: $max-width !important;
                     padding-left: 0px !important;
                     padding-right: 0px !important;
@@ -72,7 +86,7 @@ $align-widest-sizes: (
     }
 }
 
-@include make-sizes('align-normal', $align-normal-sizes);
-@include make-sizes('align-wide', $align-wide-sizes);
-@include make-sizes('align-wider', $align-wider-sizes, true);
-@include make-sizes('align-widest', $align-widest-sizes, true);
+@include make-sizes('normal', $align-normal-sizes);
+@include make-sizes('wide', $align-wide-sizes);
+@include make-sizes('wider', $align-wider-sizes, true);
+@include make-sizes('widest', $align-widest-sizes, true);
