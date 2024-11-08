@@ -12,6 +12,9 @@ import 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/tab';
 // import 'bootstrap/js/dist/toast';
 // import 'bootstrap/js/dist/tooltip';
+import adInserter from './ad-inserter';
+
+adInserter();
 
 const topHeader = document.getElementById('top-header');
 const topHeaderLogo = topHeader.querySelector('svg');
@@ -83,7 +86,14 @@ window.onscroll = function () {
 };
 
 // for 
-window.addEventListener("wheel", event => {
-    const delta = Math.sign(event.deltaY);
-    console.info(delta);
-});
+window.addEventListener("wheel", showTopHeaderOnMousewheelUp);
+
+function showTopHeaderOnMousewheelUp(event) {
+    let delta = Math.sign(event.deltaY);
+    if(delta = -1 && topHeaderCollapsed){
+        topHeaderCollapse.show();
+        //remove event listener after the top header is shown
+        window.removeEventListener("wheel", showTopHeaderOnMousewheelUp);
+        hideHorizontalNavLogo();
+    }
+}
