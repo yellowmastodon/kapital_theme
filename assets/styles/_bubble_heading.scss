@@ -1,0 +1,38 @@
+//width of the bubble, also used for padding of parent element
+$bh_left_and_right: 1.2em;
+$bh_top: .4em;
+$bh_bottom: .25em;
+
+.bubble-heading{
+    font-family: "Kontrast Grotesk";
+    text-transform: uppercase;
+    color: $white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    font-size: $h1-font-size;
+    font-weight: bold;
+    padding: $bh_top $bh_left_and_right $bh_bottom $bh_left_and_right; //offsets negative margins of nested spans
+    line-height: 1.5;
+}
+
+.bubble-heading span{
+    display: inline-block;
+    position: relative;
+}
+
+.bubble-heading span:not(:last-child){
+    margin-right: .4em;
+}
+
+.bubble-heading span::before{
+    z-index: -1;
+    content: "";
+    position: absolute;
+    left: -$bh_left_and_right;
+    right: -$bh_left_and_right;
+    top: -$bh_top; //uneven to math font
+    bottom: -$bh_bottom;   //uneven to math font
+    background: $body-color;
+    border-radius: 9999px;
+}

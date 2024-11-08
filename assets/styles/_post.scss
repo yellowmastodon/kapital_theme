@@ -1,18 +1,62 @@
 //widths defined in default_align_max_widths.scss
-.main-content > *:not(.align-wide):not(.align-wider):not(.align-widest){
-    @extend .align-normal;
+//is-root-container class for gutenberg editor
+#post-content {
+    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]) {
+        @extend .alignnormal;
+    }
 }
 
-.main-content > *{
-    font-family: "Roboto Serif", serif;
+
+.main-content,
+.is-root-container, #post-content {
+    & > *:not(:last-child){
+        margin-bottom: $spacer * 1.5;
+    }
 }
 
-.main-content > *:not(:last-child){
-    margin-bottom: $spacer * 1.5;
+@include media-breakpoint-down("sm") {
+    .bubble-heading.post-title {
+        font-size: $h2-font-size;
+    }
 }
 
-.main-content{
-    h1, h2, h3, h4, h5, h6{
-        font-family: $font-family-base;
+.secondary-title {
+    font-size: 1.1rem;
+    line-height: $headings-line-height;
+    line-height: $headings-line-height;
+}
+
+.perex{
+    font-size: $h3-font-size;
+    font-weight: bold;
+    line-height: 1.4 !important;
+}
+
+.post-views svg{
+    fill: var(--#{$prefix}gray);
+    height: 1em;
+    width: 1.3em;
+    vertical-align: -0.17em;
+    margin-left: .3em
+}
+
+figure img{
+    max-width: 100%;
+}
+
+.post-terms{
+    //change marker margin
+    a::before{
+            margin-right: .4em;
+    }
+}
+@include media-breakpoint-up('sm'){
+    .post-authors{
+        a{
+            color: var(--#{$prefix}red);
+            &:hover{
+                color: $body-color !important;
+            }
+        }
     }
 }

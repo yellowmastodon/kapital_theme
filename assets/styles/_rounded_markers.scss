@@ -1,0 +1,39 @@
+* {
+    &[class*="marker-"]::before {
+        content: "";
+        display: inline-block;
+        margin-right: $spacer / 2;
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 9999px;
+        vertical-align: 0.08em;
+        transition: background-color $link_transition_speed linear;
+    }
+}
+
+@each $name, $color in $colors {
+    .marker-#{$name} {
+        &::before {
+            background-color: var(--#{$prefix}#{$name});
+        }
+        &:hover {
+            &::before {
+                background-color: lighten($color, 10);
+            }
+        }
+    }
+}
+
+a[class^="marker-"] {
+    &:hover{
+        &::before {
+            background-color: var(--#{$prefix}red);
+        }
+        
+    }
+    &:active{
+        &::before {
+             background-color: darken($red, 10);
+        }
+    }
+}

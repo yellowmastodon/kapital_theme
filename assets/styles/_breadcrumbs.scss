@@ -1,0 +1,22 @@
+.breadcrumb{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    font-size: $font-size-sm;
+    color: var(--#{$prefix}gray);
+    margin-bottom: 0px;
+    padding: 0px;
+    .breadcrumb-item + .breadcrumb-item{
+        padding-left: map-get($spacers, 2);
+        &::before{
+            content: "/";
+            padding-right: map-get($spacers, 2);
+        }
+    }
+    a:not(:hover) {
+        color: var(--#{$prefix}gray);
+    }
+    a{
+        text-decoration: none;
+    }
+}
