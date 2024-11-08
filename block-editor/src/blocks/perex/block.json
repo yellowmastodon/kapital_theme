@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kapital/perex",
+	"title": "Perex",
+	"category": "theme",
+	"description": "Perex článku.",
+	"usesContext": [ "postId", "postType", "queryId" ],
+	"example": {
+		"viewportWidth": 350
+	},
+	"supports": {
+		"html": false,
+		"typography": {
+			"fontSize": false,
+			"lineHeight": false,
+			"__experimentalFontFamily": false
+		},
+		"interactivity": {
+			"clientNavigation": true
+		},
+		"multiple": false
+	},
+	"attributes": {
+		"useAsExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": "p",
+			"role": "content"
+		}
+	},
+	"textdomain": "kapital",
+	"editorScript": "file:./index.js"
+}

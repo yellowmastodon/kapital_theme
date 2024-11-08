@@ -3,16 +3,35 @@
 	"apiVersion": 2,
 	"name": "kapital/secondary-title",
 	"version": "0.1.0",
-	"title": "Podnadpis",
+	"title": "Podnadpis článku",
 	"category": "text",
-	"icon": "text-page",
-	"description": "Podnadpis sa zobrazí pod názvom článku na stránke článku  a v archívoch článkov.",
-	"supports": {
-		"html": false
+	"icon": "heading",
+	"description": "Podnadpis sa zobrazí na stránke článku a vo vyhľadávaní",
+	"attributes": {
+		"textAlign": {
+			"type": "string",
+			"default": "center"
+		},
+		"postId": {
+			"type": "integer"
+		},
+		"is_query":{
+			"type": "boolean",
+			"default": false
+		}
 	},
-	"textdomain": "secondary-title",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"render": "file:./render.php"
+	"supports": {
+		"html": false,
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"usesContext": [
+		"postType",
+		"postId",
+		"queryId"
+	],
+	"textdomain": "kapital",
+	"editorScript": "file:./index.js"
 }

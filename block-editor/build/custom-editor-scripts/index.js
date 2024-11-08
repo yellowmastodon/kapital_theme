@@ -17,34 +17,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/deprecated */ "@wordpress/deprecated");
-/* harmony import */ var _wordpress_deprecated__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_deprecated__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _wordpress_a11y__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/a11y */ "@wordpress/a11y");
-/* harmony import */ var _wordpress_a11y__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_a11y__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
-/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _utils_terms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils/terms */ "./block-editor/src/custom-editor-scripts/utils/terms.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils_terms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/terms */ "./block-editor/src/custom-editor-scripts/utils/terms.js");
 
 /**
  * WordPress dependencies
  */
-
-
-
-
-
 
 
 
@@ -70,10 +55,13 @@ const EMPTY_ARRAY = [];
  *  - Can't use "unbound" query. The `FormTokenField` needs a fixed number.
  *  - Matches default for `FormTokenField`.
  */
-const MAX_TERMS_SUGGESTIONS = -1;
+const MAX_TERMS = -1;
 const DEFAULT_QUERY = {
-  per_page: MAX_TERMS_SUGGESTIONS,
-  _fields: 'id,name'
+  per_page: MAX_TERMS,
+  _fields: 'id,name,meta',
+  orderby: 'name',
+  order: 'asc',
+  context: 'view'
 };
 
 /**
@@ -83,42 +71,43 @@ const DEFAULT_QUERY = {
  * @param {string}  props.slug                    The slug of the taxonomy.
  * @param {boolean} props.__nextHasNoMarginBottom Start opting into the new margin-free styles that will become the default in a future version, currently scheduled to be WordPress 7.0. (The prop can be safely removed once this happens.)
  *
- * @return {JSX.Element} The rendered flat term selector component.
  */
 function AuthorTermSelector({
   slug,
   __nextHasNoMarginBottom
 }) {
   const {
-    hasCreateAction,
-    hasAssignAction,
-    terms,
-    loading,
+    editPost
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_5__.store);
+  const {
+    termIds,
     availableTerms,
     taxonomy
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(select => {
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
     var _post$_links, _post$_links2;
     const {
       getCurrentPost,
       getEditedPostAttribute
-    } = select(_wordpress_editor__WEBPACK_IMPORTED_MODULE_10__.store);
+    } = select(_wordpress_editor__WEBPACK_IMPORTED_MODULE_5__.store);
     const {
       getTaxonomy,
       getEntityRecords,
       isResolving
-    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__.store);
+    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store);
     const _taxonomy = getTaxonomy(slug);
     const post = getCurrentPost();
     return {
       hasCreateAction: _taxonomy ? (_post$_links = post._links?.['wp:action-create-' + _taxonomy.rest_base]) !== null && _post$_links !== void 0 ? _post$_links : false : false,
       hasAssignAction: _taxonomy ? (_post$_links2 = post._links?.['wp:action-assign-' + _taxonomy.rest_base]) !== null && _post$_links2 !== void 0 ? _post$_links2 : false : false,
-      terms: _taxonomy ? getEditedPostAttribute(_taxonomy.rest_base) : EMPTY_ARRAY,
+      termIds: _taxonomy ? getEditedPostAttribute(_taxonomy.rest_base) : EMPTY_ARRAY,
       loading: isResolving('getEntityRecords', ['taxonomy', slug, DEFAULT_QUERY]),
       availableTerms: getEntityRecords('taxonomy', slug, DEFAULT_QUERY) || EMPTY_ARRAY,
       taxonomy: _taxonomy
     };
   }, [slug]);
-  console.log(terms);
+
+  //selected terms with all metadata
+  let terms = availableTerms.filter(item => termIds.includes(item.id));
 
   /**
    * Update terms for post.
@@ -130,42 +119,83 @@ function AuthorTermSelector({
       [taxonomy.rest_base]: termIds
     });
   };
+  let authorSearchPlaceholder = 'Vyberte autorstvo.';
 
   /**
   * Handler for checking term.
   *
-  * @param {number} termId
+  * @param {array} termId
   */
   const onChange = termId => {
-    const hasTerm = terms.includes(termId);
-    const newTerms = hasTerm ? terms.filter(id => id !== termId) : [...terms, termId];
-    onUpdateTerms(newTerms);
+    const hasTerm = termIds.includes(termId);
+    if (!hasTerm) {
+      const newTerms = [...termIds, termId];
+      onUpdateTerms(newTerms);
+      if (newTerms.length > 0) {
+        authorSearchPlaceholder = 'Vyberte ďalšie autorstvo';
+      } else {
+        authorSearchPlaceholder = 'Vyberte autorstvo';
+      }
+    }
   };
-
-  /* 	const { authors } = useSelect( ( select ) => {
-  		const { getEntityRecords } = select( 'core' )
-  	
-  		return {
-  			authors: getEntityRecords( 'taxonomy', 'seria', { per_page: -1 } ),
-  		}
-  	} ) */
-
+  const removeTerm = termId => {
+    termId = Number(termId);
+    const hasTerm = termIds.includes(termId);
+    if (hasTerm) {
+      const newTerms = termIds.filter(id => id !== termId);
+      onUpdateTerms(newTerms);
+      if (newTerms.length > 0) {
+        authorSearchPlaceholder = 'Vyberte ďalšie autorstvo';
+      } else {
+        authorSearchPlaceholder = 'Vyberte autorstvo';
+      }
+    }
+  };
   let options = [];
   if (availableTerms) {
     options = availableTerms.map(availableTerm => {
       return {
-        label: availableTerm.name,
+        label: availableTerm.meta._author_full_name || '',
         value: availableTerm.id
       };
     });
   }
 
   // display select dropdown
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ComboboxControl, {
-    options: options || []
-  }));
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ComboboxControl, {
+    options: options || [],
+    onChange: termId => onChange(termId),
+    placeholder: authorSearchPlaceholder,
+    value: ""
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
+    direction: "column",
+    align: "start",
+    gap: "2",
+    style: {
+      marginTop: '16px'
+    }
+  }, terms.length > 0 && terms.map(term => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
+      style: {
+        padding: '2px 2px 2px 8px',
+        background: 'rgb(233, 233, 233)',
+        borderRadius: '3px'
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      style: {
+        lineHeight: '24px',
+        verticalAlign: 'bottom'
+      }
+    }, term.meta._author_full_name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      value: term.id,
+      isSmall: true,
+      icon: 'no-alt',
+      iconSize: 16,
+      onClick: event => removeTerm(event.target.closest('button').value)
+    }));
+  })));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.withFilters)('editor.PostTaxonomyType')(AuthorTermSelector));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuthorTermSelector);
 
 /***/ }),
 
@@ -206,6 +236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_terms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils/terms */ "./block-editor/src/custom-editor-scripts/utils/terms.js");
 /* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
 /* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_11__);
+
+/** Custom term selector - besed on hierarchicalTermSelector, as it had bug, which should be fixed now */
 
 /**
  * WordPress dependencies
@@ -571,7 +603,7 @@ function CustomTermSelector({
     className: "editor-post-taxonomies__hierarchical-terms-submit"
   }, newTermSubmitLabel)))));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.withFilters)('editor.PostTaxonomyType')(CustomTermSelector));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CustomTermSelector);
 
 /***/ }),
 
@@ -606,7 +638,7 @@ function buildTermsTree(flatTerms) {
   const flatTermsWithParentAndChildren = flatTerms.map(term => {
     return {
       children: [],
-      parent: null,
+      parent: undefined,
       ...term
     };
   });
@@ -614,7 +646,7 @@ function buildTermsTree(flatTerms) {
   // All terms should have a `parent` because we're about to index them by it.
   if (flatTermsWithParentAndChildren.some(({
     parent
-  }) => parent === null)) {
+  }) => parent === undefined)) {
     return flatTermsWithParentAndChildren;
   }
   const termsByParent = flatTermsWithParentAndChildren.reduce((acc, term) => {
@@ -636,7 +668,7 @@ function buildTermsTree(flatTerms) {
       };
     });
   };
-  return fillWithChildren(Object.values(termsByParent)[0] || []);
+  return fillWithChildren(termsByParent['0'] || []);
 }
 const unescapeString = arg => {
   return (0,_wordpress_html_entities__WEBPACK_IMPORTED_MODULE_0__.decodeEntities)(arg);
@@ -727,16 +759,6 @@ module.exports = window["wp"]["coreData"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["data"];
-
-/***/ }),
-
-/***/ "@wordpress/deprecated":
-/*!************************************!*\
-  !*** external ["wp","deprecated"] ***!
-  \************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["deprecated"];
 
 /***/ }),
 
@@ -880,8 +902,8 @@ __webpack_require__.r(__webpack_exports__);
 
   // It's up to you on how to make this dynamic..
   //const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'seria', 'cislo', 'partner' ];
-  const flatTerms = ['podcast-seria', 'redakcia-tag', 'jazyk', 'partner', 'cislo'];
-  const authorTerm = ['seria'];
+  const flatTerms = ['podcast-seria', 'redakcia-tag', 'jazyk', 'partner', 'cislo', 'seria', 'zaner'];
+  const authorTerm = ['autorstvo'];
   function modifySelector(OriginalComponent) {
     return function (props) {
       // props.slug is the taxonomy (slug)

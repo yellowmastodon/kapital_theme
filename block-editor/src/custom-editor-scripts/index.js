@@ -14,8 +14,8 @@ import { AuthorTermSelector } from './authorTermSelector';
 
 	// It's up to you on how to make this dynamic..
 	//const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'seria', 'cislo', 'partner' ];
-	const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'partner', 'cislo'];
-	const authorTerm = [ 'seria' ];
+	const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'partner', 'cislo', 'seria', 'zaner'];
+	const authorTerm = [ 'autorstvo' ];
 	function modifySelector( OriginalComponent ) {
 		return function( props ) {
 			// props.slug is the taxonomy (slug)

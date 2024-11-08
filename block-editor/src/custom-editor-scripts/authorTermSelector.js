@@ -1,16 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { __, _x, sprintf } from '@wordpress/i18n';
-import { useEffect, useMemo, useState } from '@wordpress/element';
-import { FormTokenField, withFilters, SelectControl, ComboboxControl } from '@wordpress/components';
+import { __, _x, } from '@wordpress/i18n';
+import { ComboboxControl, Button, Flex, FlexItem } from '@wordpress/components';
 
 import { useSelect, useDispatch } from '@wordpress/data';
-import deprecated from '@wordpress/deprecated';
 import { store as coreStore } from '@wordpress/core-data';
-import { useDebounce } from '@wordpress/compose';
-import { speak } from '@wordpress/a11y';
-import { store as noticesStore } from '@wordpress/notices';
+
 
 /**
  * Internal dependencies
@@ -32,10 +28,14 @@ const EMPTY_ARRAY = [];
  *  - Can't use "unbound" query. The `FormTokenField` needs a fixed number.
  *  - Matches default for `FormTokenField`.
  */
-const MAX_TERMS_SUGGESTIONS = -1;
+const MAX_TERMS = -1;
 const DEFAULT_QUERY = {
-	per_page: MAX_TERMS_SUGGESTIONS,
-	_fields: 'id,name',
+	per_page: MAX_TERMS,
+	_fields: 'id,name,meta',
+	orderby: 'name',
+	order: 'asc',
+	context: 'view'
+	
 };
 
 
@@ -46,18 +46,11 @@ const DEFAULT_QUERY = {
  * @param {string}  props.slug                    The slug of the taxonomy.
  * @param {boolean} props.__nextHasNoMarginBottom Start opting into the new margin-free styles that will become the default in a future version, currently scheduled to be WordPress 7.0. (The prop can be safely removed once this happens.)
  *
- * @return {JSX.Element} The rendered flat term selector component.
  */
 export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
-
-
-
-
+	const { editPost } = useDispatch( editorStore );
 	const {
-		hasCreateAction,
-		hasAssignAction,
-		terms,
-		loading,
+		termIds,
 		availableTerms,
 		taxonomy,
 	} = useSelect(
@@ -80,7 +73,7 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 					'wp:action-assign-' + _taxonomy.rest_base
 					] ?? false
 					: false,
-				terms: _taxonomy
+				termIds: _taxonomy
 					? getEditedPostAttribute(_taxonomy.rest_base)
 					: EMPTY_ARRAY,
 				loading: isResolving('getEntityRecords', [
@@ -97,8 +90,10 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 		[slug]
 	);
 
-	console.log(terms);
 
+	//selected terms with all metadata
+	let terms = availableTerms.filter(item => termIds.includes(item.id));
+	
 	/**
 	 * Update terms for post.
 	 *
@@ -107,51 +102,96 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 	const onUpdateTerms = (termIds) => {
 		editPost({ [taxonomy.rest_base]: termIds });
 	};
+ 
+
+	let authorSearchPlaceholder = 'Vyberte autorstvo.';
 
 		/**
 	 * Handler for checking term.
 	 *
-	 * @param {number} termId
+	 * @param {array} termId
 	 */
 		const onChange = ( termId ) => {
-			const hasTerm = terms.includes( termId );
-			const newTerms = hasTerm
-				? terms.filter( ( id ) => id !== termId )
-				: [ ...terms, termId ];
-			onUpdateTerms( newTerms );
-		};
-	
-
-
-
-	/* 	const { authors } = useSelect( ( select ) => {
-			const { getEntityRecords } = select( 'core' )
-		
-			return {
-				authors: getEntityRecords( 'taxonomy', 'seria', { per_page: -1 } ),
+			const hasTerm = termIds.includes( termId );
+			if (!hasTerm){
+				const newTerms =  [ ...termIds, termId ];
+				onUpdateTerms( newTerms );
+				if (newTerms.length > 0){
+					authorSearchPlaceholder = 'Vyberte ďalšie autorstvo';
+				} else {
+					authorSearchPlaceholder = 'Vyberte autorstvo';
+				}
 			}
-		} ) */
+			
+		};
+
+
+	const removeTerm = (termId) => {
+		termId = Number(termId);
+		const hasTerm = termIds.includes( termId );
+		if (hasTerm){
+			const newTerms = termIds.filter( ( id ) => id !== termId );
+			onUpdateTerms( newTerms );
+			if (newTerms.length > 0){
+				authorSearchPlaceholder = 'Vyberte ďalšie autorstvo';
+			} else {
+				authorSearchPlaceholder = 'Vyberte autorstvo';
+			}
+		}
+	}	
 
 	let options = []
 	if (availableTerms) {
-		options = availableTerms.map((availableTerm) => { return ({ label: availableTerm.name, value: availableTerm.id }) })
+		options = availableTerms.map((availableTerm) => { return ({ label: availableTerm.meta._author_full_name || '', value: availableTerm.id}) })
 	}
+
+
 
 	// display select dropdown
 	return (
 		<>
 			<ComboboxControl
 				options={options || []}
+				onChange= {(termId) => onChange(termId)}
+				placeholder = {authorSearchPlaceholder}
+				value=''
 			/>
 
-			{/* 		<FormTokenField
-				value={ selectedTags }
-				suggestions={ options }
-				onInputChange = {false}
-				onChange={ ( tokens ) => setSelectedTags( tokens ) }
-			/> */}
+			<Flex
+				direction="column"
+				align="start"
+				gap="2"
+				style={{marginTop: '16px'}}
+			>
+				{terms.length > 0 && 
+				
+				terms.map((term) => {
+					return(
+		
+						<FlexItem
+						style={{padding: '2px 2px 2px 8px', background: 'rgb(233, 233, 233)', borderRadius: '3px'}}
+						>
+						<span
+						style={{
+							lineHeight: '24px', verticalAlign: 'bottom'
+						}}>
+							{term.meta._author_full_name}
+						</span>
+						<Button
+							value={term.id}
+							isSmall={true}
+							icon={'no-alt'}
+							iconSize={16}
+							onClick={event => removeTerm(event.target.closest('button').value)}>
+						</Button>
+						</FlexItem>
+					)
+
+				})}
+			</Flex>
+
 		</>
 	)
 }
 
-export default withFilters('editor.PostTaxonomyType')(AuthorTermSelector);
+export default AuthorTermSelector;

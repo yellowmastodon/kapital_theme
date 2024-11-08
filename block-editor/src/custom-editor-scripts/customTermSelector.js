@@ -1,3 +1,5 @@
+/** Custom term selector - besed on hierarchicalTermSelector, as it had bug, which should be fixed now */
+
 /**
  * WordPress dependencies
  */
@@ -478,6 +480,4 @@ export function CustomTermSelector( { slug } ) {
 	);
 }
 
-export default withFilters( 'editor.PostTaxonomyType' )(
-	CustomTermSelector
-);
+export default CustomTermSelector;

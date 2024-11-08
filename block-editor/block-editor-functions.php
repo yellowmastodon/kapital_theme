@@ -7,19 +7,22 @@
 
 
 /**
- * General (non-block-dependent) editor scripts
- * changes taxonomy selectors
+ * General (non-block-dependent) editor scripts and styles
+ * script changes taxonomy selectors
+ * 
  */  
 
 
 function kapital_enqueue_editor_content_assets() {
-    $block_editor_path = get_template_directory_uri() . '/block-editor/build/';
+    $template_directory = get_template_directory_uri();
+    $block_editor_path = $template_directory . '/block-editor/build/';
     $custom_editor_scripts_assets = require dirname(__FILE__) . '\build\custom-editor-scripts\index.asset.php';
     if ( is_admin() ) {
         wp_enqueue_script(
             'custom-editor-scripts',
             $block_editor_path . 'custom-editor-scripts/index.js',  $custom_editor_scripts_assets['dependencies'], $custom_editor_scripts_assets['version']
         );
+       wp_enqueue_style( 'styles', $template_directory . '/editor_styles.css?' . filemtime( get_stylesheet_directory() . '/editor_styles.css' ), [], null );
     }
 }
 
@@ -66,3 +69,9 @@ function generate_color_palette()
     }
     return $color_palette;
 }
+
+/** Require all blocks
+ */
+
+ require_once(dirname(__FILE__) . '\build\blocks\secondary-title\index.php');
+ require_once(dirname(__FILE__) . '\build\blocks\perex\index.php');

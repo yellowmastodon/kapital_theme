@@ -9,8 +9,8 @@
     "prod-laravel-mix": "npx mix --production",
     "prod-color-sass-export": "sass-export assets/styles/_custom_colors.scss -o block-editor/custom-color-palette.json",
     "watch-color-sass-export": "nodemon --watch assets/styles/_custom_colors.scss --exec \"npm-run-all prod-color-sass-export\"",
-    "wp-start":  "wp-scripts start --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js",
-    "wp-build": "wp-scripts build --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js",
+    "wp-start": "wp-scripts start --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js --webpack-copy-php",
+    "wp-build": "wp-scripts build --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js --webpack-copy-php",
     "watch": "npm-run-all --parallel watch-*",
     "prod": "npm-run-all --parallel prod-*"
   },
@@ -23,6 +23,7 @@
   "license": "ISC",
   "homepage": "https://github.com/yellowmastodon/kapital_theme.git#readme",
   "devDependencies": {
+    "@wordpress/icons": "^10.10.0",
     "@wordpress/scripts": "^26.12.0",
     "browser-sync-webpack-plugin": "^2.3.0",
     "laravel-mix": "^6.0.49",

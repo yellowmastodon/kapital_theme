@@ -2,6 +2,8 @@
  * term name is managed by php
  */
 
+const form = document.getElementById("addtag");
+console.log(form);
 const first_name_input = document.getElementById("first_name");
 const last_name_input = document.getElementById("last_name");
 const slug_input = document.getElementById("tag-slug") || document.getElementById("slug");
@@ -15,7 +17,7 @@ let unsanitized_slug = slug_input.value;
 /** sanitizes and autofills slug and calls function to construct variants of full name */
 const onNameInput = () => {
     window.setTimeout(function() {
-        if (is_custom_slug.value == "false") {
+        if (!is_custom_slug.checked) {
             unsanitized_slug = first_name_input.value + last_name_input.value;
             slug_input.value = unsanitized_slug.normalize('NFKD').replaceAll(/[\u0300-\u036f, \u02b0-\u02ff, \u0020-\u002f]/g, "").replaceAll(' ', '').toLowerCase();
         }
@@ -42,7 +44,10 @@ const constructFullNameOptions = (first_name, last_name) => {
             full_name_options[0].value = first_name + ' ' + last_name;
             full_name_options[1].innerHTML = last_name + ' ' + first_name;
             full_name_options[1].value = last_name + ' ' + first_name;
-            full_name_select.disabled = false;
+            full_name_select.classList.remove('disabled');
+            full_name_select.tabIndex = "";
+
+            
 
         } else {
             if (full_name_options.length > 1) {
@@ -51,7 +56,8 @@ const constructFullNameOptions = (first_name, last_name) => {
                     full_name_options[1].remove();
                 }
             }
-            full_name_select.disabled = true;
+            full_name_select.tabIndex = "-1";
+            full_name_select.classList.add('disabled');
             full_name_options[0].selected = true;
             full_name_options[0].value = last_name;
             full_name_options[0].innerHTML = last_name;
@@ -65,15 +71,18 @@ const constructFullNameOptions = (first_name, last_name) => {
         full_name_options[0].value = "Celé meno autorstva";
         full_name_options[0].innerHTML = "Celé meno autorstva";
         full_name_options[0].selected = true;
-        full_name_select.disabled = true;
+        //predefined class that looks disabled
+        full_name_select.tabIndex = "-1";
+        full_name_select.classList.add('disabled');
 
     }
 }
+
 
 first_name_input.addEventListener("input", onNameInput);
 last_name_input.addEventListener("input", onNameInput);
 
 
 slug_input.addEventListener("input", function() {
-    is_custom_slug.value = "true";
+    is_custom_slug.checked = true;
 });
