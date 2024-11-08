@@ -29,13 +29,36 @@ $grid-breakpoints: (
 //font
 $font-family-sans-serif: "Kontrast Grotesk", sans-serif;
 //$font-family-base: 'Roboto Serif', 'sans-serif';
-$font-family-base: "Kontrast Grotesk", sans-serif;
+$font-family-base: "Roboto Serif", serif;
+$headings-font-family: "Kontrast Grotesk", sans-serif;
 
 $font-size-root: clamp(0.938rem, 0.192vw + 0.894rem, 1.125rem);
+$font-size-sm: .8rem;
 
 $line-height-base: 1.7;
 $enable-dark-mode: false;
 $enable-container-classess: false;
+
+$h1-font-size:                1.9rem;
+$h2-font-size:                1.6rem;
+$h3-font-size:                1.37rem;
+$h4-font-size:                1.17rem;
+$h5-font-size:                1rem;
+$h6-font-size:                1rem;
+$headings-line-height:        1.3;
+$headings-font-weight:        bold;
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  "small": $font-size-sm
+) !default;
+
+
 
 //color
 $pink: #ffc2fe;
@@ -43,6 +66,7 @@ $red: #ff0033;
 $primary: $pink;
 $secondary: #EBEBEB;
 $white: #fff;
+$gray: #757575;
 $body-color: #000;
 
 //button
@@ -70,3 +94,10 @@ $btn-close-opacity:          1;
 $btn-close-hover-opacity:    .75;
 $btn-close-focus-opacity:    1;
 $btn-close-disabled-opacity: .25;
+
+
+//border radius
+$border-radius: 1rem;
+
+//transition speed
+$link_transition_speed: .05s;
