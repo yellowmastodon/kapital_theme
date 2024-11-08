@@ -122,7 +122,61 @@ function redakcia_post_type() {
 		'show_in_rest'          => true,
 	);
 	register_post_type( 'redakcia', $args );
+}
 
+// Register Custom Post Type
+function inzercia_post_type() {
+
+	$labels = array(
+		'name'                  => _x( 'Inzercia', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Inzercia', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Inzercia', 'text_domain' ),
+		'name_admin_bar'        => __( 'Inzercia', 'text_domain' ),
+		'archives'              => __( 'Archív inzercie', 'text_domain' ),
+		'attributes'            => __( 'Vlastnosti inzercie', 'text_domain' ),
+		'parent_item_colon'     => __( 'Nadradená inzercia', 'text_domain' ),
+		'all_items'             => __( 'Všetky inzercie', 'text_domain' ),
+		'add_new_item'          => __( 'Pridať novú inzerciu', 'text_domain' ),
+		'add_new'               => __( 'Pridať novú inzerciu', 'text_domain' ),
+		'new_item'              => __( 'Nové inzercia', 'text_domain' ),
+		'edit_item'             => __( 'Upraviť inzerciu', 'text_domain' ),
+		'update_item'           => __( 'Aktualizovať inzerciu', 'text_domain' ),
+		'view_item'             => __( 'Zobraziť inzerciu', 'text_domain' ),
+		'view_items'            => __( 'Zobraziť inzercie', 'text_domain' ),
+		'search_items'          => __( 'Vyhľadať inzerciu', 'text_domain' ),
+		'not_found'             => __( 'Inzercia nenájdená', 'text_domain' ),
+		'not_found_in_trash'    => __( 'V koši sa nenašla žiadna inzercia', 'text_domain' ),
+		'featured_image'        => __( 'Ilustračný obrázok', 'text_domain' ),
+		'set_featured_image'    => __( 'Nastaviť ilustračný obrázok', 'text_domain' ),
+		'remove_featured_image' => __( 'Odstrániť ilustračný obrázok', 'text_domain' ),
+		'use_featured_image'    => __( 'Použiť ako ilustračný obrázok', 'text_domain' ),
+		'insert_into_item'      => __( 'Pridať do inzercie', 'text_domain' ),
+		'uploaded_to_this_item' => __( 'Nahrané do inzercie', 'text_domain' ),
+		'items_list'            => __( 'Zoznam inzercie', 'text_domain' ),
+		'items_list_navigation' => __( 'Navigácia zoznamu inzercie', 'text_domain' ),
+		'filter_items_list'     => __( 'Filtrovať zoznam inzercie', 'text_domain' ),
+	);
+	$args = array(
+		'label'                 => __( 'Inzercia', 'text_domain' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title', 'thumbnail', 'custom-fields' ),
+		'hierarchical'          => false,
+		'public'                => false,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 20,
+		'menu_icon'             => 'dashicons-button',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => false,
+		'can_export'            => true,
+		'has_archive'           => false,
+		'exclude_from_search'   => true,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+		'show_in_rest'          => true,
+		'rest_base'             => 'inzercia',
+	);
+	register_post_type( 'inzercia', $args );
 }
 
 /**
@@ -132,6 +186,22 @@ function redakcia_post_type() {
 function kapital_register_custom_post_types(){
     podcast_post_type();
     redakcia_post_type();
+	inzercia_post_type();
 }
 
 add_action( 'init', 'kapital_register_custom_post_types', 0 ); 
+
+/** Disables gutenberg for selected post types */
+function kapital_disable_gutenberg( $current_status, $post_type ) {
+
+    // Disabled post types
+    $disabled_post_types = array( 'inzercia' );
+
+    // Change $can_edit to false for any post types in the disabled post types array
+    if ( in_array( $post_type, $disabled_post_types, true ) ) {
+        $current_status = false;
+    }
+
+    return $current_status;
+}
+add_filter( 'use_block_editor_for_post_type', 'kapital_disable_gutenberg', 10, 2 );

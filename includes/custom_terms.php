@@ -492,8 +492,6 @@ function tinymce_on_description($term, $taxonomy){
 }
 
 
-
-
 /**
  * We need to disable KSES as it filters out all HTML from the term descriptions for security reasons
  * This allows tinyMCE to be initialized on term description
@@ -513,7 +511,7 @@ function kapital_register_custom_taxonomies(){
     disable_kses();
     register_podcast_serie_taxonomy();
 	register_redakcia_pozicia();
-	//unregister_taxonomy_for_object_type( 'category', 'post' );
+	unregister_taxonomy_for_object_type( 'category', 'post' );
 }
 
 //add_filter( 'custom_menu_order', '__return_true' );
@@ -569,12 +567,13 @@ foreach (['parner', 'cislo', 'seria', 'rubrika', 'jazyk', 'podcast-seria', 'pozi
 	add_action( "{$taxonomy}_add_form_fields", 'html_taxonomy_description' );
 }
 
-/**
- * Loading editor assets
+
+/** 
+ * Loading editor assets for tinymce on term description
  *
  * @return  void
  */
-function wp_editor_includes()
+function term_editor_includes()
 {
     global $pagenow, $current_screen;
 
@@ -584,4 +583,4 @@ function wp_editor_includes()
 		wp_enqueue_media();
 	}
 }
-add_action( 'init', 'wp_editor_includes' );
+add_action( 'init', 'term_editor_includes' );

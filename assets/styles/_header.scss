@@ -141,11 +141,14 @@ $horizontal-nav-padding: 6px;
 }
 .btn-menu, a{
         &:active{
-            color: darken($red, 10);
-            svg{
+                svg{
                 fill: darken($red, 10);
             }
         }
+}
+
+a:active{
+    color: darken($red, 10);
 }
 
 /* fix usage in row (overriden padding)
