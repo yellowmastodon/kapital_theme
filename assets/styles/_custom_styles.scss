@@ -1,52 +1,47 @@
-html{
+html {
     background-color: var(--#{$prefix}primary);
 }
 
-a{
-    transition: color .05s linear;
+main{
+    overflow: hidden;
+}
+
+a {
+    transition: color $link_transition_speed linear;
+    &:active {
+        color: darken($red, 10);
+    }
+    text-decoration-thickness: 1px;
+    &.text-red{
+        &:hover{
+            color: $body-color !important;
+        }
+    }
+}
+
+strong, .fw-bold, b{
+    & a{
+        text-decoration-thickness: 2px;
+    }
 }
 
 .btn:not(.btn-menu) {
     text-transform: uppercase;
 }
 
-//override default focus
-*:not(.offcanvas):focus-visible{
-    outline: 2px solid var(--#{$prefix}red);  
-    &:active{
-        outline-color: darken($red, 10);
-    }
-}
-
 .btn-primary {
     @include button-variant($primary, $primary, $body-color, var(--#{$prefix}red), var(--#{$prefix}red), $white);
 }
-//header
-@import "header";
 
-*{
-&[class*="marker-"]::before{
-        content: "";
-        display: inline-block;
-        margin-right: $spacer / 2;
-        width: .5em;
-        height: .5em;
-        border-radius: 9999px;
-        vertical-align: .025em;
-}
+//font family classes
+.ff-grotesk{
+    font-family: var(--#{$prefix}font-sans-serif);
 }
 
-
-@each $name, $color in $colors {
-    .marker-#{$name} {
-        &::before{
-            background-color: var(--#{$prefix}#{$name});
-        }
-        &:hover{
-            &::before{
-                background-color: lighten($color, 10);
-            }
-        }
-    }
+.ff-serif{
+    font-family: var(--#{$prefix}body-font-family); 
 }
 
+.ff-sans{
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
