@@ -7,11 +7,10 @@
 require_once 'includes/class-wp-bootstrap-navwalker.php';
 require_once 'includes/custom_post_types.php';
 require_once 'includes/custom_terms.php';
-require_once 'includes/custom_import.php';
+//require_once 'includes/custom_import.php';
+require_once 'includes/render_functions.php';
 require_once 'includes/old-site-functions.php';
 //require_once 'includes/cmb-example-functions.php';
-
-
 require_once 'block-editor/block-editor-functions.php';
 
 
@@ -43,10 +42,10 @@ if ( function_exists( 'add_theme_support' ) ) {
  * Set image sizes
  */
 
- add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
- function wpdocs_theme_setup() {
-     add_image_size( 'placeholder', 1, 1, true); // 300 pixels wide (and unlimited height)
- }
+function kapital_theme_setup() {
+     add_image_size( 'placeholder', 1, 1, true); // 1x1px used as placeholder
+}
+add_action( 'after_setup_theme', 'kapital_theme_setup' );
 
 //only default image sizes on theme switch
 function kapital_switch_theme() {
@@ -68,6 +67,8 @@ add_action('switch_theme', 'kapital_switch_theme');
  * Remove junk
  */
 
+remove_image_size('1536x1536');
+remove_image_size('2048x2048');
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'wp_generator');
@@ -83,7 +84,7 @@ remove_action('wp_print_styles', 'print_emoji_styles');
  * Enqueue scripts
  */
 
-function barebones_enqueue_scripts() {
+function kapital_enqueue_scripts() {
    // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' );
     //remove jquery from front end
     if( !current_user_can('edit_posts') ){
@@ -93,7 +94,7 @@ function barebones_enqueue_scripts() {
     wp_enqueue_script( 'scripts', get_stylesheet_directory_uri() . '/js/scripts.min.js?' . filemtime( get_stylesheet_directory() . '/js/scripts.min.js' ), [], null, true );
 }
 
-add_action( 'wp_enqueue_scripts', 'barebones_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'kapital_enqueue_scripts' );
 
 
 /**
@@ -180,13 +181,13 @@ add_action( 'customize_register', function( $wp_customize ) {
  * @return void
  */
 
-function barebones_button_shortcode( $atts, $content = null ) {
+function kapital_button_shortcode( $atts, $content = null ) {
     $atts['class'] = isset($atts['class']) ? $atts['class'] : 'btn';
     $atts['target'] = isset($atts['target']) ? $atts['target'] : '_self';
     return '<a class="' . $atts['class'] . '" href="' . $atts['link'] . '" target="'. $atts['target'] . '">' . $content . '</a>';
 }
 
-add_shortcode('button', 'barebones_button_shortcode');
+add_shortcode('button', 'kapital_button_shortcode');
 
 
 /**
@@ -196,14 +197,14 @@ add_shortcode('button', 'barebones_button_shortcode');
  * @return void
  */
 
-function barebones_mce_buttons_2( $buttons ) {
+function kapital_mce_buttons_2( $buttons ) {
     array_unshift( $buttons, 'styleselect' );
     $buttons[] = 'hr';
 
     return $buttons;
 }
 
-add_filter('mce_buttons_2', 'barebones_mce_buttons_2');
+add_filter('mce_buttons_2', 'kapital_mce_buttons_2');
 
 
 /**
@@ -213,7 +214,7 @@ add_filter('mce_buttons_2', 'barebones_mce_buttons_2');
  * @return void
  */
 
-function barebones_tiny_mce_before_init( $settings ) {
+function kapital_tiny_mce_before_init( $settings ) {
     $style_formats = [
         [
             'title' => 'Text Sizes',
@@ -258,7 +259,7 @@ function barebones_tiny_mce_before_init( $settings ) {
     return $settings;
 }
 
-add_filter('tiny_mce_before_init', 'barebones_tiny_mce_before_init');
+add_filter('tiny_mce_before_init', 'kapital_tiny_mce_before_init');
 
 
 /**
@@ -290,11 +291,20 @@ function front_page_on_pages_menu() {
     global $submenu;
     if ( get_option( 'page_on_front' ) ) {
         $submenu['edit.php?post_type=page'][501] = array( 
-            __( 'Front Page', 'barebones' ), 
+            __( 'Front Page', 'kapital' ), 
             'manage_options', 
             get_edit_post_link( get_option( 'page_on_front' ) )
         ); 
     }
 }
-
 add_action( 'admin_menu' , 'front_page_on_pages_menu' );
+
+
+function kapital_allow_svg_upload( $mimes ) {
+    $mimes['svg'] = 'image/svg+xml';
+    $mimes['svgz'] = 'image/svg+xml';
+    return $mimes;
+  }
+  add_filter( 'upload_mimes', 'kapital_allow_svg_upload' );
+
+
