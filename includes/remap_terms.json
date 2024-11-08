@@ -708,7 +708,10 @@
         "ogslug": "nezaradene",
         "ognoofposts": 36,
         "link": "https://kapital-noviny.sk/nezaradene/",
-        "newposttypeslug": "post"
+        "newposttypeslug": "post",
+        "newcategorytitle": "Nezaradené",
+        "newslug": "nezaradene",
+        "newcategorytypeslug": "rubriky"
     },
     {
         "ogcategorytitle": "Normostranový Kapitál",
