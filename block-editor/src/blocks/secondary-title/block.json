@@ -18,6 +18,12 @@
 		"is_query":{
 			"type": "boolean",
 			"default": false
+		},
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": "p",
+			"role": "content"
 		}
 	},
 	"supports": {
@@ -25,13 +31,14 @@
 		"spacing": {
 			"padding": true,
 			"margin": true
-		}
+		},
+		"multiple": false
+	
 	},
 	"usesContext": [
 		"postType",
-		"postId",
-		"queryId"
-	],
+		"postId"
+		],
 	"textdomain": "kapital",
 	"editorScript": "file:./index.js"
 }
