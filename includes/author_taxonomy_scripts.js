@@ -3,7 +3,6 @@
  */
 
 const form = document.getElementById("addtag");
-console.log(form);
 const first_name_input = document.getElementById("first_name");
 const last_name_input = document.getElementById("last_name");
 const slug_input = document.getElementById("tag-slug") || document.getElementById("slug");
