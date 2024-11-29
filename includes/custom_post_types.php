@@ -44,7 +44,7 @@ function podcast_post_type() {
 		'description'           => __( 'Podcasty kapitálu', 'kapital' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields' ),
-		'taxonomies'            => array( 'podcast-seria' ),
+		'taxonomies'            => array( 'podcast-seria', 'partner' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -54,11 +54,15 @@ function podcast_post_type() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => false,
+		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
-        'show_in_rest'          => true
+        'show_in_rest'          => true,
+		'rewrite'     => array(
+			'slug' => 'podcasty',
+			'with_front' => false,
+			'pages' => true)
 	);
 	register_post_type( 'podcast', $args );
 
@@ -115,7 +119,7 @@ function redakcia_post_type() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => false,
+		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
@@ -159,7 +163,7 @@ function inzercia_post_type() {
 	$args = array(
 		'label'                 => __( 'Inzercia', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'thumbnail', 'custom-fields' ),
+		'supports'              => array( 'title'),
 		'hierarchical'          => false,
 		'public'                => false,
 		'show_ui'               => true,
@@ -189,19 +193,5 @@ function kapital_register_custom_post_types(){
 	inzercia_post_type();
 }
 
-add_action( 'init', 'kapital_register_custom_post_types', 0 ); 
+add_action( 'init', 'kapital_register_custom_post_types', 1 ); 
 
-/** Disables gutenberg for selected post types */
-function kapital_disable_gutenberg( $current_status, $post_type ) {
-
-    // Disabled post types
-    $disabled_post_types = array( 'inzercia' );
-
-    // Change $can_edit to false for any post types in the disabled post types array
-    if ( in_array( $post_type, $disabled_post_types, true ) ) {
-        $current_status = false;
-    }
-
-    return $current_status;
-}
-add_filter( 'use_block_editor_for_post_type', 'kapital_disable_gutenberg', 10, 2 );
