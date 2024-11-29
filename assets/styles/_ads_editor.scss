@@ -1,0 +1,11 @@
+.inzercia{
+    aspect-ratio: 2/1;
+    font-size: $h2-font-size;
+}
+
+@include media-breakpoint-up('sm'){
+    .inzercia{
+        aspect-ratio: 7/1;
+    }
+}
+

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "kapital/ad",
+  "version": "0.1.0",
+  "title": "Inzercia",
+  "category": "text",
+  "icon": "button",
+  "keywords": [
+    "reklama",
+    "ad",
+    "inzercia",
+    "partner"
+  ],
+  "description": "Blok pre manuálne vloženie inzercie. Inzercia je náhodne vybraná zo zoznamu aktuálnych inzercií. V prípade viacerých blokov inzercie na stránke",
+  "supports": {
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "usesContext": [
+    "postType",
+    "postId",
+    "queryId"
+  ],
+  "textdomain": "kapital",
+  "editorScript": "file:./index.js"
+}
