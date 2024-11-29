@@ -6,5 +6,4 @@ module.exports = {
 		...defaultConfig.entry(),
 		'custom-editor-scripts/index': './block-editor/src/custom-editor-scripts/'
 	},
-
 };
