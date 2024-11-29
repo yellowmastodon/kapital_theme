@@ -734,6 +734,16 @@
         "newcategorytypeslug": "zanre"
     },
     {
+        "ogcategorytitle": "Palestína",
+        "ogslug": "palestina",
+        "ognoofposts": 3,
+        "link": "https://kapital-noviny.sk/palestina/",
+        "newposttypeslug": "post",
+        "newcategorytitle": "Palestína",
+        "newslug": "palestina",
+        "newcategorytypeslug": "tematicke-serie"
+    },
+    {
         "ogcategorytitle": "Pedagogický Kapitál",
         "ogslug": "pedagogicky-kapital",
         "ognoofposts": 1,
