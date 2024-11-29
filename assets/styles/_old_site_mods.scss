@@ -1,0 +1,18 @@
+#perspectives-claim{
+     background-color: var(--#{$prefix}secondary) !important;
+     border-radius: $border-radius !important;
+     font-family: "Kontrast Grotesk", sans-serif;
+     font-weight: bold;
+     line-height: $line-height-small;
+}
+
+/**
+some parts of posts were centered with position relative 50 and translate
+that does not work with max-width and full width container
+let's see if we need to be specific about posts
+*/
+.postid-26340 #post-content > *{
+    display: block !important;
+    position: unset !important;
+    transform: unset !important;
+}
