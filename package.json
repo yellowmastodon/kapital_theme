@@ -12,7 +12,8 @@
     "wp-start": "wp-scripts start --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js --webpack-copy-php",
     "wp-build": "wp-scripts build --webpack-src-dir=block-editor/src/ --output-path=block-editor/build/ --config block-editor/webpack.config.js --webpack-copy-php",
     "watch": "npm-run-all --parallel watch-*",
-    "prod": "npm-run-all --parallel prod-*"
+    "prod": "npm-run-all --parallel prod-*",
+    "wp-packages-update": "wp-scripts packages-update"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,10 @@
   "license": "ISC",
   "homepage": "https://github.com/yellowmastodon/kapital_theme.git#readme",
   "devDependencies": {
-    "@wordpress/icons": "^10.10.0",
-    "@wordpress/scripts": "^26.12.0",
+    "@babel/core": "^7.26.0",
+    "@wordpress/icons": "^10.12.0",
+    "@wordpress/scripts": "^30.5.1",
+    "bootstrap": "^5.3.3",
     "browser-sync-webpack-plugin": "^2.3.0",
     "laravel-mix": "^6.0.49",
     "laravel-mix-purgecss": "^6.0.0",
@@ -36,7 +39,6 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
     "jquery": "^3.7.0"
   }
 }
