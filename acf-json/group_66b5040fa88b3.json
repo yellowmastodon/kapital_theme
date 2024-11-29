@@ -1,0 +1,71 @@
+{
+    "key": "group_66b5040fa88b3",
+    "title": "Vlastnosti kategórií",
+    "fields": [
+        {
+            "key": "field_66b504102c82c",
+            "label": "Ilustračný obrázok kategórie",
+            "name": "featured_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_66b5070fc00c9",
+            "label": "Text za archívom článkov",
+            "name": "ending_text",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Zobrazí sa po všetkých článkoch z kategórie, v prípade viacerých strán až za pagination",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "!=",
+                "value": "autorstvo"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1732049644
+}

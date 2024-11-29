@@ -1,0 +1,154 @@
+{
+    "key": "group_672e252bb7b09",
+    "title": "Inzercia obrázky a dátum",
+    "fields": [
+        {
+            "key": "field_672e252c3cc0f",
+            "label": "Obrázok inzercie pre desktop: 2560x360px",
+            "name": "ad_desktop_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": 2560,
+            "min_height": 360,
+            "min_size": "",
+            "max_width": 2560,
+            "max_height": 400,
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_672e25703cc10",
+            "label": "Obrázok inzercie pre mobil: 720x360px",
+            "name": "ad_mobile_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": 720,
+            "min_height": 360,
+            "min_size": "",
+            "max_width": 800,
+            "max_height": 400,
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_672e26a5e9013",
+            "label": "Textová alternatíva obrázku",
+            "name": "ad_alt_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_672e259d3cc11",
+            "label": "Dátum začatia inzercie (vrátane)",
+            "name": "ad_start_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d. m. Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_672e25ca3cc12",
+            "label": "Dátum ukončenia inzercie (vrátane)",
+            "name": "ad_end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d. m. Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_672e27397d7ae",
+            "label": "Link inzercie",
+            "name": "ad_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "inzercia"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1731441701
+}
