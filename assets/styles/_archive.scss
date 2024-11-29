@@ -1,0 +1,157 @@
+/** purgecss start ignore */
+$archive-article-text-stroke-width: 6px;
+$archive-article-img-outline-width: 5px;
+
+.archive-item {
+    .archive-item-link {
+        display: block;
+        .red-outline-hover {
+            position: relative; //to style the before element, which generates outline
+            z-index: 1;
+            display: block;
+            transition: color $link_transition_speed linear;
+            &::before {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                top: 0;
+                z-index: -1;
+                content: attr(data-text);
+                -webkit-text-stroke: $archive-article-text-stroke-width $red;
+                color: var(--#{$prefix}red);
+                opacity: 0;
+                transition: opacity $link_transition_speed linear;
+            }
+        }
+        .archive-item-image {
+            aspect-ratio: 1.67 !important;
+            object-fit: cover;
+            outline: solid $archive-article-img-outline-width rgba($pink, 0);
+            transition: outline $link_transition_speed linear;
+            &.placeholder{
+                background-color: var(--#{$prefix}secondary);
+            }
+        }
+        &:hover,
+        &:focus-visible,
+        &:active {
+            outline: none !important;
+            .red-outline-hover {
+                color: $white;
+                &::before {
+                    opacity: 1;
+                }
+            }
+            .archive-item-image {
+                outline: solid $archive-article-img-outline-width $pink;
+            }
+            .red-color-hover{
+                transition: $link-transition-speed linear;
+                color: var(--#{$prefix}red);
+            }
+            
+        }
+        &:active{
+            .red-outline-hover {
+                color: $white;
+                &::before {
+                    -webkit-text-stroke: $archive-article-text-stroke-width darken($red, 10);
+                }
+            }
+            img{
+                outline: solid $archive-article-img-outline-width darken($pink, 7);
+            }
+        }
+    }
+    //fix if post views and date hidden
+    .archive-post-top{
+        $line-height-small-exact: $line-height-small * $fs-small-scale;
+        height: #{$line-height-small-exact}rem !important;
+        .icon-podcast{
+            svg{
+                height: 1em;
+                width: 0.625em;
+                fill: var(--#{$prefix}gray)
+            }
+        }
+    }
+    .post-terms{
+        font-size: .75rem;
+    }
+    .post-authors{
+        svg{
+            fill: var(--#{$prefix}red);
+            height: .8em;
+            width: .8em;
+            overflow: visible;
+        }
+        a:not(:active){
+            text-decoration-color: var(--#{$prefix}red);
+        }
+    }
+
+}
+
+.hashtag + .issue-cover{
+    margin-top: map-get($spacers, 5) !important;
+}
+
+/** Pagination */
+.pagination{
+    svg{
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+    .page-numbers, .page-chevrons{
+        height: 2rem;
+        line-height: 1rem;
+        text-align: center;
+        padding: 0.5rem 0.7rem;
+        min-width: 2rem;
+    }
+
+    a.page-numbers{
+        transition: $link-transition-speed linear;
+        &:hover{
+            color: $white;
+            background-color: var(--#{$prefix}red) !important;
+        }
+    }
+}
+
+.post-views{
+    transition: opacity .1s ease;
+}
+
+
+/** show more archive block */
+.show-more-posts-wrapper{
+    overflow: hidden;
+    transition: height .7s ease;
+}
+
+@include media-breakpoint-down('xl'){
+    .show-more-posts-wrapper.show-more-hide{
+        .hide-sm{
+            display: none;
+        }
+    }
+}
+@include media-breakpoint-up('xl'){
+    .show-more-posts-wrapper.show-more-hide{
+        .hide-xl{
+            display: none;
+        }
+    }
+}
+//keep rows consistent when 3 items per row
+@include media-breakpoint-between('md', 'xl'){
+    .show-more-posts-wrapper{
+        article:nth-child(1n + 16){
+            display: none;
+        }
+    }
+}
+
+/** purgecss end ignore */ 
