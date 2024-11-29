@@ -34,8 +34,6 @@ function kapital_send_new_user_notifications( $user_id, $notify = 'user' ) {
 add_action( 'init', 'kapital_disable_new_user_notifications' );
 
 
-
-
 /**
  * Include posts from authors in the search results where
  * either their display name or user login matches the query string
