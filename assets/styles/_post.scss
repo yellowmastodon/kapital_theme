@@ -1,8 +1,15 @@
+/* purgecss start ignore */
+
 //widths defined in default_align_max_widths.scss
 //is-root-container class for gutenberg editor
 #post-content {
     & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]) {
         @extend .alignnormal;
+    }
+    h1, h2, h3, h4, h5, h6{
+        &:not(:first-child){
+            margin-top: map-get($spacers, 6);
+        }
     }
 }
 
@@ -10,13 +17,19 @@
 .main-content,
 .is-root-container, #post-content {
     & > *:not(:last-child){
-        margin-bottom: $spacer * 1.5;
+        margin-bottom: map-get($spacers, 5);
     }
 }
 
-@include media-breakpoint-down("sm") {
+@include media-breakpoint-up("lg") {
     .bubble-heading.post-title {
-        font-size: $h2-font-size;
+        font-size: $h1-font-size;
+    }
+}
+
+@include media-breakpoint-up("sm") {
+    .single-post .post-authors {
+        text-transform: uppercase;
     }
 }
 
@@ -26,6 +39,7 @@
     line-height: $headings-line-height;
 }
 
+/* purgecss ignore */
 .perex{
     font-size: $h3-font-size;
     font-weight: bold;
@@ -40,7 +54,8 @@
     margin-left: .3em
 }
 
-figure img{
+/* purgecss ignore */
+img{
     max-width: 100%;
 }
 
@@ -51,12 +66,15 @@ figure img{
     }
 }
 @include media-breakpoint-up('sm'){
-    .post-authors{
-        a{
-            color: var(--#{$prefix}red);
-            &:hover{
-                color: $body-color !important;
+    .single-post {
+        .post-authors{
+            a{
+                color: var(--#{$prefix}red);
+                &:hover{
+                    color: $body-color !important;
+                }
             }
         }
     }
 }
+/* purgecss end ignore */

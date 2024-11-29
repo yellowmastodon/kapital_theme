@@ -9,19 +9,19 @@ Text Domain: kapital
 
 @charset 'UTF-8';
 
-
+@use 'sass:math';
 // Include functions first
 @import "bootstrap/scss/functions";
 
 // Customize some defaults
 @import "font_face";
-@import "custom_variables";
 @import "custom_colors";
+@import "custom_variables";
 
 // Required
 
 @import "bootstrap/scss/variables";
-$theme-colors:  map-merge($theme-colors, ("red": $red, "gray": $gray));
+$theme-colors: map-merge($theme-colors, ("red": $red, "gray": $gray));
 
 //@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
@@ -36,10 +36,10 @@ $theme-colors:  map-merge($theme-colors, ("red": $red, "gray": $gray));
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
-$temporary-colors: $theme-colors;
+/* $temporary-colors: $theme-colors;
 $theme-colors: ();
 @import "bootstrap/scss/buttons";
-$theme-colors: $temporary-colors;
+$theme-colors: $temporary-colors; */
 @import "bootstrap/scss/transitions";
 //@import "bootstrap/scss/dropdown";
 // @import "bootstrap/scss/button-group";
@@ -53,9 +53,12 @@ $theme-colors: $temporary-colors;
 // @import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
-@import "bootstrap/scss/close";
+//@import "bootstrap/scss/close";
 // @import "bootstrap/scss/toasts";
-//@import "bootstrap/scss/modal"; // Requires transitions
+$temporary-breakpoints: $grid-breakpoints;
+$grid-breakpoints: (sm: 0);
+@import "bootstrap/scss/modal"; // Requires transitions
+$grid-breakpoints: $temporary-breakpoints;
 // @import "bootstrap/scss/tooltip";
 //@import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
@@ -75,6 +78,7 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "bootstrap/scss/utilities/api";
 
 //replaces containers with content max width and margin auto
+
 @import "default_align_max_widths";
 @import "focus";
 @import "custom_styles";
@@ -84,4 +88,8 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "header";
 @import "rounded_markers";
 @import "breadcrumbs";
-
+@import "buttons";
+@import "ads";
+@import "archive";
+@import "old_site_mods";
+@import "post_filters";

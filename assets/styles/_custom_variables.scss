@@ -13,8 +13,9 @@ $spacers: (
   2: $spacer * .5,
   3: $spacer,
   4: $spacer * 1.5,
-  5: $spacer * 3,
-  6: $spacer * 6
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 5
 );
 
 $grid-breakpoints: (
@@ -33,20 +34,25 @@ $font-family-base: "Roboto Serif", serif;
 $headings-font-family: "Kontrast Grotesk", sans-serif;
 
 $font-size-root: clamp(0.938rem, 0.192vw + 0.894rem, 1.125rem);
-$font-size-sm: .8rem;
+$fs-small-scale: 0.8;
+$font-size-sm: #{$fs-small-scale}rem;
+$small-font-size: $font-size-sm;
+$line-height-small: 1.35;
 
 $line-height-base: 1.7;
 $enable-dark-mode: false;
 $enable-container-classess: false;
-
-$h1-font-size:                1.9rem;
+$enable-rfs:                  false; //managed by root font size
+$h1-font-size:                clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem);
 $h2-font-size:                1.6rem;
 $h3-font-size:                1.37rem;
 $h4-font-size:                1.17rem;
 $h5-font-size:                1rem;
 $h6-font-size:                1rem;
-$headings-line-height:        1.3;
+$headings-line-height:        $line-height-small;
 $headings-font-weight:        bold;
+$headings-margin-bottom:      map-get($spacers, 4) !important;
+$headings-color:              inherit;
 
 $font-sizes: (
   1: $h1-font-size,
@@ -61,19 +67,22 @@ $font-sizes: (
 
 
 //color
-$pink: #ffc2fe;
-$red: #ff0033;
+$pink: map-get($colors, "pink");
+$red: map-get($colors, "red");
 $primary: $pink;
-$secondary: #EBEBEB;
-$white: #fff;
-$gray: #757575;
+$secondary: map-get($colors, "gray-light");
+$white: map-get($colors, "white");
+$gray: map-get($colors, "gray");
 $body-color: #000;
 
 //button
 $btn-border-radius: var(--#{$prefix}border-radius-pill);
 $btn-font-weight: 700;
-$btn-padding-x: .8rem;
+$btn-font-size: $small-font-size;
+//$btn-font-family: var(--kptl-font-sans-serif);
+$btn-padding-x: 1.2rem;
 $btn-padding-y: .4rem;
+$btn-line-height: $line-height-small;
 $link-color: $body-color;
 $link-hover-color: $red;
 

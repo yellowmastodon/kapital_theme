@@ -4,15 +4,13 @@ $bh_top: .4em;
 $bh_bottom: .25em;
 
 .bubble-heading{
-    font-family: "Kontrast Grotesk";
     text-transform: uppercase;
     color: $white;
     text-align: center;
     position: relative;
     z-index: 10;
-    font-size: $h1-font-size;
     font-weight: bold;
-    padding: $bh_top $bh_left_and_right $bh_bottom $bh_left_and_right; //offsets negative margins of nested spans
+    padding: $bh_top 0.8 * $bh_left_and_right $bh_bottom 0.8 * $bh_left_and_right; //offsets negative margins of nested spans with a bit of overshoot
     line-height: 1.5;
 }
 
@@ -21,9 +19,12 @@ $bh_bottom: .25em;
     position: relative;
 }
 
-.bubble-heading span:not(:last-child){
-    margin-right: .4em;
+.bubble-heading span{
+    margin-right: .2em;
+    margin-left: .2em;
+
 }
+
 
 .bubble-heading span::before{
     z-index: -1;

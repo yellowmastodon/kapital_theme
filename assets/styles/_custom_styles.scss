@@ -6,31 +6,40 @@ main{
     overflow: hidden;
 }
 
-a {
+svg.icon-square{
+    height: 1em; //default for icons, that we can override, most icons are square
+    width: 1em;
+    vertical-align: -.1em;
+}
+
+
+.btn-menu, a {
     transition: color $link_transition_speed linear;
+    svg{
+        transition: $link_transition_speed linear;
+        fill: var(--#{$prefix}body-color);
+    }
+    &:hover{
+        color: var(--#{$prefix}red);
+        svg{
+            fill: var(--#{$prefix}red);
+        }
+    }     
     &:active {
         color: darken($red, 10);
+        svg{
+            fill: darken($red, 10);
+        }
     }
-    text-decoration-thickness: 1px;
     &.text-red{
         &:hover{
             color: $body-color !important;
         }
+        &:active {
+            color: darken($red, 10) !important;
+        }
     }
-}
 
-strong, .fw-bold, b{
-    & a{
-        text-decoration-thickness: 2px;
-    }
-}
-
-.btn:not(.btn-menu) {
-    text-transform: uppercase;
-}
-
-.btn-primary {
-    @include button-variant($primary, $primary, $body-color, var(--#{$prefix}red), var(--#{$prefix}red), $white);
 }
 
 //font family classes
@@ -44,4 +53,8 @@ strong, .fw-bold, b{
 
 .ff-sans{
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.fs-small{
+    line-height: $line-height-small;
 }

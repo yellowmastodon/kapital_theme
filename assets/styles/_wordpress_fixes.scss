@@ -37,3 +37,12 @@ _colors.scss
 	}
 }
 
+/** import from classic editor */
+.wp-caption-text{
+	@extend .ff-sans;
+	line-height: $line-height-small;
+	@extend .text-gray;
+	@extend .mt-1;
+	@extend .text-center;
+}
+

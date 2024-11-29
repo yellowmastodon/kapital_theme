@@ -1,16 +1,19 @@
 @charset 'UTF-8';
 
-
+@use 'sass:math';
 // Include functions first
 @import "bootstrap/scss/functions";
 
 // Customize some defaults
 @import "font_face.scss";
-@import "custom_variables.scss";
 @import "custom_colors.scss";
+@import "custom_variables.scss";
 
 // Required
 @import "bootstrap/scss/variables";
+$theme-colors: map-merge($theme-colors, ("red": $red, "gray": $gray));
+
+
 //@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
@@ -32,9 +35,9 @@
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
 $temporary-colors: $theme-colors;
-$theme-colors: ();
-@import "bootstrap/scss/buttons";
-$theme-colors: $temporary-colors;
+//$theme-colors: ();
+//@import "bootstrap/scss/buttons";
+//$theme-colors: $temporary-colors;
 @import "bootstrap/scss/transitions";
 //@import "bootstrap/scss/dropdown";
 // @import "bootstrap/scss/button-group";
@@ -75,7 +78,7 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "wordpress_fixes";
 @import "bubble_heading";
 //@import "header";
-//@import "rounded_markers";
+@import "rounded_markers";
 @import "breadcrumbs";
 
 
@@ -88,6 +91,22 @@ $grid-breakpoints: $temporary-breakpoints;
     @extend .alignwide;
     text-align: center;
 }
-.is-root-container .wp-block:not(.align-wide):not(.align-wider):not(.align-widest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
+.is-root-container .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
     @extend .alignnormal;
 }
+//fix imported content in classic block
+.is-root-container .wp-block-freeform p{
+    @extend .ff-serif;
+}
+.editor-styles-wrapper .lh-sm p{
+    line-height: inherit !important;
+}
+.show-more-posts-wrapper a{
+    pointer-events: none !important;
+}
+
+@import "ads_editor";
+@import "archive";
+@import "buttons";
+
+
