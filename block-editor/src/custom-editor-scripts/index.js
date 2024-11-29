@@ -1,17 +1,24 @@
 /* jslint esnext: true */
 /* global wp */
 
+
 /**
  * Internal dependencies
  */
-import { CustomTermSelector } from './customTermSelector';
-import { AuthorTermSelector } from './authorTermSelector';
+import {CustomTermSelector} from './customTermSelector';
+import {AuthorTermSelector} from './authorTermSelector';
+import {customMetaSettings} from './customMetaSettings'
+//import {registerFormats } from './richTextCustomFormats';
+
+//registerFormats();
+customMetaSettings();
+
 
 
 // Based on the example here: https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/post-taxonomies#custom-taxonomy-selector
 ( function() {
 	const el = wp.element.createElement;
-
+	
 	// It's up to you on how to make this dynamic..
 	//const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'seria', 'cislo', 'partner' ];
 	const flatTerms = [ 'podcast-seria', 'redakcia-tag', 'jazyk', 'partner', 'cislo', 'seria', 'zaner'];
@@ -30,7 +37,7 @@ import { AuthorTermSelector } from './authorTermSelector';
 					props
 				);
 			}
-return el(
+			return el(
 				OriginalComponent,
 				props
 			);
