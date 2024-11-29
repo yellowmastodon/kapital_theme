@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 
 body.admin-bar { 
     & > #horizontal-nav{
@@ -23,6 +24,22 @@ body.admin-bar {
     nav{
         display: none !important;
     }
+}
+
+
+
+@include media-breakpoint-up('sm'){
+    #main-menu-wrapper{ 
+        .offcanvas-body{
+            position: relative;
+            .btn-close{
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+
 }
 
 #quick-menu {
@@ -91,45 +108,44 @@ $horizontal-nav-padding: 6px;
     }
 }
 
+.w-max-content{
+    width: max-content; //prevents shifting hamburger "icon" and text to two rows at edge case
+}
 
-.btn-menu {
+.btn-menu, #main-menu .menu-item a{
     @extend .rounded-pill;
     background-color: transparent;
     display: inline-block;
     border: none;
     font-weight: bold;
-    padding: $btn-padding-y $btn-padding-x;
+    $menu-btn-padding-x: .8rem;
+    $menu-btn-padding-y: .4rem;
+    padding: $menu-btn-padding-y $menu-btn-padding-x;
     //padding and negative margin used for focus box-shadow styling
     &:not(.default-x-margin){
-        margin-left: (-$btn-padding-x);
-        margin-right: (-$btn-padding-x);
+        margin-left: (-$menu-btn-padding-x);
+        margin-right: (-$menu-btn-padding-x);
     }
     .hamburger {
         width: 1rem;
-        display: inline-block;
-        //this alignment works with Kontrast Grotesk
         vertical-align: -.05em;
         .line {
             height: 2px;
             background-color: $body-color;
+            transition: background-color $link-transition-speed linear;
             &:not(:last-child){
                 margin-bottom: 4px;
             }
         }
     }
-
     svg{
         height: 1rem;
         fill: var(--#{$prefix}body-color)
     }
 
     &:hover {
-        color: var(--#{$prefix}red);
         .hamburger .line {
             background-color: var(--#{$prefix}red);
-        }
-        svg{
-            fill: var(--#{$prefix}red);   
         }
     }
     &:active {
@@ -139,23 +155,12 @@ $horizontal-nav-padding: 6px;
     }
 
 }
-.btn-menu, a{
-        &:active{
-                svg{
-                fill: darken($red, 10);
-            }
-        }
-}
 
-a:active{
-    color: darken($red, 10);
-}
+//fix usage in row (overriden padding)
+//can create problems in wrapping rows
+//solution:
+//wrap elements in that case in .col
 
-/* fix usage in row (overriden padding)
-* can create problems in wrapping rows
-* solution:
-* wrap elements in that case in .col
-*/
 .row .btn-menu+.btn-menu{
     margin-left: ($spacer - $btn-padding-x);
 }
@@ -177,3 +182,4 @@ a:active{
     }
 
 }
+/* purgecss end ignore */
