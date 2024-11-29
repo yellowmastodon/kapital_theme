@@ -1,0 +1,119 @@
+//buttons
+.btn:not(.btn-menu) {
+    text-transform: uppercase;
+}
+
+.btn{
+    @extend .ff-grotesk;
+    @extend .text-decoration-none;
+    @extend .rounded-pill;
+    @extend .d-inline-block;
+    border-style: solid;
+    border-width: 2px;
+    line-height: $line-height-small;
+    $btn-padding-y: 1.2rem;
+    $btn-padding-top: .5rem;
+    $btn-padding-bottom: .4rem;
+    padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y;
+    transition: $link_transition_speed linear;
+    svg{
+        transition: $link_transition_speed linear;
+    }
+    &:focus, &:focus-visible{
+        outline: none !important;
+    }
+    &.btn-sm{
+        @extend .fs-small;
+        padding: ($fs-small-scale * $btn-padding-top) ($fs-small-scale * $btn-padding-y) ($fs-small-scale * $btn-padding-bottom) ($fs-small-scale * $btn-padding-y);
+    }
+    &.btn-primary{
+        background-color: var(--#{$prefix}primary);
+        border-color: var(--#{$prefix}primary);
+
+    }
+    &.btn-secondary{
+        background-color: var(--#{$prefix}secondary);
+        border-color: var(--#{$prefix}secondary);
+    }
+    &.btn-outline{
+        background-color: var(--#{$prefix}white);
+        border-color: var(--#{$prefix}body-color);
+        //when btn class used for filter/page selection
+        &.active{
+            background-color: var(--#{$prefix}primary);
+        }
+    }
+    &.btn-red{
+        background-color: var(--#{$prefix}red);
+        border-color: var(--#{$prefix}red);
+        color: $white;
+        svg{
+            fill: $white
+        }
+    }
+    &.btn-close{
+        width: 4rem;
+        height: 4rem;
+        line-height: 3rem;
+        padding: 0px;
+        background-color: var(--#{$prefix}white);
+        border-color: var(--#{$prefix}white);
+        svg{
+            width: 2rem;
+            height: 2rem;
+        }
+    }   
+}
+
+@include media-breakpoint-up('sm'){
+    .btn.btn-close{
+        border-color: transparent !important;
+        background: none !important;
+        &:hover{
+            svg{
+                fill: var(--#{$prefix}red);
+            }
+        }
+        &:focus-visible, &:focus{
+            svg{
+                fill: var(--#{$prefix}red);
+                }
+        }
+        &:active{
+            svg{
+                fill: darken($red, 10);
+            }
+        }
+    }
+}
+
+button, a{
+    &.btn{
+        &:hover, &:focus-visible, &:focus{
+            background-color: var(--#{$prefix}red);
+            border-color: var(--#{$prefix}red);
+            color: $white;
+            svg{
+                fill: $white;
+            }
+        }
+        &:active{
+            color: $white;
+            background-color: darken($red, 10);
+            border-color: darken($red, 10);
+        }
+        &.btn-red{
+            &:hover, &:focus-visible{
+                background-color: var(--#{$prefix}primary);
+                color: var(--#{$prefix}body-color);
+                border-color: var(--#{$prefix}body-color);
+    
+            }
+            &:active{
+                background-color: darken($primary, 7);
+                border-color: darken($primary, 7);;
+            }
+        }
+    }
+    
+}
