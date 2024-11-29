@@ -31,7 +31,7 @@ const EMPTY_ARRAY = [];
 const MAX_TERMS = -1;
 const DEFAULT_QUERY = {
 	per_page: MAX_TERMS,
-	_fields: 'id,name,meta',
+	_fields: 'id,name',
 	orderby: 'name',
 	order: 'asc',
 	context: 'view'
@@ -91,7 +91,7 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 	);
 
 
-	//selected terms with all metadata
+	//selected terms with
 	let terms = availableTerms.filter(item => termIds.includes(item.id));
 	
 	/**
@@ -142,10 +142,8 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 
 	let options = []
 	if (availableTerms) {
-		options = availableTerms.map((availableTerm) => { return ({ label: availableTerm.meta._author_full_name || '', value: availableTerm.id}) })
+		options = availableTerms.map((availableTerm) => { return ({ label: availableTerm.name || '', value: availableTerm.id}) })
 	}
-
-
 
 	// display select dropdown
 	return (
@@ -175,11 +173,11 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 						style={{
 							lineHeight: '24px', verticalAlign: 'bottom'
 						}}>
-							{term.meta._author_full_name}
+							{term.name}
 						</span>
 						<Button
 							value={term.id}
-							isSmall={true}
+							size={'small'}
 							icon={'no-alt'}
 							iconSize={16}
 							onClick={event => removeTerm(event.target.closest('button').value)}>

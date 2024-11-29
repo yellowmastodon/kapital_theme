@@ -7,11 +7,10 @@ function autorstvo_edit_term_fields($term, $taxonomy)
 {
     //not sure if this term can happen to be empty in this context, but just to be sure;
     if (!empty($term)) {
-        $meta = get_term_meta($term->term_id, '_author_name_meta', true);
-        $full_name = get_term_meta($term->term_id, '_author_full_name', true);
-        $first_name = $meta->first_name;
+        $full_name = $term->name;
+        $first_name = get_term_meta($term->term_id, '_author_first_name', true);
         //we saved last name as term name in db, so we can use thaat
-        $last_name = $term->name;
+        $last_name = get_term_meta($term->term_id, '_author_last_name', true);
         $slug = $term->slug;
     } else {
         $first_name = '';
@@ -106,8 +105,7 @@ function autorstvo_term_styles()
             pointer-events: none;
         }
 
-        .term-name-wrap,
-        .term-description-wrap {
+        .term-name-wrap {
             display: none;
         }
     </style>
@@ -135,30 +133,18 @@ function register_autorstvo_meta_fields()
 {
     register_term_meta(
         'autorstvo',
-        '_author_name_meta',
+        '_author_first_name',
         array(
             'auth_callback' => function() { 
                 return current_user_can( 'edit_posts' );
             },
             'single' => true,
-            'show_in_rest'  => [
+            'show_in_rest'  => array(
                 true,
-                'schema' => [
-                    'type'       => 'object',
-                    'properties' => [
-                        'first_name' => [
-                            'type' => 'string',
-                        ],
-                        'last_name' => [
-                            'type' => 'string',
-                        ],
-                    ],
-                ],
-            ],
-            'type' => 'object',
-        ),
+                'type' => 'string'
+            )
+        )
     );
-
     register_term_meta(
         'autorstvo',
         '_author_full_name',
@@ -173,6 +159,22 @@ function register_autorstvo_meta_fields()
             )
         )
     );
+    register_term_meta(
+        'autorstvo',
+        '_author_last_name',
+        array(
+            'auth_callback' => function() { 
+                return current_user_can( 'edit_posts' );
+            },
+            'single' => true,
+            'show_in_rest'  => array(
+                true,
+                'type' => 'string'
+            )
+        )
+    );
+
+
 }
 add_action('init', 'register_autorstvo_meta_fields');
 
@@ -181,42 +183,87 @@ add_action('init', 'register_autorstvo_meta_fields');
 function author_save_term_fields($term_id)
 {
     $meta = (object)[];
-    $full_name = sanitize_text_field($_POST['full_name']);
-    $meta->last_name = sanitize_text_field($_POST['last_name']);
-    $meta->first_name = sanitize_text_field($_POST['first_name']);
+    $first_name = sanitize_text_field($_POST['first_name']);
+    $last_name = sanitize_text_field($_POST['last_name']);
     update_term_meta(
         $term_id,
-        '_author_name_meta',
-        $meta
+        '_author_first_name',
+        $first_name
     );
     update_term_meta(
         $term_id,
-        '_author_full_name',
-        $full_name
+        '_author_last_name',
+        $last_name
     );
 }
 add_action('created_autorstvo', 'author_save_term_fields');
 add_action('edited_autorstvo', 'author_save_term_fields');
 
-/** Add full name column to taxonomy edit screen and rename "Name" to "priezvisko"(last name)*/
+/** Rename 'name' column and remove description */
 function add_new_autorstvo_columns($columns)
-{
-    $columns['name'] = __('Priezvisko', 'kapital');
+{   
+    $columns = array_slice($columns, 0, 2, true) +  array('last_name' => __('Priezvisko', 'kapital')) + array_slice($columns, 2, NULL, true);
+    $columns['name'] = __('Celé meno', 'kapital');
     unset($columns['description']);
-    $columns = array_slice($columns, 0, 1, true) +  array('full_name' => __('Celé meno', 'kapital')) + array_slice($columns, 1, NULL, true);
     return $columns;
 }
 add_filter('manage_edit-autorstvo_columns', 'add_new_autorstvo_columns');
 
+/** Add the data to the custom columns for the inzercia (ads) post type */
+function kapital_sortable_author_custom_columns( $columns ) {
+    unset($columns["name"]);
+    $columns['last_name'] = 'last_name';
+    //To make a column 'un-sortable' remove it from the array
+    //unset($columns['date']);
+ 
+    return $columns;
+}
+add_filter( 'manage_edit-autorstvo_sortable_columns', 'kapital_sortable_author_custom_columns' );
 
 
-/** Render "full names" from meta for each term in list of authors on edit-tags page */
+/** Query by ad start date and ad end date (end date is the same as default date) */
+function kapital_sort_by_last_name(WP_Term_Query $query){
+    global $pagenow;
+    $taxonomies = (array) $query->query_vars['taxonomy'];
+    $order_by = $query->query_vars["orderby"];
+    if ( in_array( 'autorstvo', $taxonomies, true) && count($taxonomies) === 1)  {
+        /* if ( empty( $order_by ) || $order_by === "name" || $order_by === "last_name"){
+            $order_by = 'last_name';
+        } */
+        $query->query_vars['meta_key'] = '_author_last_name';
+        $query->query_vars['orderby']  = 'meta_value';
+    }
+    /* 
+    if ( !is_admin() || $pagenow !== 'edit-tags.php' )
+        return;
+    $taxonomy = $query->query_vars["taxonomy"];
+    $order_by = $query->query_vars["orderby"];
+
+    if ( $taxonomy === 'autorstvo' ) {
+        if ( empty( $order_by ) )
+            $order_by = 'last_name';
+        
+        switch ( $order_by ) {
+            case 'last_name':
+                $query->set( 'meta_key', 'last_name' );
+                $query->set( 'orderby', 'meta_value_num' );
+                $query->set( 'ignore_custom_sort', true );
+                break;
+        }
+    } */
+}
+
+add_action( 'parse_term_query', 'kapital_sort_by_last_name', 10, 1);
+
+
+
+/** Render "last names" from meta for each term in list of authors on edit-tags page */
 function add_autorstvo_column_content($content, $column_name, $term_id)
 {
-    if ($column_name == 'full_name') {
-        $full_name = get_term_meta($term_id, '_author_full_name', true);
-        if (isset($full_name)) {
-            $content = '<a href="' . get_edit_term_link($term_id, 'autorstvo', 'post') . '"><strong>' . $full_name . '</strong></a>';
+    if ($column_name == 'last_name') {
+        $last_name = get_term_meta($term_id, '_author_last_name', true);
+        if (isset($last_name)) {
+            $content = '<a href="' . get_edit_term_link($term_id, 'autorstvo', 'post') . '"><strong>' . $last_name . '</strong></a>';
         } else {
             $content = "";
         }
@@ -225,35 +272,10 @@ function add_autorstvo_column_content($content, $column_name, $term_id)
 }
 add_filter('manage_autorstvo_custom_column', 'add_autorstvo_column_content', 10, 3);
 
-/** Render "full names" from meta for each post in list */
-
-function add_autorstvo_column_content_post($term_links, $taxonomy, $terms)
-{
-     /* This function filters all the taxonomies in all post lists, so only edit yours */
-     if ($taxonomy === 'autorstvo' && is_array( $terms ) ) {
-        $term_links = array();
-        foreach ( $terms as $t ) {
-            $term_name = get_term_meta($t->term_id, '_author_full_name', true); // modify term name as you want
-            
-            $term_link_params = array(
-                'post_type' => 'post', /* CHANGE to 'post'/'page' or any CPT */
-                $t->taxonomy => $t->slug,
-            );
-            $term_link = add_query_arg( $term_link_params, 'edit.php' );
-
-            $term_links[] = sprintf( '<a href="%s">%s</a>', $term_link, $term_name );
-        }
-        return $term_links;
-    }
-
-    /* Return all others */
-    return $term_links;
-}
-add_filter('post_column_taxonomy_links', 'add_autorstvo_column_content_post', 10, 3);
 
 //Set full name as primary column (contains links - edit, delete)
 add_filter('list_table_primary_column', function () {
-    return ('full_name');
+    return ('name');
 }, 'edit-autorstvo');
 
 //Disable quick edit
@@ -276,16 +298,54 @@ function remove_bulk_actions($actions)
 }
 add_filter('bulk_actions-autorstvo', 'remove_bulk_actions');
 
-/** Set term name to last name before saving to database */
-function autorstvo_insert_term($term, $taxonomy, $args)
+/** Set term name to full name before saving to database */
+ function autorstvo_insert_term($term, $taxonomy, $args)
 {
     if ($taxonomy == 'autorstvo') {
-        $last_name =  $args['last_name'];
-        $term = sanitize_text_field($last_name);
-    }
-    return ($term);
+        $full_name =  $args['full_name'];
+        $term = sanitize_text_field($full_name);
+    }   
+    //wp_die($args);
+    return $term;
 }
 add_filter('pre_insert_term', 'autorstvo_insert_term', 10, 3);
+
+
+//add_filter( 'ajax_term_search_results', 'meta_search_authors' );
+//add_action( 'pre_get_terms', 'autorstvo_pre_get_terms' );
+//add_action( 'pre_get_terms', 'autorstvo_pre_get_terms');
+
+/** *//* 
+function autorstvo_pre_get_terms( $wp_term_query ) {
+    $taxonomy = $wp_term_query->query_vars['taxonomy'];
+    //wp_die(var_dump($wp_term_query));
+    $search = $wp_term_query->query_vars['search'] ?? '';
+
+    if ( ! $search || $taxonomy !== [ 'autorstvo' ] ) {
+        return;
+    }
+
+    unset( $wp_term_query->query_vars['search'] );
+
+    $meta_query = [
+        'relation' => 'OR',
+    ];
+
+    $search_meta_keys = [
+        '_author_full_name',
+        // Add your other meta keys
+    ];
+
+    foreach ( $search_meta_keys as $key ) {
+        $meta_query[] = [
+            'key' => $key,
+            'value' => $search,
+            'compare' => 'LIKE',
+        ];
+    }
+    $wp_term_query->query_vars['meta_query'] = $meta_query;
+};
+ */
 
 /** Remove default author support */
 function remove_default_author_support()
