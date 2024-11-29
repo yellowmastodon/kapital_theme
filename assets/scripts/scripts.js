@@ -4,17 +4,33 @@
 // import 'bootstrap/js/dist/button';
 // import 'bootstrap/js/dist/carousel';
 import Collapse from 'bootstrap/js/dist/collapse';
-// import 'bootstrap/js/dist/dropdown';
-// import 'bootstrap/js/dist/modal';
+//import 'bootstrap/js/dist/dropdown';
+//import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/popover';
 // import 'bootstrap/js/dist/scrollspy';
 // import 'bootstrap/js/dist/tab';
 // import 'bootstrap/js/dist/toast';
 // import 'bootstrap/js/dist/tooltip';
-import adInserter from './ad-inserter';
+import { adInserter, checkSinglePost, registerClicks, checkAdInsertingEnabledSinglePost } from './ad-inserter';
+import ajaxRequest from './ajax-request';
+import postFilterModal from './post-filter-modal';
+import showMorePosts from './show-more-posts';
 
-adInserter();
+showMorePosts();
+
+//console.log(site_info);
+const isSinglePost = checkSinglePost();
+postFilterModal();
+
+//adInserter();
+if (isSinglePost) {
+    if (checkAdInsertingEnabledSinglePost()) {
+        ajaxRequest('adinserter', { single: true }, adInserter, [true, ajaxRequest]);
+    }
+} else {
+    ajaxRequest('adinserter', { single: false }, adInserter, [false, ajaxRequest]);
+}
 
 const topHeader = document.getElementById('top-header');
 const topHeaderLogo = topHeader.querySelector('svg');
@@ -25,11 +41,6 @@ let horizontalNavLogoShown;
 let topHeaderCollapse;
 let isTouchDevice = false;
 
-window.addEventListener('touchstart', function setTouchDevice() { 
-    isTouchDevice = true;
-    window.removeEventListener('touchstart', setTouchDevice);
-    console.log(isTouchDevice);
-});
 
 /** top header is shown onload only on front page
  * horizontal nav logo is shown only when top header is not visible
@@ -67,33 +78,63 @@ const showHorizontalNavLogo = () => {
     }, 100);
 }
 
+
 window.onscroll = function () {
     if (topHeaderCollapsed) {
         if (document.documentElement.scrollTop == 0) {
             topHeaderCollapse.show();
+            topHeaderCollapsed = false;
+            //remove event listener for wheel after the top header is shown
+            window.removeEventListener("wheel", showTopHeaderOnMousewheelUp);
             hideHorizontalNavLogo();
         }
     }
-    
-    topHeaderLogoBottom = topHeaderLogo.getBoundingClientRect().bottom;
-
-    if (topHeaderLogoBottom > 0 && horizontalNavLogoShown) {
-        hideHorizontalNavLogo();
-    }
-    if (topHeaderLogoBottom <= 0 && !horizontalNavLogoShown) {
-        showHorizontalNavLogo();
+    if (!topHeaderCollapsed) {
+        topHeaderLogoBottom = topHeaderLogo.getBoundingClientRect().bottom;
+        if (topHeaderLogoBottom > 0 && horizontalNavLogoShown) {
+            hideHorizontalNavLogo();
+        }
+        if (topHeaderLogoBottom <= 0 && !horizontalNavLogoShown) {
+            showHorizontalNavLogo();
+        }
     }
 };
 
-// for 
 window.addEventListener("wheel", showTopHeaderOnMousewheelUp);
 
+//uncollapse top part of header by scrollwheel up when on top of page (onscroll is not triggered by wheelup if there is nowhere to scroll on desktop    )
 function showTopHeaderOnMousewheelUp(event) {
-    let delta = Math.sign(event.deltaY);
-    if(delta = -1 && topHeaderCollapsed){
+    if (event.deltaY < 0 && document.documentElement.scrollTop == 0 && topHeaderCollapsed) {
         topHeaderCollapse.show();
+        topHeaderCollapsed = false;
         //remove event listener after the top header is shown
         window.removeEventListener("wheel", showTopHeaderOnMousewheelUp);
         hideHorizontalNavLogo();
+    }
+}
+
+let postViewsElements = document.querySelectorAll('article .post-views');
+let articles_id;
+addEventListener("DOMContentLoaded", () => {
+    if (typeof postViewsElements !== undefined) {
+        postViewsElements = Array.from(document.querySelectorAll('article .post-views'));
+        for (let i = 0; i < postViewsElements.length; i += 8) {
+            let postViewsBatch = postViewsElements.slice(i, i + 8);
+            let postIdsBatch = [];
+            for (let i = 0; i < postViewsBatch.length; i++) {
+                postIdsBatch[i] = postViewsBatch[i].getAttribute("data-id")
+            }
+            ajaxRequest('getviews', { ids: postIdsBatch },
+                insertPostViews,
+                [postViewsBatch]);
+        }
+    }
+});
+function insertPostViews(response, postViewsElements) {
+    response = JSON.parse(response);
+    for (let i = 0; i < response.length; i++) {
+        let numberElement = postViewsElements[i].querySelector('.number');
+        numberElement.insertAdjacentHTML('afterbegin', response[i]);
+        postViewsElements[i].classList.remove('opacity-0');
     }
 }
