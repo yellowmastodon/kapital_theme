@@ -6,16 +6,10 @@
  * WordPress dependencies
  */
 import { useEntityProp, store as coreStore } from '@wordpress/core-data';
-import { useMemo } from '@wordpress/element';
 import {
-	AlignmentToolbar,
-	BlockControls,
 	InspectorControls,
 	RichText,
-	Warning,
 	useBlockProps,
-	InnerBlocks,
-	useInnerBlocksProps 
 } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, ToolbarItem, ToolbarGroup, RangeControl, Toolbar, ToolbarButton, BaseControl } from '@wordpress/components';
 import { __, _x } from '@wordpress/i18n';
@@ -25,8 +19,6 @@ import { useSelect } from '@wordpress/data';
 export default function PostExcerptEditor({
 	attributes,
 	setAttributes,
-	isSelected,
-	clientId,
 	context: { postId, postType, queryId },
 }) {
 
