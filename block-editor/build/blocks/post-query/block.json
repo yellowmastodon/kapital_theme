@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "kapital/post-query",
+  "version": "0.1.0",
+  "title": "Najnovšie články / podcasty / podujatia",
+  "description": "Archív článkov",
+  "keywords": [
+    "podcast",
+    "článok",
+    "podcasty",
+    "články",
+    "podujatia",
+    "zoznam",
+    "najnovšie"
+  ],
+  "category": "theme",
+  "icon": "text",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "kapital",
+  "attributes": {
+    "postType": {
+      "type": "string",
+      "default": "post"
+    },
+    "taxonomy": {
+      "type": "string",
+      "default": "none"
+    },
+    "termQuery": {
+      "type": "string",
+      "default": ""
+    },
+    "showMoreButton": {
+      "type": "boolean",
+      "default": "true"
+    },
+    "showHeading": {
+      "type": "string",
+      "default": "auto"
+    },
+    "headingText": {
+      "type": "string",
+      "default": ""
+    },
+    "headingLevel": {
+      "type": "integer",
+      "default": 2
+    },
+    "showFilters": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEditor": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "render": "file:./render.php",
+  "editorScript": "file:./index.js"
+}
