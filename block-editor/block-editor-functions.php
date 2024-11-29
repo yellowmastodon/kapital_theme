@@ -70,8 +70,27 @@ function generate_color_palette()
     return $color_palette;
 }
 
+//add_filter( 'block_type_metadata', 'set_image_auto_wide' );
+
+function set_image_auto_wide( $metadata ) {
+  //var_dump($metadata["name"]);
+  //var_dump($metadata);
+  if ( "core/image" == $metadata['name'] ) {
+    $metadata['attributes']['className']['default'] = "alignwide";
+    $metadata['attributes']['align']['default'] = "alignwide";   
+    return $metadata;
+    //var_dump($metadata['attributes']);
+  }
+  //var_dump($metadata);
+  return $metadata;
+}
+
+
+
 /** Require all blocks
  */
 
  require_once(dirname(__FILE__) . '\build\blocks\secondary-title\index.php');
  require_once(dirname(__FILE__) . '\build\blocks\perex\index.php');
+ require_once(dirname(__FILE__) . '\build\blocks\ad\index.php');
+ require_once(dirname(__FILE__) . '\build\blocks\post-query\index.php');
