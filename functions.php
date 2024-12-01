@@ -4,19 +4,43 @@
  * Custom functions / External files
  */
 
-require_once 'includes/class-wp-bootstrap-navwalker.php';
-require_once 'includes/custom_post_types.php';
-require_once 'includes/custom_taxonomies.php';
-require_once 'includes/custom_import.php';
-require_once 'includes/render_functions.php';
-require_once 'includes/old-site-functions.php';
-//require_once 'includes/cmb-example-functions.php';
-require_once 'block-editor/block-editor-functions.php';
-require_once 'includes/author_taxonomy_functions.php';
-require_once 'includes/custom_meta.php';
-require_once 'includes/ads_post_type_functions.php';
-require_once 'includes/custom_options.php';
-require_once 'includes/ajax_functions.php';
+
+$include = array(
+    //require_once 'includes/class-wp-bootstrap-navwalker.php',
+    'includes/custom_post_types.php',
+    'includes/custom_taxonomies.php',
+    'includes/custom_import.php',
+    'includes/old-site-functions.php',
+    //'includes/cmb-example-functions.php',
+    'block-editor/block-editor-functions.php',
+    'includes/author_taxonomy_functions.php',
+    'includes/custom_meta.php',
+    'includes/ads_post_type_functions.php',
+    'includes/custom_options.php',
+    'includes/ajax_functions.php',
+);
+$include_all = array(
+        'includes/render_functions.php',
+);
+
+if( is_multisite()) {
+    if (is_main_site()){
+        foreach ($include as $inc){
+            require_once $inc;
+        }
+    }
+    foreach ($include_all as $inc){
+        require_once $inc;
+    }
+} else {
+    foreach ($include as $inc){
+        require_once $inc;
+    }
+    foreach ($include_all as $inc){
+        require_once $inc;
+    }
+}
+
 
 
 //define months to be sure we can render them //fix for problem in localhost
