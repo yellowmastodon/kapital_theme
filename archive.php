@@ -83,8 +83,8 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
                         </svg></button>
                     <?php foreach ($filters as $filter):
                         $term = get_term($filter); ?>
-                        <div class="my-2 mx-0 mx-sm-2">
-                            <a class="btn btn-outline text-center" href="<?php echo get_term_link($term) ?>"><?php echo $term->name; ?></a>
+                        <div class="my-2 mx-0 mx-sm-1">
+                            <a class="btn btn-sm btn-outline text-center" href="<?php echo get_term_link($term) ?>"><?php echo $term->name; ?></a>
                         </div>
                     <?php endforeach; ?>
                 </div>
