@@ -374,7 +374,6 @@ add_action('pre_get_posts', 'kapital_post_query_mod', 1);
  */
 function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 13)
 {
-    $raw_excerpt = $excerpt;
     if ('' == $excerpt) {
         $excerpt = get_the_content('');
     }
@@ -413,7 +412,7 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 13)
 
     return $excerpt;
 
-    return apply_filters('kapital_wp_trim_excerpt', $excerpt, $raw_excerpt);
+    return apply_filters('kapital_wp_trim_excerpt', $excerpt);
 }
 remove_filter('get_the_excerpt', 'wp_trim_excerpt');
 add_filter('get_the_excerpt', 'kapital_wp_trim_excerpt');
@@ -429,21 +428,25 @@ add_action('init', 'kapital_custom_pagination_base', 0);
 
 /** simple function to get default rendering settings, if not set by meta
  * @param integer $post_id
- * @return array 
+ * @param boolean $show_false forcible get all as false
+ * @return array
  */
-function kapital_get_render_settings($post_id){
-    
-$render_settings = get_post_meta($post_id, '_kapital_post_render_settings', true);
+function kapital_get_render_settings(int $post_id, bool $show_false = false){
+    if ($show_false){
+        $render_settings = array();
+    } else {
+        $render_settings = get_post_meta($post_id, '_kapital_post_render_settings', true);
+    }
     $default_render_settings = array(
-        'show_featured_image' => true,
-        'show_title' => true,
-        'show_author' => true,
-        'show_categories' => true,
-        'show_views' => true,
-        'show_date' => true,
-        'show_ads'  => true,
-        'show_support' => true,
-        'show_footer' => true,
+        'show_featured_image' =>  !$show_false ? true : false,
+        'show_title' => !$show_false ? true : false,
+        'show_author' => !$show_false ? true : false,
+        'show_categories' => !$show_false ? true : false,
+        'show_views' => !$show_false ? true : false,
+        'show_date' => !$show_false ? true : false,
+        'show_ads'  => !$show_false ? true : false,
+        'show_support' => !$show_false ? true : false,
+        'show_footer' => !$show_false ? true : false,
     );
     //var_dump($default_render_settings);
     if(is_array($render_settings)){

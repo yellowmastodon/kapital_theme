@@ -2,6 +2,52 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/edit.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/edit.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pencil__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pencil */ "./node_modules/@wordpress/icons/build-module/library/pencil.js");
+/**
+ * Internal dependencies
+ */
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_pencil__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=edit.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/pencil.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/pencil.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+const pencil = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, {
+    d: "m19 7-3-3-8.5 8.5-1 4 4-1L19 7Zm-7 11.5H5V20h7v-1.5Z"
+  })
+});
+/* harmony default export */ __webpack_exports__["default"] = (pencil);
+//# sourceMappingURL=pencil.js.map
+
+/***/ }),
+
 /***/ "./block-editor/src/blocks/featured-post/edit.js":
 /*!*******************************************************!*\
   !*** ./block-editor/src/blocks/featured-post/edit.js ***!
@@ -28,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/edit.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
 
@@ -47,6 +94,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 
@@ -76,6 +124,8 @@ function Edit(_ref) {
     _ref$context = _ref.context,
     postId = _ref$context.postId,
     postType = _ref$context.postType;
+  var hasImages = attributes.customImageId !== 0 ? true : false;
+  console.log(attributes.customImageId);
   var _useEntityProp = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityProp)('postType', postType, 'meta'),
     _useEntityProp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useEntityProp, 2),
     meta = _useEntityProp2[0],
@@ -179,21 +229,86 @@ function Edit(_ref) {
       block: "kapital/featured-post",
       attributes: attributes
     }), !attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("article", {
-      class: "featured-post archive-item alignwider ff-grotesk",
+      className: "featured-post archive-item alignwider ff-grotesk",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-        class: "row gx-4 gy-3 text-decoration-none",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          class: "col-12 col-md-6"
+        className: "row gx-4 gy-3 text-decoration-none",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          className: "col-12 col-md-6",
+          children: [!hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
+            multiple: false,
+            labels: {
+              title: "Ilustračný obrázok"
+            },
+            onSelect: function onSelect(newImage) {
+              return setAttributes({
+                customImageId: newImage.id
+              });
+            }
+          }), hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
+              multiple: false,
+              addToGallery: true,
+              onSelect: function onSelect(newImage) {
+                setAttributes({
+                  customImageId: Number(newImage.id)
+                });
+              },
+              allowedTypes: ["image"],
+              value: attributes.customImageId,
+              render: function render(_ref2) {
+                var open = _ref2.open;
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                  style: {
+                    position: "absolute",
+                    zIndex: 1,
+                    left: "16px",
+                    top: "16px",
+                    background: "white"
+                  },
+                  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"],
+                  onClick: open,
+                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Zmeniť obrázok", "kapital")
+                });
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default()), {
+              skipBlockSupportAttributes: "true",
+              block: "kapital/featured-post",
+              attributes: _objectSpread(_objectSpread({}, attributes), {}, {
+                renderOnlyImage: true
+              })
+            })]
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          class: "col-12 col-md-6",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+          className: "col-12 col-md-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.URLInput, {
+            __nextHasNoMarginBottom: true,
+            className: "mb-3",
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný link", "kapital"),
+            value: attributes.customLink,
+            onChange: function onChange(newValue) {
+              return setAttributes({
+                customLink: newValue
+              });
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+            __nextHasNoMarginBottom: true,
             tagName: "h2",
             className: "h2 mt-2 mb-3 red-outline-hover",
             value: attributes.customHeading,
+            onChange: function onChange(newValue) {
+              return setAttributes({
+                customHeading: newValue
+              });
+            },
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný nadpis", "kapital")
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
             tagName: "p",
             value: attributes.customText,
+            onChange: function onChange(newValue) {
+              return setAttributes({
+                customText: newValue
+              });
+            },
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný text", "kapital")
           })]
         })]
@@ -281,6 +396,16 @@ module.exports = window["wp"]["element"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/primitives":
+/*!************************************!*\
+  !*** external ["wp","primitives"] ***!
+  \************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["primitives"];
 
 /***/ }),
 
@@ -537,7 +662,7 @@ function _unsupportedIterableToArray(r, a) {
   \**********************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/featured-post","version":"0.1.0","icon":"post","title":"Highlight článok","category":"theme","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"multiple":false},"attributes":{"postId":{"type":"integer","default":0},"isPost":{"type":"boolean","default":true},"featuredPostType":{"type":"string","default":"post"},"customHeading":{"type":"string","default":""},"customText":{"type":"string","default":""},"customLink":{"type":"string","default":""}},"usesContext":["postType","postId"],"textdomain":"featured-post","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/featured-post","version":"0.1.0","icon":"dashicon-post","title":"Highlight článok","category":"theme","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"multiple":false},"attributes":{"postId":{"type":"integer","default":0},"isPost":{"type":"boolean","default":true},"featuredPostType":{"type":"string","default":"post"},"customHeading":{"type":"string","default":""},"customText":{"type":"string","default":""},"customLink":{"type":"string","default":""},"customImageId":{"type":"integer","default":0},"renderOnlyImage":{"type":"boolean","default":false}},"usesContext":["postType","postId"],"textdomain":"featured-post","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 
