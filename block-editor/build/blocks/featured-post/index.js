@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./block-editor/src/blocks/post-query/edit.js":
-/*!****************************************************!*\
-  !*** ./block-editor/src/blocks/post-query/edit.js ***!
-  \****************************************************/
+/***/ "./block-editor/src/blocks/featured-post/edit.js":
+/*!*******************************************************!*\
+  !*** ./block-editor/src/blocks/featured-post/edit.js ***!
+  \*******************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -13,23 +13,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ Edit; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
-/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/server-side-render */ "@wordpress/server-side-render");
+/* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
-
 
 
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -41,6 +41,13 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
  */
 
 
+/**
+ * React hook that is used to mark the block wrapper element.
+ * It provides all the necessary props like the class name.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ */
+
 
 
 
@@ -48,10 +55,10 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 
 
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
  *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 
 /**
@@ -69,211 +76,127 @@ function Edit(_ref) {
     _ref$context = _ref.context,
     postId = _ref$context.postId,
     postType = _ref$context.postType;
-  var queryPostType = attributes.queryPostType;
-  var _useEntityProp = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_7__.useEntityProp)('postType', postType, 'meta'),
-    _useEntityProp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useEntityProp, 2),
+  var _useEntityProp = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityProp)('postType', postType, 'meta'),
+    _useEntityProp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useEntityProp, 2),
     meta = _useEntityProp2[0],
     setMeta = _useEntityProp2[1];
-  //pass exclusion from featured post
-  console.log(meta._kapital_featured_post);
-  console.log(attributes);
-  var taxonomies = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.useSelect)(function (select) {
-    var _select = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_7__.store),
-      getTaxonomies = _select.getTaxonomies;
-    return getTaxonomies({
-      per_page: -1,
-      type: queryPostType
-    });
-  }, [queryPostType]);
-  var taxonomyOptions = (taxonomies !== null && taxonomies !== void 0 ? taxonomies : []).map(function (taxonomy) {
-    return {
-      label: taxonomy.name,
-      value: taxonomy.slug
-    };
-  });
-  var Heading = "h".concat(attributes.headingLevel);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("section", _objectSpread(_objectSpread({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
+  var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_7__.useState)(''),
+    _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(_useState, 2),
+    search = _useState2[0],
+    setSearch = _useState2[1];
+  var _useEntityRecords = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityRecords)('postType', attributes.featuredPostType, {
+      per_page: 10,
+      search: search
+    }),
+    isResolving = _useEntityRecords.isResolving,
+    posts = _useEntityRecords.records;
+  var setSearchDebounced = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_6__.useDebounce)(function (value) {
+    setSearch(value);
+  }, 100);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", _objectSpread(_objectSpread({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
     className: "alignwider"
   })), {}, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Panel, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Filter', 'kapital'),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Typ obsahu", "kapital"),
-            onChange: function onChange(newValue) {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
+          __nextHasNoMarginBottom: true,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Obsah', 'kapital'),
+          value: attributes.isPost ? "auto" : "custom",
+          onChange: function onChange(newValue) {
+            if (newValue === "auto") {
               setAttributes({
-                queryPostType: newValue
+                isPost: true
               });
+            } else {
               setAttributes({
-                taxonomy: "none"
-              });
-              setAttributes({
-                termQuery: ""
-              });
-            },
-            options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Články", "kapital"),
-              value: 'post',
-              selected: attributes.queryPostType === "post" ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Podcasty", "kapital"),
-              value: 'podcast',
-              selected: attributes.queryPostType === "podcast" ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Eventy", "kapital"),
-              value: 'event',
-              selected: attributes.queryPostType === "event" ? true : false
-            }]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-            __nextHasNoMarginBottom: true,
-            multiple: false,
-            value: attributes.taxonomy,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Typ filtra", "kapital"),
-            onChange: function onChange(newValue) {
-              setAttributes({
-                taxonomy: newValue
-              });
-              setAttributes({
-                termQuery: ""
-              });
-            },
-            options: [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(taxonomyOptions), [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Žiaden", "kapital"),
-              value: "none"
-            }])
-          }), attributes.taxonomy !== "none" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Slug kategórie z taxonómie:', 'kapital') + ' "' + attributes.taxonomy + '"',
-            value: attributes.termQuery,
-            onChange: function onChange(newValue) {
-              setAttributes({
-                termQuery: newValue
-              });
-            },
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Viacero hodnôt oddeľte čiarkou', 'kapital')
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Vylučovací filter', 'kapital'),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-            __nextHasNoMarginBottom: true,
-            multiple: false,
-            value: attributes.taxonomyExclude,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Typ filtra", "kapital"),
-            onChange: function onChange(newValue) {
-              setAttributes({
-                taxonomyExclude: newValue
-              });
-              setAttributes({
-                termQueryExclude: ""
-              });
-            },
-            options: [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(taxonomyOptions), [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Žiaden", "kapital"),
-              value: "none"
-            }])
-          }), attributes.taxonomyExclude !== "none" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Slug kategórie z taxonómie:', 'kapital') + ' "' + attributes.taxonomyExclude + '"',
-            value: attributes.termQueryExclude,
-            onChange: function onChange(newValue) {
-              setAttributes({
-                termQueryExclude: newValue
-              });
-            },
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Viacero hodnôt oddeľte čiarkou', 'kapital')
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Nastavenia zobrazenia', 'kapital'),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Tlačidlo "Zobraziť viac'),
-            checked: attributes.showMoreButton,
-            onChange: function onChange(newValue) {
-              setAttributes({
-                showMoreButton: newValue
+                isPost: false
               });
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Nadpis', 'kapital'),
-            checked: attributes.showHeading,
-            onChange: function onChange(newValue) {
-              setAttributes({
-                showHeading: newValue
-              });
-            },
-            options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Automaticky", "kapital"),
-              value: "auto",
-              selected: attributes.showHeading === "auto" ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Manuálne", "kapital"),
-              value: "manual",
-              selected: attributes.showHeading === "manual" ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Skryť", "kapital"),
-              value: "hide",
-              selected: attributes.showHeading === "hide" ? true : false
-            }]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+          },
+          options: [{
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Automaticky z článku/podcastu/...", "kapital"),
+            value: "auto"
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastné", "kapital"),
+            value: "custom"
+          }]
+        }), attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
             __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Úroveň nadpisu", "kapital"),
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Základný level je h2 (h1 je názov stránky)", "kapital"),
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Typ obsahu', 'kapital'),
+            value: attributes.featuredPostType,
             onChange: function onChange(newValue) {
               setAttributes({
-                headingLevel: newValue
+                featuredPostType: newValue
               });
+              setAttributes({
+                postId: 0
+              }); //reset post id on post type change
             },
             options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h1", "kapital"),
-              value: 1,
-              selected: attributes.headingLevel === 1 ? true : false
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Článok", "kapital"),
+              value: "post"
             }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h2", "kapital"),
-              value: 2,
-              selected: attributes.headingLevel === 2 ? true : false
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Stránka", "kapital"),
+              value: "page"
             }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h3", "kapital"),
-              value: 3,
-              selected: attributes.headingLevel === 3 ? true : false
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Podcast", "kapital"),
+              value: "podcast"
             }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h4", "kapital"),
-              value: 4,
-              selected: attributes.headingLevel === 4 ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h5", "kapital"),
-              value: 5,
-              selected: attributes.headingLevel === 5 ? true : false
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h6", "kapital"),
-              value: 6,
-              selected: attributes.headingLevel === 6 ? true : false
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Event", "kapital"),
+              value: "event"
             }]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ComboboxControl, {
+            __nextHasNoMarginBottom: true,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vybraný článok/podcast/...', 'kapital'),
+            onChange: function onChange(newValue) {
+              setAttributes({
+                postId: Number(newValue)
+              });
+              setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+                _kapital_featured_post: Number(newValue)
+              }));
+            },
+            onFilterValueChange: function onFilterValueChange(newValue) {
+              setSearchDebounced(newValue);
+            },
+            options: isResolving ? [{
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Loading...', 'kapital'),
+              value: 'loading'
+            }] : (posts === null || posts === void 0 ? void 0 : posts.map(function (post) {
+              var _post$title;
+              return {
+                label: post === null || post === void 0 || (_post$title = post.title) === null || _post$title === void 0 ? void 0 : _post$title.rendered,
+                value: String(post === null || post === void 0 ? void 0 : post.id)
+              };
+            })) || [],
+            value: String(attributes.postId) || 'loading'
           })]
         })]
       })
-    }), attributes.showHeading === "manual" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Heading, {
-      class: "bubble-heading ff-grotesk",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
-        identifier: "content",
-        tagName: "span",
-        name: "Podnadpis",
-        allowedFormats: ['core/italic', 'core/link', 'core/strikethrough', 'core/underline', 'core/superscript'],
-        value: attributes.headingText,
-        onChange: function onChange(newContent) {
-          setAttributes({
-            headingText: newContent
-          });
-        },
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Nadpis sekcie', 'kapital'),
-        disableLineBreaks: false
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_6___default()), {
+    }), attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default()), {
       skipBlockSupportAttributes: "true",
-      block: "kapital/post-query",
-      attributes: _objectSpread(_objectSpread({}, attributes), {}, {
-        isEditor: true,
-        excludePost: meta._kapital_featured_post
+      block: "kapital/featured-post",
+      attributes: attributes
+    }), !attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("article", {
+      class: "featured-post archive-item alignwider ff-grotesk",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        class: "row gx-4 gy-3 text-decoration-none",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          class: "col-12 col-md-6"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          class: "col-12 col-md-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+            tagName: "h2",
+            className: "h2 mt-2 mb-3 red-outline-hover",
+            value: attributes.customHeading,
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný nadpis", "kapital")
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+            tagName: "p",
+            value: attributes.customText,
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný text", "kapital")
+          })]
+        })]
       })
     })]
   }));
@@ -321,6 +244,16 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
+/***/ "@wordpress/compose":
+/*!*********************************!*\
+  !*** external ["wp","compose"] ***!
+  \*********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["compose"];
+
+/***/ }),
+
 /***/ "@wordpress/core-data":
 /*!**********************************!*\
   !*** external ["wp","coreData"] ***!
@@ -331,13 +264,13 @@ module.exports = window["wp"]["coreData"];
 
 /***/ }),
 
-/***/ "@wordpress/data":
-/*!******************************!*\
-  !*** external ["wp","data"] ***!
-  \******************************/
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
 /***/ (function(module) {
 
-module.exports = window["wp"]["data"];
+module.exports = window["wp"]["element"];
 
 /***/ }),
 
@@ -397,25 +330,6 @@ function _arrayWithHoles(r) {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
-  \**********************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ _arrayWithoutHoles; }
-/* harmony export */ });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
-
-function _arrayWithoutHoles(r) {
-  if (Array.isArray(r)) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r);
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
@@ -435,23 +349,6 @@ function _defineProperty(e, r, t) {
     configurable: !0,
     writable: !0
   }) : e[r] = t, e;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js ***!
-  \********************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ _iterableToArray; }
-/* harmony export */ });
-function _iterableToArray(r) {
-  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
 }
 
 
@@ -515,23 +412,6 @@ function _nonIterableRest() {
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js ***!
-  \**********************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ _nonIterableSpread; }
-/* harmony export */ });
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
@@ -552,31 +432,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function _slicedToArray(r, e) {
   return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(r, e) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(r, e) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js ***!
-  \**********************************************************************/
-/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ _toConsumableArray; }
-/* harmony export */ });
-/* harmony import */ var _arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithoutHoles.js */ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js");
-/* harmony import */ var _iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js");
-/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
-/* harmony import */ var _nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableSpread.js */ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js");
-
-
-
-
-function _toConsumableArray(r) {
-  return (0,_arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r) || (0,_iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(r) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(r) || (0,_nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
 }
 
 
@@ -676,13 +531,13 @@ function _unsupportedIterableToArray(r, a) {
 
 /***/ }),
 
-/***/ "./block-editor/src/blocks/post-query/block.json":
-/*!*******************************************************!*\
-  !*** ./block-editor/src/blocks/post-query/block.json ***!
-  \*******************************************************/
+/***/ "./block-editor/src/blocks/featured-post/block.json":
+/*!**********************************************************!*\
+  !*** ./block-editor/src/blocks/featured-post/block.json ***!
+  \**********************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/post-query","version":"0.1.0","title":"Najnovšie články / podcasty / podujatia","description":"Archív článkov","keywords":["podcast","článok","podcasty","články","podujatia","zoznam","najnovšie"],"category":"theme","icon":"text","example":{},"supports":{"html":false},"textdomain":"kapital","attributes":{"queryPostType":{"type":"string","default":"post"},"taxonomy":{"type":"string","default":"none"},"termQuery":{"type":"string","default":""},"taxonomyExclude":{"type":"string","default":"none"},"termQueryExclude":{"type":"string","default":""},"showMoreButton":{"type":"boolean","default":"true"},"showHeading":{"type":"string","default":"auto"},"headingText":{"type":"string","default":""},"headingLevel":{"type":"integer","default":2},"showFilters":{"type":"boolean","default":false},"isEditor":{"type":"boolean","default":false},"excludePost":{"type":"integer","default":0}},"usesContext":["postType","postId"],"render":"file:./render.php","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/featured-post","version":"0.1.0","icon":"post","title":"Highlight článok","category":"theme","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"multiple":false},"attributes":{"postId":{"type":"integer","default":0},"isPost":{"type":"boolean","default":true},"featuredPostType":{"type":"string","default":"post"},"customHeading":{"type":"string","default":""},"customText":{"type":"string","default":""},"customLink":{"type":"string","default":""}},"usesContext":["postType","postId"],"textdomain":"featured-post","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 
@@ -757,14 +612,14 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 !function() {
-/*!*****************************************************!*\
-  !*** ./block-editor/src/blocks/post-query/index.js ***!
-  \*****************************************************/
+/*!********************************************************!*\
+  !*** ./block-editor/src/blocks/featured-post/index.js ***!
+  \********************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit.js */ "./block-editor/src/blocks/post-query/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./block-editor/src/blocks/post-query/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./block-editor/src/blocks/featured-post/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./block-editor/src/blocks/featured-post/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -795,10 +650,7 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./edit.js
    */
-  edit: _edit_js__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: function save(props) {
-    return null;
-  }
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 }();
 /******/ })()

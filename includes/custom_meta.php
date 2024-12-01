@@ -68,3 +68,27 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
         ),
     );
 }
+
+/**
+ * registers meta for kapital/featured-post block
+ * used in kapital/post-query to exclude featured post
+ */
+
+register_post_meta(
+    '',
+    '_kapital_featured_post',
+    array(
+        'auth_callback' => function () {
+            return current_user_can('edit_posts');
+        },
+        'single' => true,
+        'show_in_rest'  => [
+            true,
+            'schema' => [
+                'type'       => 'integer',
+            ],
+        ],
+        'type' => 'integer',
+        'default' => 0
+    ),
+);

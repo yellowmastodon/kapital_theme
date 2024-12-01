@@ -17,7 +17,6 @@ _colors.scss
 
 //generating bg classes for wordpress from bootstrap colors
 @each $name, $color in $colors {
-
 	.has-#{$name}-color,
 	.has-#{$name}-color:visited {
 		color: var(--#{$prefix}#{$name});
@@ -26,8 +25,6 @@ _colors.scss
 		background-color: var(--#{$prefix}#{$name});
 		border-color: var(--#{$prefix}#{$name});
 	}
-
-
 	.wp-block-button:hover{
 		.wp-block-button__link.has-white-background-color.has-#{$name}-color {
 			& {
@@ -46,3 +43,17 @@ _colors.scss
 	@extend .text-center;
 }
 
+//buttons
+
+.wp-element-button, .wp-block-button__link{
+	&:not(.has-background){
+		@extend .btn-secondary ;
+	}
+	@extend .btn;
+	&.has-pink-background-color{
+		@extend .btn-primary;
+	}
+	&.has-red-background-color{
+		@extend .btn-red;
+	}
+}

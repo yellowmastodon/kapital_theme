@@ -2,8 +2,7 @@
 
 get_header(); ?>
 
-<main role="main" <?php post_class('mt-5 main'); ?>>
-    <div class="container">
+<main role="main" <?php post_class('mt-5 main-content container'); ?>>
 
         <?php while ( have_posts() ) : the_post(); ?>
 
@@ -11,8 +10,6 @@ get_header(); ?>
 
 
         <?php endwhile; ?>
-
-    </div>
 </main>
 
 <?php get_footer(); ?>

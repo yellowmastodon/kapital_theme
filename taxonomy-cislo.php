@@ -77,7 +77,7 @@ echo kapital_breadcrumbs(array(
                 get_template_part('template-parts/archive-editorial-post', null, array('queried_object_id' => $queried_object_id));
                 $editorial_post_id = $post->ID;
             endwhile; ?>
-            <div class="row gx-3<?php echo $justify_class ?>">
+            <div class="row gx-3 gy-6<?php echo $justify_class ?>">
                 <?php while ($wp_query->have_posts()) : $wp_query->the_post();
                     if ($post->ID !== $editorial_post_id){
                         get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $queried_object_id));

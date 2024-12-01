@@ -7,6 +7,7 @@ $is_general_post_archive = is_home();
 $archive_title = "";
 $is_term_archive = is_tax();
 //all share these starting breadcrubms
+global $kapital_taxonomies_with_list_pages;
 $breadcrumbs = array(
     [__('Články', 'kapital'), get_post_type_archive_link('post')],
 );
@@ -101,7 +102,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 
     ?>
         <section class="alignwider">
-            <div class="row gx-3<?php echo $justify_class ?>">
+            <div class="row gy-6 gx-3<?php echo $justify_class ?>">
                 <?php while (have_posts()) : the_post();
                     get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $queried_object_id));
                 endwhile; ?>

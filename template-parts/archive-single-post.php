@@ -20,9 +20,6 @@ if (isset($args['additional_class'])){
     $additional_class = "";
 }
 
-//if one row do not use margin bottom on card
-$margin_bottom = isset($args['margin-bottom']) ? $args['margin-bottom'] : true;
-
 //get current queried object
 if (isset($args['queried_object_id'])){
     $queried_object_id = $args['queried_object_id'];
@@ -36,15 +33,14 @@ if (isset($args['queried_object_id'])){
 $render_settings = kapital_get_render_settings($post->ID);
 
 $article_classes = "col-12 col-sm-6 col-md-4 col-xl-3 archive-item ff-grotesk";
-if ($margin_bottom) $article_classes .= " mb-6";
 $article_classes .= $additional_class;
+$post_title = get_the_title($post);
+$secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 
 ?>
 <article <?php post_class([$article_classes], $post); ?>>
     <div class="archive-post-top row mb-1 ff-sans fs-small text-gray">
         <?php
-        $post_title = get_the_title($post);
-        $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
         if ($post->post_type === 'podcast'):?>
             <div class="col-auto icon-podcast text-end">
                 <svg><use xlink:href="#icon-podcast"></use></svg>
@@ -85,18 +81,18 @@ $article_classes .= $additional_class;
         </div>
     </a>
     <?php
-    $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
+    $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo', 'podcast-seria']; //with partners this includes also podcast seria
     if ($queried_object_id){
         $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies, $queried_object_id);
     } else {
         $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
     }
     if (!empty($filtered_terms)): ?>
-        <div class="post-terms text-uppercase row gx-2">
+        <div class="post-terms text-uppercase row gx-3 gy-1">
             <?php
             if ($render_settings["show_author"]):
                 if (!empty($filtered_terms['autorstvo']) && $post->post_type !== 'podcast'): ?>
-                    <div class="col-auto post-authors mb-1">
+                    <div class="col-auto post-authors">
                         <svg viewBox="0 0 24 24">
                             <use xlink:href="#icon-author"></use>
                         </svg>
@@ -118,16 +114,15 @@ $article_classes .= $additional_class;
                             //'tematicky' tag used for posts which are part of the printed issue
                             if ($term->slug === 'tematicky'):
                                 if (isset($filtered_terms['cislo'][0])):?>
-                                <div class="col-auto mb-1"><a class="marker-black" href="<?php echo get_term_link($filtered_terms['cislo'][0]); ?>"><?php echo $term->name ?></a></div>
+                                <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($filtered_terms['cislo'][0]); ?>"><?php echo $term->name ?></a></div>
                                 <?php endif; ?>
                             <?php else: ?>
-                                <div class="col-auto mb-1"><a class="marker-black" href="<?php echo get_term_link($term); ?>"><?php echo $term->name ?></a></div>
+                                <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($term); ?>"><?php echo $term->name ?></a></div>
                            <?php endif; 
                         endforeach;
                     endif;
                 endforeach;
             endif; ?>
-
         </div>
     <?php endif; ?>
 </article>

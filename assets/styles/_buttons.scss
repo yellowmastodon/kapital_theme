@@ -4,6 +4,7 @@
 }
 
 .btn{
+    color: var(--#{$prefix}body-color);
     @extend .ff-grotesk;
     @extend .text-decoration-none;
     @extend .rounded-pill;

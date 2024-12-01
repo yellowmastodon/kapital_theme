@@ -316,7 +316,7 @@ function kapital_pagination( $args = array() ) {
 
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
         //py-1 just to not cut the focus outline, dunno wtf
-        $html = '<nav class="pagination py-1 d-flex ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
+        $html = '<nav class="pagination py-1 d-flex mt-4 ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
         $html .= implode( "\n", $page_links );
         $html .= '</nav>';
         return $html;
@@ -398,7 +398,7 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 13)
     foreach ($tokens[0] as $key => $token) {
         if ($count >= $excerpt_length && (preg_match('/[\,\;\?\.\!]\s*$/uS', $token) || $key > 40)) {
             // Limit reached, continue until , ; ? . or ! occur at the end
-            $excerptOutput .= trim($token, " \n\r\t\v\x00,.;?!") . '...';
+            $excerptOutput .= trim($token, " \n\r\t\v\x00,.?!") . '...';
             break;
         }
 

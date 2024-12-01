@@ -101,12 +101,17 @@ $grid-breakpoints: $temporary-breakpoints;
 .editor-styles-wrapper .lh-sm p{
     line-height: inherit !important;
 }
-.show-more-posts-wrapper a{
+.archive-item-link:not(.custom), .post-terms a{
     pointer-events: none !important;
 }
 
 @import "ads_editor";
 @import "archive";
 @import "buttons";
+@import "featured_post";
 
+//children use negative margin, so focus is rendered wrong without this
+.wp-block-kapital-featured-post, .wp-block-kapital-post-query{
+    overflow: hidden;
+}
 

@@ -4,6 +4,7 @@
 <html <?php language_attributes(); ?>>
 
 <head>
+    <meta name="theme-color" content="#ffc2fe" />
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
@@ -54,7 +55,7 @@ $site_name = get_bloginfo('name');?>
         </div>
     </header>
 
-    <nav id="horizontal-nav" class="fw-bold ff-grotesk px-4 px-md-3 bg-primary position-sticky d-print-none">
+    <nav id="horizontal-nav" class="fw-bold ff-grotesk px-3 bg-primary position-sticky d-print-none">
         <div class="row gx-4 align-items-center justify-content-between">
             <div class="col-auto col-lg-1 col-xl-1 text-start">
                 <button class="btn-menu w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">

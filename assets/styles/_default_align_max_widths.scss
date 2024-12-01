@@ -4,8 +4,8 @@
 //redefine container, as we are not using default bootstrap;
 .container {
     width: 100%;
-    padding-right: map-get($spacers, 4);
-    padding-left: $spacer;
+    padding-right: map-get($spacers, 3);
+    padding-left:  map-get($spacers, 3);
 }
 
 /* $grid-breakpoints: (
@@ -32,8 +32,7 @@ $align-wide-sizes: (
 
 //post archives
 $align-wider-sizes: (
-    lg: 900px,
-    xl: 1100px,
+    md: 1100px,
     xxl: 1320px
 );
 

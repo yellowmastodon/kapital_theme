@@ -14,7 +14,7 @@
 	},
 	"textdomain": "kapital",
 	"attributes": {
-		"postType": {
+		"queryPostType": {
 			"type": "string",
 			"default": "post"
 		},
@@ -23,6 +23,14 @@
 			"default": "none"
 		},
 		"termQuery": {
+			"type": "string",
+			"default": ""
+		},
+		"taxonomyExclude":{
+			"type": "string",
+			"default": "none"
+		},
+		"termQueryExclude": {
 			"type": "string",
 			"default": ""
 		},
@@ -49,8 +57,16 @@
 		"isEditor": {
 			"type": "boolean",
 			"default": false
+		},
+		"excludePost": {
+			"type": "integer",
+			"default": 0
 		}
 	},
+	"usesContext": [
+		"postType",
+		"postId"
+		],
 	"render": "file:./render.php",
 	"editorScript": "file:./index.js"
 }

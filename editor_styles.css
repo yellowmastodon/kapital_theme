@@ -170,7 +170,7 @@
   --kptl-font-sans-serif: "Kontrast Grotesk", sans-serif;
   --kptl-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --kptl-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --kptl-root-font-size: clamp(0.938rem, 0.192vw + 0.894rem, 1.125rem);
+  --kptl-root-font-size: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
   --kptl-body-font-family: "Roboto Serif", serif;
   --kptl-body-font-size: 1rem;
   --kptl-body-font-weight: 400;
@@ -265,13 +265,13 @@
   font-size: clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem);
 }
 .editor-styles-wrapper h2, .editor-styles-wrapper .h2 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 .editor-styles-wrapper h3, .editor-styles-wrapper .h3 {
-  font-size: 1.37rem;
+  font-size: 1.2rem;
 }
 .editor-styles-wrapper h4, .editor-styles-wrapper .h4 {
-  font-size: 1.17rem;
+  font-size: 1.1rem;
 }
 .editor-styles-wrapper h5, .editor-styles-wrapper .h5 {
   font-size: 1rem;
@@ -281,7 +281,7 @@
 }
 .editor-styles-wrapper p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .editor-styles-wrapper abbr[title] {
   -webkit-text-decoration: underline dotted;
@@ -2335,7 +2335,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .d-inline {
   display: inline !important;
 }
-.editor-styles-wrapper .d-inline-block, .editor-styles-wrapper .btn {
+.editor-styles-wrapper .d-inline-block, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
   display: inline-block !important;
 }
 .editor-styles-wrapper .d-block {
@@ -3254,13 +3254,13 @@ a > .editor-styles-wrapper code {
   font-size: clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem) !important;
 }
 .editor-styles-wrapper .fs-2 {
-  font-size: 1.6rem !important;
+  font-size: 1.4rem !important;
 }
 .editor-styles-wrapper .fs-3 {
-  font-size: 1.37rem !important;
+  font-size: 1.2rem !important;
 }
 .editor-styles-wrapper .fs-4 {
-  font-size: 1.17rem !important;
+  font-size: 1.1rem !important;
 }
 .editor-styles-wrapper .fs-5 {
   font-size: 1rem !important;
@@ -3268,7 +3268,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .fs-6 {
   font-size: 1rem !important;
 }
-.editor-styles-wrapper .fs-small, .editor-styles-wrapper .btn.btn-sm {
+.editor-styles-wrapper .fs-small, .editor-styles-wrapper .btn.btn-sm, .editor-styles-wrapper .btn-sm.wp-element-button, .editor-styles-wrapper .btn-sm.wp-block-button__link {
   font-size: 0.8rem !important;
 }
 .editor-styles-wrapper .fst-italic {
@@ -3319,7 +3319,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .text-center, .editor-styles-wrapper .wp-caption-text {
   text-align: center !important;
 }
-.editor-styles-wrapper .text-decoration-none, .editor-styles-wrapper .btn {
+.editor-styles-wrapper .text-decoration-none, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
   text-decoration: none !important;
 }
 .editor-styles-wrapper .text-decoration-underline {
@@ -3742,7 +3742,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .rounded-circle {
   border-radius: 50% !important;
 }
-.editor-styles-wrapper .rounded-pill, .editor-styles-wrapper .btn {
+.editor-styles-wrapper .rounded-pill, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
   border-radius: var(--kptl-border-radius-pill) !important;
 }
 .editor-styles-wrapper .rounded-top {
@@ -7312,7 +7312,7 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .container {
   width: 100%;
-  padding-right: 1.5rem;
+  padding-right: 1rem;
   padding-left: 1rem;
 }
 .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .is-root-container .editor-styles-wrapper .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
@@ -7367,19 +7367,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .col-alignwider {
   width: 100%;
 }
-@media (min-width: 1200px) {
-  .editor-styles-wrapper .alignwider {
-    max-width: 900px !important;
-  }
-  .editor-styles-wrapper .col-alignwider {
-    max-width: 900px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
-}
-@media (min-width: 1400px) {
+@media (min-width: 900px) {
   .editor-styles-wrapper .alignwider {
     max-width: 1100px !important;
   }
@@ -7435,9 +7423,6 @@ a > .editor-styles-wrapper code {
     margin-right: 0.5rem;
   }
 }
-.editor-styles-wrapper html {
-  background-color: var(--kptl-primary);
-}
 .editor-styles-wrapper main {
   overflow: hidden;
 }
@@ -7445,6 +7430,9 @@ a > .editor-styles-wrapper code {
   height: 1em;
   width: 1em;
   vertical-align: -0.1em;
+}
+.editor-styles-wrapper main {
+  overflow: visible;
 }
 .editor-styles-wrapper .btn-menu, .editor-styles-wrapper a {
   transition: color 0.05s linear;
@@ -7471,7 +7459,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .btn-menu.text-red:active, .editor-styles-wrapper a.text-red:active {
   color: #cc0029 !important;
 }
-.editor-styles-wrapper .ff-grotesk, .editor-styles-wrapper .btn {
+.editor-styles-wrapper .ff-grotesk, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
   font-family: var(--kptl-font-sans-serif);
 }
 .editor-styles-wrapper .ff-serif, .editor-styles-wrapper .is-root-container .wp-block-freeform p, .is-root-container .wp-block-freeform .editor-styles-wrapper p {
@@ -7480,7 +7468,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .ff-sans, .editor-styles-wrapper .wp-caption-text {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
-.editor-styles-wrapper .fs-small, .editor-styles-wrapper .btn.btn-sm {
+.editor-styles-wrapper .fs-small, .editor-styles-wrapper .btn.btn-sm, .editor-styles-wrapper .btn-sm.wp-element-button, .editor-styles-wrapper .btn-sm.wp-block-button__link {
   line-height: 1.35;
 }
 .editor-styles-wrapper .sticky,
@@ -7867,7 +7855,7 @@ a > .editor-styles-wrapper code {
 
 /* purgecss ignore */
 .perex {
-  font-size: 1.37rem;
+  font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.4 !important;
 }
@@ -7882,6 +7870,7 @@ a > .editor-styles-wrapper code {
 
 /* purgecss ignore */
 img {
+  height: auto;
   max-width: 100%;
 }
 
@@ -7906,13 +7895,13 @@ img {
   line-height: inherit !important;
 }
 
-.show-more-posts-wrapper a {
+.archive-item-link:not(.custom), .post-terms a {
   pointer-events: none !important;
 }
 
 .inzercia {
   aspect-ratio: 2/1;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 @media (min-width: 600px) {
@@ -7921,9 +7910,6 @@ img {
   }
 }
 /** purgecss start ignore */
-.archive-item .archive-item-link {
-  display: block;
-}
 .archive-item .archive-item-link .red-outline-hover {
   position: relative;
   z-index: 1;
@@ -7953,29 +7939,29 @@ img {
 .archive-item .archive-item-link .archive-item-image.placeholder {
   background-color: var(--kptl-secondary);
 }
-.archive-item .archive-item-link:hover, .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active {
+.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)), .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) {
   outline: none !important;
 }
-.archive-item .archive-item-link:hover .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active .red-outline-hover {
+.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:hover .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active .red-outline-hover::before {
+.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover::before {
   opacity: 1;
 }
-.archive-item .archive-item-link:hover .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active .archive-item-image {
+.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .archive-item-image {
   outline: solid 5px #ffc2fe;
 }
-.archive-item .archive-item-link:hover .red-color-hover, .archive-item .archive-item-link:focus-visible .red-color-hover, .archive-item .archive-item-link:active .red-color-hover {
+.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-color-hover, .archive-item .archive-item-link:focus-visible .red-color-hover, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-color-hover {
   transition: 0.05s linear;
   color: var(--kptl-red);
 }
-.archive-item .archive-item-link:active .red-outline-hover {
+.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:active .red-outline-hover::before {
+.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover::before {
   -webkit-text-stroke: 6px #cc0029;
 }
-.archive-item .archive-item-link:active img {
+.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) img {
   outline: solid 5px #ff9efd;
 }
 .archive-item .archive-post-top {
@@ -7997,6 +7983,10 @@ img {
 }
 .archive-item .post-authors a:not(:active) {
   text-decoration-color: var(--kptl-red);
+}
+
+.post-excerpt > * {
+  margin-bottom: 1rem;
 }
 
 .hashtag + .issue-cover {
@@ -8049,50 +8039,51 @@ img {
   }
 }
 /** purgecss end ignore */
-.btn:not(.btn-menu) {
+.btn:not(.btn-menu), .editor-styles-wrapper .wp-element-button:not(.btn-menu), .editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
   text-transform: uppercase;
 }
 
-.btn {
+.btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+  color: var(--kptl-body-color);
   border-style: solid;
   border-width: 2px;
   line-height: 1.35;
   padding: 0.5rem 1.2rem 0.4rem 1.2rem;
   transition: 0.05s linear;
 }
-.btn svg {
+.btn svg, .editor-styles-wrapper .wp-element-button svg, .editor-styles-wrapper .wp-block-button__link svg {
   transition: 0.05s linear;
 }
-.btn:focus, .btn:focus-visible {
+.btn:focus, .editor-styles-wrapper .wp-element-button:focus, .editor-styles-wrapper .wp-block-button__link:focus, .btn:focus-visible, .editor-styles-wrapper .wp-element-button:focus-visible, .editor-styles-wrapper .wp-block-button__link:focus-visible {
   outline: none !important;
 }
-.btn.btn-sm {
+.btn.btn-sm, .editor-styles-wrapper .btn-sm.wp-element-button, .editor-styles-wrapper .btn-sm.wp-block-button__link {
   padding: 0.4rem 0.96rem 0.32rem 0.96rem;
 }
-.btn.btn-primary {
+.btn.btn-primary, .editor-styles-wrapper .btn-primary.wp-element-button, .editor-styles-wrapper .btn-primary.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-pink-background-color, .editor-styles-wrapper .wp-block-button__link.has-pink-background-color {
   background-color: var(--kptl-primary);
   border-color: var(--kptl-primary);
 }
-.btn.btn-secondary {
+.btn.btn-secondary, .editor-styles-wrapper .btn-secondary.wp-element-button, .editor-styles-wrapper .btn-secondary.wp-block-button__link, .editor-styles-wrapper .wp-element-button:not(.has-background), .editor-styles-wrapper .wp-block-button__link:not(.has-background) {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
 }
-.btn.btn-outline {
+.btn.btn-outline, .editor-styles-wrapper .btn-outline.wp-element-button, .editor-styles-wrapper .btn-outline.wp-block-button__link {
   background-color: var(--kptl-white);
   border-color: var(--kptl-body-color);
 }
-.btn.btn-outline.active {
+.btn.btn-outline.active, .editor-styles-wrapper .btn-outline.active.wp-element-button, .editor-styles-wrapper .btn-outline.active.wp-block-button__link {
   background-color: var(--kptl-primary);
 }
-.btn.btn-red {
+.btn.btn-red, .editor-styles-wrapper .btn-red.wp-element-button, .editor-styles-wrapper .btn-red.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-red-background-color, .editor-styles-wrapper .wp-block-button__link.has-red-background-color {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-.btn.btn-red svg {
+.btn.btn-red svg, .editor-styles-wrapper .btn-red.wp-element-button svg, .editor-styles-wrapper .btn-red.wp-block-button__link svg, .editor-styles-wrapper .wp-element-button.has-red-background-color svg, .editor-styles-wrapper .wp-block-button__link.has-red-background-color svg {
   fill: #fff;
 }
-.btn.btn-close {
+.btn.btn-close, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
   width: 4rem;
   height: 4rem;
   line-height: 3rem;
@@ -8100,45 +8091,80 @@ img {
   background-color: var(--kptl-white);
   border-color: var(--kptl-white);
 }
-.btn.btn-close svg {
+.btn.btn-close svg, .editor-styles-wrapper .btn-close.wp-element-button svg, .editor-styles-wrapper .btn-close.wp-block-button__link svg {
   width: 2rem;
   height: 2rem;
 }
 
 @media (min-width: 600px) {
-  .btn.btn-close {
+  .btn.btn-close, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
     border-color: transparent !important;
     background: none !important;
   }
-  .btn.btn-close:hover svg {
+  .btn.btn-close:hover svg, .editor-styles-wrapper .btn-close.wp-element-button:hover svg, .editor-styles-wrapper .btn-close.wp-block-button__link:hover svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:focus-visible svg, .btn.btn-close:focus svg {
+  .btn.btn-close:focus-visible svg, .editor-styles-wrapper .btn-close.wp-element-button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .editor-styles-wrapper .btn-close.wp-element-button:focus svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:active svg {
+  .btn.btn-close:active svg, .editor-styles-wrapper .btn-close.wp-element-button:active svg, .editor-styles-wrapper .btn-close.wp-block-button__link:active svg {
     fill: #cc0029;
   }
 }
-button.btn:hover, button.btn:focus-visible, button.btn:focus, a.btn:hover, a.btn:focus-visible, a.btn:focus {
+button.btn:hover, .editor-styles-wrapper button.wp-element-button:hover, .editor-styles-wrapper button.wp-block-button__link:hover, button.btn:focus-visible, .editor-styles-wrapper button.wp-element-button:focus-visible, .editor-styles-wrapper button.wp-block-button__link:focus-visible, button.btn:focus, .editor-styles-wrapper button.wp-element-button:focus, .editor-styles-wrapper button.wp-block-button__link:focus, a.btn:hover, .editor-styles-wrapper a.wp-element-button:hover, .editor-styles-wrapper a.wp-block-button__link:hover, a.btn:focus-visible, .editor-styles-wrapper a.wp-element-button:focus-visible, .editor-styles-wrapper a.wp-block-button__link:focus-visible, a.btn:focus, .editor-styles-wrapper a.wp-element-button:focus, .editor-styles-wrapper a.wp-block-button__link:focus {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-button.btn:hover svg, button.btn:focus-visible svg, button.btn:focus svg, a.btn:hover svg, a.btn:focus-visible svg, a.btn:focus svg {
+button.btn:hover svg, .editor-styles-wrapper button.wp-element-button:hover svg, .editor-styles-wrapper button.wp-block-button__link:hover svg, button.btn:focus-visible svg, .editor-styles-wrapper button.wp-element-button:focus-visible svg, .editor-styles-wrapper button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .editor-styles-wrapper button.wp-element-button:focus svg, .editor-styles-wrapper button.wp-block-button__link:focus svg, a.btn:hover svg, .editor-styles-wrapper a.wp-element-button:hover svg, .editor-styles-wrapper a.wp-block-button__link:hover svg, a.btn:focus-visible svg, .editor-styles-wrapper a.wp-element-button:focus-visible svg, .editor-styles-wrapper a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .editor-styles-wrapper a.wp-element-button:focus svg, .editor-styles-wrapper a.wp-block-button__link:focus svg {
   fill: #fff;
 }
-button.btn:active, a.btn:active {
+button.btn:active, .editor-styles-wrapper button.wp-element-button:active, .editor-styles-wrapper button.wp-block-button__link:active, a.btn:active, .editor-styles-wrapper a.wp-element-button:active, .editor-styles-wrapper a.wp-block-button__link:active {
   color: #fff;
   background-color: #cc0029;
   border-color: #cc0029;
 }
-button.btn.btn-red:hover, button.btn.btn-red:focus-visible, a.btn.btn-red:hover, a.btn.btn-red:focus-visible {
+button.btn.btn-red:hover, .editor-styles-wrapper button.btn-red.wp-element-button:hover, .editor-styles-wrapper button.btn-red.wp-block-button__link:hover, .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, button.btn.btn-red:focus-visible, .editor-styles-wrapper button.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper button.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover, .editor-styles-wrapper a.btn-red.wp-element-button:hover, .editor-styles-wrapper a.btn-red.wp-block-button__link:hover, .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, a.btn.btn-red:focus-visible, .editor-styles-wrapper a.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper a.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
   background-color: var(--kptl-primary);
   color: var(--kptl-body-color);
   border-color: var(--kptl-body-color);
 }
-button.btn.btn-red:active, a.btn.btn-red:active {
+button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-button:active, .editor-styles-wrapper button.btn-red.wp-block-button__link:active, .editor-styles-wrapper button.wp-element-button.has-red-background-color:active, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:active, a.btn.btn-red:active, .editor-styles-wrapper a.btn-red.wp-element-button:active, .editor-styles-wrapper a.btn-red.wp-block-button__link:active, .editor-styles-wrapper a.wp-element-button.has-red-background-color:active, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:active {
   background-color: #ff9efd;
   border-color: #ff9efd;
+}
+
+.featured-post .archive-item-link:not(.custom) {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+@media (min-width: 900px) {
+  .featured-post .post-terms {
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+  }
+  .featured-post .post-terms::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(0deg, white 0%, white 50%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+@media (min-width: 1200px) {
+  .featured-post {
+    max-width: 1400px !important;
+  }
+}
+.wp-block-kapital-featured-post, .wp-block-kapital-post-query {
+  overflow: hidden;
 }

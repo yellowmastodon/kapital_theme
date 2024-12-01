@@ -127,9 +127,54 @@ function kapital_enqueue_scripts()
             'nonce' => wp_create_nonce('ajax-nonce'),
         )
     );
+    wp_dequeue_style( 'wp-block-library' ); // Remove WordPress core CSS
+    wp_deregister_style( 'wp-block-library' ); // Remove WordPress core CSS
+
+    //wp_dequeue_style( 'wp-block-library-theme' ); // Remove WordPress theme core CSS
+    wp_dequeue_style( 'classic-theme-styles' ); // Remove global styles inline CSS
+    //wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+    wp_dequeue_style( 'global-styles' ); // Remove theme.json css
+    wp_dequeue_style( 'wp-block-buttons' ); // Remove global styles inline CSS
+    wp_deregister_style('wp-block-buttons' );
+
 }
 
 add_action('wp_enqueue_scripts', 'kapital_enqueue_scripts');
+
+
+
+add_action('enqueue_block_editor_assets', function () {
+    // Removes editor styles
+    wp_deregister_style('wp-block-buttons');
+    // Add back key styles, there may be more
+    // change the path as needed
+    
+}, 102);
+
+add_action(
+	'wp_default_styles',
+	function( $styles ) {
+
+		/* Create an array with the two handles wp-block-library and
+		 * wp-block-library-theme.
+		 */
+		$handles = [ 'wp-block-buttons', 'wp-block-button' ];
+
+		foreach ( $handles as $handle ) {
+			// Search and compare with the list of registered style handles:
+			$style = $styles->query( $handle, 'registered' );
+			if ( ! $style ) {
+				continue;
+			}
+			// Remove the style
+			$styles->remove( $handle );
+			// Remove path and dependencies
+			$styles->add( $handle, false, [] );
+		}
+	},
+	PHP_INT_MAX
+);
+
 
 
 /**

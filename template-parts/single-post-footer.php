@@ -23,11 +23,13 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
                 } elseif ($custom_taxonomy === 'zaner') {
                     $is_editorial = false;  //if issue, check if post is thematical for issue
                     foreach ($filtered_terms['zaner'] as $zaner) {
-                        if ($zaner->slug === 'editorialy') $is_editorial = true;
-                    }
-                    if (!$is_editorial) {
-                        $recommend_terms = $filtered_terms['cislo'];
-                        break;
+                        if ($zaner->slug === 'editorialy' && !empty($filtered_terms['cislo'])){
+                            $recommend_terms = $filtered_terms['cislo'];
+                            break;
+                        }  else {
+                            $recommend_terms = $filtered_terms[$custom_taxonomy];
+                            break;
+                        }
                     }
                 } else {
                     $recommend_terms = $filtered_terms[$custom_taxonomy];
@@ -71,11 +73,11 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
             echo '<p class="ff-grotesk text-uppercase mb-1 text-center fw-bold alignwide">' . __('Čítajte ďalej podobné články', 'kapital') . '</p>';
             echo kapital_bubble_title($recommend_term->name, 2, 'alignwide');
             ?>
-            <div class="row  text-left gx-3">
+            <div class="row gy-6 text-left gx-3">
                 <?php foreach ($recommended_posts_keys as $rec_post_key) {
                     //var_dump($recommended_posts[$rec_post_key]->post_title);
                     //setup_postdata($recommended_posts[$rec_post_key]);
-                    get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $recommended_posts[$rec_post_key], 'margin-bottom' => false));
+                    get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $recommended_posts[$rec_post_key]));
                     //wp_reset_postdata();
                 } ?>
             </div>

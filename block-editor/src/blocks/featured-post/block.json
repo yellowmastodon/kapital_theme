@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kapital/featured-post",
+	"version": "0.1.0",
+	"icon": "post",
+	"title": "Highlight článok",
+	"category": "theme",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"multiple": false
+	},
+	"attributes": {
+		"postId":{
+			"type": "integer",
+			"default": 0
+		},
+		"isPost":{
+			"type": "boolean",
+			"default": true
+		},
+		"featuredPostType":{
+			"type": "string",
+			"default": "post"
+		},
+		"customHeading":{
+			"type": "string",
+			"default": ""
+		},
+		"customText":{
+			"type": "string",
+			"default": ""
+		},
+		"customLink":{
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [
+		"postType",
+		"postId"
+		],
+	"textdomain": "featured-post",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+	
+}

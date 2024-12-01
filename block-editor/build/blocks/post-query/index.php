@@ -1,6 +1,6 @@
 <?php 
 /**
- * Registers the `kapital/post-query` block on the server.
+ * Registers the `kapital/post-query-block` block on the server.
  */
 function kapital_create_query_block()
 {

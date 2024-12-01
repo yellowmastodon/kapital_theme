@@ -23,7 +23,7 @@ echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link
 
             /** render post terms */
             if ($render_settings["show_categories"]):?>
-            <div class="post-terms mb-4 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
+            <div class="post-terms mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
                 <?php foreach ($custom_taxonomies as $custom_taxonomy):
                     //autorstvo rendered separately                        
                     if (!empty($filtered_terms[$custom_taxonomy]) && $custom_taxonomy !== 'autorstvo'):

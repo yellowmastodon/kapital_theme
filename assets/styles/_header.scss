@@ -1,60 +1,40 @@
 /* purgecss start ignore */
 
-body.admin-bar { 
-    & > #horizontal-nav{
-        top: 32px;  
+body.admin-bar {
+    & > #horizontal-nav {
+        top: 32px;
     }
-    & .offcanvas{
+    & .offcanvas {
         padding-top: 32px;
     }
-}  
+}
 
-#top-header{
+#top-header {
     margin-bottom: -2px; //fix rendering issues
 }
 
-#main-logo{
+#main-logo {
     fill: var(--#{$prefix}red);
 }
 
 //use default collapse for hiding top header but override
-#top-header.collapse:not(.show){
+#top-header.collapse:not(.show) {
     @include visually-hidden;
     display: unset !important;
-    nav{
+    nav {
         display: none !important;
     }
 }
 
-
-
-@include media-breakpoint-up('sm'){
-    #main-menu-wrapper{ 
-        .offcanvas-body{
+@include media-breakpoint-up("sm") {
+    #main-menu-wrapper {
+        .offcanvas-body {
             position: relative;
-            .btn-close{
+            .btn-close {
                 position: absolute;
                 right: 0;
                 top: 0;
             }
-        }
-    }
-
-}
-
-#quick-menu {
-    .menu-item a {
-        text-decoration: none !important;
-        @extend .rounded-pill;
-        padding: $btn-padding-y $btn-padding-x;
-        display: inline-block;
-        font-weight: bold;
-        line-height: 1;
-        background-color: var(--#{$prefix}white); 
-        //override focus because outline is partially hidden by next element      
-        &:focus-visible{
-            box-shadow: var(--#{$prefix}red)0 0 0 2px inset;
-            outline: none;
         }
     }
 }
@@ -76,71 +56,107 @@ $horizontal-nav-padding: 6px;
     top: 0;
 }
 
-@include media-breakpoint-down('md'){
-    #horizontal-nav{
+@include media-breakpoint-down("md") {
+    #horizontal-nav {
         padding-top: $spacer / 2;
         padding-bottom: $spacer / 2;
     }
 }
 
-#horizontal-nav, #top-header{
+#horizontal-nav,
+#top-header {
     *:not([class^="offcanvas"]) {
-        transition: color .2s ease, fill .2 ease, background-color .2 ease;
+        transition:
+            color 0.2s ease,
+            fill 0.2 ease,
+            background-color 0.2 ease;
     }
 }
 
 //shown and hidden with js adding and removing opacity-0
-#horizontal-nav-logo{
-    transition: opacity .1s ease, fill .2 ease;
-    svg{
+#horizontal-nav-logo {
+    transition:
+        opacity 0.1s ease,
+        fill 0.2 ease;
+    svg {
         height: 1.2rem;
-        margin-top: -.1rem;
-        margin-bottom: -.1rem;
+        margin-top: -0.1rem;
+        margin-bottom: -0.1rem;
     }
 }
 
 //centered independently of .row on md-breakpoint
-@include media-breakpoint-only('md'){
-    #horizontal-nav-logo{
+@include media-breakpoint-only("md") {
+    #horizontal-nav-logo {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
     }
 }
 
-.w-max-content{
+.w-max-content {
     width: max-content; //prevents shifting hamburger "icon" and text to two rows at edge case
 }
 
-.btn-menu, #main-menu .menu-item a{
+$menu-btn-padding-x: 0.8em;
+$menu-btn-padding-bottom: 0.3em;
+$menu-btn-padding-top: 0.4em;
+
+.btn-menu,
+#main-menu .menu-item a,
+#quick-menu .menu-item a {
+    line-height: 1;
     @extend .rounded-pill;
-    background-color: transparent;
     display: inline-block;
-    border: none;
+    padding: $menu-btn-padding-top $menu-btn-padding-x $menu-btn-padding-bottom $menu-btn-padding-x;
     font-weight: bold;
-    $menu-btn-padding-x: .8rem;
-    $menu-btn-padding-y: .4rem;
-    padding: $menu-btn-padding-y $menu-btn-padding-x;
-    //padding and negative margin used for focus box-shadow styling
-    &:not(.default-x-margin){
-        margin-left: (-$menu-btn-padding-x);
-        margin-right: (-$menu-btn-padding-x);
-    }
-    .hamburger {
-        width: 1rem;
-        vertical-align: -.05em;
-        .line {
-            height: 2px;
-            background-color: $body-color;
-            transition: background-color $link-transition-speed linear;
-            &:not(:last-child){
-                margin-bottom: 4px;
+    border: none;
+}
+
+#quick-menu {
+    .menu-item {
+        line-height: 1;
+        &:not(:last-child) {
+            margin-bottom: -2px; //join the bubbles
+        }
+        a { 
+            display: inline-block;
+            position: relative;
+            text-decoration: none !important;
+            background-color: var(--#{$prefix}white);
+            //override focus because outline is partially hidden by next element
+            &:after{
+                @extend .rounded-pill;
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1;
+            }
+            &:focus-visible {
+                outline: none;
+                &:after{
+                    box-shadow: var(--#{$prefix}red) 0 0 0 2px inset;
+                }
             }
         }
     }
-    svg{
+}
+
+.btn-menu,
+#main-menu .menu-item a {
+    color: var(--#{$prefix}body-color);
+    background-color: transparent;
+    //padding and negative margin used for focus box-shadow styling
+    &:not(.default-x-margin) {
+        margin-left: (-$menu-btn-padding-x);
+        margin-right: (-$menu-btn-padding-x);
+    }
+    svg {
         height: 1rem;
-        fill: var(--#{$prefix}body-color)
+        fill: var(--#{$prefix}body-color);
     }
 
     &:hover {
@@ -153,7 +169,26 @@ $horizontal-nav-padding: 6px;
             background-color: darken($red, 10);
         }
     }
+}
 
+.hamburger {
+    width: 1rem;
+    vertical-align: baseline;
+    .line {
+        height: 2px;
+        background-color: $body-color;
+        transition: background-color $link-transition-speed linear;
+        &:not(:last-child) {
+            margin-bottom: 4px;
+        }
+    }
+}
+
+//some adjustment for hamburger "icon" for smaller font size on mobile
+@include media-breakpoint-down("sm") {
+    .hamburger .line:not(:last-child) {
+        margin-bottom: 3px;
+    }
 }
 
 //fix usage in row (overriden padding)
@@ -161,25 +196,23 @@ $horizontal-nav-padding: 6px;
 //solution:
 //wrap elements in that case in .col
 
-.row .btn-menu+.btn-menu{
+.row .btn-menu + .btn-menu {
     margin-left: ($spacer - $btn-padding-x);
 }
 //other classes not used in layout, can be generated manually the same way
-.row.gx-4 .btn-menu+.btn-menu{
+.row.gx-4 .btn-menu + .btn-menu {
     margin-left: (map-get($spacers, 4) - $btn-padding-x);
 }
 
-
-@include media-breakpoint-down('sm'){
-    .btn-podpora{
+@include media-breakpoint-down("sm") {
+    .btn-podpora {
         margin-left: (-$btn-padding-x);
         margin-right: (-$btn-padding-x);
     }
 }
-@include media-breakpoint-up('sm'){
-    .btn-podpora{
+@include media-breakpoint-up("sm") {
+    .btn-podpora {
         background-color: var(--#{$prefix}white);
     }
-
 }
 /* purgecss end ignore */

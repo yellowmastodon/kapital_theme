@@ -18,6 +18,11 @@ $spacers: (
   7: $spacer * 5
 );
 
+//default margins
+$headings-margin-bottom: map-get($spacers, 5);
+$paragraph-margin-bottom: map-get($spacers, 5);
+
+
 $grid-breakpoints: (
   xs: 0,
   sm: 600px,
@@ -27,13 +32,14 @@ $grid-breakpoints: (
   xxl: 1650px,
 );
 
+
 //font
 $font-family-sans-serif: "Kontrast Grotesk", sans-serif;
 //$font-family-base: 'Roboto Serif', 'sans-serif';
 $font-family-base: "Roboto Serif", serif;
 $headings-font-family: "Kontrast Grotesk", sans-serif;
 
-$font-size-root: clamp(0.938rem, 0.192vw + 0.894rem, 1.125rem);
+$font-size-root: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
 $fs-small-scale: 0.8;
 $font-size-sm: #{$fs-small-scale}rem;
 $small-font-size: $font-size-sm;
@@ -44,9 +50,9 @@ $enable-dark-mode: false;
 $enable-container-classess: false;
 $enable-rfs:                  false; //managed by root font size
 $h1-font-size:                clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem);
-$h2-font-size:                1.6rem;
-$h3-font-size:                1.37rem;
-$h4-font-size:                1.17rem;
+$h2-font-size:                1.4rem;
+$h3-font-size:                1.2rem;
+$h4-font-size:                1.1rem;
 $h5-font-size:                1rem;
 $h6-font-size:                1rem;
 $headings-line-height:        $line-height-small;

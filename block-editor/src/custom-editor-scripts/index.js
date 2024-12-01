@@ -13,8 +13,6 @@ import {customMetaSettings} from './customMetaSettings'
 //registerFormats();
 customMetaSettings();
 
-
-
 // Based on the example here: https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/post-taxonomies#custom-taxonomy-selector
 ( function() {
 	const el = wp.element.createElement;

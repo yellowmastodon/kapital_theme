@@ -2,8 +2,7 @@
 
 get_header(); ?>
 
-<main class="main" role="main">
-    <div class="container">
+<main class="main main-content container" role="main">
 
         <?php while ( have_posts() ) : the_post(); ?>
 
@@ -19,7 +18,6 @@ get_header(); ?>
 
         <?php endwhile; ?>
 
-    </div>
 </main>
 
 <?php get_footer(); ?>
