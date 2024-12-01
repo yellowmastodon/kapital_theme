@@ -9,7 +9,7 @@ $include = array(
     //require_once 'includes/class-wp-bootstrap-navwalker.php',
     'includes/custom_post_types.php',
     'includes/custom_taxonomies.php',
-    'includes/custom_import.php',
+    //'includes/custom_import.php',
     'includes/old-site-functions.php',
     //'includes/cmb-example-functions.php',
     'block-editor/block-editor-functions.php',
