@@ -10,8 +10,9 @@
     @extend .rounded-pill;
     @extend .d-inline-block;
     border-style: solid;
+    font-size: .9rem;
     border-width: 2px;
-    line-height: $line-height-small;
+    line-height: 1;
     $btn-padding-y: 1.2rem;
     $btn-padding-top: .5rem;
     $btn-padding-bottom: .4rem;

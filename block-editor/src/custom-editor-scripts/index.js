@@ -8,9 +8,11 @@
 import {CustomTermSelector} from './customTermSelector';
 import {AuthorTermSelector} from './authorTermSelector';
 import {customMetaSettings} from './customMetaSettings'
+import {registerKapitalButtonVariation} from '../block-variations/button';
 //import {registerFormats } from './richTextCustomFormats';
 
 //registerFormats();
+registerKapitalButtonVariation();
 customMetaSettings();
 
 // Based on the example here: https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/post-taxonomies#custom-taxonomy-selector

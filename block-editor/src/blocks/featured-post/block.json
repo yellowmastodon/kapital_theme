@@ -50,7 +50,7 @@
 		"postType",
 		"postId"
 		],
-	"textdomain": "featured-post",
+	"textdomain": "kapital",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 	

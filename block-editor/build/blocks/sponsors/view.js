@@ -1,7 +1,7 @@
 /******/ (function() { // webpackBootstrap
-/*!*******************************************************!*\
-  !*** ./block-editor/src/blocks/featured-post/view.js ***!
-  \*******************************************************/
+/*!**************************************************!*\
+  !*** ./block-editor/src/blocks/sponsors/view.js ***!
+  \**************************************************/
 /**
  * Use this file for JavaScript code that you want to run in the front-end 
  * on posts/pages that contain this block.
@@ -25,7 +25,7 @@
  */
 
 /* eslint-disable no-console */
-console.log("Hello World! (from kapital-featured-post block)");
+console.log("Hello World! (from kapital-sponsors block)");
 /* eslint-enable no-console */
 /******/ })()
 ;

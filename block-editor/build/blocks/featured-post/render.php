@@ -25,7 +25,7 @@ else:
 										echo ", ";
 									}
 								?><a href="<?php echo get_term_link($author); ?>"><?php echo $author->name;
-																				?></a><?php
+																					?></a><?php
 																					endforeach; ?>
 							</div>
 							<?php endif;
@@ -77,80 +77,81 @@ else:
 				<?php endif; ?>
 			</div>
 
-			<?php }
+	<?php }
 	}
 
-	if ($attributes["postId"] !== 0 && !$attributes["isPost"]):
+
+	//setup custom variables if passed from block
+	if ($attributes["isPost"]) {
 		$args = array(
 			'p' => $attributes["postId"],
 			'post_type' => 'any'
 		);
-	$featured_post_query = new WP_Query($args);
-	endif;
+		$featured_post_query = new WP_Query($args);
 		if ($featured_post_query->have_posts()):
 			while ($featured_post_query->have_posts()):
 				$featured_post_query->the_post();
 				global $post;
-				//setup custom variables if passed from block
-				if($attributes["isPost"]){
-					$render_settings = kapital_get_render_settings($post->ID);
-					$thumbnail_id = get_post_meta($post->ID, '_thumbnail_id', true);
-					$post_title = get_the_title($post);
-					$secondary_title = get_post_meta($post->ID, '_secondary_title', true);
-					$post_excerpt = get_the_excerpt();
-					$post_date = get_the_date();
-					$post_type = $post->post_type;
-					$post_permalink = get_post_permalink($post->ID);
-				} else {
-					$render_settings = kapital_get_render_settings(0, false);
-					$thumbnail_id = $attributes["customImageId"];
-					$post_title = $attributes["customHeading"];
-					$secondary_title = "";
-					$post_excerpt = $attributes["customText"];
-					$post_permalink = $attributes["customLink"];
-				}
-				
-				if ($render_settings["show_categories"]){
-					if ($post->post_type === 'post') {
-						$custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
-						$filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
-					} elseif ($post->post_type === "podcast") {
-						$custom_taxonomies = ['podcast-seria'];
-						$filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
-					} else {
-						$custom_taxonomies = [];
-						$filtered_terms = [];
-					} 
-				}
-				?>
-				<article class="featured-post archive-item alignwider ff-grotesk">
-					<div role="link" tabindex="0" onclick="window.location='<?php echo $post_permalink; ?>'" class="row gx-4 gy-3 archive-item-link text-decoration-none">
-						<div class="col-12 col-md-6">
-							<?php echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100") ?>
-						</div>
-						<div class="col-12 col-md-6 position-relative">
-							<?php if ($attributes["isPost"]) render_top_row($post_type, $render_settings["show_date"], $render_settings["show_views"], $post_date, $post->ID, "d-none d-lg-flex") ?>
-							<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
-							<div class="post-excerpt red-color-hover lh-sm">
-								<?php if ($secondary_title !== "") {
-									echo '<p>' . $secondary_title . '</p>';
-									//arbitrary number, when the secondary title is too short, also include excerpt but shorter
-									if (strlen($secondary_title) < 14) {
-										echo $post_excerpt;
-									}
-								} else {
-									if (!$attributes["isPost"]){
-										echo force_balance_tags(strip_tags($post_excerpt, ['<p>', '<i>', '<em>', '<b>', '<strong>']));
-									} else {
-										echo $post_excerpt;
-									}
-								} ?>
-							</div>
-							<?php if($attributes["isPost"]) render_bottom_row($post_type, $custom_taxonomies, $render_settings["show_categories"], $render_settings["show_author"], $filtered_terms); ?>
-						</div>
-					</div>
-				</article>
-<?php endwhile;
+				$post_id = $post->ID;
+				$render_settings = kapital_get_render_settings($post->ID);
+				$thumbnail_id = get_post_meta($post->ID, '_thumbnail_id', true);
+				$post_title = get_the_title($post);
+				$secondary_title = get_post_meta($post->ID, '_secondary_title', true);
+				$post_excerpt = get_the_excerpt();
+				$post_date = get_the_date();
+				$post_type = $post->post_type;
+				$post_permalink = get_post_permalink($post->ID);
+			endwhile;
 		endif;
-		wp_reset_postdata();
-endif;
+	} else {
+		$render_settings = kapital_get_render_settings(0, true);
+		$thumbnail_id = $attributes["customImageId"];
+		$post_title = $attributes["customHeading"];
+		$secondary_title = "";
+		$post_excerpt = $attributes["customText"];
+		$post_permalink = $attributes["customLink"];
+	}
+
+	if ($render_settings["show_categories"]) {
+		if ($post_type === 'post') {
+			$custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
+			$filtered_terms = get_and_reorganize_terms($post_id, $custom_taxonomies);
+		} elseif ($post_type === "podcast") {
+			$custom_taxonomies = ['podcast-seria'];
+			$filtered_terms = get_and_reorganize_terms($post_id, $custom_taxonomies);
+		} else {
+			$custom_taxonomies = [];
+			$filtered_terms = [];
+		}
+	}
+	?>
+	<article class="featured-post archive-item alignwider ff-grotesk">
+		<div role="link" tabindex="0" onclick="window.location='<?php echo $post_permalink; ?>'" class="row gx-4 gy-3 archive-item-link text-decoration-none">
+			<div class="col-12 col-md-6">
+				<?php echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100") ?>
+			</div>
+			<div class="col-12 col-md-6 position-relative">
+				<?php if ($attributes["isPost"]) render_top_row($post_type, $render_settings["show_date"], $render_settings["show_views"], $post_date, $post->ID, "d-none d-lg-flex") ?>
+				<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
+				<div class="post-excerpt red-color-hover lh-sm">
+					<?php if ($secondary_title !== "") {
+						echo '<p>' . $secondary_title . '</p>';
+						//arbitrary number, when the secondary title is too short, also include excerpt but shorter
+						if (strlen($secondary_title) < 14) {
+							echo $post_excerpt;
+						}
+					} else {
+						if (!$attributes["isPost"]) {
+							echo force_balance_tags(strip_tags($post_excerpt, ['<p>', '<i>', '<em>', '<b>', '<strong>']));
+						} else {
+							echo $post_excerpt;
+						}
+					} ?>
+				</div>
+				<?php if ($attributes["isPost"]) render_bottom_row($post_type, $custom_taxonomies, $render_settings["show_categories"], $render_settings["show_author"], $filtered_terms); ?>
+			</div>
+		</div>
+	</article>
+
+<?php wp_reset_postdata();
+endif; ?>

@@ -11,8 +11,9 @@ global $kapital_taxonomies_with_list_pages;
 $breadcrumbs = array(
     [__('Články', 'kapital'), get_post_type_archive_link('post')],
 );
-if ($is_term_archive) {
 
+//setup title
+if ($is_term_archive) {
     $archive_title = get_queried_object()->name;
     //add taxonomy list page breadcrumb (if exists)
     $taxonomy = $queried_object->taxonomy;
@@ -42,7 +43,7 @@ if ($is_term_archive) {
 echo kapital_breadcrumbs($breadcrumbs, 'container');
 
 /** MAIN */ ?>
-<main class="main container mt-5 mt-md-0" role="main" id="main">
+<main class="main container" role="main" id="main">
 
     <?php /** archive title  */  ?>
     <header class="archive-header alignwide mb-5" role="heading">

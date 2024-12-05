@@ -372,7 +372,7 @@ add_action('pre_get_posts', 'kapital_post_query_mod', 1);
  * @param $excerpt post excerpt
  * @param $excerpt_word_count   minimum number of words
  */
-function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 13)
+function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
 {
     if ('' == $excerpt) {
         $excerpt = get_the_content('');
@@ -395,9 +395,9 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 13)
     preg_match_all('/(<[^>]+>|[^<>\s]+)\s*/u', $excerpt, $tokens);
 
     foreach ($tokens[0] as $key => $token) {
-        if ($count >= $excerpt_length && (preg_match('/[\,\;\?\.\!]\s*$/uS', $token) || $key > 40)) {
+        if ($count >= $excerpt_length && (preg_match('/[\,\;\?\.\!\<\/p>]\s*$/uS', $token) || $key > 20)) {
             // Limit reached, continue until , ; ? . or ! occur at the end
-            $excerptOutput .= trim($token, " \n\r\t\v\x00,.?!") . '...';
+            $excerptOutput .= preg_replace('/<\/p>$/', '', trim($token, " \n\r\t\v\x00,.?!")) . '...';
             break;
         }
 
@@ -438,15 +438,15 @@ function kapital_get_render_settings(int $post_id, bool $show_false = false){
         $render_settings = get_post_meta($post_id, '_kapital_post_render_settings', true);
     }
     $default_render_settings = array(
-        'show_featured_image' =>  !$show_false ? true : false,
-        'show_title' => !$show_false ? true : false,
-        'show_author' => !$show_false ? true : false,
-        'show_categories' => !$show_false ? true : false,
-        'show_views' => !$show_false ? true : false,
-        'show_date' => !$show_false ? true : false,
-        'show_ads'  => !$show_false ? true : false,
-        'show_support' => !$show_false ? true : false,
-        'show_footer' => !$show_false ? true : false,
+        'show_featured_image' =>  $show_false ? false : true,
+        'show_title' => $show_false ? false : true,
+        'show_author' => $show_false ? false : true,
+        'show_categories' => $show_false ? false : true,
+        'show_views' => $show_false ? false : true,
+        'show_date' => $show_false ? false : true,
+        'show_ads'  => $show_false ? false : true,
+        'show_support' => $show_false ? false : true,
+        'show_footer' => $show_false ? false : true,
     );
     //var_dump($default_render_settings);
     if(is_array($render_settings)){

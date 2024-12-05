@@ -183,14 +183,12 @@ export default function Edit(
 						</div>
 						<div className="col-12 col-md-6">
 							<URLInput
-								__nextHasNoMarginBottom
 								className="mb-3"
 								label={__("Vlastný link", "kapital")}
 								value={attributes.customLink}
 								onChange={(newValue => setAttributes({customLink: newValue}))}
 							/>
 							<RichText
-							__nextHasNoMarginBottom
 							tagName='h2'
 							className='h2 mt-2 mb-3 red-outline-hover'
 							value={attributes.customHeading}

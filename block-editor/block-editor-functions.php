@@ -27,6 +27,23 @@ function kapital_enqueue_editor_content_assets() {
 }
 
 
+/**
+ * Add inline svg to gutenberg editor, so that icons are erndered correctly
+ * Hook into the 'admin_notices' action to render
+ */
+function kapital_block_editor_inline_svg() {
+    $screen = get_current_screen();
+    // Only render this notice in the post editor.
+    if ( ! $screen || 'post' !== $screen->base ) {
+        return;
+    }
+    // Render the notice's HTML.
+    // with a 'notice' class.
+    get_template_part('template-parts/inline-svg-icons');
+};
+add_action( 'admin_notices', 'kapital_block_editor_inline_svg' );
+
+
 add_action( 'enqueue_block_editor_assets', 'kapital_enqueue_editor_content_assets' );
 
 /**
@@ -95,3 +112,6 @@ function set_image_auto_wide( $metadata ) {
  require_once(dirname(__FILE__) . '/build/blocks/ad/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/post-query/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/featured-post/index.php');
+ require_once(dirname(__FILE__) . '/build/blocks/podcast-links/index.php');
+ require_once(dirname(__FILE__) . '/build/blocks/sponsors/index.php');
+ require_once(dirname(__FILE__) . '/build/block-variations/button.php');

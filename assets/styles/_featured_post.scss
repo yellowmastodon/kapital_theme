@@ -24,9 +24,3 @@
         }
     }
 }
-
-@include media-breakpoint-up('lg'){
-    .featured-post {
-        max-width: 1400px !important;
-    }
-}

@@ -6,8 +6,6 @@ Author: Juraj Mydla
 Author URI: https://benchmark.co.uk/
 Description: Téma kapitálu - redizajn 2024
 Text Domain: kapital
-Version: 0.1
-
 */
 @font-face {
   font-family: "Roboto Serif";
@@ -2713,7 +2711,7 @@ $theme-colors: $temporary-colors; */
   display: table-cell !important;
 }
 
-.d-flex {
+.d-flex, .is-layout-flex {
   display: flex !important;
 }
 
@@ -3101,11 +3099,11 @@ $theme-colors: $temporary-colors; */
   flex: 1 1 auto !important;
 }
 
-.flex-row {
+.flex-row, .is-layout-flex {
   flex-direction: row !important;
 }
 
-.flex-column {
+.flex-column, .is-layout-flex.is-vertical {
   flex-direction: column !important;
 }
 
@@ -3133,7 +3131,7 @@ $theme-colors: $temporary-colors; */
   flex-shrink: 1 !important;
 }
 
-.flex-wrap {
+.flex-wrap, .is-layout-flex:not(.is-nowrap) {
   flex-wrap: wrap !important;
 }
 
@@ -3145,19 +3143,19 @@ $theme-colors: $temporary-colors; */
   flex-wrap: wrap-reverse !important;
 }
 
-.justify-content-start {
+.justify-content-start, .is-content-justification-left {
   justify-content: flex-start !important;
 }
 
-.justify-content-end {
+.justify-content-end, .is-content-justification-right {
   justify-content: flex-end !important;
 }
 
-.justify-content-center {
+.justify-content-center, .is-content-justification-center {
   justify-content: center !important;
 }
 
-.justify-content-between {
+.justify-content-between, .is-content-justification-betweeen {
   justify-content: space-between !important;
 }
 
@@ -3975,7 +3973,7 @@ $theme-colors: $temporary-colors; */
   text-align: right !important;
 }
 
-.text-center, .wp-caption-text {
+.text-center, .has-text-align-center, .wp-caption-text {
   text-align: center !important;
 }
 
@@ -8281,11 +8279,7 @@ $theme-colors: $temporary-colors; */
   outline-color: #cc0029;
 }
 
-main {
-  overflow: hidden;
-}
-
-svg.icon-square {
+.icon-square {
   height: 1em;
   width: 1em;
   vertical-align: -0.1em;
@@ -8295,6 +8289,16 @@ main {
   overflow: visible;
 }
 
+#main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .breadcrumb-nav + #main {
+    padding-top: 0px;
+  }
+}
 .btn-menu, a {
   transition: color 0.05s linear;
 }
@@ -8625,6 +8629,9 @@ _colors.scss
   line-height: 1.35;
 }
 
+.is-layout-flex {
+  gap: 1rem;
+}
 .bubble-heading {
   text-transform: uppercase;
   color: #fff;
@@ -9046,8 +9053,9 @@ a[class^=marker-]:active::before {
 .btn, .wp-element-button, .wp-block-button__link {
   color: var(--kptl-body-color);
   border-style: solid;
+  font-size: 0.9rem;
   border-width: 2px;
-  line-height: 1.35;
+  line-height: 1;
   padding: 0.5rem 1.2rem 0.4rem 1.2rem;
   transition: 0.05s linear;
 }
@@ -9068,11 +9076,11 @@ a[class^=marker-]:active::before {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
 }
-.btn.btn-outline, .btn-outline.wp-element-button, .btn-outline.wp-block-button__link {
+.btn.btn-outline, .btn-outline.wp-element-button, .btn-outline.wp-block-button__link, .btn.wp-block-button.is-style-outline, .wp-element-button.wp-block-button.is-style-outline, .wp-block-button__link.wp-block-button.is-style-outline {
   background-color: var(--kptl-white);
   border-color: var(--kptl-body-color);
 }
-.btn.btn-outline.active, .btn-outline.active.wp-element-button, .btn-outline.active.wp-block-button__link {
+.btn.btn-outline.active, .btn-outline.active.wp-element-button, .btn-outline.active.wp-block-button__link, .btn.active.wp-block-button.is-style-outline, .active.wp-element-button.wp-block-button.is-style-outline, .active.wp-block-button__link.wp-block-button.is-style-outline {
   background-color: var(--kptl-primary);
 }
 .btn.btn-red, .btn-red.wp-element-button, .btn-red.wp-block-button__link, .wp-element-button.has-red-background-color, .wp-block-button__link.has-red-background-color {
@@ -9353,8 +9361,36 @@ body.modal-open {
     background: linear-gradient(0deg, white 0%, white 50%, rgba(255, 255, 255, 0) 100%);
   }
 }
-@media (min-width: 1200px) {
-  .featured-post {
-    max-width: 1400px !important;
-  }
+.archive-podcast {
+  padding: 0.5rem;
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+  row-gap: 0.25rem;
+  grid-template-columns: repeat(6, 0.167fr);
+  grid-template-rows: auto auto 1fr;
+}
+.archive-podcast .archive-item-link.image-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+.archive-podcast .archive-podcast-top-row {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.archive-podcast .archive-item-link.content-wrapper {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+.archive-podcast .archive-item-link.content-wrapper:hover:not(:has(.post-terms:hover)) .red-outline-hover, .archive-podcast .archive-item-link.content-wrapper:focus-visible .red-outline-hover, .archive-podcast .archive-item-link.content-wrapper:active:not(:has(.post-terms a:active)) .red-outline-hover {
+  color: var(--kptl-secondary);
+}
+
+.kapital-sponsors p {
+  margin-bottom: 1.5rem;
 }

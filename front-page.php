@@ -2,7 +2,7 @@
 
 get_header(); ?>
 
-<main role="main" <?php post_class('mt-5 main-content container'); ?>>
+<main role="main" <?php post_class('container main-content'); ?> id="main">
 
         <?php while ( have_posts() ) : the_post(); ?>
 

@@ -91,7 +91,7 @@ $grid-breakpoints: $temporary-breakpoints;
     @extend .alignwide;
     text-align: center;
 }
-.is-root-container .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
+.is-root-container > .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
     @extend .alignnormal;
 }
 //fix imported content in classic block
@@ -109,6 +109,9 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "archive";
 @import "buttons";
 @import "featured_post";
+@import "css_icons";
+@import "sponsors";
+
 
 //children use negative margin, so focus is rendered wrong without this
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query{

@@ -1,0 +1,50 @@
+/** used in editor as I could not extend default block to include svg with use xlink:href */
+
+
+.wp-block-button{
+    &.icon-arrow-right{
+        .wp-block-button__link{
+            &::before, &::after{
+                content: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17"><path style="fill: %23000;" d="M10.71,14.5c-.16,0-.32-.06-.45-.18-.25-.25-.25-.64,0-.89l4.29-4.29H.94c-.35,0-.63-.28-.63-.63s.28-.63.63-.63h13.61l-4.29-4.29c-.13-.13-.18-.28-.18-.45s.06-.32.18-.45c.25-.25.64-.25.89,0l5.37,5.37c.11.11.16.25.18.4v.13c-.01.12-.06.23-.15.34-.01.01-.02.03-.03.04l-5.36,5.36c-.12.13-.28.19-.44.19h0Z"/></svg>');
+            }
+        }
+    }
+    &.icon-arrow-up-right{
+        .wp-block-button__link{
+            &::before, &::after{
+                content: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17"><path style="fill: %23000" d="M14.31,11.18c-.12.12-.27.18-.45.19-.35,0-.63-.28-.63-.63v-6.07S3.6,14.3,3.6,14.3c-.25.25-.65.25-.89,0-.25-.25-.25-.65,0-.89L12.33,3.78h-6.06c-.18,0-.33-.07-.45-.19-.12-.12-.18-.27-.19-.45,0-.35.28-.63.63-.63h7.59c.16,0,.3.06.41.16l.09.09c.08.09.12.21.13.34,0,.02,0,.03,0,.05v7.58c0,.17-.07.34-.18.45h0Z"/></svg>');
+            }
+        }
+    }
+    &.icon-arrow-down{
+        .wp-block-button__link{
+            &::before, &::after{
+                content: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17"><path style="fill: %23000" d="M2.5,10.71c0-.16.06-.32.18-.45.25-.25.64-.25.89,0l4.29,4.29V.94c0-.35.28-.63.63-.63s.63.28.63.63v13.61l4.29-4.29c.13-.13.28-.18.45-.18s.32.06.45.18c.25.25.25.64,0,.89l-5.37,5.37c-.11.11-.25.16-.4.18h-.13c-.12-.01-.23-.06-.34-.15-.01-.01-.03-.02-.04-.03l-5.36-5.36c-.13-.12-.19-.28-.19-.44h0Z"/></svg>');
+            }
+        }
+    }
+
+    &.icon-right{
+        .wp-block-button__link::before{
+            display: none;
+        }
+    }
+    &.icon-left{
+        .wp-block-button__link::after{
+            display: none;
+        }
+    }
+
+}
+.wp-block-button .wp-block-button__link{
+    &::before, &::after{
+        display: inline-block;
+        @extend .icon-square;
+    }
+}
+.wp-block-button .wp-block-button__link::after{
+    @extend .ms-2;
+}
+.wp-block-button .wp-block-button__link::before{
+    @extend .me-2;
+}

@@ -46,14 +46,45 @@ _colors.scss
 //buttons
 
 .wp-element-button, .wp-block-button__link{
+	@extend .btn;
 	&:not(.has-background){
 		@extend .btn-secondary ;
 	}
-	@extend .btn;
 	&.has-pink-background-color{
 		@extend .btn-primary;
 	}
 	&.has-red-background-color{
 		@extend .btn-red;
 	}
+}
+
+.wp-block-button.is-style-outline{
+	@extend .btn-outline;
+}
+
+.has-text-align-center{
+	@extend .text-center;
+}
+.is-layout-flex{
+	@extend .d-flex;
+	@extend .flex-row;
+	&.is-vertical{
+		@extend .flex-column;
+	}
+	gap: map-get($spacers, 3);
+	&:not(.is-nowrap){
+		@extend .flex-wrap;
+	}
+}
+.is-content-justification-left{
+	 @extend .justify-content-start;
+}
+.is-content-justification-right{
+	@extend .justify-content-end;
+}
+.is-content-justification-center{
+	@extend .justify-content-center;
+}
+.is-content-justification-betweeen{
+	@extend .justify-content-between;
 }

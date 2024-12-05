@@ -1,8 +1,4 @@
-main{
-    overflow: hidden;
-}
-
-svg.icon-square{
+.icon-square{
     height: 1em; //default for icons, that we can override, most icons are square
     width: 1em;
     vertical-align: -.1em;
@@ -11,7 +7,17 @@ svg.icon-square{
 main{
     overflow: visible;
 }
-
+//default main padding
+#main{
+    padding-top: map-get($spacers, 5);
+    padding-bottom: map-get($spacers, 5);
+}
+//no main up padding on larger screens with breadcrumbs
+@include media-breakpoint-up('md'){
+    .breadcrumb-nav + #main{
+        padding-top: 0px;
+    }
+}
 .btn-menu, a {
     transition: color $link_transition_speed linear;
     svg{

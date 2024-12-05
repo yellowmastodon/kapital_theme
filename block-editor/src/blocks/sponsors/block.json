@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kapital/sponsors",
+	"version": "0.1.0",
+	"title": "Sponzorstvo",
+	"category": "theme",
+	"allowedBlocks": [ "core/paragraph" ],
+	"icon": "money-alt",
+	"description": "Blok pre zobrazenie financovania konkrétneho obsahu.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"images": {
+				"type": "array",
+				"default": []
+		}
+	},
+	"usesContext": [
+		"postType",
+		"postId"
+		],
+	"textdomain": "kapital",
+	"editorScript": "file:./index.js"
+}
