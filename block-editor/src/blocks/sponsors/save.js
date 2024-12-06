@@ -18,7 +18,7 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 export default function save({ attributes }) {
 	let images = attributes.images;
 	return (
-		<div {...useBlockProps.save({ className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold kapital-sponsors lh-sm" })}>
+		<div {...useBlockProps.save({ className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm" })}>
 			<div className="row g-0 align-items-center">
 				<div className="col-12 col-md-auto">
 					<div class="d-flex flex-wrap flex-row flex-md-column align-items-center">
@@ -37,7 +37,7 @@ export default function save({ attributes }) {
 					</div>
 
 				</div>
-				<div class="col">
+				<div class="col fs-6">
 					<InnerBlocks.Content />
 				</div>
 			</div>

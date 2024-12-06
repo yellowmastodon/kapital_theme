@@ -45,24 +45,14 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 <main class="main container" role="main" id="main">
 
     <?php /** archive title  */  ?>
-    <header class="archive-header alignwide mb-5" role="heading">
+    <header class="archive-header alignwide mb-6" role="heading">
         <?php echo kapital_bubble_title($archive_title, 1, 'term-title'); ?>
     </header>
-    <?php if ($wp_query->have_posts()) :
-        //justify post center when too few posts
-        if ($wp_query->post_count < 4) {
-            $justify_class = " justify-content-center";
-        } else {
-            $justify_class = " justify-content-start";
-        }
-
-    ?>
+    <?php if ($wp_query->have_posts()):?>
         <section class="alignwide">
-            <div class="row gy-3 <?php echo $justify_class ?>">
                 <?php while (have_posts()) : the_post();
                     get_template_part('template-parts/archive-single-podcast', null, array('queried_object_id' => $queried_object_id));
                 endwhile; ?>
-            </div>
         </section>
     <?php endif; ?>
     <?php echo kapital_pagination(); ?>

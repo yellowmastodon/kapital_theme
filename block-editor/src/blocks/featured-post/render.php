@@ -12,7 +12,7 @@ else:
 		function render_bottom_row($post_type, $custom_taxonomies, $show_categories, $show_author, $filtered_terms)
 		{
 			if (!empty($filtered_terms)): ?>
-				<div class="post-terms text-uppercase row gx-3 gy-1">
+				<div class="item-terms text-uppercase row gx-3 gy-1">
 					<?php
 					if ($show_author):
 						if (!empty($filtered_terms['autorstvo']) && $post_type !== 'podcast'): ?>
@@ -133,7 +133,7 @@ else:
 			<div class="col-12 col-md-6 position-relative">
 				<?php if ($attributes["isPost"]) render_top_row($post_type, $render_settings["show_date"], $render_settings["show_views"], $post_date, $post->ID, "d-none d-lg-flex") ?>
 				<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
-				<div class="post-excerpt red-color-hover lh-sm">
+				<div class="item-excerpt red-color-hover lh-sm">
 					<?php if ($secondary_title !== "") {
 						echo '<p>' . $secondary_title . '</p>';
 						//arbitrary number, when the secondary title is too short, also include excerpt but shorter

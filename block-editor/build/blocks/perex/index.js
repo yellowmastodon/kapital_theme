@@ -121,7 +121,7 @@ function PostExcerptEditor(_ref) {
     identifier: "content",
     tagName: "p",
     name: "Podnadpis",
-    allowedFormats: ['core/italic', 'core/link', 'core/strikethrough', 'core/underline', 'core/superscript'],
+    allowedFormats: ['core/italic', 'core/link', 'core/strikethrough', 'core/underline', 'core/superscript', 'core/footnote'],
     value: attributes.content,
     onChange: function onChange(newContent) {
       setAttributes({

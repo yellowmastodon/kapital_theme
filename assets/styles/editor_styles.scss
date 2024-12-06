@@ -101,7 +101,7 @@ $grid-breakpoints: $temporary-breakpoints;
 .editor-styles-wrapper .lh-sm p{
     line-height: inherit !important;
 }
-.archive-item-link:not(.custom), .post-terms a{
+.archive-item-link:not(.custom), .item-terms a{
     pointer-events: none !important;
 }
 

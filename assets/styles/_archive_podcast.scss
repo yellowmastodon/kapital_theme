@@ -1,26 +1,25 @@
 .archive-podcast{
-    padding: map-get($spacers, 2);
-    column-gap: map-get($spacers, 4);
-    row-gap: map-get($spacers, 1);
-
+    column-gap: map-get($spacers, 3);
+    row-gap: map-get($spacers, 2);
     grid-template-columns: repeat(6, .167fr);
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
+
     .archive-item-link.image-wrapper {
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 1;
-        grid-row-end: 4;
+        grid-row-end: 5;
     }
-    .archive-podcast-top-row{
+    .archive-podcast-top{
         grid-column-start: 3;
         grid-column-end: 7;
         grid-row-start: 1;
         grid-row-end: 2;
     }
-    .archive-item-link.content-wrapper{
-        &:hover:not(:has(.post-terms:hover)), //this fixed hover on nested card for featured post
+    .archive-item-link.title-wrapper{
+        &:hover:not(:has(.item-terms:hover)), //this fixed hover on nested card for featured post
         &:focus-visible,
-        &:active:not(:has(.post-terms a:active)){
+        &:active:not(:has(.item-terms a:active)){
             .red-outline-hover{
                 color: var(--#{$prefix}secondary);
             }
@@ -28,7 +27,93 @@
         grid-column-start: 3;
         grid-column-end: 7;
         grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    .archive-item-link.excerpt-wrapper{
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 3;
         grid-row-end: 4;
+        & > *:last-child{
+            margin-bottom: 0px !important;
+        }
+        &:last-child{
+            margin-bottom: -(map-get($spacers,2)); //fix bottom gap if no terms present
+        }
+    }
+    .item-terms{
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
 }
 
+
+@include media-breakpoint-down('md'){
+    .archive-podcast .archive-item-link .archive-item-image{
+            aspect-ratio: 1 !important;
+    }
+}
+
+@include media-breakpoint-down('sm'){
+    .archive-podcast{
+        row-gap: map-get($spacers, 3);
+    .archive-podcast-top{
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .archive-item-link.image-wrapper {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    .archive-item-link.title-wrapper{
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    
+    .archive-item-link.excerpt-wrapper{
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        &:last-child{
+            margin-bottom: -(map-get($spacers,3)); //fix bottom gap if no terms present
+        }
+    }
+
+    .item-terms{
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+
+}
+}
+//MULTIPLE LINKS FIXES
+.archive-item:has(.archive-item-link:hover) .archive-item-link, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link, .archive-item:has(.archive-item-link:active) .archive-item-link{
+    .archive-item-image{
+        outline: solid 5px #ffc2fe;
+    }
+    .red-outline-hover {
+        color: $white;
+        &::before {
+            opacity: 1;
+        }
+    }
+    &:not(.title-wrapper){
+        color: var(--#{$prefix}red);
+    }
+    &.podcast-title-wrapper{
+        .red-outline-hover{
+            color: var(--#{$prefix}secondary);
+        }
+    }
+}

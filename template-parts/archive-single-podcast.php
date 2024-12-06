@@ -2,17 +2,41 @@
 $post_permalink = get_post_permalink();
 $post_title = get_the_title();
 $render_settings = kapital_get_render_settings($post->ID);
+//get current queried object
+if (isset($args['queried_object_id'])){
+    $queried_object_id = $args['queried_object_id'];
+    if(!term_exists($queried_object_id)){
+        $queried_object_id = false;
+    }
+} else {
+    $queried_object_id = false;
+}
+$custom_taxonomies = ['podcast-seria', 'partner']; //with partners this includes also podcast seria
+if ($queried_object_id){
+    $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies, $queried_object_id);
+} else {
+    $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
+}
 
 ?>
 
 
-<article class="archive-podcast archive-item d-grid rounded bg-secondary">
-        <div class="archive-podcast-top row mb-1 ff-sans fs-small text-gray">
-        <?php  if ($render_settings["show_date"]):
-            ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
-        <?php endif;?>
+<article class="archive-podcast ff-grotesk archive-item d-grid rounded bg-secondary p-3 mb-3">
+        <div class="archive-podcast-top row justify-content-between justify-content-sm-start ff-sans fs-small text-gray">
+            <?php  if ($render_settings["show_date"]):
+                ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
+            <?php endif;
+            if ($render_settings["show_views"]): ?>
+                <div class="col-auto post-views opacity-0" data-id="<?php echo $post->ID?>">
+                    <svg>
+                        <use xlink:href="#icon-views"></use>
+                    </svg>
+                    <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
+                    <span class="number"></span>
+                </div><?php
+            endif; ?>
         </div>
-            <a class="archive-item-link image-wrapper" href="<?=$post_permalink?>">
+            <a tabindex="-1" class="archive-item-link image-wrapper" href="<?=$post_permalink?>">
                 
                 <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
                 if ($thumbnail_image_id) {
@@ -22,11 +46,33 @@ $render_settings = kapital_get_render_settings($post->ID);
                 }
                 
         ?></a>
-        <a class="archive-item-link content-wrapper text-decoration-none pe-2" href="<?=$post_permalink?>">
+        <a class="title-wrapper archive-item-link podcast-title-wrapper text-decoration-none" href="<?=$post_permalink?>">
 
-        <h2 class="title mb-2 h3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
-        <div class="post-excerpt ff-grotesk lh-sm">
-            <?php echo get_the_excerpt();?>
-        </div>
+        <h2 class="mb-0 h3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
         </a>
+
+        <a tabindex="-1" class="excerpt-wrapper archive-item-link text-decoration-none lh-sm" href="<?=$post_permalink?>">
+            <?php echo get_the_excerpt();?>
+        </a>
+
+        <?php if ($render_settings["show_categories"] && !empty($filtered_terms)):?>
+            <div class="item-terms text-uppercase row gx-3 gy-1">
+
+                <?php foreach ($custom_taxonomies as $custom_taxonomy):
+                    //autorstvo rendered separately                        
+                    if (!empty($filtered_terms[$custom_taxonomy]) && $custom_taxonomy !== 'autorstvo'):
+                        foreach ($filtered_terms[$custom_taxonomy] as $term):
+                            //'tematicky' tag used for posts which are part of the printed issue
+                            if ($term->slug === 'tematicky'):
+                                if (isset($filtered_terms['cislo'][0])):?>
+                                <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($filtered_terms['cislo'][0]); ?>"><?php echo $term->name ?></a></div>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($term); ?>"><?php echo $term->name ?></a></div>
+                           <?php endif; 
+                        endforeach;
+                    endif;
+                endforeach;?>
+            </div>
+        <?php endif; ?>
 </article>

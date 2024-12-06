@@ -3,8 +3,7 @@ $archive-article-text-stroke-width: 6px;
 $archive-article-img-outline-width: 5px;
 
 .archive-item {
-    .archive-item-link {     
-        
+    .archive-item-link {        
         .red-outline-hover {
             position: relative; //to style the before element, which generates outline
             z-index: 1;
@@ -33,9 +32,9 @@ $archive-article-img-outline-width: 5px;
                 background-color: var(--#{$prefix}secondary);
             }
         }
-        &:hover:not(:has(.post-terms:hover)), //this fixed hover on nested card for featured post
+        &:hover,
         &:focus-visible,
-        &:active:not(:has(.post-terms a:active)) {
+        &:active {
             outline: none !important;
             .red-outline-hover {
                 color: $white;
@@ -45,21 +44,16 @@ $archive-article-img-outline-width: 5px;
             }
             .archive-item-image {
                 outline: solid $archive-article-img-outline-width $pink;
-            }
-            .red-color-hover{
-                transition: $link-transition-speed linear;
-                color: var(--#{$prefix}red);
-            }
-            
+            }            
         }
-        &:active:not(:has(.post-terms a:active)){
+        &:active{
             .red-outline-hover {
                 color: $white;
                 &::before {
                     -webkit-text-stroke: $archive-article-text-stroke-width darken($red, 10);
                 }
             }
-            img{
+            .archive-item-image{
                 outline: solid $archive-article-img-outline-width darken($pink, 7);
             }
         }
@@ -76,7 +70,7 @@ $archive-article-img-outline-width: 5px;
             }
         }
     }
-    .post-terms{
+    .item-terms{
         font-size: .75rem;
     }
     .post-authors{
@@ -93,8 +87,9 @@ $archive-article-img-outline-width: 5px;
 
 }
 
-.post-excerpt > *{
+.item-excerpt > *{
     margin-bottom: map-get($spacers, 3);
+    font-size: .95rem;
 }
 
 

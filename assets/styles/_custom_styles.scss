@@ -5,13 +5,24 @@
 }
 
 main{
-    overflow: visible;
+    overflow: hidden;
 }
 //default main padding
 #main{
     padding-top: map-get($spacers, 5);
     padding-bottom: map-get($spacers, 5);
 }
+
+@include media-breakpoint-up('lg'){
+    #main{
+        padding-top: map-get($spacers, 6);
+        padding-bottom: map-get($spacers, 6);
+    }
+    .breadcrumb-nav + #main{
+        padding-top: map-get($spacers, 4);
+    }
+}
+
 //no main up padding on larger screens with breadcrumbs
 @include media-breakpoint-up('md'){
     .breadcrumb-nav + #main{

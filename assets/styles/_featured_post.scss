@@ -6,7 +6,7 @@
 }
 
 @include media-breakpoint-up('md'){
-    .featured-post .post-terms{
+    .featured-post .item-terms{
         position: absolute;
         bottom: 0;
         left: math.div(map-get($spacers, 3), 2);

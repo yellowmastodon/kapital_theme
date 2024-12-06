@@ -191,7 +191,7 @@ function Edit(_ref) {
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", _objectSpread(_objectSpread({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
-    className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm kapital-sponsors"
+    className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm"
   })), {}, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "row g-0 align-items-center",
@@ -255,7 +255,7 @@ function Edit(_ref) {
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        class: "col",
+        class: "col fs-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
           template: TEMPLATE
         })
@@ -306,7 +306,7 @@ function save(_ref) {
   var attributes = _ref.attributes;
   var images = attributes.images;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", _objectSpread(_objectSpread({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold kapital-sponsors lh-sm"
+    className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm"
   })), {}, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "row g-0 align-items-center",
@@ -326,7 +326,7 @@ function save(_ref) {
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        class: "col",
+        class: "col fs-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
       })]
     })

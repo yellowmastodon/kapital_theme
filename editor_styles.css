@@ -7429,11 +7429,20 @@ a > .editor-styles-wrapper code {
   vertical-align: -0.1em;
 }
 .editor-styles-wrapper main {
-  overflow: visible;
+  overflow: hidden;
 }
 .editor-styles-wrapper #main {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+@media (min-width: 1200px) {
+  .editor-styles-wrapper #main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .editor-styles-wrapper .breadcrumb-nav + #main {
+    padding-top: 1.5rem;
+  }
 }
 @media (min-width: 900px) {
   .editor-styles-wrapper .breadcrumb-nav + #main {
@@ -7837,13 +7846,17 @@ a > .editor-styles-wrapper code {
 }
 
 /* purgecss start ignore */
-#post-content h1:not(:first-child), #post-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #post-content .h1:not(:first-child), #post-content h2:not(:first-child), #post-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #post-content .h2:not(:first-child), #post-content h3:not(:first-child), #post-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #post-content .h3:not(:first-child), #post-content h4:not(:first-child), #post-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #post-content .h4:not(:first-child), #post-content h5:not(:first-child), #post-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #post-content .h5:not(:first-child), #post-content h6:not(:first-child), #post-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #post-content .h6:not(:first-child) {
+#post-content h1:not(:first-child), #post-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #post-content .h1:not(:first-child), #post-content h2:not(:first-child), #post-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #post-content .h2:not(:first-child), #post-content h3:not(:first-child), #post-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #post-content .h3:not(:first-child), #post-content h4:not(:first-child), #post-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #post-content .h4:not(:first-child), #post-content h5:not(:first-child), #post-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #post-content .h5:not(:first-child), #post-content h6:not(:first-child), #post-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #post-content .h6:not(:first-child), #podcast-content h1:not(:first-child), #podcast-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #podcast-content .h1:not(:first-child), #podcast-content h2:not(:first-child), #podcast-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #podcast-content .h2:not(:first-child), #podcast-content h3:not(:first-child), #podcast-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #podcast-content .h3:not(:first-child), #podcast-content h4:not(:first-child), #podcast-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #podcast-content .h4:not(:first-child), #podcast-content h5:not(:first-child), #podcast-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #podcast-content .h5:not(:first-child), #podcast-content h6:not(:first-child), #podcast-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #podcast-content .h6:not(:first-child) {
   margin-top: 3rem;
 }
 
 .main-content > *:not(:last-child),
-.is-root-container > *:not(:last-child), #post-content > *:not(:last-child) {
+.is-root-container > *:not(:last-child), #post-content > *:not(:last-child), #podcast-content > *:not(:last-child) {
   margin-bottom: 2rem;
+}
+.main-content > iframe,
+.is-root-container > iframe, #post-content > iframe, #podcast-content > iframe {
+  display: block;
 }
 
 @media (min-width: 1200px) {
@@ -7883,7 +7896,7 @@ img {
   max-width: 100%;
 }
 
-.post-terms a::before {
+.item-terms a::before {
   margin-right: 0.4em;
 }
 
@@ -7904,7 +7917,7 @@ img {
   line-height: inherit !important;
 }
 
-.archive-item-link:not(.custom), .post-terms a {
+.archive-item-link:not(.custom), .item-terms a {
   pointer-events: none !important;
 }
 
@@ -7948,29 +7961,25 @@ img {
 .archive-item .archive-item-link .archive-item-image.placeholder {
   background-color: var(--kptl-secondary);
 }
-.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)), .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) {
+.archive-item .archive-item-link:hover, .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active {
   outline: none !important;
 }
-.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover {
+.archive-item .archive-item-link:hover .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover::before {
+.archive-item .archive-item-link:hover .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active .red-outline-hover::before {
   opacity: 1;
 }
-.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .archive-item-image {
+.archive-item .archive-item-link:hover .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active .archive-item-image {
   outline: solid 5px #ffc2fe;
 }
-.archive-item .archive-item-link:hover:not(:has(.post-terms:hover)) .red-color-hover, .archive-item .archive-item-link:focus-visible .red-color-hover, .archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-color-hover {
-  transition: 0.05s linear;
-  color: var(--kptl-red);
-}
-.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover {
+.archive-item .archive-item-link:active .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) .red-outline-hover::before {
+.archive-item .archive-item-link:active .red-outline-hover::before {
   -webkit-text-stroke: 6px #cc0029;
 }
-.archive-item .archive-item-link:active:not(:has(.post-terms a:active)) img {
+.archive-item .archive-item-link:active .archive-item-image {
   outline: solid 5px #ff9efd;
 }
 .archive-item .archive-post-top {
@@ -7981,7 +7990,7 @@ img {
   width: 0.625em;
   fill: var(--kptl-gray);
 }
-.archive-item .post-terms {
+.archive-item .item-terms {
   font-size: 0.75rem;
 }
 .archive-item .post-authors svg {
@@ -7994,8 +8003,9 @@ img {
   text-decoration-color: var(--kptl-red);
 }
 
-.post-excerpt > * {
+.item-excerpt > * {
   margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
 .hashtag + .issue-cover {
@@ -8152,14 +8162,14 @@ button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-butt
 }
 
 @media (min-width: 900px) {
-  .featured-post .post-terms {
+  .featured-post .item-terms {
     position: absolute;
     bottom: 0;
     left: 0.5rem;
     right: 0.5rem;
     z-index: 2;
   }
-  .featured-post .post-terms::before {
+  .featured-post .item-terms::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -8191,7 +8201,7 @@ button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-butt
   display: inline-block;
 }
 
-.kapital-sponsors p {
+.wp-block-kapital-sponsors p {
   margin-bottom: 1.5rem;
 }
 

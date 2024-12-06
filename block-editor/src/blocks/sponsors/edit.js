@@ -61,7 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
 	};
 
 	return (
-		<div {...useBlockProps({ className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm kapital-sponsors" })}>
+		<div {...useBlockProps({ className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm" })}>
 			<div className="row g-0 align-items-center">
 				<div className="col-12 col-md-auto">
 					{!hasImages && (
@@ -105,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
 						))}
 					</div>
 				</div>
-				<div class="col">
+				<div class="col fs-6">
 					<InnerBlocks template={TEMPLATE} />
 				</div>
 			</div>

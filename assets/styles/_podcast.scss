@@ -1,0 +1,9 @@
+.podcast-content {
+    & > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]) {
+        @extend .alignwide;
+    }
+    p{
+        font-size: $h4-font-size;
+        font-weight: bold;
+    }
+}
