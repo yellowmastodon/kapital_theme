@@ -60,7 +60,7 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
             </header>
             <div class="alignwide"><?php //container with views, author, publish date and featured image 
                                         ?>
-                <div class="row align-items-end justify-content-between mb-1"><?php //row above featured image
+                <div class="row align-items-end justify-content-between mb-4"><?php //row above featured image
                                                                                 /**
                                                                                  * Render post views
                                                                                  * if hidden, let's keep the empty div to not break the layout
@@ -104,7 +104,7 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
             }
             //if not empty add wrapper
             if ($podcast_links_html !== "") {
-                $podcast_links_html = '<div class="row my-4 gx-2 gy-2 justify-content-between flex-wrap">' . $podcast_links_html . '</div>';
+                $podcast_links_html = '<div class="row mb-4 gx-2 gy-2 justify-content-between flex-wrap">' . $podcast_links_html . '</div>';
                 echo $podcast_links_html;
             }
         }
