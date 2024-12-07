@@ -7709,7 +7709,9 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper body {
   width: auto;
   overflow-x: hidden;
-  touch-action: pan-x;
+}
+.editor-styles-wrapper html, .editor-styles-wrapper body {
+  touch-action: pan-y pinch-zoom manipulation;
 }
 .editor-styles-wrapper main {
   overflow: hidden;

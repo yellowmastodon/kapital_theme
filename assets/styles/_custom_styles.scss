@@ -6,8 +6,11 @@
 body {
     width: auto;
     overflow-x: hidden;
-    touch-action: pan-x
 } 
+html, body{
+    //disable dragging left and right
+    touch-action: pan-y pinch-zoom manipulation;
+}
 
 main{
     overflow: hidden;

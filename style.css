@@ -8625,7 +8625,10 @@ $theme-colors: $temporary-colors; */
 body {
   width: auto;
   overflow-x: hidden;
-  touch-action: pan-x;
+}
+
+html, body {
+  touch-action: pan-y pinch-zoom manipulation;
 }
 
 main {
