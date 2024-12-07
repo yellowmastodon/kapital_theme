@@ -6,4 +6,7 @@
         font-size: $h4-font-size;
         font-weight: bold;
     }
+    iframe[src*="soundcloud"]{
+        border-radius: $border-radius  $border-radius $border-radius 0;
+    }
 }

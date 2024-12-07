@@ -1,9 +1,6 @@
 <?php get_header();
 $queried_object = get_queried_object();
 $queried_object_id = get_queried_object_id();
-
-$queried_object = get_queried_object();
-$queried_object_id = get_queried_object_id();
 $is_general_podcast_archive = is_post_type_archive('podcast');
 $archive_title = "";
 $is_term_archive = is_tax();
@@ -17,6 +14,7 @@ if ($is_term_archive) {
     $archive_title = get_queried_object()->name;
     //add taxonomy list page breadcrumb (if exists)
     $taxonomy = $queried_object->taxonomy;
+    global $kapital_taxonomies_with_list_pages;
     if (array_key_exists($taxonomy, $kapital_taxonomies_with_list_pages)) {
         $list_page = get_page_by_path($kapital_taxonomies_with_list_pages[$taxonomy]);
         $breadcrumbs[] = [get_the_title($list_page), get_page_link($list_page)];

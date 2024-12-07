@@ -20,6 +20,18 @@ if (isset($args['additional_class'])){
     $additional_class = "";
 }
 
+//used for moving focus when rendered as block with "show More" button
+if (isset($args['tabindex'])){
+    if ($args['tabindex']){
+        $tab_index = true;
+    } else {
+        $tab_index = false;
+    }
+} else {
+    $tab_index = false;
+}
+
+
 //get current queried object
 if (isset($args['queried_object_id'])){
     $queried_object_id = $args['queried_object_id'];
@@ -30,7 +42,7 @@ if (isset($args['queried_object_id'])){
     $queried_object_id = false;
 }
 
-$render_settings = kapital_get_render_settings($post->ID);
+$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 
 $article_classes = "col-12 col-sm-6 col-md-4 col-xl-3 archive-item ff-grotesk";
 $article_classes .= $additional_class;
@@ -38,7 +50,7 @@ $post_title = get_the_title($post);
 $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 
 ?>
-<article <?php post_class([$article_classes], $post); ?>>
+<article <?php if($tab_index) echo 'tabindex="-1"'; post_class([$article_classes], $post); ?>>
     <div class="archive-post-top row mb-1 ff-sans fs-small text-gray">
         <?php
         if ($post->post_type === 'podcast'):?>

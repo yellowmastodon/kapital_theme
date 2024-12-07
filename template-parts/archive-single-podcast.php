@@ -1,7 +1,31 @@
-<?php global $post;
+<?php
+global $post;
+//get post from args outside query
+if (isset($args['post'])){
+    $post = $args['post'];
+}
+
+//used for hiding when rendered as block with "show More" button
+if (isset($args['additional_class'])){
+    $additional_class = " " . $args['additional_class'];
+} else {
+    $additional_class = "";
+}
+
+//used for moving focus when rendered as block with "show More" button
+if (isset($args['tabindex'])){
+    if ($args['tabindex']){
+        $tab_index = true;
+    } else {
+        $tab_index = false;
+    }
+} else {
+    $tab_index = false;
+}
+
 $post_permalink = get_post_permalink();
 $post_title = get_the_title();
-$render_settings = kapital_get_render_settings($post->ID);
+$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 //get current queried object
 if (isset($args['queried_object_id'])){
     $queried_object_id = $args['queried_object_id'];
@@ -18,10 +42,12 @@ if ($queried_object_id){
     $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
 }
 
+$article_classes = "archive-podcast-item ff-grotesk archive-item rounded bg-secondary p-3 mb-3";
+$article_classes .= $additional_class;
 ?>
 
 
-<article class="archive-podcast ff-grotesk archive-item d-grid rounded bg-secondary p-3 mb-3">
+<article <?php if($tab_index) echo 'tabindex="-1"'; post_class([$article_classes], $post);?> >
         <div class="archive-podcast-top row justify-content-between justify-content-sm-start ff-sans fs-small text-gray">
             <?php  if ($render_settings["show_date"]):
                 ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>

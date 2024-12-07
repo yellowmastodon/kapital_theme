@@ -28,7 +28,7 @@ $exclude_post = 0;
  * Post that is displayed in kapital/featured-post should be excluded
  * in editor we get it with useEntityProp
  *  */
-if ($attributes["isEditor"]){
+if ($attributes["isEditor"]) {
 	$exclude_post = $attributes["excludePost"];
 } else {
 	global $post;
@@ -91,18 +91,17 @@ if ($attributes["isEditor"]) {
 				return $exclude_term->slug;
 			}, $exclude_queried_terms);
 		}
-		
 	}
 } else /*setup query for front end (simpler method without notice)*/ {
 
 	//include query
 	if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
-	//explode from block input
-	$queried_term_slugs = explode(",", $attributes["termQuery"]);
-	//trim whitespace
-	$queried_term_slugs = array_map(function ($term_slug) {
-		return trim($term_slug);
-	}, $queried_term_slugs);
+		//explode from block input
+		$queried_term_slugs = explode(",", $attributes["termQuery"]);
+		//trim whitespace
+		$queried_term_slugs = array_map(function ($term_slug) {
+			return trim($term_slug);
+		}, $queried_term_slugs);
 	}
 
 	//exclude query
@@ -146,7 +145,13 @@ $args = array(
 
 
 //if "show-more button" -> render more posts so "show more" has something to show and we do not need ajax
-$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
+if ($attributes["queryPostType"] === 'post'){
+	$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
+} elseif($attributes["queryPostType"] === 'podcast') {
+	$args['posts_per_page'] = $attributes["showMoreButton"] ? 6 : 3;
+} else {
+	$args['posts_per_page'] = $attributes["showMoreButton"] ? 12 : 6;
+}
 
 //include tax query
 if (!empty($tax_query)) $args["tax_query"] = $tax_query;
@@ -159,13 +164,12 @@ foreach ($queried_terms as $key => $queried_term) {
 	}
 	$auto_heading .= $queried_term->name;
 }
-//$link = get_term_link($queried_terms[0]);
 
 if ($attributes["queryPostType"] === "post") {
 	$auto_heading = __("Najnovšie články", "kapital");
 	$link = get_post_type_archive_link('post');
 } elseif ($attributes["queryPostType"] === "podcast") {
-	$auto_heading = __("Najnovšie podcasty", "kapital");
+	$auto_heading = __("Podcasty", "kapital");
 	$link = get_post_type_archive_link('podcast');
 } else {
 	$auto_heading = __("Najbližšie eventy", "kapital");
@@ -186,27 +190,54 @@ if ($attributes["isEditor"]) {
 }
 
 $queried_posts = new WP_Query($args);
-$count = 0;
-//used to hide rows on various screens, to use 
-$additional_class = "";
-if ($queried_posts->have_posts()): ?>
-	<div class="row gx-3 gy-6 show-more-posts-wrapper <?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
-		<?php while ($queried_posts->have_posts()):
-			$queried_posts->the_post();
-			$count++;
-			if ($attributes["showMoreButton"] && $count > 6) $additional_class = "hide-sm";
-			if ($attributes["showMoreButton"] && $count > 8) $additional_class = "hide-sm hide-xl";
-			get_template_part('template-parts/archive-single-post', null, array('additional_class' => $additional_class));
-		endwhile; ?>
-	</div>
-	<?php if ($attributes["showMoreButton"]): ?>
-		<div class="text-center mt-4"><a show-all-text="<?php echo __("Všetky články", "kapital") ?>" href="<?php echo $link ?>" class="show-more-posts btn btn-secondary"><?php echo __('Ďalšie články', 'kapital') ?><svg class="icon-square ms-2">
-					<use xlink:href="#icon-arrow-down"></use>
-				</svg></a></div>
-	<?php endif; ?>
+if ($attributes["queryPostType"] === 'post'):
+	$count = 0;
+	if ($queried_posts->have_posts()): ?>
+		<div class="row gx-3 gy-6 show-more-posts-wrapper<?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+			<?php while ($queried_posts->have_posts()):
+				$queried_posts->the_post();
+				$count++;
+
+				//used to hide rows on various screens
+				$additional_class = "";				
+				if ($attributes["showMoreButton"] && $count > 6) $additional_class = "hide-sm";
+				if ($attributes["showMoreButton"] && $count > 8) $additional_class = "hide-sm hide-xl";
+				//used to move focus with show more button
+				$tab_index = $attributes["showMoreButton"] && ($count === 7 || $count === 9 ) ? true : false;
+				get_template_part('template-parts/archive-single-post', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
+			endwhile; ?>
+		</div>
+		<?php if ($attributes["showMoreButton"]): ?>
+			<div class="text-center mt-4"><button show-all-text="<?php echo __("Všetky články", "kapital") ?>" href="<?php echo $link ?>" class="show-more-posts btn btn-secondary"><?php echo __('Ďalšie články', 'kapital') ?><svg class="icon-square ms-2">
+						<use xlink:href="#icon-arrow-down"></use>
+					</svg></button></div>
+		<?php endif; ?>
+	<?php endif;
+elseif ($attributes["queryPostType"] === 'podcast'):
+	$count = 0;
+	//used to move focus with show more button - true results in tabindex="-1"
+	if ($queried_posts->have_posts()): ?>
+		<div class="show-more-posts-wrapper alignwide <?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+			<?php while ($queried_posts->have_posts()):
+				$queried_posts->the_post();
+				$count++;
+				//used to hide rows on various screens
+				$additional_class = $attributes["showMoreButton"] && $count > 3 ? "hide-sm hide-xl" : "";
+				//used to move focus with show more button
+				$tab_index = $attributes["showMoreButton"] && $count > 4 ? true : false;
+				get_template_part('template-parts/archive-single-podcast', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
+			endwhile; ?>
+		</div>
+		<?php if ($attributes["showMoreButton"]): ?>
+			<div class="text-center mt-4"><button show-all-text="<?php echo __("Všetky podcasty", "kapital") ?>" href="<?php echo $link ?>" class="show-more-posts btn btn-secondary"><?php echo __('Ďalšie podcasty', 'kapital') ?><svg class="icon-square ms-2">
+						<use xlink:href="#icon-arrow-down"></use>
+					</svg></button></div>
+		<?php endif; ?>
 <?php endif;
+
+endif; 
 wp_reset_postdata();
 
-//var_dump($attributes) 
+//var_dump($attributes)
 
 if (!$attributes["isEditor"]) echo '</section>'; ?>

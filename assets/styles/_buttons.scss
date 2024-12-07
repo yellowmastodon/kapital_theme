@@ -4,6 +4,7 @@
 }
 
 .btn{
+    text-align: center;
     color: var(--#{$prefix}body-color);
     @extend .ff-grotesk;
     @extend .text-decoration-none;
@@ -13,11 +14,15 @@
     font-size: .9rem;
     border-width: 2px;
     line-height: 1;
-    $btn-padding-y: 1.2rem;
-    $btn-padding-top: .5rem;
-    $btn-padding-bottom: .4rem;
+    $btn-padding-y: 1.2em;
+    $btn-padding-top: .55em;
+    $btn-padding-bottom: .5em;
+    white-space: nowrap;
     padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y;
     transition: $link_transition_speed linear;
+    &.btn-block{
+        @extend .d-block;
+    }
     svg{
         transition: $link_transition_speed linear;
     }

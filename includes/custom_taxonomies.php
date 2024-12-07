@@ -46,7 +46,7 @@ function register_zanre_taxonomy()
 		'desc_field_description'     => __('Popis žánru sa zobrazí medzi názvom a zoznamom článkov.', 'kapital')
 	);
 	$rewrite = array(
-		'slug'                       => 'zanre',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -97,7 +97,7 @@ function register_author_taxonomy()
 		'items_list_navigation'      => __('Navigácia zoznamu autorstva', 'kapital'),
 	);
 	$rewrite = array(
-		'slug'                       => 'autorstvo',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -192,7 +192,7 @@ function register_cisla_taxonomy()
 
 	);
 	$rewrite = array(
-		'slug'                       => 'cisla',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -243,7 +243,7 @@ function register_serie_taxonomy()
 
 	);
 	$rewrite = array(
-		'slug'                       => 'serie',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -293,7 +293,7 @@ function register_rubriky_taxonomy()
 		'desc_field_description'     => __('Popis rubriky sa zobrazí medzi názvom a zoznamom článkov.', 'kapital')
 	);
 	$rewrite = array(
-		'slug'                       => 'rubriky',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -390,7 +390,7 @@ function register_podcast_serie_taxonomy()
 
 	);
 	$rewrite = array(
-		'slug'                       => 'podcast-serie',
+		'slug'                       => $kapital_taxonomies_with_list_pages[$taxonomy],
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);

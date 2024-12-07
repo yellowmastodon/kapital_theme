@@ -93,7 +93,7 @@ else:
 				$featured_post_query->the_post();
 				global $post;
 				$post_id = $post->ID;
-				$render_settings = kapital_get_render_settings($post->ID);
+				$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 				$thumbnail_id = get_post_meta($post->ID, '_thumbnail_id', true);
 				$post_title = get_the_title($post);
 				$secondary_title = get_post_meta($post->ID, '_secondary_title', true);

@@ -3,6 +3,9 @@ $archive-article-text-stroke-width: 6px;
 $archive-article-img-outline-width: 5px;
 
 .archive-item {
+    &:focus{
+        outline: none !important;
+    }
     .archive-item-link {        
         .red-outline-hover {
             position: relative; //to style the before element, which generates outline
@@ -134,14 +137,14 @@ $archive-article-img-outline-width: 5px;
 @include media-breakpoint-down('xl'){
     .show-more-posts-wrapper.show-more-hide{
         .hide-sm{
-            display: none;
+            display: none !important;
         }
     }
 }
 @include media-breakpoint-up('xl'){
     .show-more-posts-wrapper.show-more-hide{
         .hide-xl{
-            display: none;
+            display: none !important;
         }
     }
 }

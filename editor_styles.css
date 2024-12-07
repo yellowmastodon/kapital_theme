@@ -2338,7 +2338,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .d-inline-block, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
   display: inline-block !important;
 }
-.editor-styles-wrapper .d-block {
+.editor-styles-wrapper .d-block, .editor-styles-wrapper .btn.btn-block, .editor-styles-wrapper .btn-block.wp-element-button, .editor-styles-wrapper .btn-block.wp-block-button__link {
   display: block !important;
 }
 .editor-styles-wrapper .d-grid {
@@ -7328,12 +7328,12 @@ a > .editor-styles-wrapper code {
     max-width: 700px !important;
   }
 }
-.editor-styles-wrapper .alignwide, .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+.editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
-.editor-styles-wrapper .alignwide, .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+.editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
   max-width: 800px !important;
 }
 .editor-styles-wrapper .wp-block[data-align=wide] {
@@ -7346,7 +7346,7 @@ a > .editor-styles-wrapper code {
   max-width: inherit !important;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignwide, .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+  .editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
     max-width: 900px !important;
   }
   .editor-styles-wrapper .wp-block[data-align=wide] {
@@ -7427,6 +7427,9 @@ a > .editor-styles-wrapper code {
   height: 1em;
   width: 1em;
   vertical-align: -0.1em;
+}
+.editor-styles-wrapper body {
+  overflow-x: hidden;
 }
 .editor-styles-wrapper main {
   overflow: hidden;
@@ -7932,6 +7935,9 @@ img {
   }
 }
 /** purgecss start ignore */
+.archive-item:focus {
+  outline: none !important;
+}
 .archive-item .archive-item-link .red-outline-hover {
   position: relative;
   z-index: 1;
@@ -8044,12 +8050,12 @@ img {
 
 @media (max-width: 1399.98px) {
   .show-more-posts-wrapper.show-more-hide .hide-sm {
-    display: none;
+    display: none !important;
   }
 }
 @media (min-width: 1400px) {
   .show-more-posts-wrapper.show-more-hide .hide-xl {
-    display: none;
+    display: none !important;
   }
 }
 @media (min-width: 900px) and (max-width: 1399.98px) {
@@ -8063,12 +8069,14 @@ img {
 }
 
 .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+  text-align: center;
   color: var(--kptl-body-color);
   border-style: solid;
   font-size: 0.9rem;
   border-width: 2px;
   line-height: 1;
-  padding: 0.5rem 1.2rem 0.4rem 1.2rem;
+  white-space: nowrap;
+  padding: 0.55em 1.2em 0.5em 1.2em;
   transition: 0.05s linear;
 }
 .btn svg, .editor-styles-wrapper .wp-element-button svg, .editor-styles-wrapper .wp-block-button__link svg {
@@ -8078,7 +8086,7 @@ img {
   outline: none !important;
 }
 .btn.btn-sm, .editor-styles-wrapper .btn-sm.wp-element-button, .editor-styles-wrapper .btn-sm.wp-block-button__link {
-  padding: 0.4rem 0.96rem 0.32rem 0.96rem;
+  padding: 0.44em 0.96em 0.4em 0.96em;
 }
 .btn.btn-primary, .editor-styles-wrapper .btn-primary.wp-element-button, .editor-styles-wrapper .btn-primary.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-pink-background-color, .editor-styles-wrapper .wp-block-button__link.has-pink-background-color {
   background-color: var(--kptl-primary);
@@ -8203,6 +8211,122 @@ button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-butt
 
 .wp-block-kapital-sponsors p {
   margin-bottom: 1.5rem;
+}
+
+.archive-podcast-item {
+  display: grid;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  row-gap: 0.5rem;
+  grid-template-columns: repeat(6, 0.167fr);
+  grid-template-rows: auto auto auto 1fr;
+}
+.archive-podcast-item .archive-item-link.image-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+.archive-podcast-item .archive-podcast-top {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.archive-podcast-item .archive-item-link.title-wrapper {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.archive-podcast-item .archive-item-link.title-wrapper:hover:not(:has(.item-terms:hover)) .red-outline-hover, .archive-podcast-item .archive-item-link.title-wrapper:focus-visible .red-outline-hover, .archive-podcast-item .archive-item-link.title-wrapper:active:not(:has(.item-terms a:active)) .red-outline-hover {
+  color: var(--kptl-secondary);
+}
+.archive-podcast-item .archive-item-link.excerpt-wrapper {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+.archive-podcast-item .archive-item-link.excerpt-wrapper > *:last-child {
+  margin-bottom: 0px !important;
+}
+.archive-podcast-item .archive-item-link.excerpt-wrapper:last-child {
+  margin-bottom: -0.5rem;
+}
+.archive-podcast-item .item-terms {
+  grid-column-start: 3;
+  grid-column-end: 7;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+@media (max-width: 899.98px) {
+  .archive-podcast-item .archive-item-link .archive-item-image {
+    aspect-ratio: 1 !important;
+  }
+}
+@media (max-width: 599.98px) {
+  .archive-podcast-item {
+    row-gap: 1rem;
+  }
+  .archive-podcast-item .archive-podcast-top {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-bottom: -0.5rem;
+  }
+  .archive-podcast-item .archive-item-link.image-wrapper {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  .archive-podcast-item .archive-item-link.title-wrapper {
+    grid-column-start: 3;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  .archive-podcast-item .archive-item-link.excerpt-wrapper {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+  .archive-podcast-item .archive-item-link.excerpt-wrapper:last-child {
+    margin-bottom: -1rem;
+  }
+  .archive-podcast-item .item-terms {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link .archive-item-image, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .archive-item-image, .archive-item:has(.archive-item-link:active) .archive-item-link .archive-item-image {
+  outline: solid 5px #ffc2fe;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover, .archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover {
+  color: #fff;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover::before, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover::before, .archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover::before {
+  opacity: 1;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link:not(.title-wrapper), .archive-item:has(.archive-item-link:focus-visible) .archive-item-link:not(.title-wrapper), .archive-item:has(.archive-item-link:active) .archive-item-link:not(.title-wrapper) {
+  color: var(--kptl-red);
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link.podcast-title-wrapper .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link.podcast-title-wrapper .red-outline-hover, .archive-item:has(.archive-item-link:active) .archive-item-link.podcast-title-wrapper .red-outline-hover {
+  color: var(--kptl-secondary);
+}
+
+.podcast-content p {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.podcast-content iframe[src*=soundcloud] {
+  border-radius: 1rem 1rem 1rem 0;
 }
 
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query {

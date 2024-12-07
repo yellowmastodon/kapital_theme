@@ -12,6 +12,51 @@
  */
 $post_types_with_controlled_rendering = ['post', 'podcast'];
 foreach ($post_types_with_controlled_rendering as $post_type) {
+    $render_settings_schema =
+    array(
+        'type' => 'object',
+        'properties' => [
+            'show_featured_image' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_title' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_author' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_categories' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_views' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_date' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_ads' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_support' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_footer' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+        ],
+    );
+    //set hide featured image as default for podcasts
+    if ($post_type === 'podcast') $render_settings_schema["properties"]["show_featured_image"]["default"] = false;
+
     register_post_meta(
         $post_type,
         '_kapital_post_render_settings',
@@ -22,47 +67,7 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
             'single' => true,
             'show_in_rest'  => [
                 true,
-                'schema' => [
-                    'type'       => 'object',
-                    'properties' => [
-                        'show_featured_image' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_title' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_author' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_categories' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_views' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_date' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_ads' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_support' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                        'show_footer' => [
-                            'type' => 'boolean',
-                            'default' => true
-                        ],
-                    ],
-                ],
+                'schema' => $render_settings_schema,
             ],
             'type' => 'object',
         ),

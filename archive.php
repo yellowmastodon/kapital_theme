@@ -1,8 +1,19 @@
-<?php get_header();
-//var_dump(get_taxonomies(array('public'=>'true'), 'objects'));
-//get current queried object
+<?php
 $queried_object = get_queried_object();
 $queried_object_id = get_queried_object_id();
+//load template for cpt manually, as WP loads archive.php by default
+if (isset($queried_object->taxonomy)){
+    if ($taxonomy === 'podcast-seria'){
+         $load = locate_template('archive-podcast.php', true);
+     if ($load) {
+        exit(); // just exit if template was found and loaded
+     }
+    }
+}
+get_header();
+//var_dump(get_taxonomies(array('public'=>'true'), 'objects'));
+//get current queried object
+
 $is_general_post_archive = is_home();
 $archive_title = "";
 $is_term_archive = is_tax();
@@ -85,7 +96,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
                     <?php foreach ($filters as $filter):
                         $term = get_term($filter); ?>
                         <div class="my-2 mx-0 mx-sm-1">
-                            <a class="btn btn-sm btn-outline text-center" href="<?php echo get_term_link($term) ?>"><?php echo $term->name; ?></a>
+                            <a class="btn btn-outline text-center" href="<?php echo get_term_link($term) ?>"><?php echo $term->name; ?></a>
                         </div>
                     <?php endforeach; ?>
                 </div>

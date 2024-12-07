@@ -1,4 +1,7 @@
 <?php
+/**
+ * displays recommended posts on single post page
+ */
 
 if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
     $custom_taxonomies = $args['custom_taxonomies'];
@@ -70,7 +73,7 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
     if (!empty($recommended_posts_keys)): ?>
         <footer class="post-footer mt-6 alignwider">
             <?php
-            echo '<p class="ff-grotesk text-uppercase mb-1 text-center fw-bold alignwide">' . __('Čítajte ďalej podobné články', 'kapital') . '</p>';
+            echo '<p class="ff-grotesk text-uppercase mb-1 text-center fw-bold alignwide">' . __('Podobné články', 'kapital') . '</p>';
             echo kapital_bubble_title($recommend_term->name, 2, 'alignwide');
             ?>
             <div class="row gy-6 text-left gx-3">

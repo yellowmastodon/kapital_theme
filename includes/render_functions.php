@@ -169,7 +169,7 @@ function kapital_breadcrumbs(array $breadcrumbs, string $additional_classes ="")
  * @param array $taxonomies taxonomies for which to retrieve terms
  * @return array terms organized by taxonomy (taxonomy as key) or empty array if post has no terms
  */
-function get_and_reorganize_terms($post_id,  $taxonomies, $term_id_to_remove = null)
+function get_and_reorganize_terms($post_id,$taxonomies, $term_id_to_remove = null)
 {   if (is_null($post_id)){
         $post_terms = get_terms(array(
             'taxonomy' => $taxonomies,
@@ -428,10 +428,11 @@ add_action('init', 'kapital_custom_pagination_base', 0);
 
 /** simple function to get default rendering settings, if not set by meta
  * @param integer $post_id
+ * @param string $post_type
  * @param boolean $show_false forcible get all as false
  * @return array
  */
-function kapital_get_render_settings(int $post_id, bool $show_false = false){
+function kapital_get_render_settings(int $post_id, string $post_type, bool $show_false = false){
     if ($show_false){
         $render_settings = array();
     } else {

@@ -1,4 +1,5 @@
-.archive-podcast{
+.archive-podcast-item{
+    display: grid;
     column-gap: map-get($spacers, 3);
     row-gap: map-get($spacers, 2);
     grid-template-columns: repeat(6, .167fr);
@@ -51,19 +52,20 @@
 
 
 @include media-breakpoint-down('md'){
-    .archive-podcast .archive-item-link .archive-item-image{
+    .archive-podcast-item .archive-item-link .archive-item-image{
             aspect-ratio: 1 !important;
     }
 }
 
 @include media-breakpoint-down('sm'){
-    .archive-podcast{
+    .archive-podcast-item{
         row-gap: map-get($spacers, 3);
     .archive-podcast-top{
         grid-column-start: 1;
         grid-column-end: 7;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-bottom: -(map-get($spacers,2));
     }
     .archive-item-link.image-wrapper {
         grid-column-start: 1;

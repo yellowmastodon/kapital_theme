@@ -32,6 +32,10 @@ export function customMetaSettings() {
 						show_support: true,
 						show_footer: true,
 					}
+					//hide featured image in podcast by default
+					if (postType === 'podcast'){
+						custom_render_meta.show_featured_image = false;
+					}
 				}
 				const updateMetaValue = (value, prop) => {
 					custom_render_meta = {
