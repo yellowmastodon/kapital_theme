@@ -21,7 +21,7 @@ Text Domain: kapital
 // Required
 
 @import "bootstrap/scss/variables";
-$theme-colors: map-merge($theme-colors, ("red": $red, "gray": $gray));
+$theme-colors: map-merge($theme-colors, $colors);
 
 //@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";

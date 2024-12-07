@@ -131,7 +131,7 @@ $archive-article-img-outline-width: 5px;
 /** show more archive block */
 .show-more-posts-wrapper{
     overflow: hidden;
-    transition: height .7s ease;
+    //transition: height .7s ease;
 }
 
 @include media-breakpoint-down('xl'){

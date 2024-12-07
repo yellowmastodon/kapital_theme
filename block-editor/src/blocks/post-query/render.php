@@ -9,7 +9,11 @@ $home_plugin_path =  dirname(__DIR__, 2);
 $attributes;
 
 //no wrapper for editor
-if (!$attributes["isEditor"]) echo '<section class="alignwider">';
+$wrapper_classes = "";
+if (isset($attributes["backgroundColor"])){
+	$wrapper_classes = ' bg-' . $attributes["backgroundColor"] . ' py-5'; //add also padding when background color is set
+}
+if (!$attributes["isEditor"]) echo '<section class="alignfull' . $wrapper_classes . '">';
 
 
 $queried_terms = array();
@@ -19,7 +23,9 @@ $exclude_queried_terms = array();
 $tax_query = array(); //setup empty array, will be overwriten, if filter is set
 $include_tax_query = array();
 $exclude_tax_query = array();
+/** @var array $queried_terms array of WP_Term objects set by users with slugs */
 $queried_terms = array();
+/** @var array $exclude_queried_terms array of WP_Term objects set by users with slugs from attribute termExclude */
 $exclude_queried_terms = array();
 $queried_term_slugs = array();
 $exclude_queried_term_slugs = array();
@@ -34,39 +40,53 @@ if ($attributes["isEditor"]) {
 	global $post;
 	$exclude_post = get_post_meta($post->ID, "_kapital_featured_post", true);
 }
-//setup query for editor - includes notice
-if ($attributes["isEditor"]) {
-	//include query
-	if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
 
-		//get slugs from string
-		$term_slugs = explode(",", $attributes["termQuery"]);
+/**
+ * SETUP QUERY
+ */
 
-		//trim whitespace from slugs
-		$term_slugs = array_map(function ($term_slug) {
-			return trim($term_slug);
-		}, $term_slugs);
-		//render notice for editor, if terms do not exist
-		foreach ($term_slugs as $term_slug) {
-			if ($term_slug !== "") {
-				$queried_term = get_term_by('slug', $term_slug, $attributes["taxonomy"], OBJECT);
-				if (!$queried_term) {
+/**
+ * SETUP INCLUDE QUERY
+ */
+
+if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
+
+	//get slugs from string
+	$term_slugs = explode(",", $attributes["termQuery"]);
+
+	//trim whitespace from slugs
+	$term_slugs = array_map(function ($term_slug) {
+		return trim($term_slug);
+	}, $term_slugs);
+	//render notice for editor, if terms do not exist
+	foreach ($term_slugs as $term_slug) {
+		if ($term_slug !== "") {
+			$queried_term = get_term_by('slug', $term_slug, $attributes["taxonomy"], OBJECT);
+			if (!$queried_term) {
+				//render notice in editor
+				if ($attributes["isEditor"]){
 					echo '<p class="text-center">"' . $attributes["taxonomy"] . '" ' .  __('so slugom:', 'kapital') . ' ' . ' "' . $term_slug . '" ' . __("nenájdené", "kapital") . '</p>';
-				} else {
-					$queried_terms[] = $queried_term;
 				}
+			} else {
+				$queried_terms[] = $queried_term;
 			}
 		}
-		//var_dump($queried_terms);
-		//remap terms back to slugs
-		if (!empty($queried_terms)) {
-			$queried_term_slugs = array_map(function ($queried_term) {
-				return ($queried_term->slug);
-			}, $queried_terms);
-		}
 	}
+	//return slugs back for tax query
+	if (!empty($queried_terms)) {
+		$queried_term_slugs = array_map(function ($queried_term) {
+			return ($queried_term->slug);
+		}, $queried_terms);
+	}
+}
 
-	//exclude query
+
+/** 
+ * EXCLUDE QUERY
+ * includes two methods
+ * easier method for front end without getting terms and notice
+*/
+if ($attributes["isEditor"]) {
 	if ($attributes["taxonomyExclude"] !== "none" && $attributes["termQueryExclude"] !== "") {
 		//exclude: get slugs from string
 		$exclude_term_slugs = explode(",", $attributes["termQueryExclude"]);
@@ -92,18 +112,7 @@ if ($attributes["isEditor"]) {
 			}, $exclude_queried_terms);
 		}
 	}
-} else /*setup query for front end (simpler method without notice)*/ {
-
-	//include query
-	if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
-		//explode from block input
-		$queried_term_slugs = explode(",", $attributes["termQuery"]);
-		//trim whitespace
-		$queried_term_slugs = array_map(function ($term_slug) {
-			return trim($term_slug);
-		}, $queried_term_slugs);
-	}
-
+} else { /*setup exclude query for front end (simpler method without notice)*/
 	//exclude query
 	if ($attributes["taxonomyExclude"] !== "none" && $attributes["termQueryExclude"] !== "") {
 		//explode from block input
@@ -143,11 +152,14 @@ $args = array(
 	'post__not_in' => array($exclude_post)
 );
 
-
 //if "show-more button" -> render more posts so "show more" has something to show and we do not need ajax
-if ($attributes["queryPostType"] === 'post'){
-	$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
-} elseif($attributes["queryPostType"] === 'podcast') {
+if ($attributes["queryPostType"] === 'post') {
+	if (!empty($queried_terms)){
+		$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
+	} else {
+		$args['posts_per_page'] = $attributes["showMoreButton"] ? 8 : 4;
+	}
+} elseif ($attributes["queryPostType"] === 'podcast') {
 	$args['posts_per_page'] = $attributes["showMoreButton"] ? 6 : 3;
 } else {
 	$args['posts_per_page'] = $attributes["showMoreButton"] ? 12 : 6;
@@ -156,26 +168,48 @@ if ($attributes["queryPostType"] === 'post'){
 //include tax query
 if (!empty($tax_query)) $args["tax_query"] = $tax_query;
 
-
 $auto_heading = "";
-foreach ($queried_terms as $key => $queried_term) {
-	if ($key !== 0) {
-		$auto_heading .= ", ";
-	}
-	$auto_heading .= $queried_term->name;
-}
+$link = "";
+$link_texts = ["", ""];
 
+//Setup auto heading, and links
 if ($attributes["queryPostType"] === "post") {
 	$auto_heading = __("Najnovšie články", "kapital");
 	$link = get_post_type_archive_link('post');
+	$link_texts = [__("Ďalšie články", "kapital"), __("Všetky články", "kapital")];
 } elseif ($attributes["queryPostType"] === "podcast") {
 	$auto_heading = __("Podcasty", "kapital");
 	$link = get_post_type_archive_link('podcast');
-} else {
+	$link_texts = [__("Ďalšie podcasty", "kapital"), __("Všetky podcasty", "kapital")];
+} elseif ($attributes["queryPostType"] === "event") {
 	$auto_heading = __("Najbližšie eventy", "kapital");
 	$link = get_post_type_archive_link('event');
+	$link_texts = [__("Ďalšie podujatia", "kapital"), __("Všetky podujatia", "kapital")];
 }
 
+/**
+ * setup auto heading and links for term query
+ * override above settings only if terms exist
+ * */
+
+if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !empty($queried_terms)){
+	foreach ($queried_terms as $key => $queried_term) {
+		if ($key !== 0) {
+			$auto_heading .= ", ";
+			$auto_heading .= $queried_term->name;
+		} else {
+			$auto_heading = $queried_term->name;
+			//link just first term. Maybe find other solution in the future
+			$link = get_term_link($queried_term);
+		}
+	}
+}
+
+//create show more button
+$link_button = "";
+if ($attributes["showMoreButton"]){
+	$link_button = '<div class="text-center mt-4"><button show-all-text="' . $link_texts[1] . '" data-href="' . $link . '" class="show-more-posts btn btn-secondary">' . $link_texts[0] . '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-down"></use></svg></button></div>';
+}
 
 if ($attributes["isEditor"]) {
 	if ($attributes["showHeading"] === "auto") {
@@ -192,26 +226,33 @@ if ($attributes["isEditor"]) {
 $queried_posts = new WP_Query($args);
 if ($attributes["queryPostType"] === 'post'):
 	$count = 0;
-	if ($queried_posts->have_posts()): ?>
-		<div class="row gx-3 gy-6 show-more-posts-wrapper<?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+if ($queried_posts->have_posts()):
+		//justify post center when too few posts
+		if ($queried_posts->post_count < 4) {
+			$justify_class = " justify-content-center";
+		} else {
+			$justify_class = " justify-content-start";
+		}
+		if (!empty($queried_terms)){
+			$show_count = array("small" => 3, "xl" => 6);
+		} else {
+			$show_count = array("small" => 6, 'xl' => 8);
+		};
+		?>
+		<div class="row alignwider gx-3 gy-6 show-more-posts-wrapper<?php echo $justify_class; if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
 			<?php while ($queried_posts->have_posts()):
 				$queried_posts->the_post();
 				$count++;
-
 				//used to hide rows on various screens
-				$additional_class = "";				
-				if ($attributes["showMoreButton"] && $count > 6) $additional_class = "hide-sm";
-				if ($attributes["showMoreButton"] && $count > 8) $additional_class = "hide-sm hide-xl";
+				$additional_class = "";
+				if ($attributes["showMoreButton"] && $count > $show_count) $additional_class = "hide-sm";
+				if ($attributes["showMoreButton"] && $count > $show_count) $additional_class = "hide-sm hide-xl";
 				//used to move focus with show more button
-				$tab_index = $attributes["showMoreButton"] && ($count === 7 || $count === 9 ) ? true : false;
+				$tab_index = $attributes["showMoreButton"] && ($count === $show_count["small"] + 1 || $count === $show_count["xl"] + 1) ? true : false;
 				get_template_part('template-parts/archive-single-post', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
 			endwhile; ?>
 		</div>
-		<?php if ($attributes["showMoreButton"]): ?>
-			<div class="text-center mt-4"><button show-all-text="<?php echo __("Všetky články", "kapital") ?>" href="<?php echo $link ?>" class="show-more-posts btn btn-secondary"><?php echo __('Ďalšie články', 'kapital') ?><svg class="icon-square ms-2">
-						<use xlink:href="#icon-arrow-down"></use>
-					</svg></button></div>
-		<?php endif; ?>
+		<?php if ($attributes["showMoreButton"]) echo $link_button;?>
 	<?php endif;
 elseif ($attributes["queryPostType"] === 'podcast'):
 	$count = 0;
@@ -228,14 +269,10 @@ elseif ($attributes["queryPostType"] === 'podcast'):
 				get_template_part('template-parts/archive-single-podcast', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
 			endwhile; ?>
 		</div>
-		<?php if ($attributes["showMoreButton"]): ?>
-			<div class="text-center mt-4"><button show-all-text="<?php echo __("Všetky podcasty", "kapital") ?>" href="<?php echo $link ?>" class="show-more-posts btn btn-secondary"><?php echo __('Ďalšie podcasty', 'kapital') ?><svg class="icon-square ms-2">
-						<use xlink:href="#icon-arrow-down"></use>
-					</svg></button></div>
-		<?php endif; ?>
+		<?php if ($attributes["showMoreButton"]) echo $link_button;?>
 <?php endif;
 
-endif; 
+endif;
 wp_reset_postdata();
 
 //var_dump($attributes)

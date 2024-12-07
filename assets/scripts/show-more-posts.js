@@ -9,15 +9,15 @@ export default function showMorePosts(){
             let target = event.target.closest('button');
             event.preventDefault();
             let wrapper = target.parentNode.closest('section').querySelector('.show-more-posts-wrapper');
-            let height = wrapper.offsetHeight;
-            wrapper.style.height = height + 'px';
+            //let height = wrapper.offsetHeight;
+            //wrapper.style.height = height + 'px';
             wrapper.classList.remove('show-more-hide');
-            height = wrapper.scrollHeight;
-            wrapper.style.height = height + 'px';
+            //height = wrapper.scrollHeight;
+            //wrapper.style.height = height + 'px';
             //reset after transition
-            setTimeout(function(){
+            /* setTimeout(function(){
                 wrapper.style.height = "";
-            }, 700);
+            }, 0); */
             //move focus for keyboard navigation
             let moveFocusElement;
             if (window.screen.width >= 1400){
@@ -27,16 +27,18 @@ export default function showMorePosts(){
             }
             setTimeout(function(){
                 moveFocusElement.focus({preventScroll: true});
-                let scrollToHeight = moveFocusElement.getBoundingClientRect().top + + window.scrollY + document.getElementById("horizontal-nav").offsetHeight;
+                let scrollToHeight = moveFocusElement.getBoundingClientRect().top + window.scrollY - document.getElementById("horizontal-nav").offsetHeight - 20;
                 window.scrollTo(0, scrollToHeight, "smooth"
                   );
-                  console.log(scrollToHeight);
-
             }, 10);
 
 
             let showAllText = target.getAttribute("show-all-text");
-            target.innerHTML = showAllText + '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-right"></use></svg>';
             target.removeEventListener("click", unhidePosts);
+            let replacement = document.createElement('a');
+            replacement.setAttribute("href", target.getAttribute("data-href"));
+            replacement.setAttribute("class", target.getAttribute("class"));
+            replacement.innerHTML = target.getAttribute("show-all-text") + '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-right"></use></svg>';
+            target.parentNode.replaceChild(replacement, target);
     }
 }

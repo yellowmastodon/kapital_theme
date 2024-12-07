@@ -73,10 +73,9 @@ $font-sizes: (
 
 
 //color
-$pink: map-get($colors, "pink");
+$primary: map-get($colors, "primary");
 $red: map-get($colors, "red");
-$primary: $pink;
-$secondary: map-get($colors, "gray-light");
+$secondary: map-get($colors, "secondary");
 $white: map-get($colors, "white");
 $gray: map-get($colors, "gray");
 $body-color: #000;

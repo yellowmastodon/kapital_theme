@@ -49,10 +49,9 @@ export default function Edit({
 		value: taxonomy.slug,
 	}));
 	const Heading = `h${attributes.headingLevel}`;
-
+	const wrapperClasses = attributes.backgroundColor ? "alignfull py-5" : "alignfull";
 	return (
-		<section {...useBlockProps({ className: "alignwider" })}>
-
+		<section {...useBlockProps({ className: wrapperClasses })}>
 			<InspectorControls>
 				<Panel>
 					<PanelBody title={__('Filter', 'kapital')}>

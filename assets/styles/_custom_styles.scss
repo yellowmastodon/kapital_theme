@@ -3,9 +3,11 @@
     width: 1em;
     vertical-align: -.1em;
 }
-body{
+body {
+    width: auto;
     overflow-x: hidden;
-}
+    touch-action: pan-x
+} 
 
 main{
     overflow: hidden;

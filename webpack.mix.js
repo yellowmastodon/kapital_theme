@@ -16,7 +16,8 @@ let safelist = {
         /^offcanvas/,
         /visible$/,
         /^lh-sm/, 
-        /rounded-pill/
+        /rounded-pill/,
+        /^border-/,
     ],
     deep: [
         /^align/,

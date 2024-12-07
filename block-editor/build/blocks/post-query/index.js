@@ -92,8 +92,9 @@ function Edit(_ref) {
     };
   });
   var Heading = "h".concat(attributes.headingLevel);
+  var wrapperClasses = attributes.backgroundColor ? "alignfull py-5" : "alignfull";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("section", _objectSpread(_objectSpread({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.useBlockProps)({
-    className: "alignwider"
+    className: wrapperClasses
   })), {}, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Panel, {
@@ -682,7 +683,7 @@ function _unsupportedIterableToArray(r, a) {
   \*******************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/post-query","version":"0.1.0","title":"Najnovšie články / podcasty / podujatia","description":"Archív článkov","keywords":["podcast","článok","podcasty","články","podujatia","zoznam","najnovšie"],"category":"theme","icon":"text","example":{},"supports":{"html":false},"textdomain":"kapital","attributes":{"queryPostType":{"type":"string","default":"post"},"taxonomy":{"type":"string","default":"none"},"termQuery":{"type":"string","default":""},"taxonomyExclude":{"type":"string","default":"none"},"termQueryExclude":{"type":"string","default":""},"showMoreButton":{"type":"boolean","default":"true"},"showHeading":{"type":"string","default":"auto"},"headingText":{"type":"string","default":""},"headingLevel":{"type":"integer","default":2},"showFilters":{"type":"boolean","default":false},"isEditor":{"type":"boolean","default":false},"excludePost":{"type":"integer","default":0}},"usesContext":["postType","postId"],"render":"file:./render.php","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/post-query","version":"0.1.0","title":"Najnovšie články / podcasty / podujatia","description":"Archív článkov","keywords":["podcast","článok","podcasty","články","podujatia","zoznam","najnovšie"],"category":"theme","icon":"text","example":{},"supports":{"html":false,"color":{"background":true,"text":false}},"textdomain":"kapital","attributes":{"queryPostType":{"type":"string","default":"post"},"taxonomy":{"type":"string","default":"none"},"termQuery":{"type":"string","default":""},"taxonomyExclude":{"type":"string","default":"none"},"termQueryExclude":{"type":"string","default":""},"showMoreButton":{"type":"boolean","default":"true"},"showHeading":{"type":"string","default":"auto"},"headingText":{"type":"string","default":""},"headingLevel":{"type":"integer","default":2},"showFilters":{"type":"boolean","default":false},"isEditor":{"type":"boolean","default":false},"excludePost":{"type":"integer","default":0}},"usesContext":["postType","postId"],"render":"file:./render.php","editorScript":"file:./index.js"}');
 
 /***/ })
 

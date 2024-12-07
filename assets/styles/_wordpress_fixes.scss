@@ -22,8 +22,8 @@ _colors.scss
 		color: var(--#{$prefix}#{$name});
 	}
 	.has-#{$name}-background-color {
-		background-color: var(--#{$prefix}#{$name});
-		border-color: var(--#{$prefix}#{$name});
+		@extend .bg-#{$name};
+		@extend .border-#{$name}
 	}
 	.wp-block-button:hover{
 		.wp-block-button__link.has-white-background-color.has-#{$name}-color {

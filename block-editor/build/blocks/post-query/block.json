@@ -18,7 +18,11 @@
   "icon": "text",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": false
+    }
   },
   "textdomain": "kapital",
   "attributes": {

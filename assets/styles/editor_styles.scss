@@ -11,7 +11,7 @@
 
 // Required
 @import "bootstrap/scss/variables";
-$theme-colors: map-merge($theme-colors, ("red": $red, "gray": $gray));
+$theme-colors: map-merge($theme-colors, $colors);
 
 
 //@import "bootstrap/scss/variables-dark";
@@ -91,7 +91,7 @@ $grid-breakpoints: $temporary-breakpoints;
     @extend .alignwide;
     text-align: center;
 }
-.is-root-container > .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
+.is-root-container > .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
     @extend .alignnormal;
 }
 //fix imported content in classic block
