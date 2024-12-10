@@ -13,7 +13,7 @@ $wrapper_classes = "";
 if (isset($attributes["backgroundColor"])){
 	$wrapper_classes = ' bg-' . $attributes["backgroundColor"] . ' py-5'; //add also padding when background color is set
 }
-if (!$attributes["isEditor"]) echo '<section class="alignfull' . $wrapper_classes . '">';
+if (!$attributes["isEditor"]) echo '<section class="post-query alignfull' . $wrapper_classes . '">';
 
 
 $queried_terms = array();
@@ -153,8 +153,10 @@ $args = array(
 );
 
 //if "show-more button" -> render more posts so "show more" has something to show and we do not need ajax
+$is_term_archive = $attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !empty($queried_terms);
+
 if ($attributes["queryPostType"] === 'post') {
-	if (!empty($queried_terms)){
+	if (!$is_term_archive){
 		$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
 	} else {
 		$args['posts_per_page'] = $attributes["showMoreButton"] ? 8 : 4;
@@ -191,8 +193,7 @@ if ($attributes["queryPostType"] === "post") {
  * setup auto heading and links for term query
  * override above settings only if terms exist
  * */
-
-if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !empty($queried_terms)){
+if ($is_term_archive){
 	foreach ($queried_terms as $key => $queried_term) {
 		if ($key !== 0) {
 			$auto_heading .= ", ";
@@ -208,20 +209,33 @@ if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !em
 //create show more button
 $link_button = "";
 if ($attributes["showMoreButton"]){
-	$link_button = '<div class="text-center mt-4"><button show-all-text="' . $link_texts[1] . '" data-href="' . $link . '" class="show-more-posts btn btn-secondary">' . $link_texts[0] . '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-down"></use></svg></button></div>';
+	$link_button = '<div class="text-center"><button show-all-text="' . $link_texts[1] . '" data-href="' . $link . '" class="show-more-posts btn btn-secondary">' . $link_texts[0] . '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-down"></use></svg></button></div>';
+}
+//setup term description
+$term_description = "";
+if ($is_term_archive && $attributes["showDescription"]){
+	if ($queried_terms[0]->description !== ""){
+		$term_description = '<div class="term-description align-wide h4 text-center ff-grotesk fw-bold lh-sm">';
+		foreach ($queried_terms as $queried_term){
+			$term_description .= wpautop($queried_term->description, true);
+		}
+		$term_description .= '</div>';
+	}
 }
 
 if ($attributes["isEditor"]) {
 	if ($attributes["showHeading"] === "auto") {
-		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], 'mb-5');
+		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3'); //smaller margin bottom with term description
 	}
 } else {
 	if ($attributes["showHeading"] === "auto") {
-		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], 'mb-5');
+		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
 	} elseif ($attributes["showHeading"] === "manual") {
-		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], 'mb-4');
+		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
 	}
 }
+//render term description
+echo $term_description;
 
 $queried_posts = new WP_Query($args);
 if ($attributes["queryPostType"] === 'post'):
@@ -233,24 +247,37 @@ if ($queried_posts->have_posts()):
 		} else {
 			$justify_class = " justify-content-start";
 		}
-		if (!empty($queried_terms)){
-			$show_count = array("small" => 3, "xl" => 6);
-		} else {
+		if (empty($queried_terms) || $attributes["taxonomy"] === "none"){
 			$show_count = array("small" => 6, 'xl' => 8);
+		} else {
+			$show_count = array("small" => 3, "xl" => 4);
 		};
+		
+		/** filters
+		 * only renders filters for first term, maybe fix in the future?
+		 */
+		if ($attributes["showFilters"]){
+			if ($is_term_archive){
+				echo kapital_post_filters(!$is_term_archive, $is_term_archive, $queried_terms[0]->term_id, $queried_terms[0]->taxonomy);
+			} else {
+				echo kapital_post_filters(!$is_term_archive, $is_term_archive); 
+			}
+		}
 		?>
-		<div class="row alignwider gx-3 gy-6 show-more-posts-wrapper<?php echo $justify_class; if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
-			<?php while ($queried_posts->have_posts()):
-				$queried_posts->the_post();
-				$count++;
-				//used to hide rows on various screens
-				$additional_class = "";
-				if ($attributes["showMoreButton"] && $count > $show_count) $additional_class = "hide-sm";
-				if ($attributes["showMoreButton"] && $count > $show_count) $additional_class = "hide-sm hide-xl";
-				//used to move focus with show more button
-				$tab_index = $attributes["showMoreButton"] && ($count === $show_count["small"] + 1 || $count === $show_count["xl"] + 1) ? true : false;
-				get_template_part('template-parts/archive-single-post', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
-			endwhile; ?>
+		<div class="alignwider">
+			<div class="row pb-4 gx-3 gy-6 show-more-posts-wrapper<?php echo $justify_class; if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+				<?php while ($queried_posts->have_posts()):
+					$queried_posts->the_post();
+					$count++;
+					//used to hide rows on various screens
+					$additional_class = "";
+					if ($attributes["showMoreButton"] && $count > $show_count["small"]) $additional_class = "hide-sm";
+					if ($attributes["showMoreButton"] && $count > $show_count["xl"]) $additional_class = "hide-sm hide-xl";
+					//used to move focus with show more button
+					$tab_index = $attributes["showMoreButton"] && ($count === $show_count["small"] + 1 || $count === $show_count["xl"] + 1) ? true : false;
+					get_template_part('template-parts/archive-single-post', null, array("additional_class" => $additional_class, "tabindex" => $tab_index));
+				endwhile; ?>
+			</div>
 		</div>
 		<?php if ($attributes["showMoreButton"]) echo $link_button;?>
 	<?php endif;
@@ -258,7 +285,7 @@ elseif ($attributes["queryPostType"] === 'podcast'):
 	$count = 0;
 	//used to move focus with show more button - true results in tabindex="-1"
 	if ($queried_posts->have_posts()): ?>
-		<div class="show-more-posts-wrapper alignwide <?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+		<div class="show-more-posts-wrapper pb-4 alignwide <?php if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
 			<?php while ($queried_posts->have_posts()):
 				$queried_posts->the_post();
 				$count++;

@@ -12,14 +12,22 @@ body.modal-open{
 
 @include media-breakpoint-up('sm'){
     .post-filters{
+        position: sticky;
+        top: calc(12px + 2.5rem);
+        z-index: 1000;
         .btn-filter-toggle, .btn-close{
             display: none !important;
+        }
+        *[class^="btn"]{
+            outline: solid 3px $white;
         }
     }
     .post-filters .filters-content{
         flex-direction: row;
     }
-    
+    body.admin-bar .post-filters{
+        top: calc(44px + 2.5rem);
+    }
 }
 
 @include media-breakpoint-down('sm'){

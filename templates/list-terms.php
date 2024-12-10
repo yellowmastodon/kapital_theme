@@ -10,7 +10,7 @@ echo kapital_breadcrumbs(array(
     [__('Články', 'kapital'), get_post_type_archive_link('post')]
 ), 'container');?>
 
-<main class="main container mt-4 mt-md-0" role="main" id="main">
+<main class="main container" role="main" id="main">
 
     <header class="mb-5">
         <?php echo kapital_bubble_title(get_the_title(), 1, 'term-list-title');?>

@@ -7713,8 +7713,8 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper html, .editor-styles-wrapper body {
   touch-action: pan-y pinch-zoom manipulation;
 }
-.editor-styles-wrapper main {
-  overflow: hidden;
+.editor-styles-wrapper p:last-child {
+  margin-bottom: 0px !important;
 }
 .editor-styles-wrapper #main {
   padding-top: 2rem;
@@ -7731,7 +7731,7 @@ a > .editor-styles-wrapper code {
 }
 @media (min-width: 900px) {
   .editor-styles-wrapper .breadcrumb-nav + #main {
-    padding-top: 0px;
+    padding-top: 0.5rem;
   }
 }
 .editor-styles-wrapper .btn-menu, .editor-styles-wrapper a {
@@ -8064,7 +8064,7 @@ a > .editor-styles-wrapper code {
   }
 }
 @media (min-width: 600px) {
-  .single-post .post-authors {
+  .single-post .header-bottom-container .post-authors {
     text-transform: uppercase;
   }
 }
@@ -8100,10 +8100,10 @@ img {
 }
 
 @media (min-width: 600px) {
-  .single-post .post-authors a {
+  .single-post .header-bottom-container .post-authors a {
     color: var(--kptl-red);
   }
-  .single-post .post-authors a:hover {
+  .single-post .header-bottom-container .post-authors a:hover {
     color: #000 !important;
   }
 }
@@ -8258,6 +8258,21 @@ img {
     display: none;
   }
 }
+.term-description > *:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.post-query:not(:last-child) {
+  margin-bottom: 5rem;
+}
+.post-query:not(:first-child) {
+  margin-top: 5rem;
+}
+
+.featured-post + .post-query {
+  margin-top: 3rem;
+}
+
 /** purgecss end ignore */
 .btn:not(.btn-menu), .editor-styles-wrapper .wp-element-button:not(.btn-menu), .editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
   text-transform: uppercase;
@@ -8274,6 +8289,9 @@ img {
   padding: 0.55em 1.2em 0.5em 1.2em;
   transition: 0.05s linear;
 }
+.btn.btn-block, .editor-styles-wrapper .btn-block.wp-element-button, .editor-styles-wrapper .btn-block.wp-block-button__link {
+  width: 100%;
+}
 .btn svg, .editor-styles-wrapper .wp-element-button svg, .editor-styles-wrapper .wp-block-button__link svg {
   transition: 0.05s linear;
 }
@@ -8286,6 +8304,10 @@ img {
 .btn.btn-primary, .editor-styles-wrapper .btn-primary.wp-element-button, .editor-styles-wrapper .btn-primary.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-pink-background-color, .editor-styles-wrapper .wp-block-button__link.has-pink-background-color {
   background-color: var(--kptl-primary);
   border-color: var(--kptl-primary);
+}
+.btn.btn-white, .editor-styles-wrapper .btn-white.wp-element-button, .editor-styles-wrapper .btn-white.wp-block-button__link {
+  background-color: var(--kptl-white);
+  border-color: var(--kptl-white);
 }
 .btn.btn-secondary, .editor-styles-wrapper .btn-secondary.wp-element-button, .editor-styles-wrapper .btn-secondary.wp-block-button__link, .editor-styles-wrapper .wp-element-button:not(.has-background), .editor-styles-wrapper .wp-block-button__link:not(.has-background) {
   background-color: var(--kptl-secondary);
@@ -8524,6 +8546,61 @@ button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-butt
   border-radius: 1rem 1rem 1rem 0;
 }
 
-.wp-block-kapital-featured-post, .wp-block-kapital-post-query {
+body.modal-open {
+  overflow: hidden;
+}
+
+.post-filters .filters-content {
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .post-filters {
+    position: sticky;
+    top: calc(12px + 2.5rem);
+    z-index: 1000;
+  }
+  .post-filters .btn-filter-toggle, .post-filters .btn-close {
+    display: none !important;
+  }
+  .post-filters *[class^=btn] {
+    outline: solid 3px #fff;
+  }
+  .post-filters .filters-content {
+    flex-direction: row;
+  }
+  body.admin-bar .post-filters {
+    top: calc(44px + 2.5rem);
+  }
+}
+@media (max-width: 599.98px) {
+  .post-filters .filters-modal:not(.open) {
+    display: none !important;
+    opacity: 0;
+  }
+  .filters-modal {
+    transition: opacity 0.3s ease;
+  }
+  .post-filters .filters-modal {
+    background-color: var(--kptl-primary);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 1060;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .filters-content {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)) {
   overflow: hidden;
 }

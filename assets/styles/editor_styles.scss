@@ -113,10 +113,12 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "sponsors";
 @import "archive_podcast.scss";
 @import "podcast";
+@import "post_filters";
+
 
 
 //children use negative margin, so focus is rendered wrong without this
-.wp-block-kapital-featured-post, .wp-block-kapital-post-query{
+.wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)){
     overflow: hidden;
 }
 

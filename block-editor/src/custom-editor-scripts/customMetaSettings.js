@@ -23,6 +23,7 @@ export function customMetaSettings() {
 				} else {
 					custom_render_meta = {
 						show_featured_image: true,
+						show_breadcrumbs: true,
 						show_title: true,
 						show_author: true,
 						show_categories: true,
@@ -40,6 +41,7 @@ export function customMetaSettings() {
 				const updateMetaValue = (value, prop) => {
 					custom_render_meta = {
 						show_featured_image: true,
+						show_breadcrumbs: true,
 						show_title: true,
 						show_author: true,
 						show_categories: true,
@@ -69,6 +71,12 @@ export function customMetaSettings() {
 							  checked={ custom_render_meta.show_featured_image }
 							  help={__('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital')}
 							  onChange={()=> updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image')}
+					/>
+					<ToggleControl
+							  __nextHasNoMarginBottom
+							  label={__('Zobrazovať breadcrumb navigáciu', 'kapital')}
+							  checked={ custom_render_meta.show_breadcrumbs }
+							  onChange={()=> updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs')}
 					/>
 					<ToggleControl
 							  __nextHasNoMarginBottom

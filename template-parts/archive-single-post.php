@@ -80,7 +80,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
         }
         //data-text attribute used by ::before element to generate outline?>
         <h2 class="h3 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
-        <div class="item-excerpt red-color-hover lh-sm">
+        <div class="item-excerpt red-color-hover lh-sm mb-3">
             <?php if ($secondary_title !== "") {
                 echo '<p>' . $secondary_title . '</p>';
                 //arbitrary number, when the secondary title is too short, also include excerpt but shorter

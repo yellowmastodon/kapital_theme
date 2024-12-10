@@ -157,4 +157,22 @@ $archive-article-img-outline-width: 5px;
     }
 }
 
+.term-description > *:not(:last-child){
+    margin-bottom: map-get($spacers, 2);
+}
+
+.post-query{
+    &:not(:last-child){
+        margin-bottom: map-get($spacers, 7);
+    }
+    &:not(:first-child){
+        margin-top: map-get($spacers, 7);
+    }
+}
+
+.featured-post + .post-query{
+    margin-top: map-get($spacers, 6);
+}
+
+
 /** purgecss end ignore */ 

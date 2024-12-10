@@ -146,7 +146,7 @@ function kapital_support()
  */
 function kapital_breadcrumbs(array $breadcrumbs, string $additional_classes ="")
 {
-    $html = '<nav aria-label="breadcrumb navigácia" class="my-2 ff-grotesk breadcrumb-nav ' . $additional_classes . '"><ol class="breadcrumb">';
+    $html = '<nav aria-label="breadcrumb navigácia" class="mt-2 ff-grotesk breadcrumb-nav ' . $additional_classes . '"><ol class="breadcrumb">';
     $html .= '<li class="breadcrumb-item"><a href="' . get_home_url() . '">' . __("Domov", "kapital") . '</a></li>';
     foreach ($breadcrumbs as $breadcrumb) {
         $active = false;
@@ -349,6 +349,57 @@ function kapital_get_issue_title_year_month(string $original_archive_title, bool
 }
 
 /**
+ * Renders post filters
+ * @param bool $is_general_post_archive if render filters for all posts
+ * @param bool $is_term_archive if render child terms as filters
+ * @param int $term_id id of parent term to render children
+ * @param string $taxonomy slug of taxonomy of parent term
+ * @return string HMTL markup of filters 
+ */
+function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, $taxonomy = ""){
+    if ($is_general_post_archive):
+        $filters = get_option('kapital_post_filters');
+        if ($filters && !empty($filters)):
+            foreach ($filters as $key => $value) {
+                $filters[$key] = get_term((int) $value);
+            }
+        endif;
+    elseif ($is_term_archive):
+        $filters = get_terms(
+            $taxonomy,
+            array(
+                'child_of' => $term_id,
+                'orderby' => 'name'
+            )
+        );
+    else:
+        $filters = array();
+    endif;
+    $html = "";
+    if ($filters && !empty($filters)):
+        $html .= '<nav class="post-filters mt-5 text-end mb-4 mb-sm-5 alignwider">';
+            $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
+            $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
+            $html .= '</button>';
+            $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
+                $html .= '<div class="filters-content py-2 py-sm-0">';
+                $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';                       
+                    foreach ($filters as $filter):
+                        //shorten one specific name as it is too long for filter
+                        $term_name = ($filter->slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $filter->name;  
+                        $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
+                            $html .= '<a class="btn btn-outline text-center" href="' . get_term_link($filter) . '">' . $term_name . '</a>';
+                        $html .= '</div>';
+                    endforeach;
+                $html .= '</div>';
+            $html .= '</div>';
+        $html .= '</nav>';
+    endif;
+    return $html;
+}
+
+
+/**
  * Sets the query to all for taxonomy "číslo" (issue)
  * Sets the query to 24 for all other main queries
  * @param WP_Query $query
@@ -440,6 +491,7 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
     }
     $default_render_settings = array(
         'show_featured_image' =>  $show_false ? false : true,
+        'show_breadcrumbs' =>  $show_false ? false : true,
         'show_title' => $show_false ? false : true,
         'show_author' => $show_false ? false : true,
         'show_categories' => $show_false ? false : true,
@@ -449,6 +501,7 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_support' => $show_false ? false : true,
         'show_footer' => $show_false ? false : true,
     );
+    if ($post_type === 'podcast') $default_render_settings["show_featured_image"] = false;
     //var_dump($default_render_settings);
     if(is_array($render_settings)){
         $render_settings = array_merge($default_render_settings, $render_settings);

@@ -12,8 +12,8 @@ html, body{
     touch-action: pan-y pinch-zoom manipulation;
 }
 
-main{
-    overflow: hidden;
+p:last-child{
+    margin-bottom: 0px !important;
 }
 //default main padding
 #main{
@@ -34,7 +34,7 @@ main{
 //no main up padding on larger screens with breadcrumbs
 @include media-breakpoint-up('md'){
     .breadcrumb-nav + #main{
-        padding-top: 0px;
+        padding-top: map-get($spacers, 2);
     }
 }
 .btn-menu, a {

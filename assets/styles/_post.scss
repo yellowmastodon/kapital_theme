@@ -35,7 +35,7 @@
 }
 
 @include media-breakpoint-up("sm") {
-    .single-post .post-authors {
+    .single-post .header-bottom-container .post-authors {
         text-transform: uppercase;
     }
 }
@@ -75,7 +75,7 @@ img{
 }
 @include media-breakpoint-up('sm'){
     .single-post {
-        .post-authors{
+        .header-bottom-container .post-authors{
             a{
                 color: var(--#{$prefix}red);
                 &:hover{

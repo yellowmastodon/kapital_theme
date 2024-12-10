@@ -20,6 +20,10 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
                 'type' => 'boolean',
                 'default' => true
             ],
+            'show_breadcrumbs' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
             'show_title' => [
                 'type' => 'boolean',
                 'default' => true

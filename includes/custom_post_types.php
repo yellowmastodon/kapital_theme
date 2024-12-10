@@ -134,7 +134,7 @@ function inzercia_post_type() {
 	$labels = array(
 		'name'                  => _x( 'Inzercia', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'Inzercia', 'Post Type Singular Name', 'text_domain' ),
-		'menu_name'             => __( 'Inzercia', 'text_domain' ),
+		'menu_name'             => __( 'Inzercia a podpora', 'text_domain' ),
 		'name_admin_bar'        => __( 'Inzercia', 'text_domain' ),
 		'archives'              => __( 'Archív inzercie', 'text_domain' ),
 		'attributes'            => __( 'Vlastnosti inzercie', 'text_domain' ),

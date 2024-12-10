@@ -60,7 +60,7 @@ if ($query_year > $last_issue_year || $query_year < $first_issue_year){
 
     ), "container");?>
 
-<main class="main container mt-4 mt-md-0" role="main" id="main">
+<main class="main container" role="main" id="main">
 
     <header class="mb-5">
         <?php echo kapital_bubble_title(__('Archív', 'kapital') . ' ' . $first_issue_year . '-' . $last_issue_year, 1, 'term-list-title ' );?>

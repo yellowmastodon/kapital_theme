@@ -58,6 +58,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"showDescription": {
+			"type": "boolean",
+			"default": false
+		},
 		"isEditor": {
 			"type": "boolean",
 			"default": false

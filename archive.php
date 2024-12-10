@@ -58,53 +58,26 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 
     <?php /** archive title  */  ?>
     <header class="archive-header alignwide mb-5" role="heading">
-        <?php echo kapital_bubble_title($archive_title, 1, 'term-title'); ?>
+        <?php echo kapital_bubble_title($archive_title, 1, 'term-title');
+        if ($is_term_archive){
+            if ($queried_object->description !== ""){
+                echo '<div class="term-description h4 text-center ff-grotesk fw-bold lh-sm">';
+                echo wpautop($queried_object->description, true);
+                echo '</div>';
+            }
+        }
+        ?>
     </header>
 
     <?php /** filters */
-    if ($is_general_post_archive):
-        $filters = get_option('kapital_post_filters');
-        if ($filters && !empty($filters)):
-            foreach ($filters as $key => $value) {
-                $filters[$key] = (int) $value;
-            }
-        endif;
-    elseif ($is_term_archive):
-        $filters = get_terms(
-            $taxonomy,
-            array(
-                'child_of' => $queried_object_id,
-                'orderby' => 'name'
-            )
-        );
-    else:
-        $filters = array();
-    endif;
+    if ($is_term_archive){
+        echo kapital_post_filters($is_general_post_archive, $is_term_archive, $queried_object_id, $taxonomy);
+    } else {
+        echo kapital_post_filters($is_general_post_archive, $is_term_archive, $queried_object_id);
+    }
 
-    if ($filters && !empty($filters)): ?>
-        <nav class="post-filters mt-5 text-end mb-4 mb-sm-5 alignwider">
-            <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="<?= __('Zobraziť filtre', 'kapital') ?>">
-                <?= __('Filter', 'kapital') ?><svg class="ms-2 icon-square">
-                    <use xlink:href="#icon-filter"></use>
-                </svg>
-            </button>
-            <div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">
-                <div class="filters-content py-2 py-sm-0">
-                    <button class="btn btn-close mb-2">
-                        <svg><use xlink:href="#icon-close"></use>
-                        </svg></button>
-                    <?php foreach ($filters as $filter):
-                        $term = get_term($filter); ?>
-                        <div class="my-2 mx-0 mx-sm-1">
-                            <a class="btn btn-outline text-center" href="<?php echo get_term_link($term) ?>"><?php echo $term->name; ?></a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </nav>
-    <?php endif; ?>
 
-    <?php if ($wp_query->have_posts()) :
+    if ($wp_query->have_posts()) :
         //justify post center when too few posts
         if ($wp_query->post_count < 4) {
             $justify_class = " justify-content-center";

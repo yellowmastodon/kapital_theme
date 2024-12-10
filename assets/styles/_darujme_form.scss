@@ -1,0 +1,34 @@
+.darujme-form{
+    .darujme-radio-input-btn{
+        position: absolute;
+        opacity: 0;
+        + label{
+            cursor: pointer;
+        }
+        &:focus-visible + label{
+            outline: solid 2px var(--#{$prefix}red) !important;
+            border-color: var(--#{$prefix}white);
+        }
+        &:checked + label{
+            background-color: var(--#{$prefix}red);
+            color: $white;
+            border-color:  var(--#{$prefix}red);;
+        }
+        &:checked:focus-visible + label{
+            border-color:  var(--#{$prefix}white);
+            outline: solid 2px  var(--#{$prefix}red);
+        }
+    }
+    .form-floating{
+        label, label::after{
+            background-color: transparent !important;
+        }
+    }
+}
+p{
+    margin-bottom: map-get($spacers, 3);
+}
+form .btn{
+    padding-bottom:  $input-btn-padding-y;
+    padding-top:  $input-btn-padding-y;
+}

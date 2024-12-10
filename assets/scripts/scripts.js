@@ -16,9 +16,10 @@ import { adInserter, checkSinglePost, registerClicks, checkAdInsertingEnabledSin
 import ajaxRequest from './ajax-request';
 import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
+import initializeForm from './donation-form';
 
 showMorePosts();
-
+initializeForm();
 //console.log(site_info);
 const isSinglePost = checkSinglePost();
 postFilterModal();

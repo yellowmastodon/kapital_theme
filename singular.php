@@ -7,7 +7,7 @@ $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
 if (!$render_settings["show_support"]) $ad_rendering_class .= " show-support";
 /** render breadcrumbs */
-echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container')
+if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container')
 
 /** MAIN */
 ?>
@@ -18,7 +18,7 @@ echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link
         $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
         $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies); ?>
 
-        <article <?php post_class(["main-content mt-4 mt-md-0"]); ?>>
+        <article <?php post_class(["main-content"]); ?>>
             <?php
 
             /** render post terms */
@@ -58,7 +58,7 @@ echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link
             </header>
             <?php //container with views, author, publish date and featured image 
             ?>
-            <div class="alignwide mb-5">
+            <div class="alignwide mb-5 header-bottom-container">
                 <?php //container with views, and publish date and author
                 if ($render_settings["show_views"] && $render_settings["show_date"] && $render_settings["show_author"]): ?>
                     <div class="row align-items-end justify-content-between mb-1">
@@ -119,6 +119,7 @@ echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link
                          * Render post content
                          * insert ad for support by default 
                          */
+                        //get_template_part('template-parts/donation-form');
                         the_content(); ?>
                     </div>
                     <?php

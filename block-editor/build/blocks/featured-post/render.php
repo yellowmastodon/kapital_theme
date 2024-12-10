@@ -85,7 +85,7 @@ else:
 	if ($attributes["isPost"]) {
 		$args = array(
 			'p' => $attributes["postId"],
-			'post_type' => 'any'
+			'post_type' => $attributes["featuredPostType"]
 		);
 		$featured_post_query = new WP_Query($args);
 		if ($featured_post_query->have_posts()):
@@ -94,7 +94,7 @@ else:
 				global $post;
 				$post_id = $post->ID;
 				$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
-				$thumbnail_id = get_post_meta($post->ID, '_thumbnail_id', true);
+				$thumbnail_id = (int) get_post_meta($post->ID, '_thumbnail_id', true);
 				$post_title = get_the_title($post);
 				$secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 				$post_excerpt = get_the_excerpt();
@@ -104,7 +104,7 @@ else:
 			endwhile;
 		endif;
 	} else {
-		$render_settings = kapital_get_render_settings(0, true);
+		$render_settings = kapital_get_render_settings(0, '', true);
 		$thumbnail_id = $attributes["customImageId"];
 		$post_title = $attributes["customHeading"];
 		$secondary_title = "";
@@ -126,28 +126,36 @@ else:
 	}
 	?>
 	<article class="featured-post archive-item alignwider ff-grotesk">
-		<div role="link" tabindex="0" onclick="window.location='<?php echo $post_permalink; ?>'" class="row gx-4 gy-3 archive-item-link text-decoration-none">
-			<div class="col-12 col-md-6">
-				<?php echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100") ?>
-			</div>
+		<div class="row gx-4 gy-3 archive-item-link text-decoration-none">
+			<a href="<?php echo $post_permalink; ?>" class="col-12 item-link col-md-6">
+				<?php 
+				if ($thumbnail_id !== 0){
+					echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100");
+				} else {
+					echo '<div class="rounded w-100 archive-item-image placeholder"></div>';
+				}
+				?>
+			</a>
 			<div class="col-12 col-md-6 position-relative">
 				<?php if ($attributes["isPost"]) render_top_row($post_type, $render_settings["show_date"], $render_settings["show_views"], $post_date, $post->ID, "d-none d-lg-flex") ?>
-				<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
-				<div class="item-excerpt red-color-hover lh-sm">
-					<?php if ($secondary_title !== "") {
-						echo '<p>' . $secondary_title . '</p>';
-						//arbitrary number, when the secondary title is too short, also include excerpt but shorter
-						if (strlen($secondary_title) < 14) {
-							echo $post_excerpt;
-						}
-					} else {
-						if (!$attributes["isPost"]) {
-							echo force_balance_tags(strip_tags($post_excerpt, ['<p>', '<i>', '<em>', '<b>', '<strong>']));
+				<a class="item-link text-decoration-none" href="<?php echo $post_permalink;?>">
+					<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
+					<div class="item-excerpt lh-sm">
+						<?php if ($secondary_title !== "") {
+							echo '<p>' . $secondary_title . '</p>';
+							//arbitrary number, when the secondary title is too short, also include excerpt but shorter
+							if (strlen($secondary_title) < 14) {
+								echo $post_excerpt;
+							}
 						} else {
-							echo $post_excerpt;
-						}
-					} ?>
-				</div>
+							if (!$attributes["isPost"]) {
+								echo force_balance_tags(strip_tags($post_excerpt, ['<p>', '<i>', '<em>', '<b>', '<strong>']));
+							} else {
+								echo $post_excerpt;
+							}
+						} ?>
+					</div>
+				</a>
 				<?php if ($attributes["isPost"]) render_bottom_row($post_type, $custom_taxonomies, $render_settings["show_categories"], $render_settings["show_author"], $filtered_terms); ?>
 			</div>
 		</div>

@@ -49,7 +49,7 @@ export default function Edit({
 		value: taxonomy.slug,
 	}));
 	const Heading = `h${attributes.headingLevel}`;
-	const wrapperClasses = attributes.backgroundColor ? "alignfull py-5" : "alignfull";
+	const wrapperClasses = attributes.backgroundColor ? "post-query alignfull py-5" : "post-query alignfull";
 	return (
 		<section {...useBlockProps({ className: wrapperClasses })}>
 			<InspectorControls>
@@ -129,10 +129,28 @@ export default function Edit({
 							title={__('Nastavenia zobrazenia', 'kapital')}
 						>	
 						<ToggleControl
-							label={__('Tlačidlo "Zobraziť viac')}
+							label={__('Tlačidlo "Zobraziť viac', 'kapital')}
 							checked={attributes.showMoreButton}
 							onChange={(newValue) => { setAttributes({ showMoreButton: newValue }) }}
 						/>
+						{attributes.queryPostType === "post" &&
+							<ToggleControl
+								label={__('Zobraziť filtre', 'kapital')}
+								checked={attributes.showFilters}
+								help={__('Zobrazí linky na vybrané kategórie, alebo na dcérske kategórie aktuálnej materskej kategórie', 'kapital')}
+								onChange={(newValue) => { setAttributes({ showFilters: newValue }) }}
+							/>
+						
+						}
+						{(attributes.queryPostType === "post" && attributes.taxonomy !== "none") &&
+							<ToggleControl
+								label={__('Zobraziť popis kategórie', 'kapital')}
+								checked={attributes.showDescription}
+								help={__('Zobrazí linky na vybrané kategórie, alebo na dcérske kategórie aktuálnej materskej kategórie', 'kapital')}
+								onChange={(newValue) => { setAttributes({ showDescription: newValue }) }}
+							/>
+						
+						}
 						<SelectControl
 							label={__('Nadpis', 'kapital')}
 							checked={attributes.showHeading}

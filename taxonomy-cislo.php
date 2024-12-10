@@ -34,7 +34,7 @@ echo kapital_breadcrumbs(array(
     ), 'container');
 ?>
 <main class="main container" role="main" id="main">
-    <header class="archive-header alignwide mb-5 mt-4 mt-md-0" role="heading">
+    <header class="archive-header alignwide mb-5" role="heading">
         <?php $original_archive_title = get_queried_object()->name;
         $formatted_title = kapital_get_issue_title_year_month($original_archive_title);
 

@@ -418,6 +418,7 @@ function customMetaSettings() {
       } else {
         custom_render_meta = {
           show_featured_image: true,
+          show_breadcrumbs: true,
           show_title: true,
           show_author: true,
           show_categories: true,
@@ -435,6 +436,7 @@ function customMetaSettings() {
       var updateMetaValue = function updateMetaValue(value, prop) {
         custom_render_meta = _objectSpread({
           show_featured_image: true,
+          show_breadcrumbs: true,
           show_title: true,
           show_author: true,
           show_categories: true,
@@ -464,6 +466,13 @@ function customMetaSettings() {
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital'),
             onChange: function onChange() {
               return updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image');
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+            __nextHasNoMarginBottom: true,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať breadcrumb navigáciu', 'kapital'),
+            checked: custom_render_meta.show_breadcrumbs,
+            onChange: function onChange() {
+              return updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs');
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
             __nextHasNoMarginBottom: true,

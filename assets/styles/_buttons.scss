@@ -22,6 +22,7 @@
     transition: $link_transition_speed linear;
     &.btn-block{
         @extend .d-block;
+        width: 100%;
     }
     svg{
         transition: $link_transition_speed linear;
@@ -36,7 +37,10 @@
     &.btn-primary{
         background-color: var(--#{$prefix}primary);
         border-color: var(--#{$prefix}primary);
-
+    }
+    &.btn-white{
+        background-color: var(--#{$prefix}white);
+        border-color: var(--#{$prefix}white);
     }
     &.btn-secondary{
         background-color: var(--#{$prefix}secondary);
