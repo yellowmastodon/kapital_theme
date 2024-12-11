@@ -1,6 +1,6 @@
 <?php 
 /**
- * Registers the `kapital/post-query-block` block on the server.
+ * Registers the `kapital/podcast-links` block on the server.
  * Limits registration to custom post type "podcast"
  */
 

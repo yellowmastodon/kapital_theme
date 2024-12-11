@@ -88,7 +88,7 @@ function Edit(_ref) {
   var attributes = _ref.attributes,
     setAttributes = _ref.setAttributes;
   /** @const integer total area in pixels, that each logo should occupy */
-  var TOTAL_LOGO_AREA = 14000;
+  var TOTAL_LOGO_AREA = 10000;
   var TEMPLATE = [['core/paragraph', {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Popiska sponzora', 'kapital')
   }]];
@@ -211,7 +211,7 @@ function Edit(_ref) {
             onSelect: updateImages
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "d-flex flex-row flex-wrap flex-md-column position-relative align-items-center",
+          className: "d-flex flex-row flex-wrap flex-md-column position-relative align-items-center align-items-md-start",
           children: [hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUploadCheck, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.MediaUpload, {
               multiple: true,
@@ -313,7 +313,7 @@ function save(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "col-12 col-md-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          class: "d-flex flex-wrap flex-row flex-md-column align-items-center",
+          class: "d-flex flex-wrap flex-row flex-md-column align-items-center align-items-md-start",
           children: attributes.images.map(function (image, key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               className: "mb-4 me-4 d-block",

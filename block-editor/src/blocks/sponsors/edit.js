@@ -6,7 +6,7 @@ import { useState } from '@wordpress/element';
 
 export default function Edit({ attributes, setAttributes }) {
 	/** @const integer total area in pixels, that each logo should occupy */
-	const TOTAL_LOGO_AREA = 14000;
+	const TOTAL_LOGO_AREA = 10000;
 	const TEMPLATE = [['core/paragraph', { placeholder: __('Popiska sponzora', 'kapital') }]];
 
 	const hasImages = attributes.images.length > 0;
@@ -77,7 +77,7 @@ export default function Edit({ attributes, setAttributes }) {
 							/>
 						</div>
 					)}
-					<div className="d-flex flex-row flex-wrap flex-md-column position-relative align-items-center">
+					<div className="d-flex flex-row flex-wrap flex-md-column position-relative align-items-center align-items-md-start">
 
 						{hasImages && (
 							<MediaUploadCheck>

@@ -1753,6 +1753,805 @@ a > .editor-styles-wrapper code {
     --kptl-gutter-y: 5rem;
   }
 }
+.editor-styles-wrapper .form-label {
+  margin-bottom: 0.5rem;
+}
+.editor-styles-wrapper .col-form-label {
+  padding-top: calc(0.6rem + 2px);
+  padding-bottom: calc(0.6rem + 2px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1;
+}
+.editor-styles-wrapper .col-form-label-lg {
+  padding-top: calc(0.5rem + 2px);
+  padding-bottom: calc(0.5rem + 2px);
+  font-size: 1.25rem;
+}
+.editor-styles-wrapper .col-form-label-sm {
+  padding-top: calc(0.25rem + 2px);
+  padding-bottom: calc(0.25rem + 2px);
+  font-size: 0.8rem;
+}
+.editor-styles-wrapper .form-text {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--kptl-secondary-color);
+}
+.editor-styles-wrapper .form-control {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1.2rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--kptl-body-color);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--kptl-body-bg);
+  background-clip: padding-box;
+  border: 2px solid var(--kptl-body-color);
+  border-radius: 9999px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-control {
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-control[type=file] {
+  overflow: hidden;
+}
+.editor-styles-wrapper .form-control[type=file]:not(:disabled):not([readonly]) {
+  cursor: pointer;
+}
+.editor-styles-wrapper .form-control:focus {
+  color: var(--kptl-body-color);
+  background-color: var(--kptl-body-bg);
+  border-color: var(--kptl-white);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+}
+.editor-styles-wrapper .form-control::-webkit-date-and-time-value {
+  min-width: 85px;
+  height: 1em;
+  margin: 0;
+}
+.editor-styles-wrapper .form-control::-webkit-datetime-edit {
+  display: block;
+  padding: 0;
+}
+.editor-styles-wrapper .form-control::-moz-placeholder {
+  color: var(--kptl-secondary-color);
+  opacity: 1;
+}
+.editor-styles-wrapper .form-control::placeholder {
+  color: var(--kptl-secondary-color);
+  opacity: 1;
+}
+.editor-styles-wrapper .form-control:disabled {
+  background-color: var(--kptl-secondary-bg);
+  opacity: 1;
+}
+.editor-styles-wrapper .form-control::file-selector-button {
+  padding: 0.6rem 1.2rem;
+  margin: -0.6rem -1.2rem;
+  margin-inline-end: 1.2rem;
+  color: var(--kptl-body-color);
+  background-color: var(--kptl-tertiary-bg);
+  pointer-events: none;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  border-inline-end-width: 2px;
+  border-radius: 0;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-control::file-selector-button {
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+  background-color: var(--kptl-secondary-bg);
+}
+.editor-styles-wrapper .form-control-plaintext {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0;
+  margin-bottom: 0;
+  line-height: 1;
+  color: var(--kptl-body-color);
+  background-color: transparent;
+  border: solid transparent;
+  border-width: 2px 0;
+}
+.editor-styles-wrapper .form-control-plaintext:focus {
+  outline: 0;
+}
+.editor-styles-wrapper .form-control-plaintext.form-control-sm, .editor-styles-wrapper .form-control-plaintext.form-control-lg {
+  padding-right: 0;
+  padding-left: 0;
+}
+.editor-styles-wrapper .form-control-sm {
+  min-height: calc(1em + 0.5rem + calc(2px * 2));
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: var(--kptl-border-radius-sm);
+}
+.editor-styles-wrapper .form-control-sm::file-selector-button {
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem;
+  margin-inline-end: 0.5rem;
+}
+.editor-styles-wrapper .form-control-lg {
+  min-height: calc(1em + 1rem + calc(2px * 2));
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: var(--kptl-border-radius-lg);
+}
+.editor-styles-wrapper .form-control-lg::file-selector-button {
+  padding: 0.5rem 1rem;
+  margin: -0.5rem -1rem;
+  margin-inline-end: 1rem;
+}
+.editor-styles-wrapper textarea.form-control {
+  min-height: calc(1em + 1.2rem + calc(2px * 2));
+}
+.editor-styles-wrapper textarea.form-control-sm {
+  min-height: calc(1em + 0.5rem + calc(2px * 2));
+}
+.editor-styles-wrapper textarea.form-control-lg {
+  min-height: calc(1em + 1rem + calc(2px * 2));
+}
+.editor-styles-wrapper .form-control-color {
+  width: 3rem;
+  height: calc(1em + 1.2rem + calc(2px * 2));
+  padding: 0.6rem;
+}
+.editor-styles-wrapper .form-control-color:not(:disabled):not([readonly]) {
+  cursor: pointer;
+}
+.editor-styles-wrapper .form-control-color::-moz-color-swatch {
+  border: 0 !important;
+  border-radius: 9999px;
+}
+.editor-styles-wrapper .form-control-color::-webkit-color-swatch {
+  border: 0 !important;
+  border-radius: 9999px;
+}
+.editor-styles-wrapper .form-control-color.form-control-sm {
+  height: calc(1em + 0.5rem + calc(2px * 2));
+}
+.editor-styles-wrapper .form-control-color.form-control-lg {
+  height: calc(1em + 1rem + calc(2px * 2));
+}
+.editor-styles-wrapper .form-select {
+  --kptl-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  display: block;
+  width: 100%;
+  padding: 0.6rem 3.6rem 0.6rem 1.2rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--kptl-body-color);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--kptl-body-bg);
+  background-image: var(--kptl-form-select-bg-img), var(--kptl-form-select-bg-icon, none);
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 16px 12px;
+  border: 2px solid var(--kptl-body-color);
+  border-radius: 9999px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-select {
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-select:focus {
+  border-color: var(--kptl-white);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+}
+.editor-styles-wrapper .form-select[multiple], .editor-styles-wrapper .form-select[size]:not([size="1"]) {
+  padding-right: 1.2rem;
+  background-image: none;
+}
+.editor-styles-wrapper .form-select:disabled {
+  background-color: var(--kptl-secondary-bg);
+}
+.editor-styles-wrapper .form-select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--kptl-body-color);
+}
+.editor-styles-wrapper .form-select-sm {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.8rem;
+  border-radius: var(--kptl-border-radius-sm);
+}
+.editor-styles-wrapper .form-select-lg {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  border-radius: var(--kptl-border-radius-lg);
+}
+.editor-styles-wrapper .form-check {
+  display: block;
+  min-height: 1.7rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+}
+.editor-styles-wrapper .form-check .form-check-input {
+  float: left;
+  margin-left: -1.5em;
+}
+.editor-styles-wrapper .form-check-reverse {
+  padding-right: 1.5em;
+  padding-left: 0;
+  text-align: right;
+}
+.editor-styles-wrapper .form-check-reverse .form-check-input {
+  float: right;
+  margin-right: -1.5em;
+  margin-left: 0;
+}
+.editor-styles-wrapper .form-check-input {
+  --kptl-form-check-bg: var(--kptl-body-bg);
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.35em;
+  vertical-align: top;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--kptl-form-check-bg);
+  background-image: var(--kptl-form-check-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 2px solid var(--kptl-body-color);
+  -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+}
+.editor-styles-wrapper .form-check-input[type=checkbox] {
+  border-radius: 0.25em;
+}
+.editor-styles-wrapper .form-check-input[type=radio] {
+  border-radius: 50%;
+}
+.editor-styles-wrapper .form-check-input:active {
+  filter: brightness(90%);
+}
+.editor-styles-wrapper .form-check-input:focus {
+  border-color: var(--kptl-white);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+}
+.editor-styles-wrapper .form-check-input:checked {
+  background-color: var(--kptl-white);
+  border-color: var(--kptl-body-color);
+}
+.editor-styles-wrapper .form-check-input:checked[type=checkbox] {
+  --kptl-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+.editor-styles-wrapper .form-check-input:checked[type=radio] {
+  --kptl-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23000'/%3e%3c/svg%3e");
+}
+.editor-styles-wrapper .form-check-input[type=checkbox]:indeterminate {
+  background-color: #ffc2fe;
+  border-color: #ffc2fe;
+  --kptl-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+}
+.editor-styles-wrapper .form-check-input:disabled {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.5;
+}
+.editor-styles-wrapper .form-check-input[disabled] ~ .form-check-label, .editor-styles-wrapper .form-check-input:disabled ~ .form-check-label {
+  cursor: default;
+  opacity: 0.5;
+}
+.editor-styles-wrapper .form-switch {
+  padding-left: 2.5em;
+}
+.editor-styles-wrapper .form-switch .form-check-input {
+  --kptl-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+  width: 2em;
+  margin-left: -2.5em;
+  background-image: var(--kptl-form-switch-bg);
+  background-position: left center;
+  border-radius: 2em;
+  transition: background-position 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-switch .form-check-input {
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-switch .form-check-input:focus {
+  --kptl-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var%28--kptl-white%29'/%3e%3c/svg%3e");
+}
+.editor-styles-wrapper .form-switch .form-check-input:checked {
+  background-position: right center;
+  --kptl-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+.editor-styles-wrapper .form-switch.form-check-reverse {
+  padding-right: 2.5em;
+  padding-left: 0;
+}
+.editor-styles-wrapper .form-switch.form-check-reverse .form-check-input {
+  margin-right: -2.5em;
+  margin-left: 0;
+}
+.editor-styles-wrapper .form-check-inline {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.editor-styles-wrapper .btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+.editor-styles-wrapper .btn-check[disabled] + .btn, .editor-styles-wrapper .btn-check[disabled] + .wp-element-button, .editor-styles-wrapper .btn-check[disabled] + .wp-block-button__link, .editor-styles-wrapper .btn-check:disabled + .btn, .editor-styles-wrapper .btn-check:disabled + .wp-element-button, .editor-styles-wrapper .btn-check:disabled + .wp-block-button__link {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+.editor-styles-wrapper .form-range {
+  width: 100%;
+  height: 1.5rem;
+  padding: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+}
+.editor-styles-wrapper .form-range:focus {
+  outline: 0;
+}
+.editor-styles-wrapper .form-range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+}
+.editor-styles-wrapper .form-range:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+}
+.editor-styles-wrapper .form-range::-moz-focus-outer {
+  border: 0;
+}
+.editor-styles-wrapper .form-range::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.25rem;
+  -webkit-appearance: none;
+          appearance: none;
+  background-color: #ffc2fe;
+  border: 0;
+  border-radius: 1rem;
+  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-range::-webkit-slider-thumb {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-range::-webkit-slider-thumb:active {
+  background-color: #ffedff;
+}
+.editor-styles-wrapper .form-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 0.5rem;
+  color: transparent;
+  cursor: pointer;
+  background-color: var(--kptl-secondary-bg);
+  border-color: transparent;
+  border-radius: 1rem;
+}
+.editor-styles-wrapper .form-range::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  -moz-appearance: none;
+       appearance: none;
+  background-color: #ffc2fe;
+  border: 0;
+  border-radius: 1rem;
+  -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-range::-moz-range-thumb {
+    -moz-transition: none;
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-range::-moz-range-thumb:active {
+  background-color: #ffedff;
+}
+.editor-styles-wrapper .form-range::-moz-range-track {
+  width: 100%;
+  height: 0.5rem;
+  color: transparent;
+  cursor: pointer;
+  background-color: var(--kptl-secondary-bg);
+  border-color: transparent;
+  border-radius: 1rem;
+}
+.editor-styles-wrapper .form-range:disabled {
+  pointer-events: none;
+}
+.editor-styles-wrapper .form-range:disabled::-webkit-slider-thumb {
+  background-color: var(--kptl-secondary-color);
+}
+.editor-styles-wrapper .form-range:disabled::-moz-range-thumb {
+  background-color: var(--kptl-secondary-color);
+}
+.editor-styles-wrapper .form-floating {
+  position: relative;
+}
+.editor-styles-wrapper .form-floating > .form-control,
+.editor-styles-wrapper .form-floating > .form-control-plaintext,
+.editor-styles-wrapper .form-floating > .form-select {
+  height: calc(2.6rem + calc(2px * 2));
+  min-height: calc(2.6rem + calc(2px * 2));
+  line-height: 1.35;
+}
+.editor-styles-wrapper .form-floating > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  padding: 0.4rem 1.2rem;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 2px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor-styles-wrapper .form-floating > label {
+    transition: none;
+  }
+}
+.editor-styles-wrapper .form-floating > .form-control,
+.editor-styles-wrapper .form-floating > .form-control-plaintext {
+  padding: 0.4rem 1.2rem;
+}
+.editor-styles-wrapper .form-floating > .form-control::-moz-placeholder, .editor-styles-wrapper .form-floating > .form-control-plaintext::-moz-placeholder {
+  color: transparent;
+}
+.editor-styles-wrapper .form-floating > .form-control::placeholder,
+.editor-styles-wrapper .form-floating > .form-control-plaintext::placeholder {
+  color: transparent;
+}
+.editor-styles-wrapper .form-floating > .form-control:not(:-moz-placeholder-shown), .editor-styles-wrapper .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
+  padding-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+.editor-styles-wrapper .form-floating > .form-control:focus, .editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown),
+.editor-styles-wrapper .form-floating > .form-control-plaintext:focus,
+.editor-styles-wrapper .form-floating > .form-control-plaintext:not(:placeholder-shown) {
+  padding-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+.editor-styles-wrapper .form-floating > .form-control:-webkit-autofill,
+.editor-styles-wrapper .form-floating > .form-control-plaintext:-webkit-autofill {
+  padding-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+.editor-styles-wrapper .form-floating > .form-select {
+  padding-top: 1.2rem;
+  padding-bottom: 0.4rem;
+}
+.editor-styles-wrapper .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+  color: rgba(var(--kptl-body-color-rgb), 0.65);
+  transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
+}
+.editor-styles-wrapper .form-floating > .form-control:focus ~ label,
+.editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown) ~ label,
+.editor-styles-wrapper .form-floating > .form-control-plaintext ~ label,
+.editor-styles-wrapper .form-floating > .form-select ~ label {
+  color: rgba(var(--kptl-body-color-rgb), 0.65);
+  transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
+}
+.editor-styles-wrapper .form-floating > .form-control:not(:-moz-placeholder-shown) ~ label::after {
+  position: absolute;
+  inset: 0.4rem 0.6rem;
+  z-index: -1;
+  height: 1em;
+  content: "";
+  background-color: var(--kptl-body-bg);
+  border-radius: 9999px;
+}
+.editor-styles-wrapper .form-floating > .form-control:focus ~ label::after,
+.editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
+.editor-styles-wrapper .form-floating > .form-control-plaintext ~ label::after,
+.editor-styles-wrapper .form-floating > .form-select ~ label::after {
+  position: absolute;
+  inset: 0.4rem 0.6rem;
+  z-index: -1;
+  height: 1em;
+  content: "";
+  background-color: var(--kptl-body-bg);
+  border-radius: 9999px;
+}
+.editor-styles-wrapper .form-floating > .form-control:-webkit-autofill ~ label {
+  color: rgba(var(--kptl-body-color-rgb), 0.65);
+  transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
+}
+.editor-styles-wrapper .form-floating > .form-control-plaintext ~ label {
+  border-width: 2px 0;
+}
+.editor-styles-wrapper .form-floating > :disabled ~ label,
+.editor-styles-wrapper .form-floating > .form-control:disabled ~ label {
+  color: #757575;
+}
+.editor-styles-wrapper .form-floating > :disabled ~ label::after,
+.editor-styles-wrapper .form-floating > .form-control:disabled ~ label::after {
+  background-color: var(--kptl-secondary-bg);
+}
+.editor-styles-wrapper .input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+.editor-styles-wrapper .input-group > .form-control,
+.editor-styles-wrapper .input-group > .form-select,
+.editor-styles-wrapper .input-group > .form-floating {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+}
+.editor-styles-wrapper .input-group > .form-control:focus,
+.editor-styles-wrapper .input-group > .form-select:focus,
+.editor-styles-wrapper .input-group > .form-floating:focus-within {
+  z-index: 5;
+}
+.editor-styles-wrapper .input-group .btn, .editor-styles-wrapper .input-group .wp-element-button, .editor-styles-wrapper .input-group .wp-block-button__link {
+  position: relative;
+  z-index: 2;
+}
+.editor-styles-wrapper .input-group .btn:focus, .editor-styles-wrapper .input-group .wp-element-button:focus, .editor-styles-wrapper .input-group .wp-block-button__link:focus {
+  z-index: 5;
+}
+.editor-styles-wrapper .input-group-text {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--kptl-body-color);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--kptl-tertiary-bg);
+  border: 2px solid var(--kptl-body-color);
+  border-radius: 9999px;
+}
+.editor-styles-wrapper .input-group-lg > .form-control,
+.editor-styles-wrapper .input-group-lg > .form-select,
+.editor-styles-wrapper .input-group-lg > .input-group-text,
+.editor-styles-wrapper .input-group-lg > .btn,
+.editor-styles-wrapper .input-group-lg > .wp-element-button,
+.editor-styles-wrapper .input-group-lg > .wp-block-button__link {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: var(--kptl-border-radius-lg);
+}
+.editor-styles-wrapper .input-group-sm > .form-control,
+.editor-styles-wrapper .input-group-sm > .form-select,
+.editor-styles-wrapper .input-group-sm > .input-group-text,
+.editor-styles-wrapper .input-group-sm > .btn,
+.editor-styles-wrapper .input-group-sm > .wp-element-button,
+.editor-styles-wrapper .input-group-sm > .wp-block-button__link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: var(--kptl-border-radius-sm);
+}
+.editor-styles-wrapper .input-group-lg > .form-select,
+.editor-styles-wrapper .input-group-sm > .form-select {
+  padding-right: 4.8rem;
+}
+.editor-styles-wrapper .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.editor-styles-wrapper .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3),
+.editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control,
+.editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.editor-styles-wrapper .input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.editor-styles-wrapper .input-group.has-validation > .dropdown-toggle:nth-last-child(n+4),
+.editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-control,
+.editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.editor-styles-wrapper .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: calc(2px * -1);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .form-control,
+.editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .form-select {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.editor-styles-wrapper .valid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--kptl-form-valid-color);
+}
+.editor-styles-wrapper .valid-tooltip {
+  position: absolute;
+  top: 100%;
+  z-index: 5;
+  display: none;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: var(--kptl-success);
+  border-radius: var(--kptl-border-radius);
+}
+.was-validated .editor-styles-wrapper:valid ~ .valid-feedback,
+.was-validated .editor-styles-wrapper:valid ~ .valid-tooltip, .editor-styles-wrapper.is-valid ~ .valid-feedback,
+.editor-styles-wrapper.is-valid ~ .valid-tooltip {
+  display: block;
+}
+.was-validated .editor-styles-wrapper .form-control:valid, .editor-styles-wrapper .form-control.is-valid {
+  border-color: var(--kptl-form-valid-border-color);
+  padding-right: calc(1em + 1.2rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.25em + 0.3rem) center;
+  background-size: calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+}
+.was-validated .editor-styles-wrapper .form-control:valid:focus, .editor-styles-wrapper .form-control.is-valid:focus {
+  border-color: var(--kptl-form-valid-border-color);
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper textarea.form-control:valid, .editor-styles-wrapper textarea.form-control.is-valid {
+  padding-right: calc(1em + 1.2rem);
+  background-position: top calc(0.25em + 0.3rem) right calc(0.25em + 0.3rem);
+}
+.was-validated .editor-styles-wrapper .form-select:valid, .editor-styles-wrapper .form-select.is-valid {
+  border-color: var(--kptl-form-valid-border-color);
+}
+.was-validated .editor-styles-wrapper .form-select:valid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:valid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-valid:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-valid:not([multiple])[size="1"] {
+  --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  padding-right: 6.6rem;
+  background-position: right 1.2rem center, center right 3.6rem;
+  background-size: 16px 12px, calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+}
+.was-validated .editor-styles-wrapper .form-select:valid:focus, .editor-styles-wrapper .form-select.is-valid:focus {
+  border-color: var(--kptl-form-valid-border-color);
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper .form-control-color:valid, .editor-styles-wrapper .form-control-color.is-valid {
+  width: calc(3rem + calc(1em + 1.2rem));
+}
+.was-validated .editor-styles-wrapper .form-check-input:valid, .editor-styles-wrapper .form-check-input.is-valid {
+  border-color: var(--kptl-form-valid-border-color);
+}
+.was-validated .editor-styles-wrapper .form-check-input:valid:checked, .editor-styles-wrapper .form-check-input.is-valid:checked {
+  background-color: var(--kptl-form-valid-color);
+}
+.was-validated .editor-styles-wrapper .form-check-input:valid:focus, .editor-styles-wrapper .form-check-input.is-valid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper .form-check-input:valid ~ .form-check-label, .editor-styles-wrapper .form-check-input.is-valid ~ .form-check-label {
+  color: var(--kptl-form-valid-color);
+}
+.editor-styles-wrapper .form-check-inline .form-check-input ~ .valid-feedback {
+  margin-left: 0.5em;
+}
+.was-validated .editor-styles-wrapper .input-group > .form-control:not(:focus):valid, .editor-styles-wrapper .input-group > .form-control:not(:focus).is-valid,
+.was-validated .editor-styles-wrapper .input-group > .form-select:not(:focus):valid,
+.editor-styles-wrapper .input-group > .form-select:not(:focus).is-valid,
+.was-validated .editor-styles-wrapper .input-group > .form-floating:not(:focus-within):valid,
+.editor-styles-wrapper .input-group > .form-floating:not(:focus-within).is-valid {
+  z-index: 3;
+}
+.editor-styles-wrapper .invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--kptl-form-invalid-color);
+}
+.editor-styles-wrapper .invalid-tooltip {
+  position: absolute;
+  top: 100%;
+  z-index: 5;
+  display: none;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.1rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background-color: var(--kptl-danger);
+  border-radius: var(--kptl-border-radius);
+}
+.was-validated .editor-styles-wrapper:invalid ~ .invalid-feedback,
+.was-validated .editor-styles-wrapper:invalid ~ .invalid-tooltip, .editor-styles-wrapper.is-invalid ~ .invalid-feedback,
+.editor-styles-wrapper.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.was-validated .editor-styles-wrapper .form-control:invalid, .editor-styles-wrapper .form-control.is-invalid {
+  border-color: var(--kptl-form-invalid-border-color);
+  padding-right: calc(1em + 1.2rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.25em + 0.3rem) center;
+  background-size: calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+}
+.was-validated .editor-styles-wrapper .form-control:invalid:focus, .editor-styles-wrapper .form-control.is-invalid:focus {
+  border-color: var(--kptl-form-invalid-border-color);
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper textarea.form-control:invalid, .editor-styles-wrapper textarea.form-control.is-invalid {
+  padding-right: calc(1em + 1.2rem);
+  background-position: top calc(0.25em + 0.3rem) right calc(0.25em + 0.3rem);
+}
+.was-validated .editor-styles-wrapper .form-select:invalid, .editor-styles-wrapper .form-select.is-invalid {
+  border-color: var(--kptl-form-invalid-border-color);
+}
+.was-validated .editor-styles-wrapper .form-select:invalid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:invalid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-invalid:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-invalid:not([multiple])[size="1"] {
+  --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
+  padding-right: 6.6rem;
+  background-position: right 1.2rem center, center right 3.6rem;
+  background-size: 16px 12px, calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+}
+.was-validated .editor-styles-wrapper .form-select:invalid:focus, .editor-styles-wrapper .form-select.is-invalid:focus {
+  border-color: var(--kptl-form-invalid-border-color);
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper .form-control-color:invalid, .editor-styles-wrapper .form-control-color.is-invalid {
+  width: calc(3rem + calc(1em + 1.2rem));
+}
+.was-validated .editor-styles-wrapper .form-check-input:invalid, .editor-styles-wrapper .form-check-input.is-invalid {
+  border-color: var(--kptl-form-invalid-border-color);
+}
+.was-validated .editor-styles-wrapper .form-check-input:invalid:checked, .editor-styles-wrapper .form-check-input.is-invalid:checked {
+  background-color: var(--kptl-form-invalid-color);
+}
+.was-validated .editor-styles-wrapper .form-check-input:invalid:focus, .editor-styles-wrapper .form-check-input.is-invalid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
+}
+.was-validated .editor-styles-wrapper .form-check-input:invalid ~ .form-check-label, .editor-styles-wrapper .form-check-input.is-invalid ~ .form-check-label {
+  color: var(--kptl-form-invalid-color);
+}
+.editor-styles-wrapper .form-check-inline .form-check-input ~ .invalid-feedback {
+  margin-left: 0.5em;
+}
+.was-validated .editor-styles-wrapper .input-group > .form-control:not(:focus):invalid, .editor-styles-wrapper .input-group > .form-control:not(:focus).is-invalid,
+.was-validated .editor-styles-wrapper .input-group > .form-select:not(:focus):invalid,
+.editor-styles-wrapper .input-group > .form-select:not(:focus).is-invalid,
+.was-validated .editor-styles-wrapper .input-group > .form-floating:not(:focus-within):invalid,
+.editor-styles-wrapper .input-group > .form-floating:not(:focus-within).is-invalid {
+  z-index: 4;
+}
 .editor-styles-wrapper .fade {
   transition: opacity 0.15s linear;
 }
@@ -7714,7 +8513,7 @@ a > .editor-styles-wrapper code {
   touch-action: pan-y pinch-zoom manipulation;
 }
 .editor-styles-wrapper p:last-child {
-  margin-bottom: 0px !important;
+  margin-bottom: 0px;
 }
 .editor-styles-wrapper #main {
   padding-top: 2rem;
@@ -8429,6 +9228,11 @@ button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-butt
 .wp-block-kapital-sponsors p {
   margin-bottom: 1.5rem;
 }
+.wp-block-kapital-sponsors img {
+  max-width: 220px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 
 .archive-podcast-item {
   display: grid;
@@ -8601,6 +9405,65 @@ body.modal-open {
     flex-direction: column;
   }
 }
+#darujme-form-wrapper {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+#darujme-form-wrapper p:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 900px) {
+  #darujme-form-wrapper.collapsed {
+    border-radius: 4rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+#darujme-expanded-form {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  transition-delay: 0.001s;
+}
+
+#darujme-form-wrapper.collapsed #darujme-expanded-form {
+  opacity: 0;
+  position: absolute;
+}
+
+#darujme-form-wrapper:not(.collapsed) #darujme-collapsed-form {
+  display: none;
+}
+
+.darujme-form .darujme-radio-input-btn {
+  position: absolute;
+  opacity: 0;
+}
+.darujme-form .darujme-radio-input-btn + label {
+  cursor: pointer;
+}
+.darujme-form .darujme-radio-input-btn:focus-visible + label {
+  outline: solid 2px var(--kptl-red) !important;
+  border-color: var(--kptl-white);
+}
+.darujme-form .darujme-radio-input-btn:checked + label {
+  background-color: var(--kptl-red);
+  color: #fff;
+  border-color: var(--kptl-red);
+}
+.darujme-form .darujme-radio-input-btn:checked:focus-visible + label {
+  border-color: var(--kptl-white);
+  outline: solid 2px var(--kptl-red);
+}
+.darujme-form .form-floating label, .darujme-form .form-floating label::after {
+  background-color: transparent !important;
+}
+
+form .btn, form .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper form .wp-element-button, form .editor-styles-wrapper .wp-block-button__link, .editor-styles-wrapper form .wp-block-button__link {
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
+}
+
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)) {
   overflow: hidden;
 }

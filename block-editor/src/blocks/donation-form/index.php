@@ -1,11 +1,11 @@
 <?php 
 /**
- * Registers the `kapital/podcast-links` block on the server.
+ * Registers the `kapital/donation-form` block on the server.
  * Limits registration to custom post type "podcast"
  */
 
-add_action('init', 'maybe_register_podcast_links_block');
-function maybe_register_podcast_links_block()
+add_action('init', 'maybe_register_donation_form_block');
+function maybe_register_donation_form_block()
 {
   // Check if this is the intended custom post type
   if (is_admin()) {
@@ -28,8 +28,12 @@ function maybe_register_podcast_links_block()
         $typenow = $post->post_type;
       }
     }
-    if ($typenow != 'podcast') {
-      return;
+    //podcast and post handle insertion automatically
+    if ($typenow == 'podcast' || $typenow == 'post') {
+      //return;
+      register_block_type(
+        __DIR__
+    );
     }
   }
 
@@ -38,18 +42,3 @@ function maybe_register_podcast_links_block()
         __DIR__
     );
 }
-
-
-register_post_meta( 'podcast', '_podcast_links', array(
-    'auth_callback' => function() { 
-        return current_user_can( 'edit_posts' );
-    },
-    'show_in_rest'  => [
-        true,
-        'schema' => [
-            'type'       => 'string',
-        ],
-    ],
-    'single' => true,
-    'type' => 'string',
-) );

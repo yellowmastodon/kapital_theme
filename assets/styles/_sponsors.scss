@@ -2,4 +2,8 @@
     p{
         margin-bottom: map-get($spacers, 4);
     }
+    img{
+        max-width: 220px;
+        object-fit: contain;
+    }
 }

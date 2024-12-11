@@ -13,7 +13,7 @@ $wrapper_classes = "";
 if (isset($attributes["backgroundColor"])){
 	$wrapper_classes = ' bg-' . $attributes["backgroundColor"] . ' py-5'; //add also padding when background color is set
 }
-if (!$attributes["isEditor"]) echo '<section class="post-query alignfull' . $wrapper_classes . '">';
+if (!$attributes["isEditor"]) echo '<section class="post-query alignfull px-3' . $wrapper_classes . '">';
 
 
 $queried_terms = array();
@@ -215,7 +215,7 @@ if ($attributes["showMoreButton"]){
 $term_description = "";
 if ($is_term_archive && $attributes["showDescription"]){
 	if ($queried_terms[0]->description !== ""){
-		$term_description = '<div class="term-description align-wide h4 text-center ff-grotesk fw-bold lh-sm">';
+		$term_description = '<div class="term-description alignwide h4 text-center ff-grotesk fw-bold lh-sm">';
 		foreach ($queried_terms as $queried_term){
 			$term_description .= wpautop($queried_term->description, true);
 		}

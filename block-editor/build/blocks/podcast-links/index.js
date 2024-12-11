@@ -578,7 +578,7 @@ function _unsupportedIterableToArray(r, a) {
   \**********************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/podcast-links","version":"0.1.0","title":"Linky podcastu","category":"theme","icon":"admin-links","description":"Linky na externé platformy pre vypočutie podcastu","example":{},"supports":{"html":false},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/podcast-links","version":"0.1.0","title":"Linky podcastu","category":"theme","icon":"admin-links","description":"Linky na externé platformy pre vypočutie podcastu","example":{},"supports":{"html":false},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

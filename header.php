@@ -23,7 +23,11 @@ $homepage_link = home_url();
 $site_name = get_bloginfo('name');
 //option for support inserting. Check if campaing active
 $darujme_options = get_option('kapital_darujme_settings');
-$body_classes = $darujme_options["campaign_active"] ? 'darujme-active' : 'darujme-disabled'?>
+if (isset($darujme_options["campaign_active"])){
+    $body_classes = $darujme_options["campaign_active"] ? 'darujme-active' : 'darujme-disabled';
+} else {
+    $body_classes = 'darujme-disabled';
+}?>
 <body <?php body_class($body_classes); ?>>
     <?php //svg sprites
     get_template_part('template-parts/inline-svg-icons');

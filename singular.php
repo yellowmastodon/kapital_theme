@@ -5,7 +5,7 @@ $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 //show/hide auto inserted ads controlled by this class
 $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
-if (!$render_settings["show_support"]) $ad_rendering_class .= " show-support";
+if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
 /** render breadcrumbs */
 if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container')
 
@@ -119,12 +119,11 @@ if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Článk
                          * Render post content
                          * insert ad for support by default 
                          */
-                        //get_template_part('template-parts/donation-form');
                         the_content(); ?>
                     </div>
                     <?php
                     if ($render_settings["show_footer"]):
-                        get_template_part('template-parts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
+                        get_template_part('template-paprts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
                     endif; ?>
         </article>
     <?php endwhile; ?>

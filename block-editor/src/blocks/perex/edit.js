@@ -11,7 +11,7 @@ import {
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, ToolbarItem, ToolbarGroup, RangeControl, Toolbar, ToolbarButton, BaseControl } from '@wordpress/components';
+import { PanelBody, ToggleControl } from '@wordpress/components';
 import { __, _x } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 

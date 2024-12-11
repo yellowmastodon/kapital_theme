@@ -126,7 +126,7 @@ else:
 	}
 	?>
 	<article class="featured-post archive-item alignwider ff-grotesk">
-		<div class="row gx-4 gy-3 archive-item-link text-decoration-none">
+		<div class="row gx-4 gy-3 archive-item-link image-wrapper text-decoration-none" tabindex="-1">
 			<a href="<?php echo $post_permalink; ?>" class="col-12 item-link col-md-6">
 				<?php 
 				if ($thumbnail_id !== 0){

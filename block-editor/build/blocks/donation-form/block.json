@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "kapital/donation-form",
+  "version": "0.1.0",
+  "title": "Darovací formulár",
+  "category": "theme",
+  "description": "Darovací formulár Darujme.sk",
+  "example": {},
+  "supports": {
+    "multiple": false,
+    "html": false
+  },
+  "attributes": {
+    "showCollapsed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "kapital",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

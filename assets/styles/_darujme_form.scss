@@ -1,3 +1,38 @@
+
+
+#darujme-form-wrapper{
+    padding: map-get($spacers, 3);
+    border-radius: $border-radius;
+    p:not(:last-child){
+        margin-bottom: map-get($spacers, 3);
+    }
+}
+
+@include media-breakpoint-up('md'){
+    #darujme-form-wrapper.collapsed{
+        border-radius: 4rem;
+        padding-left: map-get($spacers, 6);
+        padding-right: map-get($spacers, 6);
+
+    }
+}
+#darujme-expanded-form{
+    opacity: 1;
+    transition: opacity .2s ease;
+    transition-delay: .001s; //just to be sure, that it is no longer position absolute
+}
+
+#darujme-form-wrapper.collapsed{
+    #darujme-expanded-form{
+        opacity: 0;
+        position: absolute;
+    }
+}
+#darujme-form-wrapper:not(.collapsed){
+    #darujme-collapsed-form{
+            display: none;
+        }
+}
 .darujme-form{
     .darujme-radio-input-btn{
         position: absolute;
@@ -24,11 +59,11 @@
             background-color: transparent !important;
         }
     }
+
+
 }
-p{
-    margin-bottom: map-get($spacers, 3);
-}
+
 form .btn{
-    padding-bottom:  $input-btn-padding-y;
-    padding-top:  $input-btn-padding-y;
+    padding-bottom: $input-btn-padding-y;
+    padding-top: $input-btn-padding-y;
 }

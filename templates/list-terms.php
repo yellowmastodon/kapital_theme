@@ -12,7 +12,7 @@ echo kapital_breadcrumbs(array(
 
 <main class="main container" role="main" id="main">
 
-    <header class="mb-5">
+    <header class="mb-6">
         <?php echo kapital_bubble_title(get_the_title(), 1, 'term-list-title');?>
     </header>
     <?php

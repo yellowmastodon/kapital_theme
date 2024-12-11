@@ -12,27 +12,36 @@ import 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/tab';
 // import 'bootstrap/js/dist/toast';
 // import 'bootstrap/js/dist/tooltip';
-import { adInserter, checkSinglePost, registerClicks, checkAdInsertingEnabledSinglePost } from './ad-inserter';
+import { adInserter,
+    checkSinglePostOrPodcast,
+    checkDarujmeActive,
+    checkAdInsertingEnabled,
+    checkDonationInsertingEnabled,
+    registerClicks,} from './ad-inserter';
 import ajaxRequest from './ajax-request';
 import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
 
 showMorePosts();
-initializeForm();
+const donation_form_wrapper = document.getElementById("darujme-form-wrapper");
+if (donation_form_wrapper){
+    initializeForm(donation_form_wrapper);
+}
 //console.log(site_info);
-const isSinglePost = checkSinglePost();
+const isSinglePostOrPodcast = checkSinglePostOrPodcast();
+const AdInsertingEnabled = checkAdInsertingEnabled();
+const DonationInsertingEnabled = checkDonationInsertingEnabled();
 postFilterModal();
 
 //adInserter();
-if (isSinglePost) {
-    if (checkAdInsertingEnabledSinglePost()) {
-        ajaxRequest('adinserter', { single: true }, adInserter, [true, ajaxRequest]);
-    }
+if (isSinglePostOrPodcast) {
+    if (AdInsertingEnabled || DonationInsertingEnabled) {
+        ajaxRequest('adinserter', { onead: true, ad: AdInsertingEnabled, donation: DonationInsertingEnabled}, adInserter, [true, ajaxRequest]);
+    } 
 } else {
-    ajaxRequest('adinserter', { single: false }, adInserter, [false, ajaxRequest]);
+    ajaxRequest('adinserter', { onead: false, ad: AdInsertingEnabled, donation: false }, adInserter, [false, ajaxRequest]);
 }
-
 const topHeader = document.getElementById('top-header');
 const topHeaderLogo = topHeader.querySelector('svg');
 const horizontalNavLogo = document.getElementById('horizontal-nav-logo');

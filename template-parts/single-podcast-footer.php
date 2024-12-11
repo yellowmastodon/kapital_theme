@@ -2,7 +2,6 @@
 /**
  * displays recommended podcast on single podcast page
  */
-
 if (isset($args['custom_taxonomies']) && isset($args['filtered_terms']) && !empty($args['filtered_terms'])):
     $custom_taxonomies = $args['custom_taxonomies'];
     $filtered_terms = $args['filtered_terms'];
