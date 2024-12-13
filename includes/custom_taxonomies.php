@@ -618,12 +618,15 @@ function term_editor_includes()
 }
 add_action('init', 'term_editor_includes');
 
-add_action('after_switch_theme', 'create_taxonomy_list_pages_on_theme_activation');
 
 
 /**
  * Creates pages for display of lists of custom taxonomies
  */
+if ( class_exists( !'WooCommerce' ) ) {
+	add_action('after_switch_theme', 'create_taxonomy_list_pages_on_theme_activation');
+}
+
 function create_taxonomy_list_pages_on_theme_activation()
 {
 	$list_pages = array();

@@ -1,7 +1,7 @@
 /* purgecss start ignore */
 
 body.admin-bar {
-    & > #horizontal-nav {
+    & > .horizontal-nav-wrapper {
         top: 32px;
     }
     & .offcanvas {
@@ -48,12 +48,14 @@ body.admin-bar {
 }
 
 $horizontal-nav-padding: 6px;
+.horizontal-nav-wrapper{
+    top: 0;
+    z-index: $zindex-fixed;
+}
 #horizontal-nav {
     padding-top: $horizontal-nav-padding;
     padding-bottom: $horizontal-nav-padding;
-    z-index: $zindex-fixed;
     line-height: 1;
-    top: 0;
 }
 
 @include media-breakpoint-down("md") {

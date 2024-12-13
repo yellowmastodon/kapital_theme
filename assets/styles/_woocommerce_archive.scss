@@ -1,0 +1,45 @@
+@use "sass:math";
+.woocommerce-ordering{
+    .orderby{
+        @extend .form-select;
+    }
+}
+
+.woocommerce-page .archive-item-image{
+    aspect-ratio: 1 !important; 
+}
+
+.archive-item.product{
+    .onsale{
+        @extend .ff-grotesk;
+        @extend .btn;
+        @extend .btn-red;
+        @extend .rounded-pill;
+        position: absolute;
+        top: .5rem;
+        left: .5rem;
+    }
+    a.button {
+        @extend .col-auto;
+        @extend .btn;
+        @extend .btn-sm;
+        @extend .btn-outline;
+        margin-left: math.div(map-get($spacers, 3), 2 );
+        margin-right: math.div(map-get($spacers, 3), 2 );
+    }
+}
+.woocommerce-result-count{
+    @extend .ff-grotesk;
+    margin-bottom: map-get($spacers, 4);
+}
+
+.add-to-cart-wrapper .added_to_cart{
+    @extend .col-auto;
+}
+.add-to-cart-wrapper .spinner-col{
+    display: none;
+}
+
+.add_to_cart_button.loading + .spinner-col{
+    display: block;
+}

@@ -23,6 +23,12 @@ import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
 
+document.querySelectorAll('.dismiss-notice').forEach((element)=>{
+    element.addEventListener("click", (event) =>{
+        event.target.closest('.woocommerce-message').remove();
+    })
+})
+
 showMorePosts();
 const donation_form_wrapper = document.getElementById("darujme-form-wrapper");
 if (donation_form_wrapper){

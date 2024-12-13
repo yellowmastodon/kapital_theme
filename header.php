@@ -18,7 +18,16 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
         <![endif]-->
 </head>
-<?php $is_front = is_front_page();
+<?php
+if (is_multisite()){
+    $current_site = get_current_blog_id();
+    global $is_woocommerce_site;
+    if ($is_woocommerce_site){
+        switch_to_blog(get_main_site_id());
+    }
+}
+
+$is_front = is_front_page() && !$is_woocommerce_site;
 $homepage_link = home_url();
 $site_name = get_bloginfo('name');
 //option for support inserting. Check if campaing active
@@ -60,8 +69,8 @@ if (isset($darujme_options["campaign_active"])){
             </div>
         </div>
     </header>
-
-    <nav id="horizontal-nav" class="fw-bold ff-grotesk px-3 bg-primary position-sticky d-print-none">
+    <div class="horizontal-nav-wrapper position-sticky">
+    <nav id="horizontal-nav" class="fw-bold ff-grotesk px-3 bg-primary d-print-none">
         <div class="row gx-4 align-items-center justify-content-between">
             <div class="col-auto col-lg-1 col-xl-1 text-start">
                 <button class="btn-menu w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">
@@ -115,3 +124,13 @@ if (isset($darujme_options["campaign_active"])){
             </button><a class="btn-menu text-decoration-none" href="#">EN</a></div>
         </div>
     </nav>
+    <?php 
+    global $is_woocommerce_site;
+    if (is_multisite()){
+        switch_to_blog($current_site);
+    }
+    if ($is_woocommerce_site){
+        woocommerce_output_all_notices();
+    }
+    ?>
+    </div>

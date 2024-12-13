@@ -25,6 +25,14 @@ export default function edit({
                         } }
                         __nextHasNoMarginBottom
                         />
+                        <ToggleControl
+                        label={__("Zobraziť nadpis", "kapital")}
+                        checked={ attributes.showTitle }
+                        onChange={ (newValue) => {
+                            setAttributes({showTitle: newValue});
+                        } }
+                        __nextHasNoMarginBottom
+                        />
                     </PanelBody>
     </InspectorControls>
         <ServerSideRender

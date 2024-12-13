@@ -15,8 +15,14 @@ if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Článk
     <?php while (have_posts()) : the_post();
 
         //taxonomies to display in posts, ordered by render priority
-        $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
-        $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies); ?>
+        
+        if($post->post_type === 'post'){
+            $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
+            $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
+        } else {
+            $filtered_terms = array();
+            $custom_taxonomies = array();
+        } ?>
 
         <article <?php post_class(["main-content"]); ?>>
             <?php

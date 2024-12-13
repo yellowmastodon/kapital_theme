@@ -6,6 +6,8 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  */
+defined( 'ABSPATH' ) || exit;
+
 global $post;
 
 //get post from args outside query

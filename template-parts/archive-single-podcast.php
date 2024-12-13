@@ -1,4 +1,6 @@
 <?php
+defined( 'ABSPATH' ) || exit;
+
 global $post;
 //get post from args outside query
 if (isset($args['post'])){

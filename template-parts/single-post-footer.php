@@ -2,6 +2,7 @@
 /**
  * displays recommended posts on single post page
  */
+defined( 'ABSPATH' ) || exit;
 
 if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
     $custom_taxonomies = $args['custom_taxonomies'];

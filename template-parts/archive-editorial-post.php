@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) || exit;
 
 //taxonomies to display in posts, ordered by render priority
 $queried_object_id = $args['queried_object_id'];

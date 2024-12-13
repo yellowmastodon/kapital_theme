@@ -71,8 +71,8 @@ function edit(_ref) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", _objectSpread(_objectSpread({}, blockProps), {}, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Zobraziť zbalený formulár", "kapital"),
           checked: attributes.showCollapsed,
           onChange: function onChange(newValue) {
@@ -81,7 +81,16 @@ function edit(_ref) {
             });
           },
           __nextHasNoMarginBottom: true
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Zobraziť nadpis", "kapital"),
+          checked: attributes.showTitle,
+          onChange: function onChange(newValue) {
+            setAttributes({
+              showTitle: newValue
+            });
+          },
+          __nextHasNoMarginBottom: true
+        })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_3___default()), {
       skipBlockSupportAttributes: "true",
@@ -264,7 +273,7 @@ function _typeof(o) {
   \**********************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/donation-form","version":"0.1.0","title":"Darovací formulár","category":"theme","description":"Darovací formulár Darujme.sk","example":{},"supports":{"multiple":false,"html":false},"attributes":{"showCollapsed":{"type":"boolean","default":false}},"textdomain":"kapital","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/donation-form","version":"0.1.0","title":"Darovací formulár","category":"theme","description":"Darovací formulár Darujme.sk","example":{},"supports":{"multiple":false,"html":false},"attributes":{"showCollapsed":{"type":"boolean","default":false},"showTitle":{"type":"boolean","default":true}},"textdomain":"kapital","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 

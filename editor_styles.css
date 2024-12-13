@@ -103,7 +103,7 @@
   --kptl-red: #ff0033;
   --kptl-purple: #847BBE;
   --kptl-orange: #fd7e14;
-  --kptl-yellow: #F8E201;
+  --kptl-yellow: #FFF375;
   --kptl-green: #68B63F;
   --kptl-cyan: #8DFAFF;
   --kptl-black: #000;
@@ -131,7 +131,7 @@
   --kptl-red: #ff0033;
   --kptl-purple: #847BBE;
   --kptl-orange: #fd7e14;
-  --kptl-yellow: #F8E201;
+  --kptl-yellow: #FFF375;
   --kptl-green: #68B63F;
   --kptl-cyan: #8DFAFF;
   --kptl-black: #000;
@@ -150,7 +150,7 @@
   --kptl-red-rgb: 255, 0, 51;
   --kptl-purple-rgb: 132, 123, 190;
   --kptl-orange-rgb: 253, 126, 20;
-  --kptl-yellow-rgb: 248, 226, 1;
+  --kptl-yellow-rgb: 255, 243, 117;
   --kptl-green-rgb: 104, 182, 63;
   --kptl-cyan-rgb: 141, 250, 255;
   --kptl-black-rgb: 0, 0, 0;
@@ -2910,8 +2910,8 @@ a > .editor-styles-wrapper code {
   text-decoration-color: RGBA(var(--kptl-yellow-rgb), var(--kptl-link-underline-opacity, 1)) !important;
 }
 .editor-styles-wrapper .link-yellow:hover, .editor-styles-wrapper .link-yellow:focus {
-  color: RGBA(249, 232, 52, var(--kptl-link-opacity, 1)) !important;
-  text-decoration-color: RGBA(249, 232, 52, var(--kptl-link-underline-opacity, 1)) !important;
+  color: RGBA(255, 245, 145, var(--kptl-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(255, 245, 145, var(--kptl-link-underline-opacity, 1)) !important;
 }
 .editor-styles-wrapper .link-green {
   color: RGBA(var(--kptl-green-rgb), var(--kptl-link-opacity, 1)) !important;
@@ -8753,7 +8753,7 @@ a > .editor-styles-wrapper code {
   background-color: var(--kptl-yellow);
 }
 .editor-styles-wrapper .marker-yellow:hover::before {
-  background-color: #feec2e;
+  background-color: #fff7a8;
 }
 .editor-styles-wrapper .marker-green::before {
   background-color: var(--kptl-green);
@@ -8933,13 +8933,13 @@ img {
 .archive-item:focus {
   outline: none !important;
 }
-.archive-item .archive-item-link .red-outline-hover {
+.archive-item .archive-item-link .red-outline-hover, .archive-item .woocommerce-loop-product__link .red-outline-hover {
   position: relative;
   z-index: 1;
   display: block;
   transition: color 0.05s linear;
 }
-.archive-item .archive-item-link .red-outline-hover::before {
+.archive-item .archive-item-link .red-outline-hover::before, .archive-item .woocommerce-loop-product__link .red-outline-hover::before {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -8952,35 +8952,34 @@ img {
   opacity: 0;
   transition: opacity 0.05s linear;
 }
-.archive-item .archive-item-link .archive-item-image {
-  aspect-ratio: 1.67 !important;
+.archive-item .archive-item-link .archive-item-image, .archive-item .woocommerce-loop-product__link .archive-item-image {
   -o-object-fit: cover;
      object-fit: cover;
   outline: solid 5px rgba(214, 51, 132, 0);
   transition: outline 0.05s linear;
 }
-.archive-item .archive-item-link .archive-item-image.placeholder {
+.archive-item .archive-item-link .archive-item-image.placeholder, .archive-item .woocommerce-loop-product__link .archive-item-image.placeholder {
   background-color: var(--kptl-secondary);
 }
-.archive-item .archive-item-link:hover, .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active {
+.archive-item .archive-item-link:hover, .archive-item .archive-item-link:focus-visible, .archive-item .archive-item-link:active, .archive-item .woocommerce-loop-product__link:hover, .archive-item .woocommerce-loop-product__link:focus-visible, .archive-item .woocommerce-loop-product__link:active {
   outline: none !important;
 }
-.archive-item .archive-item-link:hover .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active .red-outline-hover {
+.archive-item .archive-item-link:hover .red-outline-hover, .archive-item .archive-item-link:focus-visible .red-outline-hover, .archive-item .archive-item-link:active .red-outline-hover, .archive-item .woocommerce-loop-product__link:hover .red-outline-hover, .archive-item .woocommerce-loop-product__link:focus-visible .red-outline-hover, .archive-item .woocommerce-loop-product__link:active .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:hover .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active .red-outline-hover::before {
+.archive-item .archive-item-link:hover .red-outline-hover::before, .archive-item .archive-item-link:focus-visible .red-outline-hover::before, .archive-item .archive-item-link:active .red-outline-hover::before, .archive-item .woocommerce-loop-product__link:hover .red-outline-hover::before, .archive-item .woocommerce-loop-product__link:focus-visible .red-outline-hover::before, .archive-item .woocommerce-loop-product__link:active .red-outline-hover::before {
   opacity: 1;
 }
-.archive-item .archive-item-link:hover .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active .archive-item-image {
+.archive-item .archive-item-link:hover .archive-item-image, .archive-item .archive-item-link:focus-visible .archive-item-image, .archive-item .archive-item-link:active .archive-item-image, .archive-item .woocommerce-loop-product__link:hover .archive-item-image, .archive-item .woocommerce-loop-product__link:focus-visible .archive-item-image, .archive-item .woocommerce-loop-product__link:active .archive-item-image {
   outline: solid 5px #d63384;
 }
-.archive-item .archive-item-link:active .red-outline-hover {
+.archive-item .archive-item-link:active .red-outline-hover, .archive-item .woocommerce-loop-product__link:active .red-outline-hover {
   color: #fff;
 }
-.archive-item .archive-item-link:active .red-outline-hover::before {
+.archive-item .archive-item-link:active .red-outline-hover::before, .archive-item .woocommerce-loop-product__link:active .red-outline-hover::before {
   -webkit-text-stroke: 6px #cc0029;
 }
-.archive-item .archive-item-link:active .archive-item-image {
+.archive-item .archive-item-link:active .archive-item-image, .archive-item .woocommerce-loop-product__link:active .archive-item-image {
   outline: solid 5px #bf2672;
 }
 .archive-item .archive-post-top {
@@ -9002,6 +9001,10 @@ img {
 }
 .archive-item .post-authors a:not(:active) {
   text-decoration-color: var(--kptl-red);
+}
+
+.archive-item:not(.product) .archive-item-image {
+  aspect-ratio: 1.67 !important;
 }
 
 .item-excerpt > * {
@@ -9176,6 +9179,11 @@ button.btn.btn-red:hover, .editor-styles-wrapper button.btn-red.wp-element-butto
 button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-button:active, .editor-styles-wrapper button.btn-red.wp-block-button__link:active, .editor-styles-wrapper button.wp-element-button.has-red-background-color:active, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:active, a.btn.btn-red:active, .editor-styles-wrapper a.btn-red.wp-element-button:active, .editor-styles-wrapper a.btn-red.wp-block-button__link:active, .editor-styles-wrapper a.wp-element-button.has-red-background-color:active, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:active {
   background-color: #ff9efd;
   border-color: #ff9efd;
+}
+
+.bg-primary button.btn-red:hover, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:hover, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:hover, .bg-primary button.btn-red:focus-visible, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:focus-visible, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:focus-visible, .bg-primary a.btn-red:hover, .bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:hover, .bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:hover, .bg-primary a.btn-red:focus-visible, .bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:focus-visible, .bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:focus-visible, .has-primary-background-color button.btn-red:hover, .has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, .has-primary-background-color button.btn-red:focus-visible, .has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, .has-primary-background-color a.btn-red:hover, .has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, .has-primary-background-color a.btn-red:focus-visible, .has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
+  background-color: var(--kptl-white);
+  border-color: var(--kptl-body-color);
 }
 
 .featured-post .archive-item-link:not(.custom) {

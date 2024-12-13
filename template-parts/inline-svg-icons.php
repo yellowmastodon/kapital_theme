@@ -1,4 +1,6 @@
 <?php
+defined( 'ABSPATH' ) || exit;
+
  /**
  * Template part to be included in header.php 
  * Renders inline svg, which can be used by <svg><use xlink:href></use></svg>

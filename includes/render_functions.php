@@ -144,10 +144,22 @@ function kapital_support()
  * @param string    $additional_classes additional classes separated by space
  * @return string   HTML markup of breadcrumbs
  */
-function kapital_breadcrumbs(array $breadcrumbs, string $additional_classes ="")
+function kapital_breadcrumbs(array $breadcrumbs = array(), string $additional_classes ="")
 {
     $html = '<nav aria-label="breadcrumb navigácia" class="mt-2 ff-grotesk breadcrumb-nav ' . $additional_classes . '"><ol class="breadcrumb">';
-    $html .= '<li class="breadcrumb-item"><a href="' . get_home_url() . '">' . __("Domov", "kapital") . '</a></li>';
+    $home_page_url = "";
+    $is_multisite = is_multisite();
+    $is_main_site = is_main_site();
+    if ($is_multisite){
+        if ($is_main_site){
+            $home_page_url = get_home_url();
+        } else {
+            $home_page_url = get_home_url(get_main_site_id());
+        }
+    } else {
+        $home_page_url = get_home_url();
+    }
+    $html .= '<li class="breadcrumb-item"><a href="' . $home_page_url . '">' . __("Domov", "kapital") . '</a></li>';
     foreach ($breadcrumbs as $breadcrumb) {
         $active = false;
         //check if active is true
@@ -502,6 +514,12 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_footer' => $show_false ? false : true,
     );
     if ($post_type === 'podcast') $default_render_settings["show_featured_image"] = false;
+    if ($post_type === 'page'){
+        $default_render_settings["show_featured_image"] = false;
+        $default_render_settings["show_views"] = false;
+        $default_render_settings["show_date"] = false;
+    }
+
     //var_dump($default_render_settings);
     if(is_array($render_settings)){
         $render_settings = array_merge($default_render_settings, $render_settings);

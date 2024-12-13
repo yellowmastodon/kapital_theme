@@ -6,7 +6,7 @@ $archive-article-img-outline-width: 5px;
     &:focus{
         outline: none !important;
     }
-    .archive-item-link {        
+    .archive-item-link, .woocommerce-loop-product__link {        
         .red-outline-hover {
             position: relative; //to style the before element, which generates outline
             z-index: 1;
@@ -27,7 +27,6 @@ $archive-article-img-outline-width: 5px;
             }
         }
         .archive-item-image {
-            aspect-ratio: 1.67 !important;
             object-fit: cover;
             outline: solid $archive-article-img-outline-width rgba($pink, 0);
             transition: outline $link_transition_speed linear;
@@ -88,6 +87,12 @@ $archive-article-img-outline-width: 5px;
         }
     }
 
+}
+
+.archive-item:not(.product){
+    .archive-item-image{
+        aspect-ratio: 1.67 !important;
+    }
 }
 
 .item-excerpt > *{

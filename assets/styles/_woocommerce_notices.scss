@@ -1,0 +1,13 @@
+.woocommerce-message, .woocommerce-notice{
+    padding: map-get($spacers, 2)  map-get($spacers, 3); 
+    line-height: $line-height-small;
+    @extend .ff-sans;
+    background-color: var(--#{$prefix}yellow);
+    text-align: center;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--#{$prefix}yellow);
+    &:focus-visible{
+        outline: none !important;
+    }
+}

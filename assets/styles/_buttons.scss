@@ -128,3 +128,13 @@ button, a{
     }
     
 }
+.bg-primary, .has-primary-background-color{
+    button, a{
+        &.btn-red{
+            &:hover, &:focus-visible{
+                background-color: var(--#{$prefix}white);
+                border-color: var(--#{$prefix}body-color);
+            }
+        }
+    }
+}

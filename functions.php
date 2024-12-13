@@ -3,42 +3,46 @@
 /**
  * Custom functions / External files
  */
-
-
+$is_woocommerce_site = class_exists( 'WooCommerce' );
+$template_directory = get_template_directory();
 $include = array(
     //require_once 'includes/class-wp-bootstrap-navwalker.php',
-    'includes/custom_post_types.php',
-    'includes/custom_taxonomies.php',
     //'includes/custom_import.php',
-    'includes/old-site-functions.php',
+    '/includes/old-site-functions.php',
     //'includes/cmb-example-functions.php',
-    'block-editor/block-editor-functions.php',
-    'includes/author_taxonomy_functions.php',
-    'includes/custom_meta.php',
-    'includes/ads_post_type_functions.php',
-    'includes/custom_options.php',
-    'includes/ajax_functions.php',
+    '/block-editor/block-editor-functions.php',
+    '/includes/author_taxonomy_functions.php',
+    '/includes/custom_meta.php',
+    '/includes/ads_post_type_functions.php',
+    '/includes/custom_options.php',
+    '/includes/ajax_functions.php',
 );
 $include_all = array(
-        'includes/render_functions.php',
+        '/includes/render_functions.php',
+        '/includes/custom_post_types.php',
+        '/includes/custom_taxonomies.php',
 );
 
 if( is_multisite()) {
     if (is_main_site()){
         foreach ($include as $inc){
-            require_once $inc;
+            require_once $template_directory . $inc;
         }
     }
     foreach ($include_all as $inc){
-        require_once $inc;
+        require_once $template_directory . $inc;
     }
 } else {
     foreach ($include as $inc){
-        require_once $inc;
+        require_once $template_directory . $inc;
     }
     foreach ($include_all as $inc){
-        require_once $inc;
+        require_once $template_directory . $inc;
     }
+}
+
+if ( class_exists( 'WooCommerce' ) ) {
+	require $template_directory . '/woocommerce/woocommerce.php';
 }
 
 
@@ -135,11 +139,7 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 
 function kapital_enqueue_scripts()
 {
-    // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' );
-    //remove jquery from front end
-    if (!current_user_can('edit_posts')) {
-        wp_deregister_script('jquery');
-    }
+    // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' )
     wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/style.css?' . filemtime(get_stylesheet_directory() . '/style.css'), [], null);
     wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.min.js?' . filemtime(get_stylesheet_directory() . '/js/scripts.min.js'), [], null, true);
     wp_localize_script(
@@ -164,6 +164,15 @@ function kapital_enqueue_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'kapital_enqueue_scripts');
+if (!$is_woocommerce_site){
+    add_action('wp_enqueue_scripts', 'kapital_deregister_jquery');
+}
+function kapital_deregister_jquery(){
+    //remove jquery from front end
+    if (!current_user_can('edit_posts')) {
+        wp_deregister_script('jquery');
+    }
+}
 
 
 
@@ -473,5 +482,6 @@ function kapital_set_home_and_posts_page()
 
 // If the page doesn't already exist, create it
 
-
-add_action('after_switch_theme', 'kapital_set_home_and_posts_page');
+if (!$is_woocommerce_site){
+    add_action('after_switch_theme', 'kapital_set_home_and_posts_page');
+}

@@ -2,7 +2,7 @@
   "variables": [
     {
       "name": "$colors",
-      "value": "( \"primary\":    #ffc2fe, \"primary-light\": #F3DEEC, \"secondary\":  #EBEBEB, \"red\":        #ff0033, \"purple\":     #847BBE, \"orange\":     #fd7e14, \"yellow\":     #F8E201, \"green\":      #68B63F, \"cyan\":       #8DFAFF, \"black\":      #000, \"white\":      #fff, \"gray\":       #757575, \"gray-dark\":  #212529 )",
+      "value": "( \"primary\":    #ffc2fe, \"primary-light\": #F3DEEC, \"secondary\":  #EBEBEB, \"red\":        #ff0033, \"purple\":     #847BBE, \"orange\":     #fd7e14, \"yellow\":     #FFF375, \"green\":      #68B63F, \"cyan\":       #8DFAFF, \"black\":      #000, \"white\":      #fff, \"gray\":       #757575, \"gray-dark\":  #212529 )",
       "mapValue": [
         {
           "name": "primary",
@@ -36,8 +36,8 @@
         },
         {
           "name": "yellow",
-          "value": "#F8E201",
-          "compiledValue": "#F8E201"
+          "value": "#FFF375",
+          "compiledValue": "#FFF375"
         },
         {
           "name": "green",
@@ -70,7 +70,7 @@
           "compiledValue": "#212529"
         }
       ],
-      "compiledValue": "(\"primary\": #ffc2fe, \"primary-light\": #F3DEEC, \"secondary\": #EBEBEB, \"red\": #ff0033, \"purple\": #847BBE, \"orange\": #fd7e14, \"yellow\": #F8E201, \"green\": #68B63F, \"cyan\": #8DFAFF, \"black\": #000, \"white\": #fff, \"gray\": #757575, \"gray-dark\": #212529)"
+      "compiledValue": "(\"primary\": #ffc2fe, \"primary-light\": #F3DEEC, \"secondary\": #EBEBEB, \"red\": #ff0033, \"purple\": #847BBE, \"orange\": #fd7e14, \"yellow\": #FFF375, \"green\": #68B63F, \"cyan\": #8DFAFF, \"black\": #000, \"white\": #fff, \"gray\": #757575, \"gray-dark\": #212529)"
     }
   ]
 }
