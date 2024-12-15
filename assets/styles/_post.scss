@@ -3,7 +3,7 @@
 //widths defined in default_align_max_widths.scss
 //is-root-container class for gutenberg editor
 #post-content {
-    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]) {
+    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
         @extend .alignnormal;
     }
 }

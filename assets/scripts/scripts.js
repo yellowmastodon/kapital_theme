@@ -2,36 +2,42 @@
 
 // import 'bootstrap/js/dist/alert';
 // import 'bootstrap/js/dist/button';
-// import 'bootstrap/js/dist/carousel';
+import 'bootstrap/js/dist/carousel';
 import Collapse from 'bootstrap/js/dist/collapse';
 //import 'bootstrap/js/dist/dropdown';
-//import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/popover';
 // import 'bootstrap/js/dist/scrollspy';
 // import 'bootstrap/js/dist/tab';
 // import 'bootstrap/js/dist/toast';
 // import 'bootstrap/js/dist/tooltip';
-import { adInserter,
+import {
+    adInserter,
     checkSinglePostOrPodcast,
     checkDarujmeActive,
     checkAdInsertingEnabled,
     checkDonationInsertingEnabled,
-    registerClicks,} from './ad-inserter';
+    registerClicks,
+} from './ad-inserter';
 import ajaxRequest from './ajax-request';
 import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
+import productCarousel from './product-carousel';
 
-document.querySelectorAll('.dismiss-notice').forEach((element)=>{
-    element.addEventListener("click", (event) =>{
+document.querySelectorAll('.dismiss-notice').forEach((element) => {
+    element.addEventListener("click", (event) => {
         event.target.closest('.woocommerce-message').remove();
     })
 })
 
 showMorePosts();
+if (document.body.classList.contains('single-product')){
+    productCarousel();
+}
 const donation_form_wrapper = document.getElementById("darujme-form-wrapper");
-if (donation_form_wrapper){
+if (donation_form_wrapper) {
     initializeForm(donation_form_wrapper);
 }
 //console.log(site_info);
@@ -41,12 +47,14 @@ const DonationInsertingEnabled = checkDonationInsertingEnabled();
 postFilterModal();
 
 //adInserter();
-if (isSinglePostOrPodcast) {
-    if (AdInsertingEnabled || DonationInsertingEnabled) {
-        ajaxRequest('adinserter', { onead: true, ad: AdInsertingEnabled, donation: DonationInsertingEnabled}, adInserter, [true, ajaxRequest]);
-    } 
-} else {
-    ajaxRequest('adinserter', { onead: false, ad: AdInsertingEnabled, donation: false }, adInserter, [false, ajaxRequest]);
+if (!document.body.classList.contains('woocommerce-active')) {
+    if (isSinglePostOrPodcast) {
+        if (AdInsertingEnabled || DonationInsertingEnabled) {
+            ajaxRequest('adinserter', { onead: true, ad: AdInsertingEnabled, donation: DonationInsertingEnabled }, adInserter, [true, ajaxRequest]);
+        }
+    } else {
+        ajaxRequest('adinserter', { onead: false, ad: AdInsertingEnabled, donation: false }, adInserter, [false, ajaxRequest]);
+    }
 }
 const topHeader = document.getElementById('top-header');
 const topHeaderLogo = topHeader.querySelector('svg');
@@ -74,7 +82,6 @@ if (topHeaderCollapsed) {
 //if has opacity-0 class, that means it is hidden
 
 const hideHorizontalNavLogo = () => {
-    console.log('hiding');
     horizontalNavLogo.classList.add('opacity-0');
     horizontalNavLogoShown = false;
     setTimeout(() => {
@@ -84,7 +91,6 @@ const hideHorizontalNavLogo = () => {
 }
 
 const showHorizontalNavLogo = () => {
-    console.log('showing');
     horizontalNavLogo.classList.remove('opacity-0', 'invisible');
     horizontalNavLogoShown = true;
     //simple fix for situation when user scrolls up and down fast enough, that it adds class later than the remove attempt
@@ -121,12 +127,14 @@ window.addEventListener("wheel", showTopHeaderOnMousewheelUp);
 //uncollapse top part of header by scrollwheel up when on top of page (onscroll is not triggered by wheelup if there is nowhere to scroll on desktop    )
 function showTopHeaderOnMousewheelUp(event) {
     if (event.deltaY < 0 && document.documentElement.scrollTop == 0 && topHeaderCollapsed) {
-        topHeaderCollapse.show();
-        topHeaderCollapsed = false;
-        //remove event listener after the top header is shown
-        window.removeEventListener("wheel", showTopHeaderOnMousewheelUp);
-        hideHorizontalNavLogo();
-    }
+        if (!document.body.classList.contains('modal-open')){
+            topHeaderCollapse.show();
+            topHeaderCollapsed = false;
+            //remove event listener after the top header is shown
+            window.removeEventListener("wheel", showTopHeaderOnMousewheelUp);
+            hideHorizontalNavLogo();
+        }
+}
 }
 
 let postViewsElements = document.querySelectorAll('article .post-views');

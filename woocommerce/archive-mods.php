@@ -8,10 +8,13 @@ remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
 function kapital_woo_output_content_wrapper()
 {
     global $post;
-    $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
     $ad_rendering_class = "";
-    if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
-    if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
+    if ($post){
+        $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
+        if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
+        if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
+    }
+
     echo '<main class="main container' . $ad_rendering_class . '" role="main" id="main"><div class="alignwider">';
 }
 
@@ -21,7 +24,7 @@ function kapital_woo_output_content_wrapper_end()
 {
     echo '</div></main>';
 }
-
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);
@@ -99,4 +102,15 @@ function kapital_woo_template_loop_price()
     echo '<div class="mb-3 fw-bold">'; // Add custom styling around the price
     woocommerce_template_loop_price(); // Display the product price
     echo '</div>';
+}
+
+remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
+
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+
+function new_loop_shop_per_page( $cols ) {
+  // $cols contains the current number of products per page based on the value stored on Options -> Reading
+  // Return the number of products you wanna show per page.
+  $cols = 12;
+  return $cols;
 }

@@ -1,4 +1,4 @@
-/* purgecss start ignore */
+/*! purgecss start ignore */
 
 body.admin-bar {
     & > .horizontal-nav-wrapper {
@@ -217,4 +217,8 @@ $menu-btn-padding-top: 0.4em;
         background-color: var(--#{$prefix}white);
     }
 }
-/* purgecss end ignore */
+#offcanvasSearch .btn-close{
+    right: map-get($spacers, 3);
+    top: map-get($spacers, 3);
+}
+/*! purgecss end ignore */

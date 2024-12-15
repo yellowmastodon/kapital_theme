@@ -92,16 +92,22 @@ $btn-line-height: $line-height-small;
 $link-color: $body-color;
 $link-hover-color: $red;
 
-
+:root{
+  --#{$prefix}input-border-color: #{$body-color};
+}
 $input-btn-padding-x: $btn-padding-x;
 $input-btn-padding-y: .6rem;
-$input-border-radius: 9999px;
-$input-border-color: var(--#{$prefix}body-color);
+$input-border-radius: 1.5rem;
+$input-border-color: var(--#{$prefix}input-border-color);
 $input-border-width: 2px;
 $input-height-border: calc(#{$input-border-width} * 2);
-$input-focus-border-color: var(--#{$prefix}white);
-$input-btn-line-height: 1;
+$input-focus-border-color: var(--#{$prefix}red);
+$focus-ring-box-shadow:none;
+$input-focus-box-shadow: none;
+$input-btn-line-height: $line-height-small;
 $input-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+$form-label-margin-bottom: map-get($spacers, 1);
+
 $form-floating-height:                  add(2.6rem, $input-height-border) !default;
 $form-floating-line-height:             $line-height-small;
 $form-floating-padding-x:               $btn-padding-x;
@@ -113,17 +119,22 @@ $form-floating-label-opacity:           .65 !default;
 $form-floating-label-transform:         scale(.7) translateY(-.3rem) translateX(.6rem);
 $form-floating-label-disabled-color:    $gray;
 $form-floating-transition:              opacity .1s ease-in-out, transform .1s ease-in-out !default;
-
-$form-check-input-checked-bg-color:  var(--#{$prefix}white);
+$form-select-focus-box-shadow: none;
+$form-check-input-checked-bg-color: $white;
 $form-check-input-checked-color: $body-color;
-$form-check-input-checked-border-color: var(--#{$prefix}body-color);
-$form-check-input-border:  2px solid var(--#{$prefix}body-color);
+$form-check-input-checked-border-color: $body-color;
+$form-check-input-border:  2px solid  var(--#{$prefix}input-border-color);
+$alert-padding-y: $input-btn-padding-y;
+
 
 //offcanvas
 $offcanvas-bg-color: $primary;
 $offcanvas-backdrop-bg: $white;
 $offcanvas-border-color: $primary;
 $offcanvas-border-width: 0px;
+$offcanvas-vertical-height: 40vh;
+$modal-backdrop-bg: $offcanvas-backdrop-bg;
+$modal-backdrop-opacity: .95;
 
 
 //close
@@ -143,3 +154,5 @@ $border-radius: 1rem;
 
 //transition speed
 $link_transition_speed: .05s;
+
+$s2bs5-focus-border-color: $red;

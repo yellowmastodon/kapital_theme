@@ -72,4 +72,10 @@ defined( 'ABSPATH' ) || exit;
             <path d="M24,13.3H0v-2.7h24v2.7Z"/>
             <path d="M24,21.3H0v-2.7h24v2.7Z"/>
         </symbol>
+        <symbol viewBox="0 0 47 47" id="icon-plus">
+            <polygon points="47 21.6 24.9 21.6 24.8 0 21.4 0 21.4 21.6 0 21.6 0 25 21.4 25 21.4 47 24.8 47 24.8 25 47 25 47 21.6"/>
+        </symbol>
+        <symbol viewBox="0 0 47 47" id="icon-minus">
+            <polygon points="47 25 47 21.6 0 21.6 0 25 47 25"/>
+        </symbol>
     </svg>

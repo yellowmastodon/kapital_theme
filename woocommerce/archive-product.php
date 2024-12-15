@@ -17,7 +17,30 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'shop' );
+get_header();
+
+$shop_page_id = wc_get_page_id('shop');
+$shop_page_title = get_the_title($shop_page_id);
+$shop_page_permalink = get_the_permalink($shop_page_id);
+$breadcrumbs = [[$shop_page_title, $shop_page_permalink]];
+if (is_search()) {
+	/* translators: %s: search query */
+	$page_title = sprintf(__('Search results: &ldquo;%s&rdquo;', 'woocommerce'), get_search_query());
+	if (get_query_var('paged')) {
+		/* translators: %s: page number */
+		$page_title .= sprintf(__('&nbsp;&ndash; Page %s', 'woocommerce'), get_query_var('paged'));
+	}
+} elseif (is_tax()) {
+	$page_title = single_term_title('', false);
+	
+} else {
+	$breadcrumbs[0][2] = 'active';
+	$page_title   = $shop_page_title;
+}
+
+$page_title = apply_filters('woocommerce_page_title', $page_title);
+
+echo kapital_breadcrumbs($breadcrumbs, 'container');
 
 /**
  * Hook: woocommerce_before_main_content.
@@ -26,8 +49,8 @@ get_header( 'shop' );
  * @hooked woocommerce_breadcrumb - 20
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
-do_action( 'woocommerce_before_main_content' );
 
+do_action( 'woocommerce_before_main_content' );
 /**
  * Hook: woocommerce_shop_loop_header.
  *
@@ -35,7 +58,13 @@ do_action( 'woocommerce_before_main_content' );
  *
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
-do_action( 'woocommerce_shop_loop_header' );
+//do_action( 'woocommerce_shop_loop_header' );
+if (is_search()){
+	echo '<h1>' . $page_title . '</h1>';
+} else {
+	echo kapital_bubble_title($page_title, 1);
+}
+
 if ( woocommerce_product_loop() ) {
 
 	/**
@@ -45,10 +74,10 @@ if ( woocommerce_product_loop() ) {
 	 * @hooked woocommerce_result_count - 20
 	 * @hooked woocommerce_catalog_ordering - 30
 	 */
-	do_action( 'woocommerce_before_shop_loop' );
-
-	woocommerce_product_loop_start();
-
+	do_action('woocommerce_before_shop_loop')?>
+	<div>
+    <ul class="row gy-6 gx-5 list-unstyled">
+    <?php
 	if ( wc_get_loop_prop( 'total' ) ) {
 		while ( have_posts() ) {
 			the_post();
@@ -57,19 +86,22 @@ if ( woocommerce_product_loop() ) {
 			 * Hook: woocommerce_shop_loop.
 			 */
 			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
+			get_template_part( 'template-parts/archive-single-product' );
 		}
 	}
-
-	woocommerce_product_loop_end();
+?>
+</ul>
+</div>
+<?php
+	//woocommerce_product_loop_end();
 
 	/**
 	 * Hook: woocommerce_after_shop_loop.
 	 *
-	 * @hooked woocommerce_pagination - 10
+	 * @hooked removed: woocommerce_pagination - 10
 	 */
 	do_action( 'woocommerce_after_shop_loop' );
+	echo kapital_pagination();
 } else {
 	/**
 	 * Hook: woocommerce_no_products_found.

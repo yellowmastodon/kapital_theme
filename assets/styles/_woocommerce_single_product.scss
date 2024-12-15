@@ -3,12 +3,13 @@
     font-size: 0.6rem;
     &::before {
         margin-right: 0px;
-        vertical-align: 0.15em;
+        vertical-align: 0.2em;
     }
 }
-
+.single-product .main{
+    padding-top: map-get($spacers, 5) !important;
+}
 .woocommerce-product-attributes {
-    @extend .ff-sans;
     td {
         padding-left: map-get($spacers, 3);
     }
@@ -43,9 +44,7 @@
         grid-row-end: 4;
     }
     form.cart {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
+
         .woonp {
             @extend .input-group;
             margin-bottom: map-get($spacers, 3);
@@ -90,18 +89,18 @@
     .summary .stock {
         margin-top: map-get($spacers, 3);
         line-height: 1;
-        @extend .ff-sans;
+        font-size: $small-font-size;
+    }
+    .kapital-woo-quantity-plus, .kapital-woo-quantity-minus{
+        margin-right: 0px;
+    }
+    .kapital-woo-quantity-plus{
+        margin-left: 0px;
     }
 }
-.quantity {
-    width: auto;
-    display: inline-block;
-    flex-grow: 0;
-    input {
-        @extend .form-control;
-        width: 5.5rem;
-    }
-    margin-right: map-get($spacers, 2);
+.single_add_to_cart_button {
+    @extend .btn;
+    @extend .btn-primary;
 }
 
 @include media-breakpoint-down('md'){
@@ -124,6 +123,51 @@
             grid-row-start: 3;
             grid-row-end: 4;
         }
+    }
+}
+
+.carousel{
+    .carousel-img-wrapper{
+        img{
+            max-height: calc(100vh - 10rem);
+            height: 100%;
+            display: block;
+            margin: auto;
+            object-fit: contain;
+
+        }
+    }
+}
+#product-modal{
+    .close{
+        position: fixed;
+        right: map-get($spacers, 4);
+        top: map-get($spacers, 4);
+    }
+}
+.variations_form, .single_variation{
+    & > *:not(:first-child){
+        margin-top: map-get($spacers, 3);
+    }
+    margin-bottom: map-get($spacers, 4);
+}
+
+
+.woocommerce-variation-price .price{
+    font-size: $h4-font-size;
+}
+table.variations{
+
+    table, tr, th, td{
+        display: block;
+    }
+    select{
+        @extend .form-select;
+    }
+
+    .reset_variations{
+        @extend .text-red;
+        font-size: $small-font-size;
     }
 }
 /*! purgecss end ignore */

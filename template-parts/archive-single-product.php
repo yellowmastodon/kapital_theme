@@ -37,9 +37,19 @@ if (empty($product) || ! $product->is_visible()) {
 	   
      * Hook: woocommerce_before_shop_loop_item_title.
      *
-     * @hooked woocommerce_show_product_loop_sale_flash - 10
+     * @hooked removed woocommerce_show_product_loop_sale_flash - 10
      * @hooked woocommerce_template_loop_product_thumbnail - 10
      */
+    $categories = get_the_terms($product->get_id(), 'product_cat');
+    foreach ( $categories as $cat ) $cat_slugs[] = $cat->slug;
+    $is_predpredaj =  in_array( 'predpredaj', $cat_slugs ) ? true : false; 
+    if (!$product->is_in_stock()){
+        echo '<span class="soldout">' . __("Vypredané", "kapital") . '</span>';
+    } elseif ($is_predpredaj) {
+        echo '<span class="predpredaj">' . __("Predpredaj", "kapital") . '</span>';
+    } elseif ($product->is_on_sale()) {
+        echo '<span class="onsale">' . __("Zľava", "kapital") . '</span>';
+    }
     do_action('woocommerce_before_shop_loop_item_title');
 
     /**

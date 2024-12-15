@@ -12,6 +12,7 @@ _colors.scss
 .bypostauthor,
 .wp-caption,
 .wp-caption-text {
+	max-width: 100% !important;
 	font-size: inherit;
 }
 

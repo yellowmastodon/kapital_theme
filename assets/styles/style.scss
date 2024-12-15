@@ -53,7 +53,7 @@ $theme-colors: $temporary-colors; */
 // @import "bootstrap/scss/accordion";
 // @import "bootstrap/scss/pagination";
 // @import "bootstrap/scss/badge";
-// @import "bootstrap/scss/alert";
+@import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
 //@import "bootstrap/scss/close";
@@ -64,7 +64,7 @@ $grid-breakpoints: (sm: 0);
 $grid-breakpoints: $temporary-breakpoints;
 // @import "bootstrap/scss/tooltip";
 //@import "bootstrap/scss/popover";
-// @import "bootstrap/scss/carousel";
+@import "bootstrap/scss/carousel";
 @import "bootstrap/scss/spinners";
 //make offcanvas not responsive
 $temporary-breakpoints: $grid-breakpoints;
@@ -100,10 +100,16 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "archive_podcast.scss";
 @import "sponsors";
 @import "podcast";
+@import "forms";
 @import "darujme_form";
 @import "woocommerce_archive";
 @import "woocommerce_single_product";
 @import "woocommerce_notices";
+@import "woocommerce_minicart";
+@import "woocommerce_cart";
+@import "woocommerce_checkout";
+@import "woocommerce_my_account";
+
 
 
 

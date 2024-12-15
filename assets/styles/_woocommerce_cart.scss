@@ -1,0 +1,104 @@
+.cart_item,
+.shop_table,
+.cart_totals,
+.wc-proceed-to-checkout,
+.woocommerce-order
+ {
+    & > *:not(:last-child){
+    margin-bottom: map-get($spacers, 4);
+}
+}
+
+.checkout-button{
+    font-weight: bold;
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-form;
+    @extend .btn-block;
+    margin-top: map-get($spacers, 4);
+}
+.woocommerce-cart-form .coupon,
+#pwgc-redeem-gift-card-container, #pwgc-redeem-form {
+    display: flex;
+    flex-wrap: wrap;
+    > *:not(:last-child) {
+        margin-right: map-get($spacers, 2);
+    }
+    > * {
+        margin-top: map-get($spacers, 2) !important;
+    }
+    label,
+    #pwgc-redeem-error {
+        flex-basis: 100%;
+    }
+    br {
+        display: none;
+    }
+    input[type="text"] {
+        flex-basis: 50%;
+        flex-grow: 1;
+    }
+    button,
+    input[type="submit"] {
+        @extend .btn;
+        @extend .btn-outline;
+        margin-bottom: 0px !important;
+    }
+}
+#pwgc-redeem-error:empty {
+    display: none;
+}
+
+.woocommerce-cart-form,
+.cart {
+    .quantity {
+        input {
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            &[type="number"] {
+                -moz-appearance: textfield;
+            }
+            @extend .ff-grotesk;
+            width: unset !important;
+        }
+    }
+    .kapital-woo-quantity-minus,
+    .kapital-woo-quantity-plus,
+    .product-quantity input,
+    .product-remove a.remove {
+        line-height: 1;
+        font-size: 1rem;
+        width: 2.4rem;
+        height: 2.4rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        text-align: center;
+    }
+    .quantity input {
+        background-clip: border-box !important;
+    }
+}
+#shipping_method {
+    @extend .list-unstyled;
+    li {
+        @extend .form-check;
+    }
+}
+
+.blockOverlay {
+    margin-left: -3rem !important;
+    margin-right: -3rem !important;
+    width: calc(100% + 6rem) !important;
+    height: calc(100%) !important;
+}
+.return-to-shop {
+    text-align: center;
+}
+.coupon-error-notice{
+    @extend .text-red;
+}

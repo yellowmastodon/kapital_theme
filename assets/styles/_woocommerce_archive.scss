@@ -10,14 +10,19 @@
 }
 
 .archive-item.product{
-    .onsale{
+    .onsale, .soldout, .predpredaj{
         @extend .ff-grotesk;
         @extend .btn;
-        @extend .btn-red;
-        @extend .rounded-pill;
         position: absolute;
         top: .5rem;
         left: .5rem;
+        font-size: $h4-font-size;
+    }
+    .onsale, .predpredaj{
+        @extend .btn-red;
+    }
+    .soldout {
+        @extend .btn-secondary;
     }
     a.button {
         @extend .col-auto;
@@ -42,4 +47,9 @@
 
 .add_to_cart_button.loading + .spinner-col{
     display: block;
+}
+.woocommerce-active.search-no-results{
+    h1, .woocommerce-no-products-found{
+        @extend .alignwide;
+    }
 }

@@ -1,22 +1,39 @@
 <?php get_header();
 //options to hide or display parts of the post
 $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
-
+global $is_woocommerce_site;
 //show/hide auto inserted ads controlled by this class
 $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
 if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
 /** render breadcrumbs */
-if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container')
-
+if ($render_settings["show_breadcrumbs"]) {
+    if (is_page()) {
+        if ($is_woocommerce_site) {
+            if (is_checkout()){
+                echo kapital_breadcrumbs(
+                    [[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))],
+                    [get_the_title(wc_get_page_id('cart')), get_permalink(wc_get_page_id('cart'))],
+                    [get_the_title(), get_the_permalink(), true]
+                    ], 'container');
+            } else {
+                echo kapital_breadcrumbs([[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))], [get_the_title(), get_the_permalink(), true]], 'container');
+            }
+        } else {
+            echo kapital_breadcrumbs([[get_the_title(), get_the_permalink(), true]], 'container');
+        }
+    } else {
+        echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container');
+    }
+}
 /** MAIN */
 ?>
 <main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
     <?php while (have_posts()) : the_post();
 
         //taxonomies to display in posts, ordered by render priority
-        
-        if($post->post_type === 'post'){
+
+        if ($post->post_type === 'post') {
             $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
             $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
         } else {
@@ -28,7 +45,8 @@ if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Článk
             <?php
 
             /** render post terms */
-            if ($render_settings["show_categories"]): ?>
+            global $is_woocommerce_site;
+            if ($render_settings["show_categories"] && !$is_woocommerce_site): ?>
                 <div class="post-terms mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
                     <?php foreach ($custom_taxonomies as $custom_taxonomy):
                         //autorstvo rendered separately                        
@@ -110,27 +128,28 @@ if ($render_settings["show_breadcrumbs"]) echo kapital_breadcrumbs([[__("Článk
                             <?php endif; ?>
                         </div>
                     <?php //end row above featured image
-                endif;?>
-            </div>
-                <?php if ($render_settings["show_featured_image"]):
-                    $thumbnail_id = get_post_thumbnail_id();
-                    if (is_int($thumbnail_id) && $thumbnail_id !== 0) {
-                        echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", true, 'rounded');
-                    }
                 endif; ?>
-                    </div><?php //end of container with views, author, publish date and featured image ?>
-                    <div id="post-content">
-                        <?php
-                        /**
-                         * Render post content
-                         * insert ad for support by default 
-                         */
-                        the_content(); ?>
                     </div>
-                    <?php
-                    if ($render_settings["show_footer"]):
-                        get_template_part('template-paprts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
+                    <?php if ($render_settings["show_featured_image"]):
+                        $thumbnail_id = get_post_thumbnail_id();
+                        if (is_int($thumbnail_id) && $thumbnail_id !== 0) {
+                            echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", true, 'rounded');
+                        }
                     endif; ?>
+            </div><?php //end of container with views, author, publish date and featured image 
+                    ?>
+            <div id="post-content">
+                <?php
+                /**
+                 * Render post content
+                 * insert ad for support by default 
+                 */
+                the_content(); ?>
+            </div>
+            <?php
+            if ($render_settings["show_footer"]):
+                get_template_part('template-paprts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
+            endif; ?>
         </article>
     <?php endwhile; ?>
 </main>

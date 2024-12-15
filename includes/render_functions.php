@@ -225,7 +225,22 @@ function kapital_pagination( $args = array() ) {
         // URL base depends on permalink settings.
         $format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
         $format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
-
+        $add_args = array();
+        if ( isset( $url_parts[1] ) ) {
+            // Find the format argument.
+            $format_explode       = explode( '?', str_replace( '%_%', $format, $pagenum_link ) );
+            $format_query = isset(  $format_explode[1] ) ?  $format_explode[1] : '';
+            wp_parse_str( $format_query, $format_args );
+    
+            // Find the query args of the requested URL.
+            wp_parse_str( $url_parts[1], $url_query_args );
+            // Remove the format argument from the array of query arguments, to avoid overwriting custom format.
+            foreach ( $format_args as $format_arg => $format_arg_value ) {
+                unset( $url_query_args[ $format_arg ] );
+            }
+            $add_args = urlencode_deep( $url_query_args );
+        }          
+        
         $page_links = array();
 
         //number of page links to both sides of the current page
@@ -246,6 +261,9 @@ function kapital_pagination( $args = array() ) {
         if ($current > 2):
             $link = str_replace( '%_%', $format, $pagenum_link );
             $link = str_replace( '%#%', 1, $link );
+            if ( $add_args ) {
+                $link = add_query_arg( $add_args, $link );
+            }
             $page_links[] = sprintf(
                 '<a class="first page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-first"></use></svg></a>',
                 /**
@@ -262,6 +280,9 @@ function kapital_pagination( $args = array() ) {
         if ($current && 1 < $current):
             $link = str_replace( '%_%', 2 == $current ? '' : $format, $pagenum_link );
             $link = str_replace( '%#%', $current - 1, $link );
+            if ( $add_args ) {
+                $link = add_query_arg( $add_args, $link );
+            }
             $page_links[] = sprintf(
                 '<a class="prev page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-prev"></use></svg></a>',
                 /**
@@ -287,7 +308,9 @@ function kapital_pagination( $args = array() ) {
                 if ( $current && $n >= $current - $start_size && $n <= $current + $end_size ) :
                     $link = str_replace( '%_%', 1 == $n ? '' : $format, $pagenum_link );
                     $link = str_replace( '%#%', $n, $link );
-
+                    if ( $add_args ) {
+                        $link = add_query_arg( $add_args, $link );
+                    }
                     $page_links[] = sprintf(
                         '<a class="page-numbers bg-secondary rounded-pill text-decoration-none d-inline-block mx-1" href="%s">%s</a>',
                         /** This filter is documented in wp-includes/general-template.php */
@@ -302,7 +325,9 @@ function kapital_pagination( $args = array() ) {
         if ( $current && $current < $total) :
             $link = str_replace( '%_%', $format, $pagenum_link );
             $link = str_replace( '%#%', $current + 1, $link );
-   
+            if ( $add_args ) {
+                $link = add_query_arg( $add_args, $link );
+            }
             $page_links[] = sprintf(
                 '<a class="next page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-next"></use></svg></a>',
                 /** This filter is documented in wp-includes/general-template.php */
@@ -314,6 +339,9 @@ function kapital_pagination( $args = array() ) {
         if ($current < $total - 1):
             $link = str_replace( '%_%', $format, $pagenum_link );
             $link = str_replace( '%#%', $total, $link );
+            if ( $add_args ) {
+                $link = add_query_arg( $add_args, $link );
+            }
             $page_links[] = sprintf(
                 '<a class="last page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-last"></use></svg></a>',
                 /**
@@ -328,7 +356,7 @@ function kapital_pagination( $args = array() ) {
 
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
         //py-1 just to not cut the focus outline, dunno wtf
-        $html = '<nav class="pagination py-1 d-flex mt-4 ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
+        $html = '<nav class="pagination py-1 d-flex mt-6 ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
         $html .= implode( "\n", $page_links );
         $html .= '</nav>';
         return $html;

@@ -12,6 +12,55 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50);
 
+add_action('woocommerce_before_add_to_cart_quantity', 'kapital_woo_quantity_button_plus');
+function kapital_woo_quantity_button_plus(){
+    global $product;
+    if (!$product->is_sold_individually()){
+        $aria_description = sprintf(__('Zvýšiť počet produktu: %s o 1', 'kapital'), $product->get_title());
+        echo '<div class="col-auto">'; //quantity wrapper start
+        echo '<div class="product-quantity row gx-1">'; //quantity row start
+        echo '<div class="col-auto">'; //this button wrapper
+        echo '<button aria-label="' . $aria_description . '" class="kapital-woo-quantity-minus btn-menu" type="button"><svg class="icon-square"><use xlink:href="#icon-minus"></use></svg></button>';
+        echo '</div>'; //this button wrapper end
+        echo '<div class="col-auto">'; //quantity input wrapper
+    }
+}
+add_action('woocommerce_after_add_to_cart_quantity', 'kapital_woo_quantity_button_minus');
+
+function kapital_woo_quantity_button_minus(){
+    global $product;
+    if (!$product->is_sold_individually()){
+        $aria_description = sprintf(__('Znížiť počet produktu: %s o 1', 'kapital'), $product->get_title());
+        echo '</div>'; //end quantity input wrapper
+        echo '<div class="col-auto">'; //this button wrapper
+        echo '<button aria-label="' . $aria_description . '" class="kapital-woo-quantity-plus btn-menu" type="button"><svg class="icon-square"><use xlink:href="#icon-plus"></use></svg></button>';
+        echo '</div>'; //this button wrapper end
+        echo '</div>'; //quantity row end
+        echo '</div>'; //quantity wrapper end
+    }
+    if ($product->is_purchasable()){
+        echo '<div class="col-auto">'; //submit button wrapper start;
+    }
+
+}
+
+
+add_action('woocommerce_before_add_to_cart_button', 'kapital_woo_quantity_button_wrapper_start');
+function kapital_woo_quantity_button_wrapper_start(){
+    global $product;
+    if ($product->is_purchasable()){
+        echo '<div class="row gx-2 gy-3 align-items-center">'; //start wrapper around quantity + button
+    }
+}
+
+add_action('woocommerce_after_add_to_cart_button', 'kapital_woo_quantity_button_wrapper_end');
+function kapital_woo_quantity_button_wrapper_end(){
+    global $product;
+    if ($product->is_purchasable()){
+        echo '</div>'; //end col around submit button
+        echo '</div>'; //end wrapper around quantity + button
+    }
+}
 /** Additional info displayed directly in post
  * remove additional info tab
  */

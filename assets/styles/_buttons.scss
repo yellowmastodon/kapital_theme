@@ -54,6 +54,10 @@
             background-color: var(--#{$prefix}primary);
         }
     }
+    &.btn-link{
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
     &.btn-red{
         background-color: var(--#{$prefix}red);
         border-color: var(--#{$prefix}red);
@@ -73,7 +77,12 @@
             width: 2rem;
             height: 2rem;
         }
-    }   
+    }
+    &:disabled{
+        background-color: var(--#{$prefix}secondary);
+        border-color: var(--#{$prefix}secondary);
+        color: var(--#{$prefix}gray);
+    } 
 }
 
 @include media-breakpoint-up('sm'){
@@ -100,7 +109,7 @@
 
 button, a{
     &.btn{
-        &:hover, &:focus-visible, &:focus{
+        &:hover:not(:disabled), &:focus-visible, &:focus{
             background-color: var(--#{$prefix}red);
             border-color: var(--#{$prefix}red);
             color: $white;
@@ -108,19 +117,19 @@ button, a{
                 fill: $white;
             }
         }
-        &:active{
+        &:active:not(:disabled){
             color: $white;
             background-color: darken($red, 10);
             border-color: darken($red, 10);
         }
         &.btn-red{
-            &:hover, &:focus-visible{
+            &:hover:not(:disabled), &:focus-visible{
                 background-color: var(--#{$prefix}primary);
                 color: var(--#{$prefix}body-color);
                 border-color: var(--#{$prefix}body-color);
     
             }
-            &:active{
+            &:active:not(:disabled){
                 background-color: darken($primary, 7);
                 border-color: darken($primary, 7);;
             }

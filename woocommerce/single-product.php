@@ -23,7 +23,11 @@ if (! defined('ABSPATH')) {
 }
 
 get_header('shop');
-echo kapital_breadcrumbs([], 'container');
+$shop_page_id = wc_get_page_id('shop');
+$shop_page_title = get_the_title($shop_page_id);
+$shop_page_permalink = get_permalink($shop_page_id);
+$breadcrumbs = [[$shop_page_title, $shop_page_permalink]];
+echo kapital_breadcrumbs($breadcrumbs, 'container');
 ?>
 
 <?php
@@ -118,31 +122,7 @@ do_action('woocommerce_before_main_content');
                 echo '<p class="book-author h3 fw-bold text-red mt-3 lh-sm">' . $book_author . '</p>';
             }
             woocommerce_template_single_price();
-            if ($product->is_purchasable()) {
-                if ($product->is_in_stock()) : ?>
-                    <?php do_action('woocommerce_before_add_to_cart_form'); ?>
-                    <form class="cart" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype='multipart/form-data'>
-                        <?php do_action('woocommerce_before_add_to_cart_button'); ?>
-                        <?php
-                        do_action('woocommerce_before_add_to_cart_quantity');
-                        woocommerce_quantity_input(
-                            array(
-                                'min_value'   => apply_filters('woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product),
-                                'max_value'   => apply_filters('woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product),
-                                'input_value' => isset($_POST['quantity']) ? wc_stock_amount(wp_unslash($_POST['quantity'])) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
-                            )
-                        );
-                        do_action('woocommerce_after_add_to_cart_quantity');
-                        ?>
-                        <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button btn btn-primary fw-bold button alt<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
-                        <?php do_action('woocommerce_after_add_to_cart_button'); ?>
-                    </form>
-                    <?php
-                    do_action('woocommerce_after_add_to_cart_form'); ?>
-            <?php endif;
-            }
-            echo wc_get_stock_html($product); // WPCS: XSS ok.
-
+            woocommerce_template_single_add_to_cart();
             echo apply_filters('woocommerce_short_description', $post->post_excerpt);
             wc_display_product_attributes($product); ?>
         </div>
@@ -150,19 +130,19 @@ do_action('woocommerce_before_main_content');
             <div class="woocommerce-product-gallery__wrapper row gy-4">
                 <?php
                 $post_thumbnail_id = $product->get_image_id();
-                $post_gallery_img = $product->get_gallery_image_ids();?>
-                    <a class="col-12" href="<?=wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full')?>">
-                        <?php echo kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100');
-                        //woocommerce_show_product_images(); 
-                        ?>
+                $post_gallery_img = $product->get_gallery_image_ids(); ?>
+                <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-12" href="<?= wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full') ?>">
+                    <?php echo kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100');
+                    //woocommerce_show_product_images(); 
+                    ?>
+                </a>
+                <?php
+                $img_small_col_class = count($post_gallery_img) > 2 ? "col-4" : "col-6";
+                foreach ($post_gallery_img as $img): ?>
+                    <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-md-12 <?= $img_small_col_class ?>" href="<?= wp_get_attachment_url($img, 'full') ?>">
+                        <?= kapital_responsive_image($img, "400px", false, 'rounded w-100') ?>
                     </a>
-                    <?php
-                    $img_small_col_class = count($post_gallery_img) > 2 ? "col-4" : "col-6";
-                    foreach($post_gallery_img as $img):?>
-                        <a class="<?=$img_small_col_class?> col-md-12" href="<?=wp_get_attachment_url($img, 'full')?>">
-                            <?=kapital_responsive_image($img, "400px", false, 'rounded w-100')?>
-                        </a>
-                    <?php endforeach;?>
+                <?php endforeach; ?>
             </div>
         </div>
         <?php
@@ -174,12 +154,34 @@ do_action('woocommerce_before_main_content');
          * @hooked woocommerce_upsell_display - 15
          * @hooked woocommerce_output_related_products - 20
          */
-        do_action( 'woocommerce_after_single_product_summary' );
+        do_action('woocommerce_after_single_product_summary');
         ?>
     </div>
+    <div class="modal fade modal-fullscreen" id="product-modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="true">
+        <a type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <svg class="h1 mb-0 icon-square">
+                <use xlink:href="#icon-close"></use>
+            </svg><span class="visually-hidden"><?= __("Zavrieť galériu", "kapital") ?></span>
+        </a>
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content bg-transparent border-0" id="product-modal-content">
 
+                <div id="product-carousel" class="carousel slide px-sm-5" data-ride="false" data-interval="false" data-bs-keyboard="true">
 
-    <?php do_action( 'woocommerce_after_single_product' ); ?>
+                    <div class="carousel-inner rounded"></div>
+                    <a class="position-absolute carousel-control-prev p-3 opacity-100" type="button" data-bs-target="#product-carousel" data-bs-slide="prev"><svg class="h1 mb-0 icon-square">
+                            <use xlink:href="#icon-page-prev"></use>
+                        </svg><span class="visually-hidden"><?= __("Predošlé", "kapital") ?></span></a>
+                    <a class="position-absolute carousel-control-next p-3 opacity-100" type="button" data-bs-target="#product-carousel" data-bs-slide="next"><svg class="h1 mb-0 icon-square">
+                            <use xlink:href="#icon-page-next"></use>
+                        </svg><span class="visually-hidden"><?= __("Ďalšie", "kapital") ?></span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php do_action('woocommerce_after_single_product'); ?>
 
 <?php endwhile; // end of the loop. 
 ?>

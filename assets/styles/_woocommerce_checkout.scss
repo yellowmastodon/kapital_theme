@@ -1,0 +1,124 @@
+.woocommerce-form-coupon-toggle{
+    .alert-warning{
+        @extend .has-secondary-background-color;
+        color: $body-color;
+    }
+}
+.woocommerce-form-coupon{
+    @extend .ff-grotesk;
+    @extend .alert;
+    //padding: $alert-padding-y;
+    background: var(--#{$prefix}secondary);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: stretch;
+    p{ margin-bottom: 0px;}
+    p:first-child{
+        flex-basis: 100%;
+        margin-bottom: $form-label-margin-bottom;
+    }
+    .form-row + .form-row{
+        margin-left: map-get($spacers, 2);
+    }
+    button{
+        @extend .btn;
+        @extend .btn-form;
+        @extend .btn-outline;
+    }
+}
+
+.woocommerce-checkout{
+    p:not(:last-child){
+        margin-bottom: 1rem;
+    }
+    p:last-child{
+        margin-bottom: 0px;
+    }
+}
+.kapital-woocommerce-checkout-wrapper{
+    h1, h2, h3, h4, h5, h5{
+        margin-top: 0px !important;
+    }
+}
+.kapital-woocommerce-checkout-wrapper, #customer_details, .woocommerce-checkout, #order_review{
+    & > *:not(:last-child){
+        margin-bottom: map-get($spacers, 5);
+    } 
+   
+}
+.woocommerce-billing-fields__field-wrapper, .woocommerce-shipping-fields__field-wrapper{
+    @extend .row;
+    @extend .gx-2;
+    & > *{
+        @extend .col-12;
+    }
+    align-items: end;
+}
+#billing_first_name_field,
+    #billing_last_name_field,
+    #billing_address_1_field,
+    #billing_address_2_field,
+    #billing_postcode_field,
+    #billing_city_field,
+    #shipping_first_name_field,
+    #shipping_last_name_field,
+    #shipping_address_1_field,
+    #shipping_address_2_field,
+    #shipping_postcode_field,
+    #shipping_city_field {
+        @extend .col-sm-6;
+    }
+@include media-breakpoint-up('sm'){
+    .kapital-woocommerce-checkout-wrapper{
+        background: map-get($colors, secondary-light);
+    }
+}
+#ship-to-different-address{
+    #ship-to-different-address-checkbox{
+        margin-top: .2rem;
+    }
+}
+.shop_table{
+    ul{
+        margin-bottom: 0px;
+    }
+    tr>*{
+        vertical-align: top;
+        padding: map-get($spacers, 1) map-get($spacers, 3);
+    }
+    margin-left: -(map-get($spacers, 3));
+    margin-right: -(map-get($spacers, 3));
+
+    @extend .ff-grotesk;
+}
+
+.payment_box {
+    @extend .alert;
+    margin-top: map-get($spacers, 2);
+    margin-bottom: map-get($spacers, 2);
+
+    background: $secondary;
+    & > :last-child, #trustpay_gateway_form > *{
+        margin-bottom: 0px;
+    }
+}
+.payment_methods > li, .payment_box .form-row{
+    @extend .form-check;
+}
+button#place_order{
+    font-weight: bold;
+    margin-top: map-get($spacers , 5);
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-block;
+}
+
+//order received
+p.woocommerce-notice-success, p.woocommerce-notice--success{
+    @extend .alert;
+    @extend .alert-success;
+}
+.woocommerce-order-overview{
+    @extend .list-unstyled;
+}

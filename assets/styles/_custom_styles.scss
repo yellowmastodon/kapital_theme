@@ -3,6 +3,7 @@
     width: 1em;
     vertical-align: -.1em;
 }
+
 body {
     width: auto;
     overflow-x: hidden;
@@ -14,6 +15,9 @@ html, body{
 
 p:last-child{
     margin-bottom: 0px;
+}
+label{
+    line-height: $line-height-small;
 }
 //default main padding
 #main{

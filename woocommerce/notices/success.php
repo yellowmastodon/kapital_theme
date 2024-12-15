@@ -24,10 +24,10 @@ if ( ! $notices ) {
 }
 
 ?>
-
+<ul class="woocommerce-message mb-0" role="alert">
 <?php foreach ( $notices as $notice ) : ?>
-	<div class="woocommerce-message"<?php echo wc_get_notice_data_attr( $notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="alert">
+	<li class="woocommerce-message alert alert-warning"<?php echo wc_get_notice_data_attr( $notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> role="alert">
 		<?php echo wc_kses_notice( $notice['notice'] ); ?>
-		<button onclick="console.log('blabla')" class="dismiss-notice" style="background: none; border: none; color: #0073aa; font-size: 14px; cursor: pointer; padding: 0; margin-left: 10px;">Close</button>
-	</div>
+</li>
 <?php endforeach; ?>
+</ul>

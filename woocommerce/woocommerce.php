@@ -190,10 +190,33 @@ if ( ! function_exists( '_s_woocommerce_header_cart' ) ) {
 
 	}
 }
+if (is_store_notice_showing()){
+	//add_action('init', 'kapital_store_wide_notice');
+}
+
+//add store wide notice
+/* function kapital_store_wide_notice(){
+	if (is_store_notice_showing()){
+		wc_add_notice(get_option('woocommerce_demo_store_notice'));
+	}
+} */
 require_once(dirname(__FILE__) . '/archive-mods.php');
 require_once(dirname(__FILE__) . '/single-product-mods.php');
 require_once(dirname(__FILE__) . '/woocommerce-meta.php');
 require_once(dirname(__FILE__) . '/notices.php');
+require_once(dirname(__FILE__) . '/cart-mods.php');
+
+function get_cart_item_count() {
+    // Get the current cart count
+    $cart_count = WC()->cart->get_cart_contents_count();
+
+    // Return the cart count as a JSON response
+    wp_send_json_success(array('cart_count' => $cart_count));
+}
+
+// Hook the function to an AJAX action
+add_action('wp_ajax_get_cart_item_count', 'get_cart_item_count');
+add_action('wp_ajax_nopriv_get_cart_item_count', 'get_cart_item_count');
 
 
 

@@ -65,6 +65,10 @@
 /**
 * https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 */
+:root, .editor-styles-wrapper .is-root-container {
+  --kptl-input-border-color: #000;
+}
+
 .editor-styles-wrapper {
   /* rtl:raw:
   [type="tel"],
@@ -100,6 +104,7 @@
   --kptl-primary: #ffc2fe;
   --kptl-primary-light: #F3DEEC;
   --kptl-secondary: #EBEBEB;
+  --kptl-secondary-light: #FBFBFB;
   --kptl-red: #ff0033;
   --kptl-purple: #847BBE;
   --kptl-orange: #fd7e14;
@@ -128,6 +133,7 @@
   --kptl-light: #f8f9fa;
   --kptl-dark: #212529;
   --kptl-primary-light: #F3DEEC;
+  --kptl-secondary-light: #FBFBFB;
   --kptl-red: #ff0033;
   --kptl-purple: #847BBE;
   --kptl-orange: #fd7e14;
@@ -147,6 +153,7 @@
   --kptl-light-rgb: 248, 249, 250;
   --kptl-dark-rgb: 33, 37, 41;
   --kptl-primary-light-rgb: 243, 222, 236;
+  --kptl-secondary-light-rgb: 251, 251, 251;
   --kptl-red-rgb: 255, 0, 51;
   --kptl-purple-rgb: 132, 123, 190;
   --kptl-orange-rgb: 253, 126, 20;
@@ -1754,14 +1761,14 @@ a > .editor-styles-wrapper code {
   }
 }
 .editor-styles-wrapper .form-label {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 .editor-styles-wrapper .col-form-label {
   padding-top: calc(0.6rem + 2px);
   padding-bottom: calc(0.6rem + 2px);
   margin-bottom: 0;
   font-size: inherit;
-  line-height: 1;
+  line-height: 1.35;
 }
 .editor-styles-wrapper .col-form-label-lg {
   padding-top: calc(0.5rem + 2px);
@@ -1785,15 +1792,15 @@ a > .editor-styles-wrapper code {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.35;
   color: var(--kptl-body-color);
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   background-color: var(--kptl-body-bg);
   background-clip: padding-box;
-  border: 2px solid var(--kptl-body-color);
-  border-radius: 9999px;
+  border: 2px solid var(--kptl-input-border-color);
+  border-radius: 1.5rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1810,13 +1817,13 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .form-control:focus {
   color: var(--kptl-body-color);
   background-color: var(--kptl-body-bg);
-  border-color: var(--kptl-white);
+  border-color: var(--kptl-red);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  box-shadow: none;
 }
 .editor-styles-wrapper .form-control::-webkit-date-and-time-value {
   min-width: 85px;
-  height: 1em;
+  height: 1.35em;
   margin: 0;
 }
 .editor-styles-wrapper .form-control::-webkit-datetime-edit {
@@ -1862,7 +1869,7 @@ a > .editor-styles-wrapper code {
   width: 100%;
   padding: 0.6rem 0;
   margin-bottom: 0;
-  line-height: 1;
+  line-height: 1.35;
   color: var(--kptl-body-color);
   background-color: transparent;
   border: solid transparent;
@@ -1876,7 +1883,7 @@ a > .editor-styles-wrapper code {
   padding-left: 0;
 }
 .editor-styles-wrapper .form-control-sm {
-  min-height: calc(1em + 0.5rem + calc(2px * 2));
+  min-height: calc(1.35em + 0.5rem + calc(2px * 2));
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
   border-radius: var(--kptl-border-radius-sm);
@@ -1887,7 +1894,7 @@ a > .editor-styles-wrapper code {
   margin-inline-end: 0.5rem;
 }
 .editor-styles-wrapper .form-control-lg {
-  min-height: calc(1em + 1rem + calc(2px * 2));
+  min-height: calc(1.35em + 1rem + calc(2px * 2));
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: var(--kptl-border-radius-lg);
@@ -1898,17 +1905,17 @@ a > .editor-styles-wrapper code {
   margin-inline-end: 1rem;
 }
 .editor-styles-wrapper textarea.form-control {
-  min-height: calc(1em + 1.2rem + calc(2px * 2));
+  min-height: calc(1.35em + 1.2rem + calc(2px * 2));
 }
 .editor-styles-wrapper textarea.form-control-sm {
-  min-height: calc(1em + 0.5rem + calc(2px * 2));
+  min-height: calc(1.35em + 0.5rem + calc(2px * 2));
 }
 .editor-styles-wrapper textarea.form-control-lg {
-  min-height: calc(1em + 1rem + calc(2px * 2));
+  min-height: calc(1.35em + 1rem + calc(2px * 2));
 }
 .editor-styles-wrapper .form-control-color {
   width: 3rem;
-  height: calc(1em + 1.2rem + calc(2px * 2));
+  height: calc(1.35em + 1.2rem + calc(2px * 2));
   padding: 0.6rem;
 }
 .editor-styles-wrapper .form-control-color:not(:disabled):not([readonly]) {
@@ -1916,17 +1923,17 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .form-control-color::-moz-color-swatch {
   border: 0 !important;
-  border-radius: 9999px;
+  border-radius: 1.5rem;
 }
 .editor-styles-wrapper .form-control-color::-webkit-color-swatch {
   border: 0 !important;
-  border-radius: 9999px;
+  border-radius: 1.5rem;
 }
 .editor-styles-wrapper .form-control-color.form-control-sm {
-  height: calc(1em + 0.5rem + calc(2px * 2));
+  height: calc(1.35em + 0.5rem + calc(2px * 2));
 }
 .editor-styles-wrapper .form-control-color.form-control-lg {
-  height: calc(1em + 1rem + calc(2px * 2));
+  height: calc(1.35em + 1rem + calc(2px * 2));
 }
 .editor-styles-wrapper .form-select {
   --kptl-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
@@ -1936,7 +1943,7 @@ a > .editor-styles-wrapper code {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.35;
   color: var(--kptl-body-color);
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -1946,8 +1953,8 @@ a > .editor-styles-wrapper code {
   background-repeat: no-repeat;
   background-position: right 1.2rem center;
   background-size: 16px 12px;
-  border: 2px solid var(--kptl-body-color);
-  border-radius: 9999px;
+  border: 2px solid var(--kptl-input-border-color);
+  border-radius: 1.5rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1956,9 +1963,9 @@ a > .editor-styles-wrapper code {
   }
 }
 .editor-styles-wrapper .form-select:focus {
-  border-color: var(--kptl-white);
+  border-color: var(--kptl-red);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  box-shadow: none;
 }
 .editor-styles-wrapper .form-select[multiple], .editor-styles-wrapper .form-select[size]:not([size="1"]) {
   padding-right: 1.2rem;
@@ -2020,7 +2027,7 @@ a > .editor-styles-wrapper code {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 2px solid var(--kptl-body-color);
+  border: 2px solid var(--kptl-input-border-color);
   -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
 }
@@ -2034,13 +2041,13 @@ a > .editor-styles-wrapper code {
   filter: brightness(90%);
 }
 .editor-styles-wrapper .form-check-input:focus {
-  border-color: var(--kptl-white);
+  border-color: var(--kptl-red);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  box-shadow: none;
 }
 .editor-styles-wrapper .form-check-input:checked {
-  background-color: var(--kptl-white);
-  border-color: var(--kptl-body-color);
+  background-color: #fff;
+  border-color: #000;
 }
 .editor-styles-wrapper .form-check-input:checked[type=checkbox] {
   --kptl-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
@@ -2080,7 +2087,7 @@ a > .editor-styles-wrapper code {
   }
 }
 .editor-styles-wrapper .form-switch .form-check-input:focus {
-  --kptl-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var%28--kptl-white%29'/%3e%3c/svg%3e");
+  --kptl-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='var%28--kptl-red%29'/%3e%3c/svg%3e");
 }
 .editor-styles-wrapper .form-switch .form-check-input:checked {
   background-position: right center;
@@ -2121,10 +2128,10 @@ a > .editor-styles-wrapper code {
   outline: 0;
 }
 .editor-styles-wrapper .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  box-shadow: 0 0 0 1px #fff, none;
 }
 .editor-styles-wrapper .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  box-shadow: 0 0 0 1px #fff, none;
 }
 .editor-styles-wrapper .form-range::-moz-focus-outer {
   border: 0;
@@ -2276,7 +2283,7 @@ a > .editor-styles-wrapper code {
   height: 1em;
   content: "";
   background-color: var(--kptl-body-bg);
-  border-radius: 9999px;
+  border-radius: 1.5rem;
 }
 .editor-styles-wrapper .form-floating > .form-control:focus ~ label::after,
 .editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
@@ -2288,7 +2295,7 @@ a > .editor-styles-wrapper code {
   height: 1em;
   content: "";
   background-color: var(--kptl-body-bg);
-  border-radius: 9999px;
+  border-radius: 1.5rem;
 }
 .editor-styles-wrapper .form-floating > .form-control:-webkit-autofill ~ label {
   color: rgba(var(--kptl-body-color-rgb), 0.65);
@@ -2338,13 +2345,13 @@ a > .editor-styles-wrapper code {
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.35;
   color: var(--kptl-body-color);
   text-align: center;
   white-space: nowrap;
   background-color: var(--kptl-tertiary-bg);
-  border: 2px solid var(--kptl-body-color);
-  border-radius: 9999px;
+  border: 2px solid var(--kptl-input-border-color);
+  border-radius: 1.5rem;
 }
 .editor-styles-wrapper .input-group-lg > .form-control,
 .editor-styles-wrapper .input-group-lg > .form-select,
@@ -2421,19 +2428,19 @@ a > .editor-styles-wrapper code {
 }
 .was-validated .editor-styles-wrapper .form-control:valid, .editor-styles-wrapper .form-control.is-valid {
   border-color: var(--kptl-form-valid-border-color);
-  padding-right: calc(1em + 1.2rem);
+  padding-right: calc(1.35em + 1.2rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right calc(0.25em + 0.3rem) center;
-  background-size: calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+  background-position: right calc(0.3375em + 0.3rem) center;
+  background-size: calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
 .was-validated .editor-styles-wrapper .form-control:valid:focus, .editor-styles-wrapper .form-control.is-valid:focus {
   border-color: var(--kptl-form-valid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
 }
 .was-validated .editor-styles-wrapper textarea.form-control:valid, .editor-styles-wrapper textarea.form-control.is-valid {
-  padding-right: calc(1em + 1.2rem);
-  background-position: top calc(0.25em + 0.3rem) right calc(0.25em + 0.3rem);
+  padding-right: calc(1.35em + 1.2rem);
+  background-position: top calc(0.3375em + 0.3rem) right calc(0.3375em + 0.3rem);
 }
 .was-validated .editor-styles-wrapper .form-select:valid, .editor-styles-wrapper .form-select.is-valid {
   border-color: var(--kptl-form-valid-border-color);
@@ -2442,14 +2449,14 @@ a > .editor-styles-wrapper code {
   --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   padding-right: 6.6rem;
   background-position: right 1.2rem center, center right 3.6rem;
-  background-size: 16px 12px, calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+  background-size: 16px 12px, calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
 .was-validated .editor-styles-wrapper .form-select:valid:focus, .editor-styles-wrapper .form-select.is-valid:focus {
   border-color: var(--kptl-form-valid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
 }
 .was-validated .editor-styles-wrapper .form-control-color:valid, .editor-styles-wrapper .form-control-color.is-valid {
-  width: calc(3rem + calc(1em + 1.2rem));
+  width: calc(3rem + calc(1.35em + 1.2rem));
 }
 .was-validated .editor-styles-wrapper .form-check-input:valid, .editor-styles-wrapper .form-check-input.is-valid {
   border-color: var(--kptl-form-valid-border-color);
@@ -2500,19 +2507,19 @@ a > .editor-styles-wrapper code {
 }
 .was-validated .editor-styles-wrapper .form-control:invalid, .editor-styles-wrapper .form-control.is-invalid {
   border-color: var(--kptl-form-invalid-border-color);
-  padding-right: calc(1em + 1.2rem);
+  padding-right: calc(1.35em + 1.2rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
-  background-position: right calc(0.25em + 0.3rem) center;
-  background-size: calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+  background-position: right calc(0.3375em + 0.3rem) center;
+  background-size: calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
 .was-validated .editor-styles-wrapper .form-control:invalid:focus, .editor-styles-wrapper .form-control.is-invalid:focus {
   border-color: var(--kptl-form-invalid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
 }
 .was-validated .editor-styles-wrapper textarea.form-control:invalid, .editor-styles-wrapper textarea.form-control.is-invalid {
-  padding-right: calc(1em + 1.2rem);
-  background-position: top calc(0.25em + 0.3rem) right calc(0.25em + 0.3rem);
+  padding-right: calc(1.35em + 1.2rem);
+  background-position: top calc(0.3375em + 0.3rem) right calc(0.3375em + 0.3rem);
 }
 .was-validated .editor-styles-wrapper .form-select:invalid, .editor-styles-wrapper .form-select.is-invalid {
   border-color: var(--kptl-form-invalid-border-color);
@@ -2521,14 +2528,14 @@ a > .editor-styles-wrapper code {
   --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
   padding-right: 6.6rem;
   background-position: right 1.2rem center, center right 3.6rem;
-  background-size: 16px 12px, calc(0.5em + 0.6rem) calc(0.5em + 0.6rem);
+  background-size: 16px 12px, calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
 .was-validated .editor-styles-wrapper .form-select:invalid:focus, .editor-styles-wrapper .form-select.is-invalid:focus {
   border-color: var(--kptl-form-invalid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
 }
 .was-validated .editor-styles-wrapper .form-control-color:invalid, .editor-styles-wrapper .form-control-color.is-invalid {
-  width: calc(3rem + calc(1em + 1.2rem));
+  width: calc(3rem + calc(1.35em + 1.2rem));
 }
 .was-validated .editor-styles-wrapper .form-check-input:invalid, .editor-styles-wrapper .form-check-input.is-invalid {
   border-color: var(--kptl-form-invalid-border-color);
@@ -2591,7 +2598,7 @@ a > .editor-styles-wrapper code {
   --kptl-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff0033'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
   --kptl-btn-close-opacity: 1;
   --kptl-btn-close-hover-opacity: 0.75;
-  --kptl-btn-close-focus-shadow: 0 0 0 0.25rem rgba(255, 194, 254, 0.25);
+  --kptl-btn-close-focus-shadow: none;
   --kptl-btn-close-focus-opacity: 1;
   --kptl-btn-close-disabled-opacity: 0.25;
   --kptl-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
@@ -2628,7 +2635,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .offcanvas {
   --kptl-offcanvas-zindex: 1045;
   --kptl-offcanvas-width: 400px;
-  --kptl-offcanvas-height: 30vh;
+  --kptl-offcanvas-height: 40vh;
   --kptl-offcanvas-padding-x: 1rem;
   --kptl-offcanvas-padding-y: 1rem;
   --kptl-offcanvas-color: var(--kptl-body-color);
@@ -2708,7 +2715,7 @@ a > .editor-styles-wrapper code {
   opacity: 0;
 }
 .editor-styles-wrapper .offcanvas-backdrop.show {
-  opacity: 0.5;
+  opacity: 0.95;
 }
 .editor-styles-wrapper .offcanvas-header {
   display: flex;
@@ -2768,6 +2775,10 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .text-bg-primary-light {
   color: #000 !important;
   background-color: RGBA(var(--kptl-primary-light-rgb), var(--kptl-bg-opacity, 1)) !important;
+}
+.editor-styles-wrapper .text-bg-secondary-light {
+  color: #000 !important;
+  background-color: RGBA(var(--kptl-secondary-light-rgb), var(--kptl-bg-opacity, 1)) !important;
 }
 .editor-styles-wrapper .text-bg-red {
   color: #000 !important;
@@ -2880,6 +2891,14 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .link-primary-light:hover, .editor-styles-wrapper .link-primary-light:focus {
   color: RGBA(245, 229, 240, var(--kptl-link-opacity, 1)) !important;
   text-decoration-color: RGBA(245, 229, 240, var(--kptl-link-underline-opacity, 1)) !important;
+}
+.editor-styles-wrapper .link-secondary-light {
+  color: RGBA(var(--kptl-secondary-light-rgb), var(--kptl-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(var(--kptl-secondary-light-rgb), var(--kptl-link-underline-opacity, 1)) !important;
+}
+.editor-styles-wrapper .link-secondary-light:hover, .editor-styles-wrapper .link-secondary-light:focus {
+  color: RGBA(252, 252, 252, var(--kptl-link-opacity, 1)) !important;
+  text-decoration-color: RGBA(252, 252, 252, var(--kptl-link-underline-opacity, 1)) !important;
 }
 .editor-styles-wrapper .link-red {
   color: RGBA(var(--kptl-red-rgb), var(--kptl-link-opacity, 1)) !important;
@@ -3327,6 +3346,9 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .focus-ring-primary-light {
   --kptl-focus-ring-color: rgba(var(--kptl-primary-light-rgb), var(--kptl-focus-ring-opacity));
 }
+.editor-styles-wrapper .focus-ring-secondary-light {
+  --kptl-focus-ring-color: rgba(var(--kptl-secondary-light-rgb), var(--kptl-focus-ring-opacity));
+}
 .editor-styles-wrapper .focus-ring-red {
   --kptl-focus-ring-color: rgba(var(--kptl-red-rgb), var(--kptl-focus-ring-opacity));
 }
@@ -3482,6 +3504,10 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .border-primary-light, .editor-styles-wrapper .has-primary-light-background-color {
   --kptl-border-opacity: 1;
   border-color: rgba(var(--kptl-primary-light-rgb), var(--kptl-border-opacity)) !important;
+}
+.editor-styles-wrapper .border-secondary-light, .editor-styles-wrapper .has-secondary-light-background-color {
+  --kptl-border-opacity: 1;
+  border-color: rgba(var(--kptl-secondary-light-rgb), var(--kptl-border-opacity)) !important;
 }
 .editor-styles-wrapper .border-red, .editor-styles-wrapper .has-red-background-color {
   --kptl-border-opacity: 1;
@@ -4361,6 +4387,10 @@ a > .editor-styles-wrapper code {
   --kptl-text-opacity: 1;
   color: rgba(var(--kptl-primary-light-rgb), var(--kptl-text-opacity)) !important;
 }
+.editor-styles-wrapper .text-secondary-light {
+  --kptl-text-opacity: 1;
+  color: rgba(var(--kptl-secondary-light-rgb), var(--kptl-text-opacity)) !important;
+}
 .editor-styles-wrapper .text-red {
   --kptl-text-opacity: 1;
   color: rgba(var(--kptl-red-rgb), var(--kptl-text-opacity)) !important;
@@ -4553,6 +4583,10 @@ a > .editor-styles-wrapper code {
   --kptl-link-underline-opacity: 1;
   text-decoration-color: rgba(var(--kptl-primary-light-rgb), var(--kptl-link-underline-opacity)) !important;
 }
+.editor-styles-wrapper .link-underline-secondary-light {
+  --kptl-link-underline-opacity: 1;
+  text-decoration-color: rgba(var(--kptl-secondary-light-rgb), var(--kptl-link-underline-opacity)) !important;
+}
 .editor-styles-wrapper .link-underline-red {
   --kptl-link-underline-opacity: 1;
   text-decoration-color: rgba(var(--kptl-red-rgb), var(--kptl-link-underline-opacity)) !important;
@@ -4668,6 +4702,10 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .bg-primary-light, .editor-styles-wrapper .has-primary-light-background-color {
   --kptl-bg-opacity: 1;
   background-color: rgba(var(--kptl-primary-light-rgb), var(--kptl-bg-opacity)) !important;
+}
+.editor-styles-wrapper .bg-secondary-light, .editor-styles-wrapper .has-secondary-light-background-color {
+  --kptl-bg-opacity: 1;
+  background-color: rgba(var(--kptl-secondary-light-rgb), var(--kptl-bg-opacity)) !important;
 }
 .editor-styles-wrapper .bg-red, .editor-styles-wrapper .has-red-background-color {
   --kptl-bg-opacity: 1;
@@ -8392,16 +8430,16 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .alignfull {
   max-width: calc(100% + 2rem);
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px !important;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px !important;
   }
 }
@@ -8515,6 +8553,9 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper p:last-child {
   margin-bottom: 0px;
 }
+.editor-styles-wrapper label {
+  line-height: 1.35;
+}
 .editor-styles-wrapper #main {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -8575,6 +8616,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .bypostauthor,
 .editor-styles-wrapper .wp-caption,
 .editor-styles-wrapper .wp-caption-text {
+  max-width: 100% !important;
   font-size: inherit;
 }
 .editor-styles-wrapper .has-primary-color,
@@ -8597,6 +8639,13 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .wp-block-button:hover .wp-block-button__link.has-white-background-color.has-secondary-color {
   color: var(--kptl-secondary);
+}
+.editor-styles-wrapper .has-secondary-light-color,
+.editor-styles-wrapper .has-secondary-light-color:visited {
+  color: var(--kptl-secondary-light);
+}
+.editor-styles-wrapper .wp-block-button:hover .wp-block-button__link.has-white-background-color.has-secondary-light-color {
+  color: var(--kptl-secondary-light);
 }
 .editor-styles-wrapper .has-red-color,
 .editor-styles-wrapper .has-red-color:visited {
@@ -8729,6 +8778,12 @@ a > .editor-styles-wrapper code {
   background-color: var(--kptl-secondary);
 }
 .editor-styles-wrapper .marker-secondary:hover::before {
+  background-color: white;
+}
+.editor-styles-wrapper .marker-secondary-light::before {
+  background-color: var(--kptl-secondary-light);
+}
+.editor-styles-wrapper .marker-secondary-light:hover::before {
   background-color: white;
 }
 .editor-styles-wrapper .marker-red::before {
@@ -9122,6 +9177,10 @@ img {
 .btn.btn-outline.active, .editor-styles-wrapper .btn-outline.active.wp-element-button, .editor-styles-wrapper .btn-outline.active.wp-block-button__link, .editor-styles-wrapper .btn.active.wp-block-button.is-style-outline, .editor-styles-wrapper .active.wp-element-button.wp-block-button.is-style-outline, .editor-styles-wrapper .active.wp-block-button__link.wp-block-button.is-style-outline {
   background-color: var(--kptl-primary);
 }
+.btn.btn-link, .editor-styles-wrapper .btn-link.wp-element-button, .editor-styles-wrapper .btn-link.wp-block-button__link {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
 .btn.btn-red, .editor-styles-wrapper .btn-red.wp-element-button, .editor-styles-wrapper .btn-red.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-red-background-color, .editor-styles-wrapper .wp-block-button__link.has-red-background-color {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
@@ -9142,6 +9201,11 @@ img {
   width: 2rem;
   height: 2rem;
 }
+.btn:disabled, .editor-styles-wrapper .wp-element-button:disabled, .editor-styles-wrapper .wp-block-button__link:disabled {
+  background-color: var(--kptl-secondary);
+  border-color: var(--kptl-secondary);
+  color: var(--kptl-gray);
+}
 
 @media (min-width: 600px) {
   .btn.btn-close, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
@@ -9158,25 +9222,25 @@ img {
     fill: #cc0029;
   }
 }
-button.btn:hover, .editor-styles-wrapper button.wp-element-button:hover, .editor-styles-wrapper button.wp-block-button__link:hover, button.btn:focus-visible, .editor-styles-wrapper button.wp-element-button:focus-visible, .editor-styles-wrapper button.wp-block-button__link:focus-visible, button.btn:focus, .editor-styles-wrapper button.wp-element-button:focus, .editor-styles-wrapper button.wp-block-button__link:focus, a.btn:hover, .editor-styles-wrapper a.wp-element-button:hover, .editor-styles-wrapper a.wp-block-button__link:hover, a.btn:focus-visible, .editor-styles-wrapper a.wp-element-button:focus-visible, .editor-styles-wrapper a.wp-block-button__link:focus-visible, a.btn:focus, .editor-styles-wrapper a.wp-element-button:focus, .editor-styles-wrapper a.wp-block-button__link:focus {
+button.btn:hover:not(:disabled), .editor-styles-wrapper button.wp-element-button:hover:not(:disabled), .editor-styles-wrapper button.wp-block-button__link:hover:not(:disabled), button.btn:focus-visible, .editor-styles-wrapper button.wp-element-button:focus-visible, .editor-styles-wrapper button.wp-block-button__link:focus-visible, button.btn:focus, .editor-styles-wrapper button.wp-element-button:focus, .editor-styles-wrapper button.wp-block-button__link:focus, a.btn:hover:not(:disabled), .editor-styles-wrapper a.wp-element-button:hover:not(:disabled), .editor-styles-wrapper a.wp-block-button__link:hover:not(:disabled), a.btn:focus-visible, .editor-styles-wrapper a.wp-element-button:focus-visible, .editor-styles-wrapper a.wp-block-button__link:focus-visible, a.btn:focus, .editor-styles-wrapper a.wp-element-button:focus, .editor-styles-wrapper a.wp-block-button__link:focus {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-button.btn:hover svg, .editor-styles-wrapper button.wp-element-button:hover svg, .editor-styles-wrapper button.wp-block-button__link:hover svg, button.btn:focus-visible svg, .editor-styles-wrapper button.wp-element-button:focus-visible svg, .editor-styles-wrapper button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .editor-styles-wrapper button.wp-element-button:focus svg, .editor-styles-wrapper button.wp-block-button__link:focus svg, a.btn:hover svg, .editor-styles-wrapper a.wp-element-button:hover svg, .editor-styles-wrapper a.wp-block-button__link:hover svg, a.btn:focus-visible svg, .editor-styles-wrapper a.wp-element-button:focus-visible svg, .editor-styles-wrapper a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .editor-styles-wrapper a.wp-element-button:focus svg, .editor-styles-wrapper a.wp-block-button__link:focus svg {
+button.btn:hover:not(:disabled) svg, .editor-styles-wrapper button.wp-element-button:hover:not(:disabled) svg, .editor-styles-wrapper button.wp-block-button__link:hover:not(:disabled) svg, button.btn:focus-visible svg, .editor-styles-wrapper button.wp-element-button:focus-visible svg, .editor-styles-wrapper button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .editor-styles-wrapper button.wp-element-button:focus svg, .editor-styles-wrapper button.wp-block-button__link:focus svg, a.btn:hover:not(:disabled) svg, .editor-styles-wrapper a.wp-element-button:hover:not(:disabled) svg, .editor-styles-wrapper a.wp-block-button__link:hover:not(:disabled) svg, a.btn:focus-visible svg, .editor-styles-wrapper a.wp-element-button:focus-visible svg, .editor-styles-wrapper a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .editor-styles-wrapper a.wp-element-button:focus svg, .editor-styles-wrapper a.wp-block-button__link:focus svg {
   fill: #fff;
 }
-button.btn:active, .editor-styles-wrapper button.wp-element-button:active, .editor-styles-wrapper button.wp-block-button__link:active, a.btn:active, .editor-styles-wrapper a.wp-element-button:active, .editor-styles-wrapper a.wp-block-button__link:active {
+button.btn:active:not(:disabled), .editor-styles-wrapper button.wp-element-button:active:not(:disabled), .editor-styles-wrapper button.wp-block-button__link:active:not(:disabled), a.btn:active:not(:disabled), .editor-styles-wrapper a.wp-element-button:active:not(:disabled), .editor-styles-wrapper a.wp-block-button__link:active:not(:disabled) {
   color: #fff;
   background-color: #cc0029;
   border-color: #cc0029;
 }
-button.btn.btn-red:hover, .editor-styles-wrapper button.btn-red.wp-element-button:hover, .editor-styles-wrapper button.btn-red.wp-block-button__link:hover, .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, button.btn.btn-red:focus-visible, .editor-styles-wrapper button.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper button.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover, .editor-styles-wrapper a.btn-red.wp-element-button:hover, .editor-styles-wrapper a.btn-red.wp-block-button__link:hover, .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, a.btn.btn-red:focus-visible, .editor-styles-wrapper a.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper a.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
+button.btn.btn-red:hover:not(:disabled), .editor-styles-wrapper button.btn-red.wp-element-button:hover:not(:disabled), .editor-styles-wrapper button.btn-red.wp-block-button__link:hover:not(:disabled), .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover:not(:disabled), .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover:not(:disabled), button.btn.btn-red:focus-visible, .editor-styles-wrapper button.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper button.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover:not(:disabled), .editor-styles-wrapper a.btn-red.wp-element-button:hover:not(:disabled), .editor-styles-wrapper a.btn-red.wp-block-button__link:hover:not(:disabled), .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover:not(:disabled), .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover:not(:disabled), a.btn.btn-red:focus-visible, .editor-styles-wrapper a.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper a.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
   background-color: var(--kptl-primary);
   color: var(--kptl-body-color);
   border-color: var(--kptl-body-color);
 }
-button.btn.btn-red:active, .editor-styles-wrapper button.btn-red.wp-element-button:active, .editor-styles-wrapper button.btn-red.wp-block-button__link:active, .editor-styles-wrapper button.wp-element-button.has-red-background-color:active, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:active, a.btn.btn-red:active, .editor-styles-wrapper a.btn-red.wp-element-button:active, .editor-styles-wrapper a.btn-red.wp-block-button__link:active, .editor-styles-wrapper a.wp-element-button.has-red-background-color:active, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:active {
+button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.wp-element-button:active:not(:disabled), .editor-styles-wrapper button.btn-red.wp-block-button__link:active:not(:disabled), .editor-styles-wrapper button.wp-element-button.has-red-background-color:active:not(:disabled), .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:active:not(:disabled), a.btn.btn-red:active:not(:disabled), .editor-styles-wrapper a.btn-red.wp-element-button:active:not(:disabled), .editor-styles-wrapper a.btn-red.wp-block-button__link:active:not(:disabled), .editor-styles-wrapper a.wp-element-button.has-red-background-color:active:not(:disabled), .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:active:not(:disabled) {
   background-color: #ff9efd;
   border-color: #ff9efd;
 }
@@ -9465,11 +9529,6 @@ body.modal-open {
 }
 .darujme-form .form-floating label, .darujme-form .form-floating label::after {
   background-color: transparent !important;
-}
-
-form .btn, form .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper form .wp-element-button, form .editor-styles-wrapper .wp-block-button__link, .editor-styles-wrapper form .wp-block-button__link {
-  padding-bottom: 0.6rem;
-  padding-top: 0.6rem;
 }
 
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)) {

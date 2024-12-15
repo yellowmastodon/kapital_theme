@@ -160,6 +160,8 @@ function kapital_enqueue_scripts()
     wp_dequeue_style( 'global-styles' ); // Remove theme.json css
     wp_dequeue_style( 'wp-block-buttons' ); // Remove global styles inline CSS
     wp_deregister_style('wp-block-buttons' );
+    wp_deregister_style('wp-block-woocommerce-filled-mini-cart-contents-block');
+    //wp_dequeue_style( 'select2' );
 
 }
 
@@ -169,6 +171,7 @@ if (!$is_woocommerce_site){
 }
 function kapital_deregister_jquery(){
     //remove jquery from front end
+
     if (!current_user_can('edit_posts')) {
         wp_deregister_script('jquery');
     }
