@@ -85,6 +85,12 @@ do_action('woocommerce_before_main_content');
              * @hooked WC_Structured_Data::generate_product_data() - 60
              */
             do_action('woocommerce_single_product_summary');
+            $product_notice = get_post_meta($product->get_id(), '_kapital_product_notice', true);
+            if ($product_notice && !empty($product_notice)):?>
+                <div class="alert alert-primary">
+                    <?=$product_notice?>
+                </div>
+            <?php endif;
             $product_id = $product->get_id();
             $product_cat = get_the_terms($product_id, 'product_cat');
             $sale = $product->is_on_sale();
@@ -94,7 +100,7 @@ do_action('woocommerce_before_main_content');
                 wp_add_inline_script('scripts', "jQuery('form.variations_form').on('found_variation',function(event,variation){if(variation.image&&variation.image.src&&variation.image.srcset){jQuery('.main-image').attr('src',variation.image.srcewImageSrc);jQuery('.main-image').attr('srcset',variation.image.srcset)}});", 'after' );
             }
             if ($product_cat || $sale || $is_sold_out) {
-                echo '<div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';
+                echo '<div><div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';
                 $cat_no = count($product_cat);
                 if ($sale) {
                     echo '<div class="col-auto text-uppercase text-red">' . __("Zľava", "kapital") . '</div>';
@@ -118,7 +124,7 @@ do_action('woocommerce_before_main_content');
                         echo '<div class="col-auto"><span class="marker-red"></span></div>';
                     }
                 }
-                echo '</div>';
+                echo '</div></div>';
             }
             the_title('<h1 class="product_title entry-title mt-3 mb-0">', '</h1>');
             $book_author = get_post_meta($product->get_id(), '_kapital_book_author', true);

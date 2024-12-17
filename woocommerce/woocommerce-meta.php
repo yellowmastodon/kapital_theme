@@ -2,15 +2,19 @@
 add_action( 'admin_init', 'kapital_product_repeater_meta_boxes' );
 
 function kapital_product_repeater_meta_boxes() {
-	add_meta_box( 'kapital-book-author', __('Autor knihy', 'kapital'), 'kapital_book_author_meta_box_callback', 'product', 'after_title', 'high' );
+	add_meta_box( 'kapital-book-author', __('Autor knihy a poznámka produktu', 'kapital'), 'kapital_book_author_meta_box_callback', 'product', 'after_title', 'high' );
 }
 
 function kapital_book_author_meta_box_callback( $post ){
     $kapital_book_author = get_post_meta( $post->ID, '_kapital_book_author', true );
+    $kapital_product_notice = get_post_meta( $post->ID, '_kapital_product_notice', true );
     wp_nonce_field( 'repeater_box', 'formType' );?>
     <table style="width:100%">
         <tr>
-     <th><label for="kapital_book_author"><?=__("Autor knihy", "kapital")?></th><td style="width:70%"><input style="width:100%" type="text" name="kapital_book_author"  id="kapital_book_author" value="<?=$kapital_book_author?>" placeholder="<?=__("Meno autora. Ak sa nejedná o knihu, nechajte prázdne.", "kapital")?>"></td>
+     <th  style="text-align: left; vertical-align: top"><label for="kapital_book_author"><?=__("Autor knihy", "kapital")?></th><td style="width:70%"><input style="width:100%" type="text" name="kapital_book_author"  id="kapital_book_author" value="<?=$kapital_book_author?>" placeholder="<?=__("Meno autora. Ak sa nejedná o knihu, nechajte prázdne.", "kapital")?>"></td>
+    </tr>    
+    <tr>
+     <th  style="text-align: left; vertical-align: top"><label for="kapital_product_notice"><?=__("Poznámka k produktu (napr. Dátum vydania pri predpredaji)", "kapital")?></th><td><textarea style="width:100%" name="kapital_product_notice" rows="5" id="kapital_product_notice"><?= $kapital_product_notice?></textarea></td>
     </tr>    
 </table>
     <?php
@@ -22,7 +26,9 @@ function kapital_book_author_meta_box_save( $post_id ) {
 	}
     if ( isset( $_POST['kapital_book_author'] ) ){
         update_post_meta( $post_id, '_kapital_book_author', $_POST['kapital_book_author'] );
-
+    }
+    if ( isset( $_POST['kapital_product_notice'] ) ){
+        update_post_meta( $post_id, '_kapital_product_notice', $_POST['kapital_product_notice'] );
     }
 }
 
