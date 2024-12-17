@@ -12,8 +12,7 @@ if (!$render_settings["show_support"]) $ad_rendering_class .= " show-support";
 echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link('podcast')]], 'container')
 
 /** MAIN */
-?>
-<main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
+?><main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
     <?php while (have_posts()) : the_post();
 
         //taxonomies to display in posts, ordered by render priority
@@ -142,9 +141,5 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
             endif; ?>
 
         </article>
-
     <?php endwhile; ?>
-
-</main>
-
-<?php get_footer(); ?>
+</main><?php get_footer(); ?>

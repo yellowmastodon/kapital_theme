@@ -437,6 +437,7 @@ function customMetaSettings() {
           custom_render_meta.show_author = false;
           custom_render_meta.show_views = false;
           custom_render_meta.show_date = false;
+          custom_render_meta.show_categories = false;
         }
       }
       var updateMetaValue = function updateMetaValue(value, prop) {

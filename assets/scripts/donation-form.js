@@ -2,7 +2,10 @@ export default function initializeForm(form_wrapper) {
     //click to expand form
     form_wrapper.querySelector('#darujme-form-expand-btn').addEventListener("click",
         () => {
-            form_wrapper.classList.remove("collapsed");
+            form_wrapper.querySelector('#darujme-expanded-form').style.display = "";
+            setTimeout(()=>{
+                form_wrapper.classList.remove("collapsed");
+            }, 20); //wait a bit so the transition works;
         });
     //radio inputs of fixed values
     var fv = 'input[type=radio][name=fixed_value]';

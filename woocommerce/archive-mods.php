@@ -95,7 +95,7 @@ remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_lo
 remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
 
 // Add a custom price display after the product loop item
-add_action('woocommerce_after_shop_loop_item', 'kapital_woo_template_loop_price', 7);
+add_action('woocommerce_after_shop_loop_item_title', 'kapital_woo_template_loop_price', 10);
 
 function kapital_woo_template_loop_price()
 {

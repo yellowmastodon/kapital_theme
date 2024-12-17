@@ -15,8 +15,6 @@
     border-width: 2px;
     line-height: 1;
     $btn-padding-y: 1.2em;
-    $btn-padding-top: .55em;
-    $btn-padding-bottom: .5em;
     white-space: nowrap;
     padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y;
     transition: $link_transition_speed linear;
@@ -31,8 +29,7 @@
         outline: none !important;
     }
     &.btn-sm{
-        @extend .fs-small;
-        padding: ($fs-small-scale * $btn-padding-top) ($fs-small-scale * $btn-padding-y) ($fs-small-scale * $btn-padding-bottom) ($fs-small-scale * $btn-padding-y);
+        font-size: $small-font-size;
     }
     &.btn-primary{
         background-color: var(--#{$prefix}primary);
@@ -122,6 +119,7 @@ button, a{
             background-color: darken($red, 10);
             border-color: darken($red, 10);
         }
+        
         &.btn-red{
             &:hover:not(:disabled), &:focus-visible{
                 background-color: var(--#{$prefix}primary);

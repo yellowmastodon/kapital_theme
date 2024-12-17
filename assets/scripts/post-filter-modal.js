@@ -1,10 +1,31 @@
 export default function postFilterModal() {
-
     const filterInstances = document.querySelectorAll(".post-filters");
-    for (let i = 0; i < filterInstances.length; i++) {
-        filterInstances[i].querySelector('.btn-filter-toggle').addEventListener('click', toggleModal);
-        filterInstances[i].querySelector('.btn-close').addEventListener('click', closeModal);
+
+    //fix top position in eshop when notices present
+    let horizontalNav = document.querySelector('.horizontal-nav-wrapper');
+    updateFilterTop();
+    const resizeObserver = new ResizeObserver(() => {
+                updateFilterTop()        
+    });
+    if (filterInstances.length > 0){
+        resizeObserver.observe(horizontalNav);
     }
+
+    function updateFilterTop() {
+        filterInstances.forEach((element)=>{
+        if (document.body.classList.contains('admin-bar')){
+            element.style.top = (horizontalNav.getBoundingClientRect().height + 44) + 'px';
+        } else {
+            element.style.top = (horizontalNav.getBoundingClientRect().height + 12) + 'px';
+        }
+    })
+    }
+
+    filterInstances.forEach((element)=>{
+
+        element.querySelector('.btn-filter-toggle').addEventListener('click', toggleModal);
+        element.querySelector('.btn-close').addEventListener('click', closeModal);
+    });
 
     function closeModal(event) {
         let filterModal = event.target.closest('.filters-modal');

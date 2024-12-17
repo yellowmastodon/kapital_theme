@@ -217,6 +217,8 @@ function get_cart_item_count() {
 // Hook the function to an AJAX action
 add_action('wp_ajax_get_cart_item_count', 'get_cart_item_count');
 add_action('wp_ajax_nopriv_get_cart_item_count', 'get_cart_item_count');
+remove_action( 'wp_footer', 'woocommerce_demo_store' );
 
+create_filter_option_submenu('edit.php?post_type=product', __('Filtre produktov', 'kapital'), 'administrator', 'product-filters', 'kapital_product_filters', ['product_cat']);
 
 

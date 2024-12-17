@@ -2,6 +2,11 @@
 .woocommerce-ordering{
     .orderby{
         @extend .form-select;
+        @extend .ff-grotesk;
+        padding-top: $btn-padding-top;
+        padding-bottom: $btn-padding-bottom;
+        padding-left: $btn-padding-x;
+        padding-right: 2.6rem;
     }
 }
 
@@ -28,14 +33,14 @@
         @extend .col-auto;
         @extend .btn;
         @extend .btn-sm;
-        @extend .btn-outline;
+        @extend .btn-secondary;
         margin-left: math.div(map-get($spacers, 3), 2 );
         margin-right: math.div(map-get($spacers, 3), 2 );
     }
 }
 .woocommerce-result-count{
     @extend .ff-grotesk;
-    margin-bottom: map-get($spacers, 4);
+    margin-bottom: map-get($spacers, 3);
 }
 
 .add-to-cart-wrapper .added_to_cart{

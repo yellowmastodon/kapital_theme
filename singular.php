@@ -105,13 +105,13 @@ if ($render_settings["show_breadcrumbs"]) {
                          */
                         if ($render_settings["show_author"]):
                             if (!empty($filtered_terms['autorstvo'])): ?>
-                                <div class="post-authors col-12 col-sm order-1 order-sm-2 mb-3 mb-sm-0 text-center ff-grotesk">
+                                <p class="post-authors col-12 col-sm order-1 order-sm-2 mb-3 mb-sm-0 text-center ff-grotesk">
                                     <?php
                                     foreach ($filtered_terms['autorstvo'] as $key => $author):
                                         if ($key !== 0) echo ", "; ?>
                                         <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a>
                                     <?php endforeach; ?>
-                                </div><?php
+                                    </p><?php
                                     endif;
                                 endif;
                                 /**

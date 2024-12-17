@@ -5,13 +5,8 @@
 }
 
 body {
-    width: auto;
     overflow-x: hidden;
 } 
-html, body{
-    //disable dragging left and right
-    touch-action: pan-y pinch-zoom manipulation;
-}
 
 p:last-child{
     margin-bottom: 0px;

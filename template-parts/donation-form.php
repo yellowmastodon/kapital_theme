@@ -3,9 +3,11 @@ defined( 'ABSPATH' ) || exit;
 //whether to render form as collapsed
 $collapsed_class = "";
 $show_title = true;
+$collapsed = false;
 if (isset($args["collapsed"])){
     if ($args["collapsed"]){
         $collapsed_class = " collapsed";
+        $collapsed = true;
     }
 }
 if (isset($args["show_title"])){
@@ -35,7 +37,7 @@ if ($campaign_active):
     $gdpr_link = $darujme_options["darujme_kapital_gdpr_url"];
     ?>
     <div id="darujme-form-wrapper" class="alignwide bg-primary<?=$collapsed_class?>">
-        <div id="darujme-collapsed-form">
+        <div id="darujme-collapsed-form" <?php if (!$collapsed) echo 'style="display: none"';?>>
             <div class="row align-items-center gy-4 gx-3">
                 <div class="col">
                     <?php
@@ -47,7 +49,7 @@ if ($campaign_active):
                 </div>
             </div>
         </div>
-        <div id="darujme-expanded-form">
+        <div id="darujme-expanded-form" <?php if ($collapsed) echo 'style="display: none"';?>>
             <?php
             if ($show_title) if (isset($title)) if ($title !== "") echo kapital_bubble_title($title, 2, 'h3 mb-3 mt-2');
             if (isset($long_text)) if ($long_text !== "") echo '<div class="ff-grotesk p-3 pb-4">' . wpautop($long_text) . '</div>'

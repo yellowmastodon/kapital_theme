@@ -396,14 +396,20 @@ function kapital_get_issue_title_year_month(string $original_archive_title, bool
  * @param string $taxonomy slug of taxonomy of parent term
  * @return string HMTL markup of filters 
  */
-function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, $taxonomy = ""){
+function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, string $taxonomy = "", string $post_type = 'post'){
     if ($is_general_post_archive):
-        $filters = get_option('kapital_post_filters');
+        if ($post_type === 'post'){
+            $filters = get_option('kapital_post_filters');
+            
+        } elseif ($post_type === 'product'){
+            $filters = get_option('kapital_product_filters');
+        }
         if ($filters && !empty($filters)):
             foreach ($filters as $key => $value) {
                 $filters[$key] = get_term((int) $value);
             }
         endif;
+       
     elseif ($is_term_archive):
         $filters = get_terms(
             $taxonomy,
@@ -417,7 +423,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     endif;
     $html = "";
     if ($filters && !empty($filters)):
-        $html .= '<nav class="post-filters mt-5 text-end mb-4 mb-sm-5 alignwider">';
+        $html .= '<nav class="post-filters mt-5 text-start mb-4 mb-sm-5 alignwider">';
             $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
             $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
             $html .= '</button>';
@@ -426,7 +432,10 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
                 $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';                       
                     foreach ($filters as $filter):
                         //shorten one specific name as it is too long for filter
-                        $term_name = ($filter->slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $filter->name;  
+                        $term_slug = $filter->slug;
+                        $term_name = $filter->name;
+                        $term_name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $filter->name;
+                        $term_name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $filter->name;
                         $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
                             $html .= '<a class="btn btn-outline text-center" href="' . get_term_link($filter) . '">' . $term_name . '</a>';
                         $html .= '</div>';
@@ -546,6 +555,8 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $default_render_settings["show_featured_image"] = false;
         $default_render_settings["show_views"] = false;
         $default_render_settings["show_date"] = false;
+        $default_render_settings["show_categories"] = false;
+
     }
 
     //var_dump($default_render_settings);

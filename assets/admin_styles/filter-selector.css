@@ -1,0 +1,29 @@
+.filter-item{
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: solid 1px #8c8f94;
+    background-color: white;
+    text-align: center;
+}
+.filter-row td{
+    padding: 4px;
+}
+.filter-row td:first-of-type{
+    padding-left: 0px !important;
+}
+.filter-row a{
+    color: #3c434a;
+}
+.filter-row a{
+    cursor: pointer;
+}
+.filter-row .item-delete{
+    text-decoration: underline;
+    color: #b32d2e;
+}
+.no-items.false{
+    display: none;
+}
+#filter-list td{
+    display: table-cell !important;
+}

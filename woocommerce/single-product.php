@@ -89,6 +89,10 @@ do_action('woocommerce_before_main_content');
             $product_cat = get_the_terms($product_id, 'product_cat');
             $sale = $product->is_on_sale();
             $is_sold_out = !$product->is_in_stock();
+            //add custom variation image handler
+            if ( $product->is_type( 'variable' ) ) {
+                wp_add_inline_script('scripts', "jQuery('form.variations_form').on('found_variation',function(event,variation){if(variation.image&&variation.image.src&&variation.image.srcset){jQuery('.main-image').attr('src',variation.image.srcewImageSrc);jQuery('.main-image').attr('srcset',variation.image.srcset)}});", 'after' );
+            }
             if ($product_cat || $sale || $is_sold_out) {
                 echo '<div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';
                 $cat_no = count($product_cat);
@@ -119,29 +123,32 @@ do_action('woocommerce_before_main_content');
             the_title('<h1 class="product_title entry-title mt-3 mb-0">', '</h1>');
             $book_author = get_post_meta($product->get_id(), '_kapital_book_author', true);
             if ($book_author && !empty($book_author)) {
-                echo '<p class="book-author h3 fw-bold text-red mt-3 lh-sm">' . $book_author . '</p>';
+                echo '<p class="book-author h4 fw-bold text-red mt-1 lh-sm">' . $book_author . '</p>';
             }
             woocommerce_template_single_price();
             woocommerce_template_single_add_to_cart();
             echo apply_filters('woocommerce_short_description', $post->post_excerpt);
-            wc_display_product_attributes($product); ?>
+            ?>
         </div>
-        <div class="product-gallery">
+        <div class="product-gallery woocommerce-product-gallery woocommerce-product-gallery--with-images images">
             <div class="woocommerce-product-gallery__wrapper row gy-4">
                 <?php
                 $post_thumbnail_id = $product->get_image_id();
                 $post_gallery_img = $product->get_gallery_image_ids(); ?>
-                <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-12" href="<?= wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full') ?>">
-                    <?php echo kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100');
-                    //woocommerce_show_product_images(); 
-                    ?>
-                </a>
+                <div class="col-12">
+                    <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-12" href="<?= wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full') ?>">
+                        <?php echo kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100 main-image');
+                        ?>
+                    </a>
+                </div>
                 <?php
                 $img_small_col_class = count($post_gallery_img) > 2 ? "col-4" : "col-6";
                 foreach ($post_gallery_img as $img): ?>
-                    <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-md-12 <?= $img_small_col_class ?>" href="<?= wp_get_attachment_url($img, 'full') ?>">
-                        <?= kapital_responsive_image($img, "400px", false, 'rounded w-100') ?>
-                    </a>
+                    <div class="woocommerce-product-gallery__image col-12">
+                        <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-md-12 <?= $img_small_col_class ?>" href="<?= wp_get_attachment_url($img, 'full') ?>">
+                            <?= kapital_responsive_image($img, "400px", false, 'rounded w-100') ?>
+                        </a>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -151,12 +158,13 @@ do_action('woocommerce_before_main_content');
          * Hook: woocommerce_after_single_product_summary.
          *
          * @hooked woocommerce_output_product_data_tabs - 10
-         * @hooked woocommerce_upsell_display - 15
-         * @hooked woocommerce_output_related_products - 20
+         * @hooked removed woocommerce_upsell_display - 15
+         * @hooked removed woocommerce_output_related_products - 20
          */
         do_action('woocommerce_after_single_product_summary');
         ?>
     </div>
+    
     <div class="modal fade modal-fullscreen" id="product-modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="true">
         <a type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <svg class="h1 mb-0 icon-square">

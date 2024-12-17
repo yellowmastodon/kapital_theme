@@ -28,9 +28,7 @@
    margin: auto;
 }
 .woocommerce-account .woocommerce{
-    @extend .p-5;
     @extend .rounded;
-    background: var(--#{$prefix}secondary-light);
     @extend .alignwide;
     max-width: 1200px;
 
@@ -43,10 +41,31 @@
     label{
         @extend .ff-grotesk;
     }
+    #customer_login{
+        .col-1, .col-2{
+            width: unset !important;
+        }
+        >*:not(:last-child){
+            margin-bottom: map-get($spacers, 6);
+        }
+    }
+    .lost_reset_password, #customer_login{
+        @extend .alignnormal;
+        @extend .ff-grotesk;
+    }
 }
 .woocommerce-account .woocommerce, .woocommerce-Addresses{
     & > *:not(:last-child):not(:empty){
         margin-bottom: map-get($spacers, 4);
         margin-top: 0px !important;
+    }
+}
+.woocommerce-form-login{
+    @extend .ff-grotesk;
+    .woocommerce-button{
+        @extend .btn;
+        @extend .btn-block;
+        @extend .btn-form;
+        @extend .btn-primary;
     }
 }

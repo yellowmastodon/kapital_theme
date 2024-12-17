@@ -1,18 +1,19 @@
-.kapital-cart-link{
-    float: right;
-    margin-right: map-get($spacers, 3);
-    margin-top: map-get($spacers, 3);
+.kapital-cart-link-wrapper{
     a {
+        top: map-get($spacers, 3);
+        right: map-get($spacers, 3);
+
         padding: .5rem;
         display: block;
         svg{
-            width: 2.2rem;
-            height: 2.2rem;
+            width: 2rem;
+            height: 2rem;
             position: relative;
             left: -.07em;
         }
     }
     .kapital-cart-quantity-mini-badge{
+        opacity: 1;
         @extend .ff-sans;
         top: -.1rem;
         right: -.1rem;

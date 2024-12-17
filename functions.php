@@ -3,7 +3,7 @@
 /**
  * Custom functions / External files
  */
-$is_woocommerce_site = class_exists( 'WooCommerce' );
+$is_woocommerce_site = class_exists('WooCommerce');
 $template_directory = get_template_directory();
 $include = array(
     //require_once 'includes/class-wp-bootstrap-navwalker.php',
@@ -18,31 +18,31 @@ $include = array(
     '/includes/ajax_functions.php',
 );
 $include_all = array(
-        '/includes/render_functions.php',
-        '/includes/custom_post_types.php',
-        '/includes/custom_taxonomies.php',
+    '/includes/render_functions.php',
+    '/includes/custom_post_types.php',
+    '/includes/custom_taxonomies.php',
 );
 
-if( is_multisite()) {
-    if (is_main_site()){
-        foreach ($include as $inc){
+if (is_multisite()) {
+    if (is_main_site()) {
+        foreach ($include as $inc) {
             require_once $template_directory . $inc;
         }
     }
-    foreach ($include_all as $inc){
+    foreach ($include_all as $inc) {
         require_once $template_directory . $inc;
     }
 } else {
-    foreach ($include as $inc){
+    foreach ($include as $inc) {
         require_once $template_directory . $inc;
     }
-    foreach ($include_all as $inc){
+    foreach ($include_all as $inc) {
         require_once $template_directory . $inc;
     }
 }
 
-if ( class_exists( 'WooCommerce' ) ) {
-	require $template_directory . '/woocommerce/woocommerce.php';
+if (class_exists('WooCommerce')) {
+    require $template_directory . '/woocommerce/woocommerce.php';
 }
 
 
@@ -151,25 +151,26 @@ function kapital_enqueue_scripts()
             'nonce' => wp_create_nonce('ajax-nonce'),
         )
     );
-    wp_dequeue_style( 'wp-block-library' ); // Remove WordPress core CSS
-    wp_deregister_style( 'wp-block-library' ); // Remove WordPress core CSS
+    wp_dequeue_style('wp-block-library'); // Remove WordPress core CSS
+    wp_deregister_style('wp-block-library'); // Remove WordPress core CSS
 
     //wp_dequeue_style( 'wp-block-library-theme' ); // Remove WordPress theme core CSS
-    wp_dequeue_style( 'classic-theme-styles' ); // Remove global styles inline CSS
+    wp_dequeue_style('classic-theme-styles'); // Remove global styles inline CSS
     //wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-    wp_dequeue_style( 'global-styles' ); // Remove theme.json css
-    wp_dequeue_style( 'wp-block-buttons' ); // Remove global styles inline CSS
-    wp_deregister_style('wp-block-buttons' );
+    wp_dequeue_style('global-styles'); // Remove theme.json css
+    wp_dequeue_style('wp-block-buttons'); // Remove global styles inline CSS
+    wp_deregister_style('wp-block-buttons');
     wp_deregister_style('wp-block-woocommerce-filled-mini-cart-contents-block');
     //wp_dequeue_style( 'select2' );
 
 }
 
 add_action('wp_enqueue_scripts', 'kapital_enqueue_scripts');
-if (!$is_woocommerce_site){
+if (!$is_woocommerce_site) {
     add_action('wp_enqueue_scripts', 'kapital_deregister_jquery');
 }
-function kapital_deregister_jquery(){
+function kapital_deregister_jquery()
+{
     //remove jquery from front end
 
     if (!current_user_can('edit_posts')) {
@@ -184,31 +185,31 @@ add_action('enqueue_block_editor_assets', function () {
     wp_deregister_style('wp-block-buttons');
     // Add back key styles, there may be more
     // change the path as needed
-    
+
 }, 102);
 
 add_action(
-	'wp_default_styles',
-	function( $styles ) {
+    'wp_default_styles',
+    function ($styles) {
 
-		/* Create an array with the two handles wp-block-library and
+        /* Create an array with the two handles wp-block-library and
 		 * wp-block-library-theme.
 		 */
-		$handles = [ 'wp-block-buttons', 'wp-block-button' ];
+        $handles = ['wp-block-buttons', 'wp-block-button'];
 
-		foreach ( $handles as $handle ) {
-			// Search and compare with the list of registered style handles:
-			$style = $styles->query( $handle, 'registered' );
-			if ( ! $style ) {
-				continue;
-			}
-			// Remove the style
-			$styles->remove( $handle );
-			// Remove path and dependencies
-			$styles->add( $handle, false, [] );
-		}
-	},
-	PHP_INT_MAX
+        foreach ($handles as $handle) {
+            // Search and compare with the list of registered style handles:
+            $style = $styles->query($handle, 'registered');
+            if (! $style) {
+                continue;
+            }
+            // Remove the style
+            $styles->remove($handle);
+            // Remove path and dependencies
+            $styles->add($handle, false, []);
+        }
+    },
+    PHP_INT_MAX
 );
 
 
@@ -456,7 +457,7 @@ function kapital_set_home_and_posts_page()
             'post_author'   => 1,
         )
     );
- 
+
     foreach ($pages_to_create as $key => $page) {
         $page_check = get_posts(
             array(
@@ -468,12 +469,12 @@ function kapital_set_home_and_posts_page()
             )
         );
         if (!empty($page_check)) $page_check = $page_check[0];
-        if($page_check){
+        if ($page_check) {
             $new_page_id = $page_check->ID;
         } else {
             $new_page_id = wp_insert_post($page);
         }
-        if ($key === 'home'){
+        if ($key === 'home') {
             update_option('page_on_front', $new_page_id, 'on');
         } else {
             update_option('page_for_posts', $new_page_id, 'on');
@@ -485,6 +486,132 @@ function kapital_set_home_and_posts_page()
 
 // If the page doesn't already exist, create it
 
-if (!$is_woocommerce_site){
+if (!$is_woocommerce_site) {
     add_action('after_switch_theme', 'kapital_set_home_and_posts_page');
+}
+
+
+function create_filter_option_submenu($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies ){
+    add_action('admin_menu', function() use ($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies){
+        create_post_filter_submenu_page($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies);
+    });
+}
+
+function create_post_filter_submenu_page($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies)
+{
+    //create new submenu
+    $my_page = add_submenu_page(
+        $menu_page,
+        $name,
+        $name,
+        $role,
+        $menu_slug,
+        function () use ($custom_taxonomies, $settings_handle) {
+            kapital_post_filter_page($custom_taxonomies, $settings_handle);
+        }
+    );
+    //call register settings function
+    add_action('admin_init', function () use ($settings_handle) {
+        register_posts_filter_setting($settings_handle);
+    });
+    add_action('load-' . $my_page, 'kapital_filters_load_admin_js');
+    
+}
+
+
+function kapital_filters_load_admin_js()
+{
+    // Unfortunately we can't just enqueue our scripts here - it's too early. So register against the proper action hook to do it
+    add_action('admin_enqueue_scripts', 'kapital_filters_enqueue_admin_js');
+}
+
+function kapital_filters_enqueue_admin_js()
+{
+    // Isn't it nice to use dependencies and the already registered core js files?
+    wp_enqueue_style('admin-filter-selector-style', get_stylesheet_directory_uri() . '/assets/admin_styles/filter-selector.css?' . filemtime(get_stylesheet_directory() . '/assets/admin_styles/filter-selector.css'), [], null);
+    wp_enqueue_script('admin-filter-selector', get_stylesheet_directory_uri() . '/js/admin-filter-selector.min.js', [], null, true);
+}
+
+function register_posts_filter_setting($handle)
+{
+    //register our settings
+    register_setting(
+        $handle,
+        $handle,
+        array(
+            'show_in_rest' => array(
+                true,
+                'schema' => array(
+                    'items' => array(
+                        'type' => 'array'
+                    )
+                )
+            ),
+            'type' => 'array',
+            'default' => [],
+        )
+    );
+}
+
+function kapital_post_filter_page($custom_taxonomies, $option_name)
+{
+?>
+    <div class="wrap">
+        <h1><?php echo __('Filtre článkov', 'kapital') ?></h1>
+
+        <form class="kapital-post-filters-form" method="post" action="options.php">
+            <?php settings_fields($option_name); ?>
+            <?php do_settings_sections($option_name); ?>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Filtre</th>
+                    <td>
+                        <table>
+                            <?php $post_filters = get_option($option_name, array()); ?>
+
+                            <tbody id="filter-list" class="filter-list">
+                                <tr class="filter-row no-items<?php if (!empty($post_filters)) echo ' false'; ?>">
+                                    <td>Nenašli sa žiadne filtre.</td>
+                                </tr>
+
+                                <?php if (!empty($post_filters)):
+                                    foreach ($post_filters as $post_filter): ?>
+                                        <tr class="filter-row">
+                                            <input type="hidden" name="<?= $option_name . '[]' ?>" value="<?php echo $post_filter ?>" />
+                                            <td>
+                                                <div class="filter-item"><?php echo get_term($post_filter)->name ?></div>
+                                            </td>
+                                            <td><a href="" class="dashicons move-down dashicons-arrow-down-alt2"></a></td>
+                                            <td><a href="" class="dashicons move-up dashicons-arrow-up-alt2"></a></td>
+                                            <td><a href="" class="item-delete">Odstrániť filter</a></td>
+                                        </tr>
+                                <?php endforeach;
+                                endif; ?>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">Pridať filter</th>
+                    <td><select id="filter-select">
+                            <option value disabled selected>Vyberte filter</option>
+                            <?php
+                            $filtered_terms = get_and_reorganize_terms(null, $custom_taxonomies);
+                            foreach ($custom_taxonomies as $custom_taxonomy): ?>
+                                <optgroup label="<?php echo get_taxonomy($custom_taxonomy)->label ?>">
+                                    <?php foreach ($filtered_terms[$custom_taxonomy] as $term): ?>
+                                        <option value="<?php echo $term->term_id; ?>"><?php echo $term->name ?></option>
+                                    <?php endforeach; ?>
+                                </optgroup>
+                            <?php endforeach; ?>
+                        </select>
+            </table>
+
+            <?php submit_button(); ?>
+
+        </form>
+    </div>
+
+<?php
 }

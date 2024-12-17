@@ -41,6 +41,7 @@
     button,
     input[type="submit"] {
         @extend .btn;
+        @extend .btn-form;
         @extend .btn-outline;
         margin-bottom: 0px !important;
     }
@@ -53,6 +54,7 @@
 .cart {
     .quantity {
         input {
+            -webkit-appearance: none;
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button {
                 -webkit-appearance: none;
@@ -64,23 +66,36 @@
                 -moz-appearance: textfield;
             }
             @extend .ff-grotesk;
-            width: unset !important;
         }
     }
     .kapital-woo-quantity-minus,
     .kapital-woo-quantity-plus,
-    .product-quantity input,
     .product-remove a.remove {
         line-height: 1;
         font-size: 1rem;
-        width: 2.4rem;
         height: 2.4rem;
-        padding-left: 0.3rem;
-        padding-right: 0.3rem;
-        text-align: center;
+        padding: 0.575rem;
+        line-height: 1rem;
     }
     .quantity input {
         background-clip: border-box !important;
+        text-align: center;
+        padding-top: .6rem;
+        height: 2.4rem;
+        padding-bottom: .45rem;
+        line-height: 1rem;
+        padding-left: .3rem;
+        padding-right: .3rem;
+    }
+    .product-subtotal{
+        padding-top: .2em; //centering issue with font
+    }
+
+    .kapital-woo-quantity-minus,
+    .kapital-woo-quantity-plus,
+    .product-remove a.remove {
+        touch-action: manipulation; //disable double tap zoom
+        width: 2.4rem;
     }
 }
 #shipping_method {
@@ -90,6 +105,15 @@
     }
 }
 
+
+.shipping-calculator-form{
+    margin-top: map-get($spacers, 4);
+    button[type="submit"]{
+        @extend .btn;
+        @extend .btn-form;
+        @extend .btn-primary;
+    }
+}
 .blockOverlay {
     margin-left: -3rem !important;
     margin-right: -3rem !important;

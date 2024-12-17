@@ -59,10 +59,27 @@ do_action( 'woocommerce_before_main_content' );
  * @hooked woocommerce_product_taxonomy_archive_header - 10
  */
 //do_action( 'woocommerce_shop_loop_header' );
+?>
+<header class="alignwide">
+<?php
 if (is_search()){
 	echo '<h1>' . $page_title . '</h1>';
 } else {
-	echo kapital_bubble_title($page_title, 1);
+	if (strcasecmp($page_title, 'kniha') == 0){
+		echo kapital_bubble_title('Knihy', 1);
+	} else {
+		echo kapital_bubble_title($page_title, 1);
+	}
+}?>
+</header>
+<?php
+$is_term_archive = is_tax();
+$is_general_post_archive = !$is_term_archive;
+
+if ($is_term_archive){
+	echo kapital_post_filters($is_general_post_archive, $is_term_archive, get_queried_object_id(), 'product_cat', 'product');
+} else {
+	echo kapital_post_filters($is_general_post_archive, $is_term_archive, 0, 'product_cat', 'product');
 }
 
 if ( woocommerce_product_loop() ) {
@@ -86,7 +103,7 @@ if ( woocommerce_product_loop() ) {
 			 * Hook: woocommerce_shop_loop.
 			 */
 			do_action( 'woocommerce_shop_loop' );
-			get_template_part( 'template-parts/archive-single-product' );
+			get_template_part( 'woocommerce/archive-single-product' );
 		}
 	}
 ?>

@@ -35,8 +35,8 @@ form ul{
     padding-left: 0px;
 }
 form .btn, .btn-form{
-    padding-bottom: $input-btn-padding-y;
-    padding-top: $input-btn-padding-y;
+    padding-bottom: $input-btn-padding-y - .05rem;
+    padding-top: $input-btn-padding-y + .05rem;
     line-height: $line-height-small;
 }
 

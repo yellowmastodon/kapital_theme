@@ -71,6 +71,14 @@ mix
         'assets/scripts/scripts.js'
     ], 'js/scripts.min.js');
 
+mix
+.js([
+    'assets/scripts/admin-filter-selector.js'
+], 'js/admin-filter-selector.min.js');
+mix
+.js([
+    'assets/scripts/cart-quantity-script.js'
+], 'js/cart-quantity.min.js');
 
 mix.browserSync({
     https: true,

@@ -295,7 +295,7 @@ h6, .h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 abbr[title] {
@@ -702,7 +702,7 @@ progress {
   --kptl-breakpoint-xxl: 1650px;
 }
 
-.row, .woocommerce-MyAccount-navigation ul, .woocommerce-billing-fields__field-wrapper, .woocommerce-shipping-fields__field-wrapper {
+.row, .woocommerce-MyAccount-navigation ul, .woocommerce-billing-fields__field-wrapper, .woocommerce-shipping-fields__field-wrapper, .tabs.wc-tabs {
   --kptl-gutter-x: 1rem;
   --kptl-gutter-y: 0;
   display: flex;
@@ -711,7 +711,7 @@ progress {
   margin-right: calc(-0.5 * var(--kptl-gutter-x));
   margin-left: calc(-0.5 * var(--kptl-gutter-x));
 }
-.row > *, .woocommerce-MyAccount-navigation ul > *, .woocommerce-billing-fields__field-wrapper > *, .woocommerce-shipping-fields__field-wrapper > * {
+.row > *, .woocommerce-MyAccount-navigation ul > *, .woocommerce-billing-fields__field-wrapper > *, .woocommerce-shipping-fields__field-wrapper > *, .tabs.wc-tabs > * {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -759,7 +759,7 @@ progress {
   width: 16.66666667%;
 }
 
-.col-auto, .woocommerce-MyAccount-navigation ul li, .add-to-cart-wrapper .added_to_cart, .archive-item.product a.button {
+.col-auto, .woocommerce-MyAccount-navigation ul li, .tabs.wc-tabs li, .add-to-cart-wrapper .added_to_cart, .archive-item.product a.button {
   flex: 0 0 auto;
   width: auto;
 }
@@ -892,7 +892,8 @@ progress {
 .gx-2,
 .woocommerce-MyAccount-navigation ul,
 .woocommerce-billing-fields__field-wrapper,
-.woocommerce-shipping-fields__field-wrapper {
+.woocommerce-shipping-fields__field-wrapper,
+.tabs.wc-tabs {
   --kptl-gutter-x: 0.5rem;
 }
 
@@ -908,7 +909,8 @@ progress {
 
 .g-3,
 .gy-3,
-.woocommerce-MyAccount-navigation ul {
+.woocommerce-MyAccount-navigation ul,
+.tabs.wc-tabs {
   --kptl-gutter-y: 1rem;
 }
 
@@ -1918,7 +1920,7 @@ progress {
   color: var(--kptl-secondary-color);
 }
 
-.form-control, .single-product form.cart .woonp input, input[type=number], input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
+.form-control, input[type=number], input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
   display: block;
   width: 100%;
   padding: 0.6rem 1.2rem;
@@ -1937,45 +1939,45 @@ progress {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-control, .single-product form.cart .woonp input, input[type=number], input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
+  .form-control, input[type=number], input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
     transition: none;
   }
 }
-.form-control[type=file], .single-product form.cart .woonp input[type=file], input[type=file][type=number], input[type=file][type=text], input[type=file][type=tel], input[type=file][type=email], input[type=file][type=password], textarea[type=file] {
+.form-control[type=file], input[type=file][type=number], input[type=file][type=text], input[type=file][type=tel], input[type=file][type=email], input[type=file][type=password], textarea[type=file] {
   overflow: hidden;
 }
-.form-control[type=file]:not(:disabled):not([readonly]), .single-product form.cart .woonp input[type=file]:not(:disabled):not([readonly]), input[type=file][type=number]:not(:disabled):not([readonly]), input[type=file][type=text]:not(:disabled):not([readonly]), input[type=file][type=tel]:not(:disabled):not([readonly]), input[type=file][type=email]:not(:disabled):not([readonly]), input[type=file][type=password]:not(:disabled):not([readonly]), textarea[type=file]:not(:disabled):not([readonly]) {
+.form-control[type=file]:not(:disabled):not([readonly]), input[type=file][type=number]:not(:disabled):not([readonly]), input[type=file][type=text]:not(:disabled):not([readonly]), input[type=file][type=tel]:not(:disabled):not([readonly]), input[type=file][type=email]:not(:disabled):not([readonly]), input[type=file][type=password]:not(:disabled):not([readonly]), textarea[type=file]:not(:disabled):not([readonly]) {
   cursor: pointer;
 }
-.form-control:focus, .single-product form.cart .woonp input:focus, input[type=number]:focus, input[type=text]:focus, input[type=tel]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus {
+.form-control:focus, input[type=number]:focus, input[type=text]:focus, input[type=tel]:focus, input[type=email]:focus, input[type=password]:focus, textarea:focus {
   color: var(--kptl-body-color);
   background-color: var(--kptl-body-bg);
   border-color: var(--kptl-red);
   outline: 0;
   box-shadow: none;
 }
-.form-control::-webkit-date-and-time-value, .single-product form.cart .woonp input::-webkit-date-and-time-value, input[type=number]::-webkit-date-and-time-value, input[type=text]::-webkit-date-and-time-value, input[type=tel]::-webkit-date-and-time-value, input[type=email]::-webkit-date-and-time-value, input[type=password]::-webkit-date-and-time-value, textarea::-webkit-date-and-time-value {
+.form-control::-webkit-date-and-time-value, input[type=number]::-webkit-date-and-time-value, input[type=text]::-webkit-date-and-time-value, input[type=tel]::-webkit-date-and-time-value, input[type=email]::-webkit-date-and-time-value, input[type=password]::-webkit-date-and-time-value, textarea::-webkit-date-and-time-value {
   min-width: 85px;
   height: 1.35em;
   margin: 0;
 }
-.form-control::-webkit-datetime-edit, .single-product form.cart .woonp input::-webkit-datetime-edit, input[type=number]::-webkit-datetime-edit, input[type=text]::-webkit-datetime-edit, input[type=tel]::-webkit-datetime-edit, input[type=email]::-webkit-datetime-edit, input[type=password]::-webkit-datetime-edit, textarea::-webkit-datetime-edit {
+.form-control::-webkit-datetime-edit, input[type=number]::-webkit-datetime-edit, input[type=text]::-webkit-datetime-edit, input[type=tel]::-webkit-datetime-edit, input[type=email]::-webkit-datetime-edit, input[type=password]::-webkit-datetime-edit, textarea::-webkit-datetime-edit {
   display: block;
   padding: 0;
 }
-.form-control::-moz-placeholder, .single-product form.cart .woonp input::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=tel]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, textarea::-moz-placeholder {
+.form-control::-moz-placeholder, input[type=number]::-moz-placeholder, input[type=text]::-moz-placeholder, input[type=tel]::-moz-placeholder, input[type=email]::-moz-placeholder, input[type=password]::-moz-placeholder, textarea::-moz-placeholder {
   color: var(--kptl-secondary-color);
   opacity: 1;
 }
-.form-control::placeholder, .single-product form.cart .woonp input::placeholder, input[type=number]::placeholder, input[type=text]::placeholder, input[type=tel]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder, textarea::placeholder {
+.form-control::placeholder, input[type=number]::placeholder, input[type=text]::placeholder, input[type=tel]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder, textarea::placeholder {
   color: var(--kptl-secondary-color);
   opacity: 1;
 }
-.form-control:disabled, .single-product form.cart .woonp input:disabled, input[type=number]:disabled, input[type=text]:disabled, input[type=tel]:disabled, input[type=email]:disabled, input[type=password]:disabled, textarea:disabled {
+.form-control:disabled, input[type=number]:disabled, input[type=text]:disabled, input[type=tel]:disabled, input[type=email]:disabled, input[type=password]:disabled, textarea:disabled {
   background-color: var(--kptl-secondary-bg);
   opacity: 1;
 }
-.form-control::file-selector-button, .single-product form.cart .woonp input::file-selector-button, input[type=number]::file-selector-button, input[type=text]::file-selector-button, input[type=tel]::file-selector-button, input[type=email]::file-selector-button, input[type=password]::file-selector-button, textarea::file-selector-button {
+.form-control::file-selector-button, input[type=number]::file-selector-button, input[type=text]::file-selector-button, input[type=tel]::file-selector-button, input[type=email]::file-selector-button, input[type=password]::file-selector-button, textarea::file-selector-button {
   padding: 0.6rem 1.2rem;
   margin: -0.6rem -1.2rem;
   margin-inline-end: 1.2rem;
@@ -1990,11 +1992,11 @@ progress {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-control::file-selector-button, .single-product form.cart .woonp input::file-selector-button, input[type=number]::file-selector-button, input[type=text]::file-selector-button, input[type=tel]::file-selector-button, input[type=email]::file-selector-button, input[type=password]::file-selector-button, textarea::file-selector-button {
+  .form-control::file-selector-button, input[type=number]::file-selector-button, input[type=text]::file-selector-button, input[type=tel]::file-selector-button, input[type=email]::file-selector-button, input[type=password]::file-selector-button, textarea::file-selector-button {
     transition: none;
   }
 }
-.form-control:hover:not(:disabled):not([readonly])::file-selector-button, .single-product form.cart .woonp input:hover:not(:disabled):not([readonly])::file-selector-button, input[type=number]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=text]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=tel]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=email]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=password]:hover:not(:disabled):not([readonly])::file-selector-button, textarea:hover:not(:disabled):not([readonly])::file-selector-button {
+.form-control:hover:not(:disabled):not([readonly])::file-selector-button, input[type=number]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=text]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=tel]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=email]:hover:not(:disabled):not([readonly])::file-selector-button, input[type=password]:hover:not(:disabled):not([readonly])::file-selector-button, textarea:hover:not(:disabled):not([readonly])::file-selector-button {
   background-color: var(--kptl-secondary-bg);
 }
 
@@ -2257,15 +2259,15 @@ textarea.form-control-lg {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.btn-check[disabled] + .btn, .woocommerce-account .woocommerce .btn-check[disabled] + button[type=submit], .woocommerce-MyAccount-navigation ul li .btn-check[disabled] + a, .btn-check[disabled] + button#place_order, .woocommerce-form-coupon .btn-check[disabled] + button, .woocommerce-cart-form .coupon .btn-check[disabled] + button,
+.btn-check[disabled] + .btn, .woocommerce-form-login .btn-check[disabled] + .woocommerce-button, .woocommerce-account .woocommerce .btn-check[disabled] + button[type=submit], .woocommerce-MyAccount-navigation ul li .btn-check[disabled] + a, .btn-check[disabled] + button#place_order, .woocommerce-form-coupon .btn-check[disabled] + button, .shipping-calculator-form .btn-check[disabled] + button[type=submit], .woocommerce-cart-form .coupon .btn-check[disabled] + button,
 .woocommerce-cart-form .coupon .btn-check[disabled] + input[type=submit],
 #pwgc-redeem-gift-card-container .btn-check[disabled] + button,
 #pwgc-redeem-gift-card-container .btn-check[disabled] + input[type=submit], #pwgc-redeem-form .btn-check[disabled] + button,
-#pwgc-redeem-form .btn-check[disabled] + input[type=submit], .btn-check[disabled] + .checkout-button, .btn-check[disabled] + .single_add_to_cart_button, .archive-item.product .btn-check[disabled] + a.button, .archive-item.product .btn-check[disabled] + .onsale, .archive-item.product .btn-check[disabled] + .soldout, .archive-item.product .btn-check[disabled] + .predpredaj, .btn-check[disabled] + .wp-element-button, .btn-check[disabled] + .wp-block-button__link, .btn-check:disabled + .btn, .woocommerce-account .woocommerce .btn-check:disabled + button[type=submit], .woocommerce-MyAccount-navigation ul li .btn-check:disabled + a, .btn-check:disabled + button#place_order, .woocommerce-form-coupon .btn-check:disabled + button, .woocommerce-cart-form .coupon .btn-check:disabled + button,
+#pwgc-redeem-form .btn-check[disabled] + input[type=submit], .btn-check[disabled] + .checkout-button, .tabs.wc-tabs li .btn-check[disabled] + a, .btn-check[disabled] + .single_add_to_cart_button, .archive-item.product .btn-check[disabled] + a.button, .archive-item.product .btn-check[disabled] + .onsale, .archive-item.product .btn-check[disabled] + .soldout, .archive-item.product .btn-check[disabled] + .predpredaj, .btn-check[disabled] + .wp-element-button, .btn-check[disabled] + .wp-block-button__link, .btn-check:disabled + .btn, .woocommerce-form-login .btn-check:disabled + .woocommerce-button, .woocommerce-account .woocommerce .btn-check:disabled + button[type=submit], .woocommerce-MyAccount-navigation ul li .btn-check:disabled + a, .btn-check:disabled + button#place_order, .woocommerce-form-coupon .btn-check:disabled + button, .shipping-calculator-form .btn-check:disabled + button[type=submit], .woocommerce-cart-form .coupon .btn-check:disabled + button,
 .woocommerce-cart-form .coupon .btn-check:disabled + input[type=submit],
 #pwgc-redeem-gift-card-container .btn-check:disabled + button,
 #pwgc-redeem-gift-card-container .btn-check:disabled + input[type=submit], #pwgc-redeem-form .btn-check:disabled + button,
-#pwgc-redeem-form .btn-check:disabled + input[type=submit], .btn-check:disabled + .checkout-button, .btn-check:disabled + .single_add_to_cart_button, .archive-item.product .btn-check:disabled + a.button, .archive-item.product .btn-check:disabled + .onsale, .archive-item.product .btn-check:disabled + .soldout, .archive-item.product .btn-check:disabled + .predpredaj, .btn-check:disabled + .wp-element-button, .btn-check:disabled + .wp-block-button__link {
+#pwgc-redeem-form .btn-check:disabled + input[type=submit], .btn-check:disabled + .checkout-button, .tabs.wc-tabs li .btn-check:disabled + a, .btn-check:disabled + .single_add_to_cart_button, .archive-item.product .btn-check:disabled + a.button, .archive-item.product .btn-check:disabled + .onsale, .archive-item.product .btn-check:disabled + .soldout, .archive-item.product .btn-check:disabled + .predpredaj, .btn-check:disabled + .wp-element-button, .btn-check:disabled + .wp-block-button__link {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2364,7 +2366,7 @@ textarea.form-control-lg {
 .form-floating {
   position: relative;
 }
-.form-floating > .form-control, .single-product form.cart .woonp .form-floating > input, .form-floating > input[type=number], .form-floating > input[type=text], .form-floating > input[type=tel], .form-floating > input[type=email], .form-floating > input[type=password], .form-floating > textarea,
+.form-floating > .form-control, .form-floating > input[type=number], .form-floating > input[type=text], .form-floating > input[type=tel], .form-floating > input[type=email], .form-floating > input[type=password], .form-floating > textarea,
 .form-floating > .form-control-plaintext,
 .form-floating > .form-select,
 table.variations .form-floating > select,
@@ -2394,28 +2396,28 @@ table.variations .form-floating > select,
     transition: none;
   }
 }
-.form-floating > .form-control, .single-product form.cart .woonp .form-floating > input, .form-floating > input[type=number], .form-floating > input[type=text], .form-floating > input[type=tel], .form-floating > input[type=email], .form-floating > input[type=password], .form-floating > textarea,
+.form-floating > .form-control, .form-floating > input[type=number], .form-floating > input[type=text], .form-floating > input[type=tel], .form-floating > input[type=email], .form-floating > input[type=password], .form-floating > textarea,
 .form-floating > .form-control-plaintext {
   padding: 0.4rem 1.2rem;
 }
-.form-floating > .form-control::-moz-placeholder, .single-product form.cart .woonp .form-floating > input::-moz-placeholder, .form-floating > input[type=number]::-moz-placeholder, .form-floating > input[type=text]::-moz-placeholder, .form-floating > input[type=tel]::-moz-placeholder, .form-floating > input[type=email]::-moz-placeholder, .form-floating > input[type=password]::-moz-placeholder, .form-floating > textarea::-moz-placeholder, .form-floating > .form-control-plaintext::-moz-placeholder {
+.form-floating > .form-control::-moz-placeholder, .form-floating > input[type=number]::-moz-placeholder, .form-floating > input[type=text]::-moz-placeholder, .form-floating > input[type=tel]::-moz-placeholder, .form-floating > input[type=email]::-moz-placeholder, .form-floating > input[type=password]::-moz-placeholder, .form-floating > textarea::-moz-placeholder, .form-floating > .form-control-plaintext::-moz-placeholder {
   color: transparent;
 }
-.form-floating > .form-control::placeholder, .single-product form.cart .woonp .form-floating > input::placeholder, .form-floating > input[type=number]::placeholder, .form-floating > input[type=text]::placeholder, .form-floating > input[type=tel]::placeholder, .form-floating > input[type=email]::placeholder, .form-floating > input[type=password]::placeholder, .form-floating > textarea::placeholder,
+.form-floating > .form-control::placeholder, .form-floating > input[type=number]::placeholder, .form-floating > input[type=text]::placeholder, .form-floating > input[type=tel]::placeholder, .form-floating > input[type=email]::placeholder, .form-floating > input[type=password]::placeholder, .form-floating > textarea::placeholder,
 .form-floating > .form-control-plaintext::placeholder {
   color: transparent;
 }
-.form-floating > .form-control:not(:-moz-placeholder-shown), .single-product form.cart .woonp .form-floating > input:not(:-moz-placeholder-shown), .form-floating > input[type=number]:not(:-moz-placeholder-shown), .form-floating > input[type=text]:not(:-moz-placeholder-shown), .form-floating > input[type=tel]:not(:-moz-placeholder-shown), .form-floating > input[type=email]:not(:-moz-placeholder-shown), .form-floating > input[type=password]:not(:-moz-placeholder-shown), .form-floating > textarea:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
+.form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > input[type=number]:not(:-moz-placeholder-shown), .form-floating > input[type=text]:not(:-moz-placeholder-shown), .form-floating > input[type=tel]:not(:-moz-placeholder-shown), .form-floating > input[type=email]:not(:-moz-placeholder-shown), .form-floating > input[type=password]:not(:-moz-placeholder-shown), .form-floating > textarea:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
 }
-.form-floating > .form-control:focus, .single-product form.cart .woonp .form-floating > input:focus, .form-floating > input[type=number]:focus, .form-floating > input[type=text]:focus, .form-floating > input[type=tel]:focus, .form-floating > input[type=email]:focus, .form-floating > input[type=password]:focus, .form-floating > textarea:focus, .form-floating > .form-control:not(:placeholder-shown), .single-product form.cart .woonp .form-floating > input:not(:placeholder-shown), .form-floating > input[type=number]:not(:placeholder-shown), .form-floating > input[type=text]:not(:placeholder-shown), .form-floating > input[type=tel]:not(:placeholder-shown), .form-floating > input[type=email]:not(:placeholder-shown), .form-floating > input[type=password]:not(:placeholder-shown), .form-floating > textarea:not(:placeholder-shown),
+.form-floating > .form-control:focus, .form-floating > input[type=number]:focus, .form-floating > input[type=text]:focus, .form-floating > input[type=tel]:focus, .form-floating > input[type=email]:focus, .form-floating > input[type=password]:focus, .form-floating > textarea:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > input[type=number]:not(:placeholder-shown), .form-floating > input[type=text]:not(:placeholder-shown), .form-floating > input[type=tel]:not(:placeholder-shown), .form-floating > input[type=email]:not(:placeholder-shown), .form-floating > input[type=password]:not(:placeholder-shown), .form-floating > textarea:not(:placeholder-shown),
 .form-floating > .form-control-plaintext:focus,
 .form-floating > .form-control-plaintext:not(:placeholder-shown) {
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
 }
-.form-floating > .form-control:-webkit-autofill, .single-product form.cart .woonp .form-floating > input:-webkit-autofill, .form-floating > input[type=number]:-webkit-autofill, .form-floating > input[type=text]:-webkit-autofill, .form-floating > input[type=tel]:-webkit-autofill, .form-floating > input[type=email]:-webkit-autofill, .form-floating > input[type=password]:-webkit-autofill, .form-floating > textarea:-webkit-autofill,
+.form-floating > .form-control:-webkit-autofill, .form-floating > input[type=number]:-webkit-autofill, .form-floating > input[type=text]:-webkit-autofill, .form-floating > input[type=tel]:-webkit-autofill, .form-floating > input[type=email]:-webkit-autofill, .form-floating > input[type=password]:-webkit-autofill, .form-floating > textarea:-webkit-autofill,
 .form-floating > .form-control-plaintext:-webkit-autofill {
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
@@ -2424,13 +2426,12 @@ table.variations .form-floating > select,
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
 }
-.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label, .single-product form.cart .woonp .form-floating > input:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=number]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=text]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=tel]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=email]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=password]:not(:-moz-placeholder-shown) ~ label, .form-floating > textarea:not(:-moz-placeholder-shown) ~ label {
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=number]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=text]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=tel]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=email]:not(:-moz-placeholder-shown) ~ label, .form-floating > input[type=password]:not(:-moz-placeholder-shown) ~ label, .form-floating > textarea:not(:-moz-placeholder-shown) ~ label {
   color: rgba(var(--kptl-body-color-rgb), 0.65);
   transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
 }
-.form-floating > .form-control:focus ~ label, .single-product form.cart .woonp .form-floating > input:focus ~ label, .form-floating > input[type=number]:focus ~ label, .form-floating > input[type=text]:focus ~ label, .form-floating > input[type=tel]:focus ~ label, .form-floating > input[type=email]:focus ~ label, .form-floating > input[type=password]:focus ~ label, .form-floating > textarea:focus ~ label,
+.form-floating > .form-control:focus ~ label, .form-floating > input[type=number]:focus ~ label, .form-floating > input[type=text]:focus ~ label, .form-floating > input[type=tel]:focus ~ label, .form-floating > input[type=email]:focus ~ label, .form-floating > input[type=password]:focus ~ label, .form-floating > textarea:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
-.single-product form.cart .woonp .form-floating > input:not(:placeholder-shown) ~ label,
 .form-floating > input[type=number]:not(:placeholder-shown) ~ label,
 .form-floating > input[type=text]:not(:placeholder-shown) ~ label,
 .form-floating > input[type=tel]:not(:placeholder-shown) ~ label,
@@ -2444,7 +2445,7 @@ table.variations .form-floating > select ~ label,
   color: rgba(var(--kptl-body-color-rgb), 0.65);
   transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
 }
-.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label::after, .single-product form.cart .woonp .form-floating > input:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=number]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=text]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=tel]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=email]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=password]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > textarea:not(:-moz-placeholder-shown) ~ label::after {
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=number]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=text]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=tel]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=email]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > input[type=password]:not(:-moz-placeholder-shown) ~ label::after, .form-floating > textarea:not(:-moz-placeholder-shown) ~ label::after {
   position: absolute;
   inset: 0.4rem 0.6rem;
   z-index: -1;
@@ -2453,9 +2454,8 @@ table.variations .form-floating > select ~ label,
   background-color: var(--kptl-body-bg);
   border-radius: 1.5rem;
 }
-.form-floating > .form-control:focus ~ label::after, .single-product form.cart .woonp .form-floating > input:focus ~ label::after, .form-floating > input[type=number]:focus ~ label::after, .form-floating > input[type=text]:focus ~ label::after, .form-floating > input[type=tel]:focus ~ label::after, .form-floating > input[type=email]:focus ~ label::after, .form-floating > input[type=password]:focus ~ label::after, .form-floating > textarea:focus ~ label::after,
+.form-floating > .form-control:focus ~ label::after, .form-floating > input[type=number]:focus ~ label::after, .form-floating > input[type=text]:focus ~ label::after, .form-floating > input[type=tel]:focus ~ label::after, .form-floating > input[type=email]:focus ~ label::after, .form-floating > input[type=password]:focus ~ label::after, .form-floating > textarea:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
-.single-product form.cart .woonp .form-floating > input:not(:placeholder-shown) ~ label::after,
 .form-floating > input[type=number]:not(:placeholder-shown) ~ label::after,
 .form-floating > input[type=text]:not(:placeholder-shown) ~ label::after,
 .form-floating > input[type=tel]:not(:placeholder-shown) ~ label::after,
@@ -2474,7 +2474,7 @@ table.variations .form-floating > select ~ label::after,
   background-color: var(--kptl-body-bg);
   border-radius: 1.5rem;
 }
-.form-floating > .form-control:-webkit-autofill ~ label, .single-product form.cart .woonp .form-floating > input:-webkit-autofill ~ label, .form-floating > input[type=number]:-webkit-autofill ~ label, .form-floating > input[type=text]:-webkit-autofill ~ label, .form-floating > input[type=tel]:-webkit-autofill ~ label, .form-floating > input[type=email]:-webkit-autofill ~ label, .form-floating > input[type=password]:-webkit-autofill ~ label, .form-floating > textarea:-webkit-autofill ~ label {
+.form-floating > .form-control:-webkit-autofill ~ label, .form-floating > input[type=number]:-webkit-autofill ~ label, .form-floating > input[type=text]:-webkit-autofill ~ label, .form-floating > input[type=tel]:-webkit-autofill ~ label, .form-floating > input[type=email]:-webkit-autofill ~ label, .form-floating > input[type=password]:-webkit-autofill ~ label, .form-floating > textarea:-webkit-autofill ~ label {
   color: rgba(var(--kptl-body-color-rgb), 0.65);
   transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
 }
@@ -2482,53 +2482,39 @@ table.variations .form-floating > select ~ label::after,
   border-width: 2px 0;
 }
 .form-floating > :disabled ~ label,
-.form-floating > .form-control:disabled ~ label,
-.single-product form.cart .woonp .form-floating > input:disabled ~ label {
+.form-floating > .form-control:disabled ~ label {
   color: #757575;
 }
 .form-floating > :disabled ~ label::after,
-.form-floating > .form-control:disabled ~ label::after,
-.single-product form.cart .woonp .form-floating > input:disabled ~ label::after {
+.form-floating > .form-control:disabled ~ label::after {
   background-color: var(--kptl-secondary-bg);
 }
 
-.input-group, .single-product form.cart .woonp {
+.input-group {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
 }
-.input-group > .form-control, .single-product form.cart .woonp .input-group > input, .single-product form.cart .woonp > .form-control, .single-product form.cart .woonp > input, .input-group > input[type=number], .input-group > input[type=text], .input-group > input[type=tel], .input-group > input[type=email], .input-group > input[type=password], .input-group > textarea, .single-product form.cart .woonp > textarea,
+.input-group > .form-control, .input-group > input[type=number], .input-group > input[type=text], .input-group > input[type=tel], .input-group > input[type=email], .input-group > input[type=password], .input-group > textarea,
 .input-group > .form-select,
 table.variations .input-group > select,
-.single-product form.cart .woonp > .form-select,
-.single-product form.cart table.variations .woonp > select,
-table.variations .single-product form.cart .woonp > select,
 .woocommerce-ordering .input-group > .orderby,
-.woocommerce-ordering .single-product form.cart .woonp > .orderby,
-.single-product form.cart .woocommerce-ordering .woonp > .orderby,
-.input-group > .form-floating,
-.single-product form.cart .woonp > .form-floating {
+.input-group > .form-floating {
   position: relative;
   flex: 1 1 auto;
   width: 1%;
   min-width: 0;
 }
-.input-group > .form-control:focus, .single-product form.cart .woonp .input-group > input:focus, .single-product form.cart .woonp > .form-control:focus, .single-product form.cart .woonp > input:focus, .input-group > input[type=number]:focus, .input-group > input[type=text]:focus, .input-group > input[type=tel]:focus, .input-group > input[type=email]:focus, .input-group > input[type=password]:focus, .input-group > textarea:focus, .single-product form.cart .woonp > textarea:focus,
+.input-group > .form-control:focus, .input-group > input[type=number]:focus, .input-group > input[type=text]:focus, .input-group > input[type=tel]:focus, .input-group > input[type=email]:focus, .input-group > input[type=password]:focus, .input-group > textarea:focus,
 .input-group > .form-select:focus,
 table.variations .input-group > select:focus,
-.single-product form.cart .woonp > .form-select:focus,
-.single-product form.cart table.variations .woonp > select:focus,
-table.variations .single-product form.cart .woonp > select:focus,
 .woocommerce-ordering .input-group > .orderby:focus,
-.woocommerce-ordering .single-product form.cart .woonp > .orderby:focus,
-.single-product form.cart .woocommerce-ordering .woonp > .orderby:focus,
-.input-group > .form-floating:focus-within,
-.single-product form.cart .woonp > .form-floating:focus-within {
+.input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.input-group .btn, .input-group .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .input-group button[type=submit], .input-group .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul li .input-group a, .input-group button#place_order, .input-group .woocommerce-form-coupon button, .woocommerce-form-coupon .input-group button, .input-group .woocommerce-cart-form .coupon button, .woocommerce-cart-form .coupon .input-group button,
+.input-group .btn, .input-group .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .input-group .woocommerce-button, .input-group .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .input-group button[type=submit], .input-group .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul li .input-group a, .input-group button#place_order, .input-group .woocommerce-form-coupon button, .woocommerce-form-coupon .input-group button, .input-group .shipping-calculator-form button[type=submit], .shipping-calculator-form .input-group button[type=submit], .input-group .woocommerce-cart-form .coupon button, .woocommerce-cart-form .coupon .input-group button,
 .input-group .woocommerce-cart-form .coupon input[type=submit],
 .woocommerce-cart-form .coupon .input-group input[type=submit],
 .input-group #pwgc-redeem-gift-card-container button,
@@ -2536,19 +2522,11 @@ table.variations .single-product form.cart .woonp > select:focus,
 .input-group #pwgc-redeem-gift-card-container input[type=submit],
 #pwgc-redeem-gift-card-container .input-group input[type=submit], .input-group #pwgc-redeem-form button, #pwgc-redeem-form .input-group button,
 .input-group #pwgc-redeem-form input[type=submit],
-#pwgc-redeem-form .input-group input[type=submit], .input-group .checkout-button, .input-group .single_add_to_cart_button, .single-product form.cart .woonp .btn, .single-product form.cart .woonp .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .single-product form.cart .woonp button[type=submit], .single-product form.cart .woonp .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul li .single-product form.cart .woonp a, .single-product form.cart .woonp button#place_order, .single-product form.cart .woonp .woocommerce-form-coupon button, .woocommerce-form-coupon .single-product form.cart .woonp button, .single-product form.cart .woonp .woocommerce-cart-form .coupon button, .woocommerce-cart-form .coupon .single-product form.cart .woonp button,
-.single-product form.cart .woonp .woocommerce-cart-form .coupon input[type=submit],
-.woocommerce-cart-form .coupon .single-product form.cart .woonp input[type=submit],
-.single-product form.cart .woonp #pwgc-redeem-gift-card-container button,
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp button,
-.single-product form.cart .woonp #pwgc-redeem-gift-card-container input[type=submit],
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp input[type=submit], .single-product form.cart .woonp #pwgc-redeem-form button, #pwgc-redeem-form .single-product form.cart .woonp button,
-.single-product form.cart .woonp #pwgc-redeem-form input[type=submit],
-#pwgc-redeem-form .single-product form.cart .woonp input[type=submit], .single-product form.cart .woonp .checkout-button, .single-product form.cart .woonp .single_add_to_cart_button, .input-group .archive-item.product a.button, .single-product form.cart .woonp .archive-item.product a.button, .archive-item.product .input-group a.button, .archive-item.product .single-product form.cart .woonp a.button, .single-product form.cart .archive-item.product .woonp a.button, .input-group .archive-item.product .onsale, .single-product form.cart .woonp .archive-item.product .onsale, .archive-item.product .input-group .onsale, .archive-item.product .single-product form.cart .woonp .onsale, .single-product form.cart .archive-item.product .woonp .onsale, .input-group .archive-item.product .soldout, .single-product form.cart .woonp .archive-item.product .soldout, .archive-item.product .input-group .soldout, .archive-item.product .single-product form.cart .woonp .soldout, .single-product form.cart .archive-item.product .woonp .soldout, .input-group .archive-item.product .predpredaj, .single-product form.cart .woonp .archive-item.product .predpredaj, .archive-item.product .input-group .predpredaj, .archive-item.product .single-product form.cart .woonp .predpredaj, .single-product form.cart .archive-item.product .woonp .predpredaj, .input-group .wp-element-button, .single-product form.cart .woonp .wp-element-button, .input-group .wp-block-button__link, .single-product form.cart .woonp .wp-block-button__link {
+#pwgc-redeem-form .input-group input[type=submit], .input-group .checkout-button, .input-group .tabs.wc-tabs li a, .tabs.wc-tabs li .input-group a, .input-group .single_add_to_cart_button, .input-group .archive-item.product a.button, .archive-item.product .input-group a.button, .input-group .archive-item.product .onsale, .archive-item.product .input-group .onsale, .input-group .archive-item.product .soldout, .archive-item.product .input-group .soldout, .input-group .archive-item.product .predpredaj, .archive-item.product .input-group .predpredaj, .input-group .wp-element-button, .input-group .wp-block-button__link {
   position: relative;
   z-index: 2;
 }
-.input-group .btn:focus, .input-group .woocommerce-account .woocommerce button[type=submit]:focus, .woocommerce-account .woocommerce .input-group button[type=submit]:focus, .input-group .woocommerce-MyAccount-navigation ul li a:focus, .woocommerce-MyAccount-navigation ul li .input-group a:focus, .input-group button#place_order:focus, .input-group .woocommerce-form-coupon button:focus, .woocommerce-form-coupon .input-group button:focus, .input-group .woocommerce-cart-form .coupon button:focus, .woocommerce-cart-form .coupon .input-group button:focus,
+.input-group .btn:focus, .input-group .woocommerce-form-login .woocommerce-button:focus, .woocommerce-form-login .input-group .woocommerce-button:focus, .input-group .woocommerce-account .woocommerce button[type=submit]:focus, .woocommerce-account .woocommerce .input-group button[type=submit]:focus, .input-group .woocommerce-MyAccount-navigation ul li a:focus, .woocommerce-MyAccount-navigation ul li .input-group a:focus, .input-group button#place_order:focus, .input-group .woocommerce-form-coupon button:focus, .woocommerce-form-coupon .input-group button:focus, .input-group .shipping-calculator-form button[type=submit]:focus, .shipping-calculator-form .input-group button[type=submit]:focus, .input-group .woocommerce-cart-form .coupon button:focus, .woocommerce-cart-form .coupon .input-group button:focus,
 .input-group .woocommerce-cart-form .coupon input[type=submit]:focus,
 .woocommerce-cart-form .coupon .input-group input[type=submit]:focus,
 .input-group #pwgc-redeem-gift-card-container button:focus,
@@ -2556,19 +2534,11 @@ table.variations .single-product form.cart .woonp > select:focus,
 .input-group #pwgc-redeem-gift-card-container input[type=submit]:focus,
 #pwgc-redeem-gift-card-container .input-group input[type=submit]:focus, .input-group #pwgc-redeem-form button:focus, #pwgc-redeem-form .input-group button:focus,
 .input-group #pwgc-redeem-form input[type=submit]:focus,
-#pwgc-redeem-form .input-group input[type=submit]:focus, .input-group .checkout-button:focus, .input-group .single_add_to_cart_button:focus, .single-product form.cart .woonp .btn:focus, .single-product form.cart .woonp .woocommerce-account .woocommerce button[type=submit]:focus, .woocommerce-account .woocommerce .single-product form.cart .woonp button[type=submit]:focus, .single-product form.cart .woonp .woocommerce-MyAccount-navigation ul li a:focus, .woocommerce-MyAccount-navigation ul li .single-product form.cart .woonp a:focus, .single-product form.cart .woonp button#place_order:focus, .single-product form.cart .woonp .woocommerce-form-coupon button:focus, .woocommerce-form-coupon .single-product form.cart .woonp button:focus, .single-product form.cart .woonp .woocommerce-cart-form .coupon button:focus, .woocommerce-cart-form .coupon .single-product form.cart .woonp button:focus,
-.single-product form.cart .woonp .woocommerce-cart-form .coupon input[type=submit]:focus,
-.woocommerce-cart-form .coupon .single-product form.cart .woonp input[type=submit]:focus,
-.single-product form.cart .woonp #pwgc-redeem-gift-card-container button:focus,
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp button:focus,
-.single-product form.cart .woonp #pwgc-redeem-gift-card-container input[type=submit]:focus,
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp input[type=submit]:focus, .single-product form.cart .woonp #pwgc-redeem-form button:focus, #pwgc-redeem-form .single-product form.cart .woonp button:focus,
-.single-product form.cart .woonp #pwgc-redeem-form input[type=submit]:focus,
-#pwgc-redeem-form .single-product form.cart .woonp input[type=submit]:focus, .single-product form.cart .woonp .checkout-button:focus, .single-product form.cart .woonp .single_add_to_cart_button:focus, .input-group .archive-item.product a.button:focus, .single-product form.cart .woonp .archive-item.product a.button:focus, .archive-item.product .input-group a.button:focus, .archive-item.product .single-product form.cart .woonp a.button:focus, .single-product form.cart .archive-item.product .woonp a.button:focus, .input-group .archive-item.product .onsale:focus, .single-product form.cart .woonp .archive-item.product .onsale:focus, .archive-item.product .input-group .onsale:focus, .archive-item.product .single-product form.cart .woonp .onsale:focus, .single-product form.cart .archive-item.product .woonp .onsale:focus, .input-group .archive-item.product .soldout:focus, .single-product form.cart .woonp .archive-item.product .soldout:focus, .archive-item.product .input-group .soldout:focus, .archive-item.product .single-product form.cart .woonp .soldout:focus, .single-product form.cart .archive-item.product .woonp .soldout:focus, .input-group .archive-item.product .predpredaj:focus, .single-product form.cart .woonp .archive-item.product .predpredaj:focus, .archive-item.product .input-group .predpredaj:focus, .archive-item.product .single-product form.cart .woonp .predpredaj:focus, .single-product form.cart .archive-item.product .woonp .predpredaj:focus, .input-group .wp-element-button:focus, .single-product form.cart .woonp .wp-element-button:focus, .input-group .wp-block-button__link:focus, .single-product form.cart .woonp .wp-block-button__link:focus {
+#pwgc-redeem-form .input-group input[type=submit]:focus, .input-group .checkout-button:focus, .input-group .tabs.wc-tabs li a:focus, .tabs.wc-tabs li .input-group a:focus, .input-group .single_add_to_cart_button:focus, .input-group .archive-item.product a.button:focus, .archive-item.product .input-group a.button:focus, .input-group .archive-item.product .onsale:focus, .archive-item.product .input-group .onsale:focus, .input-group .archive-item.product .soldout:focus, .archive-item.product .input-group .soldout:focus, .input-group .archive-item.product .predpredaj:focus, .archive-item.product .input-group .predpredaj:focus, .input-group .wp-element-button:focus, .input-group .wp-block-button__link:focus {
   z-index: 5;
 }
 
-.input-group-text, .single-product form.cart .woonp label {
+.input-group-text {
   display: flex;
   align-items: center;
   padding: 0.6rem 1.2rem;
@@ -2583,17 +2553,18 @@ table.variations .single-product form.cart .woonp > select:focus,
   border-radius: 1.5rem;
 }
 
-.input-group-lg > .form-control, .single-product form.cart .woonp .input-group-lg > input, .input-group-lg > input[type=number], .input-group-lg > input[type=text], .input-group-lg > input[type=tel], .input-group-lg > input[type=email], .input-group-lg > input[type=password], .input-group-lg > textarea,
+.input-group-lg > .form-control, .input-group-lg > input[type=number], .input-group-lg > input[type=text], .input-group-lg > input[type=tel], .input-group-lg > input[type=email], .input-group-lg > input[type=password], .input-group-lg > textarea,
 .input-group-lg > .form-select,
 table.variations .input-group-lg > select,
 .woocommerce-ordering .input-group-lg > .orderby,
 .input-group-lg > .input-group-text,
-.single-product form.cart .woonp .input-group-lg > label,
 .input-group-lg > .btn,
+.woocommerce-form-login .input-group-lg > .woocommerce-button,
 .woocommerce-account .woocommerce .input-group-lg > button[type=submit],
 .woocommerce-MyAccount-navigation ul li .input-group-lg > a,
 .input-group-lg > button#place_order,
 .woocommerce-form-coupon .input-group-lg > button,
+.shipping-calculator-form .input-group-lg > button[type=submit],
 .woocommerce-cart-form .coupon .input-group-lg > button,
 .woocommerce-cart-form .coupon .input-group-lg > input[type=submit],
 #pwgc-redeem-gift-card-container .input-group-lg > button,
@@ -2601,6 +2572,7 @@ table.variations .input-group-lg > select,
 #pwgc-redeem-form .input-group-lg > button,
 #pwgc-redeem-form .input-group-lg > input[type=submit],
 .input-group-lg > .checkout-button,
+.tabs.wc-tabs li .input-group-lg > a,
 .input-group-lg > .single_add_to_cart_button,
 .archive-item.product .input-group-lg > a.button,
 .archive-item.product .input-group-lg > .onsale,
@@ -2613,17 +2585,18 @@ table.variations .input-group-lg > select,
   border-radius: var(--kptl-border-radius-lg);
 }
 
-.input-group-sm > .form-control, .single-product form.cart .woonp .input-group-sm > input, .input-group-sm > input[type=number], .input-group-sm > input[type=text], .input-group-sm > input[type=tel], .input-group-sm > input[type=email], .input-group-sm > input[type=password], .input-group-sm > textarea,
+.input-group-sm > .form-control, .input-group-sm > input[type=number], .input-group-sm > input[type=text], .input-group-sm > input[type=tel], .input-group-sm > input[type=email], .input-group-sm > input[type=password], .input-group-sm > textarea,
 .input-group-sm > .form-select,
 table.variations .input-group-sm > select,
 .woocommerce-ordering .input-group-sm > .orderby,
 .input-group-sm > .input-group-text,
-.single-product form.cart .woonp .input-group-sm > label,
 .input-group-sm > .btn,
+.woocommerce-form-login .input-group-sm > .woocommerce-button,
 .woocommerce-account .woocommerce .input-group-sm > button[type=submit],
 .woocommerce-MyAccount-navigation ul li .input-group-sm > a,
 .input-group-sm > button#place_order,
 .woocommerce-form-coupon .input-group-sm > button,
+.shipping-calculator-form .input-group-sm > button[type=submit],
 .woocommerce-cart-form .coupon .input-group-sm > button,
 .woocommerce-cart-form .coupon .input-group-sm > input[type=submit],
 #pwgc-redeem-gift-card-container .input-group-sm > button,
@@ -2631,6 +2604,7 @@ table.variations .input-group-sm > select,
 #pwgc-redeem-form .input-group-sm > button,
 #pwgc-redeem-form .input-group-sm > input[type=submit],
 .input-group-sm > .checkout-button,
+.tabs.wc-tabs li .input-group-sm > a,
 .input-group-sm > .single_add_to_cart_button,
 .archive-item.product .input-group-sm > a.button,
 .archive-item.product .input-group-sm > .onsale,
@@ -2650,70 +2624,45 @@ table.variations .input-group-sm > select,
   padding-right: 4.8rem;
 }
 
-.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating), .single-product form.cart .woonp:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
 .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3),
-.single-product form.cart .woonp:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3),
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control,
-.single-product form.cart .woonp .input-group:not(.has-validation) > .form-floating:not(:last-child) > input,
-.single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > .form-control,
-.single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > input,
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > input[type=number],
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > input[type=text],
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > input[type=tel],
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > input[type=email],
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > input[type=password],
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > textarea,
-.single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > textarea,
 .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select,
 table.variations .input-group:not(.has-validation) > .form-floating:not(:last-child) > select,
-.single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > .form-select,
-.single-product form.cart table.variations .woonp:not(.has-validation) > .form-floating:not(:last-child) > select,
-table.variations .single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > select,
-.woocommerce-ordering .input-group:not(.has-validation) > .form-floating:not(:last-child) > .orderby,
-.woocommerce-ordering .single-product form.cart .woonp:not(.has-validation) > .form-floating:not(:last-child) > .orderby,
-.single-product form.cart .woocommerce-ordering .woonp:not(.has-validation) > .form-floating:not(:last-child) > .orderby {
+.woocommerce-ordering .input-group:not(.has-validation) > .form-floating:not(:last-child) > .orderby {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating), .single-product form.cart .has-validation.woonp > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
 .input-group.has-validation > .dropdown-toggle:nth-last-child(n+4),
-.single-product form.cart .has-validation.woonp > .dropdown-toggle:nth-last-child(n+4),
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-control,
-.single-product form.cart .woonp .input-group.has-validation > .form-floating:nth-last-child(n+3) > input,
-.single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > .form-control,
-.single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > input,
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > input[type=number],
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > input[type=text],
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > input[type=tel],
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > input[type=email],
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > input[type=password],
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > textarea,
-.single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > textarea,
 .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-select,
 table.variations .input-group.has-validation > .form-floating:nth-last-child(n+3) > select,
-.single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > .form-select,
-.single-product form.cart table.variations .has-validation.woonp > .form-floating:nth-last-child(n+3) > select,
-table.variations .single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > select,
-.woocommerce-ordering .input-group.has-validation > .form-floating:nth-last-child(n+3) > .orderby,
-.woocommerce-ordering .single-product form.cart .has-validation.woonp > .form-floating:nth-last-child(n+3) > .orderby,
-.single-product form.cart .woocommerce-ordering .has-validation.woonp > .form-floating:nth-last-child(n+3) > .orderby {
+.woocommerce-ordering .input-group.has-validation > .form-floating:nth-last-child(n+3) > .orderby {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback), .single-product form.cart .woonp > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
   margin-left: calc(2px * -1);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.input-group > .form-floating:not(:first-child) > .form-control, .single-product form.cart .woonp .input-group > .form-floating:not(:first-child) > input, .single-product form.cart .woonp > .form-floating:not(:first-child) > .form-control, .single-product form.cart .woonp > .form-floating:not(:first-child) > input, .input-group > .form-floating:not(:first-child) > input[type=number], .input-group > .form-floating:not(:first-child) > input[type=text], .input-group > .form-floating:not(:first-child) > input[type=tel], .input-group > .form-floating:not(:first-child) > input[type=email], .input-group > .form-floating:not(:first-child) > input[type=password], .input-group > .form-floating:not(:first-child) > textarea, .single-product form.cart .woonp > .form-floating:not(:first-child) > textarea,
+.input-group > .form-floating:not(:first-child) > .form-control, .input-group > .form-floating:not(:first-child) > input[type=number], .input-group > .form-floating:not(:first-child) > input[type=text], .input-group > .form-floating:not(:first-child) > input[type=tel], .input-group > .form-floating:not(:first-child) > input[type=email], .input-group > .form-floating:not(:first-child) > input[type=password], .input-group > .form-floating:not(:first-child) > textarea,
 .input-group > .form-floating:not(:first-child) > .form-select,
 table.variations .input-group > .form-floating:not(:first-child) > select,
-.single-product form.cart .woonp > .form-floating:not(:first-child) > .form-select,
-.single-product form.cart table.variations .woonp > .form-floating:not(:first-child) > select,
-table.variations .single-product form.cart .woonp > .form-floating:not(:first-child) > select,
-.woocommerce-ordering .input-group > .form-floating:not(:first-child) > .orderby,
-.woocommerce-ordering .single-product form.cart .woonp > .form-floating:not(:first-child) > .orderby,
-.single-product form.cart .woocommerce-ordering .woonp > .form-floating:not(:first-child) > .orderby {
+.woocommerce-ordering .input-group > .form-floating:not(:first-child) > .orderby {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -2747,7 +2696,7 @@ table.variations .single-product form.cart .woonp > .form-floating:not(:first-ch
   display: block;
 }
 
-.was-validated .form-control:valid, .was-validated .single-product form.cart .woonp input:valid, .single-product form.cart .woonp .was-validated input:valid, .was-validated input[type=number]:valid, .was-validated input[type=text]:valid, .was-validated input[type=tel]:valid, .was-validated input[type=email]:valid, .was-validated input[type=password]:valid, .was-validated textarea:valid, .form-control.is-valid, .single-product form.cart .woonp input.is-valid, input.is-valid[type=number], input.is-valid[type=text], input.is-valid[type=tel], input.is-valid[type=email], input.is-valid[type=password], textarea.is-valid {
+.was-validated .form-control:valid, .was-validated input[type=number]:valid, .was-validated input[type=text]:valid, .was-validated input[type=tel]:valid, .was-validated input[type=email]:valid, .was-validated input[type=password]:valid, .was-validated textarea:valid, .form-control.is-valid, input.is-valid[type=number], input.is-valid[type=text], input.is-valid[type=tel], input.is-valid[type=email], input.is-valid[type=password], textarea.is-valid {
   border-color: var(--kptl-form-valid-border-color);
   padding-right: calc(1.35em + 1.2rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
@@ -2755,7 +2704,7 @@ table.variations .single-product form.cart .woonp > .form-floating:not(:first-ch
   background-position: right calc(0.3375em + 0.3rem) center;
   background-size: calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
-.was-validated .form-control:valid:focus, .was-validated .single-product form.cart .woonp input:valid:focus, .single-product form.cart .woonp .was-validated input:valid:focus, .was-validated input[type=number]:valid:focus, .was-validated input[type=text]:valid:focus, .was-validated input[type=tel]:valid:focus, .was-validated input[type=email]:valid:focus, .was-validated input[type=password]:valid:focus, .was-validated textarea:valid:focus, .form-control.is-valid:focus, .single-product form.cart .woonp input.is-valid:focus, input.is-valid[type=number]:focus, input.is-valid[type=text]:focus, input.is-valid[type=tel]:focus, input.is-valid[type=email]:focus, input.is-valid[type=password]:focus, textarea.is-valid:focus {
+.was-validated .form-control:valid:focus, .was-validated input[type=number]:valid:focus, .was-validated input[type=text]:valid:focus, .was-validated input[type=tel]:valid:focus, .was-validated input[type=email]:valid:focus, .was-validated input[type=password]:valid:focus, .was-validated textarea:valid:focus, .form-control.is-valid:focus, input.is-valid[type=number]:focus, input.is-valid[type=text]:focus, input.is-valid[type=tel]:focus, input.is-valid[type=email]:focus, input.is-valid[type=password]:focus, textarea.is-valid:focus {
   border-color: var(--kptl-form-valid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
 }
@@ -2800,35 +2749,17 @@ table.variations .single-product form.cart .woonp > .form-floating:not(:first-ch
   margin-left: 0.5em;
 }
 
-.was-validated .input-group > .form-control:not(:focus):valid, .was-validated .single-product form.cart .woonp .input-group > input:not(:focus):valid, .single-product form.cart .woonp .was-validated .input-group > input:not(:focus):valid, .was-validated .single-product form.cart .woonp > .form-control:not(:focus):valid, .was-validated .single-product form.cart .woonp > input:not(:focus):valid, .single-product form.cart .was-validated .woonp > .form-control:not(:focus):valid, .single-product form.cart .was-validated .woonp > input:not(:focus):valid, .was-validated .input-group > input[type=number]:not(:focus):valid, .was-validated .input-group > input[type=text]:not(:focus):valid, .was-validated .input-group > input[type=tel]:not(:focus):valid, .was-validated .input-group > input[type=email]:not(:focus):valid, .was-validated .input-group > input[type=password]:not(:focus):valid, .was-validated .input-group > textarea:not(:focus):valid, .was-validated .single-product form.cart .woonp > textarea:not(:focus):valid, .single-product form.cart .was-validated .woonp > textarea:not(:focus):valid, .input-group > .form-control:not(:focus).is-valid, .single-product form.cart .woonp .input-group > input:not(:focus).is-valid, .single-product form.cart .woonp > .form-control:not(:focus).is-valid, .single-product form.cart .woonp > input:not(:focus).is-valid, .input-group > input[type=number]:not(:focus).is-valid, .input-group > input[type=text]:not(:focus).is-valid, .input-group > input[type=tel]:not(:focus).is-valid, .input-group > input[type=email]:not(:focus).is-valid, .input-group > input[type=password]:not(:focus).is-valid, .input-group > textarea:not(:focus).is-valid, .single-product form.cart .woonp > textarea:not(:focus).is-valid,
+.was-validated .input-group > .form-control:not(:focus):valid, .was-validated .input-group > input[type=number]:not(:focus):valid, .was-validated .input-group > input[type=text]:not(:focus):valid, .was-validated .input-group > input[type=tel]:not(:focus):valid, .was-validated .input-group > input[type=email]:not(:focus):valid, .was-validated .input-group > input[type=password]:not(:focus):valid, .was-validated .input-group > textarea:not(:focus):valid, .input-group > .form-control:not(:focus).is-valid, .input-group > input[type=number]:not(:focus).is-valid, .input-group > input[type=text]:not(:focus).is-valid, .input-group > input[type=tel]:not(:focus).is-valid, .input-group > input[type=email]:not(:focus).is-valid, .input-group > input[type=password]:not(:focus).is-valid, .input-group > textarea:not(:focus).is-valid,
 .was-validated .input-group > .form-select:not(:focus):valid,
 .was-validated table.variations .input-group > select:not(:focus):valid,
 table.variations .was-validated .input-group > select:not(:focus):valid,
-.was-validated .single-product form.cart .woonp > .form-select:not(:focus):valid,
-.was-validated .single-product form.cart table.variations .woonp > select:not(:focus):valid,
-table.variations .was-validated .single-product form.cart .woonp > select:not(:focus):valid,
-.single-product form.cart .was-validated .woonp > .form-select:not(:focus):valid,
-.single-product form.cart .was-validated table.variations .woonp > select:not(:focus):valid,
-table.variations .single-product form.cart .was-validated .woonp > select:not(:focus):valid,
 .was-validated .woocommerce-ordering .input-group > .orderby:not(:focus):valid,
-.was-validated .woocommerce-ordering .single-product form.cart .woonp > .orderby:not(:focus):valid,
-.single-product form.cart .was-validated .woocommerce-ordering .woonp > .orderby:not(:focus):valid,
 .woocommerce-ordering .was-validated .input-group > .orderby:not(:focus):valid,
-.woocommerce-ordering .was-validated .single-product form.cart .woonp > .orderby:not(:focus):valid,
-.single-product form.cart .woocommerce-ordering .was-validated .woonp > .orderby:not(:focus):valid,
 .input-group > .form-select:not(:focus).is-valid,
 table.variations .input-group > select:not(:focus).is-valid,
-.single-product form.cart .woonp > .form-select:not(:focus).is-valid,
-.single-product form.cart table.variations .woonp > select:not(:focus).is-valid,
-table.variations .single-product form.cart .woonp > select:not(:focus).is-valid,
 .woocommerce-ordering .input-group > .orderby:not(:focus).is-valid,
-.woocommerce-ordering .single-product form.cart .woonp > .orderby:not(:focus).is-valid,
-.single-product form.cart .woocommerce-ordering .woonp > .orderby:not(:focus).is-valid,
 .was-validated .input-group > .form-floating:not(:focus-within):valid,
-.was-validated .single-product form.cart .woonp > .form-floating:not(:focus-within):valid,
-.single-product form.cart .was-validated .woonp > .form-floating:not(:focus-within):valid,
-.input-group > .form-floating:not(:focus-within).is-valid,
-.single-product form.cart .woonp > .form-floating:not(:focus-within).is-valid {
+.input-group > .form-floating:not(:focus-within).is-valid {
   z-index: 3;
 }
 
@@ -2861,7 +2792,7 @@ table.variations .single-product form.cart .woonp > select:not(:focus).is-valid,
   display: block;
 }
 
-.was-validated .form-control:invalid, .was-validated .single-product form.cart .woonp input:invalid, .single-product form.cart .woonp .was-validated input:invalid, .was-validated input[type=number]:invalid, .was-validated input[type=text]:invalid, .was-validated input[type=tel]:invalid, .was-validated input[type=email]:invalid, .was-validated input[type=password]:invalid, .was-validated textarea:invalid, .form-control.is-invalid, .single-product form.cart .woonp input.is-invalid, input.is-invalid[type=number], input.is-invalid[type=text], input.is-invalid[type=tel], input.is-invalid[type=email], input.is-invalid[type=password], textarea.is-invalid {
+.was-validated .form-control:invalid, .was-validated input[type=number]:invalid, .was-validated input[type=text]:invalid, .was-validated input[type=tel]:invalid, .was-validated input[type=email]:invalid, .was-validated input[type=password]:invalid, .was-validated textarea:invalid, .form-control.is-invalid, input.is-invalid[type=number], input.is-invalid[type=text], input.is-invalid[type=tel], input.is-invalid[type=email], input.is-invalid[type=password], textarea.is-invalid {
   border-color: var(--kptl-form-invalid-border-color);
   padding-right: calc(1.35em + 1.2rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
@@ -2869,7 +2800,7 @@ table.variations .single-product form.cart .woonp > select:not(:focus).is-valid,
   background-position: right calc(0.3375em + 0.3rem) center;
   background-size: calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
-.was-validated .form-control:invalid:focus, .was-validated .single-product form.cart .woonp input:invalid:focus, .single-product form.cart .woonp .was-validated input:invalid:focus, .was-validated input[type=number]:invalid:focus, .was-validated input[type=text]:invalid:focus, .was-validated input[type=tel]:invalid:focus, .was-validated input[type=email]:invalid:focus, .was-validated input[type=password]:invalid:focus, .was-validated textarea:invalid:focus, .form-control.is-invalid:focus, .single-product form.cart .woonp input.is-invalid:focus, input.is-invalid[type=number]:focus, input.is-invalid[type=text]:focus, input.is-invalid[type=tel]:focus, input.is-invalid[type=email]:focus, input.is-invalid[type=password]:focus, textarea.is-invalid:focus {
+.was-validated .form-control:invalid:focus, .was-validated input[type=number]:invalid:focus, .was-validated input[type=text]:invalid:focus, .was-validated input[type=tel]:invalid:focus, .was-validated input[type=email]:invalid:focus, .was-validated input[type=password]:invalid:focus, .was-validated textarea:invalid:focus, .form-control.is-invalid:focus, input.is-invalid[type=number]:focus, input.is-invalid[type=text]:focus, input.is-invalid[type=tel]:focus, input.is-invalid[type=email]:focus, input.is-invalid[type=password]:focus, textarea.is-invalid:focus {
   border-color: var(--kptl-form-invalid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
 }
@@ -2914,35 +2845,17 @@ table.variations .single-product form.cart .woonp > select:not(:focus).is-valid,
   margin-left: 0.5em;
 }
 
-.was-validated .input-group > .form-control:not(:focus):invalid, .was-validated .single-product form.cart .woonp .input-group > input:not(:focus):invalid, .single-product form.cart .woonp .was-validated .input-group > input:not(:focus):invalid, .was-validated .single-product form.cart .woonp > .form-control:not(:focus):invalid, .was-validated .single-product form.cart .woonp > input:not(:focus):invalid, .single-product form.cart .was-validated .woonp > .form-control:not(:focus):invalid, .single-product form.cart .was-validated .woonp > input:not(:focus):invalid, .was-validated .input-group > input[type=number]:not(:focus):invalid, .was-validated .input-group > input[type=text]:not(:focus):invalid, .was-validated .input-group > input[type=tel]:not(:focus):invalid, .was-validated .input-group > input[type=email]:not(:focus):invalid, .was-validated .input-group > input[type=password]:not(:focus):invalid, .was-validated .input-group > textarea:not(:focus):invalid, .was-validated .single-product form.cart .woonp > textarea:not(:focus):invalid, .single-product form.cart .was-validated .woonp > textarea:not(:focus):invalid, .input-group > .form-control:not(:focus).is-invalid, .single-product form.cart .woonp .input-group > input:not(:focus).is-invalid, .single-product form.cart .woonp > .form-control:not(:focus).is-invalid, .single-product form.cart .woonp > input:not(:focus).is-invalid, .input-group > input[type=number]:not(:focus).is-invalid, .input-group > input[type=text]:not(:focus).is-invalid, .input-group > input[type=tel]:not(:focus).is-invalid, .input-group > input[type=email]:not(:focus).is-invalid, .input-group > input[type=password]:not(:focus).is-invalid, .input-group > textarea:not(:focus).is-invalid, .single-product form.cart .woonp > textarea:not(:focus).is-invalid,
+.was-validated .input-group > .form-control:not(:focus):invalid, .was-validated .input-group > input[type=number]:not(:focus):invalid, .was-validated .input-group > input[type=text]:not(:focus):invalid, .was-validated .input-group > input[type=tel]:not(:focus):invalid, .was-validated .input-group > input[type=email]:not(:focus):invalid, .was-validated .input-group > input[type=password]:not(:focus):invalid, .was-validated .input-group > textarea:not(:focus):invalid, .input-group > .form-control:not(:focus).is-invalid, .input-group > input[type=number]:not(:focus).is-invalid, .input-group > input[type=text]:not(:focus).is-invalid, .input-group > input[type=tel]:not(:focus).is-invalid, .input-group > input[type=email]:not(:focus).is-invalid, .input-group > input[type=password]:not(:focus).is-invalid, .input-group > textarea:not(:focus).is-invalid,
 .was-validated .input-group > .form-select:not(:focus):invalid,
 .was-validated table.variations .input-group > select:not(:focus):invalid,
 table.variations .was-validated .input-group > select:not(:focus):invalid,
-.was-validated .single-product form.cart .woonp > .form-select:not(:focus):invalid,
-.was-validated .single-product form.cart table.variations .woonp > select:not(:focus):invalid,
-table.variations .was-validated .single-product form.cart .woonp > select:not(:focus):invalid,
-.single-product form.cart .was-validated .woonp > .form-select:not(:focus):invalid,
-.single-product form.cart .was-validated table.variations .woonp > select:not(:focus):invalid,
-table.variations .single-product form.cart .was-validated .woonp > select:not(:focus):invalid,
 .was-validated .woocommerce-ordering .input-group > .orderby:not(:focus):invalid,
-.was-validated .woocommerce-ordering .single-product form.cart .woonp > .orderby:not(:focus):invalid,
-.single-product form.cart .was-validated .woocommerce-ordering .woonp > .orderby:not(:focus):invalid,
 .woocommerce-ordering .was-validated .input-group > .orderby:not(:focus):invalid,
-.woocommerce-ordering .was-validated .single-product form.cart .woonp > .orderby:not(:focus):invalid,
-.single-product form.cart .woocommerce-ordering .was-validated .woonp > .orderby:not(:focus):invalid,
 .input-group > .form-select:not(:focus).is-invalid,
 table.variations .input-group > select:not(:focus).is-invalid,
-.single-product form.cart .woonp > .form-select:not(:focus).is-invalid,
-.single-product form.cart table.variations .woonp > select:not(:focus).is-invalid,
-table.variations .single-product form.cart .woonp > select:not(:focus).is-invalid,
 .woocommerce-ordering .input-group > .orderby:not(:focus).is-invalid,
-.woocommerce-ordering .single-product form.cart .woonp > .orderby:not(:focus).is-invalid,
-.single-product form.cart .woocommerce-ordering .woonp > .orderby:not(:focus).is-invalid,
 .was-validated .input-group > .form-floating:not(:focus-within):invalid,
-.was-validated .single-product form.cart .woonp > .form-floating:not(:focus-within):invalid,
-.single-product form.cart .was-validated .woonp > .form-floating:not(:focus-within):invalid,
-.input-group > .form-floating:not(:focus-within).is-invalid,
-.single-product form.cart .woonp > .form-floating:not(:focus-within).is-invalid {
+.input-group > .form-floating:not(:focus-within).is-invalid {
   z-index: 4;
 }
 
@@ -4357,21 +4270,29 @@ $theme-colors: $temporary-colors; */
   display: inline !important;
 }
 
-.d-inline-block, .btn, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.d-inline-block, .btn, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
+#pwgc-redeem-form input[type=submit], .checkout-button, .tabs.wc-tabs li a, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
   display: inline-block !important;
 }
 
-.d-block, .btn.btn-block, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-block, button#place_order, .woocommerce-form-coupon button.btn-block, .woocommerce-cart-form .coupon button.btn-block,
+.d-block, .btn.btn-block, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-block, button#place_order, .woocommerce-form-coupon button.btn-block, .shipping-calculator-form button.btn-block[type=submit], .shipping-calculator-form .woocommerce-form-login button[type=submit].woocommerce-button, .woocommerce-form-login .shipping-calculator-form button[type=submit].woocommerce-button, .woocommerce-cart-form .coupon button.btn-block, .woocommerce-cart-form .coupon .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login .woocommerce-cart-form .coupon button.woocommerce-button,
 .woocommerce-cart-form .coupon input.btn-block[type=submit],
+.woocommerce-cart-form .coupon .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login .woocommerce-cart-form .coupon input[type=submit].woocommerce-button,
 #pwgc-redeem-gift-card-container button.btn-block,
+#pwgc-redeem-gift-card-container .woocommerce-form-login button.woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container button.woocommerce-button,
 #pwgc-redeem-gift-card-container .woocommerce-account .woocommerce button[type=submit],
 .woocommerce-account .woocommerce #pwgc-redeem-gift-card-container button[type=submit],
-#pwgc-redeem-gift-card-container input.btn-block[type=submit], #pwgc-redeem-form button.btn-block, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit],
-#pwgc-redeem-form input.btn-block[type=submit], .btn-block.checkout-button, .checkout-button, .btn-block.single_add_to_cart_button, .archive-item.product a.btn-block.button, .archive-item.product a.button.checkout-button, .archive-item.product .btn-block.onsale, .archive-item.product .onsale.checkout-button, .archive-item.product .btn-block.soldout, .archive-item.product .soldout.checkout-button, .archive-item.product .btn-block.predpredaj, .archive-item.product .predpredaj.checkout-button, .btn-block.wp-element-button, .btn-block.wp-block-button__link {
+#pwgc-redeem-gift-card-container input.btn-block[type=submit],
+#pwgc-redeem-gift-card-container .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container input[type=submit].woocommerce-button, #pwgc-redeem-form button.btn-block, #pwgc-redeem-form .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login #pwgc-redeem-form button.woocommerce-button, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit],
+#pwgc-redeem-form input.btn-block[type=submit],
+#pwgc-redeem-form .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-form input[type=submit].woocommerce-button, .btn-block.checkout-button, .checkout-button, .tabs.wc-tabs li a.btn-block, .tabs.wc-tabs li .woocommerce-form-login a.woocommerce-button, .woocommerce-form-login .tabs.wc-tabs li a.woocommerce-button, .tabs.wc-tabs li a.checkout-button, .btn-block.single_add_to_cart_button, .archive-item.product a.btn-block.button, .archive-item.product .woocommerce-form-login a.button.woocommerce-button, .woocommerce-form-login .archive-item.product a.button.woocommerce-button, .archive-item.product a.button.checkout-button, .archive-item.product .btn-block.onsale, .archive-item.product .woocommerce-form-login .onsale.woocommerce-button, .woocommerce-form-login .archive-item.product .onsale.woocommerce-button, .archive-item.product .onsale.checkout-button, .archive-item.product .btn-block.soldout, .archive-item.product .woocommerce-form-login .soldout.woocommerce-button, .woocommerce-form-login .archive-item.product .soldout.woocommerce-button, .archive-item.product .soldout.checkout-button, .archive-item.product .btn-block.predpredaj, .archive-item.product .woocommerce-form-login .predpredaj.woocommerce-button, .woocommerce-form-login .archive-item.product .predpredaj.woocommerce-button, .archive-item.product .predpredaj.checkout-button, .btn-block.wp-element-button, .btn-block.wp-block-button__link {
   display: block !important;
 }
 
@@ -5321,7 +5242,7 @@ $theme-colors: $temporary-colors; */
   padding: 1.5rem !important;
 }
 
-.p-5, .woocommerce-account .woocommerce {
+.p-5 {
   padding: 2rem !important;
 }
 
@@ -5673,11 +5594,7 @@ $theme-colors: $temporary-colors; */
   font-size: 1rem !important;
 }
 
-.fs-small, .btn.btn-sm, .woocommerce-account .woocommerce button.btn-sm[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-sm, button.btn-sm#place_order, .woocommerce-form-coupon button.btn-sm, .woocommerce-cart-form .coupon button.btn-sm,
-.woocommerce-cart-form .coupon input.btn-sm[type=submit],
-#pwgc-redeem-gift-card-container button.btn-sm,
-#pwgc-redeem-gift-card-container input.btn-sm[type=submit], #pwgc-redeem-form button.btn-sm,
-#pwgc-redeem-form input.btn-sm[type=submit], .btn-sm.checkout-button, .btn-sm.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-sm.onsale, .archive-item.product .btn-sm.soldout, .archive-item.product .btn-sm.predpredaj, .btn-sm.wp-element-button, .btn-sm.wp-block-button__link {
+.fs-small {
   font-size: 0.8rem !important;
 }
 
@@ -5745,11 +5662,11 @@ $theme-colors: $temporary-colors; */
   text-align: center !important;
 }
 
-.text-decoration-none, .btn, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.text-decoration-none, .btn, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
+#pwgc-redeem-form input[type=submit], .checkout-button, .tabs.wc-tabs li a, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
   text-decoration: none !important;
 }
 
@@ -6427,11 +6344,11 @@ $theme-colors: $temporary-colors; */
   border-radius: 50% !important;
 }
 
-.rounded-pill, .btn, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.rounded-pill, .btn, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link, #quick-menu .menu-item a:after, .btn-menu,
+#pwgc-redeem-form input[type=submit], .checkout-button, .tabs.wc-tabs li a, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link, #quick-menu .menu-item a:after, .btn-menu,
 #main-menu .menu-item a,
 #quick-menu .menu-item a {
   border-radius: var(--kptl-border-radius-pill) !important;
@@ -10069,19 +9986,24 @@ $theme-colors: $temporary-colors; */
   xxl: 1680px,
 ); */
 /* purgecss start ignore */
-.alignnormal, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 
-.alignnormal, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
-  max-width: 600px !important;
+@media (min-width: 600px) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+    max-width: 100%;
+  }
+}
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  max-width: 600px;
 }
 
 @media (min-width: 1650px) {
-  .alignnormal, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
-    max-width: 700px !important;
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+    max-width: 700px;
   }
 }
 .alignwide, .woocommerce-account .woocommerce, .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .h1, .woocommerce-active.search-no-results .woocommerce-no-products-found, .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
@@ -10091,11 +10013,11 @@ $theme-colors: $temporary-colors; */
 }
 
 .alignwide, .woocommerce-account .woocommerce, .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .h1, .woocommerce-active.search-no-results .woocommerce-no-products-found, .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
-  max-width: 800px !important;
+  max-width: 800px;
 }
 
 .wp-block[data-align=wide] {
-  max-width: 800px !important;
+  max-width: 800px;
 }
 .wp-block[data-align=wide] * {
   max-width: 100%;
@@ -10106,10 +10028,10 @@ $theme-colors: $temporary-colors; */
 
 @media (min-width: 1650px) {
   .alignwide, .woocommerce-account .woocommerce, .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .h1, .woocommerce-active.search-no-results .woocommerce-no-products-found, .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
-    max-width: 900px !important;
+    max-width: 900px;
   }
   .wp-block[data-align=wide] {
-    max-width: 900px !important;
+    max-width: 900px;
   }
   .wp-block[data-align=wide] * {
     max-width: 100%;
@@ -10130,7 +10052,7 @@ $theme-colors: $temporary-colors; */
 
 @media (min-width: 900px) {
   .alignwider {
-    max-width: 1100px !important;
+    max-width: 1100px;
   }
   .col-alignwider {
     max-width: 1100px !important;
@@ -10142,7 +10064,7 @@ $theme-colors: $temporary-colors; */
 }
 @media (min-width: 1650px) {
   .alignwider {
-    max-width: 1320px !important;
+    max-width: 1320px;
   }
   .col-alignwider {
     max-width: 1320px !important;
@@ -10164,7 +10086,7 @@ $theme-colors: $temporary-colors; */
 
 @media (min-width: 1200px) {
   .alignwidest {
-    max-width: 1260px !important;
+    max-width: 1260px;
   }
   .col-alignwidest {
     max-width: 1260px !important;
@@ -10176,7 +10098,7 @@ $theme-colors: $temporary-colors; */
 }
 @media (min-width: 1650px) {
   .alignwidest {
-    max-width: 1550px !important;
+    max-width: 1550px;
   }
   .col-alignwidest {
     max-width: 1550px !important;
@@ -10205,12 +10127,7 @@ input[type=checkbox]:focus {
 }
 
 body {
-  width: auto;
   overflow-x: hidden;
-}
-
-html, body {
-  touch-action: pan-y pinch-zoom manipulation;
 }
 
 p:last-child {
@@ -10266,12 +10183,12 @@ label {
   color: #cc0029 !important;
 }
 
-.ff-grotesk, .woocommerce-account .woocommerce label, .shop_table, .woocommerce-form-coupon, .woocommerce-cart-form .quantity input,
-.cart .quantity input, .woocommerce-result-count, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, legend, .btn, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.ff-grotesk, .woocommerce-form-login, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce label, .shop_table, .woocommerce-form-coupon, .woocommerce-cart-form .quantity input,
+.cart .quantity input, .woocommerce-result-count, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .woocommerce-ordering .orderby, legend, .btn, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.button, .wp-element-button, .wp-block-button__link {
+#pwgc-redeem-form input[type=submit], .checkout-button, .tabs.wc-tabs li a, .single_add_to_cart_button, .archive-item.product a.button, .wp-element-button, .wp-block-button__link {
   font-family: var(--kptl-font-sans-serif);
 }
 
@@ -10279,15 +10196,11 @@ label {
   font-family: var(--kptl-body-font-family);
 }
 
-.ff-sans, .kapital-cart-link .kapital-cart-quantity-mini-badge, .alert, p.woocommerce-notice-success, p.woocommerce-notice--success, .payment_box, .woocommerce-form-coupon, .select2 .woocommerce-form-coupon-toggle, .single-product form.cart .woonp label, .select2, .wp-caption-text {
+.ff-sans, .kapital-cart-link-wrapper .kapital-cart-quantity-mini-badge, .alert, p.woocommerce-notice-success, p.woocommerce-notice--success, .payment_box, .woocommerce-form-coupon, .select2 .woocommerce-form-coupon-toggle, .select2, .wp-caption-text {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.fs-small, .btn.btn-sm, .woocommerce-account .woocommerce button.btn-sm[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-sm, button.btn-sm#place_order, .woocommerce-form-coupon button.btn-sm, .woocommerce-cart-form .coupon button.btn-sm,
-.woocommerce-cart-form .coupon input.btn-sm[type=submit],
-#pwgc-redeem-gift-card-container button.btn-sm,
-#pwgc-redeem-gift-card-container input.btn-sm[type=submit], #pwgc-redeem-form button.btn-sm,
-#pwgc-redeem-form input.btn-sm[type=submit], .btn-sm.checkout-button, .btn-sm.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-sm.onsale, .archive-item.product .btn-sm.soldout, .archive-item.product .btn-sm.predpredaj, .btn-sm.wp-element-button, .btn-sm.wp-block-button__link {
+.fs-small {
   line-height: 1.35;
 }
 
@@ -10295,10 +10208,13 @@ label {
 #post-content h1:not(:first-child), #post-content .h1:not(:first-child), #post-content h2:not(:first-child), #post-content .h2:not(:first-child), #post-content h3:not(:first-child), #post-content .h3:not(:first-child), #post-content h4:not(:first-child), #post-content .h4:not(:first-child), #post-content h5:not(:first-child), #post-content .h5:not(:first-child), #post-content h6:not(:first-child), #post-content .h6:not(:first-child), #podcast-content h1:not(:first-child), #podcast-content .h1:not(:first-child), #podcast-content h2:not(:first-child), #podcast-content .h2:not(:first-child), #podcast-content h3:not(:first-child), #podcast-content .h3:not(:first-child), #podcast-content h4:not(:first-child), #podcast-content .h4:not(:first-child), #podcast-content h5:not(:first-child), #podcast-content .h5:not(:first-child), #podcast-content h6:not(:first-child), #podcast-content .h6:not(:first-child) {
   margin-top: 3rem;
 }
+#post-content .wp-block-heading + .wp-block-heading, #podcast-content .wp-block-heading + .wp-block-heading {
+  margin-top: 1.5rem;
+}
 
 .main-content > *:not(:last-child),
 .is-root-container > *:not(:last-child), #post-content > *:not(:last-child), #podcast-content > *:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .main-content > iframe,
 .is-root-container > iframe, #post-content > iframe, #podcast-content > iframe {
@@ -10581,27 +10497,27 @@ body.admin-bar .offcanvas {
   }
 }
 @media (min-width: 600px) {
-  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container {
+  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container, .tabs.wc-tabs .col-container {
     max-width: 540px;
   }
 }
 @media (min-width: 900px) {
-  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container {
+  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container, .tabs.wc-tabs .col-container {
     max-width: 720px;
   }
 }
 @media (min-width: 1200px) {
-  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container {
+  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container, .tabs.wc-tabs .col-container {
     max-width: 960px;
   }
 }
 @media (min-width: 1400px) {
-  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container {
+  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container, .tabs.wc-tabs .col-container {
     max-width: 1140px;
   }
 }
 @media (min-width: 1650px) {
-  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container {
+  .row .col-container, .woocommerce-MyAccount-navigation ul .col-container, .woocommerce-billing-fields__field-wrapper .col-container, .woocommerce-shipping-fields__field-wrapper .col-container, .tabs.wc-tabs .col-container {
     max-width: 1320px;
   }
 }
@@ -10728,18 +10644,18 @@ body.admin-bar .offcanvas {
     margin-bottom: 3px;
   }
 }
-.row .btn-menu + .btn-menu, .woocommerce-MyAccount-navigation ul .btn-menu + .btn-menu, .woocommerce-billing-fields__field-wrapper .btn-menu + .btn-menu, .woocommerce-shipping-fields__field-wrapper .btn-menu + .btn-menu {
-  margin-left: -0.2rem;
+.row .btn-menu + .btn-menu, .woocommerce-MyAccount-navigation ul .btn-menu + .btn-menu, .woocommerce-billing-fields__field-wrapper .btn-menu + .btn-menu, .woocommerce-shipping-fields__field-wrapper .btn-menu + .btn-menu, .tabs.wc-tabs .btn-menu + .btn-menu {
+  margin-left: calc(1rem - 0.8em);
 }
 
-.row.gx-4 .btn-menu + .btn-menu, .woocommerce-MyAccount-navigation ul.gx-4 .btn-menu + .btn-menu, .gx-4.woocommerce-billing-fields__field-wrapper .btn-menu + .btn-menu, .gx-4.woocommerce-shipping-fields__field-wrapper .btn-menu + .btn-menu {
-  margin-left: 0.3rem;
+.row.gx-4 .btn-menu + .btn-menu, .woocommerce-MyAccount-navigation ul.gx-4 .btn-menu + .btn-menu, .gx-4.woocommerce-billing-fields__field-wrapper .btn-menu + .btn-menu, .gx-4.woocommerce-shipping-fields__field-wrapper .btn-menu + .btn-menu, .gx-4.tabs.wc-tabs .btn-menu + .btn-menu {
+  margin-left: calc(1.5rem - 0.8em);
 }
 
 @media (max-width: 599.98px) {
   .btn-podpora {
-    margin-left: -1.2rem;
-    margin-right: -1.2rem;
+    margin-left: -0.8em;
+    margin-right: -0.8em;
   }
 }
 @media (min-width: 600px) {
@@ -10918,19 +10834,19 @@ a[class^=marker-]:active::before {
 }
 
 /** purgecss end ignore */
-.btn:not(.btn-menu), .woocommerce-account .woocommerce button[type=submit]:not(.btn-menu), .woocommerce-MyAccount-navigation ul li a:not(.btn-menu), button#place_order:not(.btn-menu), .woocommerce-form-coupon button:not(.btn-menu), .woocommerce-cart-form .coupon button:not(.btn-menu),
+.btn:not(.btn-menu), .woocommerce-form-login .woocommerce-button:not(.btn-menu), .woocommerce-account .woocommerce button[type=submit]:not(.btn-menu), .woocommerce-MyAccount-navigation ul li a:not(.btn-menu), button#place_order:not(.btn-menu), .woocommerce-form-coupon button:not(.btn-menu), .shipping-calculator-form button[type=submit]:not(.btn-menu), .woocommerce-cart-form .coupon button:not(.btn-menu),
 .woocommerce-cart-form .coupon input[type=submit]:not(.btn-menu),
 #pwgc-redeem-gift-card-container button:not(.btn-menu),
 #pwgc-redeem-gift-card-container input[type=submit]:not(.btn-menu), #pwgc-redeem-form button:not(.btn-menu),
-#pwgc-redeem-form input[type=submit]:not(.btn-menu), .checkout-button:not(.btn-menu), .single_add_to_cart_button:not(.btn-menu), .archive-item.product a.button:not(.btn-menu), .archive-item.product .onsale:not(.btn-menu), .archive-item.product .soldout:not(.btn-menu), .archive-item.product .predpredaj:not(.btn-menu), .wp-element-button:not(.btn-menu), .wp-block-button__link:not(.btn-menu) {
+#pwgc-redeem-form input[type=submit]:not(.btn-menu), .checkout-button:not(.btn-menu), .tabs.wc-tabs li a:not(.btn-menu), .single_add_to_cart_button:not(.btn-menu), .archive-item.product a.button:not(.btn-menu), .archive-item.product .onsale:not(.btn-menu), .archive-item.product .soldout:not(.btn-menu), .archive-item.product .predpredaj:not(.btn-menu), .wp-element-button:not(.btn-menu), .wp-block-button__link:not(.btn-menu) {
   text-transform: uppercase;
 }
 
-.btn, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.btn, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a, button#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
+#pwgc-redeem-form input[type=submit], .checkout-button, .tabs.wc-tabs li a, .single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj, .wp-element-button, .wp-block-button__link {
   text-align: center;
   color: var(--kptl-body-color);
   border-style: solid;
@@ -10938,113 +10854,131 @@ a[class^=marker-]:active::before {
   border-width: 2px;
   line-height: 1;
   white-space: nowrap;
-  padding: 0.55em 1.2em 0.5em 1.2em;
+  padding: 0.6em 1.2em 0.45em 1.2em;
   transition: 0.05s linear;
 }
-.btn.btn-block, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-block, button#place_order, .woocommerce-form-coupon button.btn-block, .woocommerce-cart-form .coupon button.btn-block,
+.btn.btn-block, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-block, button#place_order, .woocommerce-form-coupon button.btn-block, .shipping-calculator-form button.btn-block[type=submit], .shipping-calculator-form .woocommerce-form-login button[type=submit].woocommerce-button, .woocommerce-form-login .shipping-calculator-form button[type=submit].woocommerce-button, .woocommerce-cart-form .coupon button.btn-block, .woocommerce-cart-form .coupon .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login .woocommerce-cart-form .coupon button.woocommerce-button,
 .woocommerce-cart-form .coupon input.btn-block[type=submit],
+.woocommerce-cart-form .coupon .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login .woocommerce-cart-form .coupon input[type=submit].woocommerce-button,
 #pwgc-redeem-gift-card-container button.btn-block,
+#pwgc-redeem-gift-card-container .woocommerce-form-login button.woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container button.woocommerce-button,
 #pwgc-redeem-gift-card-container .woocommerce-account .woocommerce button[type=submit],
 .woocommerce-account .woocommerce #pwgc-redeem-gift-card-container button[type=submit],
-#pwgc-redeem-gift-card-container input.btn-block[type=submit], #pwgc-redeem-form button.btn-block, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit],
-#pwgc-redeem-form input.btn-block[type=submit], .btn-block.checkout-button, .checkout-button, .btn-block.single_add_to_cart_button, .archive-item.product a.btn-block.button, .archive-item.product a.button.checkout-button, .archive-item.product .btn-block.onsale, .archive-item.product .onsale.checkout-button, .archive-item.product .btn-block.soldout, .archive-item.product .soldout.checkout-button, .archive-item.product .btn-block.predpredaj, .archive-item.product .predpredaj.checkout-button, .btn-block.wp-element-button, .btn-block.wp-block-button__link {
+#pwgc-redeem-gift-card-container input.btn-block[type=submit],
+#pwgc-redeem-gift-card-container .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container input[type=submit].woocommerce-button, #pwgc-redeem-form button.btn-block, #pwgc-redeem-form .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login #pwgc-redeem-form button.woocommerce-button, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit],
+#pwgc-redeem-form input.btn-block[type=submit],
+#pwgc-redeem-form .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-form input[type=submit].woocommerce-button, .btn-block.checkout-button, .checkout-button, .tabs.wc-tabs li a.btn-block, .tabs.wc-tabs li .woocommerce-form-login a.woocommerce-button, .woocommerce-form-login .tabs.wc-tabs li a.woocommerce-button, .tabs.wc-tabs li a.checkout-button, .btn-block.single_add_to_cart_button, .archive-item.product a.btn-block.button, .archive-item.product .woocommerce-form-login a.button.woocommerce-button, .woocommerce-form-login .archive-item.product a.button.woocommerce-button, .archive-item.product a.button.checkout-button, .archive-item.product .btn-block.onsale, .archive-item.product .woocommerce-form-login .onsale.woocommerce-button, .woocommerce-form-login .archive-item.product .onsale.woocommerce-button, .archive-item.product .onsale.checkout-button, .archive-item.product .btn-block.soldout, .archive-item.product .woocommerce-form-login .soldout.woocommerce-button, .woocommerce-form-login .archive-item.product .soldout.woocommerce-button, .archive-item.product .soldout.checkout-button, .archive-item.product .btn-block.predpredaj, .archive-item.product .woocommerce-form-login .predpredaj.woocommerce-button, .woocommerce-form-login .archive-item.product .predpredaj.woocommerce-button, .archive-item.product .predpredaj.checkout-button, .btn-block.wp-element-button, .btn-block.wp-block-button__link {
   width: 100%;
 }
-.btn svg, .woocommerce-account .woocommerce button[type=submit] svg, .woocommerce-MyAccount-navigation ul li a svg, button#place_order svg, .woocommerce-form-coupon button svg, .woocommerce-cart-form .coupon button svg,
+.btn svg, .woocommerce-form-login .woocommerce-button svg, .woocommerce-account .woocommerce button[type=submit] svg, .woocommerce-MyAccount-navigation ul li a svg, button#place_order svg, .woocommerce-form-coupon button svg, .shipping-calculator-form button[type=submit] svg, .woocommerce-cart-form .coupon button svg,
 .woocommerce-cart-form .coupon input[type=submit] svg,
 #pwgc-redeem-gift-card-container button svg,
 #pwgc-redeem-gift-card-container input[type=submit] svg, #pwgc-redeem-form button svg,
-#pwgc-redeem-form input[type=submit] svg, .checkout-button svg, .single_add_to_cart_button svg, .archive-item.product a.button svg, .archive-item.product .onsale svg, .archive-item.product .soldout svg, .archive-item.product .predpredaj svg, .wp-element-button svg, .wp-block-button__link svg {
+#pwgc-redeem-form input[type=submit] svg, .checkout-button svg, .tabs.wc-tabs li a svg, .single_add_to_cart_button svg, .archive-item.product a.button svg, .archive-item.product .onsale svg, .archive-item.product .soldout svg, .archive-item.product .predpredaj svg, .wp-element-button svg, .wp-block-button__link svg {
   transition: 0.05s linear;
 }
-.btn:focus, .woocommerce-account .woocommerce button[type=submit]:focus, .woocommerce-MyAccount-navigation ul li a:focus, button#place_order:focus, .woocommerce-form-coupon button:focus, .woocommerce-cart-form .coupon button:focus,
+.btn:focus, .woocommerce-form-login .woocommerce-button:focus, .woocommerce-account .woocommerce button[type=submit]:focus, .woocommerce-MyAccount-navigation ul li a:focus, button#place_order:focus, .woocommerce-form-coupon button:focus, .shipping-calculator-form button[type=submit]:focus, .woocommerce-cart-form .coupon button:focus,
 .woocommerce-cart-form .coupon input[type=submit]:focus,
 #pwgc-redeem-gift-card-container button:focus,
 #pwgc-redeem-gift-card-container input[type=submit]:focus, #pwgc-redeem-form button:focus,
-#pwgc-redeem-form input[type=submit]:focus, .checkout-button:focus, .single_add_to_cart_button:focus, .archive-item.product a.button:focus, .archive-item.product .onsale:focus, .archive-item.product .soldout:focus, .archive-item.product .predpredaj:focus, .wp-element-button:focus, .wp-block-button__link:focus, .btn:focus-visible, .woocommerce-account .woocommerce button[type=submit]:focus-visible, .woocommerce-MyAccount-navigation ul li a:focus-visible, button#place_order:focus-visible, .woocommerce-form-coupon button:focus-visible, .woocommerce-cart-form .coupon button:focus-visible,
+#pwgc-redeem-form input[type=submit]:focus, .checkout-button:focus, .tabs.wc-tabs li a:focus, .single_add_to_cart_button:focus, .archive-item.product a.button:focus, .archive-item.product .onsale:focus, .archive-item.product .soldout:focus, .archive-item.product .predpredaj:focus, .wp-element-button:focus, .wp-block-button__link:focus, .btn:focus-visible, .woocommerce-form-login .woocommerce-button:focus-visible, .woocommerce-account .woocommerce button[type=submit]:focus-visible, .woocommerce-MyAccount-navigation ul li a:focus-visible, button#place_order:focus-visible, .woocommerce-form-coupon button:focus-visible, .shipping-calculator-form button[type=submit]:focus-visible, .woocommerce-cart-form .coupon button:focus-visible,
 .woocommerce-cart-form .coupon input[type=submit]:focus-visible,
 #pwgc-redeem-gift-card-container button:focus-visible,
 #pwgc-redeem-gift-card-container input[type=submit]:focus-visible, #pwgc-redeem-form button:focus-visible,
-#pwgc-redeem-form input[type=submit]:focus-visible, .checkout-button:focus-visible, .single_add_to_cart_button:focus-visible, .archive-item.product a.button:focus-visible, .archive-item.product .onsale:focus-visible, .archive-item.product .soldout:focus-visible, .archive-item.product .predpredaj:focus-visible, .wp-element-button:focus-visible, .wp-block-button__link:focus-visible {
+#pwgc-redeem-form input[type=submit]:focus-visible, .checkout-button:focus-visible, .tabs.wc-tabs li a:focus-visible, .single_add_to_cart_button:focus-visible, .archive-item.product a.button:focus-visible, .archive-item.product .onsale:focus-visible, .archive-item.product .soldout:focus-visible, .archive-item.product .predpredaj:focus-visible, .wp-element-button:focus-visible, .wp-block-button__link:focus-visible {
   outline: none !important;
 }
-.btn.btn-sm, .woocommerce-account .woocommerce button.btn-sm[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-sm, button.btn-sm#place_order, .woocommerce-form-coupon button.btn-sm, .woocommerce-cart-form .coupon button.btn-sm,
+.btn.btn-sm, .woocommerce-form-login .btn-sm.woocommerce-button, .woocommerce-account .woocommerce button.btn-sm[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-sm, button.btn-sm#place_order, .woocommerce-form-coupon button.btn-sm, .shipping-calculator-form button.btn-sm[type=submit], .woocommerce-cart-form .coupon button.btn-sm,
 .woocommerce-cart-form .coupon input.btn-sm[type=submit],
 #pwgc-redeem-gift-card-container button.btn-sm,
 #pwgc-redeem-gift-card-container input.btn-sm[type=submit], #pwgc-redeem-form button.btn-sm,
-#pwgc-redeem-form input.btn-sm[type=submit], .btn-sm.checkout-button, .btn-sm.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-sm.onsale, .archive-item.product .btn-sm.soldout, .archive-item.product .btn-sm.predpredaj, .btn-sm.wp-element-button, .btn-sm.wp-block-button__link {
-  padding: 0.44em 0.96em 0.4em 0.96em;
+#pwgc-redeem-form input.btn-sm[type=submit], .btn-sm.checkout-button, .tabs.wc-tabs li a.btn-sm, .btn-sm.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-sm.onsale, .archive-item.product .btn-sm.soldout, .archive-item.product .btn-sm.predpredaj, .btn-sm.wp-element-button, .btn-sm.wp-block-button__link {
+  font-size: 0.8rem;
 }
-.btn.btn-primary, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-primary, .woocommerce-MyAccount-navigation ul li.is-active a, button#place_order, .woocommerce-form-coupon button.btn-primary, .woocommerce-cart-form .coupon button.btn-primary,
+.btn.btn-primary, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-primary, .woocommerce-MyAccount-navigation ul li.is-active a, button#place_order, .woocommerce-form-coupon button.btn-primary, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button.btn-primary, .woocommerce-cart-form .coupon .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login .woocommerce-cart-form .coupon button.woocommerce-button,
 .woocommerce-cart-form .coupon input.btn-primary[type=submit],
+.woocommerce-cart-form .coupon .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login .woocommerce-cart-form .coupon input[type=submit].woocommerce-button,
 #pwgc-redeem-gift-card-container button.btn-primary,
+#pwgc-redeem-gift-card-container .woocommerce-form-login button.woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container button.woocommerce-button,
 #pwgc-redeem-gift-card-container .woocommerce-account .woocommerce button[type=submit],
 .woocommerce-account .woocommerce #pwgc-redeem-gift-card-container button[type=submit],
-#pwgc-redeem-gift-card-container input.btn-primary[type=submit], #pwgc-redeem-form button.btn-primary, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit],
-#pwgc-redeem-form input.btn-primary[type=submit], .checkout-button, .single_add_to_cart_button, .archive-item.product a.btn-primary.button, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.button, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.button, .archive-item.product a.button.checkout-button, .archive-item.product a.button.single_add_to_cart_button, .archive-item.product .btn-primary.onsale, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.onsale, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.onsale, .archive-item.product .onsale.checkout-button, .archive-item.product .onsale.single_add_to_cart_button, .archive-item.product .btn-primary.soldout, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.soldout, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.soldout, .archive-item.product .soldout.checkout-button, .archive-item.product .soldout.single_add_to_cart_button, .archive-item.product .btn-primary.predpredaj, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.predpredaj, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.predpredaj, .archive-item.product .predpredaj.checkout-button, .archive-item.product .predpredaj.single_add_to_cart_button, .btn-primary.wp-element-button, .btn-primary.wp-block-button__link, .wp-element-button.has-pink-background-color, .wp-block-button__link.has-pink-background-color {
+#pwgc-redeem-gift-card-container .shipping-calculator-form button[type=submit],
+.shipping-calculator-form #pwgc-redeem-gift-card-container button[type=submit],
+#pwgc-redeem-gift-card-container input.btn-primary[type=submit],
+#pwgc-redeem-gift-card-container .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-gift-card-container input[type=submit].woocommerce-button, #pwgc-redeem-form button.btn-primary, #pwgc-redeem-form .woocommerce-form-login button.woocommerce-button, .woocommerce-form-login #pwgc-redeem-form button.woocommerce-button, #pwgc-redeem-form .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-form button[type=submit], #pwgc-redeem-form .shipping-calculator-form button[type=submit], .shipping-calculator-form #pwgc-redeem-form button[type=submit],
+#pwgc-redeem-form input.btn-primary[type=submit],
+#pwgc-redeem-form .woocommerce-form-login input[type=submit].woocommerce-button,
+.woocommerce-form-login #pwgc-redeem-form input[type=submit].woocommerce-button, .checkout-button, .tabs.wc-tabs li a.btn-primary, .tabs.wc-tabs li .woocommerce-form-login a.woocommerce-button, .woocommerce-form-login .tabs.wc-tabs li a.woocommerce-button, .tabs.wc-tabs li a.checkout-button, .tabs.wc-tabs li.active a, .single_add_to_cart_button, .archive-item.product a.btn-primary.button, .archive-item.product .woocommerce-form-login a.button.woocommerce-button, .woocommerce-form-login .archive-item.product a.button.woocommerce-button, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.button, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.button, .archive-item.product a.button.checkout-button, .archive-item.product a.button.single_add_to_cart_button, .archive-item.product .btn-primary.onsale, .archive-item.product .woocommerce-form-login .onsale.woocommerce-button, .woocommerce-form-login .archive-item.product .onsale.woocommerce-button, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.onsale, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.onsale, .archive-item.product .shipping-calculator-form button.onsale[type=submit], .shipping-calculator-form .archive-item.product button.onsale[type=submit], .archive-item.product .onsale.checkout-button, .archive-item.product .onsale.single_add_to_cart_button, .archive-item.product .btn-primary.soldout, .archive-item.product .woocommerce-form-login .soldout.woocommerce-button, .woocommerce-form-login .archive-item.product .soldout.woocommerce-button, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.soldout, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.soldout, .archive-item.product .shipping-calculator-form button.soldout[type=submit], .shipping-calculator-form .archive-item.product button.soldout[type=submit], .archive-item.product .soldout.checkout-button, .archive-item.product .soldout.single_add_to_cart_button, .archive-item.product .btn-primary.predpredaj, .archive-item.product .woocommerce-form-login .predpredaj.woocommerce-button, .woocommerce-form-login .archive-item.product .predpredaj.woocommerce-button, .archive-item.product .woocommerce-MyAccount-navigation ul li.is-active a.predpredaj, .woocommerce-MyAccount-navigation ul li.is-active .archive-item.product a.predpredaj, .archive-item.product .shipping-calculator-form button.predpredaj[type=submit], .shipping-calculator-form .archive-item.product button.predpredaj[type=submit], .archive-item.product .predpredaj.checkout-button, .archive-item.product .predpredaj.single_add_to_cart_button, .btn-primary.wp-element-button, .btn-primary.wp-block-button__link, .wp-element-button.has-pink-background-color, .wp-block-button__link.has-pink-background-color {
   background-color: var(--kptl-primary);
   border-color: var(--kptl-primary);
 }
-.btn.btn-white, .woocommerce-account .woocommerce button.btn-white[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-white, button.btn-white#place_order, .woocommerce-form-coupon button.btn-white, .woocommerce-cart-form .coupon button.btn-white,
+.btn.btn-white, .woocommerce-form-login .btn-white.woocommerce-button, .woocommerce-account .woocommerce button.btn-white[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-white, button.btn-white#place_order, .woocommerce-form-coupon button.btn-white, .shipping-calculator-form button.btn-white[type=submit], .woocommerce-cart-form .coupon button.btn-white,
 .woocommerce-cart-form .coupon input.btn-white[type=submit],
 #pwgc-redeem-gift-card-container button.btn-white,
 #pwgc-redeem-gift-card-container input.btn-white[type=submit], #pwgc-redeem-form button.btn-white,
-#pwgc-redeem-form input.btn-white[type=submit], .btn-white.checkout-button, .btn-white.single_add_to_cart_button, .archive-item.product a.btn-white.button, .archive-item.product .btn-white.onsale, .archive-item.product .btn-white.soldout, .archive-item.product .btn-white.predpredaj, .btn-white.wp-element-button, .btn-white.wp-block-button__link {
+#pwgc-redeem-form input.btn-white[type=submit], .btn-white.checkout-button, .tabs.wc-tabs li a.btn-white, .btn-white.single_add_to_cart_button, .archive-item.product a.btn-white.button, .archive-item.product .btn-white.onsale, .archive-item.product .btn-white.soldout, .archive-item.product .btn-white.predpredaj, .btn-white.wp-element-button, .btn-white.wp-block-button__link {
   background-color: var(--kptl-white);
   border-color: var(--kptl-white);
 }
-.btn.btn-secondary, .woocommerce-account .woocommerce button.btn-secondary[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-secondary, button.btn-secondary#place_order, .woocommerce-form-coupon button.btn-secondary, .woocommerce-cart-form .coupon button.btn-secondary,
+.btn.btn-secondary, .woocommerce-form-login .btn-secondary.woocommerce-button, .woocommerce-account .woocommerce button.btn-secondary[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-secondary, button.btn-secondary#place_order, .woocommerce-form-coupon button.btn-secondary, .shipping-calculator-form button.btn-secondary[type=submit], .woocommerce-cart-form .coupon button.btn-secondary,
 .woocommerce-cart-form .coupon input.btn-secondary[type=submit],
 #pwgc-redeem-gift-card-container button.btn-secondary,
 #pwgc-redeem-gift-card-container input.btn-secondary[type=submit], #pwgc-redeem-form button.btn-secondary,
-#pwgc-redeem-form input.btn-secondary[type=submit], .btn-secondary.checkout-button, .btn-secondary.single_add_to_cart_button, .archive-item.product a.btn-secondary.button, .archive-item.product .btn-secondary.onsale, .archive-item.product .soldout, .archive-item.product .btn-secondary.predpredaj, .btn-secondary.wp-element-button, .btn-secondary.wp-block-button__link, .wp-element-button:not(.has-background), .wp-block-button__link:not(.has-background) {
+#pwgc-redeem-form input.btn-secondary[type=submit], .btn-secondary.checkout-button, .tabs.wc-tabs li a.btn-secondary, .tabs.wc-tabs li:not(.active) a, .btn-secondary.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-secondary.onsale, .archive-item.product .soldout, .archive-item.product .btn-secondary.predpredaj, .btn-secondary.wp-element-button, .btn-secondary.wp-block-button__link, .wp-element-button:not(.has-background), .wp-block-button__link:not(.has-background) {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
 }
-.btn.btn-outline, .woocommerce-account .woocommerce button.btn-outline[type=submit], .woocommerce-MyAccount-navigation ul li a, button.btn-outline#place_order, .woocommerce-form-coupon button, .woocommerce-cart-form .coupon button,
+.btn.btn-outline, .woocommerce-form-login .btn-outline.woocommerce-button, .woocommerce-account .woocommerce button.btn-outline[type=submit], .woocommerce-MyAccount-navigation ul li a, button.btn-outline#place_order, .woocommerce-form-coupon button, .shipping-calculator-form button.btn-outline[type=submit], .shipping-calculator-form .woocommerce-form-coupon button[type=submit], .woocommerce-form-coupon .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
 .woocommerce-cart-form .coupon input[type=submit],
 #pwgc-redeem-gift-card-container button,
 #pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
-#pwgc-redeem-form input[type=submit], .btn-outline.checkout-button, .btn-outline.single_add_to_cart_button, .archive-item.product a.button, .archive-item.product .btn-outline.onsale, .archive-item.product .woocommerce-MyAccount-navigation ul li a.onsale, .woocommerce-MyAccount-navigation ul li .archive-item.product a.onsale, .archive-item.product .woocommerce-form-coupon button.onsale, .woocommerce-form-coupon .archive-item.product button.onsale, .archive-item.product .woocommerce-cart-form .coupon button.onsale, .woocommerce-cart-form .coupon .archive-item.product button.onsale, .archive-item.product .btn-outline.soldout, .archive-item.product .woocommerce-MyAccount-navigation ul li a.soldout, .woocommerce-MyAccount-navigation ul li .archive-item.product a.soldout, .archive-item.product .woocommerce-form-coupon button.soldout, .woocommerce-form-coupon .archive-item.product button.soldout, .archive-item.product .woocommerce-cart-form .coupon button.soldout, .woocommerce-cart-form .coupon .archive-item.product button.soldout, .archive-item.product .btn-outline.predpredaj, .archive-item.product .woocommerce-MyAccount-navigation ul li a.predpredaj, .woocommerce-MyAccount-navigation ul li .archive-item.product a.predpredaj, .archive-item.product .woocommerce-form-coupon button.predpredaj, .woocommerce-form-coupon .archive-item.product button.predpredaj, .archive-item.product .woocommerce-cart-form .coupon button.predpredaj, .woocommerce-cart-form .coupon .archive-item.product button.predpredaj, .btn-outline.wp-element-button, .btn-outline.wp-block-button__link, .btn.wp-block-button.is-style-outline, .woocommerce-account .woocommerce button.wp-block-button.is-style-outline[type=submit], .woocommerce-MyAccount-navigation ul li a.wp-block-button.is-style-outline, button.wp-block-button.is-style-outline#place_order, .woocommerce-form-coupon button.wp-block-button.is-style-outline, .wp-block-button.is-style-outline.checkout-button, .wp-block-button.is-style-outline.single_add_to_cart_button, .archive-item.product .wp-block-button.is-style-outline.onsale, .archive-item.product .wp-block-button.is-style-outline.soldout, .archive-item.product .wp-block-button.is-style-outline.predpredaj, .wp-element-button.wp-block-button.is-style-outline, .wp-block-button__link.wp-block-button.is-style-outline {
+#pwgc-redeem-form input[type=submit], .btn-outline.checkout-button, .tabs.wc-tabs li a.btn-outline, .tabs.wc-tabs .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul .tabs.wc-tabs li a, .btn-outline.single_add_to_cart_button, .archive-item.product a.btn-outline.button, .archive-item.product .woocommerce-MyAccount-navigation ul li a.button, .woocommerce-MyAccount-navigation ul li .archive-item.product a.button, .archive-item.product .btn-outline.onsale, .archive-item.product .woocommerce-MyAccount-navigation ul li a.onsale, .woocommerce-MyAccount-navigation ul li .archive-item.product a.onsale, .archive-item.product .woocommerce-form-coupon button.onsale, .woocommerce-form-coupon .archive-item.product button.onsale, .archive-item.product .woocommerce-cart-form .coupon button.onsale, .woocommerce-cart-form .coupon .archive-item.product button.onsale, .archive-item.product .btn-outline.soldout, .archive-item.product .woocommerce-MyAccount-navigation ul li a.soldout, .woocommerce-MyAccount-navigation ul li .archive-item.product a.soldout, .archive-item.product .woocommerce-form-coupon button.soldout, .woocommerce-form-coupon .archive-item.product button.soldout, .archive-item.product .woocommerce-cart-form .coupon button.soldout, .woocommerce-cart-form .coupon .archive-item.product button.soldout, .archive-item.product .btn-outline.predpredaj, .archive-item.product .woocommerce-MyAccount-navigation ul li a.predpredaj, .woocommerce-MyAccount-navigation ul li .archive-item.product a.predpredaj, .archive-item.product .woocommerce-form-coupon button.predpredaj, .woocommerce-form-coupon .archive-item.product button.predpredaj, .archive-item.product .woocommerce-cart-form .coupon button.predpredaj, .woocommerce-cart-form .coupon .archive-item.product button.predpredaj, .btn-outline.wp-element-button, .btn-outline.wp-block-button__link, .btn.wp-block-button.is-style-outline, .woocommerce-form-login .wp-block-button.is-style-outline.woocommerce-button, .woocommerce-account .woocommerce button.wp-block-button.is-style-outline[type=submit], .woocommerce-MyAccount-navigation ul li a.wp-block-button.is-style-outline, button.wp-block-button.is-style-outline#place_order, .woocommerce-form-coupon button.wp-block-button.is-style-outline, .shipping-calculator-form button.wp-block-button.is-style-outline[type=submit], .wp-block-button.is-style-outline.checkout-button, .tabs.wc-tabs li a.wp-block-button.is-style-outline, .wp-block-button.is-style-outline.single_add_to_cart_button, .archive-item.product a.wp-block-button.is-style-outline.button, .archive-item.product .wp-block-button.is-style-outline.onsale, .archive-item.product .wp-block-button.is-style-outline.soldout, .archive-item.product .wp-block-button.is-style-outline.predpredaj, .wp-element-button.wp-block-button.is-style-outline, .wp-block-button__link.wp-block-button.is-style-outline {
   background-color: var(--kptl-white);
   border-color: var(--kptl-body-color);
 }
-.btn.btn-outline.active, .woocommerce-account .woocommerce button.btn-outline.active[type=submit], .woocommerce-MyAccount-navigation ul li a.active, button.btn-outline.active#place_order, .woocommerce-form-coupon button.active, .woocommerce-cart-form .coupon button.active,
+.btn.btn-outline.active, .woocommerce-form-login .btn-outline.active.woocommerce-button, .woocommerce-account .woocommerce button.btn-outline.active[type=submit], .woocommerce-MyAccount-navigation ul li a.active, button.btn-outline.active#place_order, .woocommerce-form-coupon button.active, .shipping-calculator-form button.btn-outline.active[type=submit], .woocommerce-cart-form .coupon button.active,
 .woocommerce-cart-form .coupon input.active[type=submit],
 #pwgc-redeem-gift-card-container button.active,
 #pwgc-redeem-gift-card-container input.active[type=submit], #pwgc-redeem-form button.active,
-#pwgc-redeem-form input.active[type=submit], .btn-outline.active.checkout-button, .btn-outline.active.single_add_to_cart_button, .archive-item.product a.active.button, .archive-item.product .btn-outline.active.onsale, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.onsale, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.onsale, .archive-item.product .woocommerce-form-coupon button.active.onsale, .woocommerce-form-coupon .archive-item.product button.active.onsale, .archive-item.product .btn-outline.active.soldout, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.soldout, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.soldout, .archive-item.product .woocommerce-form-coupon button.active.soldout, .woocommerce-form-coupon .archive-item.product button.active.soldout, .archive-item.product .btn-outline.active.predpredaj, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.predpredaj, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.predpredaj, .archive-item.product .woocommerce-form-coupon button.active.predpredaj, .woocommerce-form-coupon .archive-item.product button.active.predpredaj, .btn-outline.active.wp-element-button, .btn-outline.active.wp-block-button__link, .btn.active.wp-block-button.is-style-outline, .woocommerce-account .woocommerce button.active.wp-block-button.is-style-outline[type=submit], button.active.wp-block-button.is-style-outline#place_order, .active.wp-block-button.is-style-outline.checkout-button, .active.wp-block-button.is-style-outline.single_add_to_cart_button, .archive-item.product .active.wp-block-button.is-style-outline.onsale, .archive-item.product .active.wp-block-button.is-style-outline.soldout, .archive-item.product .active.wp-block-button.is-style-outline.predpredaj, .active.wp-element-button.wp-block-button.is-style-outline, .active.wp-block-button__link.wp-block-button.is-style-outline {
+#pwgc-redeem-form input.active[type=submit], .btn-outline.active.checkout-button, .tabs.wc-tabs li a.btn-outline.active, .btn-outline.active.single_add_to_cart_button, .archive-item.product a.btn-outline.active.button, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.button, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.button, .archive-item.product .btn-outline.active.onsale, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.onsale, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.onsale, .archive-item.product .woocommerce-form-coupon button.active.onsale, .woocommerce-form-coupon .archive-item.product button.active.onsale, .archive-item.product .btn-outline.active.soldout, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.soldout, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.soldout, .archive-item.product .woocommerce-form-coupon button.active.soldout, .woocommerce-form-coupon .archive-item.product button.active.soldout, .archive-item.product .btn-outline.active.predpredaj, .archive-item.product .woocommerce-MyAccount-navigation ul li a.active.predpredaj, .woocommerce-MyAccount-navigation ul li .archive-item.product a.active.predpredaj, .archive-item.product .woocommerce-form-coupon button.active.predpredaj, .woocommerce-form-coupon .archive-item.product button.active.predpredaj, .btn-outline.active.wp-element-button, .btn-outline.active.wp-block-button__link, .btn.active.wp-block-button.is-style-outline, .woocommerce-form-login .active.wp-block-button.is-style-outline.woocommerce-button, .woocommerce-account .woocommerce button.active.wp-block-button.is-style-outline[type=submit], button.active.wp-block-button.is-style-outline#place_order, .shipping-calculator-form button.active.wp-block-button.is-style-outline[type=submit], .active.wp-block-button.is-style-outline.checkout-button, .tabs.wc-tabs li a.active.wp-block-button.is-style-outline, .active.wp-block-button.is-style-outline.single_add_to_cart_button, .archive-item.product a.active.wp-block-button.is-style-outline.button, .archive-item.product .active.wp-block-button.is-style-outline.onsale, .archive-item.product .active.wp-block-button.is-style-outline.soldout, .archive-item.product .active.wp-block-button.is-style-outline.predpredaj, .active.wp-element-button.wp-block-button.is-style-outline, .active.wp-block-button__link.wp-block-button.is-style-outline {
   background-color: var(--kptl-primary);
 }
-.btn.btn-link, .woocommerce-account .woocommerce button.btn-link[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-link, button.btn-link#place_order, .woocommerce-form-coupon button.btn-link, .woocommerce-cart-form .coupon button.btn-link,
+.btn.btn-link, .woocommerce-form-login .btn-link.woocommerce-button, .woocommerce-account .woocommerce button.btn-link[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-link, button.btn-link#place_order, .woocommerce-form-coupon button.btn-link, .shipping-calculator-form button.btn-link[type=submit], .woocommerce-cart-form .coupon button.btn-link,
 .woocommerce-cart-form .coupon input.btn-link[type=submit],
 #pwgc-redeem-gift-card-container button.btn-link,
 #pwgc-redeem-gift-card-container input.btn-link[type=submit], #pwgc-redeem-form button.btn-link,
-#pwgc-redeem-form input.btn-link[type=submit], .btn-link.checkout-button, .btn-link.single_add_to_cart_button, .archive-item.product a.btn-link.button, .archive-item.product .btn-link.onsale, .archive-item.product .btn-link.soldout, .archive-item.product .btn-link.predpredaj, .btn-link.wp-element-button, .btn-link.wp-block-button__link {
+#pwgc-redeem-form input.btn-link[type=submit], .btn-link.checkout-button, .tabs.wc-tabs li a.btn-link, .btn-link.single_add_to_cart_button, .archive-item.product a.btn-link.button, .archive-item.product .btn-link.onsale, .archive-item.product .btn-link.soldout, .archive-item.product .btn-link.predpredaj, .btn-link.wp-element-button, .btn-link.wp-block-button__link {
   background-color: transparent !important;
   border-color: transparent !important;
 }
-.btn.btn-red, .woocommerce-account .woocommerce button.btn-red[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-red, button.btn-red#place_order, .woocommerce-form-coupon button.btn-red, .woocommerce-cart-form .coupon button.btn-red,
+.btn.btn-red, .woocommerce-form-login .btn-red.woocommerce-button, .woocommerce-account .woocommerce button.btn-red[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-red, button.btn-red#place_order, .woocommerce-form-coupon button.btn-red, .shipping-calculator-form button.btn-red[type=submit], .woocommerce-cart-form .coupon button.btn-red,
 .woocommerce-cart-form .coupon input.btn-red[type=submit],
 #pwgc-redeem-gift-card-container button.btn-red,
 #pwgc-redeem-gift-card-container input.btn-red[type=submit], #pwgc-redeem-form button.btn-red,
-#pwgc-redeem-form input.btn-red[type=submit], .btn-red.checkout-button, .btn-red.single_add_to_cart_button, .archive-item.product a.btn-red.button, .archive-item.product .onsale, .archive-item.product .btn-red.soldout, .archive-item.product .predpredaj, .btn-red.wp-element-button, .btn-red.wp-block-button__link, .wp-element-button.has-red-background-color, .wp-block-button__link.has-red-background-color {
+#pwgc-redeem-form input.btn-red[type=submit], .btn-red.checkout-button, .tabs.wc-tabs li a.btn-red, .btn-red.single_add_to_cart_button, .archive-item.product a.btn-red.button, .archive-item.product .onsale, .archive-item.product .btn-red.soldout, .archive-item.product .predpredaj, .btn-red.wp-element-button, .btn-red.wp-block-button__link, .wp-element-button.has-red-background-color, .wp-block-button__link.has-red-background-color {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-.btn.btn-red svg, .woocommerce-account .woocommerce button.btn-red[type=submit] svg, .woocommerce-MyAccount-navigation ul li a.btn-red svg, button.btn-red#place_order svg, .woocommerce-form-coupon button.btn-red svg, .woocommerce-cart-form .coupon button.btn-red svg,
+.btn.btn-red svg, .woocommerce-form-login .btn-red.woocommerce-button svg, .woocommerce-account .woocommerce button.btn-red[type=submit] svg, .woocommerce-MyAccount-navigation ul li a.btn-red svg, button.btn-red#place_order svg, .woocommerce-form-coupon button.btn-red svg, .shipping-calculator-form button.btn-red[type=submit] svg, .woocommerce-cart-form .coupon button.btn-red svg,
 .woocommerce-cart-form .coupon input.btn-red[type=submit] svg,
 #pwgc-redeem-gift-card-container button.btn-red svg,
 #pwgc-redeem-gift-card-container input.btn-red[type=submit] svg, #pwgc-redeem-form button.btn-red svg,
-#pwgc-redeem-form input.btn-red[type=submit] svg, .btn-red.checkout-button svg, .btn-red.single_add_to_cart_button svg, .archive-item.product a.btn-red.button svg, .archive-item.product .onsale svg, .archive-item.product .btn-red.soldout svg, .archive-item.product .predpredaj svg, .btn-red.wp-element-button svg, .btn-red.wp-block-button__link svg, .wp-element-button.has-red-background-color svg, .wp-block-button__link.has-red-background-color svg {
+#pwgc-redeem-form input.btn-red[type=submit] svg, .btn-red.checkout-button svg, .tabs.wc-tabs li a.btn-red svg, .btn-red.single_add_to_cart_button svg, .archive-item.product a.btn-red.button svg, .archive-item.product .onsale svg, .archive-item.product .btn-red.soldout svg, .archive-item.product .predpredaj svg, .btn-red.wp-element-button svg, .btn-red.wp-block-button__link svg, .wp-element-button.has-red-background-color svg, .wp-block-button__link.has-red-background-color svg {
   fill: #fff;
 }
-.btn.btn-close, .woocommerce-account .woocommerce button.btn-close[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-close, button.btn-close#place_order, .woocommerce-form-coupon button.btn-close, .woocommerce-cart-form .coupon button.btn-close,
+.btn.btn-close, .woocommerce-form-login .btn-close.woocommerce-button, .woocommerce-account .woocommerce button.btn-close[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-close, button.btn-close#place_order, .woocommerce-form-coupon button.btn-close, .shipping-calculator-form button.btn-close[type=submit], .woocommerce-cart-form .coupon button.btn-close,
 .woocommerce-cart-form .coupon input.btn-close[type=submit],
 #pwgc-redeem-gift-card-container button.btn-close,
 #pwgc-redeem-gift-card-container input.btn-close[type=submit], #pwgc-redeem-form button.btn-close,
-#pwgc-redeem-form input.btn-close[type=submit], .btn-close.checkout-button, .btn-close.single_add_to_cart_button, .archive-item.product a.btn-close.button, .archive-item.product .btn-close.onsale, .archive-item.product .btn-close.soldout, .archive-item.product .btn-close.predpredaj, .btn-close.wp-element-button, .btn-close.wp-block-button__link {
+#pwgc-redeem-form input.btn-close[type=submit], .btn-close.checkout-button, .tabs.wc-tabs li a.btn-close, .btn-close.single_add_to_cart_button, .archive-item.product a.btn-close.button, .archive-item.product .btn-close.onsale, .archive-item.product .btn-close.soldout, .archive-item.product .btn-close.predpredaj, .btn-close.wp-element-button, .btn-close.wp-block-button__link {
   width: 4rem;
   height: 4rem;
   line-height: 3rem;
@@ -11052,88 +10986,88 @@ a[class^=marker-]:active::before {
   background-color: var(--kptl-white);
   border-color: var(--kptl-white);
 }
-.btn.btn-close svg, .woocommerce-account .woocommerce button.btn-close[type=submit] svg, .woocommerce-MyAccount-navigation ul li a.btn-close svg, button.btn-close#place_order svg, .woocommerce-form-coupon button.btn-close svg, .woocommerce-cart-form .coupon button.btn-close svg,
+.btn.btn-close svg, .woocommerce-form-login .btn-close.woocommerce-button svg, .woocommerce-account .woocommerce button.btn-close[type=submit] svg, .woocommerce-MyAccount-navigation ul li a.btn-close svg, button.btn-close#place_order svg, .woocommerce-form-coupon button.btn-close svg, .shipping-calculator-form button.btn-close[type=submit] svg, .woocommerce-cart-form .coupon button.btn-close svg,
 .woocommerce-cart-form .coupon input.btn-close[type=submit] svg,
 #pwgc-redeem-gift-card-container button.btn-close svg,
 #pwgc-redeem-gift-card-container input.btn-close[type=submit] svg, #pwgc-redeem-form button.btn-close svg,
-#pwgc-redeem-form input.btn-close[type=submit] svg, .btn-close.checkout-button svg, .btn-close.single_add_to_cart_button svg, .archive-item.product a.btn-close.button svg, .archive-item.product .btn-close.onsale svg, .archive-item.product .btn-close.soldout svg, .archive-item.product .btn-close.predpredaj svg, .btn-close.wp-element-button svg, .btn-close.wp-block-button__link svg {
+#pwgc-redeem-form input.btn-close[type=submit] svg, .btn-close.checkout-button svg, .tabs.wc-tabs li a.btn-close svg, .btn-close.single_add_to_cart_button svg, .archive-item.product a.btn-close.button svg, .archive-item.product .btn-close.onsale svg, .archive-item.product .btn-close.soldout svg, .archive-item.product .btn-close.predpredaj svg, .btn-close.wp-element-button svg, .btn-close.wp-block-button__link svg {
   width: 2rem;
   height: 2rem;
 }
-.btn:disabled, .woocommerce-account .woocommerce button[type=submit]:disabled, .woocommerce-MyAccount-navigation ul li a:disabled, button#place_order:disabled, .woocommerce-form-coupon button:disabled, .woocommerce-cart-form .coupon button:disabled,
+.btn:disabled, .woocommerce-form-login .woocommerce-button:disabled, .woocommerce-account .woocommerce button[type=submit]:disabled, .woocommerce-MyAccount-navigation ul li a:disabled, button#place_order:disabled, .woocommerce-form-coupon button:disabled, .shipping-calculator-form button[type=submit]:disabled, .woocommerce-cart-form .coupon button:disabled,
 .woocommerce-cart-form .coupon input[type=submit]:disabled,
 #pwgc-redeem-gift-card-container button:disabled,
 #pwgc-redeem-gift-card-container input[type=submit]:disabled, #pwgc-redeem-form button:disabled,
-#pwgc-redeem-form input[type=submit]:disabled, .checkout-button:disabled, .single_add_to_cart_button:disabled, .archive-item.product a.button:disabled, .archive-item.product .onsale:disabled, .archive-item.product .soldout:disabled, .archive-item.product .predpredaj:disabled, .wp-element-button:disabled, .wp-block-button__link:disabled {
+#pwgc-redeem-form input[type=submit]:disabled, .checkout-button:disabled, .tabs.wc-tabs li a:disabled, .single_add_to_cart_button:disabled, .archive-item.product a.button:disabled, .archive-item.product .onsale:disabled, .archive-item.product .soldout:disabled, .archive-item.product .predpredaj:disabled, .wp-element-button:disabled, .wp-block-button__link:disabled {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
   color: var(--kptl-gray);
 }
 
 @media (min-width: 600px) {
-  .btn.btn-close, .woocommerce-account .woocommerce button.btn-close[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-close, button.btn-close#place_order, .woocommerce-form-coupon button.btn-close, .woocommerce-cart-form .coupon button.btn-close,
+  .btn.btn-close, .woocommerce-form-login .btn-close.woocommerce-button, .woocommerce-account .woocommerce button.btn-close[type=submit], .woocommerce-MyAccount-navigation ul li a.btn-close, button.btn-close#place_order, .woocommerce-form-coupon button.btn-close, .shipping-calculator-form button.btn-close[type=submit], .woocommerce-cart-form .coupon button.btn-close,
   .woocommerce-cart-form .coupon input.btn-close[type=submit],
   #pwgc-redeem-gift-card-container button.btn-close,
   #pwgc-redeem-gift-card-container input.btn-close[type=submit], #pwgc-redeem-form button.btn-close,
-  #pwgc-redeem-form input.btn-close[type=submit], .btn-close.checkout-button, .btn-close.single_add_to_cart_button, .archive-item.product a.btn-close.button, .archive-item.product .btn-close.onsale, .archive-item.product .btn-close.soldout, .archive-item.product .btn-close.predpredaj, .btn-close.wp-element-button, .btn-close.wp-block-button__link {
+  #pwgc-redeem-form input.btn-close[type=submit], .btn-close.checkout-button, .tabs.wc-tabs li a.btn-close, .btn-close.single_add_to_cart_button, .archive-item.product a.btn-close.button, .archive-item.product .btn-close.onsale, .archive-item.product .btn-close.soldout, .archive-item.product .btn-close.predpredaj, .btn-close.wp-element-button, .btn-close.wp-block-button__link {
     border-color: transparent !important;
     background: none !important;
   }
-  .btn.btn-close:hover svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:hover svg, .woocommerce-MyAccount-navigation ul li a.btn-close:hover svg, button.btn-close#place_order:hover svg, .woocommerce-form-coupon button.btn-close:hover svg, .woocommerce-cart-form .coupon button.btn-close:hover svg,
+  .btn.btn-close:hover svg, .woocommerce-form-login .btn-close.woocommerce-button:hover svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:hover svg, .woocommerce-MyAccount-navigation ul li a.btn-close:hover svg, button.btn-close#place_order:hover svg, .woocommerce-form-coupon button.btn-close:hover svg, .shipping-calculator-form button.btn-close[type=submit]:hover svg, .woocommerce-cart-form .coupon button.btn-close:hover svg,
   .woocommerce-cart-form .coupon input.btn-close[type=submit]:hover svg,
   #pwgc-redeem-gift-card-container button.btn-close:hover svg,
   #pwgc-redeem-gift-card-container input.btn-close[type=submit]:hover svg, #pwgc-redeem-form button.btn-close:hover svg,
-  #pwgc-redeem-form input.btn-close[type=submit]:hover svg, .btn-close.checkout-button:hover svg, .btn-close.single_add_to_cart_button:hover svg, .archive-item.product a.btn-close.button:hover svg, .archive-item.product .btn-close.onsale:hover svg, .archive-item.product .btn-close.soldout:hover svg, .archive-item.product .btn-close.predpredaj:hover svg, .btn-close.wp-element-button:hover svg, .btn-close.wp-block-button__link:hover svg {
+  #pwgc-redeem-form input.btn-close[type=submit]:hover svg, .btn-close.checkout-button:hover svg, .tabs.wc-tabs li a.btn-close:hover svg, .btn-close.single_add_to_cart_button:hover svg, .archive-item.product a.btn-close.button:hover svg, .archive-item.product .btn-close.onsale:hover svg, .archive-item.product .btn-close.soldout:hover svg, .archive-item.product .btn-close.predpredaj:hover svg, .btn-close.wp-element-button:hover svg, .btn-close.wp-block-button__link:hover svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:focus-visible svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:focus-visible svg, .woocommerce-MyAccount-navigation ul li a.btn-close:focus-visible svg, button.btn-close#place_order:focus-visible svg, .woocommerce-form-coupon button.btn-close:focus-visible svg, .woocommerce-cart-form .coupon button.btn-close:focus-visible svg,
+  .btn.btn-close:focus-visible svg, .woocommerce-form-login .btn-close.woocommerce-button:focus-visible svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:focus-visible svg, .woocommerce-MyAccount-navigation ul li a.btn-close:focus-visible svg, button.btn-close#place_order:focus-visible svg, .woocommerce-form-coupon button.btn-close:focus-visible svg, .shipping-calculator-form button.btn-close[type=submit]:focus-visible svg, .woocommerce-cart-form .coupon button.btn-close:focus-visible svg,
   .woocommerce-cart-form .coupon input.btn-close[type=submit]:focus-visible svg,
   #pwgc-redeem-gift-card-container button.btn-close:focus-visible svg,
   #pwgc-redeem-gift-card-container input.btn-close[type=submit]:focus-visible svg, #pwgc-redeem-form button.btn-close:focus-visible svg,
-  #pwgc-redeem-form input.btn-close[type=submit]:focus-visible svg, .btn-close.checkout-button:focus-visible svg, .btn-close.single_add_to_cart_button:focus-visible svg, .archive-item.product a.btn-close.button:focus-visible svg, .archive-item.product .btn-close.onsale:focus-visible svg, .archive-item.product .btn-close.soldout:focus-visible svg, .archive-item.product .btn-close.predpredaj:focus-visible svg, .btn-close.wp-element-button:focus-visible svg, .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:focus svg, .woocommerce-MyAccount-navigation ul li a.btn-close:focus svg, button.btn-close#place_order:focus svg, .woocommerce-form-coupon button.btn-close:focus svg, .woocommerce-cart-form .coupon button.btn-close:focus svg,
+  #pwgc-redeem-form input.btn-close[type=submit]:focus-visible svg, .btn-close.checkout-button:focus-visible svg, .tabs.wc-tabs li a.btn-close:focus-visible svg, .btn-close.single_add_to_cart_button:focus-visible svg, .archive-item.product a.btn-close.button:focus-visible svg, .archive-item.product .btn-close.onsale:focus-visible svg, .archive-item.product .btn-close.soldout:focus-visible svg, .archive-item.product .btn-close.predpredaj:focus-visible svg, .btn-close.wp-element-button:focus-visible svg, .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .woocommerce-form-login .btn-close.woocommerce-button:focus svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:focus svg, .woocommerce-MyAccount-navigation ul li a.btn-close:focus svg, button.btn-close#place_order:focus svg, .woocommerce-form-coupon button.btn-close:focus svg, .shipping-calculator-form button.btn-close[type=submit]:focus svg, .woocommerce-cart-form .coupon button.btn-close:focus svg,
   .woocommerce-cart-form .coupon input.btn-close[type=submit]:focus svg,
   #pwgc-redeem-gift-card-container button.btn-close:focus svg,
   #pwgc-redeem-gift-card-container input.btn-close[type=submit]:focus svg, #pwgc-redeem-form button.btn-close:focus svg,
-  #pwgc-redeem-form input.btn-close[type=submit]:focus svg, .btn-close.checkout-button:focus svg, .btn-close.single_add_to_cart_button:focus svg, .archive-item.product a.btn-close.button:focus svg, .archive-item.product .btn-close.onsale:focus svg, .archive-item.product .btn-close.soldout:focus svg, .archive-item.product .btn-close.predpredaj:focus svg, .btn-close.wp-element-button:focus svg, .btn-close.wp-block-button__link:focus svg {
+  #pwgc-redeem-form input.btn-close[type=submit]:focus svg, .btn-close.checkout-button:focus svg, .tabs.wc-tabs li a.btn-close:focus svg, .btn-close.single_add_to_cart_button:focus svg, .archive-item.product a.btn-close.button:focus svg, .archive-item.product .btn-close.onsale:focus svg, .archive-item.product .btn-close.soldout:focus svg, .archive-item.product .btn-close.predpredaj:focus svg, .btn-close.wp-element-button:focus svg, .btn-close.wp-block-button__link:focus svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:active svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:active svg, .woocommerce-MyAccount-navigation ul li a.btn-close:active svg, button.btn-close#place_order:active svg, .woocommerce-form-coupon button.btn-close:active svg, .woocommerce-cart-form .coupon button.btn-close:active svg,
+  .btn.btn-close:active svg, .woocommerce-form-login .btn-close.woocommerce-button:active svg, .woocommerce-account .woocommerce button.btn-close[type=submit]:active svg, .woocommerce-MyAccount-navigation ul li a.btn-close:active svg, button.btn-close#place_order:active svg, .woocommerce-form-coupon button.btn-close:active svg, .shipping-calculator-form button.btn-close[type=submit]:active svg, .woocommerce-cart-form .coupon button.btn-close:active svg,
   .woocommerce-cart-form .coupon input.btn-close[type=submit]:active svg,
   #pwgc-redeem-gift-card-container button.btn-close:active svg,
   #pwgc-redeem-gift-card-container input.btn-close[type=submit]:active svg, #pwgc-redeem-form button.btn-close:active svg,
-  #pwgc-redeem-form input.btn-close[type=submit]:active svg, .btn-close.checkout-button:active svg, .btn-close.single_add_to_cart_button:active svg, .archive-item.product a.btn-close.button:active svg, .archive-item.product .btn-close.onsale:active svg, .archive-item.product .btn-close.soldout:active svg, .archive-item.product .btn-close.predpredaj:active svg, .btn-close.wp-element-button:active svg, .btn-close.wp-block-button__link:active svg {
+  #pwgc-redeem-form input.btn-close[type=submit]:active svg, .btn-close.checkout-button:active svg, .tabs.wc-tabs li a.btn-close:active svg, .btn-close.single_add_to_cart_button:active svg, .archive-item.product a.btn-close.button:active svg, .archive-item.product .btn-close.onsale:active svg, .archive-item.product .btn-close.soldout:active svg, .archive-item.product .btn-close.predpredaj:active svg, .btn-close.wp-element-button:active svg, .btn-close.wp-block-button__link:active svg {
     fill: #cc0029;
   }
 }
-button.btn:hover:not(:disabled), .woocommerce-account .woocommerce button[type=submit]:hover:not(:disabled), button#place_order:hover:not(:disabled), .woocommerce-form-coupon button:hover:not(:disabled), .woocommerce-cart-form .coupon button:hover:not(:disabled),
-#pwgc-redeem-gift-card-container button:hover:not(:disabled), #pwgc-redeem-form button:hover:not(:disabled), button.checkout-button:hover:not(:disabled), button.single_add_to_cart_button:hover:not(:disabled), .archive-item.product button.onsale:hover:not(:disabled), .archive-item.product button.soldout:hover:not(:disabled), .archive-item.product button.predpredaj:hover:not(:disabled), button.wp-element-button:hover:not(:disabled), button.wp-block-button__link:hover:not(:disabled), button.btn:focus-visible, .woocommerce-account .woocommerce button[type=submit]:focus-visible, button#place_order:focus-visible, .woocommerce-form-coupon button:focus-visible, .woocommerce-cart-form .coupon button:focus-visible,
-#pwgc-redeem-gift-card-container button:focus-visible, #pwgc-redeem-form button:focus-visible, button.checkout-button:focus-visible, button.single_add_to_cart_button:focus-visible, .archive-item.product button.onsale:focus-visible, .archive-item.product button.soldout:focus-visible, .archive-item.product button.predpredaj:focus-visible, button.wp-element-button:focus-visible, button.wp-block-button__link:focus-visible, button.btn:focus, .woocommerce-account .woocommerce button[type=submit]:focus, button#place_order:focus, .woocommerce-form-coupon button:focus, .woocommerce-cart-form .coupon button:focus,
-#pwgc-redeem-gift-card-container button:focus, #pwgc-redeem-form button:focus, button.checkout-button:focus, button.single_add_to_cart_button:focus, .archive-item.product button.onsale:focus, .archive-item.product button.soldout:focus, .archive-item.product button.predpredaj:focus, button.wp-element-button:focus, button.wp-block-button__link:focus, a.btn:hover:not(:disabled), .woocommerce-MyAccount-navigation ul li a:hover:not(:disabled), a.checkout-button:hover:not(:disabled), a.single_add_to_cart_button:hover:not(:disabled), .archive-item.product a.button:hover:not(:disabled), .archive-item.product a.onsale:hover:not(:disabled), .archive-item.product a.soldout:hover:not(:disabled), .archive-item.product a.predpredaj:hover:not(:disabled), a.wp-element-button:hover:not(:disabled), a.wp-block-button__link:hover:not(:disabled), a.btn:focus-visible, .woocommerce-MyAccount-navigation ul li a:focus-visible, a.checkout-button:focus-visible, a.single_add_to_cart_button:focus-visible, .archive-item.product a.button:focus-visible, .archive-item.product a.onsale:focus-visible, .archive-item.product a.soldout:focus-visible, .archive-item.product a.predpredaj:focus-visible, a.wp-element-button:focus-visible, a.wp-block-button__link:focus-visible, a.btn:focus, .woocommerce-MyAccount-navigation ul li a:focus, a.checkout-button:focus, a.single_add_to_cart_button:focus, .archive-item.product a.button:focus, .archive-item.product a.onsale:focus, .archive-item.product a.soldout:focus, .archive-item.product a.predpredaj:focus, a.wp-element-button:focus, a.wp-block-button__link:focus {
+button.btn:hover:not(:disabled), .woocommerce-form-login button.woocommerce-button:hover:not(:disabled), .woocommerce-account .woocommerce button[type=submit]:hover:not(:disabled), button#place_order:hover:not(:disabled), .woocommerce-form-coupon button:hover:not(:disabled), .shipping-calculator-form button[type=submit]:hover:not(:disabled), .woocommerce-cart-form .coupon button:hover:not(:disabled),
+#pwgc-redeem-gift-card-container button:hover:not(:disabled), #pwgc-redeem-form button:hover:not(:disabled), button.checkout-button:hover:not(:disabled), button.single_add_to_cart_button:hover:not(:disabled), .archive-item.product button.onsale:hover:not(:disabled), .archive-item.product button.soldout:hover:not(:disabled), .archive-item.product button.predpredaj:hover:not(:disabled), button.wp-element-button:hover:not(:disabled), button.wp-block-button__link:hover:not(:disabled), button.btn:focus-visible, .woocommerce-form-login button.woocommerce-button:focus-visible, .woocommerce-account .woocommerce button[type=submit]:focus-visible, button#place_order:focus-visible, .woocommerce-form-coupon button:focus-visible, .shipping-calculator-form button[type=submit]:focus-visible, .woocommerce-cart-form .coupon button:focus-visible,
+#pwgc-redeem-gift-card-container button:focus-visible, #pwgc-redeem-form button:focus-visible, button.checkout-button:focus-visible, button.single_add_to_cart_button:focus-visible, .archive-item.product button.onsale:focus-visible, .archive-item.product button.soldout:focus-visible, .archive-item.product button.predpredaj:focus-visible, button.wp-element-button:focus-visible, button.wp-block-button__link:focus-visible, button.btn:focus, .woocommerce-form-login button.woocommerce-button:focus, .woocommerce-account .woocommerce button[type=submit]:focus, button#place_order:focus, .woocommerce-form-coupon button:focus, .shipping-calculator-form button[type=submit]:focus, .woocommerce-cart-form .coupon button:focus,
+#pwgc-redeem-gift-card-container button:focus, #pwgc-redeem-form button:focus, button.checkout-button:focus, button.single_add_to_cart_button:focus, .archive-item.product button.onsale:focus, .archive-item.product button.soldout:focus, .archive-item.product button.predpredaj:focus, button.wp-element-button:focus, button.wp-block-button__link:focus, a.btn:hover:not(:disabled), .woocommerce-form-login a.woocommerce-button:hover:not(:disabled), .woocommerce-MyAccount-navigation ul li a:hover:not(:disabled), a.checkout-button:hover:not(:disabled), .tabs.wc-tabs li a:hover:not(:disabled), a.single_add_to_cart_button:hover:not(:disabled), .archive-item.product a.button:hover:not(:disabled), .archive-item.product a.onsale:hover:not(:disabled), .archive-item.product a.soldout:hover:not(:disabled), .archive-item.product a.predpredaj:hover:not(:disabled), a.wp-element-button:hover:not(:disabled), a.wp-block-button__link:hover:not(:disabled), a.btn:focus-visible, .woocommerce-form-login a.woocommerce-button:focus-visible, .woocommerce-MyAccount-navigation ul li a:focus-visible, a.checkout-button:focus-visible, .tabs.wc-tabs li a:focus-visible, a.single_add_to_cart_button:focus-visible, .archive-item.product a.button:focus-visible, .archive-item.product a.onsale:focus-visible, .archive-item.product a.soldout:focus-visible, .archive-item.product a.predpredaj:focus-visible, a.wp-element-button:focus-visible, a.wp-block-button__link:focus-visible, a.btn:focus, .woocommerce-form-login a.woocommerce-button:focus, .woocommerce-MyAccount-navigation ul li a:focus, a.checkout-button:focus, .tabs.wc-tabs li a:focus, a.single_add_to_cart_button:focus, .archive-item.product a.button:focus, .archive-item.product a.onsale:focus, .archive-item.product a.soldout:focus, .archive-item.product a.predpredaj:focus, a.wp-element-button:focus, a.wp-block-button__link:focus {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-button.btn:hover:not(:disabled) svg, .woocommerce-account .woocommerce button[type=submit]:hover:not(:disabled) svg, button#place_order:hover:not(:disabled) svg, .woocommerce-form-coupon button:hover:not(:disabled) svg, .woocommerce-cart-form .coupon button:hover:not(:disabled) svg,
-#pwgc-redeem-gift-card-container button:hover:not(:disabled) svg, #pwgc-redeem-form button:hover:not(:disabled) svg, button.checkout-button:hover:not(:disabled) svg, button.single_add_to_cart_button:hover:not(:disabled) svg, .archive-item.product button.onsale:hover:not(:disabled) svg, .archive-item.product button.soldout:hover:not(:disabled) svg, .archive-item.product button.predpredaj:hover:not(:disabled) svg, button.wp-element-button:hover:not(:disabled) svg, button.wp-block-button__link:hover:not(:disabled) svg, button.btn:focus-visible svg, .woocommerce-account .woocommerce button[type=submit]:focus-visible svg, button#place_order:focus-visible svg, .woocommerce-form-coupon button:focus-visible svg, .woocommerce-cart-form .coupon button:focus-visible svg,
-#pwgc-redeem-gift-card-container button:focus-visible svg, #pwgc-redeem-form button:focus-visible svg, button.checkout-button:focus-visible svg, button.single_add_to_cart_button:focus-visible svg, .archive-item.product button.onsale:focus-visible svg, .archive-item.product button.soldout:focus-visible svg, .archive-item.product button.predpredaj:focus-visible svg, button.wp-element-button:focus-visible svg, button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .woocommerce-account .woocommerce button[type=submit]:focus svg, button#place_order:focus svg, .woocommerce-form-coupon button:focus svg, .woocommerce-cart-form .coupon button:focus svg,
-#pwgc-redeem-gift-card-container button:focus svg, #pwgc-redeem-form button:focus svg, button.checkout-button:focus svg, button.single_add_to_cart_button:focus svg, .archive-item.product button.onsale:focus svg, .archive-item.product button.soldout:focus svg, .archive-item.product button.predpredaj:focus svg, button.wp-element-button:focus svg, button.wp-block-button__link:focus svg, a.btn:hover:not(:disabled) svg, .woocommerce-MyAccount-navigation ul li a:hover:not(:disabled) svg, a.checkout-button:hover:not(:disabled) svg, a.single_add_to_cart_button:hover:not(:disabled) svg, .archive-item.product a.button:hover:not(:disabled) svg, .archive-item.product a.onsale:hover:not(:disabled) svg, .archive-item.product a.soldout:hover:not(:disabled) svg, .archive-item.product a.predpredaj:hover:not(:disabled) svg, a.wp-element-button:hover:not(:disabled) svg, a.wp-block-button__link:hover:not(:disabled) svg, a.btn:focus-visible svg, .woocommerce-MyAccount-navigation ul li a:focus-visible svg, a.checkout-button:focus-visible svg, a.single_add_to_cart_button:focus-visible svg, .archive-item.product a.button:focus-visible svg, .archive-item.product a.onsale:focus-visible svg, .archive-item.product a.soldout:focus-visible svg, .archive-item.product a.predpredaj:focus-visible svg, a.wp-element-button:focus-visible svg, a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .woocommerce-MyAccount-navigation ul li a:focus svg, a.checkout-button:focus svg, a.single_add_to_cart_button:focus svg, .archive-item.product a.button:focus svg, .archive-item.product a.onsale:focus svg, .archive-item.product a.soldout:focus svg, .archive-item.product a.predpredaj:focus svg, a.wp-element-button:focus svg, a.wp-block-button__link:focus svg {
+button.btn:hover:not(:disabled) svg, .woocommerce-form-login button.woocommerce-button:hover:not(:disabled) svg, .woocommerce-account .woocommerce button[type=submit]:hover:not(:disabled) svg, button#place_order:hover:not(:disabled) svg, .woocommerce-form-coupon button:hover:not(:disabled) svg, .shipping-calculator-form button[type=submit]:hover:not(:disabled) svg, .woocommerce-cart-form .coupon button:hover:not(:disabled) svg,
+#pwgc-redeem-gift-card-container button:hover:not(:disabled) svg, #pwgc-redeem-form button:hover:not(:disabled) svg, button.checkout-button:hover:not(:disabled) svg, button.single_add_to_cart_button:hover:not(:disabled) svg, .archive-item.product button.onsale:hover:not(:disabled) svg, .archive-item.product button.soldout:hover:not(:disabled) svg, .archive-item.product button.predpredaj:hover:not(:disabled) svg, button.wp-element-button:hover:not(:disabled) svg, button.wp-block-button__link:hover:not(:disabled) svg, button.btn:focus-visible svg, .woocommerce-form-login button.woocommerce-button:focus-visible svg, .woocommerce-account .woocommerce button[type=submit]:focus-visible svg, button#place_order:focus-visible svg, .woocommerce-form-coupon button:focus-visible svg, .shipping-calculator-form button[type=submit]:focus-visible svg, .woocommerce-cart-form .coupon button:focus-visible svg,
+#pwgc-redeem-gift-card-container button:focus-visible svg, #pwgc-redeem-form button:focus-visible svg, button.checkout-button:focus-visible svg, button.single_add_to_cart_button:focus-visible svg, .archive-item.product button.onsale:focus-visible svg, .archive-item.product button.soldout:focus-visible svg, .archive-item.product button.predpredaj:focus-visible svg, button.wp-element-button:focus-visible svg, button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .woocommerce-form-login button.woocommerce-button:focus svg, .woocommerce-account .woocommerce button[type=submit]:focus svg, button#place_order:focus svg, .woocommerce-form-coupon button:focus svg, .shipping-calculator-form button[type=submit]:focus svg, .woocommerce-cart-form .coupon button:focus svg,
+#pwgc-redeem-gift-card-container button:focus svg, #pwgc-redeem-form button:focus svg, button.checkout-button:focus svg, button.single_add_to_cart_button:focus svg, .archive-item.product button.onsale:focus svg, .archive-item.product button.soldout:focus svg, .archive-item.product button.predpredaj:focus svg, button.wp-element-button:focus svg, button.wp-block-button__link:focus svg, a.btn:hover:not(:disabled) svg, .woocommerce-form-login a.woocommerce-button:hover:not(:disabled) svg, .woocommerce-MyAccount-navigation ul li a:hover:not(:disabled) svg, a.checkout-button:hover:not(:disabled) svg, .tabs.wc-tabs li a:hover:not(:disabled) svg, a.single_add_to_cart_button:hover:not(:disabled) svg, .archive-item.product a.button:hover:not(:disabled) svg, .archive-item.product a.onsale:hover:not(:disabled) svg, .archive-item.product a.soldout:hover:not(:disabled) svg, .archive-item.product a.predpredaj:hover:not(:disabled) svg, a.wp-element-button:hover:not(:disabled) svg, a.wp-block-button__link:hover:not(:disabled) svg, a.btn:focus-visible svg, .woocommerce-form-login a.woocommerce-button:focus-visible svg, .woocommerce-MyAccount-navigation ul li a:focus-visible svg, a.checkout-button:focus-visible svg, .tabs.wc-tabs li a:focus-visible svg, a.single_add_to_cart_button:focus-visible svg, .archive-item.product a.button:focus-visible svg, .archive-item.product a.onsale:focus-visible svg, .archive-item.product a.soldout:focus-visible svg, .archive-item.product a.predpredaj:focus-visible svg, a.wp-element-button:focus-visible svg, a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .woocommerce-form-login a.woocommerce-button:focus svg, .woocommerce-MyAccount-navigation ul li a:focus svg, a.checkout-button:focus svg, .tabs.wc-tabs li a:focus svg, a.single_add_to_cart_button:focus svg, .archive-item.product a.button:focus svg, .archive-item.product a.onsale:focus svg, .archive-item.product a.soldout:focus svg, .archive-item.product a.predpredaj:focus svg, a.wp-element-button:focus svg, a.wp-block-button__link:focus svg {
   fill: #fff;
 }
-button.btn:active:not(:disabled), .woocommerce-account .woocommerce button[type=submit]:active:not(:disabled), button#place_order:active:not(:disabled), .woocommerce-form-coupon button:active:not(:disabled), .woocommerce-cart-form .coupon button:active:not(:disabled),
-#pwgc-redeem-gift-card-container button:active:not(:disabled), #pwgc-redeem-form button:active:not(:disabled), button.checkout-button:active:not(:disabled), button.single_add_to_cart_button:active:not(:disabled), .archive-item.product button.onsale:active:not(:disabled), .archive-item.product button.soldout:active:not(:disabled), .archive-item.product button.predpredaj:active:not(:disabled), button.wp-element-button:active:not(:disabled), button.wp-block-button__link:active:not(:disabled), a.btn:active:not(:disabled), .woocommerce-MyAccount-navigation ul li a:active:not(:disabled), a.checkout-button:active:not(:disabled), a.single_add_to_cart_button:active:not(:disabled), .archive-item.product a.button:active:not(:disabled), .archive-item.product a.onsale:active:not(:disabled), .archive-item.product a.soldout:active:not(:disabled), .archive-item.product a.predpredaj:active:not(:disabled), a.wp-element-button:active:not(:disabled), a.wp-block-button__link:active:not(:disabled) {
+button.btn:active:not(:disabled), .woocommerce-form-login button.woocommerce-button:active:not(:disabled), .woocommerce-account .woocommerce button[type=submit]:active:not(:disabled), button#place_order:active:not(:disabled), .woocommerce-form-coupon button:active:not(:disabled), .shipping-calculator-form button[type=submit]:active:not(:disabled), .woocommerce-cart-form .coupon button:active:not(:disabled),
+#pwgc-redeem-gift-card-container button:active:not(:disabled), #pwgc-redeem-form button:active:not(:disabled), button.checkout-button:active:not(:disabled), button.single_add_to_cart_button:active:not(:disabled), .archive-item.product button.onsale:active:not(:disabled), .archive-item.product button.soldout:active:not(:disabled), .archive-item.product button.predpredaj:active:not(:disabled), button.wp-element-button:active:not(:disabled), button.wp-block-button__link:active:not(:disabled), a.btn:active:not(:disabled), .woocommerce-form-login a.woocommerce-button:active:not(:disabled), .woocommerce-MyAccount-navigation ul li a:active:not(:disabled), a.checkout-button:active:not(:disabled), .tabs.wc-tabs li a:active:not(:disabled), a.single_add_to_cart_button:active:not(:disabled), .archive-item.product a.button:active:not(:disabled), .archive-item.product a.onsale:active:not(:disabled), .archive-item.product a.soldout:active:not(:disabled), .archive-item.product a.predpredaj:active:not(:disabled), a.wp-element-button:active:not(:disabled), a.wp-block-button__link:active:not(:disabled) {
   color: #fff;
   background-color: #cc0029;
   border-color: #cc0029;
 }
-button.btn.btn-red:hover:not(:disabled), .woocommerce-account .woocommerce button.btn-red[type=submit]:hover:not(:disabled), button.btn-red#place_order:hover:not(:disabled), .woocommerce-form-coupon button.btn-red:hover:not(:disabled), .woocommerce-cart-form .coupon button.btn-red:hover:not(:disabled),
-#pwgc-redeem-gift-card-container button.btn-red:hover:not(:disabled), #pwgc-redeem-form button.btn-red:hover:not(:disabled), button.btn-red.checkout-button:hover:not(:disabled), button.btn-red.single_add_to_cart_button:hover:not(:disabled), .archive-item.product button.onsale:hover:not(:disabled), .archive-item.product button.btn-red.soldout:hover:not(:disabled), .archive-item.product button.predpredaj:hover:not(:disabled), button.btn-red.wp-element-button:hover:not(:disabled), button.btn-red.wp-block-button__link:hover:not(:disabled), button.wp-element-button.has-red-background-color:hover:not(:disabled), button.wp-block-button__link.has-red-background-color:hover:not(:disabled), button.btn.btn-red:focus-visible, .woocommerce-account .woocommerce button.btn-red[type=submit]:focus-visible, button.btn-red#place_order:focus-visible, .woocommerce-form-coupon button.btn-red:focus-visible, .woocommerce-cart-form .coupon button.btn-red:focus-visible,
-#pwgc-redeem-gift-card-container button.btn-red:focus-visible, #pwgc-redeem-form button.btn-red:focus-visible, button.btn-red.checkout-button:focus-visible, button.btn-red.single_add_to_cart_button:focus-visible, .archive-item.product button.onsale:focus-visible, .archive-item.product button.btn-red.soldout:focus-visible, .archive-item.product button.predpredaj:focus-visible, button.btn-red.wp-element-button:focus-visible, button.btn-red.wp-block-button__link:focus-visible, button.wp-element-button.has-red-background-color:focus-visible, button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover:not(:disabled), .woocommerce-MyAccount-navigation ul li a.btn-red:hover:not(:disabled), a.btn-red.checkout-button:hover:not(:disabled), a.btn-red.single_add_to_cart_button:hover:not(:disabled), .archive-item.product a.btn-red.button:hover:not(:disabled), .archive-item.product a.onsale:hover:not(:disabled), .archive-item.product a.btn-red.soldout:hover:not(:disabled), .archive-item.product a.predpredaj:hover:not(:disabled), a.btn-red.wp-element-button:hover:not(:disabled), a.btn-red.wp-block-button__link:hover:not(:disabled), a.wp-element-button.has-red-background-color:hover:not(:disabled), a.wp-block-button__link.has-red-background-color:hover:not(:disabled), a.btn.btn-red:focus-visible, .woocommerce-MyAccount-navigation ul li a.btn-red:focus-visible, a.btn-red.checkout-button:focus-visible, a.btn-red.single_add_to_cart_button:focus-visible, .archive-item.product a.btn-red.button:focus-visible, .archive-item.product a.onsale:focus-visible, .archive-item.product a.btn-red.soldout:focus-visible, .archive-item.product a.predpredaj:focus-visible, a.btn-red.wp-element-button:focus-visible, a.btn-red.wp-block-button__link:focus-visible, a.wp-element-button.has-red-background-color:focus-visible, a.wp-block-button__link.has-red-background-color:focus-visible {
+button.btn.btn-red:hover:not(:disabled), .woocommerce-form-login button.btn-red.woocommerce-button:hover:not(:disabled), .woocommerce-account .woocommerce button.btn-red[type=submit]:hover:not(:disabled), button.btn-red#place_order:hover:not(:disabled), .woocommerce-form-coupon button.btn-red:hover:not(:disabled), .shipping-calculator-form button.btn-red[type=submit]:hover:not(:disabled), .woocommerce-cart-form .coupon button.btn-red:hover:not(:disabled),
+#pwgc-redeem-gift-card-container button.btn-red:hover:not(:disabled), #pwgc-redeem-form button.btn-red:hover:not(:disabled), button.btn-red.checkout-button:hover:not(:disabled), button.btn-red.single_add_to_cart_button:hover:not(:disabled), .archive-item.product button.onsale:hover:not(:disabled), .archive-item.product button.btn-red.soldout:hover:not(:disabled), .archive-item.product button.predpredaj:hover:not(:disabled), button.btn-red.wp-element-button:hover:not(:disabled), button.btn-red.wp-block-button__link:hover:not(:disabled), button.wp-element-button.has-red-background-color:hover:not(:disabled), button.wp-block-button__link.has-red-background-color:hover:not(:disabled), button.btn.btn-red:focus-visible, .woocommerce-form-login button.btn-red.woocommerce-button:focus-visible, .woocommerce-account .woocommerce button.btn-red[type=submit]:focus-visible, button.btn-red#place_order:focus-visible, .woocommerce-form-coupon button.btn-red:focus-visible, .shipping-calculator-form button.btn-red[type=submit]:focus-visible, .woocommerce-cart-form .coupon button.btn-red:focus-visible,
+#pwgc-redeem-gift-card-container button.btn-red:focus-visible, #pwgc-redeem-form button.btn-red:focus-visible, button.btn-red.checkout-button:focus-visible, button.btn-red.single_add_to_cart_button:focus-visible, .archive-item.product button.onsale:focus-visible, .archive-item.product button.btn-red.soldout:focus-visible, .archive-item.product button.predpredaj:focus-visible, button.btn-red.wp-element-button:focus-visible, button.btn-red.wp-block-button__link:focus-visible, button.wp-element-button.has-red-background-color:focus-visible, button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover:not(:disabled), .woocommerce-form-login a.btn-red.woocommerce-button:hover:not(:disabled), .woocommerce-MyAccount-navigation ul li a.btn-red:hover:not(:disabled), a.btn-red.checkout-button:hover:not(:disabled), .tabs.wc-tabs li a.btn-red:hover:not(:disabled), a.btn-red.single_add_to_cart_button:hover:not(:disabled), .archive-item.product a.btn-red.button:hover:not(:disabled), .archive-item.product a.onsale:hover:not(:disabled), .archive-item.product a.btn-red.soldout:hover:not(:disabled), .archive-item.product a.predpredaj:hover:not(:disabled), a.btn-red.wp-element-button:hover:not(:disabled), a.btn-red.wp-block-button__link:hover:not(:disabled), a.wp-element-button.has-red-background-color:hover:not(:disabled), a.wp-block-button__link.has-red-background-color:hover:not(:disabled), a.btn.btn-red:focus-visible, .woocommerce-form-login a.btn-red.woocommerce-button:focus-visible, .woocommerce-MyAccount-navigation ul li a.btn-red:focus-visible, a.btn-red.checkout-button:focus-visible, .tabs.wc-tabs li a.btn-red:focus-visible, a.btn-red.single_add_to_cart_button:focus-visible, .archive-item.product a.btn-red.button:focus-visible, .archive-item.product a.onsale:focus-visible, .archive-item.product a.btn-red.soldout:focus-visible, .archive-item.product a.predpredaj:focus-visible, a.btn-red.wp-element-button:focus-visible, a.btn-red.wp-block-button__link:focus-visible, a.wp-element-button.has-red-background-color:focus-visible, a.wp-block-button__link.has-red-background-color:focus-visible {
   background-color: var(--kptl-primary);
   color: var(--kptl-body-color);
   border-color: var(--kptl-body-color);
 }
-button.btn.btn-red:active:not(:disabled), .woocommerce-account .woocommerce button.btn-red[type=submit]:active:not(:disabled), button.btn-red#place_order:active:not(:disabled), .woocommerce-form-coupon button.btn-red:active:not(:disabled), .woocommerce-cart-form .coupon button.btn-red:active:not(:disabled),
-#pwgc-redeem-gift-card-container button.btn-red:active:not(:disabled), #pwgc-redeem-form button.btn-red:active:not(:disabled), button.btn-red.checkout-button:active:not(:disabled), button.btn-red.single_add_to_cart_button:active:not(:disabled), .archive-item.product button.onsale:active:not(:disabled), .archive-item.product button.btn-red.soldout:active:not(:disabled), .archive-item.product button.predpredaj:active:not(:disabled), button.btn-red.wp-element-button:active:not(:disabled), button.btn-red.wp-block-button__link:active:not(:disabled), button.wp-element-button.has-red-background-color:active:not(:disabled), button.wp-block-button__link.has-red-background-color:active:not(:disabled), a.btn.btn-red:active:not(:disabled), .woocommerce-MyAccount-navigation ul li a.btn-red:active:not(:disabled), a.btn-red.checkout-button:active:not(:disabled), a.btn-red.single_add_to_cart_button:active:not(:disabled), .archive-item.product a.btn-red.button:active:not(:disabled), .archive-item.product a.onsale:active:not(:disabled), .archive-item.product a.btn-red.soldout:active:not(:disabled), .archive-item.product a.predpredaj:active:not(:disabled), a.btn-red.wp-element-button:active:not(:disabled), a.btn-red.wp-block-button__link:active:not(:disabled), a.wp-element-button.has-red-background-color:active:not(:disabled), a.wp-block-button__link.has-red-background-color:active:not(:disabled) {
+button.btn.btn-red:active:not(:disabled), .woocommerce-form-login button.btn-red.woocommerce-button:active:not(:disabled), .woocommerce-account .woocommerce button.btn-red[type=submit]:active:not(:disabled), button.btn-red#place_order:active:not(:disabled), .woocommerce-form-coupon button.btn-red:active:not(:disabled), .shipping-calculator-form button.btn-red[type=submit]:active:not(:disabled), .woocommerce-cart-form .coupon button.btn-red:active:not(:disabled),
+#pwgc-redeem-gift-card-container button.btn-red:active:not(:disabled), #pwgc-redeem-form button.btn-red:active:not(:disabled), button.btn-red.checkout-button:active:not(:disabled), button.btn-red.single_add_to_cart_button:active:not(:disabled), .archive-item.product button.onsale:active:not(:disabled), .archive-item.product button.btn-red.soldout:active:not(:disabled), .archive-item.product button.predpredaj:active:not(:disabled), button.btn-red.wp-element-button:active:not(:disabled), button.btn-red.wp-block-button__link:active:not(:disabled), button.wp-element-button.has-red-background-color:active:not(:disabled), button.wp-block-button__link.has-red-background-color:active:not(:disabled), a.btn.btn-red:active:not(:disabled), .woocommerce-form-login a.btn-red.woocommerce-button:active:not(:disabled), .woocommerce-MyAccount-navigation ul li a.btn-red:active:not(:disabled), a.btn-red.checkout-button:active:not(:disabled), .tabs.wc-tabs li a.btn-red:active:not(:disabled), a.btn-red.single_add_to_cart_button:active:not(:disabled), .archive-item.product a.btn-red.button:active:not(:disabled), .archive-item.product a.onsale:active:not(:disabled), .archive-item.product a.btn-red.soldout:active:not(:disabled), .archive-item.product a.predpredaj:active:not(:disabled), a.btn-red.wp-element-button:active:not(:disabled), a.btn-red.wp-block-button__link:active:not(:disabled), a.wp-element-button.has-red-background-color:active:not(:disabled), a.wp-block-button__link.has-red-background-color:active:not(:disabled) {
   background-color: #ff9efd;
   border-color: #ff9efd;
 }
@@ -11324,7 +11258,6 @@ body.modal-open {
 @media (min-width: 600px) {
   .post-filters {
     position: sticky;
-    top: calc(12px + 2.5rem);
     z-index: 1000;
   }
   .post-filters .btn-filter-toggle, .post-filters .btn-close {
@@ -11335,9 +11268,6 @@ body.modal-open {
   }
   .post-filters .filters-content {
     flex-direction: row;
-  }
-  body.admin-bar .post-filters {
-    top: calc(44px + 2.5rem);
   }
 }
 @media (max-width: 599.98px) {
@@ -11791,20 +11721,22 @@ select + .select2-container {
   display: none;
 }
 
-.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection, .single-product form.cart .woonp:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection {
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection, .single-product form.cart .has-validation.woonp > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection {
+.input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu).select2-container .select2-selection {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group > .input-group-text ~ .select2-container .select2-selection, .single-product form.cart .woonp .input-group > label ~ .select2-container .select2-selection, .single-product form.cart .woonp > .input-group-text ~ .select2-container .select2-selection, .single-product form.cart .woonp > label ~ .select2-container .select2-selection,
+.input-group > .input-group-text ~ .select2-container .select2-selection,
 .input-group > .btn ~ .select2-container .select2-selection,
+.woocommerce-form-login .input-group > .woocommerce-button ~ .select2-container .select2-selection,
 .woocommerce-account .woocommerce .input-group > button[type=submit] ~ .select2-container .select2-selection,
 .woocommerce-MyAccount-navigation ul li .input-group > a ~ .select2-container .select2-selection,
 .input-group > button#place_order ~ .select2-container .select2-selection,
 .woocommerce-form-coupon .input-group > button ~ .select2-container .select2-selection,
+.shipping-calculator-form .input-group > button[type=submit] ~ .select2-container .select2-selection,
 .woocommerce-cart-form .coupon .input-group > button ~ .select2-container .select2-selection,
 .woocommerce-cart-form .coupon .input-group > input[type=submit] ~ .select2-container .select2-selection,
 #pwgc-redeem-gift-card-container .input-group > button ~ .select2-container .select2-selection,
@@ -11812,54 +11744,22 @@ select + .select2-container {
 #pwgc-redeem-form .input-group > button ~ .select2-container .select2-selection,
 #pwgc-redeem-form .input-group > input[type=submit] ~ .select2-container .select2-selection,
 .input-group > .checkout-button ~ .select2-container .select2-selection,
+.tabs.wc-tabs li .input-group > a ~ .select2-container .select2-selection,
 .input-group > .single_add_to_cart_button ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .btn ~ .select2-container .select2-selection,
-.single-product form.cart .woocommerce-account .woocommerce .woonp > button[type=submit] ~ .select2-container .select2-selection,
-.woocommerce-account .woocommerce .single-product form.cart .woonp > button[type=submit] ~ .select2-container .select2-selection,
-.single-product form.cart .woocommerce-MyAccount-navigation ul li .woonp > a ~ .select2-container .select2-selection,
-.woocommerce-MyAccount-navigation ul li .single-product form.cart .woonp > a ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > button#place_order ~ .select2-container .select2-selection,
-.single-product form.cart .woocommerce-form-coupon .woonp > button ~ .select2-container .select2-selection,
-.woocommerce-form-coupon .single-product form.cart .woonp > button ~ .select2-container .select2-selection,
-.single-product form.cart .woocommerce-cart-form .coupon .woonp > button ~ .select2-container .select2-selection,
-.woocommerce-cart-form .coupon .single-product form.cart .woonp > button ~ .select2-container .select2-selection,
-.single-product form.cart .woocommerce-cart-form .coupon .woonp > input[type=submit] ~ .select2-container .select2-selection,
-.woocommerce-cart-form .coupon .single-product form.cart .woonp > input[type=submit] ~ .select2-container .select2-selection,
-.single-product form.cart #pwgc-redeem-gift-card-container .woonp > button ~ .select2-container .select2-selection,
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp > button ~ .select2-container .select2-selection,
-.single-product form.cart #pwgc-redeem-gift-card-container .woonp > input[type=submit] ~ .select2-container .select2-selection,
-#pwgc-redeem-gift-card-container .single-product form.cart .woonp > input[type=submit] ~ .select2-container .select2-selection,
-.single-product form.cart #pwgc-redeem-form .woonp > button ~ .select2-container .select2-selection,
-#pwgc-redeem-form .single-product form.cart .woonp > button ~ .select2-container .select2-selection,
-.single-product form.cart #pwgc-redeem-form .woonp > input[type=submit] ~ .select2-container .select2-selection,
-#pwgc-redeem-form .single-product form.cart .woonp > input[type=submit] ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .checkout-button ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .single_add_to_cart_button ~ .select2-container .select2-selection,
 .archive-item.product .input-group > a.button ~ .select2-container .select2-selection,
-.archive-item.product .single-product form.cart .woonp > a.button ~ .select2-container .select2-selection,
-.single-product form.cart .archive-item.product .woonp > a.button ~ .select2-container .select2-selection,
 .archive-item.product .input-group > .onsale ~ .select2-container .select2-selection,
-.archive-item.product .single-product form.cart .woonp > .onsale ~ .select2-container .select2-selection,
-.single-product form.cart .archive-item.product .woonp > .onsale ~ .select2-container .select2-selection,
 .archive-item.product .input-group > .soldout ~ .select2-container .select2-selection,
-.archive-item.product .single-product form.cart .woonp > .soldout ~ .select2-container .select2-selection,
-.single-product form.cart .archive-item.product .woonp > .soldout ~ .select2-container .select2-selection,
 .archive-item.product .input-group > .predpredaj ~ .select2-container .select2-selection,
-.archive-item.product .single-product form.cart .woonp > .predpredaj ~ .select2-container .select2-selection,
-.single-product form.cart .archive-item.product .woonp > .predpredaj ~ .select2-container .select2-selection,
 .input-group > .wp-element-button ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .wp-element-button ~ .select2-container .select2-selection,
 .input-group > .wp-block-button__link ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .wp-block-button__link ~ .select2-container .select2-selection,
-.input-group > .dropdown-menu ~ .select2-container .select2-selection,
-.single-product form.cart .woonp > .dropdown-menu ~ .select2-container .select2-selection {
+.input-group > .dropdown-menu ~ .select2-container .select2-selection {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.input-group .select2-container, .single-product form.cart .woonp .select2-container {
+.input-group .select2-container {
   flex-grow: 1;
 }
-.input-group .select2-container .select2-selection, .single-product form.cart .woonp .select2-container .select2-selection {
+.input-group .select2-container .select2-selection {
   height: 100%;
 }
 
@@ -12178,17 +12078,13 @@ form ul {
   padding-left: 0px;
 }
 
-form .btn, form .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul li form a, form button#place_order, form .woocommerce-cart-form .coupon button, .woocommerce-cart-form .coupon form button,
-form .woocommerce-cart-form .coupon input[type=submit],
-.woocommerce-cart-form .coupon form input[type=submit],
-form #pwgc-redeem-gift-card-container button,
-#pwgc-redeem-gift-card-container form button,
-form #pwgc-redeem-gift-card-container input[type=submit],
-#pwgc-redeem-gift-card-container form input[type=submit], form #pwgc-redeem-form button, #pwgc-redeem-form form button,
-form #pwgc-redeem-form input[type=submit],
-#pwgc-redeem-form form input[type=submit], form .single_add_to_cart_button, form .archive-item.product a.button, .archive-item.product form a.button, form .archive-item.product .onsale, .archive-item.product form .onsale, form .archive-item.product .soldout, .archive-item.product form .soldout, form .archive-item.product .predpredaj, .archive-item.product form .predpredaj, form .wp-element-button, form .wp-block-button__link, .btn-form, .woocommerce-account .woocommerce button[type=submit], .woocommerce-form-coupon button, .checkout-button {
-  padding-bottom: 0.6rem;
-  padding-top: 0.6rem;
+form .btn, form .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccount-navigation ul li form a, form button#place_order, form .tabs.wc-tabs li a, .tabs.wc-tabs li form a, form .single_add_to_cart_button, form .archive-item.product a.button, .archive-item.product form a.button, form .archive-item.product .onsale, .archive-item.product form .onsale, form .archive-item.product .soldout, .archive-item.product form .soldout, form .archive-item.product .predpredaj, .archive-item.product form .predpredaj, form .wp-element-button, form .wp-block-button__link, .btn-form, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], .woocommerce-form-coupon button, .shipping-calculator-form button[type=submit], .woocommerce-cart-form .coupon button,
+.woocommerce-cart-form .coupon input[type=submit],
+#pwgc-redeem-gift-card-container button,
+#pwgc-redeem-gift-card-container input[type=submit], #pwgc-redeem-form button,
+#pwgc-redeem-form input[type=submit], .checkout-button {
+  padding-bottom: 0.55rem;
+  padding-top: 0.65rem;
   line-height: 1.35;
 }
 
@@ -12216,6 +12112,7 @@ form #pwgc-redeem-form input[type=submit],
 #darujme-form-wrapper.collapsed #darujme-expanded-form {
   opacity: 0;
   position: absolute;
+  left: 0;
 }
 
 #darujme-form-wrapper:not(.collapsed) #darujme-collapsed-form {
@@ -12246,6 +12143,13 @@ form #pwgc-redeem-form input[type=submit],
   background-color: transparent !important;
 }
 
+.woocommerce-ordering .orderby {
+  padding-top: 0.6em;
+  padding-bottom: 0.45em;
+  padding-left: 1.2rem;
+  padding-right: 2.6rem;
+}
+
 .woocommerce-page .archive-item-image {
   aspect-ratio: 1 !important;
 }
@@ -12262,7 +12166,7 @@ form #pwgc-redeem-form input[type=submit],
 }
 
 .woocommerce-result-count {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .add-to-cart-wrapper .spinner-col {
@@ -12292,9 +12196,10 @@ form #pwgc-redeem-form input[type=submit],
 
 .single-product .product-wrapper {
   display: grid;
-  row-gap: 2rem;
-  -moz-column-gap: 3rem;
-       column-gap: 3rem;
+  width: 100%;
+  row-gap: 3rem;
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
   grid-template-columns: 0.5fr 0.5fr;
   grid-template-rows: auto auto 1fr;
 }
@@ -12305,7 +12210,7 @@ form #pwgc-redeem-form input[type=submit],
   grid-row-end: 3;
 }
 .single-product .summary > *:not(:first-child) {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .single-product .product-gallery {
   grid-column-start: 2;
@@ -12320,21 +12225,25 @@ form #pwgc-redeem-form input[type=submit],
   grid-row-end: 4;
 }
 .single-product form.cart .woonp {
+  display: inline-flex !important;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 .single-product form.cart .woonp label {
-  margin-bottom: 0px;
-  margin-right: 0px;
   width: auto;
-  flex-grow: 0;
 }
 .single-product form.cart .woonp input {
   width: auto;
-  flex-grow: 0;
+  flex-grow: 1;
 }
-.single-product .price {
+.single-product form.cart .woonp label, .single-product form.cart .woonp input {
+  margin-bottom: 0.25rem;
+}
+.single-product .summary .price {
   line-height: 1.35;
   font-size: 1.4rem;
+}
+.single-product .price {
   margin-top: 1.5rem;
 }
 .single-product .price .amount {
@@ -12419,6 +12328,11 @@ table.variations .reset_variations {
   font-size: 0.8rem;
 }
 
+.tabs.wc-tabs {
+  margin-bottom: 2rem;
+  padding-left: 0px;
+  list-style: none;
+}
 /*! purgecss end ignore */
 .horizontal-nav-wrapper .alert li, .horizontal-nav-wrapper p.woocommerce-notice-success li, .horizontal-nav-wrapper p.woocommerce-notice--success li, .horizontal-nav-wrapper .payment_box li, .horizontal-nav-wrapper .woocommerce-form-coupon li, .horizontal-nav-wrapper .select2 .woocommerce-form-coupon-toggle li, .select2 .horizontal-nav-wrapper .woocommerce-form-coupon-toggle li, .horizontal-nav-wrapper .alert, .horizontal-nav-wrapper p.woocommerce-notice-success, .horizontal-nav-wrapper p.woocommerce-notice--success, .horizontal-nav-wrapper .payment_box, .horizontal-nav-wrapper .woocommerce-form-coupon, .horizontal-nav-wrapper .select2 .woocommerce-form-coupon-toggle, .select2 .horizontal-nav-wrapper .woocommerce-form-coupon-toggle {
   padding: 0.5rem 1rem;
@@ -12442,22 +12356,20 @@ table.variations .reset_variations {
   outline: none !important;
 }
 
-.kapital-cart-link {
-  float: right;
-  margin-right: 1rem;
-  margin-top: 1rem;
-}
-.kapital-cart-link a {
+.kapital-cart-link-wrapper a {
+  top: 1rem;
+  right: 1rem;
   padding: 0.5rem;
   display: block;
 }
-.kapital-cart-link a svg {
-  width: 2.2rem;
-  height: 2.2rem;
+.kapital-cart-link-wrapper a svg {
+  width: 2rem;
+  height: 2rem;
   position: relative;
   left: -0.07em;
 }
-.kapital-cart-link .kapital-cart-quantity-mini-badge {
+.kapital-cart-link-wrapper .kapital-cart-quantity-mini-badge {
+  opacity: 1;
   top: -0.1rem;
   right: -0.1rem;
   padding: 0.2rem 0.4rem;
@@ -12520,8 +12432,8 @@ table.variations .reset_variations {
 
 .woocommerce-cart-form .quantity input,
 .cart .quantity input {
+  -webkit-appearance: none;
   /* Firefox */
-  width: unset !important;
 }
 .woocommerce-cart-form .quantity input::-webkit-outer-spin-button, .woocommerce-cart-form .quantity input::-webkit-inner-spin-button,
 .cart .quantity input::-webkit-outer-spin-button,
@@ -12535,25 +12447,44 @@ table.variations .reset_variations {
 }
 .woocommerce-cart-form .kapital-woo-quantity-minus,
 .woocommerce-cart-form .kapital-woo-quantity-plus,
-.woocommerce-cart-form .product-quantity input,
 .woocommerce-cart-form .product-remove a.remove,
 .cart .kapital-woo-quantity-minus,
 .cart .kapital-woo-quantity-plus,
-.cart .product-quantity input,
 .cart .product-remove a.remove {
   line-height: 1;
   font-size: 1rem;
-  width: 2.4rem;
   height: 2.4rem;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-  text-align: center;
+  padding: 0.575rem;
+  line-height: 1rem;
 }
 .woocommerce-cart-form .quantity input,
 .cart .quantity input {
   background-clip: border-box !important;
+  text-align: center;
+  padding-top: 0.6rem;
+  height: 2.4rem;
+  padding-bottom: 0.45rem;
+  line-height: 1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+.woocommerce-cart-form .product-subtotal,
+.cart .product-subtotal {
+  padding-top: 0.2em;
+}
+.woocommerce-cart-form .kapital-woo-quantity-minus,
+.woocommerce-cart-form .kapital-woo-quantity-plus,
+.woocommerce-cart-form .product-remove a.remove,
+.cart .kapital-woo-quantity-minus,
+.cart .kapital-woo-quantity-plus,
+.cart .product-remove a.remove {
+  touch-action: manipulation;
+  width: 2.4rem;
 }
 
+.shipping-calculator-form {
+  margin-top: 1.5rem;
+}
 .blockOverlay {
   margin-left: -3rem !important;
   margin-right: -3rem !important;
@@ -12653,8 +12584,13 @@ button#place_order {
 }
 
 .woocommerce-account .woocommerce {
-  background: var(--kptl-secondary-light);
   max-width: 1200px;
+}
+.woocommerce-account .woocommerce #customer_login .col-1, .woocommerce-account .woocommerce #customer_login .col-2 {
+  width: unset !important;
+}
+.woocommerce-account .woocommerce #customer_login > *:not(:last-child) {
+  margin-bottom: 3rem;
 }
 .woocommerce-account .woocommerce > *:not(:last-child):not(:empty), .woocommerce-Addresses > *:not(:last-child):not(:empty) {
   margin-bottom: 1.5rem;

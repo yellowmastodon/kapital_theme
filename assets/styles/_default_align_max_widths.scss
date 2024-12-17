@@ -28,12 +28,14 @@ $container_padding: map-get($spacers, 3);
 
 //600px on 1440px display, for body text in single post
 $align-normal-sizes: (
+    sm: 100%,
     xs: 600px,
     xxl: 700px, 
 );
 
 //800px on 1440px display, for featured images, perex, etc. in single post
 $align-wide-sizes: (
+    
     xs: 800px,
     xxl: 900px 
 );
@@ -64,12 +66,12 @@ $align-widest-sizes: (
     @each $breakpoint, $max-width in $sizes-list{
         @include media-breakpoint-up($breakpoint, $grid-breakpoints){
             .align#{$class-name}{
-                max-width: $max-width !important;
+                max-width: $max-width;
             }
             //for block editor
             @if $class-name == 'wide'{
                 .wp-block[data-align="wide"]{
-                    max-width: $max-width !important;
+                    max-width: $max-width;
                     & *{
                         max-width: 100%;
                     }

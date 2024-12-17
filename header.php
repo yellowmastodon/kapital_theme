@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#ffc2fe" />
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1 maximum-scale=1.0">
     <?php wp_head(); ?>
     <!--[if lt IE 10]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script>
@@ -50,7 +50,7 @@ if (isset($darujme_options["campaign_active"])) {
     <header role="banner" id="top-header" class="ff-grotesk bg-primary p-4 px-md-5 collapse d-print-none<?php if ($is_front): echo ' show';
                                                                                                         endif; ?>">
         <div class="alignwider">
-            <div class="row gx-4 align-items-center">
+            <div class="row gx-3 align-items-center">
                 <nav class="col-auto quick-menu-container d-none d-md-block" aria-label="Rýchla">
                     <?php wp_nav_menu(
                         array(
@@ -152,8 +152,8 @@ if (isset($darujme_options["campaign_active"])) {
             woocommerce_output_all_notices();        
             if (!is_cart()  && !is_checkout()):
                 $cart_contents = WC()->cart->get_cart_contents_count();?>
-                <div class="kapital-cart-link position-relative">
-                    <a class="btn btn-outline rounded-pill" href="<?=wc_get_cart_url()?>">
+                <div class="kapital-cart-link-wrapper position-relative">
+                    <a class="btn btn-outline rounded-pill position-absolute" href="<?=wc_get_cart_url()?>">
                         <span class="visually-hidden"><?=__("Prejsť do košíka", "kapital")?></span>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" width="20" height="20" class="icon-square" aria-hidden="true" focusable="false"><circle cx="12.6667" cy="24.6667" r="2" fill="currentColor"></circle><circle cx="23.3333" cy="24.6667" r="2" fill="currentColor"></circle><path fill-rule="evenodd" clip-rule="evenodd" d="M9.28491 10.0356C9.47481 9.80216 9.75971 9.66667 10.0606 9.66667H25.3333C25.6232 9.66667 25.8989 9.79247 26.0888 10.0115C26.2787 10.2305 26.3643 10.5211 26.3233 10.8081L24.99 20.1414C24.9196 20.6341 24.4977 21 24 21H12C11.5261 21 11.1173 20.6674 11.0209 20.2034L9.08153 10.8701C9.02031 10.5755 9.09501 10.269 9.28491 10.0356ZM11.2898 11.6667L12.8136 19H23.1327L24.1803 11.6667H11.2898Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5.66669 6.66667C5.66669 6.11438 6.1144 5.66667 6.66669 5.66667H9.33335C9.81664 5.66667 10.2308 6.01229 10.3172 6.48778L11.0445 10.4878C11.1433 11.0312 10.7829 11.5517 10.2395 11.6505C9.69614 11.7493 9.17555 11.3889 9.07676 10.8456L8.49878 7.66667H6.66669C6.1144 7.66667 5.66669 7.21895 5.66669 6.66667Z" fill="currentColor"></path></svg>
                         <span class="kapital-cart-quantity-mini-badge rounded-pill text-white bg-red position-absolute" style="display: <?=$cart_contents > 0 ? "inline-block" : "none"?>">

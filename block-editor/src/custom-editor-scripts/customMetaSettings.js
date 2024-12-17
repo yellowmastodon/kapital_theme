@@ -42,6 +42,7 @@ export function customMetaSettings() {
 						custom_render_meta.show_author = false;
 						custom_render_meta.show_views = false;
 						custom_render_meta.show_date = false;
+						custom_render_meta.show_categories = false;
 					}
 				}
 				const updateMetaValue = (value, prop) => {

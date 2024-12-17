@@ -17,14 +17,15 @@
 .single-product {
     .product-wrapper{
         display: grid;
-        row-gap: map-get($spacers, 5);
-        column-gap: map-get($spacers, 6);
+        width: 100%;
+        row-gap: map-get($spacers, 6);
+        column-gap: map-get($spacers, 7);
         grid-template-columns: .5fr .5fr;
         grid-template-rows: auto auto 1fr;
     }
     .summary {
         > *:not(:first-child){
-            margin-top: map-get($spacers, 5);
+            margin-top: map-get($spacers, 4);
         }
         grid-column-start: 1;
         grid-column-end: 2;
@@ -44,28 +45,28 @@
         grid-row-end: 4;
     }
     form.cart {
-
         .woonp {
-            @extend .input-group;
+            display: inline-flex !important;
             margin-bottom: map-get($spacers, 3);
+
+            flex-wrap: wrap;
             label {
-                @extend .input-group-text;
-                margin-bottom: 0px;
-                margin-right: 0px;
-                @extend .ff-sans;
                 width: auto;
-                flex-grow: 0;
             }
             input {
-                @extend .form-control;
                 width: auto;
-                flex-grow: 0;
+                flex-grow: 1;
+            }
+            label, input{
+                margin-bottom: map-get($spacers, 1);
             }
         }
     }
-    .price {
+    .summary .price{
         line-height: $line-height-small;
         font-size: $h2-font-size;
+    }
+    .price {
         margin-top: map-get($spacers, 4);
         .amount {
             font-weight: bold;
@@ -157,7 +158,6 @@
     font-size: $h4-font-size;
 }
 table.variations{
-
     table, tr, th, td{
         display: block;
     }
@@ -169,5 +169,27 @@ table.variations{
         @extend .text-red;
         font-size: $small-font-size;
     }
+}
+.tabs.wc-tabs{
+    margin-bottom: map-get($spacers, 5);
+    padding-left: 0px;
+    list-style: none;
+    @extend .row;
+    @extend .gx-2;
+    @extend .gy-3;
+
+    li{
+        @extend .col-auto;
+    }
+    li a{
+        @extend .btn;
+    }
+    li.active a{
+        @extend .btn-primary;
+    }
+    li:not(.active) a{
+        @extend .btn-secondary;
+    }
+
 }
 /*! purgecss end ignore */

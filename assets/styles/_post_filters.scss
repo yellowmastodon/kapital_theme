@@ -13,7 +13,6 @@ body.modal-open{
 @include media-breakpoint-up('sm'){
     .post-filters{
         position: sticky;
-        top: calc(12px + 2.5rem);
         z-index: 1000;
         .btn-filter-toggle, .btn-close{
             display: none !important;
@@ -24,9 +23,6 @@ body.modal-open{
     }
     .post-filters .filters-content{
         flex-direction: row;
-    }
-    body.admin-bar .post-filters{
-        top: calc(44px + 2.5rem);
     }
 }
 

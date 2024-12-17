@@ -20,8 +20,8 @@ $spacers: (
 
 
 //default margins
-$headings-margin-bottom: map-get($spacers, 5);
-$paragraph-margin-bottom: map-get($spacers, 5);
+$headings-margin-bottom: map-get($spacers, 4);
+$paragraph-margin-bottom: map-get($spacers, 4);
 
 
 $grid-breakpoints: (
@@ -88,6 +88,8 @@ $btn-font-size: $small-font-size;
 //$btn-font-family: var(--kptl-font-sans-serif);
 $btn-padding-x: 1.2rem;
 $btn-padding-y: .4rem;
+$btn-padding-top: .6em;
+$btn-padding-bottom: .45em;
 $btn-line-height: $line-height-small;
 $link-color: $body-color;
 $link-hover-color: $red;

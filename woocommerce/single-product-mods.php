@@ -23,6 +23,8 @@ function kapital_woo_quantity_button_plus(){
         echo '<button aria-label="' . $aria_description . '" class="kapital-woo-quantity-minus btn-menu" type="button"><svg class="icon-square"><use xlink:href="#icon-minus"></use></svg></button>';
         echo '</div>'; //this button wrapper end
         echo '<div class="col-auto">'; //quantity input wrapper
+    } else {
+        echo '<div class="d-none">'; //hide quantity if sold individually
     }
 }
 add_action('woocommerce_after_add_to_cart_quantity', 'kapital_woo_quantity_button_minus');
@@ -37,6 +39,8 @@ function kapital_woo_quantity_button_minus(){
         echo '</div>'; //this button wrapper end
         echo '</div>'; //quantity row end
         echo '</div>'; //quantity wrapper end
+    } else {
+        echo '</div>'; //hide quantity if sold individually
     }
     if ($product->is_purchasable()){
         echo '<div class="col-auto">'; //submit button wrapper start;
@@ -61,34 +65,36 @@ function kapital_woo_quantity_button_wrapper_end(){
         echo '</div>'; //end wrapper around quantity + button
     }
 }
+// I decided they are ok where they are supposed to be
 /** Additional info displayed directly in post
  * remove additional info tab
  */
-add_filter('woocommerce_product_tabs', 'kapital_woo_remove_additional_info_tab', 9999, 1);
+/* add_filter('woocommerce_product_tabs', 'kapital_woo_remove_additional_info_tab', 9999, 1);
 function kapital_woo_remove_additional_info_tab($tabs){
     if (isset($tabs['additional_information'])){
         unset($tabs['additional_information']);
     }
     return $tabs;
-}
+} */
+
 //disable dimension display, as that should be last in attributes list
-add_filter('wc_product_enable_dimensions_display', function(){return(false);});
+//add_filter('wc_product_enable_dimensions_display', function(){return(false);});
 //add dimensions back in
-add_filter('woocommerce_display_product_attributes', 'kapital_woo_add_dimension', 10, 2);
-function kapital_woo_add_dimension($product_attributes, $product){
+add_filter('woocommerce_display_product_attributes', 'kapital_woo_add_dimension_to_end', 10, 2);
+function kapital_woo_add_dimension_to_end($product_attributes, $product){
+  
+
     $display_dimensions = $product->has_weight() || $product->has_dimensions();
     if ( $display_dimensions && $product->has_weight() ) {
-		$product_attributes['weight'] = array(
-			'label' => __( 'Weight', 'woocommerce' ),
-			'value' => wc_format_weight( $product->get_weight() ),
-		);
+        $weight = $product_attributes['weight'];
+        unset($product_attributes['weight']);
+		$product_attributes['weight'] = $weight;
 	}
 
 	if ( $display_dimensions && $product->has_dimensions() ) {
-		$product_attributes['dimensions'] = array(
-			'label' => __( 'Dimensions', 'woocommerce' ),
-			'value' => wc_format_dimensions( $product->get_dimensions( false ) ),
-		);
+        $dimensions = $product_attributes['dimensions'];
+        unset($product_attributes['dimensions']);
+		$product_attributes['dimensions'] = $dimensions;
 	}
     return $product_attributes;
 }
@@ -96,9 +102,10 @@ function kapital_woo_add_dimension($product_attributes, $product){
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
 
-add_action('woocommerce_after_single_product', 'woocommerce_upsell_display', 10);
-add_action('woocommerce_after_single_product', 'woocommerce_output_related_products', 20);
-
+add_action('woocommerce_after_single_product', 'kapital_woo_product_footer', 10);
+function kapital_woo_product_footer(){
+    get_template_part('woocommerce/single-product-footer');
+}
 
 add_filter('woocommerce_single_product_image_thumbnail_html', 'kapital_woo_single_product_image_html', 10, 2);
 function kapital_woo_single_product_image_html($html, $attachment_id){
