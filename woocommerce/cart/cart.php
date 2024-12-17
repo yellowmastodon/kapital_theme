@@ -19,7 +19,7 @@
 defined('ABSPATH') || exit;
 
 do_action('woocommerce_before_cart'); ?>
-<div class="bg-secondary-light woocommerce-cart-wrapper rounded p-0 p-md-4 ff-grotesk">
+<div class="woocommerce-cart-wrapper rounded p-0 p-md-4 ff-grotesk">
     <form class="woocommerce-cart-form container" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
         <?php do_action('woocommerce_before_cart_table'); ?>
         <div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">

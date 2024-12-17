@@ -126,3 +126,9 @@
 .coupon-error-notice{
     @extend .text-red;
 }
+
+@include media-breakpoint-up('md'){
+    .woocommerce-cart-wrapper{
+        background-color: var(--#{$prefix}secondary-light);
+    }
+}
