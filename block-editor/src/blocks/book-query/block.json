@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kapital/product-query",
+	"version": "0.1.0",
+	"title": "Najnovšie produkty",
+	"description": "Archív produktov",
+	"keywords": ["vydavateľstvo", "kniha", "knihy"],
+	"category": "theme",
+	"icon": "text",
+	"example": {},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": false
+		}
+	},
+	"textdomain": "kapital",
+	"attributes": {
+		"catQuery": {
+			"type": "string",
+			"default": ""
+		},
+		"headingText": {
+			"type": "string",
+			"default": ""
+		},
+		"headingLevel": {
+			"type": "integer",
+			"default": 2
+		},
+		"showHeading":{
+			"type": "boolean",
+			"default": true
+		},
+		"isEditor": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"usesContext": [
+		"postType",
+		"postId"
+		],
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js"
+}

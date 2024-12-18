@@ -168,11 +168,15 @@ $archive-article-img-outline-width: 5px;
 
 .post-query{
     &:not(:last-child){
-        margin-bottom: map-get($spacers, 7);
+        margin-bottom: map-get($spacers, 6);
     }
     &:not(:first-child){
-        margin-top: map-get($spacers, 7);
+        margin-top: map-get($spacers, 6);
     }
+}
+.post-query + .post-query, .post-query + .inzercia {
+    margin-top: map-get($spacers, 7) !important;
+
 }
 
 .featured-post + .post-query{

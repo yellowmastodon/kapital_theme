@@ -32,7 +32,7 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
         endif;
         $last_key = count($exploded_string);
         foreach ($exploded_string as $key => $span_content) {
-            if ($key === $last_key - 1){
+            if ($key === $last_key - 1) {
                 $output .= '<span>' . $span_content . '</span>';
             } else {
                 $output .= '<span>' . $span_content . ' </span>';
@@ -59,63 +59,67 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
  */
 function kapital_responsive_image(int $attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
 {
-    $attachment = get_post($attachment_id);
-    if ($attachment && !is_null($attachment)) {
-        $image_sizes = get_intermediate_image_sizes($attachment_id);
-        $image_sizes = $image_sizes;
-        //also include full size image
-        $image_sizes[] = "full";
-        $caption = $attachment->post_excerpt;
-        if ($alt_text === "") {
-            $alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
-        }
-        $srcset = "";
-        foreach ($image_sizes as $image_size) {
-            if ($image_size !== 'placeholder') {
+    if ($attachment_id !== 0) {
 
-                //returns array of values for specific image size
-                // https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
-                $src = wp_get_attachment_image_src($attachment_id, $image_size);
-                if ($srcset !== '') {
-                    $srcset .= ', ';
-                }
-                $srcset .= $src[0] . ' ' . $src[1] . 'w';
-                //calculate aspect ratio for placeholder
-                if ($image_size === "full") {
-                    $aspect_ratio = $src[1] / $src[2];
-                    //save full size to custom variable to be used as fallback
-                    $full_size_img_url = $src[0];
+        $attachment = get_post($attachment_id);
+        if ($attachment && !is_null($attachment)) {
+            $image_sizes = get_intermediate_image_sizes($attachment_id);
+            $image_sizes = $image_sizes;
+            //also include full size image
+            $image_sizes[] = "full";
+            $caption = $attachment->post_excerpt;
+            if ($alt_text === "") {
+                $alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+            }
+            $srcset = "";
+            foreach ($image_sizes as $image_size) {
+                if ($image_size !== 'placeholder') {
+
+                    //returns array of values for specific image size
+                    // https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
+                    $src = wp_get_attachment_image_src($attachment_id, $image_size);
+                    if ($srcset !== '') {
+                        $srcset .= ', ';
+                    }
+                    $srcset .= $src[0] . ' ' . $src[1] . 'w';
+                    //calculate aspect ratio for placeholder
+                    if ($image_size === "full") {
+                        $aspect_ratio = $src[1] / $src[2];
+                        //save full size to custom variable to be used as fallback
+                        $full_size_img_url = $src[0];
+                    }
                 }
             }
-        }
-        $html = "";
-        if ($figure_and_caption) {
-            $html .= '<figure class="' . $figure_classes . '">';
-        }
-        $html .= '<img srcset="' . $srcset . '"';
-        $html .= ' class="' . $img_classes . '"';
-        $html .= ' style="background-image: url(\'' .  wp_get_attachment_image_src($attachment_id, 'placeholder')[0] . '\'); aspect-ratio:' . $aspect_ratio . '"';
-        $html .= ' src="' . $full_size_img_url . '"';
-        $html .= ' sizes="' . $sizes . '"';
-        $html .= ' loading="lazy"';
-        $html .= ' alt="' . $alt_text . '"';
-        $html .= '/>';
-        if ($figure_and_caption) {
-            if ($caption !== "") {
-                $html .= '<figcaption class="fs-small alignnormal mt-1 ff-sans text-gray text-center">' . $caption . '</figcaption>';
+            $html = "";
+            if ($figure_and_caption) {
+                $html .= '<figure class="' . $figure_classes . '">';
             }
-            $html .= '</figure>';
+            $html .= '<img srcset="' . $srcset . '"';
+            $html .= ' class="' . $img_classes . '"';
+            $html .= ' style="background-image: url(\'' .  wp_get_attachment_image_src($attachment_id, 'placeholder')[0] . '\'); aspect-ratio:' . $aspect_ratio . '"';
+            $html .= ' src="' . $full_size_img_url . '"';
+            $html .= ' sizes="' . $sizes . '"';
+            $html .= ' loading="lazy"';
+            $html .= ' alt="' . $alt_text . '"';
+            $html .= '/>';
+            if ($figure_and_caption) {
+                if ($caption !== "") {
+                    $html .= '<figcaption class="fs-small alignnormal mt-1 ff-sans text-gray text-center">' . $caption . '</figcaption>';
+                }
+                $html .= '</figure>';
+            }
+            return $html;
+        } else {
+            return '';
         }
-        return $html;
-    } else {
-        return '';
     }
 }
 
-function kapital_get_koko_stats($post_id){
+function kapital_get_koko_stats($post_id)
+{
     $cache_key = 'kptl_ka_counter_' . $post_id;
     $count = get_transient($cache_key);
-    if (!$count){
+    if (!$count) {
         global $wpdb;
         $table = $wpdb->prefix . 'koko_analytics_post_stats ';
         $sql = $wpdb->prepare("
@@ -125,7 +129,7 @@ function kapital_get_koko_stats($post_id){
         ", $post_id);
         $result = $wpdb->get_row($sql);
         $count = $result->pageviews;
-        if(!isset($count)){
+        if (!isset($count)) {
             $count = 1;
         }
         set_transient('kptl_ka_counter_' . $post_id, $count, 120);
@@ -144,14 +148,14 @@ function kapital_support()
  * @param string    $additional_classes additional classes separated by space
  * @return string   HTML markup of breadcrumbs
  */
-function kapital_breadcrumbs(array $breadcrumbs = array(), string $additional_classes ="")
+function kapital_breadcrumbs(array $breadcrumbs = array(), string $additional_classes = "")
 {
     $html = '<nav aria-label="breadcrumb navigácia" class="mt-2 ff-grotesk breadcrumb-nav ' . $additional_classes . '"><ol class="breadcrumb">';
     $home_page_url = "";
     $is_multisite = is_multisite();
     $is_main_site = is_main_site();
-    if ($is_multisite){
-        if ($is_main_site){
+    if ($is_multisite) {
+        if ($is_main_site) {
             $home_page_url = get_home_url();
         } else {
             $home_page_url = get_home_url(get_main_site_id());
@@ -181,21 +185,22 @@ function kapital_breadcrumbs(array $breadcrumbs = array(), string $additional_cl
  * @param array $taxonomies taxonomies for which to retrieve terms
  * @return array terms organized by taxonomy (taxonomy as key) or empty array if post has no terms
  */
-function get_and_reorganize_terms($post_id,$taxonomies, $term_id_to_remove = null)
-{   if (is_null($post_id)){
+function get_and_reorganize_terms($post_id, $taxonomies, $term_id_to_remove = null)
+{
+    if (is_null($post_id)) {
         $post_terms = get_terms(array(
             'taxonomy' => $taxonomies,
         ));
     } else {
         $post_terms = wp_get_post_terms($post_id, $taxonomies);
     }
-    if (!empty($post_terms)){
+    if (!empty($post_terms)) {
         $filtered_terms = [];
         foreach ($taxonomies as $taxonomy) {
             $filtered_terms[$taxonomy] = [];
         }
         foreach ($post_terms as $post_term) {
-            if ($term_id_to_remove !== $post_term->term_id){
+            if ($term_id_to_remove !== $post_term->term_id) {
                 array_push($filtered_terms[$post_term->taxonomy], $post_term);
             }
         }
@@ -205,53 +210,54 @@ function get_and_reorganize_terms($post_id,$taxonomies, $term_id_to_remove = nul
     }
 }
 
-function kapital_pagination( $args = array() ) {
-	global $wp_query, $wp_rewrite;
+function kapital_pagination($args = array())
+{
+    global $wp_query, $wp_rewrite;
 
-	// Don't print empty markup if there's only one page.
-	if ( $wp_query->max_num_pages > 1 ) {
+    // Don't print empty markup if there's only one page.
+    if ($wp_query->max_num_pages > 1) {
 
         // Setting up default values based on the current URL.
-        $pagenum_link = html_entity_decode( get_pagenum_link() );
-        $url_parts    = explode( '?', $pagenum_link );
+        $pagenum_link = html_entity_decode(get_pagenum_link());
+        $url_parts    = explode('?', $pagenum_link);
 
         // Get max pages and current page out of the current query, if available.
-        $total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
-        $current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' ) : 1;
+        $total   = isset($wp_query->max_num_pages) ? $wp_query->max_num_pages : 1;
+        $current = get_query_var('paged') ? (int) get_query_var('paged') : 1;
 
         // Append the format placeholder to the base URL.
-        $pagenum_link = trailingslashit( $url_parts[0] ) . '%_%';
+        $pagenum_link = trailingslashit($url_parts[0]) . '%_%';
 
         // URL base depends on permalink settings.
-        $format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-        $format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
+        $format  = $wp_rewrite->using_index_permalinks() && ! strpos($pagenum_link, 'index.php') ? 'index.php/' : '';
+        $format .= $wp_rewrite->using_permalinks() ? user_trailingslashit($wp_rewrite->pagination_base . '/%#%', 'paged') : '?paged=%#%';
         $add_args = array();
-        if ( isset( $url_parts[1] ) ) {
+        if (isset($url_parts[1])) {
             // Find the format argument.
-            $format_explode       = explode( '?', str_replace( '%_%', $format, $pagenum_link ) );
-            $format_query = isset(  $format_explode[1] ) ?  $format_explode[1] : '';
-            wp_parse_str( $format_query, $format_args );
-    
+            $format_explode       = explode('?', str_replace('%_%', $format, $pagenum_link));
+            $format_query = isset($format_explode[1]) ?  $format_explode[1] : '';
+            wp_parse_str($format_query, $format_args);
+
             // Find the query args of the requested URL.
-            wp_parse_str( $url_parts[1], $url_query_args );
+            wp_parse_str($url_parts[1], $url_query_args);
             // Remove the format argument from the array of query arguments, to avoid overwriting custom format.
-            foreach ( $format_args as $format_arg => $format_arg_value ) {
-                unset( $url_query_args[ $format_arg ] );
+            foreach ($format_args as $format_arg => $format_arg_value) {
+                unset($url_query_args[$format_arg]);
             }
-            $add_args = urlencode_deep( $url_query_args );
-        }          
-        
+            $add_args = urlencode_deep($url_query_args);
+        }
+
         $page_links = array();
 
         //number of page links to both sides of the current page
         $max_page_links = 5;
-        if($current === 1){
+        if ($current === 1) {
             $end_size = 4;
             $start_size = 0;
-        } elseif($current === $total) {
+        } elseif ($current === $total) {
             $end_size = 0;
             $start_size = 4;
-        } else{
+        } else {
             $end_size = 2;
             $start_size = 2;
         }
@@ -259,10 +265,10 @@ function kapital_pagination( $args = array() ) {
 
         // first page link
         if ($current > 2):
-            $link = str_replace( '%_%', $format, $pagenum_link );
-            $link = str_replace( '%#%', 1, $link );
-            if ( $add_args ) {
-                $link = add_query_arg( $add_args, $link );
+            $link = str_replace('%_%', $format, $pagenum_link);
+            $link = str_replace('%#%', 1, $link);
+            if ($add_args) {
+                $link = add_query_arg($add_args, $link);
             }
             $page_links[] = sprintf(
                 '<a class="first page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-first"></use></svg></a>',
@@ -273,15 +279,17 @@ function kapital_pagination( $args = array() ) {
                  *
                  * @param string $link The paginated link URL.
                  */
-                esc_url($link), __('Prvá strana', 'kapital'));
+                esc_url($link),
+                __('Prvá strana', 'kapital')
+            );
         endif;
 
         //previous page link
         if ($current && 1 < $current):
-            $link = str_replace( '%_%', 2 == $current ? '' : $format, $pagenum_link );
-            $link = str_replace( '%#%', $current - 1, $link );
-            if ( $add_args ) {
-                $link = add_query_arg( $add_args, $link );
+            $link = str_replace('%_%', 2 == $current ? '' : $format, $pagenum_link);
+            $link = str_replace('%#%', $current - 1, $link);
+            if ($add_args) {
+                $link = add_query_arg($add_args, $link);
             }
             $page_links[] = sprintf(
                 '<a class="prev page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-prev"></use></svg></a>',
@@ -292,55 +300,59 @@ function kapital_pagination( $args = array() ) {
                  *
                  * @param string $link The paginated link URL.
                  */
-                esc_url($link), __('Predchádzajúca strana', 'kapital'));
+                esc_url($link),
+                __('Predchádzajúca strana', 'kapital')
+            );
         endif;
 
         //show current + mid size
-        for ( $n = 1; $n <= $total; $n++ ) :
-            if ( $n == $current ) :
+        for ($n = 1; $n <= $total; $n++) :
+            if ($n == $current) :
                 $page_links[] = sprintf(
                     '<div aria-current="%s" class="page-numbers current bg-primary rounded-pill d-inline-block mx-1">%s</div>',
-                    esc_attr( __('Aktuálna strana', 'kapital') ), number_format_i18n( $n )
+                    esc_attr(__('Aktuálna strana', 'kapital')),
+                    number_format_i18n($n)
                 );
-    
+
                 $dots = true;
             else :
-                if ( $current && $n >= $current - $start_size && $n <= $current + $end_size ) :
-                    $link = str_replace( '%_%', 1 == $n ? '' : $format, $pagenum_link );
-                    $link = str_replace( '%#%', $n, $link );
-                    if ( $add_args ) {
-                        $link = add_query_arg( $add_args, $link );
+                if ($current && $n >= $current - $start_size && $n <= $current + $end_size) :
+                    $link = str_replace('%_%', 1 == $n ? '' : $format, $pagenum_link);
+                    $link = str_replace('%#%', $n, $link);
+                    if ($add_args) {
+                        $link = add_query_arg($add_args, $link);
                     }
                     $page_links[] = sprintf(
                         '<a class="page-numbers bg-secondary rounded-pill text-decoration-none d-inline-block mx-1" href="%s">%s</a>',
                         /** This filter is documented in wp-includes/general-template.php */
-                        esc_url( apply_filters( 'paginate_links', $link ) ),
-                        number_format_i18n( $n )
+                        esc_url(apply_filters('paginate_links', $link)),
+                        number_format_i18n($n)
                     );
                 endif;
             endif;
         endfor;
 
         //next link
-        if ( $current && $current < $total) :
-            $link = str_replace( '%_%', $format, $pagenum_link );
-            $link = str_replace( '%#%', $current + 1, $link );
-            if ( $add_args ) {
-                $link = add_query_arg( $add_args, $link );
+        if ($current && $current < $total) :
+            $link = str_replace('%_%', $format, $pagenum_link);
+            $link = str_replace('%#%', $current + 1, $link);
+            if ($add_args) {
+                $link = add_query_arg($add_args, $link);
             }
             $page_links[] = sprintf(
                 '<a class="next page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-next"></use></svg></a>',
                 /** This filter is documented in wp-includes/general-template.php */
-                esc_url( $link ), __('Nasledujúca strana', 'kapital')
+                esc_url($link),
+                __('Nasledujúca strana', 'kapital')
             );
         endif;
 
         // last page link
         if ($current < $total - 1):
-            $link = str_replace( '%_%', $format, $pagenum_link );
-            $link = str_replace( '%#%', $total, $link );
-            if ( $add_args ) {
-                $link = add_query_arg( $add_args, $link );
+            $link = str_replace('%_%', $format, $pagenum_link);
+            $link = str_replace('%#%', $total, $link);
+            if ($add_args) {
+                $link = add_query_arg($add_args, $link);
             }
             $page_links[] = sprintf(
                 '<a class="last page-chevrons rounded-pill" href="%s"><span class="visually-hidden">%s</span><svg><use xlink:href="#icon-page-last"></use></svg></a>',
@@ -351,16 +363,18 @@ function kapital_pagination( $args = array() ) {
                  *
                  * @param string $link The paginated link URL.
                  */
-                esc_url($link), __('Prvá strana', 'kapital'));
+                esc_url($link),
+                __('Prvá strana', 'kapital')
+            );
         endif;
 
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
         //py-1 just to not cut the focus outline, dunno wtf
         $html = '<nav class="pagination py-1 d-flex mt-6 ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
-        $html .= implode( "\n", $page_links );
+        $html .= implode("\n", $page_links);
         $html .= '</nav>';
         return $html;
-	}
+    }
 }
 
 /**
@@ -371,12 +385,13 @@ function kapital_pagination( $args = array() ) {
  * @return array array with two values [0] => formatted title, [1] => year and month for use above title
  */
 
-function kapital_get_issue_title_year_month(string $original_archive_title, bool $show_year = true){
+function kapital_get_issue_title_year_month(string $original_archive_title, bool $show_year = true)
+{
     $date = array();
     $above_title = "";
     $archive_title = "";
     preg_match('/[0-9]{4}\s[0-9]{1,2}/', $original_archive_title, $date);
-    if (count($date) === 1){
+    if (count($date) === 1) {
         global $kapital_svk_months;
         $above_title = $date[0];
         $above_title = explode(" ", $above_title);
@@ -396,12 +411,12 @@ function kapital_get_issue_title_year_month(string $original_archive_title, bool
  * @param string $taxonomy slug of taxonomy of parent term
  * @return string HMTL markup of filters 
  */
-function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, string $taxonomy = "", string $post_type = 'post'){
+function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, string $taxonomy = "", string $post_type = 'post')
+{
     if ($is_general_post_archive):
-        if ($post_type === 'post'){
+        if ($post_type === 'post') {
             $filters = get_option('kapital_post_filters');
-            
-        } elseif ($post_type === 'product'){
+        } elseif ($post_type === 'product') {
             $filters = get_option('kapital_product_filters');
         }
         if ($filters && !empty($filters)):
@@ -409,7 +424,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
                 $filters[$key] = get_term((int) $value);
             }
         endif;
-       
+
     elseif ($is_term_archive):
         $filters = get_terms(
             $taxonomy,
@@ -424,24 +439,24 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     $html = "";
     if ($filters && !empty($filters)):
         $html .= '<nav class="post-filters mt-5 text-start mb-4 mb-sm-5 alignwider">';
-            $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
-            $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
-            $html .= '</button>';
-            $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
-                $html .= '<div class="filters-content py-2 py-sm-0">';
-                $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';                       
-                    foreach ($filters as $filter):
-                        //shorten one specific name as it is too long for filter
-                        $term_slug = $filter->slug;
-                        $term_name = $filter->name;
-                        $term_name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $filter->name;
-                        $term_name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $filter->name;
-                        $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
-                            $html .= '<a class="btn btn-outline text-center" href="' . get_term_link($filter) . '">' . $term_name . '</a>';
-                        $html .= '</div>';
-                    endforeach;
-                $html .= '</div>';
+        $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
+        $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
+        $html .= '</button>';
+        $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
+        $html .= '<div class="filters-content py-2 py-sm-0">';
+        $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';
+        foreach ($filters as $filter):
+            //shorten one specific name as it is too long for filter
+            $term_slug = $filter->slug;
+            $term_name = $filter->name;
+            $term_name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $term_name;
+            $term_name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $term_name;
+            $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
+            $html .= '<a class="btn btn-outline text-center" href="' . get_term_link($filter) . '">' . $term_name . '</a>';
             $html .= '</div>';
+        endforeach;
+        $html .= '</div>';
+        $html .= '</div>';
         $html .= '</nav>';
     endif;
     return $html;
@@ -483,7 +498,7 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
     $excerpt = strip_tags($excerpt, ['<p>', '<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>']); /*IF you need to allow just certain tags. Delete if all tags are allowed */
     $excerpt = str_replace(['h1>', 'h2>', 'h3>', 'h4>', 'h5>', 'h6>'], 'p>', $excerpt);
     $excerpt = str_replace(['<h1', '<h2', '<h3', '<h4', '<h5', '<h6'], '<p', $excerpt);
-    $excerpt=preg_replace('/class=".*?"/', '', $excerpt); //fix excerpt classes - first paragraph is perex
+    $excerpt = preg_replace('/class=".*?"/', '', $excerpt); //fix excerpt classes - first paragraph is perex
 
     //Set the excerpt word count and only break after sentence is complete.
     $excerpt_length = apply_filters('excerpt_length', $excerpt_word_count);
@@ -518,7 +533,8 @@ remove_filter('get_the_excerpt', 'wp_trim_excerpt');
 add_filter('get_the_excerpt', 'kapital_wp_trim_excerpt');
 
 /** change pagination base */
-function kapital_custom_pagination_base() {
+function kapital_custom_pagination_base()
+{
     global $wp_rewrite;
     $wp_rewrite->pagination_base = 'strana'; //where new-slug is the slug you want to use 
 }
@@ -532,8 +548,9 @@ add_action('init', 'kapital_custom_pagination_base', 0);
  * @param boolean $show_false forcible get all as false
  * @return array
  */
-function kapital_get_render_settings(int $post_id, string $post_type, bool $show_false = false){
-    if ($show_false){
+function kapital_get_render_settings(int $post_id, string $post_type, bool $show_false = false)
+{
+    if ($show_false) {
         $render_settings = array();
     } else {
         $render_settings = get_post_meta($post_id, '_kapital_post_render_settings', true);
@@ -551,16 +568,15 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_footer' => $show_false ? false : true,
     );
     if ($post_type === 'podcast') $default_render_settings["show_featured_image"] = false;
-    if ($post_type === 'page'){
+    if ($post_type === 'page') {
         $default_render_settings["show_featured_image"] = false;
         $default_render_settings["show_views"] = false;
         $default_render_settings["show_date"] = false;
         $default_render_settings["show_categories"] = false;
-
     }
 
     //var_dump($default_render_settings);
-    if(is_array($render_settings)){
+    if (is_array($render_settings)) {
         $render_settings = array_merge($default_render_settings, $render_settings);
     } else {
         $render_settings = $default_render_settings;

@@ -2,12 +2,18 @@
 
 //widths defined in default_align_max_widths.scss
 //is-root-container class for gutenberg editor
-#post-content {
+#post-content, .wp-block-group__inner-container {
     & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
         @extend .alignnormal;
     }
 }
 
+.wp-block-group[class*="-background-color"], .wp-block-group[class^="bg-"]{
+    padding-top: map-get($spacers, 5);
+    padding-bottom: map-get($spacers, 5);
+    padding-left: $spacer;
+    padding-right: $spacer;
+}
 #post-content, #podcast-content{
     h1, h2, h3, h4, h5, h6{
         &:not(:first-child){

@@ -36,7 +36,7 @@ if ($campaign_active):
     $short_text = $darujme_options["darujme_short_text"];
     $gdpr_link = $darujme_options["darujme_kapital_gdpr_url"];
     ?>
-    <div id="darujme-form-wrapper" class="alignwide bg-primary<?=$collapsed_class?>">
+    <div id="darujme-form-wrapper" class="alignwide my-5 bg-primary<?=$collapsed_class?>">
         <div id="darujme-collapsed-form" <?php if (!$collapsed) echo 'style="display: none"';?>>
             <div class="row align-items-center gy-4 gx-3">
                 <div class="col">

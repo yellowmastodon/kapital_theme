@@ -203,7 +203,6 @@ if (is_store_notice_showing()){
 require_once(dirname(__FILE__) . '/archive-mods.php');
 require_once(dirname(__FILE__) . '/single-product-mods.php');
 require_once(dirname(__FILE__) . '/woocommerce-meta.php');
-require_once(dirname(__FILE__) . '/notices.php');
 require_once(dirname(__FILE__) . '/cart-mods.php');
 
 function get_cart_item_count() {

@@ -123,3 +123,11 @@ $grid-breakpoints: $temporary-breakpoints;
     overflow: hidden;
 }
 
+//bubble heading variation in editor
+.bubble-heading.wp-block-heading{
+    background: $body-color;
+    border-radius: 9999px;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}

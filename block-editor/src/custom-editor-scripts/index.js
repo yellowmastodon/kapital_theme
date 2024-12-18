@@ -9,11 +9,14 @@ import {CustomTermSelector} from './customTermSelector';
 import {AuthorTermSelector} from './authorTermSelector';
 import {customMetaSettings} from './customMetaSettings'
 import {registerKapitalButtonVariation} from '../block-variations/button';
+import {registerBubbleHeadingVariation} from '../block-variations/bubble-heading';
+
 //import {registerFormats } from './richTextCustomFormats';
 
 //registerFormats();
 registerKapitalButtonVariation();
 customMetaSettings();
+registerBubbleHeadingVariation();
 
 // Based on the example here: https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/post-taxonomies#custom-taxonomy-selector
 ( function() {
@@ -50,3 +53,26 @@ customMetaSettings();
 		modifySelector
 	);
 } )(); // end closure
+
+import { addFilter } from '@wordpress/hooks';
+import { settings } from '@wordpress/icons';
+
+// This filter adds alignment support to core/paragraph if not already present
+const wideAlignBlocks = ['core/paragraph', 'core/heading', 'core/list' ]
+const addWideAlignmentSupport = (settings) => {
+	console.log(settings); 
+		if (wideAlignBlocks.includes(settings.name)) {
+			settings.supports = {
+				...settings.supports,
+				align: ["wide", "full"],
+			};
+		}
+    return settings;
+};
+
+// Apply the filter to the core/paragraph block
+ addFilter(
+    'blocks.registerBlockType',
+    'kapital/more-blocks-align-support',
+    addWideAlignmentSupport
+); 

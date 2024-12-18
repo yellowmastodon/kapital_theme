@@ -40,7 +40,7 @@
 		},
 		"showMoreButton": {
 			"type": "boolean",
-			"default": "true"
+			"default": true
 		},
 		"showHeading":{
 			"type": "string",

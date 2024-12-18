@@ -60,7 +60,7 @@ do_action( 'woocommerce_before_main_content' );
  */
 //do_action( 'woocommerce_shop_loop_header' );
 ?>
-<header class="alignwide">
+<header class="alignwider">
 <?php
 if (is_search()){
 	echo '<h1>' . $page_title . '</h1>';

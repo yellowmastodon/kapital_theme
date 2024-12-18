@@ -63,21 +63,19 @@ export default function Edit({
 								setAttributes({ taxonomy: "none" });
 								setAttributes({ termQuery: "" })
 							}}
+							value = { attributes.queryPostType}
 							options={[
 								{
 									label: __("Články", "kapital"),
 									value: 'post',
-									selected: attributes.queryPostType === "post" ? true : false
 								},
 								{
 									label: __("Podcasty", "kapital"),
 									value: 'podcast',
-									selected: attributes.queryPostType === "podcast" ? true : false
 								},
 								{
 									label: __("Eventy", "kapital"),
 									value: 'event',
-									selected: attributes.queryPostType === "event" ? true : false
 								}
 							]}
 						/>
@@ -131,7 +129,8 @@ export default function Edit({
 						<ToggleControl
 							label={__('Tlačidlo "Zobraziť viac', 'kapital')}
 							checked={attributes.showMoreButton}
-							onChange={(newValue) => { setAttributes({ showMoreButton: newValue }) }}
+							onChange={(newValue) => { setAttributes({ showMoreButton: newValue })
+						}}
 						/>
 						{attributes.queryPostType === "post" &&
 							<ToggleControl
@@ -155,10 +154,11 @@ export default function Edit({
 							label={__('Nadpis', 'kapital')}
 							checked={attributes.showHeading}
 							onChange={(newValue) => { setAttributes({ showHeading: newValue }) }}
+							value = {attributes.showHeading}
 							options={[
-								{ label: __("Automaticky", "kapital"), value: "auto", selected: attributes.showHeading === "auto" ? true : false },
-								{ label: __("Manuálne", "kapital"), value: "manual", selected: attributes.showHeading === "manual" ? true : false },
-								{ label: __("Skryť", "kapital"), value: "hide", selected: attributes.showHeading === "hide" ? true : false },
+								{ label: __("Automaticky", "kapital"), value: "auto"},
+								{ label: __("Manuálne", "kapital"), value: "manual"},
+								{ label: __("Skryť", "kapital"), value: "hide"},
 							]}
 						/>
 						<SelectControl
@@ -166,13 +166,14 @@ export default function Edit({
 							label={__("Úroveň nadpisu", "kapital")}
 							help={__("Základný level je h2 (h1 je názov stránky)", "kapital")}
 							onChange={newValue => { setAttributes({ headingLevel: newValue }) }}
+							value = {attributes.headingLevel}
 							options={[
-								{ label: __("h1", "kapital"), value: 1, selected: attributes.headingLevel === 1 ? true : false },
-								{ label: __("h2", "kapital"), value: 2, selected: attributes.headingLevel === 2 ? true : false },
-								{ label: __("h3", "kapital"), value: 3, selected: attributes.headingLevel === 3 ? true : false },
-								{ label: __("h4", "kapital"), value: 4, selected: attributes.headingLevel === 4 ? true : false },
-								{ label: __("h5", "kapital"), value: 5, selected: attributes.headingLevel === 5 ? true : false },
-								{ label: __("h6", "kapital"), value: 6, selected: attributes.headingLevel === 6 ? true : false },
+								{ label: __("h1", "kapital"), value: 1},
+								{ label: __("h2", "kapital"), value: 2},
+								{ label: __("h3", "kapital"), value: 3},
+								{ label: __("h4", "kapital"), value: 4},
+								{ label: __("h5", "kapital"), value: 5},
+								{ label: __("h6", "kapital"), value: 6},
 							]}
 						/>
 					</PanelBody>
@@ -180,7 +181,7 @@ export default function Edit({
 			</InspectorControls>
 
 			{attributes.showHeading === "manual" &&
-				<Heading class="bubble-heading ff-grotesk">
+				<Heading className="bubble-heading ff-grotesk">
 					<RichText
 						identifier="content"
 						tagName="span"

@@ -2,7 +2,7 @@
 add_action( 'admin_init', 'kapital_product_repeater_meta_boxes' );
 
 function kapital_product_repeater_meta_boxes() {
-	add_meta_box( 'kapital-book-author', __('Autor knihy a poznámka produktu', 'kapital'), 'kapital_book_author_meta_box_callback', 'product', 'after_title', 'high' );
+	add_meta_box( 'kapital-book-author', __('Autorstvo knihy a poznámka produktu', 'kapital'), 'kapital_book_author_meta_box_callback', 'product', 'after_title', 'high' );
 }
 
 function kapital_book_author_meta_box_callback( $post ){
@@ -11,10 +11,10 @@ function kapital_book_author_meta_box_callback( $post ){
     wp_nonce_field( 'repeater_box', 'formType' );?>
     <table style="width:100%">
         <tr>
-     <th  style="text-align: left; vertical-align: top"><label for="kapital_book_author"><?=__("Autor knihy", "kapital")?></th><td style="width:70%"><input style="width:100%" type="text" name="kapital_book_author"  id="kapital_book_author" value="<?=$kapital_book_author?>" placeholder="<?=__("Meno autora. Ak sa nejedná o knihu, nechajte prázdne.", "kapital")?>"></td>
+     <th  style="text-align: left; vertical-align: top"><label for="kapital_book_author"><?=__("Autorstvo knihy", "kapital")?></th><td style="width:70%"><input style="width:100%" type="text" name="kapital_book_author"  id="kapital_book_author" value="<?=$kapital_book_author?>" placeholder="<?=__("Meno autora. Ak sa nejedná o knihu, nechajte prázdne.", "kapital")?>"></td>
     </tr>    
     <tr>
-     <th  style="text-align: left; vertical-align: top"><label for="kapital_product_notice"><?=__("Poznámka k produktu (napr. Dátum vydania pri predpredaji)", "kapital")?></th><td><textarea style="width:100%" name="kapital_product_notice" rows="5" id="kapital_product_notice"><?= $kapital_product_notice?></textarea></td>
+     <th  style="text-align: left; vertical-align: top"><label for="kapital_product_notice"><?=__("Poznámka k produktu (napr. dátum vydania pri predpredaji)", "kapital")?></th><td><textarea style="width:100%" name="kapital_product_notice" rows="5" id="kapital_product_notice"><?= $kapital_product_notice?></textarea></td>
     </tr>    
 </table>
     <?php

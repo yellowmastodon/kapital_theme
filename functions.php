@@ -85,6 +85,44 @@ if (function_exists('add_theme_support')) {
 
     // Localisation Support
     load_theme_textdomain('kapital', get_template_directory() . '/languages');
+    add_theme_support( 'editor-font-sizes', array(
+        array(
+            'name' => esc_attr__( 'Small', 'kapital' ),
+            'size' => "0.8rem",
+            'slug' => 'small',
+        ),
+        array(
+            'name' => esc_attr__( 'Regular', 'kapital' ),
+            'size' => '1rem',
+            'slug' => 'regular'
+        ),
+        array(
+            'name' => esc_attr__( 'h4', 'kapital' ),
+            'size' => '1.1rem',
+            'slug' => 'h1'
+        ),
+        array(
+            'name' => esc_attr__( 'h3', 'kapital' ),
+            'size' => '1.2rem',
+            'slug' => 'h3'
+        ),
+        array(
+            'name' => esc_attr__( 'h2', 'kapital' ),
+            'size' => '1.4rem',
+            'slug' => 'h2'
+        ),
+        array(
+            'name' => esc_attr__( 'h2', 'kapital' ),
+            'size' => '1.3rem',
+            'slug' => 'h2'
+        ),
+        array(
+            'name' => esc_attr__( 'h1', 'kapital' ),
+            'size' => 'clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem)',
+            'slug' => 'h1'
+        )
+    ) );
+    
 }
 
 /**

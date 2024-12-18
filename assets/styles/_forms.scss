@@ -1,45 +1,53 @@
-form label {
-    @extend .form-label;
-}
-input[type="number"], input[type="text"], input[type="tel"], input[type="email"], input[type="password"], textarea {
+input[type="number"],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+textarea {
     @extend .form-control;
 }
-input[type="number"], input[type="text"], input[type="tel"], input[type="email"], input[type="checkbox"], input[type="password"], textarea{
+input[type="number"],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="checkbox"],
+input[type="password"],
+textarea {
     outline: none !important;
 }
-input[type="checkbox"], input[type="radio"]{
+input[type="checkbox"],
+input[type="radio"] {
     @extend .form-check-input;
-    & + label{
-        @extend .form-check-label;
+    & + label:not(.form-check-label) {
+        margin-top: 0.25rem;
     }
 }
 //keep space for resize button
-textarea{
+textarea {
     border-radius: $input-border-radius $input-border-radius 4px $input-border-radius;
 }
-@import 'select2/select2-bootstrap-5-theme';
-.select2
-
-.woocommerce-form-coupon-toggle{
+@import "select2/select2-bootstrap-5-theme";
+.select2 .woocommerce-form-coupon-toggle {
     @extend .alert;
-    background-color: map-get($colors, 'secondary-light');
+    background-color: map-get($colors, "secondary-light");
 }
-.select2-selection:focus-visible{
+.select2-selection:focus-visible {
     outline: none !important;
 }
-.select2{
+.select2 {
     @extend .ff-sans;
-} 
-form ul{
+}
+form ul {
     list-style: none;
     padding-left: 0px;
 }
-form .btn, .btn-form{
-    padding-bottom: $input-btn-padding-y - .05rem;
-    padding-top: $input-btn-padding-y + .05rem;
+form .btn,
+.btn-form {
+    padding-bottom: $input-btn-padding-y - 0.05rem;
+    padding-top: $input-btn-padding-y + 0.05rem;
     line-height: $line-height-small;
 }
 
-legend{
+legend {
     @extend .ff-grotesk;
 }

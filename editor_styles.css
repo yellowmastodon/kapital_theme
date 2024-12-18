@@ -285,7 +285,7 @@
   color: var(--kptl-heading-color);
 }
 .editor-styles-wrapper h1, .editor-styles-wrapper .h1 {
-  font-size: clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem);
+  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
 }
 .editor-styles-wrapper h2, .editor-styles-wrapper .h2 {
   font-size: 1.4rem;
@@ -4255,7 +4255,7 @@ a > .editor-styles-wrapper code {
   font-family: var(--kptl-font-monospace) !important;
 }
 .editor-styles-wrapper .fs-1 {
-  font-size: clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem) !important;
+  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem) !important;
 }
 .editor-styles-wrapper .fs-2 {
   font-size: 1.4rem !important;
@@ -8430,21 +8430,21 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .alignfull {
   max-width: calc(100% + 2rem);
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 600px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 100%;
   }
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px;
   }
 }
@@ -8900,6 +8900,13 @@ a > .editor-styles-wrapper code {
 }
 
 /* purgecss start ignore */
+.wp-block-group[class*=-background-color], .wp-block-group[class^=bg-] {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 #post-content h1:not(:first-child), #post-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #post-content .h1:not(:first-child), #post-content h2:not(:first-child), #post-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #post-content .h2:not(:first-child), #post-content h3:not(:first-child), #post-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #post-content .h3:not(:first-child), #post-content h4:not(:first-child), #post-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #post-content .h4:not(:first-child), #post-content h5:not(:first-child), #post-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #post-content .h5:not(:first-child), #post-content h6:not(:first-child), #post-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #post-content .h6:not(:first-child), #podcast-content h1:not(:first-child), #podcast-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #podcast-content .h1:not(:first-child), #podcast-content h2:not(:first-child), #podcast-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #podcast-content .h2:not(:first-child), #podcast-content h3:not(:first-child), #podcast-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #podcast-content .h3:not(:first-child), #podcast-content h4:not(:first-child), #podcast-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #podcast-content .h4:not(:first-child), #podcast-content h5:not(:first-child), #podcast-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #podcast-content .h5:not(:first-child), #podcast-content h6:not(:first-child), #podcast-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #podcast-content .h6:not(:first-child) {
   margin-top: 3rem;
 }
@@ -8918,7 +8925,7 @@ a > .editor-styles-wrapper code {
 
 @media (min-width: 1200px) {
   .bubble-heading.post-title {
-    font-size: clamp(1.25rem, 0.734vw + 1.089rem, 1.6rem);
+    font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
   }
 }
 @media (min-width: 600px) {
@@ -9124,10 +9131,14 @@ img {
 }
 
 .post-query:not(:last-child) {
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 .post-query:not(:first-child) {
-  margin-top: 5rem;
+  margin-top: 3rem;
+}
+
+.post-query + .post-query, .post-query + .inzercia {
+  margin-top: 5rem !important;
 }
 
 .featured-post + .post-query {
@@ -9534,4 +9545,12 @@ body.modal-open {
 
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)) {
   overflow: hidden;
+}
+
+.bubble-heading.wp-block-heading {
+  background: #000;
+  border-radius: 9999px;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
 }

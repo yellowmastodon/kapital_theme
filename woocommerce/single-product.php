@@ -36,8 +36,8 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
  *
  * @hooked kapital_woo_output_content_wrapper - 10 (outputs opening divs for the content)
  */
-do_action('woocommerce_before_main_content');
-?>
+do_action('woocommerce_before_main_content');?>
+
 
 <?php while (have_posts()) : ?>
     <?php the_post();
@@ -87,12 +87,19 @@ do_action('woocommerce_before_main_content');
             do_action('woocommerce_single_product_summary');
             $product_notice = get_post_meta($product->get_id(), '_kapital_product_notice', true);
             if ($product_notice && !empty($product_notice)):?>
-                <div class="alert alert-primary">
+                <div class="alert d-inline-block alert-warning">
                     <?=$product_notice?>
                 </div>
             <?php endif;
             $product_id = $product->get_id();
             $product_cat = get_the_terms($product_id, 'product_cat');
+            //filter helper category for display on "Vydavateľstvo" page
+            $filtered_cat = array_filter($product_cat, function ($wp_term) {
+                if ($wp_term->slug !=="kptl"){
+                    return $wp_term;
+                }
+              });
+             
             $sale = $product->is_on_sale();
             $is_sold_out = !$product->is_in_stock();
             //add custom variation image handler
@@ -101,7 +108,7 @@ do_action('woocommerce_before_main_content');
             }
             if ($product_cat || $sale || $is_sold_out) {
                 echo '<div><div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';
-                $cat_no = count($product_cat);
+                $cat_no = count($filtered_cat);
                 if ($sale) {
                     echo '<div class="col-auto text-uppercase text-red">' . __("Zľava", "kapital") . '</div>';
                     if ($cat_no > 0) {
@@ -116,13 +123,13 @@ do_action('woocommerce_before_main_content');
                     }
                     $cat_no++;
                 }
-                foreach ($product_cat as $key => $cat) {
+                foreach ($filtered_cat as $key => $cat) {
                     if ($sale) $key++;
                     if ($is_sold_out) $key++;
                     echo '<div class="col-auto"><a class="text-uppercase text-decoration-none text-red" href="' .  get_term_link($cat, 'product_cat') . '">' . $cat->name . '</a></div>';
                     if ($cat_no > 1 && $key < $cat_no - 1) {
                         echo '<div class="col-auto"><span class="marker-red"></span></div>';
-                    }
+                    } 
                 }
                 echo '</div></div>';
             }

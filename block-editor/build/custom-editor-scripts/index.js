@@ -1,6 +1,38 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./block-editor/src/block-variations/bubble-heading.js":
+/*!*************************************************************!*\
+  !*** ./block-editor/src/block-variations/bubble-heading.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   registerBubbleHeadingVariation: function() { return /* binding */ registerBubbleHeadingVariation; }
+/* harmony export */ });
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function registerBubbleHeadingVariation() {
+  (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockVariation)('core/heading', {
+    name: "bubble-heading",
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bublinkový nadpis', 'kapital'),
+    attributes: {
+      className: 'bubble-heading'
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./block-editor/src/block-variations/button.js":
 /*!*****************************************************!*\
   !*** ./block-editor/src/block-variations/button.js ***!
@@ -1168,6 +1200,17 @@ module.exports = window["wp"]["blockEditor"];
 
 /***/ }),
 
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
 /***/ "@wordpress/components":
 /*!************************************!*\
   !*** external ["wp","components"] ***!
@@ -1820,10 +1863,17 @@ var __webpack_exports__ = {};
   !*** ./block-editor/src/custom-editor-scripts/index.js ***!
   \*********************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _customTermSelector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customTermSelector */ "./block-editor/src/custom-editor-scripts/customTermSelector.js");
-/* harmony import */ var _authorTermSelector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authorTermSelector */ "./block-editor/src/custom-editor-scripts/authorTermSelector.js");
-/* harmony import */ var _customMetaSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./customMetaSettings */ "./block-editor/src/custom-editor-scripts/customMetaSettings.js");
-/* harmony import */ var _block_variations_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../block-variations/button */ "./block-editor/src/block-variations/button.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _customTermSelector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customTermSelector */ "./block-editor/src/custom-editor-scripts/customTermSelector.js");
+/* harmony import */ var _authorTermSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./authorTermSelector */ "./block-editor/src/custom-editor-scripts/authorTermSelector.js");
+/* harmony import */ var _customMetaSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customMetaSettings */ "./block-editor/src/custom-editor-scripts/customMetaSettings.js");
+/* harmony import */ var _block_variations_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block-variations/button */ "./block-editor/src/block-variations/button.js");
+/* harmony import */ var _block_variations_bubble_heading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../block-variations/bubble-heading */ "./block-editor/src/block-variations/bubble-heading.js");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__);
+
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 /* jslint esnext: true */
 /* global wp */
 
@@ -1834,11 +1884,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 //import {registerFormats } from './richTextCustomFormats';
 
 //registerFormats();
-(0,_block_variations_button__WEBPACK_IMPORTED_MODULE_3__.registerKapitalButtonVariation)();
-(0,_customMetaSettings__WEBPACK_IMPORTED_MODULE_2__.customMetaSettings)();
+(0,_block_variations_button__WEBPACK_IMPORTED_MODULE_4__.registerKapitalButtonVariation)();
+(0,_customMetaSettings__WEBPACK_IMPORTED_MODULE_3__.customMetaSettings)();
+(0,_block_variations_bubble_heading__WEBPACK_IMPORTED_MODULE_5__.registerBubbleHeadingVariation)();
 
 // Based on the example here: https://github.com/WordPress/gutenberg/tree/master/packages/editor/src/components/post-taxonomies#custom-taxonomy-selector
 (function () {
@@ -1852,9 +1905,9 @@ __webpack_require__.r(__webpack_exports__);
     return function (props) {
       // props.slug is the taxonomy (slug)
       if (flatTerms.indexOf(props.slug) >= 0) {
-        return el(_customTermSelector__WEBPACK_IMPORTED_MODULE_0__.CustomTermSelector, props);
+        return el(_customTermSelector__WEBPACK_IMPORTED_MODULE_1__.CustomTermSelector, props);
       } else if (authorTerm.indexOf(props.slug) >= 0) {
-        return el(_authorTermSelector__WEBPACK_IMPORTED_MODULE_1__.AuthorTermSelector, props);
+        return el(_authorTermSelector__WEBPACK_IMPORTED_MODULE_2__.AuthorTermSelector, props);
       }
       return el(OriginalComponent, props);
     };
@@ -1863,6 +1916,24 @@ __webpack_require__.r(__webpack_exports__);
   // you should change this
   modifySelector);
 })(); // end closure
+
+
+
+
+// This filter adds alignment support to core/paragraph if not already present
+var wideAlignBlocks = ['core/paragraph', 'core/heading', 'core/list'];
+var addWideAlignmentSupport = function addWideAlignmentSupport(settings) {
+  console.log(settings);
+  if (wideAlignBlocks.includes(settings.name)) {
+    settings.supports = _objectSpread(_objectSpread({}, settings.supports), {}, {
+      align: ["wide", "full"]
+    });
+  }
+  return settings;
+};
+
+// Apply the filter to the core/paragraph block
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.addFilter)('blocks.registerBlockType', 'kapital/more-blocks-align-support', addWideAlignmentSupport);
 }();
 /******/ })()
 ;

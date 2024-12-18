@@ -114,18 +114,16 @@ function Edit(_ref) {
                 termQuery: ""
               });
             },
+            value: attributes.queryPostType,
             options: [{
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Články", "kapital"),
-              value: 'post',
-              selected: attributes.queryPostType === "post" ? true : false
+              value: 'post'
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Podcasty", "kapital"),
-              value: 'podcast',
-              selected: attributes.queryPostType === "podcast" ? true : false
+              value: 'podcast'
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Eventy", "kapital"),
-              value: 'event',
-              selected: attributes.queryPostType === "event" ? true : false
+              value: 'event'
             }]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
             __nextHasNoMarginBottom: true,
@@ -221,18 +219,16 @@ function Edit(_ref) {
                 showHeading: newValue
               });
             },
+            value: attributes.showHeading,
             options: [{
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Automaticky", "kapital"),
-              value: "auto",
-              selected: attributes.showHeading === "auto" ? true : false
+              value: "auto"
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Manuálne", "kapital"),
-              value: "manual",
-              selected: attributes.showHeading === "manual" ? true : false
+              value: "manual"
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Skryť", "kapital"),
-              value: "hide",
-              selected: attributes.showHeading === "hide" ? true : false
+              value: "hide"
             }]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
             __nextHasNoMarginBottom: true,
@@ -243,36 +239,31 @@ function Edit(_ref) {
                 headingLevel: newValue
               });
             },
+            value: attributes.headingLevel,
             options: [{
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h1", "kapital"),
-              value: 1,
-              selected: attributes.headingLevel === 1 ? true : false
+              value: 1
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h2", "kapital"),
-              value: 2,
-              selected: attributes.headingLevel === 2 ? true : false
+              value: 2
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h3", "kapital"),
-              value: 3,
-              selected: attributes.headingLevel === 3 ? true : false
+              value: 3
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h4", "kapital"),
-              value: 4,
-              selected: attributes.headingLevel === 4 ? true : false
+              value: 4
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h5", "kapital"),
-              value: 5,
-              selected: attributes.headingLevel === 5 ? true : false
+              value: 5
             }, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("h6", "kapital"),
-              value: 6,
-              selected: attributes.headingLevel === 6 ? true : false
+              value: 6
             }]
           })]
         })]
       })
     }), attributes.showHeading === "manual" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Heading, {
-      class: "bubble-heading ff-grotesk",
+      className: "bubble-heading ff-grotesk",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.RichText, {
         identifier: "content",
         tagName: "span",
@@ -701,7 +692,7 @@ function _unsupportedIterableToArray(r, a) {
   \*******************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/post-query","version":"0.1.0","title":"Najnovšie články / podcasty / podujatia","description":"Archív článkov","keywords":["podcast","článok","podcasty","články","podujatia","zoznam","najnovšie"],"category":"theme","icon":"text","example":{},"supports":{"html":false,"color":{"background":true,"text":false}},"textdomain":"kapital","attributes":{"queryPostType":{"type":"string","default":"post"},"taxonomy":{"type":"string","default":"none"},"termQuery":{"type":"string","default":""},"taxonomyExclude":{"type":"string","default":"none"},"termQueryExclude":{"type":"string","default":""},"showMoreButton":{"type":"boolean","default":"true"},"showHeading":{"type":"string","default":"auto"},"headingText":{"type":"string","default":""},"headingLevel":{"type":"integer","default":2},"showFilters":{"type":"boolean","default":false},"showDescription":{"type":"boolean","default":false},"isEditor":{"type":"boolean","default":false},"excludePost":{"type":"integer","default":0}},"usesContext":["postType","postId"],"render":"file:./render.php","editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/post-query","version":"0.1.0","title":"Najnovšie články / podcasty / podujatia","description":"Archív článkov","keywords":["podcast","článok","podcasty","články","podujatia","zoznam","najnovšie"],"category":"theme","icon":"text","example":{},"supports":{"html":false,"color":{"background":true,"text":false}},"textdomain":"kapital","attributes":{"queryPostType":{"type":"string","default":"post"},"taxonomy":{"type":"string","default":"none"},"termQuery":{"type":"string","default":""},"taxonomyExclude":{"type":"string","default":"none"},"termQueryExclude":{"type":"string","default":""},"showMoreButton":{"type":"boolean","default":true},"showHeading":{"type":"string","default":"auto"},"headingText":{"type":"string","default":""},"headingLevel":{"type":"integer","default":2},"showFilters":{"type":"boolean","default":false},"showDescription":{"type":"boolean","default":false},"isEditor":{"type":"boolean","default":false},"excludePost":{"type":"integer","default":0}},"usesContext":["postType","postId"],"render":"file:./render.php","editorScript":"file:./index.js"}');
 
 /***/ })
 
