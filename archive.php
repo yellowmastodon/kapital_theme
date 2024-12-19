@@ -71,9 +71,9 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 
     <?php /** filters */
     if ($is_term_archive){
-        echo kapital_post_filters($is_general_post_archive, $is_term_archive, $queried_object_id, $taxonomy);
+        echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, $queried_object_id, $taxonomy);
     } else {
-        echo kapital_post_filters($is_general_post_archive, $is_term_archive, $queried_object_id);
+        echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, $queried_object_id);
     }
 
 

@@ -136,7 +136,7 @@ do_action('woocommerce_before_main_content');?>
             the_title('<h1 class="product_title entry-title mt-3 mb-0">', '</h1>');
             $book_author = get_post_meta($product->get_id(), '_kapital_book_author', true);
             if ($book_author && !empty($book_author)) {
-                echo '<p class="book-author h4 fw-bold text-red mt-1 lh-sm">' . $book_author . '</p>';
+                echo '<p class="book-author h4 fw-bold text-red mt-2 lh-sm">' . $book_author . '</p>';
             }
             woocommerce_template_single_price();
             woocommerce_template_single_add_to_cart();

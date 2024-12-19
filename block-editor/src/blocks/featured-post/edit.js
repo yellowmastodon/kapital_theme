@@ -109,6 +109,7 @@ export default function Edit(
 							'kapital'
 						) }
 						onChange={ (newValue) => {
+							console.log(newValue);
 							setAttributes( {postId: Number(newValue)} );
 							setMeta({ ...meta, _kapital_featured_post: Number(newValue) });
 						} }

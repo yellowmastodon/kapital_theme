@@ -48,6 +48,34 @@ const pencil = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.js
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/pin.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/pin.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * WordPress dependencies
+ */
+
+
+const pin = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, {
+    d: "m21.5 9.1-6.6-6.6-4.2 5.6c-1.2-.1-2.4.1-3.6.7-.1 0-.1.1-.2.1-.5.3-.9.6-1.2.9l3.7 3.7-5.7 5.7v1.1h1.1l5.7-5.7 3.7 3.7c.4-.4.7-.8.9-1.2.1-.1.1-.2.2-.3.6-1.1.8-2.4.6-3.6l5.6-4.1zm-7.3 3.5.1.9c.1.9 0 1.8-.4 2.6l-6-6c.8-.4 1.7-.5 2.6-.4l.9.1L15 4.9 19.1 9l-4.9 3.6z"
+  })
+});
+/* harmony default export */ __webpack_exports__["default"] = (pin);
+//# sourceMappingURL=pin.js.map
+
+/***/ }),
+
 /***/ "./block-editor/src/blocks/featured-post/edit.js":
 /*!*******************************************************!*\
   !*** ./block-editor/src/blocks/featured-post/edit.js ***!
@@ -200,6 +228,7 @@ function Edit(_ref) {
             __nextHasNoMarginBottom: true,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vybraný článok/podcast/...', 'kapital'),
             onChange: function onChange(newValue) {
+              console.log(newValue);
               setAttributes({
                 postId: Number(newValue)
               });
@@ -660,7 +689,7 @@ function _unsupportedIterableToArray(r, a) {
   \**********************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/featured-post","version":"0.1.0","icon":"dashicon-post","title":"Highlight článok","category":"theme","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"multiple":false},"attributes":{"postId":{"type":"integer","default":0},"isPost":{"type":"boolean","default":true},"featuredPostType":{"type":"string","default":"post"},"customHeading":{"type":"string","default":""},"customText":{"type":"string","default":""},"customLink":{"type":"string","default":""},"customImageId":{"type":"integer","default":0},"renderOnlyImage":{"type":"boolean","default":false}},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/featured-post","version":"0.1.0","icon":"post","title":"Highlight článok","category":"theme","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"multiple":false},"attributes":{"postId":{"type":"integer","default":0},"isPost":{"type":"boolean","default":true},"featuredPostType":{"type":"string","default":"post"},"customHeading":{"type":"string","default":""},"customText":{"type":"string","default":""},"customLink":{"type":"string","default":""},"customImageId":{"type":"integer","default":0},"renderOnlyImage":{"type":"boolean","default":false}},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","render":"file:./render.php"}');
 
 /***/ })
 
@@ -741,6 +770,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/pin.js");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./block-editor/src/blocks/featured-post/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./block-editor/src/blocks/featured-post/block.json");
 /**
@@ -748,6 +778,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
+
 
 
 /**
@@ -773,6 +804,7 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./edit.js
    */
+  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__["default"],
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 }();

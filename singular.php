@@ -8,7 +8,7 @@ if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
 if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
 /** render breadcrumbs */
 if ($render_settings["show_breadcrumbs"]) {
-    if (is_page()) {
+    if ($post->post_type === 'page') {
         if ($is_woocommerce_site) {
             if (is_checkout()){
                 echo kapital_breadcrumbs(
@@ -46,7 +46,8 @@ if ($render_settings["show_breadcrumbs"]) {
 
             /** render post terms */
             global $is_woocommerce_site;
-            if ($render_settings["show_categories"] && !$is_woocommerce_site): ?>
+            //render_settings categories are false for page
+            if ($render_settings["show_categories"]): ?>
                 <div class="post-terms mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
                     <?php foreach ($custom_taxonomies as $custom_taxonomy):
                         //autorstvo rendered separately                        
@@ -80,64 +81,74 @@ if ($render_settings["show_breadcrumbs"]) {
                     </p>
                 <?php endif; ?>
             </header>
-            <?php //container with views, author, publish date and featured image 
-            ?>
-            <div class="alignwide mb-5 header-bottom-container">
-                <?php //container with views, and publish date and author
-                if ($render_settings["show_views"] && $render_settings["show_date"] && $render_settings["show_author"]): ?>
-                    <div class="row align-items-end justify-content-between mb-1">
-                        <?php
-                        /**
-                         * Render post views
-                         * if hidden, let's keep the empty div to not break the layout
-                         */ ?>
-                        <div class="post-date col-6 col-sm-2 order-2 order-sm-1 ff-sans text-gray fs-small">
-                            <?php
-                            if ($render_settings["show_date"]):
-                                the_date();
-                            endif; ?>
 
+            <?php
+            /** Links to child pages
+             * 
+             */
+            if ($post->post_type === 'page' && $render_settings["show_filters"] === true){
+               echo kapital_post_filters(false, false, true, $post->ID, "", "", false);
+            }
+
+            /** container with views, author, publish date and featured image 
+             * all off by default for page
+            */
+            if ($render_settings["show_views"] || $render_settings["show_date"] || $render_settings["show_author"] || $render_settings["show_featured_image"]): ?>
+                <div class="alignwide mb-5 header-bottom-container">
+                    <?php //container with views, and publish date and author
+                    if ($render_settings["show_views"] && $render_settings["show_date"] && $render_settings["show_author"]): ?>
+                        <div class="row align-items-end justify-content-between mb-1">
+                            <?php
+                            /**
+                             * Render post views
+                             * if hidden, let's keep the empty div to not break the layout
+                             */ ?>
+                            <div class="post-date col-6 col-sm-2 order-2 order-sm-1 ff-sans text-gray fs-small">
+                                <?php
+                                if ($render_settings["show_date"]):
+                                    the_date();
+                                endif; ?>
+
+                            </div>
+                            <?php
+                            /**
+                             * Render post author(s)
+                             * the div can be removed, container is justify-content-between
+                             */
+                            if ($render_settings["show_author"]):
+                                if (!empty($filtered_terms['autorstvo'])): ?>
+                                    <p class="post-authors col-12 col-sm order-1 order-sm-2 mb-3 mb-sm-0 text-center ff-grotesk">
+                                        <?php
+                                        foreach ($filtered_terms['autorstvo'] as $key => $author):
+                                            if ($key !== 0) echo ", "; ?>
+                                            <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a>
+                                        <?php endforeach; ?>
+                                        </p><?php
+                                        endif;
+                                    endif;
+                                    /**
+                                     * Render post views
+                                     * if hidden, let's keep the empty div to not break the layout
+                                     */
+                                            ?><div class="post-views col-6 col-sm-2 order-3 col-2 ff-sans text-gray text-end fs-small opacity-0" data-id="<?php echo $post->ID ?>"><?php
+                                                                                                                                                                                    if ($render_settings["show_views"]): ?>
+                                    <svg>
+                                        <use xlink:href="#icon-views"></use>
+                                    </svg>
+                                    <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
+                                    <span class="number"></span>
+                                <?php endif; ?>
+                            </div><?php //end row above featured image
+                    endif; ?>
                         </div>
                         <?php
-                        /**
-                         * Render post author(s)
-                         * the div can be removed, container is justify-content-between
-                         */
-                        if ($render_settings["show_author"]):
-                            if (!empty($filtered_terms['autorstvo'])): ?>
-                                <p class="post-authors col-12 col-sm order-1 order-sm-2 mb-3 mb-sm-0 text-center ff-grotesk">
-                                    <?php
-                                    foreach ($filtered_terms['autorstvo'] as $key => $author):
-                                        if ($key !== 0) echo ", "; ?>
-                                        <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a>
-                                    <?php endforeach; ?>
-                                    </p><?php
-                                    endif;
-                                endif;
-                                /**
-                                 * Render post views
-                                 * if hidden, let's keep the empty div to not break the layout
-                                 */
-                                        ?><div class="post-views col-6 col-sm-2 order-3 col-2 ff-sans text-gray text-end fs-small opacity-0" data-id="<?php echo $post->ID ?>"><?php
-                                                                                                                                                                                if ($render_settings["show_views"]): ?>
-                                <svg>
-                                    <use xlink:href="#icon-views"></use>
-                                </svg>
-                                <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
-                                <span class="number"></span>
-                            <?php endif; ?>
-                        </div>
-                    <?php //end row above featured image
-                endif; ?>
-                    </div>
-                    <?php if ($render_settings["show_featured_image"]):
+                        //featured image
+                        if ($render_settings["show_featured_image"]):
                         $thumbnail_id = get_post_thumbnail_id();
-                        if (is_int($thumbnail_id) && $thumbnail_id !== 0) {
-                            echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", true, 'rounded');
-                        }
-                    endif; ?>
-            </div><?php //end of container with views, author, publish date and featured image 
-                    ?>
+                        if (is_int($thumbnail_id) && $thumbnail_id !== 0) echo kapital_responsive_image($thumbnail_id, "(max-width: 900px) 95vw, (max-width: 1639px) 800px, (max-width: 1919px) 900px, 1000px", true, 'rounded w-100');
+                        endif; ?>
+                </div><?php //end of container with views, author, publish date and featured image 
+            endif;       ?>
             <div id="post-content">
                 <?php
                 /**

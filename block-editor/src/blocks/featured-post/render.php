@@ -83,10 +83,23 @@ else:
 
 	//setup custom variables if passed from block
 	if ($attributes["isPost"]) {
-		$args = array(
-			'p' => $attributes["postId"],
-			'post_type' => $attributes["featuredPostType"]
-		);
+		if ($attributes["postId"] !== 0){
+			$args = array(
+				'p' => $attributes["postId"],
+				'post_type' => $attributes["featuredPostType"],
+				'post_status' => 'publish',
+				'posts_per_page'=> 1,
+			);
+		} else {
+			$args = array(
+				'post_type' => $attributes["featuredPostType"],
+				'post_status' => 'publish',
+				'posts_per_page'=> 1,
+				'order'=>'DESC',
+				'orderby'=>'ID'
+			);
+		}
+		
 		$featured_post_query = new WP_Query($args);
 		if ($featured_post_query->have_posts()):
 			while ($featured_post_query->have_posts()):
@@ -126,8 +139,8 @@ else:
 	}
 	?>
 	<article class="featured-post archive-item alignwider ff-grotesk">
-		<div class="row gx-4 gy-3 archive-item-link image-wrapper text-decoration-none" tabindex="-1">
-			<a href="<?php echo $post_permalink; ?>" class="col-12 item-link col-md-6">
+		<div class="row gx-4 gy-3 image-wrapper text-decoration-none" tabindex="-1">
+			<a href="<?php echo $post_permalink; ?>" class="col-12 archive-item-link item-link col-md-6">
 				<?php 
 				if ($thumbnail_id !== 0){
 					echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100");
@@ -138,7 +151,7 @@ else:
 			</a>
 			<div class="col-12 col-md-6 position-relative">
 				<?php if ($attributes["isPost"]) render_top_row($post_type, $render_settings["show_date"], $render_settings["show_views"], $post_date, $post->ID, "d-none d-lg-flex") ?>
-				<a class="item-link text-decoration-none" href="<?php echo $post_permalink;?>">
+				<a class="archive-item-link text-decoration-none" href="<?php echo $post_permalink;?>">
 					<h2 class="h2 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
 					<div class="item-excerpt lh-sm">
 						<?php if ($secondary_title !== "") {

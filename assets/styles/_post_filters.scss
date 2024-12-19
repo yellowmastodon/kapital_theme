@@ -12,7 +12,6 @@ body.modal-open{
 
 @include media-breakpoint-up('sm'){
     .post-filters{
-        position: sticky;
         z-index: 1000;
         .btn-filter-toggle, .btn-close{
             display: none !important;

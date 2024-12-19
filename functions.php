@@ -85,6 +85,7 @@ if (function_exists('add_theme_support')) {
 
     // Localisation Support
     load_theme_textdomain('kapital', get_template_directory() . '/languages');
+    add_theme_support('appearance-tools');
     add_theme_support( 'editor-font-sizes', array(
         array(
             'name' => esc_attr__( 'Small', 'kapital' ),
@@ -92,37 +93,71 @@ if (function_exists('add_theme_support')) {
             'slug' => 'small',
         ),
         array(
-            'name' => esc_attr__( 'Regular', 'kapital' ),
-            'size' => '1rem',
-            'slug' => 'regular'
-        ),
-        array(
             'name' => esc_attr__( 'h4', 'kapital' ),
             'size' => '1.1rem',
-            'slug' => 'h1'
+            'slug' => '4'
         ),
         array(
             'name' => esc_attr__( 'h3', 'kapital' ),
             'size' => '1.2rem',
-            'slug' => 'h3'
+            'slug' => '3'
         ),
         array(
             'name' => esc_attr__( 'h2', 'kapital' ),
             'size' => '1.4rem',
-            'slug' => 'h2'
+            'slug' => '2'
         ),
         array(
             'name' => esc_attr__( 'h2', 'kapital' ),
             'size' => '1.3rem',
-            'slug' => 'h2'
+            'slug' => '2'
         ),
         array(
             'name' => esc_attr__( 'h1', 'kapital' ),
             'size' => 'clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem)',
-            'slug' => 'h1'
+            'slug' => '1'
         )
     ) );
-    
+    add_theme_support( 'editor-spacing-sizes', array(
+                    array(
+                        "name" => "0",
+                        "slug" => "none",
+                        "size" => "0px"
+                    ),
+                    array(
+                        "name" => "1/4",
+                        "slug" => "quarter",
+                        "size" => ".25rem"
+                    ),
+                    array(
+                        "name" => "1/2",
+                        "slug" => "half",
+                        "size" => ".5rem"
+                    ),
+                    array(
+                        "name" => "1",
+                        "slug" => "1",
+                        "size" => "1rem"
+                    ),  array(
+                        "name" => "1.5x",
+                        "slug" => "1-5",
+                        "size" => "1.5rem"
+                    ),  array(
+                        "name" => "2x",
+                        "slug" => "2",
+                        "size" => "2rem"
+                    ),  array(
+                        "name" => "3x",
+                        "slug" => "3",
+                        "size" => "3rem"
+                    ),  array(
+                        "name" => "5x",
+                        "slug" => "5",
+                        "size" => "5rem"
+                    )
+
+
+    ) );
 }
 
 /**
@@ -195,10 +230,9 @@ function kapital_enqueue_scripts()
     //wp_dequeue_style( 'wp-block-library-theme' ); // Remove WordPress theme core CSS
     wp_dequeue_style('classic-theme-styles'); // Remove global styles inline CSS
     //wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-    wp_dequeue_style('global-styles'); // Remove theme.json css
+   // wp_dequeue_style('global-styles'); // Remove theme.json css
     wp_dequeue_style('wp-block-buttons'); // Remove global styles inline CSS
     wp_deregister_style('wp-block-buttons');
-    wp_deregister_style('wp-block-woocommerce-filled-mini-cart-contents-block');
     //wp_dequeue_style( 'select2' );
 
 }

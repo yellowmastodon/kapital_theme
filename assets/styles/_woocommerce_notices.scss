@@ -6,6 +6,9 @@
             text-align: center;
             border-radius: 0px;
     }
+    .alert + .alert, .alert + .woocommerce-notices-wrapper{
+        margin-top: -1px;
+    }
 }
 
 .woocommerce-message,

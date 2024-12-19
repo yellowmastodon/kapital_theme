@@ -20,7 +20,7 @@ $spacers: (
 
 
 //default margins
-$headings-margin-bottom: map-get($spacers, 4);
+$headings-margin-bottom: none;
 $paragraph-margin-bottom: map-get($spacers, 4);
 
 
@@ -40,7 +40,7 @@ $font-family-sans-serif: "Kontrast Grotesk", sans-serif;
 $font-family-base: "Roboto Serif", serif;
 $headings-font-family: "Kontrast Grotesk", sans-serif;
 
-$font-size-root: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
+$font-size-root: clamp(1rem, 0.29vi + 0.94rem, 1.6rem);
 $fs-small-scale: 0.8;
 $font-size-sm: #{$fs-small-scale}rem;
 $small-font-size: $font-size-sm;
@@ -50,8 +50,8 @@ $line-height-base: 1.7;
 $enable-dark-mode: false;
 $enable-container-classess: false;
 $enable-rfs:                  false; //managed by root font size
-$h1-font-size:                clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
-$h2-font-size:                1.4rem;
+$h1-font-size:                clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
+$h2-font-size:                1.3rem;
 $h3-font-size:                1.2rem;
 $h4-font-size:                1.1rem;
 $h5-font-size:                1rem;
@@ -89,7 +89,7 @@ $btn-font-size: $small-font-size;
 $btn-padding-x: 1.2rem;
 $btn-padding-y: .4rem;
 $btn-padding-top: .6em;
-$btn-padding-bottom: .45em;
+$btn-padding-bottom: .47em;
 $btn-line-height: $line-height-small;
 $link-color: $body-color;
 $link-hover-color: $red;

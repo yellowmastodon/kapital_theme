@@ -50,10 +50,11 @@ $args = array(
 
 	}
 	if(!$attributes["isEditor"] && $attributes["showHeading"] && $attributes["headingText"] !== ""){
-		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], 'mb-4');
+		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], 'mb-5');
 	}
 
 	if ($queried_products->have_posts()): ?>
+	<div>
 		<ul class="row gy-6 gx-5 list-unstyled alignwider">
 				<?php
 				while ($queried_products->have_posts()):
@@ -74,6 +75,7 @@ $args = array(
 					<?php 
 				endwhile; ?>
 		</ul>
+		</div>
 		<?php endif;
 
 if ($is_woocommerce_site){

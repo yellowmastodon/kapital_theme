@@ -26,29 +26,36 @@ $container_padding: map-get($spacers, 3);
 ); */
 
 
+$xxxl-breakpoint: ( xxxl: 2100px);
+$grid-breakpoints: map-merge($grid-breakpoints, $xxxl-breakpoint);
+
 //600px on 1440px display, for body text in single post
 $align-normal-sizes: (
     sm: 100%,
     xs: 600px,
-    xxl: 700px, 
+    xxl: 700px,
+    xxxl: 800px
 );
 
 //800px on 1440px display, for featured images, perex, etc. in single post
 $align-wide-sizes: (
-    
     xs: 800px,
-    xxl: 900px 
+    xxl: 900px,
+    xxxl: 1050px
 );
 
 //post archives
 $align-wider-sizes: (
     md: 1100px,
-    xxl: 1320px
+    xxl: 1320px,
+    xxxl: 1600px
+
 );
 
 $align-widest-sizes: (
     lg: 1260px,
-    xxl: 1550px
+    xxl: 1550px,
+    xxxl: 1800px
 );
 
 @mixin make-sizes($class-name, $sizes-list, $make-columns: false){
@@ -94,9 +101,8 @@ $align-widest-sizes: (
         }
     }
 }
-/* purgecss start ignore */
 @include make-sizes('normal', $align-normal-sizes);
 @include make-sizes('wide', $align-wide-sizes);
 @include make-sizes('wider', $align-wider-sizes, true);
 @include make-sizes('widest', $align-widest-sizes, true);
-/* purgecss end ignore */
+$grid-breakpoints: map-remove($grid-breakpoints, xxxl)

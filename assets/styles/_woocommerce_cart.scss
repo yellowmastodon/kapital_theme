@@ -38,18 +38,20 @@
         flex-basis: 50%;
         flex-grow: 1;
     }
-    button,
-    input[type="submit"] {
-        @extend .btn;
-        @extend .btn-form;
-        @extend .btn-outline;
-        margin-bottom: 0px !important;
-    }
+
+}
+#pwgc-redeem-gift-card-container{
+    width: 100%;
 }
 #pwgc-redeem-error:empty {
     display: none;
 }
-
+.coupon button, #pwgc-redeem-button {
+    @extend .btn;
+    @extend .btn-form;
+    @extend .btn-outline;
+    margin-bottom: 0px !important;
+}
 .woocommerce-cart-form,
 .cart {
     .quantity {

@@ -44,11 +44,11 @@ if (empty($product) || ! $product->is_visible()) {
     foreach ( $categories as $cat ) $cat_slugs[] = $cat->slug;
     $is_predpredaj =  in_array( 'predpredaj', $cat_slugs ) ? true : false; 
     if (!$product->is_in_stock()){
-        echo '<span class="soldout">' . __("Vypredané", "kapital") . '</span>';
+        echo '<span class="soldout btn-like btn-secondary">' . __("Vypredané", "kapital") . '</span>';
     } elseif ($is_predpredaj) {
-        echo '<span class="predpredaj">' . __("Predpredaj", "kapital") . '</span>';
+        echo '<span class="predpredaj btn-like btn-red">' . __("Predpredaj", "kapital") . '</span>';
     } elseif ($product->is_on_sale()) {
-        echo '<span class="onsale">' . __("Zľava", "kapital") . '</span>';
+        echo '<span class="onsale btn-like btn-red">' . __("Zľava", "kapital") . '</span>';
     }
     do_action('woocommerce_before_shop_loop_item_title');
 

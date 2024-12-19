@@ -35,11 +35,15 @@
         }
 }
 .darujme-form{
+    label{
+        line-height: unset;
+    }
     .darujme-radio-input-btn{
         position: absolute;
         opacity: 0;
         + label{
             cursor: pointer;
+            width: 100%;
         }
         &:focus-visible + label{
             outline: solid 2px var(--#{$prefix}red) !important;

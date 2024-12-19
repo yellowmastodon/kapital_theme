@@ -16,19 +16,12 @@
 
 .archive-item.product{
     .onsale, .soldout, .predpredaj{
-        @extend .ff-grotesk;
-        @extend .btn;
         position: absolute;
         top: .5rem;
         left: .5rem;
         font-size: $h4-font-size;
     }
-    .onsale, .predpredaj{
-        @extend .btn-red;
-    }
-    .soldout {
-        @extend .btn-secondary;
-    }
+
     a.button {
         @extend .col-auto;
         @extend .btn;

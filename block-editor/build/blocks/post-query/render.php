@@ -151,6 +151,11 @@ $args = array(
 	'order'   => 'DESC',
 	'post__not_in' => array($exclude_post)
 );
+// if newest post selected in featured post blog, it has value zero
+if ($exclude_post === 0){
+	unset($args['post__not_in']);
+	$args['offset'] = 1;
+}
 
 //if "show-more button" -> render more posts so "show more" has something to show and we do not need ajax
 $is_term_archive = $attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !empty($queried_terms);
@@ -258,9 +263,9 @@ if ($queried_posts->have_posts()):
 		 */
 		if ($attributes["showFilters"]){
 			if ($is_term_archive){
-				echo kapital_post_filters(!$is_term_archive, $is_term_archive, $queried_terms[0]->term_id, $queried_terms[0]->taxonomy);
+				echo kapital_post_filters(!$is_term_archive, $is_term_archive, false, $queried_terms[0]->term_id, $queried_terms[0]->taxonomy);
 			} else {
-				echo kapital_post_filters(!$is_term_archive, $is_term_archive); 
+				echo kapital_post_filters(!$is_term_archive, $is_term_archive, false); 
 			}
 		}
 		?>

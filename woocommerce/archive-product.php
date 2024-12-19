@@ -77,9 +77,9 @@ $is_term_archive = is_tax();
 $is_general_post_archive = !$is_term_archive;
 
 if ($is_term_archive){
-	echo kapital_post_filters($is_general_post_archive, $is_term_archive, get_queried_object_id(), 'product_cat', 'product');
+	echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, get_queried_object_id(), 'product_cat', 'product');
 } else {
-	echo kapital_post_filters($is_general_post_archive, $is_term_archive, 0, 'product_cat', 'product');
+	echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, 0, 'product_cat', 'product');
 }
 
 if ( woocommerce_product_loop() ) {

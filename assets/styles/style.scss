@@ -58,6 +58,8 @@ $theme-colors: $temporary-colors; */
 // @import "bootstrap/scss/list-group";
 //@import "bootstrap/scss/close";
 // @import "bootstrap/scss/toasts";
+
+/*! purgecss start ignore */
 $temporary-breakpoints: $grid-breakpoints;
 $grid-breakpoints: (sm: 0);
 @import "bootstrap/scss/modal"; // Requires transitions
@@ -66,6 +68,8 @@ $grid-breakpoints: $temporary-breakpoints;
 //@import "bootstrap/scss/popover";
 @import "bootstrap/scss/carousel";
 @import "bootstrap/scss/spinners";
+/*! purgecss end ignore */
+
 //make offcanvas not responsive
 $temporary-breakpoints: $grid-breakpoints;
 $grid-breakpoints: (sm: 0);
@@ -81,6 +85,8 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "bootstrap/scss/utilities/api";
 
 //replaces containers with content max width and margin auto
+
+/*! purgecss start ignore */
 
 @import "default_align_max_widths";
 @import "focus";
@@ -109,8 +115,8 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "woocommerce_cart";
 @import "woocommerce_checkout";
 @import "woocommerce_my_account";
+/*! purgecss end ignore */
 
 
 
 
-//@import "css_icons"; //only used in editor

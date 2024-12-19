@@ -16,6 +16,10 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
     array(
         'type' => 'object',
         'properties' => [
+            'show_filters' => [
+                'type' => 'boolean',
+                'default' => false
+            ],
             'show_featured_image' => [
                 'type' => 'boolean',
                 'default' => true

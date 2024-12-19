@@ -1,4 +1,3 @@
-/** purgecss start ignore */
 $archive-article-text-stroke-width: 6px;
 $archive-article-img-outline-width: 5px;
 
@@ -6,7 +5,9 @@ $archive-article-img-outline-width: 5px;
     &:focus{
         outline: none !important;
     }
-    .archive-item-link, .woocommerce-loop-product__link {        
+    .archive-item-link, .woocommerce-loop-product__link {    
+        transition: color $link_transition_speed linear;
+   
         .red-outline-hover {
             position: relative; //to style the before element, which generates outline
             z-index: 1;
@@ -184,4 +185,3 @@ $archive-article-img-outline-width: 5px;
 }
 
 
-/** purgecss end ignore */ 

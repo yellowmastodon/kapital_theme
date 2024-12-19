@@ -120,3 +120,13 @@ function set_image_auto_wide( $metadata ) {
  require_once(dirname(__FILE__) . '/build/block-variations/button.php');
  require_once(dirname(__FILE__) . '/build/block-variations/bubble-heading.php');
 
+ add_action('admin_head', 'custom_root_font_size');
+/* fix for rem definitions */
+ function custom_root_font_size()
+ {
+     echo '<style>
+     :root {
+        font-size: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
+     } 
+   </style>';
+ }

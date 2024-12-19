@@ -1,9 +1,11 @@
 //buttons
-.btn:not(.btn-menu) {
+.btn-like, .btn:not(.btn-menu) {
     text-transform: uppercase;
 }
 
-.btn{
+.btn,
+.btn-like //class that looks like button but does not include hover, focus and active
+{
     text-align: center;
     color: var(--#{$prefix}body-color);
     @extend .ff-grotesk;
@@ -18,61 +20,20 @@
     white-space: nowrap;
     padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y;
     transition: $link_transition_speed linear;
-    &.btn-block{
-        @extend .d-block;
-        width: 100%;
-    }
+    
+}
+
+.btn{
+
+    .btn-block{
+            @extend .d-block;
+            width: 100%;
+        }
     svg{
-        transition: $link_transition_speed linear;
-    }
-    &:focus, &:focus-visible{
-        outline: none !important;
-    }
-    &.btn-sm{
-        font-size: $small-font-size;
-    }
-    &.btn-primary{
-        background-color: var(--#{$prefix}primary);
-        border-color: var(--#{$prefix}primary);
-    }
-    &.btn-white{
-        background-color: var(--#{$prefix}white);
-        border-color: var(--#{$prefix}white);
-    }
-    &.btn-secondary{
-        background-color: var(--#{$prefix}secondary);
-        border-color: var(--#{$prefix}secondary);
-    }
-    &.btn-outline{
-        background-color: var(--#{$prefix}white);
-        border-color: var(--#{$prefix}body-color);
-        //when btn class used for filter/page selection
-        &.active{
-            background-color: var(--#{$prefix}primary);
-        }
-    }
-    &.btn-link{
-        background-color: transparent !important;
-        border-color: transparent !important;
-    }
-    &.btn-red{
-        background-color: var(--#{$prefix}red);
-        border-color: var(--#{$prefix}red);
-        color: $white;
-        svg{
-            fill: $white
-        }
-    }
-    &.btn-close{
-        width: 4rem;
-        height: 4rem;
-        line-height: 3rem;
-        padding: 0px;
-        background-color: var(--#{$prefix}white);
-        border-color: var(--#{$prefix}white);
-        svg{
-            width: 2rem;
-            height: 2rem;
+        &.icon-square{
+            margin-top: -.15rem;
+            vertical-align: middle;
+            transition: $link_transition_speed linear;
         }
     }
     &:disabled{
@@ -80,6 +41,53 @@
         border-color: var(--#{$prefix}secondary);
         color: var(--#{$prefix}gray);
     } 
+}
+.btn-sm{
+    font-size: $small-font-size;
+}
+.btn-primary{
+    background-color: var(--#{$prefix}primary);
+    border-color: var(--#{$prefix}primary);
+}
+.btn-white{
+    background-color: var(--#{$prefix}white);
+    border-color: var(--#{$prefix}white);
+}
+.btn-secondary{
+    background-color: var(--#{$prefix}secondary);
+    border-color: var(--#{$prefix}secondary);
+}
+.btn-outline{
+    background-color: var(--#{$prefix}white);
+    border-color: var(--#{$prefix}body-color);
+    //when btn class used for filter/page selection
+    &.active{
+        background-color: var(--#{$prefix}primary);
+    }
+}
+.btn-link{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.btn-red{
+    background-color: var(--#{$prefix}red);
+    border-color: var(--#{$prefix}red);
+    color: $white;
+    svg{
+        fill: $white
+    }
+}
+.btn-close{
+    width: 4rem;
+    height: 4rem;
+    line-height: 3rem;
+    padding: 0px;
+    background-color: var(--#{$prefix}white);
+    border-color: var(--#{$prefix}white);
+    svg{
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 @include media-breakpoint-up('sm'){
@@ -104,8 +112,7 @@
     }
 }
 
-button, a{
-    &.btn{
+.btn{
         &:hover:not(:disabled), &:focus-visible, &:focus{
             background-color: var(--#{$prefix}red);
             border-color: var(--#{$prefix}red);
@@ -134,7 +141,7 @@ button, a{
         }
     }
     
-}
+
 .bg-primary, .has-primary-background-color{
     button, a{
         &.btn-red{

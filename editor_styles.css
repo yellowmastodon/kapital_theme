@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*! purgecss start ignore */
 @font-face {
   font-family: "Roboto Serif";
   src: url("assets/fonts/RobotoSerif-Bold.eot");
@@ -88,16 +89,12 @@
     xl: 1400px,
     xxl: 1680px,
   ); */
-  /* purgecss start ignore */
-  /* purgecss end ignore */
   /* 
   Modified from understrap
   _understrap.scss
   _colors.scss
    */
   /** import from classic editor */
-  /** purgecss start ignore */
-  /** purgecss end ignore */
 }
 .editor-styles-wrapper :root, .editor-styles-wrapper .is-root-container,
 .editor-styles-wrapper [data-bs-theme=light] {
@@ -193,7 +190,7 @@
   --kptl-font-sans-serif: "Kontrast Grotesk", sans-serif;
   --kptl-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --kptl-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --kptl-root-font-size: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
+  --kptl-root-font-size: clamp(1rem, 0.29vi + 0.94rem, 1.6rem);
   --kptl-body-font-family: "Roboto Serif", serif;
   --kptl-body-font-size: 1rem;
   --kptl-body-font-weight: 400;
@@ -285,10 +282,10 @@
   color: var(--kptl-heading-color);
 }
 .editor-styles-wrapper h1, .editor-styles-wrapper .h1 {
-  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
+  font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
 }
 .editor-styles-wrapper h2, .editor-styles-wrapper .h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 .editor-styles-wrapper h3, .editor-styles-wrapper .h3 {
   font-size: 1.2rem;
@@ -686,7 +683,7 @@ a > .editor-styles-wrapper code {
   flex: 0 0 auto;
   width: 16.66666667%;
 }
-.editor-styles-wrapper .col-auto {
+.editor-styles-wrapper .col-auto, .editor-styles-wrapper .add-to-cart-wrapper .added_to_cart, .add-to-cart-wrapper .editor-styles-wrapper .added_to_cart, .editor-styles-wrapper .archive-item.product a.button, .archive-item.product .editor-styles-wrapper a.button {
   flex: 0 0 auto;
   width: auto;
 }
@@ -1935,7 +1932,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .form-control-color.form-control-lg {
   height: calc(1.35em + 1rem + calc(2px * 2));
 }
-.editor-styles-wrapper .form-select {
+.editor-styles-wrapper .form-select, .editor-styles-wrapper .woocommerce-ordering .orderby, .woocommerce-ordering .editor-styles-wrapper .orderby {
   --kptl-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   display: block;
   width: 100%;
@@ -1958,23 +1955,23 @@ a > .editor-styles-wrapper code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .editor-styles-wrapper .form-select {
+  .editor-styles-wrapper .form-select, .editor-styles-wrapper .woocommerce-ordering .orderby, .woocommerce-ordering .editor-styles-wrapper .orderby {
     transition: none;
   }
 }
-.editor-styles-wrapper .form-select:focus {
+.editor-styles-wrapper .form-select:focus, .editor-styles-wrapper .woocommerce-ordering .orderby:focus, .woocommerce-ordering .editor-styles-wrapper .orderby:focus {
   border-color: var(--kptl-red);
   outline: 0;
   box-shadow: none;
 }
-.editor-styles-wrapper .form-select[multiple], .editor-styles-wrapper .form-select[size]:not([size="1"]) {
+.editor-styles-wrapper .form-select[multiple], .editor-styles-wrapper .woocommerce-ordering [multiple].orderby, .woocommerce-ordering .editor-styles-wrapper [multiple].orderby, .editor-styles-wrapper .form-select[size]:not([size="1"]), .editor-styles-wrapper .woocommerce-ordering [size].orderby:not([size="1"]), .woocommerce-ordering .editor-styles-wrapper [size].orderby:not([size="1"]) {
   padding-right: 1.2rem;
   background-image: none;
 }
-.editor-styles-wrapper .form-select:disabled {
+.editor-styles-wrapper .form-select:disabled, .editor-styles-wrapper .woocommerce-ordering .orderby:disabled, .woocommerce-ordering .editor-styles-wrapper .orderby:disabled {
   background-color: var(--kptl-secondary-bg);
 }
-.editor-styles-wrapper .form-select:-moz-focusring {
+.editor-styles-wrapper .form-select:-moz-focusring, .editor-styles-wrapper .woocommerce-ordering .orderby:-moz-focusring, .woocommerce-ordering .editor-styles-wrapper .orderby:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 var(--kptl-body-color);
 }
@@ -2110,7 +2107,7 @@ a > .editor-styles-wrapper code {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
-.editor-styles-wrapper .btn-check[disabled] + .btn, .editor-styles-wrapper .btn-check[disabled] + .wp-element-button, .editor-styles-wrapper .btn-check[disabled] + .wp-block-button__link, .editor-styles-wrapper .btn-check:disabled + .btn, .editor-styles-wrapper .btn-check:disabled + .wp-element-button, .editor-styles-wrapper .btn-check:disabled + .wp-block-button__link {
+.editor-styles-wrapper .btn-check[disabled] + .btn, .editor-styles-wrapper .archive-item.product .btn-check[disabled] + a.button, .archive-item.product .editor-styles-wrapper .btn-check[disabled] + a.button, .editor-styles-wrapper .btn-check[disabled] + .wp-element-button, .editor-styles-wrapper .btn-check[disabled] + .wp-block-button__link, .editor-styles-wrapper .btn-check:disabled + .btn, .editor-styles-wrapper .archive-item.product .btn-check:disabled + a.button, .archive-item.product .editor-styles-wrapper .btn-check:disabled + a.button, .editor-styles-wrapper .btn-check:disabled + .wp-element-button, .editor-styles-wrapper .btn-check:disabled + .wp-block-button__link {
   pointer-events: none;
   filter: none;
   opacity: 0.65;
@@ -2209,7 +2206,9 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .form-floating > .form-control,
 .editor-styles-wrapper .form-floating > .form-control-plaintext,
-.editor-styles-wrapper .form-floating > .form-select {
+.editor-styles-wrapper .form-floating > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .form-floating > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .form-floating > .orderby {
   height: calc(2.6rem + calc(2px * 2));
   min-height: calc(2.6rem + calc(2px * 2));
   line-height: 1.35;
@@ -2261,7 +2260,7 @@ a > .editor-styles-wrapper code {
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
 }
-.editor-styles-wrapper .form-floating > .form-select {
+.editor-styles-wrapper .form-floating > .form-select, .editor-styles-wrapper .woocommerce-ordering .form-floating > .orderby, .woocommerce-ordering .editor-styles-wrapper .form-floating > .orderby {
   padding-top: 1.2rem;
   padding-bottom: 0.4rem;
 }
@@ -2272,7 +2271,9 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .form-floating > .form-control:focus ~ label,
 .editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown) ~ label,
 .editor-styles-wrapper .form-floating > .form-control-plaintext ~ label,
-.editor-styles-wrapper .form-floating > .form-select ~ label {
+.editor-styles-wrapper .form-floating > .form-select ~ label,
+.editor-styles-wrapper .woocommerce-ordering .form-floating > .orderby ~ label,
+.woocommerce-ordering .editor-styles-wrapper .form-floating > .orderby ~ label {
   color: rgba(var(--kptl-body-color-rgb), 0.65);
   transform: scale(0.7) translateY(-0.3rem) translateX(0.6rem);
 }
@@ -2288,7 +2289,9 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .form-floating > .form-control:focus ~ label::after,
 .editor-styles-wrapper .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
 .editor-styles-wrapper .form-floating > .form-control-plaintext ~ label::after,
-.editor-styles-wrapper .form-floating > .form-select ~ label::after {
+.editor-styles-wrapper .form-floating > .form-select ~ label::after,
+.editor-styles-wrapper .woocommerce-ordering .form-floating > .orderby ~ label::after,
+.woocommerce-ordering .editor-styles-wrapper .form-floating > .orderby ~ label::after {
   position: absolute;
   inset: 0.4rem 0.6rem;
   z-index: -1;
@@ -2321,6 +2324,8 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .input-group > .form-control,
 .editor-styles-wrapper .input-group > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group > .orderby,
 .editor-styles-wrapper .input-group > .form-floating {
   position: relative;
   flex: 1 1 auto;
@@ -2329,14 +2334,16 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .input-group > .form-control:focus,
 .editor-styles-wrapper .input-group > .form-select:focus,
+.editor-styles-wrapper .woocommerce-ordering .input-group > .orderby:focus,
+.woocommerce-ordering .editor-styles-wrapper .input-group > .orderby:focus,
 .editor-styles-wrapper .input-group > .form-floating:focus-within {
   z-index: 5;
 }
-.editor-styles-wrapper .input-group .btn, .editor-styles-wrapper .input-group .wp-element-button, .editor-styles-wrapper .input-group .wp-block-button__link {
+.editor-styles-wrapper .input-group .btn, .editor-styles-wrapper .input-group .archive-item.product a.button, .archive-item.product .editor-styles-wrapper .input-group a.button, .editor-styles-wrapper .input-group .wp-element-button, .editor-styles-wrapper .input-group .wp-block-button__link {
   position: relative;
   z-index: 2;
 }
-.editor-styles-wrapper .input-group .btn:focus, .editor-styles-wrapper .input-group .wp-element-button:focus, .editor-styles-wrapper .input-group .wp-block-button__link:focus {
+.editor-styles-wrapper .input-group .btn:focus, .editor-styles-wrapper .input-group .archive-item.product a.button:focus, .archive-item.product .editor-styles-wrapper .input-group a.button:focus, .editor-styles-wrapper .input-group .wp-element-button:focus, .editor-styles-wrapper .input-group .wp-block-button__link:focus {
   z-index: 5;
 }
 .editor-styles-wrapper .input-group-text {
@@ -2355,8 +2362,12 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .input-group-lg > .form-control,
 .editor-styles-wrapper .input-group-lg > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group-lg > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group-lg > .orderby,
 .editor-styles-wrapper .input-group-lg > .input-group-text,
 .editor-styles-wrapper .input-group-lg > .btn,
+.editor-styles-wrapper .archive-item.product .input-group-lg > a.button,
+.archive-item.product .editor-styles-wrapper .input-group-lg > a.button,
 .editor-styles-wrapper .input-group-lg > .wp-element-button,
 .editor-styles-wrapper .input-group-lg > .wp-block-button__link {
   padding: 0.5rem 1rem;
@@ -2365,29 +2376,39 @@ a > .editor-styles-wrapper code {
 }
 .editor-styles-wrapper .input-group-sm > .form-control,
 .editor-styles-wrapper .input-group-sm > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group-sm > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group-sm > .orderby,
 .editor-styles-wrapper .input-group-sm > .input-group-text,
 .editor-styles-wrapper .input-group-sm > .btn,
+.editor-styles-wrapper .archive-item.product .input-group-sm > a.button,
+.archive-item.product .editor-styles-wrapper .input-group-sm > a.button,
 .editor-styles-wrapper .input-group-sm > .wp-element-button,
 .editor-styles-wrapper .input-group-sm > .wp-block-button__link {
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
   border-radius: var(--kptl-border-radius-sm);
 }
-.editor-styles-wrapper .input-group-lg > .form-select,
-.editor-styles-wrapper .input-group-sm > .form-select {
+.editor-styles-wrapper .input-group-lg > .form-select, .editor-styles-wrapper .woocommerce-ordering .input-group-lg > .orderby, .woocommerce-ordering .editor-styles-wrapper .input-group-lg > .orderby,
+.editor-styles-wrapper .input-group-sm > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group-sm > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group-sm > .orderby {
   padding-right: 4.8rem;
 }
 .editor-styles-wrapper .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
 .editor-styles-wrapper .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3),
 .editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-control,
-.editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select {
+.editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group:not(.has-validation) > .form-floating:not(:last-child) > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group:not(.has-validation) > .form-floating:not(:last-child) > .orderby {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 .editor-styles-wrapper .input-group.has-validation > :nth-last-child(n+3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
 .editor-styles-wrapper .input-group.has-validation > .dropdown-toggle:nth-last-child(n+4),
 .editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-control,
-.editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-select {
+.editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group.has-validation > .form-floating:nth-last-child(n+3) > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group.has-validation > .form-floating:nth-last-child(n+3) > .orderby {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -2397,7 +2418,9 @@ a > .editor-styles-wrapper code {
   border-bottom-left-radius: 0;
 }
 .editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .form-control,
-.editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .form-select {
+.editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .form-select,
+.editor-styles-wrapper .woocommerce-ordering .input-group > .form-floating:not(:first-child) > .orderby,
+.woocommerce-ordering .editor-styles-wrapper .input-group > .form-floating:not(:first-child) > .orderby {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -2442,16 +2465,16 @@ a > .editor-styles-wrapper code {
   padding-right: calc(1.35em + 1.2rem);
   background-position: top calc(0.3375em + 0.3rem) right calc(0.3375em + 0.3rem);
 }
-.was-validated .editor-styles-wrapper .form-select:valid, .editor-styles-wrapper .form-select.is-valid {
+.was-validated .editor-styles-wrapper .form-select:valid, .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:valid, .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:valid, .editor-styles-wrapper .form-select.is-valid, .editor-styles-wrapper .woocommerce-ordering .is-valid.orderby, .woocommerce-ordering .editor-styles-wrapper .is-valid.orderby {
   border-color: var(--kptl-form-valid-border-color);
 }
-.was-validated .editor-styles-wrapper .form-select:valid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:valid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-valid:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-valid:not([multiple])[size="1"] {
+.was-validated .editor-styles-wrapper .form-select:valid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:valid:not([multiple]):not([size]), .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:valid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:valid:not([multiple])[size="1"], .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:valid:not([multiple])[size="1"], .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:valid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-valid:not([multiple]):not([size]), .editor-styles-wrapper .woocommerce-ordering .is-valid.orderby:not([multiple]):not([size]), .woocommerce-ordering .editor-styles-wrapper .is-valid.orderby:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-valid:not([multiple])[size="1"], .editor-styles-wrapper .woocommerce-ordering .is-valid.orderby:not([multiple])[size="1"], .woocommerce-ordering .editor-styles-wrapper .is-valid.orderby:not([multiple])[size="1"] {
   --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   padding-right: 6.6rem;
   background-position: right 1.2rem center, center right 3.6rem;
   background-size: 16px 12px, calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
-.was-validated .editor-styles-wrapper .form-select:valid:focus, .editor-styles-wrapper .form-select.is-valid:focus {
+.was-validated .editor-styles-wrapper .form-select:valid:focus, .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:valid:focus, .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:valid:focus, .editor-styles-wrapper .form-select.is-valid:focus, .editor-styles-wrapper .woocommerce-ordering .is-valid.orderby:focus, .woocommerce-ordering .editor-styles-wrapper .is-valid.orderby:focus {
   border-color: var(--kptl-form-valid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-success-rgb), 0.25);
 }
@@ -2475,7 +2498,11 @@ a > .editor-styles-wrapper code {
 }
 .was-validated .editor-styles-wrapper .input-group > .form-control:not(:focus):valid, .editor-styles-wrapper .input-group > .form-control:not(:focus).is-valid,
 .was-validated .editor-styles-wrapper .input-group > .form-select:not(:focus):valid,
+.was-validated .editor-styles-wrapper .woocommerce-ordering .input-group > .orderby:not(:focus):valid,
+.woocommerce-ordering .was-validated .editor-styles-wrapper .input-group > .orderby:not(:focus):valid,
 .editor-styles-wrapper .input-group > .form-select:not(:focus).is-valid,
+.editor-styles-wrapper .woocommerce-ordering .input-group > .orderby:not(:focus).is-valid,
+.woocommerce-ordering .editor-styles-wrapper .input-group > .orderby:not(:focus).is-valid,
 .was-validated .editor-styles-wrapper .input-group > .form-floating:not(:focus-within):valid,
 .editor-styles-wrapper .input-group > .form-floating:not(:focus-within).is-valid {
   z-index: 3;
@@ -2521,16 +2548,16 @@ a > .editor-styles-wrapper code {
   padding-right: calc(1.35em + 1.2rem);
   background-position: top calc(0.3375em + 0.3rem) right calc(0.3375em + 0.3rem);
 }
-.was-validated .editor-styles-wrapper .form-select:invalid, .editor-styles-wrapper .form-select.is-invalid {
+.was-validated .editor-styles-wrapper .form-select:invalid, .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:invalid, .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:invalid, .editor-styles-wrapper .form-select.is-invalid, .editor-styles-wrapper .woocommerce-ordering .is-invalid.orderby, .woocommerce-ordering .editor-styles-wrapper .is-invalid.orderby {
   border-color: var(--kptl-form-invalid-border-color);
 }
-.was-validated .editor-styles-wrapper .form-select:invalid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:invalid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-invalid:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-invalid:not([multiple])[size="1"] {
+.was-validated .editor-styles-wrapper .form-select:invalid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:invalid:not([multiple]):not([size]), .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:invalid:not([multiple]):not([size]), .was-validated .editor-styles-wrapper .form-select:invalid:not([multiple])[size="1"], .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:invalid:not([multiple])[size="1"], .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:invalid:not([multiple])[size="1"], .editor-styles-wrapper .form-select.is-invalid:not([multiple]):not([size]), .editor-styles-wrapper .woocommerce-ordering .is-invalid.orderby:not([multiple]):not([size]), .woocommerce-ordering .editor-styles-wrapper .is-invalid.orderby:not([multiple]):not([size]), .editor-styles-wrapper .form-select.is-invalid:not([multiple])[size="1"], .editor-styles-wrapper .woocommerce-ordering .is-invalid.orderby:not([multiple])[size="1"], .woocommerce-ordering .editor-styles-wrapper .is-invalid.orderby:not([multiple])[size="1"] {
   --kptl-form-select-bg-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ff0033'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ff0033' stroke='none'/%3e%3c/svg%3e");
   padding-right: 6.6rem;
   background-position: right 1.2rem center, center right 3.6rem;
   background-size: 16px 12px, calc(0.675em + 0.6rem) calc(0.675em + 0.6rem);
 }
-.was-validated .editor-styles-wrapper .form-select:invalid:focus, .editor-styles-wrapper .form-select.is-invalid:focus {
+.was-validated .editor-styles-wrapper .form-select:invalid:focus, .was-validated .editor-styles-wrapper .woocommerce-ordering .orderby:invalid:focus, .woocommerce-ordering .was-validated .editor-styles-wrapper .orderby:invalid:focus, .editor-styles-wrapper .form-select.is-invalid:focus, .editor-styles-wrapper .woocommerce-ordering .is-invalid.orderby:focus, .woocommerce-ordering .editor-styles-wrapper .is-invalid.orderby:focus {
   border-color: var(--kptl-form-invalid-border-color);
   box-shadow: 0 0 0 0.25rem rgba(var(--kptl-danger-rgb), 0.25);
 }
@@ -2554,7 +2581,11 @@ a > .editor-styles-wrapper code {
 }
 .was-validated .editor-styles-wrapper .input-group > .form-control:not(:focus):invalid, .editor-styles-wrapper .input-group > .form-control:not(:focus).is-invalid,
 .was-validated .editor-styles-wrapper .input-group > .form-select:not(:focus):invalid,
+.was-validated .editor-styles-wrapper .woocommerce-ordering .input-group > .orderby:not(:focus):invalid,
+.woocommerce-ordering .was-validated .editor-styles-wrapper .input-group > .orderby:not(:focus):invalid,
 .editor-styles-wrapper .input-group > .form-select:not(:focus).is-invalid,
+.editor-styles-wrapper .woocommerce-ordering .input-group > .orderby:not(:focus).is-invalid,
+.woocommerce-ordering .editor-styles-wrapper .input-group > .orderby:not(:focus).is-invalid,
 .was-validated .editor-styles-wrapper .input-group > .form-floating:not(:focus-within):invalid,
 .editor-styles-wrapper .input-group > .form-floating:not(:focus-within).is-invalid {
   z-index: 4;
@@ -3277,10 +3308,11 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .d-inline {
   display: inline !important;
 }
-.editor-styles-wrapper .d-inline-block, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+.editor-styles-wrapper .d-inline-block, .editor-styles-wrapper .btn, .editor-styles-wrapper .archive-item.product a.button, .archive-item.product .editor-styles-wrapper a.button, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link,
+.editor-styles-wrapper .btn-like {
   display: inline-block !important;
 }
-.editor-styles-wrapper .d-block, .editor-styles-wrapper .btn.btn-block, .editor-styles-wrapper .btn-block.wp-element-button, .editor-styles-wrapper .btn-block.wp-block-button__link {
+.editor-styles-wrapper .d-block, .editor-styles-wrapper .btn .btn-block, .editor-styles-wrapper .archive-item.product a.button .btn-block, .archive-item.product .editor-styles-wrapper a.button .btn-block, .btn .editor-styles-wrapper .btn-block, .archive-item.product a.button .editor-styles-wrapper .btn-block, .editor-styles-wrapper .wp-element-button .btn-block, .editor-styles-wrapper .wp-block-button__link .btn-block {
   display: block !important;
 }
 .editor-styles-wrapper .d-grid {
@@ -4255,10 +4287,10 @@ a > .editor-styles-wrapper code {
   font-family: var(--kptl-font-monospace) !important;
 }
 .editor-styles-wrapper .fs-1 {
-  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem) !important;
+  font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem) !important;
 }
 .editor-styles-wrapper .fs-2 {
-  font-size: 1.4rem !important;
+  font-size: 1.3rem !important;
 }
 .editor-styles-wrapper .fs-3 {
   font-size: 1.2rem !important;
@@ -4323,7 +4355,8 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .text-center, .editor-styles-wrapper .has-text-align-center, .editor-styles-wrapper .wp-caption-text {
   text-align: center !important;
 }
-.editor-styles-wrapper .text-decoration-none, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+.editor-styles-wrapper .text-decoration-none, .editor-styles-wrapper .btn, .editor-styles-wrapper .archive-item.product a.button, .archive-item.product .editor-styles-wrapper a.button, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link,
+.editor-styles-wrapper .btn-like {
   text-decoration: none !important;
 }
 .editor-styles-wrapper .text-decoration-underline {
@@ -4850,7 +4883,8 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .rounded-circle {
   border-radius: 50% !important;
 }
-.editor-styles-wrapper .rounded-pill, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+.editor-styles-wrapper .rounded-pill, .editor-styles-wrapper .btn, .editor-styles-wrapper .archive-item.product a.button, .archive-item.product .editor-styles-wrapper a.button, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link,
+.editor-styles-wrapper .btn-like {
   border-radius: var(--kptl-border-radius-pill) !important;
 }
 .editor-styles-wrapper .rounded-top {
@@ -8430,30 +8464,35 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .alignfull {
   max-width: calc(100% + 2rem);
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 600px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 100%;
   }
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px;
   }
 }
-.editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+@media (min-width: 2100px) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+    max-width: 800px;
+  }
+}
+.editor-styles-wrapper .alignwide, .editor-styles-wrapper .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .editor-styles-wrapper h1, .woocommerce-active.search-no-results .editor-styles-wrapper .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .woocommerce-no-products-found, .woocommerce-active.search-no-results .editor-styles-wrapper .woocommerce-no-products-found, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
-.editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+.editor-styles-wrapper .alignwide, .editor-styles-wrapper .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .editor-styles-wrapper h1, .woocommerce-active.search-no-results .editor-styles-wrapper .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .woocommerce-no-products-found, .woocommerce-active.search-no-results .editor-styles-wrapper .woocommerce-no-products-found, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
   max-width: 800px;
 }
 .editor-styles-wrapper .wp-block[data-align=wide] {
@@ -8466,11 +8505,25 @@ a > .editor-styles-wrapper code {
   max-width: inherit !important;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignwide, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+  .editor-styles-wrapper .alignwide, .editor-styles-wrapper .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .editor-styles-wrapper h1, .woocommerce-active.search-no-results .editor-styles-wrapper .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .woocommerce-no-products-found, .woocommerce-active.search-no-results .editor-styles-wrapper .woocommerce-no-products-found, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
     max-width: 900px;
   }
   .editor-styles-wrapper .wp-block[data-align=wide] {
     max-width: 900px;
+  }
+  .editor-styles-wrapper .wp-block[data-align=wide] * {
+    max-width: 100%;
+  }
+  .editor-styles-wrapper .wp-block[data-align=wide] .block-editor-inner-blocks .wp-block {
+    max-width: inherit !important;
+  }
+}
+@media (min-width: 2100px) {
+  .editor-styles-wrapper .alignwide, .editor-styles-wrapper .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .editor-styles-wrapper h1, .woocommerce-active.search-no-results .editor-styles-wrapper .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .h1, .editor-styles-wrapper .woocommerce-active.search-no-results .woocommerce-no-products-found, .woocommerce-active.search-no-results .editor-styles-wrapper .woocommerce-no-products-found, .editor-styles-wrapper .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+    max-width: 1050px;
+  }
+  .editor-styles-wrapper .wp-block[data-align=wide] {
+    max-width: 1050px;
   }
   .editor-styles-wrapper .wp-block[data-align=wide] * {
     max-width: 100%;
@@ -8511,6 +8564,18 @@ a > .editor-styles-wrapper code {
     margin-right: 0.5rem;
   }
 }
+@media (min-width: 2100px) {
+  .editor-styles-wrapper .alignwider {
+    max-width: 1600px;
+  }
+  .editor-styles-wrapper .col-alignwider {
+    max-width: 1600px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
 .editor-styles-wrapper .alignwidest {
   width: 100%;
   margin-right: auto;
@@ -8537,6 +8602,18 @@ a > .editor-styles-wrapper code {
   }
   .editor-styles-wrapper .col-alignwidest {
     max-width: 1550px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+@media (min-width: 2100px) {
+  .editor-styles-wrapper .alignwidest {
+    max-width: 1800px;
+  }
+  .editor-styles-wrapper .col-alignwidest {
+    max-width: 1800px !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     margin-left: 0.5rem;
@@ -8600,7 +8677,8 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .btn-menu.text-red:active, .editor-styles-wrapper a.text-red:active {
   color: #cc0029 !important;
 }
-.editor-styles-wrapper .ff-grotesk, .editor-styles-wrapper .btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+.editor-styles-wrapper .ff-grotesk, .editor-styles-wrapper .woocommerce-result-count, .editor-styles-wrapper .woocommerce-ordering .orderby, .woocommerce-ordering .editor-styles-wrapper .orderby, .editor-styles-wrapper .btn, .editor-styles-wrapper .archive-item.product a.button, .archive-item.product .editor-styles-wrapper a.button, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link,
+.editor-styles-wrapper .btn-like {
   font-family: var(--kptl-font-sans-serif);
 }
 .editor-styles-wrapper .ff-serif, .editor-styles-wrapper .is-root-container .wp-block-freeform p, .is-root-container .wp-block-freeform .editor-styles-wrapper p {
@@ -8899,12 +8977,14 @@ a > .editor-styles-wrapper code {
   text-decoration: none;
 }
 
-/* purgecss start ignore */
-.wp-block-group[class*=-background-color], .wp-block-group[class^=bg-] {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+.wp-block-group.alignfull, .wp-block[data-align=full] .wp-block-group {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.wp-block-group[class*=-background-color], .wp-block-group[class^=bg-] {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 #post-content h1:not(:first-child), #post-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #post-content .h1:not(:first-child), #post-content h2:not(:first-child), #post-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #post-content .h2:not(:first-child), #post-content h3:not(:first-child), #post-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #post-content .h3:not(:first-child), #post-content h4:not(:first-child), #post-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #post-content .h4:not(:first-child), #post-content h5:not(:first-child), #post-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #post-content .h5:not(:first-child), #post-content h6:not(:first-child), #post-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #post-content .h6:not(:first-child), #podcast-content h1:not(:first-child), #podcast-content .editor-styles-wrapper .h1:not(:first-child), .editor-styles-wrapper #podcast-content .h1:not(:first-child), #podcast-content h2:not(:first-child), #podcast-content .editor-styles-wrapper .h2:not(:first-child), .editor-styles-wrapper #podcast-content .h2:not(:first-child), #podcast-content h3:not(:first-child), #podcast-content .editor-styles-wrapper .h3:not(:first-child), .editor-styles-wrapper #podcast-content .h3:not(:first-child), #podcast-content h4:not(:first-child), #podcast-content .editor-styles-wrapper .h4:not(:first-child), .editor-styles-wrapper #podcast-content .h4:not(:first-child), #podcast-content h5:not(:first-child), #podcast-content .editor-styles-wrapper .h5:not(:first-child), .editor-styles-wrapper #podcast-content .h5:not(:first-child), #podcast-content h6:not(:first-child), #podcast-content .editor-styles-wrapper .h6:not(:first-child), .editor-styles-wrapper #podcast-content .h6:not(:first-child) {
@@ -8912,6 +8992,10 @@ a > .editor-styles-wrapper code {
 }
 #post-content .wp-block-heading + .wp-block-heading, #podcast-content .wp-block-heading + .wp-block-heading {
   margin-top: 1.5rem;
+}
+
+.main-content .post-header + #post-content {
+  margin-top: 2rem;
 }
 
 .main-content > *:not(:last-child),
@@ -8925,7 +9009,7 @@ a > .editor-styles-wrapper code {
 
 @media (min-width: 1200px) {
   .bubble-heading.post-title {
-    font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
+    font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
   }
 }
 @media (min-width: 600px) {
@@ -8939,7 +9023,6 @@ a > .editor-styles-wrapper code {
   line-height: 1.35;
 }
 
-/* purgecss ignore */
 .perex {
   font-size: 1.2rem;
   font-weight: bold;
@@ -8954,7 +9037,6 @@ a > .editor-styles-wrapper code {
   margin-left: 0.3em;
 }
 
-/* purgecss ignore */
 img {
   height: auto;
   max-width: 100%;
@@ -8972,7 +9054,6 @@ img {
     color: #000 !important;
   }
 }
-/* purgecss end ignore */
 .edit-post-visual-editor__post-title-wrapper {
   text-align: center;
 }
@@ -8987,7 +9068,7 @@ img {
 
 .inzercia {
   aspect-ratio: 2/1;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 @media (min-width: 600px) {
@@ -8995,9 +9076,11 @@ img {
     aspect-ratio: 7/1;
   }
 }
-/** purgecss start ignore */
 .archive-item:focus {
   outline: none !important;
+}
+.archive-item .archive-item-link, .archive-item .woocommerce-loop-product__link {
+  transition: color 0.05s linear;
 }
 .archive-item .archive-item-link .red-outline-hover, .archive-item .woocommerce-loop-product__link .red-outline-hover {
   position: relative;
@@ -9145,12 +9228,12 @@ img {
   margin-top: 3rem;
 }
 
-/** purgecss end ignore */
-.btn:not(.btn-menu), .editor-styles-wrapper .wp-element-button:not(.btn-menu), .editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
+.btn-like, .btn:not(.btn-menu), .archive-item.product a.button:not(.btn-menu), .editor-styles-wrapper .wp-element-button:not(.btn-menu), .editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
   text-transform: uppercase;
 }
 
-.btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link {
+.btn, .archive-item.product a.button, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link,
+.btn-like {
   text-align: center;
   color: var(--kptl-body-color);
   border-style: solid;
@@ -9158,53 +9241,66 @@ img {
   border-width: 2px;
   line-height: 1;
   white-space: nowrap;
-  padding: 0.6em 1.2em 0.45em 1.2em;
+  padding: 0.6em 1.2em 0.47em 1.2em;
   transition: 0.05s linear;
 }
-.btn.btn-block, .editor-styles-wrapper .btn-block.wp-element-button, .editor-styles-wrapper .btn-block.wp-block-button__link {
+
+.btn .btn-block, .archive-item.product a.button .btn-block, .editor-styles-wrapper .wp-element-button .btn-block, .editor-styles-wrapper .wp-block-button__link .btn-block {
   width: 100%;
 }
-.btn svg, .editor-styles-wrapper .wp-element-button svg, .editor-styles-wrapper .wp-block-button__link svg {
+.btn svg.icon-square, .archive-item.product a.button svg.icon-square, .btn .wp-block-button svg.wp-block-button__link::before, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .btn svg.wp-block-button__link::before, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::before, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::before, .btn .wp-block-button svg.wp-block-button__link::after, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .btn svg.wp-block-button__link::after, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::after, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-element-button svg.icon-square, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::before, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-block-button__link svg.icon-square, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::before, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::after {
+  margin-top: -0.15rem;
+  vertical-align: middle;
   transition: 0.05s linear;
 }
-.btn:focus, .editor-styles-wrapper .wp-element-button:focus, .editor-styles-wrapper .wp-block-button__link:focus, .btn:focus-visible, .editor-styles-wrapper .wp-element-button:focus-visible, .editor-styles-wrapper .wp-block-button__link:focus-visible {
-  outline: none !important;
+.btn:disabled, .archive-item.product a.button:disabled, .editor-styles-wrapper .wp-element-button:disabled, .editor-styles-wrapper .wp-block-button__link:disabled {
+  background-color: var(--kptl-secondary);
+  border-color: var(--kptl-secondary);
+  color: var(--kptl-gray);
 }
-.btn.btn-sm, .editor-styles-wrapper .btn-sm.wp-element-button, .editor-styles-wrapper .btn-sm.wp-block-button__link {
+
+.btn-sm, .archive-item.product a.button {
   font-size: 0.8rem;
 }
-.btn.btn-primary, .editor-styles-wrapper .btn-primary.wp-element-button, .editor-styles-wrapper .btn-primary.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-pink-background-color, .editor-styles-wrapper .wp-block-button__link.has-pink-background-color {
+
+.btn-primary, .editor-styles-wrapper .wp-element-button.has-pink-background-color, .editor-styles-wrapper .wp-block-button__link.has-pink-background-color {
   background-color: var(--kptl-primary);
   border-color: var(--kptl-primary);
 }
-.btn.btn-white, .editor-styles-wrapper .btn-white.wp-element-button, .editor-styles-wrapper .btn-white.wp-block-button__link {
+
+.btn-white {
   background-color: var(--kptl-white);
   border-color: var(--kptl-white);
 }
-.btn.btn-secondary, .editor-styles-wrapper .btn-secondary.wp-element-button, .editor-styles-wrapper .btn-secondary.wp-block-button__link, .editor-styles-wrapper .wp-element-button:not(.has-background), .editor-styles-wrapper .wp-block-button__link:not(.has-background) {
+
+.btn-secondary, .archive-item.product a.button, .editor-styles-wrapper .wp-element-button:not(.has-background), .editor-styles-wrapper .wp-block-button__link:not(.has-background) {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
 }
-.btn.btn-outline, .editor-styles-wrapper .btn-outline.wp-element-button, .editor-styles-wrapper .btn-outline.wp-block-button__link, .editor-styles-wrapper .btn.wp-block-button.is-style-outline, .editor-styles-wrapper .wp-element-button.wp-block-button.is-style-outline, .editor-styles-wrapper .wp-block-button__link.wp-block-button.is-style-outline {
+
+.btn-outline, .editor-styles-wrapper .wp-block-button.is-style-outline {
   background-color: var(--kptl-white);
   border-color: var(--kptl-body-color);
 }
-.btn.btn-outline.active, .editor-styles-wrapper .btn-outline.active.wp-element-button, .editor-styles-wrapper .btn-outline.active.wp-block-button__link, .editor-styles-wrapper .btn.active.wp-block-button.is-style-outline, .editor-styles-wrapper .active.wp-element-button.wp-block-button.is-style-outline, .editor-styles-wrapper .active.wp-block-button__link.wp-block-button.is-style-outline {
+.btn-outline.active, .editor-styles-wrapper .active.wp-block-button.is-style-outline {
   background-color: var(--kptl-primary);
 }
-.btn.btn-link, .editor-styles-wrapper .btn-link.wp-element-button, .editor-styles-wrapper .btn-link.wp-block-button__link {
+
+.btn-link {
   background-color: transparent !important;
   border-color: transparent !important;
 }
-.btn.btn-red, .editor-styles-wrapper .btn-red.wp-element-button, .editor-styles-wrapper .btn-red.wp-block-button__link, .editor-styles-wrapper .wp-element-button.has-red-background-color, .editor-styles-wrapper .wp-block-button__link.has-red-background-color {
+
+.btn-red, .editor-styles-wrapper .wp-element-button.has-red-background-color, .editor-styles-wrapper .wp-block-button__link.has-red-background-color {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-.btn.btn-red svg, .editor-styles-wrapper .btn-red.wp-element-button svg, .editor-styles-wrapper .btn-red.wp-block-button__link svg, .editor-styles-wrapper .wp-element-button.has-red-background-color svg, .editor-styles-wrapper .wp-block-button__link.has-red-background-color svg {
+.btn-red svg, .editor-styles-wrapper .wp-element-button.has-red-background-color svg, .editor-styles-wrapper .wp-block-button__link.has-red-background-color svg {
   fill: #fff;
 }
-.btn.btn-close, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
+
+.btn-close {
   width: 4rem;
   height: 4rem;
   line-height: 3rem;
@@ -9212,50 +9308,45 @@ img {
   background-color: var(--kptl-white);
   border-color: var(--kptl-white);
 }
-.btn.btn-close svg, .editor-styles-wrapper .btn-close.wp-element-button svg, .editor-styles-wrapper .btn-close.wp-block-button__link svg {
+.btn-close svg {
   width: 2rem;
   height: 2rem;
 }
-.btn:disabled, .editor-styles-wrapper .wp-element-button:disabled, .editor-styles-wrapper .wp-block-button__link:disabled {
-  background-color: var(--kptl-secondary);
-  border-color: var(--kptl-secondary);
-  color: var(--kptl-gray);
-}
 
 @media (min-width: 600px) {
-  .btn.btn-close, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
+  .btn.btn-close, .archive-item.product a.btn-close.button, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
     border-color: transparent !important;
     background: none !important;
   }
-  .btn.btn-close:hover svg, .editor-styles-wrapper .btn-close.wp-element-button:hover svg, .editor-styles-wrapper .btn-close.wp-block-button__link:hover svg {
+  .btn.btn-close:hover svg, .archive-item.product a.btn-close.button:hover svg, .editor-styles-wrapper .btn-close.wp-element-button:hover svg, .editor-styles-wrapper .btn-close.wp-block-button__link:hover svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:focus-visible svg, .editor-styles-wrapper .btn-close.wp-element-button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .editor-styles-wrapper .btn-close.wp-element-button:focus svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus svg {
+  .btn.btn-close:focus-visible svg, .archive-item.product a.btn-close.button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-element-button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .archive-item.product a.btn-close.button:focus svg, .editor-styles-wrapper .btn-close.wp-element-button:focus svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus svg {
     fill: var(--kptl-red);
   }
-  .btn.btn-close:active svg, .editor-styles-wrapper .btn-close.wp-element-button:active svg, .editor-styles-wrapper .btn-close.wp-block-button__link:active svg {
+  .btn.btn-close:active svg, .archive-item.product a.btn-close.button:active svg, .editor-styles-wrapper .btn-close.wp-element-button:active svg, .editor-styles-wrapper .btn-close.wp-block-button__link:active svg {
     fill: #cc0029;
   }
 }
-button.btn:hover:not(:disabled), .editor-styles-wrapper button.wp-element-button:hover:not(:disabled), .editor-styles-wrapper button.wp-block-button__link:hover:not(:disabled), button.btn:focus-visible, .editor-styles-wrapper button.wp-element-button:focus-visible, .editor-styles-wrapper button.wp-block-button__link:focus-visible, button.btn:focus, .editor-styles-wrapper button.wp-element-button:focus, .editor-styles-wrapper button.wp-block-button__link:focus, a.btn:hover:not(:disabled), .editor-styles-wrapper a.wp-element-button:hover:not(:disabled), .editor-styles-wrapper a.wp-block-button__link:hover:not(:disabled), a.btn:focus-visible, .editor-styles-wrapper a.wp-element-button:focus-visible, .editor-styles-wrapper a.wp-block-button__link:focus-visible, a.btn:focus, .editor-styles-wrapper a.wp-element-button:focus, .editor-styles-wrapper a.wp-block-button__link:focus {
+.btn:hover:not(:disabled), .archive-item.product a.button:hover:not(:disabled), .editor-styles-wrapper .wp-element-button:hover:not(:disabled), .editor-styles-wrapper .wp-block-button__link:hover:not(:disabled), .btn:focus-visible, .archive-item.product a.button:focus-visible, .editor-styles-wrapper .wp-element-button:focus-visible, .editor-styles-wrapper .wp-block-button__link:focus-visible, .btn:focus, .archive-item.product a.button:focus, .editor-styles-wrapper .wp-element-button:focus, .editor-styles-wrapper .wp-block-button__link:focus {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
   color: #fff;
 }
-button.btn:hover:not(:disabled) svg, .editor-styles-wrapper button.wp-element-button:hover:not(:disabled) svg, .editor-styles-wrapper button.wp-block-button__link:hover:not(:disabled) svg, button.btn:focus-visible svg, .editor-styles-wrapper button.wp-element-button:focus-visible svg, .editor-styles-wrapper button.wp-block-button__link:focus-visible svg, button.btn:focus svg, .editor-styles-wrapper button.wp-element-button:focus svg, .editor-styles-wrapper button.wp-block-button__link:focus svg, a.btn:hover:not(:disabled) svg, .editor-styles-wrapper a.wp-element-button:hover:not(:disabled) svg, .editor-styles-wrapper a.wp-block-button__link:hover:not(:disabled) svg, a.btn:focus-visible svg, .editor-styles-wrapper a.wp-element-button:focus-visible svg, .editor-styles-wrapper a.wp-block-button__link:focus-visible svg, a.btn:focus svg, .editor-styles-wrapper a.wp-element-button:focus svg, .editor-styles-wrapper a.wp-block-button__link:focus svg {
+.btn:hover:not(:disabled) svg, .archive-item.product a.button:hover:not(:disabled) svg, .editor-styles-wrapper .wp-element-button:hover:not(:disabled) svg, .editor-styles-wrapper .wp-block-button__link:hover:not(:disabled) svg, .btn:focus-visible svg, .archive-item.product a.button:focus-visible svg, .editor-styles-wrapper .wp-element-button:focus-visible svg, .editor-styles-wrapper .wp-block-button__link:focus-visible svg, .btn:focus svg, .archive-item.product a.button:focus svg, .editor-styles-wrapper .wp-element-button:focus svg, .editor-styles-wrapper .wp-block-button__link:focus svg {
   fill: #fff;
 }
-button.btn:active:not(:disabled), .editor-styles-wrapper button.wp-element-button:active:not(:disabled), .editor-styles-wrapper button.wp-block-button__link:active:not(:disabled), a.btn:active:not(:disabled), .editor-styles-wrapper a.wp-element-button:active:not(:disabled), .editor-styles-wrapper a.wp-block-button__link:active:not(:disabled) {
+.btn:active:not(:disabled), .archive-item.product a.button:active:not(:disabled), .editor-styles-wrapper .wp-element-button:active:not(:disabled), .editor-styles-wrapper .wp-block-button__link:active:not(:disabled) {
   color: #fff;
   background-color: #cc0029;
   border-color: #cc0029;
 }
-button.btn.btn-red:hover:not(:disabled), .editor-styles-wrapper button.btn-red.wp-element-button:hover:not(:disabled), .editor-styles-wrapper button.btn-red.wp-block-button__link:hover:not(:disabled), .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover:not(:disabled), .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover:not(:disabled), button.btn.btn-red:focus-visible, .editor-styles-wrapper button.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper button.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, a.btn.btn-red:hover:not(:disabled), .editor-styles-wrapper a.btn-red.wp-element-button:hover:not(:disabled), .editor-styles-wrapper a.btn-red.wp-block-button__link:hover:not(:disabled), .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover:not(:disabled), .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover:not(:disabled), a.btn.btn-red:focus-visible, .editor-styles-wrapper a.btn-red.wp-element-button:focus-visible, .editor-styles-wrapper a.btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
+.btn.btn-red:hover:not(:disabled), .archive-item.product a.btn-red.button:hover:not(:disabled), .editor-styles-wrapper .btn-red.wp-element-button:hover:not(:disabled), .editor-styles-wrapper .btn-red.wp-block-button__link:hover:not(:disabled), .editor-styles-wrapper .wp-element-button.has-red-background-color:hover:not(:disabled), .editor-styles-wrapper .wp-block-button__link.has-red-background-color:hover:not(:disabled), .btn.btn-red:focus-visible, .archive-item.product a.btn-red.button:focus-visible, .editor-styles-wrapper .btn-red.wp-element-button:focus-visible, .editor-styles-wrapper .btn-red.wp-block-button__link:focus-visible, .editor-styles-wrapper .wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .wp-block-button__link.has-red-background-color:focus-visible {
   background-color: var(--kptl-primary);
   color: var(--kptl-body-color);
   border-color: var(--kptl-body-color);
 }
-button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.wp-element-button:active:not(:disabled), .editor-styles-wrapper button.btn-red.wp-block-button__link:active:not(:disabled), .editor-styles-wrapper button.wp-element-button.has-red-background-color:active:not(:disabled), .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:active:not(:disabled), a.btn.btn-red:active:not(:disabled), .editor-styles-wrapper a.btn-red.wp-element-button:active:not(:disabled), .editor-styles-wrapper a.btn-red.wp-block-button__link:active:not(:disabled), .editor-styles-wrapper a.wp-element-button.has-red-background-color:active:not(:disabled), .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:active:not(:disabled) {
+.btn.btn-red:active:not(:disabled), .archive-item.product a.btn-red.button:active:not(:disabled), .editor-styles-wrapper .btn-red.wp-element-button:active:not(:disabled), .editor-styles-wrapper .btn-red.wp-block-button__link:active:not(:disabled), .editor-styles-wrapper .wp-element-button.has-red-background-color:active:not(:disabled), .editor-styles-wrapper .wp-block-button__link.has-red-background-color:active:not(:disabled) {
   background-color: #ff9efd;
   border-color: #ff9efd;
 }
@@ -9323,8 +9414,8 @@ button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.
 
 .archive-podcast-item {
   display: grid;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
   row-gap: 0.5rem;
   grid-template-columns: repeat(6, 0.167fr);
   grid-template-rows: auto auto auto 1fr;
@@ -9368,6 +9459,12 @@ button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.
   grid-row-start: 4;
   grid-row-end: 5;
 }
+.archive-podcast-item .item-icon-podcast {
+  top: 0.15rem;
+  left: -1.3rem;
+  width: 0.81rem;
+  height: 1.3rem;
+}
 
 @media (max-width: 899.98px) {
   .archive-podcast-item .archive-item-link .archive-item-image {
@@ -9403,9 +9500,6 @@ button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.
     grid-row-start: 3;
     grid-row-end: 4;
   }
-  .archive-podcast-item .archive-item-link.excerpt-wrapper:last-child {
-    margin-bottom: -1rem;
-  }
   .archive-podcast-item .item-terms {
     grid-column-start: 1;
     grid-column-end: 7;
@@ -9413,20 +9507,40 @@ button.btn.btn-red:active:not(:disabled), .editor-styles-wrapper button.btn-red.
     grid-row-end: 5;
   }
 }
-.archive-item:has(.archive-item-link:hover) .archive-item-link .archive-item-image, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .archive-item-image, .archive-item:has(.archive-item-link:active) .archive-item-link .archive-item-image {
-  outline: solid 5px #ffc2fe;
-}
-.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover, .archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover {
-  color: #fff;
-}
-.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover::before, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover::before, .archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover::before {
-  opacity: 1;
-}
-.archive-item:has(.archive-item-link:hover) .archive-item-link:not(.title-wrapper), .archive-item:has(.archive-item-link:focus-visible) .archive-item-link:not(.title-wrapper), .archive-item:has(.archive-item-link:active) .archive-item-link:not(.title-wrapper) {
+.archive-item:has(.archive-item-link:hover) .archive-item-link, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link {
   color: var(--kptl-red);
 }
-.archive-item:has(.archive-item-link:hover) .archive-item-link.podcast-title-wrapper .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link.podcast-title-wrapper .red-outline-hover, .archive-item:has(.archive-item-link:active) .archive-item-link.podcast-title-wrapper .red-outline-hover {
+.archive-item:has(.archive-item-link:hover) .archive-item-link .archive-item-image, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .archive-item-image {
+  outline: solid 5px #ffc2fe;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover {
+  color: #fff;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link .red-outline-hover::before, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link .red-outline-hover::before {
+  opacity: 1;
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link svg, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link svg {
+  fill: var(--kptl-red);
+}
+.archive-item:has(.archive-item-link:hover) .archive-item-link.podcast-title-wrapper .red-outline-hover, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link.podcast-title-wrapper .red-outline-hover {
   color: var(--kptl-secondary);
+}
+
+.archive-item:has(.archive-item-link:active) .archive-item-link {
+  color: #cc0029;
+}
+.archive-item:has(.archive-item-link:active) .archive-item-link .archive-item-image {
+  outline: solid 5px #ff9efd;
+}
+.archive-item:has(.archive-item-link:active) .archive-item-link svg {
+  fill: #cc0029;
+}
+.archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover {
+  color: #fff;
+}
+.archive-item:has(.archive-item-link:active) .archive-item-link .red-outline-hover::before {
+  -webkit-text-stroke: 6px #cc0029;
+  opacity: 1;
 }
 
 .podcast-content p {
@@ -9451,7 +9565,6 @@ body.modal-open {
 
 @media (min-width: 600px) {
   .post-filters {
-    position: sticky;
     z-index: 1000;
   }
   .post-filters .btn-filter-toggle, .post-filters .btn-close {
@@ -9519,12 +9632,16 @@ body.modal-open {
   display: none;
 }
 
+.darujme-form label {
+  line-height: unset;
+}
 .darujme-form .darujme-radio-input-btn {
   position: absolute;
   opacity: 0;
 }
 .darujme-form .darujme-radio-input-btn + label {
   cursor: pointer;
+  width: 100%;
 }
 .darujme-form .darujme-radio-input-btn:focus-visible + label {
   outline: solid 2px var(--kptl-red) !important;
@@ -9543,6 +9660,44 @@ body.modal-open {
   background-color: transparent !important;
 }
 
+.woocommerce-ordering .orderby {
+  padding-top: 0.6em;
+  padding-bottom: 0.47em;
+  padding-left: 1.2rem;
+  padding-right: 2.6rem;
+}
+
+.woocommerce-page .archive-item-image {
+  aspect-ratio: 1 !important;
+}
+
+.archive-item.product .onsale, .archive-item.product .soldout, .archive-item.product .predpredaj {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 1.1rem;
+}
+.archive-item.product a.button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.woocommerce-result-count {
+  margin-bottom: 1rem;
+}
+
+.add-to-cart-wrapper .spinner-col {
+  display: none;
+}
+
+.add_to_cart_button.loading + .spinner-col {
+  display: block;
+}
+
+.btn, .editor-styles-wrapper .wp-element-button, .editor-styles-wrapper .wp-block-button__link, .archive-item.product a.button {
+  font-size: 0.9rem !important;
+}
+
 .wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)) {
   overflow: hidden;
 }
@@ -9552,5 +9707,8 @@ body.modal-open {
   border-radius: 9999px;
   display: inline-block;
   left: 50%;
+  width: unset !important;
   transform: translateX(-50%);
 }
+
+/*! purgecss end ignore */

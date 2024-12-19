@@ -407,11 +407,13 @@ function kapital_get_issue_title_year_month(string $original_archive_title, bool
  * Renders post filters
  * @param bool $is_general_post_archive if render filters for all posts
  * @param bool $is_term_archive if render child terms as filters
- * @param int $term_id id of parent term to render children
+ * @param bool $is_page if render child pages
+ * @param int $object_id id of parent term or page to render children
  * @param string $taxonomy slug of taxonomy of parent term
+ * @param bool $sticky - wether to render filters as sticky with button "Filter" on mobile
  * @return string HMTL markup of filters 
  */
-function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, int $term_id = 0, string $taxonomy = "", string $post_type = 'post')
+function kapital_post_filters(bool $is_general_post_archive = true, bool $is_term_archive = false, $is_page = false, int $object_id = 0, string $taxonomy = "", string $post_type = 'post', bool $sticky = true)
 {
     if ($is_general_post_archive):
         if ($post_type === 'post') {
@@ -429,8 +431,17 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
         $filters = get_terms(
             $taxonomy,
             array(
-                'child_of' => $term_id,
+                'child_of' =>  $object_id,
                 'orderby' => 'name'
+            )
+        );
+    elseif ($is_page):
+        $filters = get_pages(
+            array(
+                'child_of' =>  $object_id, 
+                'parent' =>  $object_id,
+                'orderby' => 'title', 
+                'order' => 'asc'
             )
         );
     else:
@@ -438,24 +449,39 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     endif;
     $html = "";
     if ($filters && !empty($filters)):
-        $html .= '<nav class="post-filters mt-5 text-start mb-4 mb-sm-5 alignwider">';
-        $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
-        $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
-        $html .= '</button>';
-        $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
+        if ($sticky){
+            $html .= '<nav class="post-filters position-sticky my-5 text-start alignwider">';
+            $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
+            $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
+            $html .= '</button>';
+            $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
+        } else {
+            $html .= '<nav class="post-filters my-5 text-start alignwider">';
+        }
         $html .= '<div class="filters-content py-2 py-sm-0">';
-        $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';
+        if ($sticky){
+            $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';
+        }
         foreach ($filters as $filter):
-            //shorten one specific name as it is too long for filter
-            $term_slug = $filter->slug;
-            $term_name = $filter->name;
-            $term_name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $term_name;
-            $term_name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $term_name;
+            if($is_page){
+                $name = $filter->post_title;
+                $link = get_post_permalink($filter);
+            } else {
+                $term_slug = $filter->slug;
+                $name = $filter->name;
+                $link = get_term_link($filter);
+                //shorten one specific name as it is too long for filter
+                $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
+                $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
+            }        
             $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
-            $html .= '<a class="btn btn-outline text-center" href="' . get_term_link($filter) . '">' . $term_name . '</a>';
+            $html .= '<a class="btn btn-outline text-center" href="' . $link . '">' . $name . '</a>';
             $html .= '</div>';
         endforeach;
         $html .= '</div>';
+        if ($sticky){
+            $html .= '</div>';
+        }
         $html .= '</div>';
         $html .= '</nav>';
     endif;
@@ -560,12 +586,13 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_breadcrumbs' =>  $show_false ? false : true,
         'show_title' => $show_false ? false : true,
         'show_author' => $show_false ? false : true,
-        'show_categories' => $show_false ? false : true,
+        'show_categories' => $show_false ? false : true, //only used for post, podcast
         'show_views' => $show_false ? false : true,
         'show_date' => $show_false ? false : true,
-        'show_ads'  => $show_false ? false : true,
-        'show_support' => $show_false ? false : true,
-        'show_footer' => $show_false ? false : true,
+        'show_ads'  => $show_false ? false : true, //only used for post, podcast
+        'show_support' => $show_false ? false : true, //only used for post, podcast
+        'show_footer' => $show_false ? false : true, //only used for post, podcast
+        'show_filters' => false, //only used for page
     );
     if ($post_type === 'podcast') $default_render_settings["show_featured_image"] = false;
     if ($post_type === 'page') {
@@ -573,6 +600,7 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $default_render_settings["show_views"] = false;
         $default_render_settings["show_date"] = false;
         $default_render_settings["show_categories"] = false;
+        $default_render_settings["show_author"] = false;
     }
 
     //var_dump($default_render_settings);

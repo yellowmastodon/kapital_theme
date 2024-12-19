@@ -16,8 +16,9 @@ let safelist = {
         /^offcanvas/,
         /visible$/,
         /^lh-sm/, 
-        /rounded-pill/,
         /^border-/,
+        /button/,
+        /^pwgc/
     ],
     deep: [
         /^align/,
@@ -27,7 +28,11 @@ let safelist = {
         /^quick-menu/,
         /^offcanvas/,
         /^h[1-6]/,
-        /menu-item/
+        /menu-item/,
+        /rounded-pill/,
+        /^text-decoration/, 
+        /button/,
+        /^input/
     ]
 }
 
@@ -48,7 +53,9 @@ mix.
     })
     .purgeCss({
         content: [
-            '*.php',
+            '**/*.php',
+            '**/*.js',
+            '../../plugins/woocommerce/**/*.php'
         ],
         safelist: safelist
     });
@@ -59,7 +66,9 @@ mix.
     })
     .purgeCss({
         content: [
-            '*.php',
+            '**/*.php',
+            '**/*.js',
+            '../../plugins/woocommerce/**/*.php'
         ],
         safelist: safelist
     });

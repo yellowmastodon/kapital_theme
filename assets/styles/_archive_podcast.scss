@@ -1,6 +1,6 @@
 .archive-podcast-item{
     display: grid;
-    column-gap: map-get($spacers, 3);
+    column-gap: map-get($spacers, 5);
     row-gap: map-get($spacers, 2);
     grid-template-columns: repeat(6, .167fr);
     grid-template-rows: auto auto auto 1fr;
@@ -48,6 +48,12 @@
         grid-row-start: 4;
         grid-row-end: 5;
     }
+    .item-icon-podcast{
+        top: .15rem;
+        left: -1.3rem;
+        width: 0.81rem;
+        height: 1.3rem;
+    }
 }
 
 
@@ -85,9 +91,6 @@
         grid-column-end: 7;
         grid-row-start: 3;
         grid-row-end: 4;
-        &:last-child{
-            margin-bottom: -(map-get($spacers,3)); //fix bottom gap if no terms present
-        }
     }
 
     .item-terms{
@@ -100,9 +103,10 @@
 }
 }
 //MULTIPLE LINKS FIXES
-.archive-item:has(.archive-item-link:hover) .archive-item-link, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link, .archive-item:has(.archive-item-link:active) .archive-item-link{
+.archive-item:has(.archive-item-link:hover) .archive-item-link, .archive-item:has(.archive-item-link:focus-visible) .archive-item-link{
+    color: var(--#{$prefix}red);
     .archive-item-image{
-        outline: solid 5px #ffc2fe;
+        outline: solid 5px $primary;
     }
     .red-outline-hover {
         color: $white;
@@ -110,12 +114,32 @@
             opacity: 1;
         }
     }
-    &:not(.title-wrapper){
-        color: var(--#{$prefix}red);
+    svg{
+        fill: var(--#{$prefix}red);
     }
+
     &.podcast-title-wrapper{
         .red-outline-hover{
             color: var(--#{$prefix}secondary);
+        }
+    }
+}
+
+.archive-item:has(.archive-item-link:active) .archive-item-link{
+    color: darken($red, 10);
+
+    .archive-item-image{
+        outline: solid 5px darken($primary, 7);
+    }
+    svg{
+        fill: darken($red, 10);
+    }
+
+    .red-outline-hover {
+        color: $white;
+        &::before {
+            -webkit-text-stroke: 6px darken($red, 10);
+            opacity: 1;
         }
     }
 }
