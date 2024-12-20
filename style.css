@@ -10379,11 +10379,6 @@ ul {
     padding-top: 0.5rem;
   }
 }
-@media (min-width: 900px) {
-  .single-redakcia .breadcrumb-nav + #main {
-    padding-top: 1.5rem;
-  }
-}
 .btn-menu, a {
   transition: color 0.05s linear;
 }
