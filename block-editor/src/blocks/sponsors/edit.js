@@ -105,7 +105,7 @@ export default function Edit({ attributes, setAttributes }) {
 						))}
 					</div>
 				</div>
-				<div class="col fs-6">
+				<div className="col fs-6">
 					<InnerBlocks template={TEMPLATE} />
 				</div>
 			</div>

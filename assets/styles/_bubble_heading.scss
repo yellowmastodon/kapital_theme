@@ -18,6 +18,11 @@ $bh_bottom: .25em;
     display: inline-block;
     position: relative;
 }
+@include media-breakpoint-down('sm'){
+    .bubble-heading span{
+        font-size: .9em; //smaller than regular headings, as they might not fit
+    }
+}
 
 .bubble-heading span{
     margin-right: .2em;

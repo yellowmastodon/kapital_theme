@@ -81,7 +81,7 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms'])):
                 <?php foreach ($recommended_posts_keys as $rec_post_key) {
                     //var_dump($recommended_posts[$rec_post_key]->post_title);
                     //setup_postdata($recommended_posts[$rec_post_key]);
-                    get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $recommended_posts[$rec_post_key]));
+                    get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $recommended_posts[$rec_post_key], "heading_level" => 3));
                     //wp_reset_postdata();
                 } ?>
             </div>

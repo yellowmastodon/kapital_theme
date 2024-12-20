@@ -10,7 +10,6 @@
 /**
  * Register post meta which control rendering of single-post and single-podcast
  */
-$post_types_with_controlled_rendering = ['post', 'podcast', 'page'];
 foreach ($post_types_with_controlled_rendering as $post_type) {
     $render_settings_schema =
     array(

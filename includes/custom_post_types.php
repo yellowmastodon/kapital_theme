@@ -109,7 +109,7 @@ function redakcia_post_type() {
 		'description'           => __( 'Členovia*ky redakcie', 'kapital' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields'),
-		'taxonomies'            => array( 'tags' ),
+		'taxonomies'            => array(),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

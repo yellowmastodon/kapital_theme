@@ -6,26 +6,40 @@ global $is_woocommerce_site;
 $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
 if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
+
+
 /** render breadcrumbs */
 if ($render_settings["show_breadcrumbs"]) {
+    $breadcrumbs = array();
     if ($post->post_type === 'page') {
         if ($is_woocommerce_site) {
+            $breadcrumbs[] = [__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))];
             if (is_checkout()){
-                echo kapital_breadcrumbs(
-                    [[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))],
-                    [get_the_title(wc_get_page_id('cart')), get_permalink(wc_get_page_id('cart'))],
-                    [get_the_title(), get_the_permalink(), true]
-                    ], 'container');
+                $breadcrumbs[] = [get_the_title(wc_get_page_id('cart')), get_permalink(wc_get_page_id('cart'))];
+                $breadcrumbs[] = [get_the_title(), get_the_permalink(), true];
             } else {
-                echo kapital_breadcrumbs([[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))], [get_the_title(), get_the_permalink(), true]], 'container');
+                if ($post->post_parent){
+                    //only retrieves one parent, but fuck it, lets not query again
+                    $parent = get_post($post->post_parent);
+                    $breadcrumbs[] = [$parent->post_title, get_the_permalink($parent)];
+                }
+                $breadcrumbs[] = [get_the_title(), get_the_permalink(), true];
             }
         } else {
-            echo kapital_breadcrumbs([[get_the_title(), get_the_permalink(), true]], 'container');
+            if ($post->post_parent){
+                //only retrieves one parent, but fuck it, lets not query again
+                $parent = get_post($post->post_parent);
+                $breadcrumbs[] = [$parent->post_title, get_the_permalink($parent)];
+            }
+            $breadcrumbs[] = [get_the_title(), get_the_permalink(), true];
         }
     } else {
-        echo kapital_breadcrumbs([[__("Články", "kapital"), get_post_type_archive_link('post')]], 'container');
+        $breadcrumbs[] = [__("Články", "kapital"), get_post_type_archive_link('post')];
     }
+    echo kapital_breadcrumbs($breadcrumbs, "container");
 }
+
+
 /** MAIN */
 ?>
 <main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
@@ -71,7 +85,7 @@ if ($render_settings["show_breadcrumbs"]) {
              * Render article header
              * if hidden, let's keep h1 tag, so only visually-hidden
              */ ?>
-            <header class="post-header mb-4<?php if (!$render_settings["show_title"]) echo ' visually-hidden'; ?>" role="heading">
+            <header class="post-header mb-4<?php if (!$render_settings["show_title"]) echo ' visually-hidden'; ?>">
                 <?php
                 echo kapital_bubble_title(get_the_title(), 1, 'mb-3 mb-sm-4 post-title alignwide');
                 $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
@@ -145,7 +159,7 @@ if ($render_settings["show_breadcrumbs"]) {
                         //featured image
                         if ($render_settings["show_featured_image"]):
                         $thumbnail_id = get_post_thumbnail_id();
-                        if (is_int($thumbnail_id) && $thumbnail_id !== 0) echo kapital_responsive_image($thumbnail_id, "(max-width: 900px) 95vw, (max-width: 1639px) 800px, (max-width: 1919px) 900px, 1000px", true, 'rounded w-100');
+                        if (is_int($thumbnail_id) && $thumbnail_id !== 0) echo kapital_responsive_image($thumbnail_id, "(max-width: 900px) 95vw, (max-width: 1649px) 800px, (max-width: 1919px) 900px, 1000px", true, 'rounded w-100');
                         endif; ?>
                 </div><?php //end of container with views, author, publish date and featured image 
             endif;       ?>

@@ -5,17 +5,19 @@ import { Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, Button, SelectControl } from '@wordpress/components';
 import { addFilter } from '@wordpress/hooks';
-import { useBlockProps } from '@wordpress/block-editor';
 
 export function registerKapitalButtonVariation() {
 
     function addCustomAttributes(settings, name) {
 
         if (settings.name !== 'core/button') {
-            return settings
+            return settings;
         }
         //add custom attributes
+        if (typeof settings.attributes != undefined){
 
+            
+        }
         if (settings.attributes) {
 
             settings.attributes.icon = {
@@ -39,7 +41,7 @@ export function registerKapitalButtonVariation() {
     const withInspectorControls = createHigherOrderComponent((BlockEdit) => {
         return (props) => {
             const {
-                attributes: { size },
+                attributes,
                 setAttributes,
                 name,
               } = props;

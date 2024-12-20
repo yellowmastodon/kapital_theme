@@ -21,7 +21,7 @@ export default function save({ attributes }) {
 		<div {...useBlockProps.save({ className: "bg-secondary rounded px-4 pt-4 ff-grotesk fw-bold lh-sm" })}>
 			<div className="row g-0 align-items-center">
 				<div className="col-12 col-md-auto">
-					<div class="d-flex flex-wrap flex-row flex-md-column align-items-center align-items-md-start">
+					<div className="d-flex flex-wrap flex-row flex-md-column align-items-center align-items-md-start">
 
 						{attributes.images.map((image, key) => {
 							return (
@@ -37,7 +37,7 @@ export default function save({ attributes }) {
 					</div>
 
 				</div>
-				<div class="col fs-6">
+				<div className="col fs-6">
 					<InnerBlocks.Content />
 				</div>
 			</div>

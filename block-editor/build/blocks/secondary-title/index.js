@@ -98,7 +98,7 @@ function edit(_ref) {
         content: newContent
       });
     },
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Podnadpis (Nechajte prázdne, ak článok nemá podnadpis)'),
+    placeholder: postType === 'redakcia' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Pozícia v redakcii', 'kapital') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Podnadpis (Nechajte prázdne, ak článok nemá podnadpis)'),
     disableLineBreaks: true,
     className: "fw-bold secondary-title alignnormal text-center ff-grotesk"
   }));

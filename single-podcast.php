@@ -45,7 +45,7 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
              * Render podcast header
              * if hidden, let's keep h1 tag, so only visually-hidden
              */ ?>
-            <header class="post-header mb-4<?php if (!$render_settings["show_title"]) echo ' visually-hidden'; ?>" role="heading">
+            <header class="post-header mb-4<?php if (!$render_settings["show_title"]) echo ' visually-hidden'; ?>">
                 <?php
                 echo kapital_bubble_title(get_the_title(), 1, 'mb-3 mb-sm-4 post-title alignwide');
                 $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
@@ -96,7 +96,7 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
                 if ($render_settings["show_featured_image"]):
                     $thumbnail_id = get_post_thumbnail_id();
                     if (is_int($thumbnail_id) && $thumbnail_id !== 0) {
-                        echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", true, 'rounded');
+                        echo kapital_responsive_image($thumbnail_id, "(max-width: 900px) 95vw, (max-width: 1649px) 800px, (max-width: 1919px) 900px, 1000px", true, 'rounded');
                     }
                 endif;
 

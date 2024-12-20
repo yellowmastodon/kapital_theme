@@ -36,7 +36,7 @@ export default function edit({
                     setAttributes({ content: newContent })
                 }
                 }
-                placeholder={__('Podnadpis (Nechajte prázdne, ak článok nemá podnadpis)')}
+                placeholder={postType === 'redakcia' ? __('Pozícia v redakcii', 'kapital') : __('Podnadpis (Nechajte prázdne, ak článok nemá podnadpis)')}
                 disableLineBreaks={true}
                 className={"fw-bold secondary-title alignnormal text-center ff-grotesk"}
             />

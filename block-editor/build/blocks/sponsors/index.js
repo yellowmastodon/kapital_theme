@@ -255,7 +255,7 @@ function Edit(_ref) {
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        class: "col fs-6",
+        className: "col fs-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
           template: TEMPLATE
         })
@@ -313,7 +313,7 @@ function save(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "col-12 col-md-auto",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          class: "d-flex flex-wrap flex-row flex-md-column align-items-center align-items-md-start",
+          className: "d-flex flex-wrap flex-row flex-md-column align-items-center align-items-md-start",
           children: attributes.images.map(function (image, key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               className: "mb-4 me-4 d-block",
@@ -326,7 +326,7 @@ function save(_ref) {
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        class: "col fs-6",
+        className: "col fs-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
       })]
     })

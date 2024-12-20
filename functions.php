@@ -3,6 +3,8 @@
 /**
  * Custom functions / External files
  */
+$post_types_with_controlled_rendering = ['post', 'podcast', 'page'];
+
 $is_woocommerce_site = class_exists('WooCommerce');
 $template_directory = get_template_directory();
 $include = array(
@@ -21,24 +23,27 @@ $include_all = array(
     '/includes/render_functions.php',
     '/includes/custom_post_types.php',
     '/includes/custom_taxonomies.php',
+    '/templates/register-new-post-templates.php'
 );
 
 if (is_multisite()) {
+    
+    foreach ($include_all as $inc) {
+        require_once $template_directory . $inc;
+    }
     if (is_main_site()) {
         foreach ($include as $inc) {
             require_once $template_directory . $inc;
         }
     }
+} else {
     foreach ($include_all as $inc) {
         require_once $template_directory . $inc;
     }
-} else {
     foreach ($include as $inc) {
         require_once $template_directory . $inc;
     }
-    foreach ($include_all as $inc) {
-        require_once $template_directory . $inc;
-    }
+
 }
 
 if (class_exists('WooCommerce')) {
@@ -158,6 +163,7 @@ if (function_exists('add_theme_support')) {
 
 
     ) );
+    add_theme_support('custom-spacing');
 }
 
 /**
@@ -416,34 +422,29 @@ function kapital_tiny_mce_before_init($settings)
             'title' => 'Text Sizes',
             'items' => [
                 [
-                    'title'    => '2XL',
+                    'title'    => 'h1',
                     'selector' => 'span, p',
-                    'classes'  => 'text-2xl'
+                    'classes'  => 'h1'
                 ],
                 [
-                    'title'    => 'XL',
+                    'title'    => 'h2',
                     'selector' => 'span, p',
-                    'classes'  => 'text-xl'
+                    'classes'  => 'h2'
                 ],
                 [
-                    'title'    => 'LG',
+                    'title'    => 'h3',
                     'selector' => 'span, p',
-                    'classes'  => 'text-lg'
+                    'classes'  => 'h3'
                 ],
                 [
-                    'title'    => 'MD',
+                    'title'    => 'h4',
                     'selector' => 'span, p',
                     'classes'  => 'text-md'
                 ],
                 [
-                    'title'    => 'SM',
+                    'title'    => 'small',
                     'selector' => 'span, p',
-                    'classes'  => 'text-sm'
-                ],
-                [
-                    'title'    => 'XD',
-                    'selector' => 'span, p',
-                    'classes'  => 'text-xs'
+                    'classes'  => 'fs-small'
                 ],
             ]
         ]
@@ -596,7 +597,7 @@ function kapital_filters_load_admin_js()
     // Unfortunately we can't just enqueue our scripts here - it's too early. So register against the proper action hook to do it
     add_action('admin_enqueue_scripts', 'kapital_filters_enqueue_admin_js');
 }
-
+ 
 function kapital_filters_enqueue_admin_js()
 {
     // Isn't it nice to use dependencies and the already registered core js files?

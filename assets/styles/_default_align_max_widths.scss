@@ -22,12 +22,20 @@ $container_padding: map-get($spacers, 3);
   md: 900px,
   lg: 1200px,
   xl: 1400px,
-  xxl: 1680px,
+  xxl: 1650px,
 ); */
 
 
 $xxxl-breakpoint: ( xxxl: 2100px);
 $grid-breakpoints: map-merge($grid-breakpoints, $xxxl-breakpoint);
+
+
+//narrow for picture in redakcia post type
+$align-narrow-sizes: (
+    xs: 400px,
+    xxxl: 500px
+);
+
 
 //600px on 1440px display, for body text in single post
 $align-normal-sizes: (
@@ -82,11 +90,6 @@ $align-widest-sizes: (
                     & *{
                         max-width: 100%;
                     }
-                    .block-editor-inner-blocks{
-                        .wp-block{
-                            max-width: inherit !important;
-                        }
-                    }
                 }
             }
             @if $make-columns{
@@ -101,6 +104,7 @@ $align-widest-sizes: (
         }
     }
 }
+@include make-sizes('narrow', $align-narrow-sizes);
 @include make-sizes('normal', $align-normal-sizes);
 @include make-sizes('wide', $align-wide-sizes);
 @include make-sizes('wider', $align-wider-sizes, true);

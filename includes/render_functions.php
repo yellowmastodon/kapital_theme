@@ -436,7 +436,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
             )
         );
     elseif ($is_page):
-        $filters = get_pages(
+        $pages = get_pages(
             array(
                 'child_of' =>  $object_id, 
                 'parent' =>  $object_id,
@@ -444,6 +444,29 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
                 'order' => 'asc'
             )
         );
+        $filters = array_map(function($page){
+            return array('name' => $page->post_title, "url" => get_the_permalink($page));
+        }, $pages);
+        $additional_filters = json_decode(get_post_meta($object_id, '_page_links', true));
+        if ($additional_filters){
+            $additional_filters = array_map(function($item){
+                if ($item->name !== "" && $item->url !== ""){
+                    return array('name'=> $item->name, 'url' => $item->url);
+                }
+            },  $additional_filters);
+            
+            if (!empty($additional_filters)){
+                function compareByName($a, $b){
+                    return strcmp($a["name"], $b["name"]);
+                }
+                $filters = array_merge($filters, $additional_filters);
+                //sort filters alphabetically
+                usort($filters, function($a, $b){
+                    return strcmp(strtolower($a["name"]), strtolower($b["name"]));
+                });
+            }
+
+        };
     else:
         $filters = array();
     endif;
@@ -464,8 +487,8 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
         }
         foreach ($filters as $filter):
             if($is_page){
-                $name = $filter->post_title;
-                $link = get_post_permalink($filter);
+                $name = $filter["name"];
+                $link = $filter["url"];
             } else {
                 $term_slug = $filter->slug;
                 $name = $filter->name;
@@ -491,18 +514,25 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
 
 /**
  * Sets the query to all for taxonomy "číslo" (issue)
+ * Sets the query to all for post type "redakcia"
  * Sets the query to 24 for all other main queries
+ * 
  * @param WP_Query $query
  */
 function kapital_post_query_mod($query)
 {
     if ($query->is_main_query()) {
         if ($query->is_home() || $query->is_archive()) {
-            if ($query->is_tax('cislo')) {
+            if ($query->is_post_type_archive('redakcia')){
                 $query->set('posts_per_page', -1);
             } else {
-                $query->set('posts_per_page', 24);
+                if ($query->is_tax('cislo')) {
+                    $query->set('posts_per_page', -1);
+                } else {
+                    $query->set('posts_per_page', 24);
+                }
             }
+            
         }
     }
 }
@@ -594,7 +624,10 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_footer' => $show_false ? false : true, //only used for post, podcast
         'show_filters' => false, //only used for page
     );
-    if ($post_type === 'podcast') $default_render_settings["show_featured_image"] = false;
+    if ($post_type === 'podcast'){
+        $default_render_settings["show_featured_image"] = false;
+        $default_render_settings["show_author"] = false;      
+    }
     if ($post_type === 'page') {
         $default_render_settings["show_featured_image"] = false;
         $default_render_settings["show_views"] = false;

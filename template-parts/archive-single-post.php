@@ -14,7 +14,13 @@ global $post;
 if (isset($args['post'])){
     $post = $args['post'];
 }
-
+$heading_level = 2;
+if (isset($args['heading_level'])){
+    $heading_level = $args['heading_level'];
+    if ($heading_level > 6){
+        $heading_level = 6;
+    }
+}
 //used for hiding when rendered as block with "show More" button
 if (isset($args['additional_class'])){
     $additional_class = " " . $args['additional_class'];
@@ -81,7 +87,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
             echo '<div class="rounded w-100 archive-item-image placeholder"></div>';
         }
         //data-text attribute used by ::before element to generate outline?>
-        <h2 class="h3 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
+        <<?= 'h' . $heading_level;?> class="h3 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
         <div class="item-excerpt red-color-hover lh-sm mb-3">
             <?php if ($secondary_title !== "") {
                 echo '<p>' . $secondary_title . '</p>';

@@ -262,7 +262,7 @@ hr {
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.5rem;
   font-family: "Kontrast Grotesk", sans-serif;
   font-weight: bold;
   line-height: 1.35;
@@ -270,15 +270,15 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
+  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
 }
 
 h2, .h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 h3, .h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 h4, .h4 {
@@ -5750,15 +5750,15 @@ $theme-colors: $temporary-colors; */
 }
 
 .fs-1 {
-  font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem) !important;
+  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem) !important;
 }
 
 .fs-2 {
-  font-size: 1.3rem !important;
+  font-size: 1.4rem !important;
 }
 
 .fs-3 {
-  font-size: 1.2rem !important;
+  font-size: 1.25rem !important;
 }
 
 .fs-4 {
@@ -10157,30 +10157,45 @@ $theme-colors: $temporary-colors; */
   md: 900px,
   lg: 1200px,
   xl: 1400px,
-  xxl: 1680px,
+  xxl: 1650px,
 ); */
-.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.alignnarrow {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.alignnarrow {
+  max-width: 400px;
+}
+
+@media (min-width: 2100px) {
+  .alignnarrow {
+    max-width: 500px;
+  }
+}
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 
 @media (min-width: 600px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 100%;
   }
 }
-.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px;
 }
 
 @media (min-width: 1650px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px;
   }
 }
 @media (min-width: 2100px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 800px;
   }
 }
@@ -10200,9 +10215,6 @@ $theme-colors: $temporary-colors; */
 .wp-block[data-align=wide] * {
   max-width: 100%;
 }
-.wp-block[data-align=wide] .block-editor-inner-blocks .wp-block {
-  max-width: inherit !important;
-}
 
 @media (min-width: 1650px) {
   .alignwide, .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .h1, .woocommerce-active.search-no-results .woocommerce-no-products-found, .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
@@ -10214,9 +10226,6 @@ $theme-colors: $temporary-colors; */
   .wp-block[data-align=wide] * {
     max-width: 100%;
   }
-  .wp-block[data-align=wide] .block-editor-inner-blocks .wp-block {
-    max-width: inherit !important;
-  }
 }
 @media (min-width: 2100px) {
   .alignwide, .woocommerce-active.search-no-results h1, .woocommerce-active.search-no-results .h1, .woocommerce-active.search-no-results .woocommerce-no-products-found, .podcast-content > *:not(.alignnormal):not(.alignwider):not(.alignwidest):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]) {
@@ -10227,9 +10236,6 @@ $theme-colors: $temporary-colors; */
   }
   .wp-block[data-align=wide] * {
     max-width: 100%;
-  }
-  .wp-block[data-align=wide] .block-editor-inner-blocks .wp-block {
-    max-width: inherit !important;
   }
 }
 .alignwider {
@@ -10358,18 +10364,24 @@ label {
   padding-bottom: 2rem;
 }
 
+ul {
+  padding-left: 1em;
+}
+
 @media (min-width: 1200px) {
   #main {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-  .breadcrumb-nav + #main {
-    padding-top: 1.5rem;
-  }
 }
 @media (min-width: 900px) {
   .breadcrumb-nav + #main {
     padding-top: 0.5rem;
+  }
+}
+@media (min-width: 900px) {
+  .single-redakcia .breadcrumb-nav + #main {
+    padding-top: 1.5rem;
   }
 }
 .btn-menu, a {
@@ -10416,7 +10428,7 @@ label {
   line-height: 1.35;
 }
 
-.wp-block-group.alignfull, .wp-block[data-align=full] .wp-block-group {
+.wp-block-group.alignfull, .wp-block[data-align=full] {
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -10448,7 +10460,7 @@ label {
 
 @media (min-width: 1200px) {
   .bubble-heading.post-title {
-    font-size: clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
+    font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
   }
 }
 @media (min-width: 600px) {
@@ -10463,7 +10475,7 @@ label {
 }
 
 .perex {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: bold;
   line-height: 1.4 !important;
 }
@@ -10491,6 +10503,17 @@ img {
   }
   .single-post .header-bottom-container .post-authors a:hover {
     color: #000 !important;
+  }
+}
+.redakcia-portrait {
+  max-height: 60vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .single-redakcia .breadcrumb-nav + #main {
+    padding-top: 1.5rem;
   }
 }
 /* 
@@ -10657,6 +10680,11 @@ _colors.scss
   position: relative;
 }
 
+@media (max-width: 599.98px) {
+  .bubble-heading span {
+    font-size: 0.9em;
+  }
+}
 .bubble-heading span {
   margin-right: 0.2em;
   margin-left: 0.2em;
@@ -11199,7 +11227,7 @@ a[class^=marker-]:active::before {
   right: 0;
   top: 0;
   z-index: -1;
-  content: attr(data-text);
+  content: attr(data-text)/"";
   -webkit-text-stroke: 6px #ff0033;
   color: var(--kptl-red);
   opacity: 0;
@@ -11332,101 +11360,6 @@ a[class^=marker-]:active::before {
   margin-top: 3rem;
 }
 
-#perspectives-claim {
-  background-color: var(--kptl-secondary) !important;
-  border-radius: 1rem !important;
-  font-family: "Kontrast Grotesk", sans-serif;
-  font-weight: bold;
-  line-height: 1.35;
-}
-
-/**
-some parts of posts were centered with position relative 50 and translate
-that does not work with max-width and full width container
-let's see if we need to be specific about posts
-*/
-.postid-26340 #post-content > * {
-  display: block !important;
-  position: unset !important;
-  transform: unset !important;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-.post-filters .filters-content {
-  font-size: 0.9rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .post-filters {
-    z-index: 1000;
-  }
-  .post-filters .btn-filter-toggle, .post-filters .btn-close {
-    display: none !important;
-  }
-  .post-filters *[class^=btn] {
-    outline: solid 3px #fff;
-  }
-  .post-filters .filters-content {
-    flex-direction: row;
-  }
-}
-@media (max-width: 599.98px) {
-  .post-filters .filters-modal:not(.open) {
-    display: none !important;
-    opacity: 0;
-  }
-  .filters-modal {
-    transition: opacity 0.3s ease;
-  }
-  .post-filters .filters-modal {
-    background-color: var(--kptl-primary);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: 1060;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .filters-content {
-    align-items: center;
-    flex-direction: column;
-  }
-}
-.featured-post .archive-item-link:not(.custom) {
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-
-@media (min-width: 900px) {
-  .featured-post .item-terms {
-    position: absolute;
-    bottom: 0;
-    left: 0.5rem;
-    right: 0.5rem;
-    z-index: 2;
-  }
-  .featured-post .item-terms::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 200%;
-    background: linear-gradient(0deg, white 0%, white 50%, rgba(255, 255, 255, 0) 100%);
-  }
-}
 .archive-podcast-item {
   display: grid;
   -moz-column-gap: 2rem;
@@ -11558,6 +11491,105 @@ body.modal-open {
   opacity: 1;
 }
 
+.archive-item-redakcia .archive-item-image:not(.product) {
+  aspect-ratio: 0.8 !important;
+}
+
+#perspectives-claim {
+  background-color: var(--kptl-secondary) !important;
+  border-radius: 1rem !important;
+  font-family: "Kontrast Grotesk", sans-serif;
+  font-weight: bold;
+  line-height: 1.35;
+}
+
+/**
+some parts of posts were centered with position relative 50 and translate
+that does not work with max-width and full width container
+let's see if we need to be specific about posts
+*/
+.postid-26340 #post-content > * {
+  display: block !important;
+  position: unset !important;
+  transform: unset !important;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.post-filters .filters-content {
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .post-filters {
+    z-index: 1000;
+  }
+  .post-filters .btn-filter-toggle, .post-filters .btn-close {
+    display: none !important;
+  }
+  .post-filters *[class^=btn] {
+    outline: solid 3px #fff;
+  }
+  .post-filters .filters-content {
+    flex-direction: row;
+  }
+}
+@media (max-width: 599.98px) {
+  .post-filters .filters-modal:not(.open) {
+    display: none !important;
+    opacity: 0;
+  }
+  .filters-modal {
+    transition: opacity 0.3s ease;
+  }
+  .post-filters .filters-modal {
+    background-color: var(--kptl-primary);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 1060;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .filters-content {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.featured-post .archive-item-link:not(.custom) {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+@media (min-width: 900px) {
+  .featured-post .item-terms {
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+  }
+  .featured-post .item-terms::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(0deg, white 0%, white 50%, rgba(255, 255, 255, 0) 100%);
+  }
+}
 .wp-block-kapital-sponsors p {
   margin-bottom: 1.5rem;
 }
@@ -12382,7 +12414,7 @@ form .btn, form .woocommerce-MyAccount-navigation ul li a, .woocommerce-MyAccoun
 }
 .single-product .summary .price {
   line-height: 1.35;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 .single-product .price {
   margin-top: 1.5rem;

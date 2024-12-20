@@ -45,26 +45,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   registerKapitalButtonVariation: function() { return /* binding */ registerKapitalButtonVariation; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
+
 
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-
 
 
 
@@ -79,7 +80,7 @@ function registerKapitalButtonVariation() {
       return settings;
     }
     //add custom attributes
-
+    if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(settings.attributes) != undefined) {}
     if (settings.attributes) {
       settings.attributes.icon = {
         type: 'string',
@@ -92,22 +93,22 @@ function registerKapitalButtonVariation() {
     }
     return settings;
   }
-  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('blocks.registerBlockType', 'core/button', addCustomAttributes);
-  var withInspectorControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(function (BlockEdit) {
+  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_8__.addFilter)('blocks.registerBlockType', 'core/button', addCustomAttributes);
+  var withInspectorControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.createHigherOrderComponent)(function (BlockEdit) {
     return function (props) {
-      var size = props.attributes.size,
+      var attributes = props.attributes,
         setAttributes = props.setAttributes,
         name = props.name;
       if (name !== 'core/button') {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(BlockEdit, _objectSpread({}, props));
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(BlockEdit, _objectSpread({}, props));
       }
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(BlockEdit, _objectSpread({}, props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.InspectorControls, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(BlockEdit, _objectSpread({}, props)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.InspectorControls, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
             title: "Ikona",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
               __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Ikona', 'kapital'),
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Ikona', 'kapital'),
               value: attributes.icon,
               onChange: function onChange(newValue) {
                 setAttributes({
@@ -115,21 +116,21 @@ function registerKapitalButtonVariation() {
                 });
               },
               options: [{
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Žiadna", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Žiadna", "kapital"),
                 value: "none"
               }, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("→", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("→", "kapital"),
                 value: "icon-arrow-right"
               }, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("↓", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("↓", "kapital"),
                 value: "icon-arrow-down"
               }, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("↗", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("↗", "kapital"),
                 value: "icon-arrow-up-right"
               }]
-            }), attributes.icon !== "none" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+            }), attributes.icon !== "none" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.SelectControl, {
               __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Ikona', 'kapital'),
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Ikona', 'kapital'),
               value: attributes.iconAlign,
               onChange: function onChange(newValue) {
                 setAttributes({
@@ -137,10 +138,10 @@ function registerKapitalButtonVariation() {
                 });
               },
               options: [{
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Vpravo", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vpravo", "kapital"),
                 value: "icon-right"
               }, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Vľavo", "kapital"),
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vľavo", "kapital"),
                 value: "icon-left"
               }]
             })]
@@ -160,12 +161,12 @@ function registerKapitalButtonVariation() {
    * @return {Object} extraProps Modified block element.
    */
 
-  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockEdit', 'core/button', withInspectorControls);
+  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_8__.addFilter)('editor.BlockEdit', 'core/button', withInspectorControls);
 
   /**
    * Add icon class to the block in the editor
    */
-  var addIconClass = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(function (BlockListBlock) {
+  var addIconClass = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_4__.createHigherOrderComponent)(function (BlockListBlock) {
     return function (props) {
       var _props$attributes = props.attributes,
         icon = _props$attributes.icon,
@@ -173,14 +174,14 @@ function registerKapitalButtonVariation() {
         className = props.className,
         name = props.name;
       if (name !== 'core/button') {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(BlockListBlock, _objectSpread({}, props));
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(BlockListBlock, _objectSpread({}, props));
       }
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(BlockListBlock, _objectSpread(_objectSpread({}, props), {}, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(className, icon !== "none" ? "".concat(icon, " ").concat(iconAlign) : '')
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(BlockListBlock, _objectSpread(_objectSpread({}, props), {}, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(className, icon !== "none" ? "".concat(icon, " ").concat(iconAlign) : '')
       }));
     };
   }, 'withClientIdClassName');
-  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('editor.BlockListBlock', 'kapital/button-block/add-editor-class', addIconClass);
+  (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_8__.addFilter)('editor.BlockListBlock', 'kapital/button-block/add-editor-class', addIconClass);
 }
 
 /***/ }),
@@ -440,152 +441,157 @@ function customMetaSettings() {
       var postType = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_6__.useSelect)(function (select) {
         return select('core/editor').getCurrentPostType();
       }, []);
-      var _useEntityProp = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_8__.useEntityProp)('postType', postType, 'meta'),
-        _useEntityProp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useEntityProp, 2),
-        meta = _useEntityProp2[0],
-        setMeta = _useEntityProp2[1];
-      var custom_render_meta = meta['_kapital_post_render_settings'];
-      if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(meta['_kapital_post_render_settings']) === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
-        custom_render_meta = meta['_kapital_post_render_settings'];
-      } else {
-        custom_render_meta = {
-          show_featured_image: true,
-          show_breadcrumbs: true,
-          show_title: true,
-          show_author: true,
-          show_categories: true,
-          show_views: true,
-          show_date: true,
-          show_ads: true,
-          show_support: true,
-          show_footer: true,
-          show_filters: false
+      if (postTypesWithControlledRendering.includes(postType)) {
+        var _useEntityProp = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_8__.useEntityProp)('postType', postType, 'meta'),
+          _useEntityProp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useEntityProp, 2),
+          meta = _useEntityProp2[0],
+          setMeta = _useEntityProp2[1];
+        var custom_render_meta = meta['_kapital_post_render_settings'];
+        if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(meta['_kapital_post_render_settings']) === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
+          custom_render_meta = meta['_kapital_post_render_settings'];
+        } else {
+          custom_render_meta = {
+            show_featured_image: true,
+            show_breadcrumbs: true,
+            show_title: true,
+            show_author: true,
+            show_categories: true,
+            show_views: true,
+            show_date: true,
+            show_ads: true,
+            show_support: true,
+            show_footer: true,
+            show_filters: false
+          };
+          //hide featured image in podcast by default
+          if (postType === 'podcast') {
+            custom_render_meta.show_featured_image = false;
+            custom_render_meta.show_author = false;
+          }
+          if (postType === 'page') {
+            custom_render_meta.show_featured_image = false;
+            custom_render_meta.show_author = false;
+            custom_render_meta.show_views = false;
+            custom_render_meta.show_date = false;
+            custom_render_meta.show_categories = false;
+          }
+        }
+        var updateMetaValue = function updateMetaValue(value, prop) {
+          custom_render_meta = _objectSpread({
+            show_featured_image: true,
+            show_breadcrumbs: true,
+            show_title: true,
+            show_author: true,
+            show_categories: true,
+            show_views: true,
+            show_date: true,
+            show_ads: true,
+            show_support: true,
+            show_footer: true
+          }, custom_render_meta);
+          custom_render_meta["".concat(prop)] = value;
+          setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+            _kapital_post_render_settings: custom_render_meta
+          }));
         };
-        //hide featured image in podcast by default
-        if (postType === 'podcast') {
-          custom_render_meta.show_featured_image = false;
-        }
-        if (postType === 'page') {
-          custom_render_meta.show_featured_image = false;
-          custom_render_meta.show_author = false;
-          custom_render_meta.show_views = false;
-          custom_render_meta.show_date = false;
-          custom_render_meta.show_categories = false;
-        }
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_4__.PluginDocumentSettingPanel, {
+          name: "kapital-post-render-panel",
+          title: "Nastavenie zobrazovania",
+          className: "some-css-class",
+          icon: "visibility",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
+            direction: "column",
+            gap: 4,
+            children: [postType === 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať filtre', 'kapital'),
+              checked: custom_render_meta.show_filters,
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Pri stránkach sa ako filtre zobrazia dcérske stránky.', 'kapital'),
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_filters, 'show_filters');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať ilustračný obrázok', 'kapital'),
+              checked: custom_render_meta.show_featured_image,
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital'),
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať breadcrumb navigáciu', 'kapital'),
+              checked: custom_render_meta.show_breadcrumbs,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať názov', 'kapital'),
+              checked: custom_render_meta.show_title,
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('V archívoch článkov je názov vždy viditeľný.'),
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_title, 'show_title');
+              }
+            }), postType !== 'page' && postType !== 'podcast' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať autorstvo', 'kapital'),
+              checked: custom_render_meta.show_author,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_author, 'show_author');
+              }
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
+              checked: custom_render_meta.show_categories,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
+              },
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať počet zhliadnutí', 'kapital'),
+              checked: custom_render_meta.show_views,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_views, 'show_views');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať dátum publikovania', 'kapital'),
+              checked: custom_render_meta.show_date,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_date, 'show_date');
+              }
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť inzerciu', 'kapital'),
+              checked: custom_render_meta.show_ads,
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov reklamy.', 'kapital'),
+              s: true,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_ads, 'show_ads');
+              }
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť podporu', 'kapital'),
+              checked: custom_render_meta.show_support,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_support, 'show_support');
+              },
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov podpory.', 'kapital')
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť odporúčania ďalších článkov', 'kapital'),
+              checked: custom_render_meta.show_footer,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_footer, 'show_footer');
+              }
+            })]
+          })
+        });
+      } else {
+        return;
       }
-      var updateMetaValue = function updateMetaValue(value, prop) {
-        custom_render_meta = _objectSpread({
-          show_featured_image: true,
-          show_breadcrumbs: true,
-          show_title: true,
-          show_author: true,
-          show_categories: true,
-          show_views: true,
-          show_date: true,
-          show_ads: true,
-          show_support: true,
-          show_footer: true
-        }, custom_render_meta);
-        custom_render_meta["".concat(prop)] = value;
-        setMeta(_objectSpread(_objectSpread({}, meta), {}, {
-          _kapital_post_render_settings: custom_render_meta
-        }));
-      };
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_4__.PluginDocumentSettingPanel, {
-        name: "kapital-post-render-panel",
-        title: "Nastavenie zobrazovania",
-        className: "some-css-class",
-        icon: "visibility",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
-          direction: "column",
-          gap: 4,
-          children: [postType === 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať filtre', 'kapital'),
-            checked: custom_render_meta.show_filters,
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Pri stránkach sa ako filtre zobrazia dcérske stránky.', 'kapital'),
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_filters, 'show_filters');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať ilustračný obrázok', 'kapital'),
-            checked: custom_render_meta.show_featured_image,
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital'),
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať breadcrumb navigáciu', 'kapital'),
-            checked: custom_render_meta.show_breadcrumbs,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať názov', 'kapital'),
-            checked: custom_render_meta.show_title,
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('V archívoch článkov je názov vždy viditeľný.'),
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_title, 'show_title');
-            }
-          }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať autora', 'kapital'),
-            checked: custom_render_meta.show_author,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_author, 'show_author');
-            }
-          }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
-            checked: custom_render_meta.show_categories,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
-            },
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať počet zhliadnutí', 'kapital'),
-            checked: custom_render_meta.show_views,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_views, 'show_views');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať dátum publikovania', 'kapital'),
-            checked: custom_render_meta.show_date,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_date, 'show_date');
-            }
-          }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť inzerciu', 'kapital'),
-            checked: custom_render_meta.show_ads,
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov reklamy.', 'kapital'),
-            s: true,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_ads, 'show_ads');
-            }
-          }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť podporu', 'kapital'),
-            checked: custom_render_meta.show_support,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_support, 'show_support');
-            },
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov podpory.', 'kapital')
-          }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-            __nextHasNoMarginBottom: true,
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť odporúčania ďalších článkov', 'kapital'),
-            checked: custom_render_meta.show_footer,
-            onChange: function onChange() {
-              return updateMetaValue(!custom_render_meta.show_footer, 'show_footer');
-            }
-          })]
-        })
-      });
     }
   });
 }
@@ -1878,8 +1884,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customMetaSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customMetaSettings */ "./block-editor/src/custom-editor-scripts/customMetaSettings.js");
 /* harmony import */ var _block_variations_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../block-variations/button */ "./block-editor/src/block-variations/button.js");
 /* harmony import */ var _block_variations_bubble_heading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../block-variations/bubble-heading */ "./block-editor/src/block-variations/bubble-heading.js");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
-/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__);
 
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -1889,6 +1897,7 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -1932,7 +1941,6 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 // This filter adds alignment support to core/paragraph if not already present
 var wideAlignBlocks = ['core/paragraph', 'core/heading', 'core/list'];
 var addWideAlignmentSupport = function addWideAlignmentSupport(settings) {
-  console.log(settings);
   if (wideAlignBlocks.includes(settings.name)) {
     settings.supports = _objectSpread(_objectSpread({}, settings.supports), {}, {
       align: ["wide", "full"]
@@ -1942,7 +1950,7 @@ var addWideAlignmentSupport = function addWideAlignmentSupport(settings) {
 };
 
 // Apply the filter to the core/paragraph block
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.addFilter)('blocks.registerBlockType', 'kapital/more-blocks-align-support', addWideAlignmentSupport);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_7__.addFilter)('blocks.registerBlockType', 'kapital/more-blocks-align-support', addWideAlignmentSupport);
 }();
 /******/ })()
 ;

@@ -61,6 +61,14 @@ function kapital_block_editor_setup()
     }
 }
 
+//defined in includes/custom_meta.php
+global $post_types_with_controlled_rendering;
+global $pagenow;
+if (is_admin() && in_array($pagenow, array('post.php', 'post-new.php'))){
+    wp_register_script( 'post-types-with-controlled-rendering', '' ); //dummy handler to be able to add inline script
+    wp_enqueue_script( 'post-types-with-controlled-rendering' );
+    wp_add_inline_script( 'post-types-with-controlled-rendering', 'var postTypesWithControlledRendering = '. json_encode($post_types_with_controlled_rendering). ';', 'before');
+}
 
 /**
  * Checks for our JSON file of color values. If exists, creates a color palette array.
@@ -113,6 +121,8 @@ function set_image_auto_wide( $metadata ) {
  require_once(dirname(__FILE__) . '/build/blocks/post-query/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/featured-post/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/podcast-links/index.php');
+ require_once(dirname(__FILE__) . '/build/blocks/page-links/index.php');
+
  require_once(dirname(__FILE__) . '/build/blocks/sponsors/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/donation-form/index.php');
  require_once(dirname(__FILE__) . '/build/blocks/book-query/index.php');

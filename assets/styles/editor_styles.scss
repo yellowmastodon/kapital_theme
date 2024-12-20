@@ -86,7 +86,7 @@ $grid-breakpoints: $temporary-breakpoints;
 
 
 }
-@import "post";
+@import "single_post";
 
 .edit-post-visual-editor__post-title-wrapper{
     @extend .alignwide;
@@ -113,7 +113,7 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "css_icons";
 @import "sponsors";
 @import "archive_podcast.scss";
-@import "podcast";
+@import "single_podcast";
 @import "post_filters";
 @import "darujme_form";
 @import "woocommerce_archive";

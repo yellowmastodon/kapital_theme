@@ -48,7 +48,7 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms']) && !empt
             ?>
             <div>
                 <?php foreach ($recommend_podcasts as $rec_podcast) {
-                    get_template_part('template-parts/archive-single-podcast', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $rec_podcast));
+                    get_template_part('template-parts/archive-single-podcast', null, array('queried_object_id' => $recommend_term->term_id, 'post' => $rec_podcast, "heading_level" => 3));
                 } ?>
             </div>
             <div class="text-center mt-5">

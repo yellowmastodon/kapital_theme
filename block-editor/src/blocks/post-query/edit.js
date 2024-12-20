@@ -35,10 +35,7 @@ export default function Edit({
 	const queryPostType = attributes.queryPostType;
 	const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
 	//pass exclusion from featured post
-	console.log(meta._kapital_featured_post);
 
-
-	console.log(attributes);
 
 	const taxonomies = useSelect((select) => {
 		const { getTaxonomies } = select(coreStore);

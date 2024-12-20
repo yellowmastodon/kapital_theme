@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./block-editor/src/blocks/podcast-links/edit.js":
-/*!*******************************************************!*\
-  !*** ./block-editor/src/blocks/podcast-links/edit.js ***!
-  \*******************************************************/
+/***/ "./block-editor/src/blocks/page-links/edit.js":
+/*!****************************************************!*\
+  !*** ./block-editor/src/blocks/page-links/edit.js ***!
+  \****************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -43,16 +43,10 @@ function edit(_ref) {
   var _ref$context = _ref.context,
     postId = _ref$context.postId,
     postType = _ref$context.postType;
-  return (0,_utils_link_manager__WEBPACK_IMPORTED_MODULE_1__["default"])(postType, '_podcast_links', [{
-    name: "Apple Podcasts",
+  return (0,_utils_link_manager__WEBPACK_IMPORTED_MODULE_1__["default"])(postType, '_page_links', [{
+    name: "",
     url: ""
-  }, {
-    name: "Soundcloud",
-    url: ""
-  }, {
-    name: "Spotify",
-    url: ""
-  }], (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Linky podcastu", "kapital"));
+  }], (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('"Filtre" stránky', "kapital"), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Ak je zapnuté "Zobraziť filtre", pridá tieto linky medzi bublinkové filtre na vrchu stránky', 'kapital'));
 }
 
 /***/ }),
@@ -595,13 +589,13 @@ function _unsupportedIterableToArray(r, a) {
 
 /***/ }),
 
-/***/ "./block-editor/src/blocks/podcast-links/block.json":
-/*!**********************************************************!*\
-  !*** ./block-editor/src/blocks/podcast-links/block.json ***!
-  \**********************************************************/
+/***/ "./block-editor/src/blocks/page-links/block.json":
+/*!*******************************************************!*\
+  !*** ./block-editor/src/blocks/page-links/block.json ***!
+  \*******************************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/podcast-links","version":"0.1.0","title":"Linky podcastu","category":"theme","icon":"admin-links","description":"Linky na externé platformy pre vypočutie podcastu","example":{},"supports":{"html":false},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"kapital/page-links","version":"0.1.0","title":"Linky filtrov stránky","category":"theme","icon":"admin-links","description":"Bublinkové filtre na vrchu stránky","example":{},"supports":{"html":false},"usesContext":["postType","postId"],"textdomain":"kapital","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
@@ -676,14 +670,14 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 !function() {
-/*!********************************************************!*\
-  !*** ./block-editor/src/blocks/podcast-links/index.js ***!
-  \********************************************************/
+/*!*****************************************************!*\
+  !*** ./block-editor/src/blocks/page-links/index.js ***!
+  \*****************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./block-editor/src/blocks/podcast-links/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./block-editor/src/blocks/podcast-links/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./block-editor/src/blocks/page-links/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./block-editor/src/blocks/page-links/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *

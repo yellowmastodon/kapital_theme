@@ -410,54 +410,6 @@ function register_podcast_serie_taxonomy()
 
 
 /**
- * Registers taxonomy: "redakcia_tag" for custom post type "redakcia" to assign job positions to members of the team
- */
-
-function register_redakcia_pozicia()
-{
-
-	$labels = array(
-		'name'                       => _x('Pozície', 'Taxonomy General Name', 'kapital'),
-		'singular_name'              => _x('Pozícia', 'Taxonomy Singular Name', 'kapital'),
-		'menu_name'                  => __('Pozície', 'kapital'),
-		'all_items'                  => __('Všetky pozície', 'kapital'),
-		'parent_item'                => __('Nadradená pozícia', 'kapital'),
-		'parent_item_colon'          => __('Nadradená pozícia:', 'kapital'),
-		'new_item_name'              => __('Nová pozícia', 'kapital'),
-		'add_new_item'               => __('Pridať novú pozíciu', 'kapital'),
-		'edit_item'                  => __('Upraviť pozíciu', 'kapital'),
-		'update_item'                => __('Aktualizovať pozíciu', 'kapital'),
-		'view_item'                  => __('Zobraziť pozíciu', 'kapital'),
-		'separate_items_with_commas' => __('Oddeľte pozície čiarkami', 'kapital'),
-		'add_or_remove_items'        => __('Pridať alebo odstrániť pozície', 'kapital'),
-		'choose_from_most_used'      => __('Vyberte z najpoužívanejších', 'kapital'),
-		'popular_items'              => __('Najpoužívanejšie pozície', 'kapital'),
-		'search_items'               => __('Vyhľadať pozície', 'kapital'),
-		'not_found'                  => __('Nenašli sa žiadne pozície', 'kapital'),
-		'no_terms'                   => __('Žiadne pozície', 'kapital'),
-		'items_list'                 => __('Zoznam pozícií', 'kapital'),
-		'items_list_navigation'      => __('Navigácia zoznamu pozícií', 'kapital'),
-	);
-	$rewrite = array(
-		'slug'                       => 'pozicia',
-		'with_front'                 => true,
-		'hierarchical'               => false,
-	);
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => false,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => false,
-		'show_tagcloud'              => true,
-		'rewrite'                    => $rewrite,
-		'show_in_rest'               => true,
-	);
-	register_taxonomy('redakcia-tag', array('redakcia'), $args);
-}
-
-/**
  * Reorder either top-level menu items or submenu level items or both.
  * If not editing top-level items, return the $menu_ord variable unchanged.
  * 
@@ -546,7 +498,6 @@ function kapital_register_custom_taxonomies()
 	register_jazyk_taxonomy();
 	disable_kses();
 	register_podcast_serie_taxonomy();
-	register_redakcia_pozicia();
 	unregister_taxonomy_for_object_type('category', 'post');
 }
 

@@ -20,7 +20,6 @@ $spacers: (
 
 
 //default margins
-$headings-margin-bottom: none;
 $paragraph-margin-bottom: map-get($spacers, 4);
 
 
@@ -50,15 +49,15 @@ $line-height-base: 1.7;
 $enable-dark-mode: false;
 $enable-container-classess: false;
 $enable-rfs:                  false; //managed by root font size
-$h1-font-size:                clamp(1.3rem, 0.734vw + 1.089rem, 1.6rem);
-$h2-font-size:                1.3rem;
-$h3-font-size:                1.2rem;
+$h1-font-size:                clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
+$h2-font-size:                1.4rem;
+$h3-font-size:                1.25rem;
 $h4-font-size:                1.1rem;
 $h5-font-size:                1rem;
 $h6-font-size:                1rem;
 $headings-line-height:        $line-height-small;
 $headings-font-weight:        bold;
-$headings-margin-bottom:      map-get($spacers, 4) !important;
+$headings-margin-bottom:      map-get($spacers, 4);
 $headings-color:              inherit;
 
 $font-sizes: (

@@ -26,7 +26,7 @@ export default function edit({
 	context: { postId, postType }
 }) 
 {
-	return(editLinks(postType, '_podcast_links', [{ name: "Apple Podcasts", url: "" },{ name: "Soundcloud", url: "" },{ name: "Spotify", url: "" }], __("Linky podcastu", "kapital")));
+	return(editLinks(postType, '_page_links', [{ name: "", url: "" }], __('"Filtre" stránky', "kapital"), __('Ak je zapnuté "Zobraziť filtre", pridá tieto linky medzi bublinkové filtre na vrchu stránky', 'kapital')));
 }
 
 

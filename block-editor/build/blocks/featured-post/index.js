@@ -228,7 +228,6 @@ function Edit(_ref) {
             __nextHasNoMarginBottom: true,
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Vybraný článok/podcast/...', 'kapital'),
             onChange: function onChange(newValue) {
-              console.log(newValue);
               setAttributes({
                 postId: Number(newValue)
               });

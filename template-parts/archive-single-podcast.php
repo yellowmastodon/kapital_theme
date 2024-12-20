@@ -6,7 +6,13 @@ global $post;
 if (isset($args['post'])){
     $post = $args['post'];
 }
-
+$heading_level = 2;
+if (isset($args['heading_level'])){
+    $heading_level = $args['heading_level'];
+    if ($heading_level > 6){
+        $heading_level = 6;
+    }
+}
 //used for hiding when rendered as block with "show More" button
 if (isset($args['additional_class'])){
     $additional_class = " " . $args['additional_class'];
@@ -78,7 +84,7 @@ $article_classes .= $additional_class;
             <?php if ($post->post_type === "podcast"):?>
                 <svg class="item-icon-podcast position-absolute"><use xlink:href="#icon-podcast"></use></svg>
             <?php endif;?>
-        <h2 class="mb-0 h3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></h2>
+        <<?= 'h' . $heading_level;?> class="mb-0 h3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
         </a>
 
         <a tabindex="-1" class="excerpt-wrapper archive-item-link text-decoration-none lh-sm" href="<?=$post_permalink?>">

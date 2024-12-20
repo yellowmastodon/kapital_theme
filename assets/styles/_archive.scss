@@ -20,7 +20,7 @@ $archive-article-img-outline-width: 5px;
                 right: 0;
                 top: 0;
                 z-index: -1;
-                content: attr(data-text);
+                content: attr(data-text) / "";
                 -webkit-text-stroke: $archive-article-text-stroke-width $red;
                 color: var(--#{$prefix}red);
                 opacity: 0;

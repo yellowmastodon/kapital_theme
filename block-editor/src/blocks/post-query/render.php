@@ -38,7 +38,7 @@ if ($attributes["isEditor"]) {
 	$exclude_post = $attributes["excludePost"];
 } else {
 	global $post;
-	$exclude_post = get_post_meta($post->ID, "_kapital_featured_post", true);
+	$exclude_post = (int) get_post_meta($post->ID, "_kapital_featured_post", true);
 }
 
 /**
@@ -237,6 +237,8 @@ if ($attributes["isEditor"]) {
 		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
 	} elseif ($attributes["showHeading"] === "manual") {
 		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
+	} else {
+		echo '<h' . $attributes["headingLevel"] . ' class="visually-hidden">' . $auto_heading . '</h' . $attributes["headingLevel"] .  '>';
 	}
 }
 //render term description
@@ -280,7 +282,7 @@ if ($queried_posts->have_posts()):
 					if ($attributes["showMoreButton"] && $count > $show_count["xl"]) $additional_class = "hide-sm hide-xl";
 					//used to move focus with show more button
 					$tab_index = $attributes["showMoreButton"] && ($count === $show_count["small"] + 1 || $count === $show_count["xl"] + 1) ? true : false;
-					get_template_part('template-parts/archive-single-post', null, array("additional_class" => $additional_class, "tabindex" => $tab_index));
+					get_template_part('template-parts/archive-single-post', null, array("additional_class" => $additional_class, "tabindex" => $tab_index, "heading_level" => $attributes["headingLevel"] + 1));
 				endwhile; ?>
 			</div>
 		</div>
@@ -298,7 +300,7 @@ elseif ($attributes["queryPostType"] === 'podcast'):
 				$additional_class = $attributes["showMoreButton"] && $count > 3 ? "hide-sm hide-xl" : "";
 				//used to move focus with show more button
 				$tab_index = $attributes["showMoreButton"] && $count > 4 ? true : false;
-				get_template_part('template-parts/archive-single-podcast', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index));
+				get_template_part('template-parts/archive-single-podcast', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index, "heading_level" => $attributes["headingLevel"] + 1));
 			endwhile; ?>
 		</div>
 		<?php if ($attributes["showMoreButton"]) echo $link_button;?>

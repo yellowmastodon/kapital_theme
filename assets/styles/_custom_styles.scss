@@ -19,14 +19,14 @@ label{
     padding-top: map-get($spacers, 5);
     padding-bottom: map-get($spacers, 5);
 }
+ul{
+    padding-left: 1em;
+}
 
 @include media-breakpoint-up('lg'){
     #main{
         padding-top: map-get($spacers, 6);
         padding-bottom: map-get($spacers, 6);
-    }
-    .breadcrumb-nav + #main{
-        padding-top: map-get($spacers, 4);
     }
 }
 
@@ -36,6 +36,7 @@ label{
         padding-top: map-get($spacers, 2);
     }
 }
+
 .btn-menu, a {
     transition: color $link_transition_speed linear;
     svg{

@@ -75,8 +75,7 @@ function Edit(_ref) {
     meta = _useEntityProp2[0],
     setMeta = _useEntityProp2[1];
   //pass exclusion from featured post
-  console.log(meta._kapital_featured_post);
-  console.log(attributes);
+
   var taxonomies = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_8__.useSelect)(function (select) {
     var _select = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_7__.store),
       getTaxonomies = _select.getTaxonomies;

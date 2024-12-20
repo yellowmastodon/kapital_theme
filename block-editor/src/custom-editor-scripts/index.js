@@ -10,6 +10,8 @@ import {AuthorTermSelector} from './authorTermSelector';
 import {customMetaSettings} from './customMetaSettings'
 import {registerKapitalButtonVariation} from '../block-variations/button';
 import {registerBubbleHeadingVariation} from '../block-variations/bubble-heading';
+import { useSelect, select } from '@wordpress/data';
+
 
 //import {registerFormats } from './richTextCustomFormats';
 
@@ -60,7 +62,6 @@ import { settings } from '@wordpress/icons';
 // This filter adds alignment support to core/paragraph if not already present
 const wideAlignBlocks = ['core/paragraph', 'core/heading', 'core/list' ]
 const addWideAlignmentSupport = (settings) => {
-	console.log(settings); 
 		if (wideAlignBlocks.includes(settings.name)) {
 			settings.supports = {
 				...settings.supports,
