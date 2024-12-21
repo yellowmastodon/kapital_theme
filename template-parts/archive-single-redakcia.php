@@ -16,8 +16,13 @@ if (isset($args['heading_level'])){
 
 <article <?php post_class(["ff-grotesk text-center archive-item archive-item-redakcia col-12 col-sm-6 col-md-4 archive-redakcia-item"], $post) ?>>
     <a class="archive-item-link text-decoration-none" href="<?= get_post_permalink() ?>">
-        <?php
-        echo kapital_responsive_image(get_post_thumbnail_id(), "", false, "rounded archive-item-image redakcia-portrait w-100");
+        <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
+        if ($thumbnail_image_id) {
+            echo kapital_responsive_image($thumbnail_image_id, "", false, "rounded archive-item-image redakcia-portrait w-100");
+        } else {
+            echo '<div class="rounded w-100 archive-item-image redakcia-portrait placeholder"></div>';
+        }
+
         $post_title = get_the_title();
         $secondary_title = get_post_meta($post->ID, '_secondary_title', true);?>
         
@@ -26,7 +31,7 @@ if (isset($args['heading_level'])){
         </<?='h'.$heading_level?>>
 
         <?php if ($secondary_title && $secondary_title !== ""): ?>
-            <p class="secondary-title"><?= $secondary_title ?></p>
+            <p class="item-excerpt lh-sm"><?= $secondary_title ?></p>
         <?php endif; ?>
     </a>
 </article>

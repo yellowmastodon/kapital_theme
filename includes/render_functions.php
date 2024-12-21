@@ -472,41 +472,42 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     endif;
     $html = "";
     if ($filters && !empty($filters)):
-        if ($sticky){
-            $html .= '<nav class="post-filters position-sticky my-5 text-start alignwider">';
-            $html .= '<button type="button" class="btn-filter-toggle btn btn-outline" aria-label="' . __('Zobraziť filtre', 'kapital') . '">';
-            $html .= __('Filter', 'kapital') . '<svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>';
-            $html .= '</button>';
-            $html .= '<div tabindex="-1" class="filters-modal p-3 p-sm-0" role="dialog">';
-        } else {
-            $html .= '<nav class="post-filters my-5 text-start alignwider">';
-        }
-        $html .= '<div class="filters-content py-2 py-sm-0">';
-        if ($sticky){
-            $html .= '<button class="btn btn-close mb-2"><svg><use xlink:href="#icon-close"></use></svg></button>';
-        }
-        foreach ($filters as $filter):
-            if($is_page){
-                $name = $filter["name"];
-                $link = $filter["url"];
-            } else {
-                $term_slug = $filter->slug;
-                $name = $filter->name;
-                $link = get_term_link($filter);
-                //shorten one specific name as it is too long for filter
-                $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
-                $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
-            }        
-            $html .= '<div class="my-2 my-sm-1 mx-0 mx-sm-1">';
-            $html .= '<a class="btn btn-outline text-center" href="' . $link . '">' . $name . '</a>';
-            $html .= '</div>';
-        endforeach;
-        $html .= '</div>';
-        if ($sticky){
-            $html .= '</div>';
-        }
-        $html .= '</div>';
-        $html .= '</nav>';
+        ob_start();
+        if ($sticky):?>
+            <div class="btn-filter-toggle-wrapper position-sticky alignwider" style="display: none;">
+                <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="'<?=__('Zobraziť filtre', 'kapital')?>'">
+                    <?=__('Filter', 'kapital')?>
+                    <svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>
+                </button>
+            </div>
+        <?php endif;?>
+            <div class="filters-modal alignwider <?php if ($sticky) echo ' position-sticky'?>" tabindex="-1" <?php if($sticky) echo 'style="display: none"'?>>
+                <div class="modal-dialog">
+                    <div class="modal-content bg-transparent">
+                    <button class="btn btn-close close mb-2" data-bs-dismiss="modal" aria-label="<?=__("Skryť filtre", "kapital")?>" style="display:none !important" ><svg><use xlink:href="#icon-close"></use></svg></button>
+                        <?php foreach ($filters as $filter):
+                            if($is_page){
+                                $name = $filter["name"];
+                                $link = $filter["url"];
+                            } else {
+                                $term_slug = $filter->slug;
+                                $name = $filter->name;
+                                $link = get_term_link($filter);
+                                //shorten one specific name as it is too long for filter
+                                $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
+                                $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
+                            }?>      
+                            <div class="my-2 my-sm-1 mx-1">
+                                <a class="btn btn-outline text-center" href="<?=$link?>">
+                                    <?=$name?>
+                                </a>
+                            </div>
+                        <?php endforeach; ?> 
+                        </div>
+                </div>
+            </div>
+    <?php
+    $html = ob_get_clean();                  
     endif;
     return $html;
 }

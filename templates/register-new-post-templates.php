@@ -86,15 +86,6 @@ function new_post_template()
 			array(
 				'placeholder' => 'Bio člena*ky redakcie./baawdLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id tortor dictum, condimentum eros ac, porta orci. Mauris faucibus vitae est vitae pharetra. Nunc ultrices massa ut diam rutrum congue sed et turpis. Cras egestas metus eget lectus pellentesque, egestas iaculis purus dignissim. Duis vehicula egestas massa, eleifend sodales ipsum blandit vel. Maecenas nec ex ex. Morbi euismod enim dui, quis consequat eros convallis nec. Proin ut auctor nulla. Mauris ut est eget justo vestibulum pellentesque.'
 			)
-		),
-		array(
-			'kapital/post-query',
-			array(
-				'taxonomy' => 'autorstvo',
-				'showHeading' => 'manual',
-				'headingLevel' => 2,
-				'headingText' => 'Články'
-			)
 		)
 	);
 }

@@ -1,5 +1,6 @@
 .redakcia-portrait{
-    max-height: 60vh;
+    max-height: calc(var(--kptl-initial-vh) * 55);
+    transition: max-height .3s ease;
     object-fit: cover;
 }
 @include media-breakpoint-up('md'){

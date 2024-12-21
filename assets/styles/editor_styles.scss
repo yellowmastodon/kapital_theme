@@ -25,6 +25,7 @@ $theme-colors: map-merge($theme-colors, $colors);
 @import "bootstrap/scss/root";
 .is-root-container{
     @extend :root;
+    font-size: 1rem !important;
 }
 @import "bootstrap/scss/reboot";
 

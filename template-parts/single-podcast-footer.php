@@ -40,7 +40,7 @@ if (isset($args['custom_taxonomies']) && isset($args['filtered_terms']) && !empt
             )
         );
     endif;
-    if (!empty($recommend_podcasts)):?>
+    if ($recommend_podcasts && !empty($recommend_podcasts)):?>
         <footer class="post-footer mt-6 alignwide">
             <?php
             echo '<p class="ff-grotesk text-uppercase mb-1 text-center fw-bold alignwide">' . __('Najnovšie podcasty zo série:', 'kapital') . '</p>';

@@ -4471,7 +4471,7 @@ $theme-colors: $temporary-colors; */
   display: inline-block !important;
 }
 
-.d-block, .btn .btn-block, .btn .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .btn .woocommerce-button, .woocommerce-form-login .woocommerce-button .btn-block, .woocommerce-form-login .woocommerce-button .woocommerce-button, .btn .woocommerce-account .woocommerce button[type=submit], .woocommerce-form-login .woocommerce-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .btn button[type=submit], .woocommerce-account .woocommerce .woocommerce-form-login .woocommerce-button button[type=submit], .woocommerce-form-login .woocommerce-account .woocommerce .woocommerce-button button[type=submit], .woocommerce-account .woocommerce button[type=submit] .btn-block, .woocommerce-account .woocommerce button[type=submit] .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-account .woocommerce button[type=submit] .woocommerce-button, .woocommerce-account .woocommerce button[type=submit] button[type=submit], .woocommerce-MyAccount-navigation ul li a .btn-block, .woocommerce-MyAccount-navigation ul li a .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-MyAccount-navigation ul li a .woocommerce-button, .woocommerce-MyAccount-navigation ul li a .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li a button[type=submit], .btn button#place_order, .woocommerce-form-login .woocommerce-button button#place_order, .woocommerce-account .woocommerce button[type=submit] button#place_order, .woocommerce-MyAccount-navigation ul li a button#place_order, button#place_order .btn-block, button#place_order .woocommerce-form-login .woocommerce-button, .woocommerce-form-login button#place_order .woocommerce-button, button#place_order .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce button#place_order button[type=submit], button#place_order button#place_order, .woocommerce-form-coupon button .btn-block, .woocommerce-form-coupon button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-form-coupon button .woocommerce-button, .woocommerce-form-coupon button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .woocommerce-form-coupon button button[type=submit], .woocommerce-form-coupon button button#place_order, .shipping-calculator-form button[type=submit] .btn-block, .shipping-calculator-form button[type=submit] .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .shipping-calculator-form button[type=submit] .woocommerce-button, .shipping-calculator-form button[type=submit] .woocommerce-account .woocommerce button[type=submit], .shipping-calculator-form button[type=submit] button#place_order, .coupon button .btn-block, .coupon button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .coupon button .woocommerce-button, .coupon button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .coupon button button[type=submit], .coupon button button#place_order, #pwgc-redeem-button .btn-block, #pwgc-redeem-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login #pwgc-redeem-button .woocommerce-button, #pwgc-redeem-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-button button[type=submit], #pwgc-redeem-button button#place_order, .btn .checkout-button, .woocommerce-form-login .woocommerce-button .checkout-button, .woocommerce-account .woocommerce button[type=submit] .checkout-button, .woocommerce-MyAccount-navigation ul li a .checkout-button, button#place_order .checkout-button, .woocommerce-form-coupon button .checkout-button, .shipping-calculator-form button[type=submit] .checkout-button, .coupon button .checkout-button, #pwgc-redeem-button .checkout-button, .checkout-button .btn-block, .checkout-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .checkout-button .woocommerce-button, .checkout-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .checkout-button button[type=submit], .checkout-button button#place_order, .checkout-button .checkout-button, .tabs.wc-tabs li a .btn-block, .tabs.wc-tabs li a .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .tabs.wc-tabs li a .woocommerce-button, .tabs.wc-tabs li a .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .tabs.wc-tabs li a button[type=submit], .tabs.wc-tabs li a button#place_order, .tabs.wc-tabs li a .checkout-button, .single_add_to_cart_button .btn-block, .single_add_to_cart_button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .single_add_to_cart_button .woocommerce-button, .single_add_to_cart_button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .single_add_to_cart_button button[type=submit], .single_add_to_cart_button button#place_order, .single_add_to_cart_button .checkout-button, .archive-item.product a.button .btn-block, .archive-item.product a.button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .archive-item.product a.button .woocommerce-button, .archive-item.product a.button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .archive-item.product a.button button[type=submit], .archive-item.product a.button button#place_order, .archive-item.product a.button .checkout-button, .wp-element-button .btn-block, .wp-element-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .wp-element-button .woocommerce-button, .wp-element-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .wp-element-button button[type=submit], .wp-element-button button#place_order, .wp-element-button .checkout-button, .wp-block-button__link .btn-block, .wp-block-button__link .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .wp-block-button__link .woocommerce-button, .wp-block-button__link .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .wp-block-button__link button[type=submit], .wp-block-button__link button#place_order, .wp-block-button__link .checkout-button {
+.d-block, .btn-block, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], button#place_order, .checkout-button {
   display: block !important;
 }
 
@@ -10174,28 +10174,28 @@ $theme-colors: $temporary-colors; */
     max-width: 500px;
   }
 }
-.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 
 @media (min-width: 600px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 100%;
   }
 }
-.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px;
 }
 
 @media (min-width: 1650px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px;
   }
 }
 @media (min-width: 2100px) {
-  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull), #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .alignnormal, .woocommerce-account .woocommerce .lost_reset_password, .woocommerce-account .woocommerce #customer_login, .woocommerce-account .woocommerce, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, #post-content > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 800px;
   }
 }
@@ -10501,7 +10501,8 @@ img {
   }
 }
 .redakcia-portrait {
-  max-height: 60vh;
+  max-height: calc(var(--kptl-initial-vh) * 55);
+  transition: max-height 0.3s ease;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -11092,9 +11093,10 @@ a[class^=marker-]:active::before {
   transition: 0.05s linear;
 }
 
-.btn .btn-block, .btn .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .btn .woocommerce-button, .woocommerce-form-login .woocommerce-button .btn-block, .woocommerce-form-login .woocommerce-button .woocommerce-button, .btn .woocommerce-account .woocommerce button[type=submit], .woocommerce-form-login .woocommerce-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .btn button[type=submit], .woocommerce-account .woocommerce .woocommerce-form-login .woocommerce-button button[type=submit], .woocommerce-form-login .woocommerce-account .woocommerce .woocommerce-button button[type=submit], .woocommerce-account .woocommerce button[type=submit] .btn-block, .woocommerce-account .woocommerce button[type=submit] .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-account .woocommerce button[type=submit] .woocommerce-button, .woocommerce-account .woocommerce button[type=submit] button[type=submit], .woocommerce-MyAccount-navigation ul li a .btn-block, .woocommerce-MyAccount-navigation ul li a .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-MyAccount-navigation ul li a .woocommerce-button, .woocommerce-MyAccount-navigation ul li a .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .woocommerce-MyAccount-navigation ul li a button[type=submit], .btn button#place_order, .woocommerce-form-login .woocommerce-button button#place_order, .woocommerce-account .woocommerce button[type=submit] button#place_order, .woocommerce-MyAccount-navigation ul li a button#place_order, button#place_order .btn-block, button#place_order .woocommerce-form-login .woocommerce-button, .woocommerce-form-login button#place_order .woocommerce-button, button#place_order .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce button#place_order button[type=submit], button#place_order button#place_order, .woocommerce-form-coupon button .btn-block, .woocommerce-form-coupon button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .woocommerce-form-coupon button .woocommerce-button, .woocommerce-form-coupon button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .woocommerce-form-coupon button button[type=submit], .woocommerce-form-coupon button button#place_order, .shipping-calculator-form button[type=submit] .btn-block, .shipping-calculator-form button[type=submit] .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .shipping-calculator-form button[type=submit] .woocommerce-button, .shipping-calculator-form button[type=submit] .woocommerce-account .woocommerce button[type=submit], .shipping-calculator-form button[type=submit] button#place_order, .coupon button .btn-block, .coupon button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .coupon button .woocommerce-button, .coupon button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .coupon button button[type=submit], .coupon button button#place_order, #pwgc-redeem-button .btn-block, #pwgc-redeem-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login #pwgc-redeem-button .woocommerce-button, #pwgc-redeem-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce #pwgc-redeem-button button[type=submit], #pwgc-redeem-button button#place_order, .btn .checkout-button, .woocommerce-form-login .woocommerce-button .checkout-button, .woocommerce-account .woocommerce button[type=submit] .checkout-button, .woocommerce-MyAccount-navigation ul li a .checkout-button, button#place_order .checkout-button, .woocommerce-form-coupon button .checkout-button, .shipping-calculator-form button[type=submit] .checkout-button, .coupon button .checkout-button, #pwgc-redeem-button .checkout-button, .checkout-button .btn-block, .checkout-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .checkout-button .woocommerce-button, .checkout-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .checkout-button button[type=submit], .checkout-button button#place_order, .checkout-button .checkout-button, .tabs.wc-tabs li a .btn-block, .tabs.wc-tabs li a .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .tabs.wc-tabs li a .woocommerce-button, .tabs.wc-tabs li a .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .tabs.wc-tabs li a button[type=submit], .tabs.wc-tabs li a button#place_order, .tabs.wc-tabs li a .checkout-button, .single_add_to_cart_button .btn-block, .single_add_to_cart_button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .single_add_to_cart_button .woocommerce-button, .single_add_to_cart_button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .single_add_to_cart_button button[type=submit], .single_add_to_cart_button button#place_order, .single_add_to_cart_button .checkout-button, .archive-item.product a.button .btn-block, .archive-item.product a.button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .archive-item.product a.button .woocommerce-button, .archive-item.product a.button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .archive-item.product a.button button[type=submit], .archive-item.product a.button button#place_order, .archive-item.product a.button .checkout-button, .wp-element-button .btn-block, .wp-element-button .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .wp-element-button .woocommerce-button, .wp-element-button .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .wp-element-button button[type=submit], .wp-element-button button#place_order, .wp-element-button .checkout-button, .wp-block-button__link .btn-block, .wp-block-button__link .woocommerce-form-login .woocommerce-button, .woocommerce-form-login .wp-block-button__link .woocommerce-button, .wp-block-button__link .woocommerce-account .woocommerce button[type=submit], .woocommerce-account .woocommerce .wp-block-button__link button[type=submit], .wp-block-button__link button#place_order, .wp-block-button__link .checkout-button {
+.btn-block, .woocommerce-form-login .woocommerce-button, .woocommerce-account .woocommerce button[type=submit], button#place_order, .checkout-button {
   width: 100%;
 }
+
 .btn svg.icon-square, .woocommerce-form-login .woocommerce-button svg.icon-square, .woocommerce-account .woocommerce button[type=submit] svg.icon-square, .woocommerce-MyAccount-navigation ul li a svg.icon-square, button#place_order svg.icon-square, .woocommerce-form-coupon button svg.icon-square, .shipping-calculator-form button[type=submit] svg.icon-square, .coupon button svg.icon-square, #pwgc-redeem-button svg.icon-square, .checkout-button svg.icon-square, .tabs.wc-tabs li a svg.icon-square, .single_add_to_cart_button svg.icon-square, .archive-item.product a.button svg.icon-square, .wp-element-button svg.icon-square, .wp-block-button__link svg.icon-square {
   margin-top: -0.15rem;
   vertical-align: middle;
@@ -11283,9 +11285,11 @@ a[class^=marker-]:active::before {
   aspect-ratio: 1.67 !important;
 }
 
+.item-excerpt {
+  font-size: 0.95rem;
+}
 .item-excerpt > * {
   margin-bottom: 1rem;
-  font-size: 0.95rem;
 }
 
 .hashtag + .issue-cover {
@@ -11509,56 +11513,97 @@ let's see if we need to be specific about posts
   transform: unset !important;
 }
 
-body.modal-open {
-  overflow: hidden;
+/* body.modal-open {
+    overflow: hidden;
+}
+.post-filters.position-sticky {
+    z-index: 1000;
 }
 
 .post-filters .filters-content {
-  font-size: 0.9rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (min-width: 600px) {
-  .post-filters {
-    z-index: 1000;
-  }
-  .post-filters .btn-filter-toggle, .post-filters .btn-close {
-    display: none !important;
-  }
-  .post-filters *[class^=btn] {
-    outline: solid 3px #fff;
-  }
-  .post-filters .filters-content {
-    flex-direction: row;
-  }
+@include media-breakpoint-up("sm") {
+    .post-filters {
+        .btn-filter-toggle,
+        .btn-close {
+            display: none !important;
+        }
+        *[class^="btn"] {
+            outline: solid 3px $white;
+        }
+    }
+    .post-filters .filters-content {
+        flex-direction: row;
+    }
 }
-@media (max-width: 599.98px) {
-  .post-filters .filters-modal:not(.open) {
-    display: none !important;
-    opacity: 0;
-  }
-  .filters-modal {
-    transition: opacity 0.3s ease;
-  }
-  .post-filters .filters-modal {
-    background-color: var(--kptl-primary);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: 1060;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .filters-content {
-    align-items: center;
-    flex-direction: column;
-  }
+
+@include media-breakpoint-down("sm") {
+    .post-filters.position-sticky .filters-modal:not(.open) {
+        display: none !important;
+        opacity: 0;
+    }
+    .filters-modal {
+        transition: opacity 0.3s ease;
+    }
+    .post-filters .filters-modal {
+        background-color: var(--kptl-primary);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        //font-size: $font-size-sm;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .filters-content {
+        align-items: center;
+        flex-direction: column;
+    }
+} */
+/* .post-filters.position-sticky{
+    .btn-filter-toggle, .filters-modal{
+        z-index: 1000;
+    }
+    .filter-modal.show{
+        z-index: 1060;
+    }
 }
+ */
+.filters-modal.position-sticky, .btn-filter-toggle-wrapper {
+  z-index: 1000;
+}
+.filters-modal.position-sticky *[class^=btn], .btn-filter-toggle-wrapper *[class^=btn] {
+  outline: solid 3px #fff;
+}
+
+.filters-modal:not(.modal), .btn-filter-toggle-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.filters-modal .modal-content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.filters-modal:not(.modal) .modal-content {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filters-modal.modal .modal-content {
+  height: 100%;
+  flex-direction: column;
+}
+
 .featured-post .archive-item-link:not(.custom) {
   cursor: pointer;
   -webkit-user-select: none;

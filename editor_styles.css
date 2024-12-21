@@ -241,6 +241,9 @@
   --kptl-form-invalid-color: #ff0033;
   --kptl-form-invalid-border-color: #ff0033;
 }
+.editor-styles-wrapper .is-root-container {
+  font-size: 1rem !important;
+}
 .editor-styles-wrapper *,
 .editor-styles-wrapper *::before,
 .editor-styles-wrapper *::after {
@@ -3312,7 +3315,7 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .btn-like {
   display: inline-block !important;
 }
-.editor-styles-wrapper .d-block, .editor-styles-wrapper .btn .btn-block, .editor-styles-wrapper .archive-item.product a.button .btn-block, .archive-item.product .editor-styles-wrapper a.button .btn-block, .btn .editor-styles-wrapper .btn-block, .archive-item.product a.button .editor-styles-wrapper .btn-block, .editor-styles-wrapper .wp-element-button .btn-block, .editor-styles-wrapper .wp-block-button__link .btn-block {
+.editor-styles-wrapper .d-block, .editor-styles-wrapper .btn-block {
   display: block !important;
 }
 .editor-styles-wrapper .d-grid {
@@ -8477,26 +8480,26 @@ a > .editor-styles-wrapper code {
     max-width: 500px;
   }
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group .editor-styles-wrapper .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 @media (min-width: 600px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group .editor-styles-wrapper .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 100%;
   }
 }
-.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group .editor-styles-wrapper .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+.editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
   max-width: 600px;
 }
 @media (min-width: 1650px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group .editor-styles-wrapper .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 700px;
   }
 }
 @media (min-width: 2100px) {
-  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .wp-block-group .editor-styles-wrapper .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce), .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull), .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
+  .editor-styles-wrapper .alignnormal, .editor-styles-wrapper .is-root-container > .wp-block:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]), .editor-styles-wrapper .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .wp-block-group__inner-container, .wp-block-group .wp-block-group__inner-container > *:not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .wp-block-group__inner-container, .wp-block-group.wp-block-group__inner-container > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull) .editor-styles-wrapper .wp-block-group__inner-container, .editor-styles-wrapper #post-content > *:not(.alignwide):not(.edit-post-visual-editor__post-title-wrapper):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align=wide]):not(.wp-block[data-align=full]):not(.woocommerce) {
     max-width: 800px;
   }
 }
@@ -9165,9 +9168,11 @@ img {
   aspect-ratio: 1.67 !important;
 }
 
+.item-excerpt {
+  font-size: 0.95rem;
+}
 .item-excerpt > * {
   margin-bottom: 1rem;
-  font-size: 0.95rem;
 }
 
 .hashtag + .issue-cover {
@@ -9254,9 +9259,10 @@ img {
   transition: 0.05s linear;
 }
 
-.btn .btn-block, .archive-item.product a.button .btn-block, .editor-styles-wrapper .wp-element-button .btn-block, .editor-styles-wrapper .wp-block-button__link .btn-block {
+.btn-block {
   width: 100%;
 }
+
 .btn svg.icon-square, .archive-item.product a.button svg.icon-square, .btn .wp-block-button svg.wp-block-button__link::before, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .btn svg.wp-block-button__link::before, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::before, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::before, .btn .wp-block-button svg.wp-block-button__link::after, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .btn svg.wp-block-button__link::after, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::after, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-element-button svg.icon-square, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::before, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-block-button__link svg.icon-square, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::before, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::after {
   margin-top: -0.15rem;
   vertical-align: middle;
@@ -9560,56 +9566,97 @@ img {
   border-radius: 1rem 1rem 1rem 0;
 }
 
-body.modal-open {
-  overflow: hidden;
+/* body.modal-open {
+    overflow: hidden;
+}
+.post-filters.position-sticky {
+    z-index: 1000;
 }
 
 .post-filters .filters-content {
-  font-size: 0.9rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (min-width: 600px) {
-  .post-filters {
-    z-index: 1000;
-  }
-  .post-filters .btn-filter-toggle, .post-filters .btn-close {
-    display: none !important;
-  }
-  .post-filters *[class^=btn] {
-    outline: solid 3px #fff;
-  }
-  .post-filters .filters-content {
-    flex-direction: row;
-  }
+@include media-breakpoint-up("sm") {
+    .post-filters {
+        .btn-filter-toggle,
+        .btn-close {
+            display: none !important;
+        }
+        *[class^="btn"] {
+            outline: solid 3px $white;
+        }
+    }
+    .post-filters .filters-content {
+        flex-direction: row;
+    }
 }
-@media (max-width: 599.98px) {
-  .post-filters .filters-modal:not(.open) {
-    display: none !important;
-    opacity: 0;
-  }
-  .filters-modal {
-    transition: opacity 0.3s ease;
-  }
-  .post-filters .filters-modal {
-    background-color: var(--kptl-primary);
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: 1060;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  .filters-content {
-    align-items: center;
-    flex-direction: column;
-  }
+
+@include media-breakpoint-down("sm") {
+    .post-filters.position-sticky .filters-modal:not(.open) {
+        display: none !important;
+        opacity: 0;
+    }
+    .filters-modal {
+        transition: opacity 0.3s ease;
+    }
+    .post-filters .filters-modal {
+        background-color: var(--kptl-primary);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        //font-size: $font-size-sm;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .filters-content {
+        align-items: center;
+        flex-direction: column;
+    }
+} */
+/* .post-filters.position-sticky{
+    .btn-filter-toggle, .filters-modal{
+        z-index: 1000;
+    }
+    .filter-modal.show{
+        z-index: 1060;
+    }
 }
+ */
+.filters-modal.position-sticky, .btn-filter-toggle-wrapper {
+  z-index: 1000;
+}
+.filters-modal.position-sticky *[class^=btn], .btn-filter-toggle-wrapper *[class^=btn] {
+  outline: solid 3px #fff;
+}
+
+.filters-modal:not(.modal), .btn-filter-toggle-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.filters-modal .modal-content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.filters-modal:not(.modal) .modal-content {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filters-modal.modal .modal-content {
+  height: 100%;
+  flex-direction: column;
+}
+
 #darujme-form-wrapper {
   padding: 1rem;
   border-radius: 1rem;

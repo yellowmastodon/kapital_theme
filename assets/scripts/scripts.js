@@ -5,7 +5,7 @@
 import 'bootstrap/js/dist/carousel';
 import Collapse from 'bootstrap/js/dist/collapse';
 //import 'bootstrap/js/dist/dropdown';
-import 'bootstrap/js/dist/modal';
+import Modal from 'bootstrap/js/dist/modal';
 import 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/popover';
 // import 'bootstrap/js/dist/scrollspy';
@@ -31,6 +31,11 @@ document.querySelectorAll('.dismiss-notice').forEach((element) => {
         event.target.closest('.woocommerce-message').remove();
     })
 })
+
+//stop images with max height from resizing on mobile
+document.addEventListener('DOMContentLoaded', ()=>{
+ document.documentElement.style.setProperty('--kptl-initial-vh', (window.screen.height / 100) + 'px');
+});
 
 showMorePosts();
 if (document.body.classList.contains('single-product')){

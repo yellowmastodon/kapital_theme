@@ -29,7 +29,7 @@ $about_page = get_posts(array(
 if (!empty($about_page)){
     $breadcrumbs[] = [$about_page[0]->post_title, get_the_permalink($about_page[0])];
 }
-$breadcrumbs[] = [__('Redakcia', 'kapital'), get_post_type_archive_link('redakcia')];
+$breadcrumbs[] = [__('Redakcia', 'kapital'), get_post_type_archive_link('redakcia'), true];
 
 //setup title
 

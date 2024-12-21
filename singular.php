@@ -173,7 +173,7 @@ if ($render_settings["show_breadcrumbs"]) {
             </div>
             <?php
             if ($render_settings["show_footer"]):
-                get_template_part('template-paprts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
+                get_template_part('template-parts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
             endif; ?>
         </article>
     <?php endwhile; ?>

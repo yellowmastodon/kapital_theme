@@ -96,9 +96,11 @@ $archive-article-img-outline-width: 5px;
     }
 }
 
-.item-excerpt > *{
-    margin-bottom: map-get($spacers, 3);
+.item-excerpt{
     font-size: .95rem;
+    & > *{
+        margin-bottom: map-get($spacers, 3);
+    }
 }
 
 

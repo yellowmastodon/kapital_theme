@@ -22,13 +22,12 @@
     transition: $link_transition_speed linear;
     
 }
-
+.btn-block{
+    @extend .d-block;
+    width: 100%;
+}
 .btn{
 
-    .btn-block{
-            @extend .d-block;
-            width: 100%;
-        }
     svg{
         &.icon-square{
             margin-top: -.15rem;

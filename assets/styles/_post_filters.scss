@@ -1,53 +1,94 @@
-body.modal-open{
+/* body.modal-open {
     overflow: hidden;
 }
+.post-filters.position-sticky {
+    z-index: 1000;
+}
 
-.post-filters .filters-content{
-    font-size: .9rem;
+.post-filters .filters-content {
+    font-size: 0.9rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-@include media-breakpoint-up('sm'){
-    .post-filters{
-        z-index: 1000;
-        .btn-filter-toggle, .btn-close{
+@include media-breakpoint-up("sm") {
+    .post-filters {
+        .btn-filter-toggle,
+        .btn-close {
             display: none !important;
         }
-        *[class^="btn"]{
+        *[class^="btn"] {
             outline: solid 3px $white;
         }
     }
-    .post-filters .filters-content{
+    .post-filters .filters-content {
         flex-direction: row;
     }
 }
 
-@include media-breakpoint-down('sm'){
-    .post-filters .filters-modal:not(.open){
+@include media-breakpoint-down("sm") {
+    .post-filters.position-sticky .filters-modal:not(.open) {
         display: none !important;
         opacity: 0;
-    } 
-    .filters-modal{
-        transition: opacity .3s ease;
     }
-    .post-filters .filters-modal{
+    .filters-modal {
+        transition: opacity 0.3s ease;
+    }
+    .post-filters .filters-modal {
         background-color: var(--#{$prefix}primary);
         position: fixed;
         left: 0;
         top: 0;
         width: 100vw;
         height: 100%;
-        z-index: 1060;
         //font-size: $font-size-sm;
         overflow-x: hidden;
         overflow-y: auto;
-
     }
-    .filters-content{
+    .filters-content {
         align-items: center;
         flex-direction: column;
     }
+} */
+
+/* .post-filters.position-sticky{
+    .btn-filter-toggle, .filters-modal{
+        z-index: 1000;
+    }
+    .filter-modal.show{
+        z-index: 1060;
+    }
 }
+ */
+
+.filters-modal.position-sticky, .btn-filter-toggle-wrapper{
+    z-index: 1000;
+    *[class^="btn"] {
+        outline: solid 3px $white;
+    }
+}
+
+.filters-modal:not(.modal), .btn-filter-toggle-wrapper{
+    margin-top: map-get($spacers, 5);
+    margin-bottom: map-get($spacers, 5);
+}
+.filters-modal .modal-content{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.filters-modal:not(.modal){
+    .modal-content{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+.filters-modal.modal{
+    .modal-content{
+        height: 100%;
+        flex-direction: column;
+    }
+}
+//if modal or not is controlled via js, so that id does not revert to other version on screen resize, as that might mess with modal

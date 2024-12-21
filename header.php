@@ -128,7 +128,7 @@ if (isset($darujme_options["campaign_active"])) {
                 <div class="col-auto col-lg-1 col-xl-1 d-none d-sm-block text-end">
                     <button class="btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch" aria-label="<?= __("Zatvoriť dialóg vyhľadávania.", "kapital") ?>">
                         <svg viewBox="0 0 24 24">
-                            <use xlink:href="#icon-search"></use>
+                            <use xlink:href="#icon-search"/>
                         </svg>
                     </button>
                     <a class="btn-menu text-decoration-none" href="#">EN</a>

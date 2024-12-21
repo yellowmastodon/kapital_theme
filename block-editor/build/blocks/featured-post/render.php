@@ -143,7 +143,8 @@ else:
 			<a href="<?php echo $post_permalink; ?>" class="col-12 archive-item-link item-link col-md-6">
 				<?php 
 				if ($thumbnail_id !== 0){
-					echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 100%", false, "rounded archive-item-image w-100");
+					//needs proper
+					echo kapital_responsive_image($thumbnail_id, "(min-width: 900px) 900px, 75vw", false, "rounded archive-item-image w-100");
 				} else {
 					echo '<div class="rounded w-100 archive-item-image placeholder"></div>';
 				}
