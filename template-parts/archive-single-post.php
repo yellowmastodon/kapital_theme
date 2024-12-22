@@ -87,7 +87,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
             echo '<div class="rounded w-100 archive-item-image placeholder"></div>';
         }
         //data-text attribute used by ::before element to generate outline?>
-        <<?= 'h' . $heading_level;?> class="h3 mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
+        <<?= 'h' . $heading_level;?> class="archive-item-heading mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
         <div class="item-excerpt red-color-hover lh-sm mb-3">
             <?php if ($secondary_title !== "") {
                 echo '<p>' . $secondary_title . '</p>';

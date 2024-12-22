@@ -25,16 +25,39 @@ body.admin-bar {
     }
 }
 
-@include media-breakpoint-up("sm") {
-    #main-menu-wrapper {
-        .offcanvas-body {
-            position: relative;
-            .btn-close {
-                position: absolute;
-                right: 0;
-                top: 0;
-            }
+#main-menu-wrapper {
+    .offcanvas-body {
+        position: relative;
+        .btn-close {
+            position: absolute;
+            right: 0;
+            top: 0;
         }
+    }
+}
+
+#main-menu {
+    .level-0 > a{
+            background-color: var(--#{$prefix}white);
+    }
+
+    .level-0:not(:last-child){
+        margin-bottom: map-get($spacers, 1);
+    }
+}
+
+#main-menu{
+    .menu-item:not(.level-0){
+        font-size: .95rem;
+    }
+}
+
+
+#main-menu-wrapper{
+    ul ul{
+        margin-top: map-get($spacers, 3);
+        margin-bottom: map-get($spacers, 3);
+
     }
 }
 
@@ -81,13 +104,13 @@ $horizontal-nav-padding: 6px;
         fill 0.2 ease;
     svg {
         height: 1.2rem;
-        margin-top: -0.1rem;
+        margin-top: -0.2rem;
         margin-bottom: -0.1rem;
     }
 }
 
 //centered independently of .row on md-breakpoint
-@include media-breakpoint-only("md") {
+@include media-breakpoint-down("lg") {
     #horizontal-nav-logo {
         position: absolute;
         left: 50%;
@@ -104,7 +127,6 @@ $menu-btn-padding-bottom: 0.3em;
 $menu-btn-padding-top: 0.4em;
 
 .btn-menu,
-#main-menu .menu-item a,
 #quick-menu .menu-item a {
     line-height: 1;
     @extend .rounded-pill;
@@ -146,8 +168,7 @@ $menu-btn-padding-top: 0.4em;
     }
 }
 
-.btn-menu,
-#main-menu .menu-item a {
+.btn-menu {
     color: var(--#{$prefix}body-color);
     background-color: transparent;
     //padding and negative margin used for focus box-shadow styling
@@ -186,37 +207,43 @@ $menu-btn-padding-top: 0.4em;
 }
 
 //some adjustment for hamburger "icon" for smaller font size on mobile
-@include media-breakpoint-down("sm") {
+/* @include media-breakpoint-down("sm") {
     .hamburger .line:not(:last-child) {
-        margin-bottom: 3px;
     }
-}
+} */
 
 //fix usage in row (overriden padding)
 //can create problems in wrapping rows
 //solution:
 //wrap elements in that case in .col
 
-.row .btn-menu + .btn-menu {
+/* .row .btn-menu + .btn-menu {
     margin-left: calc($spacer - $menu-btn-padding-x);
 }
 //other classes not used in layout, can be generated manually the same way
 .row.gx-4 .btn-menu + .btn-menu {
     margin-left: calc(map-get($spacers, 4) - $menu-btn-padding-x);
 }
-
+ */
 @include media-breakpoint-down("sm") {
+
     .btn-podpora {
         margin-left: (-$menu-btn-padding-x);
         margin-right: (-$menu-btn-padding-x);
+
     }
 }
-@include media-breakpoint-up("sm") {
-    .btn-podpora {
+
+@include media-breakpoint-up('sm'){
+    .btn-podpora{
         background-color: var(--#{$prefix}white);
     }
 }
 #offcanvasSearch .btn-close{
     right: map-get($spacers, 3);
     top: map-get($spacers, 3);
+}
+
+.header-series-wrapper a{
+    margin-left: 0;
 }

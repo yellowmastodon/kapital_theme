@@ -438,34 +438,34 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     elseif ($is_page):
         $pages = get_pages(
             array(
-                'child_of' =>  $object_id, 
+                'child_of' =>  $object_id,
                 'parent' =>  $object_id,
-                'orderby' => 'title', 
+                'orderby' => 'title',
                 'order' => 'asc'
             )
         );
-        $filters = array_map(function($page){
+        $filters = array_map(function ($page) {
             return array('name' => $page->post_title, "url" => get_the_permalink($page));
         }, $pages);
         $additional_filters = json_decode(get_post_meta($object_id, '_page_links', true));
-        if ($additional_filters){
-            $additional_filters = array_map(function($item){
-                if ($item->name !== "" && $item->url !== ""){
-                    return array('name'=> $item->name, 'url' => $item->url);
+        if ($additional_filters) {
+            $additional_filters = array_map(function ($item) {
+                if ($item->name !== "" && $item->url !== "") {
+                    return array('name' => $item->name, 'url' => $item->url);
                 }
             },  $additional_filters);
-            
-            if (!empty($additional_filters)){
-                function compareByName($a, $b){
+
+            if (!empty($additional_filters)) {
+                function compareByName($a, $b)
+                {
                     return strcmp($a["name"], $b["name"]);
                 }
                 $filters = array_merge($filters, $additional_filters);
                 //sort filters alphabetically
-                usort($filters, function($a, $b){
+                usort($filters, function ($a, $b) {
                     return strcmp(strtolower($a["name"]), strtolower($b["name"]));
                 });
             }
-
         };
     else:
         $filters = array();
@@ -473,41 +473,45 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     $html = "";
     if ($filters && !empty($filters)):
         ob_start();
-        if ($sticky):?>
+        if ($sticky): ?>
             <div class="btn-filter-toggle-wrapper position-sticky alignwider" style="display: none;">
-                <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="'<?=__('Zobraziť filtre', 'kapital')?>'">
-                    <?=__('Filter', 'kapital')?>
-                    <svg class="ms-2 icon-square"><use xlink:href="#icon-filter"></use></svg>
+                <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="'<?= __('Zobraziť filtre', 'kapital') ?>'">
+                    <?= __('Filter', 'kapital') ?>
+                    <svg class="ms-2 icon-square">
+                        <use xlink:href="#icon-filter"></use>
+                    </svg>
                 </button>
             </div>
-        <?php endif;?>
-            <div class="filters-modal alignwider <?php if ($sticky) echo ' position-sticky'?>" tabindex="-1" <?php if($sticky) echo 'style="display: none"'?>>
-                <div class="modal-dialog">
-                    <div class="modal-content bg-transparent">
-                    <button class="btn btn-close close mb-2" data-bs-dismiss="modal" aria-label="<?=__("Skryť filtre", "kapital")?>" style="display:none !important" ><svg><use xlink:href="#icon-close"></use></svg></button>
-                        <?php foreach ($filters as $filter):
-                            if($is_page){
-                                $name = $filter["name"];
-                                $link = $filter["url"];
-                            } else {
-                                $term_slug = $filter->slug;
-                                $name = $filter->name;
-                                $link = get_term_link($filter);
-                                //shorten one specific name as it is too long for filter
-                                $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
-                                $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
-                            }?>      
-                            <div class="my-2 my-sm-1 mx-1">
-                                <a class="btn btn-outline text-center" href="<?=$link?>">
-                                    <?=$name?>
-                                </a>
-                            </div>
-                        <?php endforeach; ?> 
+        <?php endif; ?>
+        <div class="filters-modal alignwider <?php if ($sticky) echo ' position-sticky' ?>" tabindex="-1" <?php if ($sticky) echo 'style="display: none"' ?>>
+            <div class="modal-dialog">
+                <div class="modal-content bg-transparent">
+                    <button class="btn btn-close close mb-2" data-bs-dismiss="modal" aria-label="<?= __("Skryť filtre", "kapital") ?>" style="display:none !important"><svg>
+                            <use xlink:href="#icon-close"></use>
+                        </svg></button>
+                    <?php foreach ($filters as $filter):
+                        if ($is_page) {
+                            $name = $filter["name"];
+                            $link = $filter["url"];
+                        } else {
+                            $term_slug = $filter->slug;
+                            $name = $filter->name;
+                            $link = get_term_link($filter);
+                            //shorten one specific name as it is too long for filter
+                            $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
+                            $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
+                        } ?>
+                        <div class="my-2 my-sm-1 mx-1">
+                            <a class="btn btn-outline text-center" href="<?= $link ?>">
+                                <?= $name ?>
+                            </a>
                         </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-    <?php
-    $html = ob_get_clean();                  
+        </div>
+<?php
+        $html = ob_get_clean();
     endif;
     return $html;
 }
@@ -524,7 +528,7 @@ function kapital_post_query_mod($query)
 {
     if ($query->is_main_query()) {
         if ($query->is_home() || $query->is_archive()) {
-            if ($query->is_post_type_archive('redakcia')){
+            if ($query->is_post_type_archive('redakcia')) {
                 $query->set('posts_per_page', -1);
             } else {
                 if ($query->is_tax('cislo')) {
@@ -533,7 +537,6 @@ function kapital_post_query_mod($query)
                     $query->set('posts_per_page', 24);
                 }
             }
-            
         }
     }
 }
@@ -625,9 +628,9 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_footer' => $show_false ? false : true, //only used for post, podcast
         'show_filters' => false, //only used for page
     );
-    if ($post_type === 'podcast'){
+    if ($post_type === 'podcast') {
         $default_render_settings["show_featured_image"] = false;
-        $default_render_settings["show_author"] = false;      
+        $default_render_settings["show_author"] = false;
     }
     if ($post_type === 'page') {
         $default_render_settings["show_featured_image"] = false;
@@ -644,4 +647,66 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $render_settings = $default_render_settings;
     }
     return $render_settings;
+}
+
+class Nested_Menu_List extends Walker_Nav_Menu
+{
+    // Start Level: This function adds the <ul> wrapper for submenus
+    public function start_lvl(&$output, $depth = 0, $args = null)
+    {
+
+        // Add the submenu <ul> only if we are at a depth greater than 0 (for nested submenus)
+        if ($depth >= 0) {
+            $output .= '<ul class="ps-2 submenu list-unstyled">';
+        }
+    }
+
+    // End Level: This function closes the <ul> for submenus
+    public function end_lvl(&$output, $depth = 0, $args = null)
+    {
+        if ($depth >= 0) {
+            $output .= '</ul>';
+        }
+    }
+
+    // Start Element: This function adds the <li> for each menu item
+    public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+    {
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $classes[] = 'menu-item-' . $item->ID;
+        $classes[] = 'level-' . $depth;
+
+        // Add the classes to the <li> element
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+        // Item ID and class
+        $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);
+        $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+
+        $output .= '<li' . $id . $class_names . '>';
+
+        // Build the link for the menu item
+        $attributes = ' class="btn-menu text-decoration-none';
+        $attributes .= '"';
+        $attributes .= !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
+        $attributes .= !empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
+        $attributes .= !empty($item->xfn)        ? ' rel="' . esc_attr($item->xfn) . '"' : '';
+        $attributes .= !empty($item->url)        ? ' href="' . esc_attr($item->url) . '"' : '';
+
+        // Output the link
+        $item_output = $args->before;
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+
+        $output .= $item_output;
+    }
+
+    // End Element: This function closes each <li> item
+    public function end_el(&$output, $item, $depth = 0, $args = null)
+    {
+        $output .= '</li>';
+    }
 }

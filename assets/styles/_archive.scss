@@ -96,6 +96,15 @@ $archive-article-img-outline-width: 5px;
     }
 }
 
+.archive-item-heading{
+    font-size: 1.15rem !important;
+}
+@include media-breakpoint-down('md'){
+    .archive-item-heading{
+        font-size: 1.3rem !important;
+    }
+}
+
 .item-excerpt{
     font-size: .95rem;
     & > *{

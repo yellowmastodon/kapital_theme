@@ -21,14 +21,38 @@
 <?php
 $main_site_search = "";
 $eshop_site_search = "";
+$is_multisite = false;
+global $kptl_theme_options;
 if (is_multisite()) {
+    $is_multisite = true;
     $current_site = get_current_blog_id();
     global $is_woocommerce_site;
     if ($is_woocommerce_site) {
         switch_to_blog(get_main_site_id());
+        $kptl_theme_options = get_theme_mods();
+    } else {
+        $kptl_theme_options = get_theme_mods();
     }
+} else {
+    $kptl_theme_options = get_theme_mods();
 }
 
+//add english and support to main nav menu automatically
+if (isset($kptl_theme_options["english"]) || isset($kptl_theme_options["eshop_url"]) ){
+    add_filter('wp_nav_menu_items', function($items, $args) use ($kptl_theme_options) {
+        if ($args->theme_location === "main"){
+            if (isset($kptl_theme_options["eshop_url"])){
+                $items .= '<li class="menu-item d-block d-md-none level-0"><a class="btn-menu text-decoration-none" href="' . $kptl_theme_options["eshop_url"] . '">' . __("E-shop", "kapitál"). '</a></li>';
+            } 
+            if (isset($kptl_theme_options["english"])){
+                $items .= '<li class="menu-item d-block d-md-none level-0"><a class="btn-menu text-decoration-none" href="' . $kptl_theme_options["english"] . '">' . __("English", "kapitál"). '</a></li>';
+            }
+            return $items;
+        } else {
+            return $items;
+        }
+    }, 10, 2);
+}
 $is_front = is_front_page() && !$is_woocommerce_site;
 $homepage_link = home_url();
 $site_name = get_bloginfo('name');
@@ -78,16 +102,16 @@ if (isset($darujme_options["campaign_active"])) {
     <div class="horizontal-nav-wrapper position-sticky">
         <nav id="horizontal-nav" class="fw-bold ff-grotesk px-3 bg-primary d-print-none">
             <div class="row gx-4 align-items-center justify-content-between">
-                <div class="col-auto col-lg-1 col-xl-1 text-start">
+                <div class="col-2 col-lg-1 col-xl-1 text-start">
                     <button class="btn-menu w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">
-                        <span class="hamburger me-2 d-inline-block">
+                        <div class="hamburger me-2 d-inline-block">
                             <div class="line"></div>
                             <div class="line"></div>
                             <div class="line"></div>
-                        </span><span class="d-inline-block">Menu</span>
+                </div><span class="d-none d-sm-inline-block">Menu</span>
                     </button>
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="main-menu-wrapper" aria-role="menu" aria-label="Hlavné menu">
-                        <div class="offcanvas-body text-center text-sm-start px-4 py-5" tabindex="-1">
+                        <div class="offcanvas-body p-6 p-sm-5" tabindex="-1">
                             <button type="button" class="mb-3 mb-sm-0 btn btn-close" aria-label="<?= __('Zatvoriť', 'kapital') ?>" data-bs-dismiss="offcanvas"><svg>
                                     <use xlink:href="#icon-close"></use>
                                 </svg></button>
@@ -97,8 +121,10 @@ if (isset($darujme_options["campaign_active"])) {
                                         'theme_location'  => 'main',
                                         'container' => false,
                                         'menu_id' => 'main-menu',
-                                        'menu_class' => 'list-unstyled text-uppercase text-dark mb-0'
-                                    )
+                                        'menu_class' => 'list-unstyled text-uppercase text-dark mb-0',
+                                        'depth' => 2,
+                                        'walker' => new Nested_Menu_List()
+                                    ) 
                                 ) ?>
                             </div>
                         </div>
@@ -106,14 +132,31 @@ if (isset($darujme_options["campaign_active"])) {
                 </div>
                 <div class="col col-alignwider">
                     <div class="row gx-4 align-items-center">
-                        <div class="col-6 col-lg-4 d-none d-sm-block text-start"><a class="btn-menu marker-red" href="#">link témy</a></div>
+
+                        <?php
+                        /** Get header series to display in header
+                         * Print all and the visible one will be selected by js, so that caching is possible
+                         */
+                        ?>
+                        <div class="header-series-wrapper col-6 col-lg-4 d-none d-md-block text-start">
+                            <?php $header_series = (get_option('kapital_header_series'));
+                            if (isset($header_series)):
+                                if ($header_series && !empty($header_series)):
+                                    foreach($header_series as $series):
+                                        $series_term = get_term((int) $series);?>
+                                        <a class="btn-menu marker-red" href="<?= get_term_link($series_term)?>" style="display: none"><?=$series_term->name?></a>
+                                    <?php endforeach;
+                                endif;
+                            endif;
+                            ?>
+                        </div>
                         <?php
                         /** small logo in horizontal navigagion
                          * showed if big logo not visible
                          * dynamically adding and removing opacity-0 on scroll
                          * default hidden on front page (expanded top header with bigger logo)                       
                          */ ?>
-                        <div id="horizontal-nav-logo" class="col-auto col-md-4 d-none d-md-block text-center <?php if ($is_front): echo ' invisible opacity-0';
+                        <div id="horizontal-nav-logo" class="col-auto col-md-4 text-center <?php if ($is_front): echo ' invisible opacity-0';
                                                                                                                 endif; ?>">
                             <a class="btn-menu" href="<?php echo $homepage_link ?>">
                                 <svg viewBox="0 0 500 120">
@@ -122,16 +165,34 @@ if (isset($darujme_options["campaign_active"])) {
                                 <div class="visually-hidden"><?php echo $site_name; ?></div>
                             </a>
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-4 text-end"><a class="btn-menu text-decoration-none d-none d-md-inline-block" href="#">Eshop</a><a class="btn-menu btn-podpora default-x-margin ms-4 text-decoration-none" href="#">Podpora</a></div>
+                        <div class="col-12 col-md-6 col-lg-4 text-end">
+                            <?php if ($is_multisite && isset($kptl_theme_options["eshop_url"])):?>
+                                <a class="btn-menu d-none d-lg-inline-block text-decoration-none" href="<?=$kptl_theme_options["eshop_url"]?>">
+                                    <?= __("E-shop", "kapital")?>
+                                </a>
+                            <?php endif;?>
+                            <?php if (isset($kptl_theme_options["podpora"])):?>
+                                <a class="btn-menu btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podpora</a>
+                            <?php endif;?>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-auto col-lg-1 col-xl-1 d-none d-sm-block text-end">
-                    <button class="btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch" aria-label="<?= __("Zatvoriť dialóg vyhľadávania.", "kapital") ?>">
-                        <svg viewBox="0 0 24 24">
-                            <use xlink:href="#icon-search"/>
-                        </svg>
-                    </button>
-                    <a class="btn-menu text-decoration-none" href="#">EN</a>
+                <div class="col-auto col-lg-1 col-xl-1 d-none d-md-block">
+                    <div class="row gx-4 justify-content-end flex-nowrap">
+                        <div class="col-auto">
+                            <button class="btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch" aria-label="<?= __("Zatvoriť dialóg vyhľadávania.", "kapital") ?>">
+                            <svg class="icon-square" viewBox="0 0 24 24">
+                                <use xlink:href="#icon-search"/>
+                            </svg>
+                            </button>
+                        </div>
+                        <?php if (isset($kptl_theme_options["english"])):?>
+                            <div class="col-auto">
+                                <a class="btn-menu text-decoration-none" href="<?=$kptl_theme_options["english"]?>">EN</a>
+                            </div>
+                        <?php endif;?>
+                    </div>
                 </div>
             </div>
         </nav>

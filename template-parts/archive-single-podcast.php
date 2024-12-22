@@ -84,7 +84,7 @@ $article_classes .= $additional_class;
             <?php if ($post->post_type === "podcast"):?>
                 <svg class="item-icon-podcast position-absolute"><use xlink:href="#icon-podcast"></use></svg>
             <?php endif;?>
-        <<?= 'h' . $heading_level;?> class="mb-0 h3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
+        <<?= 'h' . $heading_level;?> class="mb-0 archive-item-heading red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
         </a>
 
         <a tabindex="-1" class="excerpt-wrapper archive-item-link text-decoration-none lh-sm" href="<?=$post_permalink?>">

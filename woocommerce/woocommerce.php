@@ -103,18 +103,6 @@ function kapital_woocommerce_related_products_args( $args ) {
 }
 add_filter( 'woocommerce_output_related_products_args', 'kapital_woocommerce_related_products_args' );
 
-/**
- * Sample implementation of the WooCommerce Mini Cart.
- *
- * You can add the WooCommerce Mini Cart to header.php like so ...
- *
-	<?php
-		if ( function_exists( '_s_woocommerce_header_cart' ) ) {
-			_s_woocommerce_header_cart();
-		}
-	?>
- */
-
 if ( ! function_exists( '_s_woocommerce_cart_link_fragment' ) ) {
 	/**
 	 * Cart Fragments.
@@ -220,4 +208,11 @@ remove_action( 'wp_footer', 'woocommerce_demo_store' );
 
 create_filter_option_submenu('edit.php?post_type=product', __('Filtre produktov', 'kapital'), 'administrator', 'product-filters', 'kapital_product_filters', ['product_cat']);
 
-
+/** 
+ * Remove unneeded menu items in woocommerce site
+ */
+add_action( 'admin_init', function () {
+    remove_menu_page( 'edit.php?post_type=podcast' );
+	remove_menu_page( 'edit.php?post_type=redakcia' );
+	remove_menu_page( 'edit.php?post_type=inzercia' );
+}, 9999);

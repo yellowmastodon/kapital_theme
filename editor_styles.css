@@ -190,7 +190,7 @@
   --kptl-font-sans-serif: "Kontrast Grotesk", sans-serif;
   --kptl-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --kptl-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --kptl-root-font-size: clamp(1rem, 0.29vi + 0.94rem, 1.6rem);
+  --kptl-root-font-size: clamp(16px, 0.263vw + 14.944px, 1.4rem);
   --kptl-body-font-family: "Roboto Serif", serif;
   --kptl-body-font-size: 1rem;
   --kptl-body-font-weight: 400;
@@ -285,7 +285,7 @@
   color: var(--kptl-heading-color);
 }
 .editor-styles-wrapper h1, .editor-styles-wrapper .h1 {
-  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
+  font-size: clamp(22.5px, 0.734vw + 17.4px, 27px);
 }
 .editor-styles-wrapper h2, .editor-styles-wrapper .h2 {
   font-size: 1.4rem;
@@ -4290,7 +4290,7 @@ a > .editor-styles-wrapper code {
   font-family: var(--kptl-font-monospace) !important;
 }
 .editor-styles-wrapper .fs-1 {
-  font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem) !important;
+  font-size: clamp(22.5px, 0.734vw + 17.4px, 27px) !important;
 }
 .editor-styles-wrapper .fs-2 {
   font-size: 1.4rem !important;
@@ -8630,7 +8630,6 @@ a > .editor-styles-wrapper code {
 .editor-styles-wrapper .icon-square, .editor-styles-wrapper .wp-block-button .wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-block-button__link::before, .editor-styles-wrapper .wp-block-button .wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-block-button__link::after {
   height: 1em;
   width: 1em;
-  vertical-align: -0.1em;
 }
 .editor-styles-wrapper body {
   overflow-x: hidden;
@@ -9010,18 +9009,19 @@ a > .editor-styles-wrapper code {
   margin-top: 2rem;
 }
 
-.main-content > *:not(:last-child),
-.is-root-container > *:not(:last-child), #post-content > *:not(:last-child), #podcast-content > *:not(:last-child) {
-  margin-bottom: 1.5rem;
+.main-content > *:not(:first-child),
+.is-root-container > *:not(:first-child), #post-content > *:not(:first-child), #podcast-content > *:not(:first-child), :root :where(.is-layout-constrained) > *:not(:first-child), .editor-styles-wrapper .is-root-container :where(.is-layout-constrained) > *:not(:first-child) {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
 }
 .main-content > iframe,
-.is-root-container > iframe, #post-content > iframe, #podcast-content > iframe {
+.is-root-container > iframe, #post-content > iframe, #podcast-content > iframe, :root :where(.is-layout-constrained) > iframe, .editor-styles-wrapper .is-root-container :where(.is-layout-constrained) > iframe {
   display: block;
 }
 
 @media (min-width: 1200px) {
   .bubble-heading.post-title {
-    font-size: clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem);
+    font-size: clamp(22.5px, 0.734vw + 17.4px, 27px);
   }
 }
 @media (min-width: 600px) {
@@ -9168,6 +9168,15 @@ img {
   aspect-ratio: 1.67 !important;
 }
 
+.archive-item-heading {
+  font-size: 1.15rem !important;
+}
+
+@media (max-width: 899.98px) {
+  .archive-item-heading {
+    font-size: 1.3rem !important;
+  }
+}
 .item-excerpt {
   font-size: 0.95rem;
 }
@@ -9242,7 +9251,11 @@ img {
   margin-top: 3rem;
 }
 
-.btn-like, .btn:not(.btn-menu), .archive-item.product a.button:not(.btn-menu), .editor-styles-wrapper .wp-element-button:not(.btn-menu), .editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
+.btn-like,
+.btn:not(.btn-menu),
+.archive-item.product a.button:not(.btn-menu),
+.editor-styles-wrapper .wp-element-button:not(.btn-menu),
+.editor-styles-wrapper .wp-block-button__link:not(.btn-menu) {
   text-transform: uppercase;
 }
 
@@ -9263,11 +9276,16 @@ img {
   width: 100%;
 }
 
-.btn svg.icon-square, .archive-item.product a.button svg.icon-square, .btn .wp-block-button svg.wp-block-button__link::before, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .btn svg.wp-block-button__link::before, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::before, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::before, .btn .wp-block-button svg.wp-block-button__link::after, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .btn svg.wp-block-button__link::after, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::after, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-element-button svg.icon-square, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::before, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-block-button__link svg.icon-square, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::before, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::after {
-  margin-top: -0.15rem;
-  vertical-align: middle;
+.btn svg.icon-square, .archive-item.product a.button svg.icon-square, .btn .wp-block-button svg.wp-block-button__link::before, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .btn svg.wp-block-button__link::before, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::before, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::before, .btn .wp-block-button svg.wp-block-button__link::after, .archive-item.product a.button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .btn svg.wp-block-button__link::after, .wp-block-button .archive-item.product a.button svg.wp-block-button__link::after, .archive-item.product .wp-block-button a.button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-element-button svg.icon-square, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::before, .editor-styles-wrapper .wp-element-button .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-element-button svg.wp-block-button__link::after, .editor-styles-wrapper .wp-block-button__link svg.icon-square, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::before, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::before, .editor-styles-wrapper .wp-block-button__link .wp-block-button svg.wp-block-button__link::after, .wp-block-button .editor-styles-wrapper .wp-block-button__link svg.wp-block-button__link::after,
+.btn-menu svg.icon-square,
+.btn-menu .wp-block-button svg.wp-block-button__link::before,
+.wp-block-button .btn-menu svg.wp-block-button__link::before,
+.btn-menu .wp-block-button svg.wp-block-button__link::after,
+.wp-block-button .btn-menu svg.wp-block-button__link::after {
   transition: 0.05s linear;
+  margin-top: -0.13em;
 }
+
 .btn:disabled, .archive-item.product a.button:disabled, .editor-styles-wrapper .wp-element-button:disabled, .editor-styles-wrapper .wp-block-button__link:disabled {
   background-color: var(--kptl-secondary);
   border-color: var(--kptl-secondary);
@@ -9315,34 +9333,6 @@ img {
   fill: #fff;
 }
 
-.btn-close {
-  width: 4rem;
-  height: 4rem;
-  line-height: 3rem;
-  padding: 0px;
-  background-color: var(--kptl-white);
-  border-color: var(--kptl-white);
-}
-.btn-close svg {
-  width: 2rem;
-  height: 2rem;
-}
-
-@media (min-width: 600px) {
-  .btn.btn-close, .archive-item.product a.btn-close.button, .editor-styles-wrapper .btn-close.wp-element-button, .editor-styles-wrapper .btn-close.wp-block-button__link {
-    border-color: transparent !important;
-    background: none !important;
-  }
-  .btn.btn-close:hover svg, .archive-item.product a.btn-close.button:hover svg, .editor-styles-wrapper .btn-close.wp-element-button:hover svg, .editor-styles-wrapper .btn-close.wp-block-button__link:hover svg {
-    fill: var(--kptl-red);
-  }
-  .btn.btn-close:focus-visible svg, .archive-item.product a.btn-close.button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-element-button:focus-visible svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus-visible svg, .btn.btn-close:focus svg, .archive-item.product a.btn-close.button:focus svg, .editor-styles-wrapper .btn-close.wp-element-button:focus svg, .editor-styles-wrapper .btn-close.wp-block-button__link:focus svg {
-    fill: var(--kptl-red);
-  }
-  .btn.btn-close:active svg, .archive-item.product a.btn-close.button:active svg, .editor-styles-wrapper .btn-close.wp-element-button:active svg, .editor-styles-wrapper .btn-close.wp-block-button__link:active svg {
-    fill: #cc0029;
-  }
-}
 .btn:hover:not(:disabled), .archive-item.product a.button:hover:not(:disabled), .editor-styles-wrapper .wp-element-button:hover:not(:disabled), .editor-styles-wrapper .wp-block-button__link:hover:not(:disabled), .btn:focus-visible, .archive-item.product a.button:focus-visible, .editor-styles-wrapper .wp-element-button:focus-visible, .editor-styles-wrapper .wp-block-button__link:focus-visible, .btn:focus, .archive-item.product a.button:focus, .editor-styles-wrapper .wp-element-button:focus, .editor-styles-wrapper .wp-block-button__link:focus {
   background-color: var(--kptl-red);
   border-color: var(--kptl-red);
@@ -9366,7 +9356,55 @@ img {
   border-color: #ff9efd;
 }
 
-.bg-primary button.btn-red:hover, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:hover, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:hover, .bg-primary button.btn-red:focus-visible, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:focus-visible, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:focus-visible, .bg-primary a.btn-red:hover, .bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:hover, .bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:hover, .bg-primary a.btn-red:focus-visible, .bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:focus-visible, .bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:focus-visible, .has-primary-background-color button.btn-red:hover, .has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, .has-primary-background-color button.btn-red:focus-visible, .has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, .has-primary-background-color a.btn-red:hover, .has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover, .has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover, .has-primary-background-color a.btn-red:focus-visible, .has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible, .has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
+.btn-close {
+  width: 4rem;
+  height: 4rem;
+  line-height: 3rem;
+  padding: 0px;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+.btn-close svg {
+  width: 2rem;
+  height: 2rem;
+}
+.btn-close:hover:not(:disabled), .btn-close:focus-visible, .btn-close:focus {
+  outline: none !important;
+}
+.btn-close:hover:not(:disabled) svg, .btn-close:focus-visible svg, .btn-close:focus svg {
+  fill: var(--kptl-red);
+}
+.btn-close:active:not(:disabled) svg {
+  fill: #cc0029;
+}
+
+.bg-primary button.btn-red:hover, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:hover, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:hover, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:hover, .bg-primary button.btn-red:focus-visible, .bg-primary .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-element-button.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-element-button.has-red-background-color:focus-visible, .bg-primary .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .bg-primary button.wp-block-button__link.has-red-background-color:focus-visible, .editor-styles-wrapper .has-primary-background-color button.wp-block-button__link.has-red-background-color:focus-visible,
+.bg-primary a.btn-red:hover,
+.bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover,
+.editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:hover,
+.editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:hover,
+.bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover,
+.editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:hover,
+.editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:hover,
+.bg-primary a.btn-red:focus-visible,
+.bg-primary .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible,
+.editor-styles-wrapper .bg-primary a.wp-element-button.has-red-background-color:focus-visible,
+.editor-styles-wrapper .has-primary-background-color a.wp-element-button.has-red-background-color:focus-visible,
+.bg-primary .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible,
+.editor-styles-wrapper .bg-primary a.wp-block-button__link.has-red-background-color:focus-visible,
+.editor-styles-wrapper .has-primary-background-color a.wp-block-button__link.has-red-background-color:focus-visible,
+.has-primary-background-color button.btn-red:hover,
+.has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:hover,
+.has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:hover,
+.has-primary-background-color button.btn-red:focus-visible,
+.has-primary-background-color .editor-styles-wrapper button.wp-element-button.has-red-background-color:focus-visible,
+.has-primary-background-color .editor-styles-wrapper button.wp-block-button__link.has-red-background-color:focus-visible,
+.has-primary-background-color a.btn-red:hover,
+.has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:hover,
+.has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:hover,
+.has-primary-background-color a.btn-red:focus-visible,
+.has-primary-background-color .editor-styles-wrapper a.wp-element-button.has-red-background-color:focus-visible,
+.has-primary-background-color .editor-styles-wrapper a.wp-block-button__link.has-red-background-color:focus-visible {
   background-color: var(--kptl-white);
   border-color: var(--kptl-body-color);
 }

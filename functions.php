@@ -83,7 +83,7 @@ if (function_exists('add_theme_support')) {
     // add_image_size( 'custom-size', 700, 200, true );
     add_theme_support('align-wide');
     add_theme_support('align-full');
-
+    add_theme_support( 'disable-layout-styles' );
     // Add Support for post formats
     // add_theme_support( 'post-formats', ['post'] );
     add_post_type_support( 'page', 'excerpt' );
@@ -358,19 +358,11 @@ function kapital_register_nav_menus()
     register_nav_menus([
         'main'   => __('Hlavné menu', 'kapital'),
         'quick'  => __('Rýchle menu', 'kapital'),
-        'quick-serie-link' => __('Série v horizontálnej navigácii', 'kapital'),
         'footer' => 'Footer',
     ]);
 }
 
 add_action('after_setup_theme', 'kapital_register_nav_menus', 0);
-
-add_action('customize_register', function ($wp_customize) {
-    $section = $wp_customize->get_section('menu_locations');
-    $section->description .= "<p>Hlavné menu sa zobrazí .</p>";
-}, 12);
-
-
 
 /**
  * Button Shortcode

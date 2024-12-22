@@ -1,5 +1,6 @@
 //buttons
-.btn-like, .btn:not(.btn-menu) {
+.btn-like,
+.btn:not(.btn-menu) {
     text-transform: uppercase;
 }
 
@@ -13,138 +14,134 @@
     @extend .rounded-pill;
     @extend .d-inline-block;
     border-style: solid;
-    font-size: .9rem;
+    font-size: 0.9rem;
     border-width: 2px;
     line-height: 1;
     $btn-padding-y: 1.2em;
     white-space: nowrap;
     padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y;
     transition: $link_transition_speed linear;
-    
 }
-.btn-block{
+.btn-block {
     @extend .d-block;
     width: 100%;
 }
-.btn{
-
-    svg{
-        &.icon-square{
-            margin-top: -.15rem;
-            vertical-align: middle;
+.btn,
+.btn-menu {
+    svg {
+        &.icon-square {
             transition: $link_transition_speed linear;
+            margin-top: -0.13em;
         }
     }
-    &:disabled{
+}
+.btn {
+    &:disabled {
         background-color: var(--#{$prefix}secondary);
         border-color: var(--#{$prefix}secondary);
         color: var(--#{$prefix}gray);
-    } 
+    }
 }
-.btn-sm{
+.btn-sm {
     font-size: $small-font-size;
 }
-.btn-primary{
+.btn-primary {
     background-color: var(--#{$prefix}primary);
     border-color: var(--#{$prefix}primary);
 }
-.btn-white{
+.btn-white {
     background-color: var(--#{$prefix}white);
     border-color: var(--#{$prefix}white);
 }
-.btn-secondary{
+.btn-secondary {
     background-color: var(--#{$prefix}secondary);
     border-color: var(--#{$prefix}secondary);
 }
-.btn-outline{
+.btn-outline {
     background-color: var(--#{$prefix}white);
     border-color: var(--#{$prefix}body-color);
     //when btn class used for filter/page selection
-    &.active{
+    &.active {
         background-color: var(--#{$prefix}primary);
     }
 }
-.btn-link{
+.btn-link {
     background-color: transparent !important;
     border-color: transparent !important;
 }
-.btn-red{
+.btn-red {
     background-color: var(--#{$prefix}red);
     border-color: var(--#{$prefix}red);
     color: $white;
-    svg{
-        fill: $white
+    svg {
+        fill: $white;
     }
 }
-.btn-close{
+.btn {
+    &:hover:not(:disabled),
+    &:focus-visible,
+    &:focus {
+        background-color: var(--#{$prefix}red);
+        border-color: var(--#{$prefix}red);
+        color: $white;
+        svg {
+            fill: $white;
+        }
+    }
+    &:active:not(:disabled) {
+        color: $white;
+        background-color: darken($red, 10);
+        border-color: darken($red, 10);
+    }
+
+    &.btn-red {
+        &:hover:not(:disabled),
+        &:focus-visible {
+            background-color: var(--#{$prefix}primary);
+            color: var(--#{$prefix}body-color);
+            border-color: var(--#{$prefix}body-color);
+        }
+        &:active:not(:disabled) {
+            background-color: darken($primary, 7);
+            border-color: darken($primary, 7);
+        }
+    }
+}
+
+.btn-close {
     width: 4rem;
     height: 4rem;
     line-height: 3rem;
     padding: 0px;
-    background-color: var(--#{$prefix}white);
-    border-color: var(--#{$prefix}white);
-    svg{
+    svg {
         width: 2rem;
         height: 2rem;
     }
-}
+    background: transparent !important;
+    border-color: transparent !important;
+    &:hover:not(:disabled),
+    &:focus-visible,
+    &:focus {
+        outline: none !important;
+        svg {
+            fill: var(--#{$prefix}red);
+        }
+    }
+    &:active:not(:disabled) {
 
-@include media-breakpoint-up('sm'){
-    .btn.btn-close{
-        border-color: transparent !important;
-        background: none !important;
-        &:hover{
-            svg{
-                fill: var(--#{$prefix}red);
-            }
-        }
-        &:focus-visible, &:focus{
-            svg{
-                fill: var(--#{$prefix}red);
-                }
-        }
-        &:active{
-            svg{
-                fill: darken($red, 10);
-            }
+        svg{
+            fill: darken($red, 10);
         }
     }
 }
 
-.btn{
-        &:hover:not(:disabled), &:focus-visible, &:focus{
-            background-color: var(--#{$prefix}red);
-            border-color: var(--#{$prefix}red);
-            color: $white;
-            svg{
-                fill: $white;
-            }
-        }
-        &:active:not(:disabled){
-            color: $white;
-            background-color: darken($red, 10);
-            border-color: darken($red, 10);
-        }
-        
-        &.btn-red{
-            &:hover:not(:disabled), &:focus-visible{
-                background-color: var(--#{$prefix}primary);
-                color: var(--#{$prefix}body-color);
-                border-color: var(--#{$prefix}body-color);
-    
-            }
-            &:active:not(:disabled){
-                background-color: darken($primary, 7);
-                border-color: darken($primary, 7);;
-            }
-        }
-    }
-    
-
-.bg-primary, .has-primary-background-color{
-    button, a{
-        &.btn-red{
-            &:hover, &:focus-visible{
+.bg-primary,
+.has-primary-background-color {
+    button,
+    a {
+        &.btn-red {
+            &:hover,
+            &:focus-visible {
                 background-color: var(--#{$prefix}white);
                 border-color: var(--#{$prefix}body-color);
             }

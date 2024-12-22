@@ -48,9 +48,10 @@
 
 
 .main-content,
-.is-root-container, #post-content, #podcast-content {
-    & > *:not(:last-child){
-        margin-bottom: map-get($spacers, 4);
+.is-root-container, #post-content, #podcast-content, :root :where(.is-layout-constrained){
+    & > *:not(:first-child){
+        margin-top: map-get($spacers, 4);
+        margin-bottom: 0;
     }
     & > iframe{ //iframes not centered w/o this
         display: block;

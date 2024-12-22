@@ -338,7 +338,7 @@ function register_jazyk_taxonomy()
 		'items_list_navigation'      => __('Navigácia zoznamu jazykov', 'kapital'),
 	);
 	$rewrite = array(
-		'slug'                       => 'jazyky',
+		'slug'                       => 'language',
 		'with_front'                 => false,
 		'hierarchical'               => false,
 	);
@@ -407,6 +407,25 @@ function register_podcast_serie_taxonomy()
 	);
 	register_taxonomy($taxonomy, array('podcast'), $args);
 }
+
+
+function kapital_register_custom_taxonomies()
+{
+	register_author_taxonomy();
+	register_rubriky_taxonomy();
+	register_zanre_taxonomy();
+	register_serie_taxonomy();
+	register_cisla_taxonomy();
+	register_partneri_taxonomy();
+	register_jazyk_taxonomy();
+	disable_kses();
+	register_podcast_serie_taxonomy();
+	unregister_taxonomy_for_object_type('category', 'post');
+}
+
+add_action('init', 'kapital_register_custom_taxonomies', 10);
+
+
 
 
 /**
@@ -487,24 +506,10 @@ function disable_kses()
 	remove_filter('pre_term_description', 'wp_filter_kses');
 }
 
-function kapital_register_custom_taxonomies()
-{
-	register_author_taxonomy();
-	register_rubriky_taxonomy();
-	register_zanre_taxonomy();
-	register_serie_taxonomy();
-	register_cisla_taxonomy();
-	register_partneri_taxonomy();
-	register_jazyk_taxonomy();
-	disable_kses();
-	register_podcast_serie_taxonomy();
-	unregister_taxonomy_for_object_type('category', 'post');
-}
-
 //add_filter( 'custom_menu_order', '__return_true' );
 add_filter('menu_order', 'reorder_post_submenu');
 add_action("category_edit_form_fields", 'tinymce_on_description', 10, 2);
-add_action('init', 'kapital_register_custom_taxonomies', 1);
+
 
 
 /**
@@ -643,6 +648,7 @@ function create_taxonomy_list_pages_on_theme_activation()
 		}
 	}
 }
+
 
 function kapital_add_issue_endpoint(){
     add_rewrite_endpoint( 'rok', EP_PAGES );

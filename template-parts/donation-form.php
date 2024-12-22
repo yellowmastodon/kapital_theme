@@ -51,8 +51,9 @@ if ($campaign_active):
         </div>
         <div id="darujme-expanded-form" <?php if ($collapsed) echo 'style="display: none"';?>>
             <?php
+            $descriptive_paragraphs_classes = "ff-grotesk col-12 mb-0 lh-sm mt-4";
             if ($show_title) if (isset($title)) if ($title !== "") echo kapital_bubble_title($title, 2, 'h3 mb-3 mt-2');
-            if (isset($long_text)) if ($long_text !== "") echo '<div class="ff-grotesk p-3 pb-4">' . wpautop($long_text) . '</div>'
+            if (isset($long_text)) if ($long_text !== "") echo '<div class="ff-grotesk py-3 pb-4">' . wpautop($long_text) . '</div>'
             ?>
             <form id="darujme-form" action="https://api.darujme.sk/v1/donations/post/" method="post" enctype="application/x-www-form-urlencoded" class="darujme-form needs-validation">
                 <input type="hidden" class="form-control" name="campaign_id" id="campaign_id" value="<?= $darujme_options["campaign_id"] ?>" required>
@@ -60,12 +61,14 @@ if ($campaign_active):
                 <input type="hidden" name="kind" id="darujme_kind" value="person">
                 <input name="payment_method_id" id="darujme_payment_method_id" type="hidden" value="">
 
-                <div id="periodicity" class="row gx-2 gy-2 mb-2">
+                <div id="periodicity" class="row gx-1 gy-1 mb-2">
+                    <p class="<?=$descriptive_paragraphs_classes?>">Ako často chcete prispievať?</p>
                     <div class="col-12 col-sm-6"><input class="darujme-radio-input-btn" name="periodicity" type="radio" id="onetime" value="onetime"><label class="btn btn-outline btn-block" for="onetime"><?php echo __("Jednorazovo", "kapital") ?></label></div>
                     <div class="col-12 col-sm-6"><input class="darujme-radio-input-btn" name="periodicity" type="radio" id="periodical" value="periodical" checked><label class="btn btn-outline btn-block" for="periodical"><?php echo __("Mesačne", "kapital") ?></label></div>
                 </div>
                 <section id="onetime_fixed_values" class="mb-2">
-                    <div class="row gx-2 gy-2">
+                    <div class="row gx-1 gy-1">
+                        <p class="<?=$descriptive_paragraphs_classes?>">Koľko chcete prispieť?</p>
                         <?php foreach ($darujme_onetime_amounts as $key => $amount):
                             if ($amount !== "" && $amount !== "0"):
                                 if ($key === 1) {
@@ -82,7 +85,8 @@ if ($campaign_active):
                 <?php //periodical fixed values 
                 ?>
                 <section id="periodical_fixed_values" class="mb-2">
-                    <div class="row gx-2 gy-2">
+                    <div class="row gx-1 gy-1">
+                    <p class="<?=$descriptive_paragraphs_classes?>">Koľko chcete prispievať?</p>
                         <?php foreach ($darujme_periodical_amounts as $key => $amount):
                             if ($amount !== "" && $amount !== "0"):
                                 if ($key === 1) {
@@ -102,7 +106,8 @@ if ($campaign_active):
 
                 </section>
                 <section id="onetime_payment_methods" class="mb-2">
-                    <div class="row gx-2 gy-2">
+                    <div class="row gx-1 gy-1">
+                     <p class="<?=$descriptive_paragraphs_classes?>">Spôsob platby</p>
                         <div class="col-6 col-sm-4">
                             <input class="darujme-radio-input-btn" name="payment_method_id_temp" type="radio" id="1342d2af-a343-4e73-9f5a-7593b9978697" value="1342d2af-a343-4e73-9f5a-7593b9978697" required>
                             <label class="btn btn-outline btn-block" for="1342d2af-a343-4e73-9f5a-7593b9978697"><?php echo __("Kartou", "kapital") ?></label>
@@ -122,7 +127,8 @@ if ($campaign_active):
                     </div>
                 </section>
                 <section id="onetime_payment_methods_ib" class="mb-2">
-                    <div class="row gy-2 gx-2">
+                    <div class="row gy-1 gx-1">
+                    <p class="<?=$descriptive_paragraphs_classes?>">Spôsob platby</p>
                     <div class="col-12 col-sm-4">
                         <input class="darujme-radio-input-btn" type="radio" name="payment_method_ib_id_temp" id="f2e7956e-a3f6-4bff-9e18-2ab3096a5bed" value="f2e7956e-a3f6-4bff-9e18-2ab3096a5bed" required>
                         <label class="btn btn-outline btn-block" for="f2e7956e-a3f6-4bff-9e18-2ab3096a5bed">
@@ -144,7 +150,8 @@ if ($campaign_active):
                     </div>
                 </section>
                 <section id="periodical_payment_methods" class="mb-2">
-                    <div class="row gy-2 gx-2">
+                    <div class="row gy-1 gx-1">
+                        <p class="<?=$descriptive_paragraphs_classes?>">Spôsob platby</p>
                         <div class="col-12 col-sm-6">
                             <input class="darujme-radio-input-btn" type="radio" name="payment_method_id_temp" id="b71ff7cf-39f7-40db-8a34-e1f30292c215" value="b71ff7cf-39f7-40db-8a34-e1f30292c215" required>
                             <label class="btn btn-outline btn-block" for="b71ff7cf-39f7-40db-8a34-e1f30292c215">
@@ -161,8 +168,8 @@ if ($campaign_active):
                 <?php //contact 
                 ?>
                 <section class="mb-2 ff-sans fw-normal">
-                    <fieldset class="row gx-2 gy-2">
-                        <legend class="visually-hidden"><?= __("Kontakt:", "kapital") ?></legend>
+                    <fieldset class="row gx-1 gy-1">
+                        <p class="<?=$descriptive_paragraphs_classes?>">Kontakt</p>
                         <div class="col-12 col-sm-6 mt-2 form-floating">
                             <input type="text" class="form-control" name="first_name" id="first_name" required placeholder="<?= __("Krstné meno*", "kapital") ?>">
                             <label for="first_name"><?= __("Krstné meno *", "kapital") ?></label>
@@ -211,7 +218,7 @@ if ($campaign_active):
                         </div>
                     </fieldset>
                 </section>
-                <section class="ff-sans ms-3">
+                <section class="ff-sans mt-4 ms-3">
                 <div class="col-12">
                     <div class="form-check mb-2">
                         <input type="checkbox" class="form-check-input" name="is_anonymous" id="is_anonymous">
