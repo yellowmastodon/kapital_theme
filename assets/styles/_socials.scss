@@ -1,0 +1,19 @@
+.kptl-socials{
+    display: inline-block;
+    a:not(:last-child){
+        margin-right: map-get($spacers, 2);
+    }
+    a{
+        text-align: center;
+        line-height: 1rem;
+        background-color: $body-color;
+        width: 2.4rem;
+        height: 2.4rem;
+        padding: 0.6rem;
+        svg{
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: var(--#{$prefix}primary)
+        }
+    }
+}

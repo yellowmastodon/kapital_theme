@@ -1,5 +1,3 @@
-console.log("script quantity");
-
 function initializeQuantityButtons() {
     var quantityRows = document.querySelectorAll(".product-quantity");
     quantityRows.forEach(function (row) {

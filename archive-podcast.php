@@ -4,6 +4,12 @@ $queried_object_id = get_queried_object_id();
 $is_general_podcast_archive = is_post_type_archive('podcast');
 $archive_title = "";
 $is_term_archive = is_tax();
+$description = "";
+if ($is_general_podcast_archive){
+    $description = get_option('podcast_description', '');
+} elseif ($is_term_archive){
+    $description = $queried_object->description;
+}
 //all share these starting breadcrubms
 $breadcrumbs = array(
     [__('Podcasty', 'kapital'), get_post_type_archive_link('podcast')],
@@ -44,7 +50,20 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 
     <?php /** archive title  */  ?>
     <header class="archive-header alignwide mb-6" role="heading">
-        <?php echo kapital_bubble_title($archive_title, 1, 'term-title'); ?>
+        <?php echo kapital_bubble_title($archive_title, 1, 'term-title');
+         if (get_query_var('paged') < 2){
+            if ($description !== ""){    
+                $desc_classes = $is_general_podcast_archive ? 'text-start mt-5 alignnormal' : 'h4 text-center';
+
+                echo '<div class="term-description ' . $desc_classes . ' ff-grotesk  lh-sm">';
+                echo wpautop($description, true);
+                echo '</div>';
+        }
+         }
+      
+        ?>
+    
+    
     </header>
     <?php if ($wp_query->have_posts()):?>
         <section class="alignwide">

@@ -77,6 +77,15 @@ _colors.scss
 		@extend .flex-wrap;
 	}
 }
+
+.wp-block-columns.is-layout-flex{
+	@extend .row;
+	.wp-block-column.is-layout-flow{
+		@extend .col;
+	}
+
+}
+
 .is-content-justification-left{
 	 @extend .justify-content-start;
 }
@@ -88,4 +97,16 @@ _colors.scss
 }
 .is-content-justification-betweeen{
 	@extend .justify-content-between;
+}
+
+.screen-reader-text{
+	@extend .visually-hidden;
+}
+
+.wp-block-social-links{
+	@extend .list-unstyled;
+	svg{
+		width: 2rem;
+		height: 2rem;
+	}
 }

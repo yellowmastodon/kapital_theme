@@ -1,0 +1,10 @@
+//outline defined in archive
+
+.error404{
+    h1{
+        font-size: 7rem !important;
+        &::before{
+            -webkit-text-stroke: 1rem $primary !important;
+        }
+    }
+}

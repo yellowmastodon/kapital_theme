@@ -8,25 +8,7 @@ $archive-article-img-outline-width: 5px;
     .archive-item-link, .woocommerce-loop-product__link {    
         transition: color $link_transition_speed linear;
    
-        .red-outline-hover {
-            position: relative; //to style the before element, which generates outline
-            z-index: 1;
-            display: block;
-            transition: color $link_transition_speed linear;
-            &::before {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                top: 0;
-                z-index: -1;
-                content: attr(data-text) / "";
-                -webkit-text-stroke: $archive-article-text-stroke-width $red;
-                color: var(--#{$prefix}red);
-                opacity: 0;
-                transition: opacity $link_transition_speed linear;
-            }
-        }
+
         .archive-item-image {
             object-fit: cover;
             outline: solid $archive-article-img-outline-width rgba($pink, 0);
@@ -89,6 +71,29 @@ $archive-article-img-outline-width: 5px;
     }
 
 }
+
+.archive-item .archive-item-link .red-outline-hover, .error404 h1 {
+    position: relative; //to style the before element, which generates outline
+    z-index: 1;
+    display: block;
+    transition: color $link_transition_speed linear;
+    &::before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        z-index: -1;
+        content: attr(data-text) / "";
+        -webkit-text-stroke: $archive-article-text-stroke-width $red;
+        color: var(--#{$prefix}red);
+        transition: opacity $link_transition_speed linear;
+    }
+}
+.archive-item .archive-item-link .red-outline-hover::before {
+    opacity: 0;
+}
+
 
 .archive-item:not(.product){
     .archive-item-image{
@@ -194,5 +199,20 @@ $archive-article-img-outline-width: 5px;
 .featured-post + .post-query{
     margin-top: map-get($spacers, 6);
 }
+
+#le-monde-archive-header-logo{
+    img {
+        filter: brightness(0);
+    }
+    a{
+        &:focus-visible, &:hover{
+            img{
+                filter: brightness(1);
+            }
+        }
+    }
+}
+
+
 
 

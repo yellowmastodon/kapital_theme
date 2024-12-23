@@ -103,15 +103,15 @@ if (isset($darujme_options["campaign_active"])) {
         <nav id="horizontal-nav" class="fw-bold ff-grotesk px-3 bg-primary d-print-none">
             <div class="row gx-4 align-items-center justify-content-between">
                 <div class="col-2 col-lg-1 col-xl-1 text-start">
-                    <button class="btn-menu w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">
+                    <button class="btn-menu fw-bold main-menu-toggler w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">
                         <div class="hamburger me-2 d-inline-block">
                             <div class="line"></div>
                             <div class="line"></div>
                             <div class="line"></div>
-                </div><span class="d-none d-sm-inline-block">Menu</span>
+                </div><span class="text">Menu</span>
                     </button>
                     <div class="offcanvas offcanvas-start" tabindex="-1" id="main-menu-wrapper" aria-role="menu" aria-label="Hlavné menu">
-                        <div class="offcanvas-body p-6 p-sm-5" tabindex="-1">
+                        <div class="offcanvas-body d-flex flex-column justify-content-between p-6 p-sm-5" tabindex="-1">
                             <button type="button" class="mb-3 mb-sm-0 btn btn-close" aria-label="<?= __('Zatvoriť', 'kapital') ?>" data-bs-dismiss="offcanvas"><svg>
                                     <use xlink:href="#icon-close"></use>
                                 </svg></button>
@@ -126,6 +126,9 @@ if (isset($darujme_options["campaign_active"])) {
                                         'walker' => new Nested_Menu_List()
                                     ) 
                                 ) ?>
+                            </div>
+                            <div class="mt-6">
+                                <?php get_template_part('template-parts/socials', null, array('theme_options' => $kptl_theme_options));?>
                             </div>
                         </div>
                     </div>
@@ -222,7 +225,7 @@ if (isset($darujme_options["campaign_active"])) {
                         </span>
                     </a>
                 </div>
-                <?php wp_add_inline_script('scripts', 'jQuery(document.body).on("added_to_cart",function(){updateCartCount()});function updateCartCount(){jQuery.ajax({url:wc_add_to_cart_params.ajax_url,type:"GET",data:{action:"get_cart_item_count"},success:function(t){t.data.cart_count>0?jQuery(".kapital-cart-quantity-mini-badge").css("display","inline-block"):jQuery(".kapital-cart-quantity-mini-badge").css("display","none"),jQuery(".kapital-cart-quantity-mini-badge").text(t.data.cart_count)}})}', 'after' )?>
+                <?php wp_add_inline_script('scripts', 'jQuery(document.body).on("added_to_cart",function(){updateCartCount()});jQuery(updateCartCount());function updateCartCount(){jQuery.ajax({url:wc_add_to_cart_params.ajax_url,type:"GET",data:{action:"get_cart_item_count"},success:function(t){t.data.cart_count>0?jQuery(".kapital-cart-quantity-mini-badge").css("display","inline-block"):jQuery(".kapital-cart-quantity-mini-badge").css("display","none"),jQuery(".kapital-cart-quantity-mini-badge").text(t.data.cart_count)},})}', 'after' )?>
             <?php endif;
         }
         ?>

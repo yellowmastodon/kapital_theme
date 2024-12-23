@@ -211,7 +211,7 @@ create_filter_option_submenu('edit.php?post_type=product', __('Filtre produktov'
 /** 
  * Remove unneeded menu items in woocommerce site
  */
-add_action( 'admin_init', function () {
+add_action( 'admin_menu', function () {
     remove_menu_page( 'edit.php?post_type=podcast' );
 	remove_menu_page( 'edit.php?post_type=redakcia' );
 	remove_menu_page( 'edit.php?post_type=inzercia' );

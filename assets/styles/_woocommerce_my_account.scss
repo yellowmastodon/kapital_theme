@@ -3,6 +3,7 @@
     @extend .gx-2;
     @extend .gy-2;
     @extend .list-unstyled;
+    @extend .justify-content-center;
     li{
         @extend .col-auto;
         a{

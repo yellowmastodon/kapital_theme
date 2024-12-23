@@ -2,187 +2,16 @@
 create_filter_option_submenu('edit.php', __('Filtre článkov', 'kapital'), 'administrator', 'post-filters', 'kapital_post_filters', ['seria', 'zaner', 'rubrika']);
 create_filter_option_submenu('edit.php', __('Tematické série v hlavičke', 'kapital'), 'administrator', 'header-series', 'kapital_header_series', ['seria']);
 
-function kapital_customizer_settings($wp_customize) {
 
-    $wp_customize->add_section(
-        'header_settings',
-        array(
-                'title'       => __( 'Nastavenia hlavičky a soc. sietí', 'kapital' ),
-                'capability'  => 'edit_theme_options',
-                'description' => __( 'Linky v hlavičke a linky sociálnych sietí', 'kapital' ),
-            )
-
-        );
-
-        $wp_customize->add_setting(
-            'eshop_url',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'eshop_url',
-                array(
-                    'label'       => __( 'E-shop', 'kapital' ),
-                    'description' => __( 'Link na e-shop stránku.' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'eshop_url',
-                    'type'        => 'url',
-                )
-            )
-        );
-
-        $wp_customize->add_setting(
-            'podpora',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'podpora',
-                array(
-                    'label'       => __( 'Podpora', 'kapital' ),
-                    'description' => __( 'Link na stránku podpory' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'podpora',
-                    'type'        => 'url',
-                )
-            )
-        );
-
-
-        $wp_customize->add_setting(
-            'english',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'english',
-                array(
-                    'label'       => __( 'Anglické články', 'kapital' ),
-                    'description' => __( 'Link na anglické články' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'english',
-                    'type'        => 'url',
-                )
-            )
-        );
-
-        $wp_customize->add_setting(
-            'facebook',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'facebook',
-                array(
-                    'label'       => __( 'Facebook', 'kapital' ),
-                    'description' => __( 'Link na facebookovú stránku' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'facebook',
-                    'type'        => 'url',
-                )
-            )
-        );
-        $wp_customize->add_setting(
-            'instagram',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'instagram',
-                array(
-                    'label'       => __( 'Instagram', 'kapital' ),
-                    'description' => __( 'Link na Instagram' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'instagram',
-                    'type'        => 'url',
-                )
-            )
-        );
-        $wp_customize->add_setting(
-            'youtube',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'youtube',
-                array(
-                    'label'       => __( 'Youtube', 'kapital' ),
-                    'description' => __( 'Link na YouTube' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'youtube',
-                    'type'        => 'url',
-                )
-            )
-        );
-        $wp_customize->add_setting(
-            'twitter',
-            array(
-                'default'           => '',
-                'type'              => 'theme_mod',
-                'capability'        => 'edit_theme_options',
-            )
-        );
-
-        $wp_customize->add_control(
-            new WP_Customize_Control(
-                $wp_customize,
-                'twitter',
-                array(
-                    'label'       => __( 'Twitter', 'kapital' ),
-                    'description' => __( 'Link na Twitter' ),
-                    'section'     => 'header_settings',
-                    'settings'    => 'twitter',
-                    'type'        => 'url',
-                )
-            )
-        );
-}
-add_action('customize_register', 'kapital_customizer_settings');
-
-
+/**
+ * DARUJME OPTIONS
+ */
 function add_darujme_submenu_page()
 {
     //create new submenu
     add_submenu_page('edit.php?post_type=inzercia', __('Nastavenie Darujme.sk', 'kapital'), __('Nastavenie Darujme.sk', 'kapital'), 'administrator', 'kapital_darujme', 'kapital_darujme_admin_page');
-    //call register settings function
-    add_action('admin_init', 'register_posts_filter_setting');
 }
+
 add_action('admin_menu', 'add_darujme_submenu_page');
 
 /*
@@ -448,14 +277,76 @@ function kapital_darujme_admin_page()
 { ?>
     <div class="wrap">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-        <form action="options.php" method="post"><?php
-                                                    settings_fields('kapital_darujme_settings');
-                                                    do_settings_sections('kapital_darujme');
-                                                    submit_button(__('Uložiť nastavenia', 'kapital')); ?>
+        <form action="options.php" method="post">
+            <?php
+            settings_fields('kapital_darujme_settings');
+            do_settings_sections('kapital_darujme');
+            submit_button(__('Uložiť nastavenia', 'kapital')); ?>
 
         </form>
     </div>
     <script>
 
     </script>
-<?php } ?>
+<?php }
+
+function add_podcast_submenu_page()
+{
+    //create new submenu
+    add_submenu_page('edit.php?post_type=podcast', __('Popiska archívu podcastov', 'kapital'), __('Popiska archívu podcastov', 'kapital'), 'administrator', 'podcast_description', 'render_podcast_description_page');
+    //call register settings function
+}
+add_action('admin_menu', 'add_podcast_submenu_page');
+add_action('admin_init', function () {
+    register_setting(
+        'podcast_description',
+        'podcast_description',
+        array(
+            'type' => 'string',
+            'default' => '',
+        )
+    );
+});
+function render_podcast_description_page()
+{
+    // Get the current value of the option
+?>
+    <div class="wrap">
+        <h1><?php echo __('Popiska podcastov', 'kapital') ?></h1>
+
+        <form method="post" action="options.php">
+            <?php settings_fields('podcast_description'); ?>
+            <?php do_settings_sections('podcast_description');
+            		wp_enqueue_editor();
+                    wp_enqueue_media();
+            ?>
+            <?php $podcast_description = get_option('podcast_description', ''); ?>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><?=__('Popiska podcastov', 'kapital')?></th>
+                    <td>
+                    <textarea id="podcast_description_textarea" cols="100" rows="10" name="podcast_description"><?=$podcast_description?></textarea>
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+
+        </form>
+    </div>
+    <script id="term_description_tinymce">
+		jQuery(document).ready(function($) {
+			wp.editor.initialize('podcast_description_textarea', {
+				tinymce: {
+					// customizable options for TinyMCE
+					toolbar1: 'formatselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+					plugins: 'link,lists,textcolor,colorpicker',
+					menubar: false,
+					statusbar: false,
+				},
+				quicktags: true,
+				mediaButtons: false,
+			});
+		});
+	</script>
+<?php
+}

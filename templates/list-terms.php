@@ -6,9 +6,13 @@ $current_taxonomy = array_search($post->post_name, $kapital_taxonomies_with_list
 get_header();
 
 /** render breadcrumbs */
-echo kapital_breadcrumbs(array(
-    [__('Články', 'kapital'), get_post_type_archive_link('post')]
-), 'container');?>
+$breadcrumbs = array();
+if ($current_taxonomy === 'podcast-seria'){
+    $breadcrumbs[] = [__('Podcasty', 'kapital'), get_post_type_archive_link('podcast')];
+} else {
+    $breadcrumbs[] = [__('Články', 'kapital'), get_post_type_archive_link('post')];
+}
+echo kapital_breadcrumbs($breadcrumbs, 'container');?>
 
 <main class="main container" role="main" id="main">
 

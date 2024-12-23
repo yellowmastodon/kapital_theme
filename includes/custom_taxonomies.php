@@ -473,31 +473,6 @@ function reorder_post_submenu($menu_ord)
 
 
 /**
- * Initialize WISIWYG editor on term description
- */
-function tinymce_on_description($term, $taxonomy)
-{
-?>
-	<script id="term_description_tinymce">
-		jQuery(document).ready(function($) {
-			wp.editor.initialize('tag-description', {
-				tinymce: {
-					// customizable options for TinyMCE
-					toolbar1: 'formatselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
-					plugins: 'link,lists,textcolor,colorpicker',
-					menubar: false,
-					statusbar: false,
-				},
-				quicktags: true,
-				mediaButtons: false,
-			});
-		});
-	</script>
-<?php
-}
-
-
-/**
  * We need to disable KSES as it filters out all HTML from the term descriptions for security reasons
  * This allows tinyMCE to be initialized on term description
  */
@@ -508,7 +483,6 @@ function disable_kses()
 
 //add_filter( 'custom_menu_order', '__return_true' );
 add_filter('menu_order', 'reorder_post_submenu');
-add_action("category_edit_form_fields", 'tinymce_on_description', 10, 2);
 
 
 

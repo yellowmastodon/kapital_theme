@@ -41,7 +41,7 @@ form ul {
     list-style: none;
     padding-left: 0px;
 }
-form .btn,
+form:not(#mc-embedded-subscribe-form) .btn,
 .btn-form {
     padding-bottom: $input-btn-padding-y - 0.05rem;
     padding-top: $input-btn-padding-y + 0.05rem;

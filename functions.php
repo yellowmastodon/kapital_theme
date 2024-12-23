@@ -18,12 +18,16 @@ $include = array(
     '/includes/ads_post_type_functions.php',
     '/includes/custom_options.php',
     '/includes/ajax_functions.php',
+    '/includes/widgets.php',
+    '/includes/customizer.php',
 );
 $include_all = array(
     '/includes/render_functions.php',
     '/includes/custom_post_types.php',
     '/includes/custom_taxonomies.php',
-    '/templates/register-new-post-templates.php'
+    '/templates/register-new-post-templates.php',
+    '/includes/customizer-repeater/functions.php',
+
 );
 
 if (is_multisite()) {
@@ -83,7 +87,7 @@ if (function_exists('add_theme_support')) {
     // add_image_size( 'custom-size', 700, 200, true );
     add_theme_support('align-wide');
     add_theme_support('align-full');
-    add_theme_support( 'disable-layout-styles' );
+    //add_theme_support( 'disable-layout-styles' );
     // Add Support for post formats
     // add_theme_support( 'post-formats', ['post'] );
     add_post_type_support( 'page', 'excerpt' );
@@ -234,6 +238,7 @@ function kapital_enqueue_scripts()
     wp_deregister_style('wp-block-library'); // Remove WordPress core CSS
 
     //wp_dequeue_style( 'wp-block-library-theme' ); // Remove WordPress theme core CSS
+    
     wp_dequeue_style('classic-theme-styles'); // Remove global styles inline CSS
     //wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
    // wp_dequeue_style('global-styles'); // Remove theme.json css
@@ -358,7 +363,7 @@ function kapital_register_nav_menus()
     register_nav_menus([
         'main'   => __('Hlavné menu', 'kapital'),
         'quick'  => __('Rýchle menu', 'kapital'),
-        'footer' => 'Footer',
+        'footer' =>  __('Menu v päte', 'kapital'),
     ]);
 }
 
@@ -618,6 +623,12 @@ function register_posts_filter_setting($handle)
     );
 }
 
+ 
+function restrict_admin_bar( $show ) {
+    return current_user_can( 'administrator' ) ? true : false;
+}
+
+
 function kapital_post_filter_page($custom_taxonomies, $option_name)
 {
 ?>
@@ -680,3 +691,6 @@ function kapital_post_filter_page($custom_taxonomies, $option_name)
 
 <?php
 }
+
+/* Disable WordPress Admin Bar for all users except administrators */
+add_filter( 'show_admin_bar', 'restrict_admin_bar' );

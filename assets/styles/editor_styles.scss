@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 /*! purgecss start ignore */
 
-@use 'sass:math';
+@use "sass:math";
 // Include functions first
 @import "bootstrap/scss/functions";
 
@@ -14,96 +14,95 @@
 @import "bootstrap/scss/variables";
 $theme-colors: map-merge($theme-colors, $colors);
 
-
 //@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
+.editor-styles-wrapper {
+    @import "bootstrap/scss/root";
+    .is-root-container {
+        @extend :root;
+        font-size: 1rem !important;
+    }
+    @import "bootstrap/scss/reboot";
 
-.editor-styles-wrapper{
-@import "bootstrap/scss/root";
-.is-root-container{
-    @extend :root;
-    font-size: 1rem !important;
-}
-@import "bootstrap/scss/reboot";
+    @import "bootstrap/scss/type";
 
-@import "bootstrap/scss/type";
+    // @import "bootstrap/scss/images";
+    //@import "bootstrap/scss/containers";
+    @import "bootstrap/scss/grid";
+    // @import "bootstrap/scss/tables";
+    @import "bootstrap/scss/forms";
+    $temporary-colors: $theme-colors;
+    //$theme-colors: ();
+    //@import "bootstrap/scss/buttons";
+    //$theme-colors: $temporary-colors;
+    @import "bootstrap/scss/transitions";
+    //@import "bootstrap/scss/dropdown";
+    // @import "bootstrap/scss/button-group";
+    // @import "bootstrap/scss/nav";
+    // @import "bootstrap/scss/navbar"; // Requires nav
+    // @import "bootstrap/scss/card";
+    //@import "bootstrap/scss/breadcrumb";
+    // @import "bootstrap/scss/accordion";
+    // @import "bootstrap/scss/pagination";
+    // @import "bootstrap/scss/badge";
+    // @import "bootstrap/scss/alert";
+    // @import "bootstrap/scss/progress";
+    // @import "bootstrap/scss/list-group";
+    @import "bootstrap/scss/close";
+    // @import "bootstrap/scss/toasts";
+    //@import "bootstrap/scss/modal"; // Requires transitions
+    // @import "bootstrap/scss/tooltip";
+    //@import "bootstrap/scss/popover";
+    // @import "bootstrap/scss/carousel";
+    // @import "bootstrap/scss/spinners";
+    //make offcanvas not responsive
+    $temporary-breakpoints: $grid-breakpoints;
+    $grid-breakpoints: (
+        sm: 0
+    );
+    @import "bootstrap/scss/offcanvas"; // Requires transitions
+    $grid-breakpoints: $temporary-breakpoints;
+    // @import "bootstrap/scss/placeholders";
 
-// @import "bootstrap/scss/images";
-//@import "bootstrap/scss/containers";
-@import "bootstrap/scss/grid";
-// @import "bootstrap/scss/tables";
-@import "bootstrap/scss/forms";
-$temporary-colors: $theme-colors;
-//$theme-colors: ();
-//@import "bootstrap/scss/buttons";
-//$theme-colors: $temporary-colors;
-@import "bootstrap/scss/transitions";
-//@import "bootstrap/scss/dropdown";
-// @import "bootstrap/scss/button-group";
-// @import "bootstrap/scss/nav";
-// @import "bootstrap/scss/navbar"; // Requires nav
-// @import "bootstrap/scss/card";
-//@import "bootstrap/scss/breadcrumb";
-// @import "bootstrap/scss/accordion";
-// @import "bootstrap/scss/pagination";
-// @import "bootstrap/scss/badge";
-// @import "bootstrap/scss/alert";
-// @import "bootstrap/scss/progress";
-// @import "bootstrap/scss/list-group";
-@import "bootstrap/scss/close";
-// @import "bootstrap/scss/toasts";
-//@import "bootstrap/scss/modal"; // Requires transitions
-// @import "bootstrap/scss/tooltip";
-//@import "bootstrap/scss/popover";
-// @import "bootstrap/scss/carousel";
-// @import "bootstrap/scss/spinners";
-//make offcanvas not responsive
-$temporary-breakpoints: $grid-breakpoints;
-$grid-breakpoints: (sm: 0);
-@import "bootstrap/scss/offcanvas"; // Requires transitions
-$grid-breakpoints: $temporary-breakpoints;
-// @import "bootstrap/scss/placeholders";
+    // Helpers
+    @import "bootstrap/scss/helpers";
 
+    // Utilities
+    @import "bootstrap/scss/utilities/api";
 
-// Helpers
- @import "bootstrap/scss/helpers";
-
-// Utilities
-@import "bootstrap/scss/utilities/api";
-
-//replaces containers with content max width and margin auto
-@import "default_align_max_widths";
-@import "custom_styles";
-@import "wordpress_fixes";
-@import "bubble_heading";
-//@import "header";
-@import "rounded_markers";
-@import "breadcrumbs";
-
-
-
-
+    //replaces containers with content max width and margin auto
+    @import "default_align_max_widths";
+    @import "custom_styles";
+    @import "wordpress_fixes";
+    @import "bubble_heading";
+    //@import "header";
+    @import "rounded_markers";
+    @import "breadcrumbs";
 }
 @import "single_post";
 
-.edit-post-visual-editor__post-title-wrapper{
+.edit-post-visual-editor__post-title-wrapper {
     @extend .alignwide;
     text-align: center;
 }
-.is-root-container > .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]){
+.is-root-container
+    > .wp-block:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(
+        .wp-block[data-align="wide"]
+    ):not(.wp-block[data-align="full"]) {
     @extend .alignnormal;
 }
 //fix imported content in classic block
-.is-root-container .wp-block-freeform p{
+.is-root-container .wp-block-freeform p {
     @extend .ff-serif;
 }
-.editor-styles-wrapper .lh-sm p{
+.editor-styles-wrapper .lh-sm p {
     line-height: inherit !important;
 }
-.archive-item-link:not(.custom), .item-terms a{
+.archive-item-link:not(.custom),
+.item-terms a {
     pointer-events: none !important;
 }
 
@@ -119,17 +118,18 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "darujme_form";
 @import "woocommerce_archive";
 
-.btn{
+.btn {
     font-size: 0.9rem !important;
 }
 
 //children use negative margin, so focus is rendered wrong without this
-.wp-block-kapital-featured-post, .wp-block-kapital-post-query:not(:has(.post-filters)){
+.wp-block-kapital-featured-post,
+.wp-block-kapital-post-query:not(:has(.post-filters)) {
     overflow: hidden;
 }
 
 //bubble heading variation in editor
-.bubble-heading.wp-block-heading{
+.bubble-heading.wp-block-heading {
     background: $body-color;
     border-radius: 9999px;
     display: inline-block;
@@ -137,4 +137,11 @@ $grid-breakpoints: $temporary-breakpoints;
     width: unset !important;
     transform: translateX(-50%);
 }
+.wp-block[data-type="core/widget-area"], .blocks-widgets-container .editor-styles-wrapper{
+    max-width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
 /*! purgecss end ignore */

@@ -146,8 +146,7 @@ export default function Edit(
 			}
 			{!attributes.isPost &&
 				<article className="featured-post archive-item alignwider ff-grotesk">
-					<div className="row gx-4 gy-3 text-decoration-none">
-						<div className="col-12 col-md-6">
+						<div className="archive-item-link image-wrapper">
 						{!hasImages && (
 							<MediaPlaceholder
 								multiple={false}
@@ -181,7 +180,7 @@ export default function Edit(
 										
 						}
 						</div>
-						<div className="col-12 col-md-6">
+						<div className="post-headline-excerpt">
 							<URLInput
 								className="mb-3"
 								label={__("Vlastný link", "kapital")}
@@ -203,7 +202,6 @@ export default function Edit(
 							placeholder={__("Vlastný text", "kapital")}
 							/>
 						</div>
-					</div>
 				</article>
 			}
 		</div>

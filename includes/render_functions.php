@@ -687,7 +687,7 @@ class Nested_Menu_List extends Walker_Nav_Menu
         $output .= '<li' . $id . $class_names . '>';
 
         // Build the link for the menu item
-        $attributes = ' class="btn-menu text-decoration-none';
+        $attributes = ' class="btn-menu';
         $attributes .= '"';
         $attributes .= !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
         $attributes .= !empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';

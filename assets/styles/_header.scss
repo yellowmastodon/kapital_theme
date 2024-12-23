@@ -40,7 +40,9 @@ body.admin-bar {
     .level-0 > a{
             background-color: var(--#{$prefix}white);
     }
-
+    a{
+        text-decoration: none;
+    }
     .level-0:not(:last-child){
         margin-bottom: map-get($spacers, 1);
     }
@@ -132,8 +134,10 @@ $menu-btn-padding-top: 0.4em;
     @extend .rounded-pill;
     display: inline-block;
     padding: $menu-btn-padding-top $menu-btn-padding-x $menu-btn-padding-bottom $menu-btn-padding-x;
-    font-weight: bold;
     border: none;
+}
+#quick-menu .menu-item a{
+    font-weight: bold;
 }
 
 #quick-menu {
@@ -207,10 +211,18 @@ $menu-btn-padding-top: 0.4em;
 }
 
 //some adjustment for hamburger "icon" for smaller font size on mobile
-/* @include media-breakpoint-down("sm") {
+ @include media-breakpoint-down("sm") {
     .hamburger .line:not(:last-child) {
+        margin-bottom: 3px;
+
     }
-} */
+} 
+
+@media screen and (max-width: 340px){
+    .main-menu-toggler .text, .btn-podpora{
+        display: none !important;
+    }
+}
 
 //fix usage in row (overriden padding)
 //can create problems in wrapping rows

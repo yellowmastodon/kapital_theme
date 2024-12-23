@@ -256,89 +256,86 @@ function Edit(_ref) {
       skipBlockSupportAttributes: "true",
       block: "kapital/featured-post",
       attributes: attributes
-    }), !attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("article", {
+    }), !attributes.isPost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("article", {
       className: "featured-post archive-item alignwider ff-grotesk",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-        className: "row gx-4 gy-3 text-decoration-none",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "col-12 col-md-6",
-          children: [!hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "archive-item-link image-wrapper",
+        children: [!hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaPlaceholder, {
+          multiple: false,
+          labels: {
+            title: "Ilustračný obrázok"
+          },
+          onSelect: function onSelect(newImage) {
+            return setAttributes({
+              customImageId: newImage.id
+            });
+          }
+        }), hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
             multiple: false,
-            labels: {
-              title: "Ilustračný obrázok"
-            },
+            addToGallery: true,
             onSelect: function onSelect(newImage) {
-              return setAttributes({
-                customImageId: newImage.id
-              });
-            }
-          }), hasImages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUploadCheck, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.MediaUpload, {
-              multiple: false,
-              addToGallery: true,
-              onSelect: function onSelect(newImage) {
-                setAttributes({
-                  customImageId: Number(newImage.id)
-                });
-              },
-              allowedTypes: ["image"],
-              value: attributes.customImageId,
-              render: function render(_ref2) {
-                var open = _ref2.open;
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                  style: {
-                    position: "absolute",
-                    zIndex: 1,
-                    left: "16px",
-                    top: "16px",
-                    background: "white"
-                  },
-                  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"],
-                  onClick: open,
-                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Zmeniť obrázok", "kapital")
-                });
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default()), {
-              skipBlockSupportAttributes: "true",
-              block: "kapital/featured-post",
-              attributes: _objectSpread(_objectSpread({}, attributes), {}, {
-                renderOnlyImage: true
-              })
-            })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-          className: "col-12 col-md-6",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.URLInput, {
-            className: "mb-3",
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný link", "kapital"),
-            value: attributes.customLink,
-            onChange: function onChange(newValue) {
-              return setAttributes({
-                customLink: newValue
-              });
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
-            tagName: "h2",
-            className: "h2 mt-2 mb-3 red-outline-hover",
-            value: attributes.customHeading,
-            onChange: function onChange(newValue) {
-              return setAttributes({
-                customHeading: newValue
+              setAttributes({
+                customImageId: Number(newImage.id)
               });
             },
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný nadpis", "kapital")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
-            tagName: "p",
-            value: attributes.customText,
-            onChange: function onChange(newValue) {
-              return setAttributes({
-                customText: newValue
+            allowedTypes: ["image"],
+            value: attributes.customImageId,
+            render: function render(_ref2) {
+              var open = _ref2.open;
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                style: {
+                  position: "absolute",
+                  zIndex: 1,
+                  left: "16px",
+                  top: "16px",
+                  background: "white"
+                },
+                icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_10__["default"],
+                onClick: open,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Zmeniť obrázok", "kapital")
               });
-            },
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný text", "kapital")
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_8___default()), {
+            skipBlockSupportAttributes: "true",
+            block: "kapital/featured-post",
+            attributes: _objectSpread(_objectSpread({}, attributes), {}, {
+              renderOnlyImage: true
+            })
           })]
         })]
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "post-headline-excerpt",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.URLInput, {
+          className: "mb-3",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný link", "kapital"),
+          value: attributes.customLink,
+          onChange: function onChange(newValue) {
+            return setAttributes({
+              customLink: newValue
+            });
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+          tagName: "h2",
+          className: "h2 mt-2 mb-3 red-outline-hover",
+          value: attributes.customHeading,
+          onChange: function onChange(newValue) {
+            return setAttributes({
+              customHeading: newValue
+            });
+          },
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný nadpis", "kapital")
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+          tagName: "p",
+          value: attributes.customText,
+          onChange: function onChange(newValue) {
+            return setAttributes({
+              customText: newValue
+            });
+          },
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Vlastný text", "kapital")
+        })]
+      })]
     })]
   }));
 }
