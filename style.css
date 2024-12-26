@@ -265,7 +265,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 1.5rem;
   font-family: "Kontrast Grotesk", sans-serif;
   font-weight: bold;
-  line-height: 1.35;
+  line-height: 1.2;
   color: var(--kptl-heading-color);
 }
 
@@ -620,37 +620,37 @@ progress {
 .display-1 {
   font-size: 5rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .display-2 {
   font-size: 4.5rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .display-3 {
   font-size: 4rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .display-4 {
   font-size: 3.5rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .display-5 {
   font-size: 3rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .display-6 {
   font-size: 2.5rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .list-unstyled, .woocommerce-MyAccount-navigation ul, .woocommerce-order-overview, #shipping_method, .wp-block-social-links {
@@ -5818,7 +5818,7 @@ $theme-colors: $temporary-colors; */
 }
 
 .lh-sm {
-  line-height: 1.25 !important;
+  line-height: 1.2 !important;
 }
 
 .lh-base {
@@ -10464,8 +10464,8 @@ ul {
 }
 .secondary-title {
   font-size: 1.1rem;
-  line-height: 1.35;
-  line-height: 1.35;
+  line-height: 1.2;
+  line-height: 1.2;
 }
 
 .perex {
@@ -10491,14 +10491,6 @@ img {
   margin-right: 0.4em;
 }
 
-@media (min-width: 600px) {
-  .single-post .header-bottom-container .post-authors a {
-    color: var(--kptl-red);
-  }
-  .single-post .header-bottom-container .post-authors a:hover {
-    color: #000 !important;
-  }
-}
 .redakcia-portrait {
   max-height: calc(var(--kptl-initial-vh) * 55);
   transition: max-height 0.3s ease;
@@ -10901,6 +10893,10 @@ body.admin-bar .offcanvas {
 }
 .hamburger .line:not(:last-child) {
   margin-bottom: 4px;
+}
+
+#main-menu-wrapper .kptl-socials {
+  margin-left: -0.8em;
 }
 
 @media (max-width: 599.98px) {
@@ -11346,7 +11342,7 @@ button#place_order:not(.btn-menu),
 }
 
 @media (max-width: 899.98px) {
-  .archive-item-heading {
+  .archive-item:not(.archive-podcast-item) .archive-item-heading {
     font-size: 1.3rem !important;
   }
 }
@@ -11564,6 +11560,10 @@ button#place_order:not(.btn-menu),
 
 .archive-item-redakcia .archive-item-image:not(.product) {
   aspect-ratio: 0.8 !important;
+}
+
+.archive-item.recommendation .archive-item-image {
+  aspect-ratio: unset !important;
 }
 
 #perspectives-claim {

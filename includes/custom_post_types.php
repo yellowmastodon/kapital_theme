@@ -183,6 +183,128 @@ function inzercia_post_type() {
 	register_post_type( 'inzercia', $args );
 }
 
+// Register Custom Post Type
+function recommendation_post_type() {
+
+	$labels = array(
+		'name'                  => _x( 'Odporúčania', 'Post Type General Name', 'kapital' ),
+		'singular_name'         => _x( 'Odporúčanie', 'Post Type Singular Name', 'kapital' ),
+		'menu_name'             => __( 'Kapitál odporúča', 'kapital' ),
+		'name_admin_bar'        => __( 'Odporúčania', 'kapital' ),
+		'archives'              => __( 'Archív odporúčaní', 'kapital' ),
+		'attributes'            => __( 'Vlastnosti odporúčaní', 'kapital' ),
+		'parent_item_colon'     => __( 'Nadradené odporúčanie', 'kapital' ),
+		'all_items'             => __( 'Všetky odporúčania', 'kapital' ),
+		'add_new_item'          => __( 'Pridať nové odporúčanie', 'kapital' ),
+		'add_new'               => __( 'Pridať nové odporúčanie', 'kapital' ),
+		'new_item'              => __( 'Nové odporúčanie', 'kapital' ),
+		'edit_item'             => __( 'Upraviť odporúčanie', 'kapital' ),
+		'update_item'           => __( 'Aktualizovať odporúčanie', 'kapital' ),
+		'view_item'             => __( 'Zobraziť odporúčanie', 'kapital' ),
+		'view_items'            => __( 'Zobraziť odporúčania', 'kapital' ),
+		'search_items'          => __( 'Vyhľadať odporúčanie', 'kapital' ),
+		'not_found'             => __( 'Odporúčanie nenájdené', 'kapital' ),
+		'not_found_in_trash'    => __( 'V koši sa nenašli žiadne odporúčania', 'kapital' ),
+		'featured_image'        => __( 'Ilustračný obrázok', 'kapital' ),
+		'set_featured_image'    => __( 'Nastaviť ilustračný obrázok', 'kapital' ),
+		'remove_featured_image' => __( 'Odstrániť ilustračný obrázok', 'kapital' ),
+		'use_featured_image'    => __( 'Použiť ako ilustračný obrázok', 'kapital' ),
+		'insert_into_item'      => __( 'Pridať k odporúčaniu', 'kapital' ),
+		'uploaded_to_this_item' => __( 'Nahrané k odporúčaniu', 'kapital' ),
+		'items_list'            => __( 'Zoznam odporúčaní', 'kapital' ),
+		'items_list_navigation' => __( 'Navigácia zoznamu odporúčaní', 'kapital' ),
+		'filter_items_list'     => __( 'Filtrovať zoznam odporúčaní', 'kapital' ),
+	);
+	$args = array(
+		'label'                 => __( 'Odporúčanie', 'kapital' ),
+		'description'           => __( 'Odporúčania na domovskej stránke', 'kapital' ),
+		'labels'                => $labels,
+		'supports'              => array('title', 'editor', 'thumbnail' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 10,
+		'menu_icon'             => 'dashicons-align-left',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => false,
+		'can_export'            => true,
+		'has_archive'           => false,
+		'exclude_from_search'   => true,
+		'publicly_queryable'    => false,
+		'capability_type'       => 'page',
+		'show_in_rest'          => false,
+	);
+	register_post_type( 'recommendation', $args );
+
+}
+
+
+// Register Custom Post Type
+function event_post_type() {
+
+	$labels = array(
+		'name'                  => _x( 'Podujatia', 'Post Type General Name', 'kapital' ),
+		'singular_name'         => _x( 'Podujatie', 'Post Type Singular Name', 'kapital' ),
+		'menu_name'             => __( 'Podujatia', 'kapital' ),
+		'name_admin_bar'        => __( 'Podujatia', 'kapital' ),
+		'archives'              => __( 'Archív podujatí', 'kapital' ),
+		'attributes'            => __( 'Vlastnosti podujatí', 'kapital' ),
+		'parent_item_colon'     => __( 'Nadradené podujatie', 'kapital' ),
+		'all_items'             => __( 'Všetky podujatia', 'kapital' ),
+		'add_new_item'          => __( 'Pridať nové podujatie', 'kapital' ),
+		'add_new'               => __( 'Pridať nové podujatie', 'kapital' ),
+		'new_item'              => __( 'Nové podujatie', 'kapital' ),
+		'edit_item'             => __( 'Upraviť podujatie', 'kapital' ),
+		'update_item'           => __( 'Aktualizovať podujatie', 'kapital' ),
+		'view_item'             => __( 'Zobraziť podujatie', 'kapital' ),
+		'view_items'            => __( 'Všetky podujatia', 'kapital' ),
+		'search_items'          => __( 'Vyhľadať podujatie', 'kapital' ),
+		'not_found'             => __( 'Podujatia nenájdené', 'kapital' ),
+		'not_found_in_trash'    => __( 'V koši nie sú žiadne podujatia', 'kapital' ),
+		'featured_image'        => __( 'Ilustračný obrázok', 'kapital' ),
+		'set_featured_image'    => __( 'Nastaviť ilustračný obrázok', 'kapital' ),
+		'remove_featured_image' => __( 'Odstrániť ilustračný obrázok', 'kapital' ),
+		'use_featured_image'    => __( 'Použiť ako ilustračný obrázok', 'kapital' ),
+		'insert_into_item'      => __( 'Pridať k podujatiu', 'kapital' ),
+		'uploaded_to_this_item' => __( 'Nahrané do podujatia', 'kapital' ),
+		'items_list'            => __( 'Zoznam podujatí', 'kapital' ),
+		'items_list_navigation' => __( 'Navigácia zoznamu podujatí', 'kapital' ),
+		'filter_items_list'     => __( 'Filtrovať zoznam podujatí', 'kapital' ),
+	);
+	$rewrite = array(
+		'slug'                  => 'podujatia',
+		'with_front'            => true,
+		'pages'                 => true,
+		'feeds'                 => true,
+	);
+	$args = array(
+		'label'                 => __( 'Podujatie', 'kapital' ),
+		'description'           => __( 'Podujatia', 'kapital' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title', 'editor', 'thumbnail' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 10,
+		'menu_icon'             => 'dashicons-align-left',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => false,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'query_var'             => 'podujatie',
+		'rewrite'               => $rewrite,
+		'capability_type'       => 'post',
+		'show_in_rest'          => true,
+		'rest_base'             => 'event',
+	);
+	register_post_type( 'event', $args );
+
+}
+
 /**
  * Calls all functions that register post types
  */
@@ -191,6 +313,8 @@ function kapital_register_custom_post_types(){
     podcast_post_type();
     redakcia_post_type();
 	inzercia_post_type();
+	recommendation_post_type();
+	event_post_type();
 }
 
 add_action( 'init', 'kapital_register_custom_post_types', 1 ); 

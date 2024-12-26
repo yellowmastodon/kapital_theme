@@ -34,6 +34,7 @@ body.admin-bar {
             top: 0;
         }
     }
+
 }
 
 #main-menu {
@@ -140,6 +141,8 @@ $menu-btn-padding-top: 0.4em;
     font-weight: bold;
 }
 
+
+
 #quick-menu {
     .menu-item {
         line-height: 1;
@@ -208,6 +211,9 @@ $menu-btn-padding-top: 0.4em;
             margin-bottom: 4px;
         }
     }
+}
+#main-menu-wrapper .kptl-socials{
+    margin-left: -($menu-btn-padding-x);
 }
 
 //some adjustment for hamburger "icon" for smaller font size on mobile

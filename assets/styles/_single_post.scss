@@ -101,15 +101,3 @@ img{
             margin-right: .4em;
     }
 }
-@include media-breakpoint-up('sm'){
-    .single-post {
-        .header-bottom-container .post-authors{
-            a{
-                color: var(--#{$prefix}red);
-                &:hover{
-                    color: $body-color !important;
-                }
-            }
-        }
-    }
-}

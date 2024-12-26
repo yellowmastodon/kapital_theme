@@ -1,6 +1,13 @@
 <?php
 defined('ABSPATH') || exit;
-
+if (is_multisite()) {
+    $is_multisite = true;
+    $current_site = get_current_blog_id();
+    global $is_woocommerce_site;
+    if ($is_woocommerce_site) {
+        switch_to_blog(get_main_site_id());
+    } 
+}
 ?> <footer class="footer ff-grotesk" role="contentinfo">
     <div class="bg-primary py-6 px-3 px-sm-4 px-lg-5 px-xl-6">
         <div class="row alignwider justify-content-between align-items-start gx-4 gy-6">
@@ -52,7 +59,16 @@ defined('ABSPATH') || exit;
         </svg>
     </div>
 </footer>
-<?php wp_footer(); ?>
+
+<?php
+if (is_multisite()) {
+    $current_site = get_current_blog_id();
+    if ($is_woocommerce_site) {
+        switch_to_blog($current_site);
+    } 
+}
+
+wp_footer(); ?>
 </body>
 
 </html>

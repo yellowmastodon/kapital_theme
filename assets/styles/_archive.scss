@@ -105,7 +105,7 @@ $archive-article-img-outline-width: 5px;
     font-size: 1.15rem !important;
 }
 @include media-breakpoint-down('md'){
-    .archive-item-heading{
+    .archive-item:not(.archive-podcast-item) .archive-item-heading{
         font-size: 1.3rem !important;
     }
 }

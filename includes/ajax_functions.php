@@ -37,7 +37,7 @@ function ajax_load_ads()
                 $url = get_field('ad_url', $ads->posts[$random_ad_key]->ID);
                 $html .= '<a target="_blank" href="' . $url . '" data-ad-id="' . $ads->posts[$random_ad_key]->ID . '" class="my-6 d-print-none d-block inzercia alignwidest">';
                 $html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", $alt_text);
-                $html .= kapital_responsive_image($destkop_image, "95vw, min-width(900px) 1260px, min-width(1680px) 1550px", false, "d-none d-sm-block w-100", "", $alt_text);
+                $html .= kapital_responsive_image($destkop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw", false, "d-none d-sm-block w-100", "", $alt_text);
                 $html .= '</a>';
             }
             $data["ads"][] = $html;
@@ -50,7 +50,7 @@ function ajax_load_ads()
                 $url = get_field('ad_url', $ad->ID);
                 $html .= '<a target="_blank" href="' . $url . '" data-ad-id="' . $ad->ID . '" class="my-6 d-print-none d-block inzercia alignwidest">';
                 $html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", $alt_text);
-                $html .= kapital_responsive_image($destkop_image, "95vw, min-width(900px) 1260px, min-width(1680px) 1550px", false, "d-none d-sm-block w-100", "", $alt_text);
+                $html .= kapital_responsive_image($destkop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw+", false, "d-none d-sm-block w-100", "", $alt_text);
                 $html .= '</a>';
                 $data["ads"][] = $html;
             }

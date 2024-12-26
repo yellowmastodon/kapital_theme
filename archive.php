@@ -90,28 +90,22 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
                     get_template_part('template-parts/archive-editorial-post', null, array('queried_object_id' => $queried_object_id));
                     $editorial_post_id = $post->ID;
                 endwhile;
-            } else {
-                echo '<header class="' .  $header_classes . '">';
-                echo kapital_bubble_title($archive_title, 1, 'term-title');
-                echo '</header>';
             }
         } else {
-                echo '<header class="' .  $header_classes . '">';
-                echo kapital_bubble_title($archive_title, 1, 'term-title');
-                echo '</header>';
-            }
+            echo '<header class="' .  $header_classes . '">';
+            echo kapital_bubble_title($archive_title, 1, 'term-title');
+        }
 
-            if ($queried_object->description !== "") {
-                echo '<div class="term-description h4 text-center ff-grotesk fw-bold lh-sm">';
-                echo wpautop($queried_object->description, true);
-                echo '</div>';
+        if ($queried_object->description !== "") {
+            echo '<div class="term-description h4 text-center ff-grotesk fw-bold lh-sm">';
+            echo wpautop($queried_object->description, true);
+            echo '</div>';
         }
     } else {
         echo '<header class="' .  $header_classes . '">';
         echo kapital_bubble_title($archive_title, 1, 'term-title');
-        echo '</header>';
     }
-    ?>
+    echo '</header>'; ?>
 
     <?php /** filters */
     if ($is_term_archive) {
