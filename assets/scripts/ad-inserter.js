@@ -29,7 +29,7 @@ function checkDarujmeActive() {
  * @returns {boolean} Returns true if ad insertion is enabled, false otherwise.
  */
 function checkAdInsertingEnabled() {
-    if (document.getElementById("main").classList.contains('show-ads')) {
+    if (document.getElementById("main").classList.contains("show-ads")) {
         return true;
     } else {
         return false;
@@ -58,7 +58,9 @@ function checkDonationInsertingEnabled() {
  * @param {function} registerClicksCallback A function to be called when an ad link is clicked.
  */
 function adInserter(HTMLJson, singlePostOrPodcast = true, registerClicksCallback = null) {
+
     const data = JSON.parse(HTMLJson); // Parse the JSON string into an object.
+
     const adHTML = data.ads; // Extract ad HTML from the parsed data.
     const donationHTML = data.donation_form; // Extract donation form HTML from the parsed data.
     const donationGloballyEnabled = document.body.classList.contains("darujme-active");
@@ -76,12 +78,16 @@ function adInserter(HTMLJson, singlePostOrPodcast = true, registerClicksCallback
                 const donationPosition = Math.floor(paragraphs.length * 2 / 3) - 1; // Position for donation (2/3 of content)
                 paragraphs[donationPosition].insertAdjacentHTML('afterend', donationHTML);
             }
-            paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
+            if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined"){
+                paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
+            }
         } else {
             // If there are less than 8 paragraphs, handle insertion differently
             if (paragraphs.length > 3) {
                 const adPosition = Math.floor(paragraphs.length / 2) - 1; // Place ad in the middle
-                paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
+                if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined"){
+                    paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
+                }
             }
             // Insert donation form at the end of the content
             if(donationGloballyEnabled ){

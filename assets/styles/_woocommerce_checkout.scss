@@ -122,3 +122,27 @@ p.woocommerce-notice-success, p.woocommerce-notice--success{
 .woocommerce-order-overview{
     @extend .list-unstyled;
 }
+
+.woocommerce-privacy-policy-text{
+    line-height: $line-height-small;
+}
+
+.wc-bacs-bank-details, .wc-item-meta{
+    @extend .list-unstyled;
+}
+
+.wc-item-meta{
+    padding-left: map-get($spacers, 2);
+    line-height: $line-height-small;
+    font-size: $small-font-size;
+}
+.woocommerce-customer-details{
+    .col-1, .col-2, .col-3{
+        width: unset !important;
+    }
+}
+
+.shipped_via{
+    display: block;
+    line-height: $line-height-small;
+}

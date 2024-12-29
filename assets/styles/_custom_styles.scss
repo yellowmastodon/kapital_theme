@@ -16,16 +16,56 @@ label{
 //default main padding
 #main{
     padding-top: map-get($spacers, 5);
-    padding-bottom: map-get($spacers, 5);
+    padding-bottom: map-get($spacers, 7);
 }
-ul{
+
+ol, ul {
+    li::marker{
+        color: var(--#{$prefix}red);
+    }
     padding-left: 1em;
 }
+
+blockquote{
+    
+    border-radius: $border-radius;
+    background-color: var(--#{$prefix}secondary);
+    padding: map-get($spacers, 3) map-get($spacers, 4);
+    text-align: left;
+    font-size:  1rem !important;
+    & > *{
+        &:not(:last-child){
+            margin-bottom: map-get($spacers, 2);
+        }
+    }
+    & > *:not(cite){
+        font-style: italic;
+    }
+    cite{
+        display: block;
+        text-align: right;
+        font-style: unset;
+        &::before{
+            content: "– ";
+        }
+    }
+    &:not(:first-child){
+        margin-top: map-get($spacers, 5);
+    }
+    &:not(:last-child){
+        margin-bottom: map-get($spacers, 5);
+    }
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6{
+    margin-top: unset;
+    margin-bottom: unset;
+}
+
 
 @include media-breakpoint-up('lg'){
     #main{
         padding-top: map-get($spacers, 6);
-        padding-bottom: map-get($spacers, 6);
     }
 }
 
@@ -34,6 +74,13 @@ ul{
     .breadcrumb-nav + #main{
         padding-top: map-get($spacers, 2);
     }
+}
+
+#post-content hr:not(:first-child){
+    margin-top: map-get($spacers, 6);
+}
+#post-content hr:not(:last-child){
+    margin-bottom: map-get($spacers, 6);
 }
 
 .btn-menu, a {

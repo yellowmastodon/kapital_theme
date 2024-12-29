@@ -135,8 +135,8 @@ if ($render_settings["show_breadcrumbs"]) {
                                         <?php
                                         foreach ($filtered_terms['autorstvo'] as $key => $author):
                                             if ($key !== 0) echo ", "; ?>
-                                            <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a>
-                                        <?php endforeach; ?>
+                                            <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a><?php
+                                        endforeach; ?>
                                         </p><?php
                                         endif;
                                     endif;

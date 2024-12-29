@@ -1,25 +1,26 @@
 <?php
-function ajax_load_ads()
-{
+function ajax_load_ads() {
+    // Verify nonce
     if (!wp_verify_nonce($_POST['nonce'], 'ajax-nonce')) {
         die('');
     }
-    /** ads are saved to the database with end date as "date"
-     * first we query the ads that have date higher than today (today included)
-     * then we filter ads that have start_date later than today
-     */
+
     $data = array();
     $data["ads"] = array();
     $data["donation_form"] = "";
-    if ($_POST["ad"]) {
+
+    // Check if 'ad' parameter is provided and is a valid JSON string
+    if (isset($_POST["ad"]) && json_decode($_POST["ad"])) {
+        // Query ads
         $ads = new WP_Query(array(
             'post_type' => 'inzercia',
             'posts_per_page' => -1,
             'date_query' => array(
-                'after' => 'yesterday'
+                'after' => current_time('Y-m-d'),
             )
         ));
-        //remove ads that have not yet started
+
+        // Filter ads based on start date (ads that haven't started yet)
         $today = date('Y-m-d');
         foreach ($ads->posts as $key => $ad) {
             $ad_start_date = get_field('ad_start_date', $ad->ID);
@@ -27,43 +28,56 @@ function ajax_load_ads()
                 unset($ads->posts[$key]);
             }
         }
-        if ($_POST["onead"]){
-            $html = "";
+
+        // Generate ad HTML based on whether "onead" is passed
+        if (isset($_POST["onead"]) && json_decode($_POST["onead"])) {
+            // Single random ad
             if (count($ads->posts) > 0) {
                 $random_ad_key = rand(0, count($ads->posts) - 1);
-                $mobile_image = get_field('ad_mobile_image', $ads->posts[$random_ad_key]->ID);
-                $destkop_image = get_field('ad_desktop_image', $ads->posts[$random_ad_key]->ID);
-                $alt_text = get_field('ad_alt_text', $ads->posts[$random_ad_key]->ID);
-                $url = get_field('ad_url', $ads->posts[$random_ad_key]->ID);
-                $html .= '<a target="_blank" href="' . $url . '" data-ad-id="' . $ads->posts[$random_ad_key]->ID . '" class="my-6 d-print-none d-block inzercia alignwidest">';
-                $html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", $alt_text);
-                $html .= kapital_responsive_image($destkop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw", false, "d-none d-sm-block w-100", "", $alt_text);
-                $html .= '</a>';
-            }
-            $data["ads"][] = $html;
-        } else {
-            foreach ($ads->posts as $ad){
-                $html = "";
+                $ad = $ads->posts[$random_ad_key];
                 $mobile_image = get_field('ad_mobile_image', $ad->ID);
-                $destkop_image = get_field('ad_desktop_image', $ad->ID);
+                $desktop_image = get_field('ad_desktop_image', $ad->ID);
                 $alt_text = get_field('ad_alt_text', $ad->ID);
                 $url = get_field('ad_url', $ad->ID);
-                $html .= '<a target="_blank" href="' . $url . '" data-ad-id="' . $ad->ID . '" class="my-6 d-print-none d-block inzercia alignwidest">';
-                $html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", $alt_text);
-                $html .= kapital_responsive_image($destkop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw+", false, "d-none d-sm-block w-100", "", $alt_text);
+
+                $html = '<a target="_blank" href="' . esc_url($url) . '" data-ad-id="' . esc_attr($ad->ID) . '" class="my-6 d-print-none d-block inzercia alignwidest">';
+                $html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", esc_attr($alt_text));
+                $html .= kapital_responsive_image($desktop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw+", false, "d-none d-sm-block w-100", "", esc_attr($alt_text));
                 $html .= '</a>';
+
                 $data["ads"][] = $html;
+            }
+        } else {
+            // All ads
+            foreach ($ads->posts as $ad) {
+                $mobile_image = get_field('ad_mobile_image', $ad->ID);
+                $desktop_image = get_field('ad_desktop_image', $ad->ID);
+                $alt_text = get_field('ad_alt_text', $ad->ID);
+                $url = get_field('ad_url', $ad->ID);
+
+                $ad_html = '<a target="_blank" href="' . esc_url($url) . '" data-ad-id="' . esc_attr($ad->ID) . '" class="my-6 d-print-none d-block inzercia alignwidest">';
+                $ad_html .= kapital_responsive_image($mobile_image, "95vw", false, "d-block d-sm-none w-100", "", esc_attr($alt_text));
+                $ad_html .= kapital_responsive_image($desktop_image, "(min-width: 2099px) 1800px, (min-width: 1649px) 1550px, (min-width: 1399px) 1260px, 95vw+", false, "d-none d-sm-block w-100", "", esc_attr($alt_text));
+                $ad_html .= '</a>';
+
+                $data["ads"][] = $ad_html;
             }
         }
     }
-    if ($_POST["donation"]){
+
+    // Check if 'donation' parameter is set
+    if (isset($_POST["donation"]) && json_decode($_POST["donation"])) {
         ob_start();
         get_template_part('template-parts/donation-form', null, array("collapsed" => true));
         $data["donation_form"] = ob_get_clean();
-        echo json_encode($data);
     }
+
+    // Output the response as JSON
+    echo json_encode($data);
+
     wp_die();
 }
+
 add_action('wp_ajax_adinserter', 'ajax_load_ads');
 add_action('wp_ajax_nopriv_adinserter', 'ajax_load_ads');
 

@@ -9,6 +9,9 @@
     padding-top: map-get($spacers, 5) !important;
 }
 .woocommerce-product-attributes {
+    * {
+        vertical-align: top;
+    }
     td {
         padding-left: map-get($spacers, 3);
     }
@@ -167,6 +170,8 @@ table.variations{
     .reset_variations{
         @extend .text-red;
         font-size: $small-font-size;
+        background: transparent;
+        border: none;
     }
 }
 .tabs.wc-tabs{

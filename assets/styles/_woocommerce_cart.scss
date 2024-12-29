@@ -2,7 +2,10 @@
 .shop_table,
 .cart_totals,
 .wc-proceed-to-checkout,
-.woocommerce-order
+.woocommerce-order,
+.woocommerce-terms-and-conditions-wrapper,
+.place-order,
+.woocommerce-checkout-payment
  {
     & > *:not(:last-child){
     margin-bottom: map-get($spacers, 4);
@@ -82,9 +85,9 @@
     .quantity input {
         background-clip: border-box !important;
         text-align: center;
-        padding-top: .6rem;
+        padding-top: .55rem;
         height: 2.4rem;
-        padding-bottom: .45rem;
+        padding-bottom: .5rem;
         line-height: 1rem;
         padding-left: .3rem;
         padding-right: .3rem;

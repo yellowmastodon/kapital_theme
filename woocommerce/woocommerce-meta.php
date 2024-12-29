@@ -19,9 +19,9 @@ function kapital_book_author_meta_box_callback( $post ){
 </table>
     <?php
 }
-add_action( 'save_post', 'kapital_book_author_meta_box_save' );
+add_action( 'save_post_product', 'kapital_book_author_meta_box_save' );
 function kapital_book_author_meta_box_save( $post_id ) {
-	if ( !isset( $_POST['formType'] ) && !wp_verify_nonce( $_POST['formType'], 'book_author' ) ){
+	if ( !isset( $_POST['formType'] ) && !wp_verify_nonce( $_POST['formType']) ){
 		return;
 	}
     if ( isset( $_POST['kapital_book_author'] ) ){

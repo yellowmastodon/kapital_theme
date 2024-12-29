@@ -9,7 +9,7 @@ $is_woocommerce_site = class_exists('WooCommerce');
 $template_directory = get_template_directory();
 $include = array(
     //require_once 'includes/class-wp-bootstrap-navwalker.php',
-    //'includes/custom_import.php',
+    //'/includes/custom_import.php',
     '/includes/old-site-functions.php',
     //'includes/cmb-example-functions.php',
     '/block-editor/block-editor-functions.php',
@@ -26,8 +26,7 @@ $include_all = array(
     '/includes/custom_post_types.php',
     '/includes/custom_taxonomies.php',
     '/templates/register-new-post-templates.php',
-    '/includes/customizer-repeater/functions.php',
-
+    '/includes/iframe_wrapper.php',
 );
 
 if (is_multisite()) {
@@ -364,6 +363,7 @@ function kapital_register_nav_menus()
         'main'   => __('Hlavné menu', 'kapital'),
         'quick'  => __('Rýchle menu', 'kapital'),
         'footer' =>  __('Menu v päte', 'kapital'),
+        'footer-social' =>  __('Sociálne siete v päte', 'kapital'),
     ]);
 }
 

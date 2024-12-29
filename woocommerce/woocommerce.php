@@ -215,4 +215,5 @@ add_action( 'admin_menu', function () {
     remove_menu_page( 'edit.php?post_type=podcast' );
 	remove_menu_page( 'edit.php?post_type=redakcia' );
 	remove_menu_page( 'edit.php?post_type=inzercia' );
+	remove_menu_page( 'edit.php?post_type=recommendation' );
 }, 9999);

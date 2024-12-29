@@ -50,7 +50,8 @@
 
 @font-face {
     font-family: "Kontrast Grotesk";
-    src: url('assets/fonts/KontrastGrotesk-Regular.woff2') format('woff2');
+    src: url('assets/fonts/KontrastGrotesk-Regular.woff2') format('woff2'),
+    url('assets/fonts/KontrastGrotesk-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -58,7 +59,8 @@
 
 @font-face {
     font-family: "Kontrast Grotesk";
-    src: url('assets/fonts/KontrastGrotesk-RegularItalic.woff2') format('woff2');
+    src: url('assets/fonts/KontrastGrotesk-RegularItalic.woff2') format('woff2'),
+    url('assets/fonts/KontrastGrotesk-RegularItalic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -66,7 +68,8 @@
 
 @font-face {
     font-family: "Kontrast Grotesk";
-    src: url('assets/fonts/KontrastGrotesk-SemiBold.woff2') format('woff2');
+    src: url('assets/fonts/KontrastGrotesk-SemiBold.woff2') format('woff2'),
+    url('assets/fonts/KontrastGrotesk-SemiBold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;

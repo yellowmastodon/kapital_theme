@@ -149,6 +149,28 @@ function kapital_customizer_settings($wp_customize)
         )
     );
     $wp_customize->add_setting(
+        'soundcloud',
+        array(
+            'default'           => '',
+            'type'              => 'theme_mod',
+            'capability'        => 'edit_theme_options',
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Control(
+            $wp_customize,
+            'soundcloud',
+            array(
+                'label'       => __('Soundcloud', 'kapital'),
+                'description' => __('Link na Soundcloud'),
+                'section'     => 'header_settings',
+                'settings'    => 'youtube',
+                'type'        => 'url',
+            )
+        )
+    );
+    $wp_customize->add_setting(
         'twitter',
         array(
             'default'           => '',

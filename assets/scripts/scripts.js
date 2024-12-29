@@ -62,7 +62,7 @@ if (!document.body.classList.contains('woocommerce-active')) {
             ajaxRequest('adinserter', { onead: true, ad: AdInsertingEnabled, donation: DonationInsertingEnabled }, adInserter, [true, ajaxRequest]);
         }
     } else {
-        ajaxRequest('adinserter', { onead: false, ad: AdInsertingEnabled, donation: false }, adInserter, [false, ajaxRequest]);
+        ajaxRequest('adinserter', { onead: false, ad: true, donation: false }, adInserter, [false, ajaxRequest]);
     }
 }
 

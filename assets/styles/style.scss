@@ -36,7 +36,6 @@ $theme-colors: map-merge($theme-colors, $colors);
 //@import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 // @import "bootstrap/scss/tables";
-@import "bootstrap/scss/forms";
 /*! purgecss end ignore */
 
 /* $temporary-colors: $theme-colors;
@@ -98,7 +97,6 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "header";
 @import "rounded_markers";
 @import "breadcrumbs";
-@import "buttons";
 @import "ads";
 @import "archive";
 @import "archive_podcast";
@@ -109,6 +107,8 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "featured_post";
 @import "sponsors";
 @import "single_podcast";
+@import "buttons";
+@import "bootstrap/scss/forms";
 @import "forms";
 @import "darujme_form";
 @import "woocommerce_archive";
@@ -121,6 +121,10 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "404";
 @import "socials";
 @import "footer";
+@import "search_results";
+@import "complianz";
+
+
 /*! purgecss end ignore */
 
 

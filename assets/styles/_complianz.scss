@@ -1,0 +1,119 @@
+/* Container */
+.cmplz-cookiebanner{
+    font-size: .8rem !important;
+    line-height: 1.4;
+    svg{
+        vertical-align: unset !important;
+    }
+}
+
+/* Logo */
+.cmplz-cookiebanner .cmplz-logo{}
+/* Title */
+.cmplz-cookiebanner .cmplz-title{
+    @extend .ff-grotesk;
+    font-size: $h4-font-size !important;
+}
+/* Close icon */
+.cmplz-cookiebanner .cmplz-close{}
+
+/* Message */
+.cmplz-cookiebanner .cmplz-message{
+    font-size: $small-font-size !important;
+    line-height: 1.4 !important;
+}
+
+
+
+.cmplz-accept-service{
+
+}
+
+ /* All buttons */
+.cmplz-buttons .cmplz-btn{
+    @extend .ff-grotesk;
+    text-transform: uppercase;
+    padding: $btn-padding-top $btn-padding-y $btn-padding-bottom $btn-padding-y !important;
+    font-size: .8rem !important;
+    border-radius: 9999px !important;
+    line-height: 1 !important;
+
+}
+/* Accept button */
+.cmplz-btn .cmplz-accept{
+    background-color: $primary;
+    border-color: $primary;
+} 
+ /* Deny button */
+.cmplz-btn .cmplz-deny{
+    background-color: $secondary;
+    border-color: $secondary;
+
+}
+
+ /* Categories */
+.cmplz-cookiebanner .cmplz-category{}
+.cmplz-cookiebanner .cmplz-category-title{} 
+
+/* Manage consent tab */
+#cmplz-manage-consent .cmplz-manage-consent{} 
+
+/* Soft cookie wall */
+.cmplz-soft-cookiewall{}
+
+/* Placeholder button - Per category */
+.cmplz-blocked-content-container .cmplz-blocked-content-notice{}
+
+/* Placeholder button & message - Per service */
+.cmplz-blocked-content-container .cmplz-blocked-content-notice,
+.cmplz-blocked-content-notice{}
+button.cmplz-accept-service{}
+
+/* Styles for the AMP notice */
+#cmplz-consent-ui, #cmplz-post-consent-ui {}
+/* Message */
+#cmplz-consent-ui .cmplz-consent-message {
+    font-size: .8rem;
+    line-height: 1.4 !important;
+}
+/* Buttons */
+#cmplz-consent-ui button, #cmplz-post-consent-ui button {}
+
+.cmplz-blocked-content-container .cmplz-blocked-content-notice, .cmplz-wp-video .cmplz-blocked-content-notice {
+  max-width: unset !important;
+  transform: unset !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  color: black !important;
+  background-color: rgba(255,255,255,0.9);
+  align-items: center !important;
+  a {
+    color: black  !important;
+  }
+}
+
+button, input[type="submit"]{
+
+    &.cmplz-accept-service{
+        @extend .btn;
+        @extend .btn-sm;
+        @extend .btn-primary;
+    }
+}
+
+#cmplz-document {
+    p, li{
+    font-size: 1rem !important;
+    }
+    details, details *{
+        font-size: .8rem !important;
+    }
+    input[type="checkbox"]{
+        margin-top: 0px;
+    }
+}

@@ -129,6 +129,13 @@ function remap_post_content($test = true)
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
+        'date_query' => [
+            'column' => 'post_date',
+            'after'  => [
+                'year'  => 2024,
+                'month' => 11,
+                'day'   => 22,
+            ]],
         //'p' => 32729
     );
     $query = new WP_Query($args);
@@ -252,7 +259,7 @@ function remap_post_content($test = true)
                 foreach ($footnote_matches[2] as $key => $match) {
                     $uniqid = uniqid();
                     $footnotes_str .= $match . '<br>';
-                    $footnotes_arr[] = (object) array("content" => htmlentities($match), 'id' => $uniqid);
+                    $footnotes_arr[] = (object) array("content" => utf8_encode(htmlentities($match)), 'id' => $uniqid);
                     $content = preg_replace('/' . preg_quote($footnote_matches[1][$key], '/') . preg_quote($footnote_matches[2][$key], '/') . preg_quote($footnote_matches[3][$key], '/') . '/', '<sup data-fn="' .  $uniqid . '" class="fn"><a href="#' .  $uniqid . '" id="' .  $uniqid . '-link">' . $key + 1 . '</a></sup>', $content
                     );
                 }
@@ -347,7 +354,13 @@ function kapital_render_custom_menu_import_test()
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
-    );
+        'date_query' => [
+            'column' => 'post_date',
+            'after'  => [
+                'year'  => 2024,
+                'month' => 11,
+                'day'   => 22,
+            ]],);
     $query = new WP_Query($args);
     $json_file_path = get_theme_file_path('/includes/remap_terms.json');
     $remap_json = json_decode(file_get_contents($json_file_path), true);
@@ -525,6 +538,11 @@ function kapital_custom_import()
     $args = array(
         'post_type' => 'post',
         'posts_per_page' => -1,
+        'after'  => [
+            'year'  => 2024,
+            'month' => 11,
+            'day'   => 22,
+        ],
     );
     $query = new WP_Query($args);
     $json_file_path = get_theme_file_path('/includes/remap_terms.json');
@@ -598,7 +616,7 @@ function kapital_custom_import()
             );
             //if exists in
             if (sizeof($existing_term) > 0) {
-                $new_author_id = "";
+                $new_author = "";
                 $new_author_id = $existing_term[0]->term_id;
                 wp_set_object_terms($post_id, $new_author_id, 'autorstvo', true);
                 //var_dump($existing_term);
@@ -640,9 +658,11 @@ function kapital_custom_import()
                  * but we need to also pass last_name as argument, as saving involves a filter
                  * see autorstvo_insert_term() in author_taxonomy_functions.php
                  * */
+                var_dump($new_author);
                 $new_term = wp_insert_term($new_author["full_name"], 'autorstvo', array(
                     'slug' => $new_author["slug"]
                 ));
+                var_dump($new_term);
                 $new_term_id = $new_term['term_id'];
                 wp_set_object_terms($post_id, $new_term_id, 'autorstvo', true);
                 update_term_meta($new_term_id, '_author_first_name',$new_author["first_name"]); //first and last name saved as object for one query

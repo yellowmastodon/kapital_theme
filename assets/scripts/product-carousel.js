@@ -6,7 +6,6 @@ export default function productCarousel() {
         const productCarousel = document.getElementById('product-carousel');
         var carouselItems = productCarousel.querySelectorAll('.carousel-item');
         let galleryLinks = document.querySelectorAll('.product-gallery .gallery-link');
-        console.log(galleryLinks);
         galleryLinks.forEach(
             function (link) {
                 link.addEventListener("click", function (event) {
@@ -21,7 +20,6 @@ export default function productCarousel() {
                             var clonedItem = link.querySelector('img').cloneNode();
                             clonedItem.classList.remove('w-100');
                             clonedItem.setAttribute("sizes", "95vw");
-                            console.log(clonedItem);
                             let imageWrapper = document.createElement('div');
                             imageWrapper.classList.add('carousel-img-wrapper');
                             imageWrapper.appendChild(clonedItem);
@@ -41,7 +39,6 @@ export default function productCarousel() {
                     if (activeItem !== undefined && activeItem !== null) {
                         activeItem.classList.remove('active');
                     }
-                    console.log(activeIndex);
                     // Find the new active item based on the active index
                     activeItem = productCarousel.querySelectorAll('.carousel-item')[activeIndex];
                     activeItem.classList.add('active');

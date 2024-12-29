@@ -13,9 +13,9 @@ $is_search_string_empty = get_query_var("s") === "" ? true : false;
 get_header();
 global $is_woocommerce_site;
 if ($is_woocommerce_site) {
-    echo kapital_breadcrumbs([[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))]], 'container');
+    echo kapital_breadcrumbs([[__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))], [__("Vyhľadávanie", "kapital"), "", true]], 'container');
 } else {
-    echo kapital_breadcrumbs([], 'container');
+    echo kapital_breadcrumbs([[__("Vyhľadávanie", "kapital"), "", true]], 'container');
 }
 
 ?>
@@ -30,7 +30,8 @@ if ($is_woocommerce_site) {
                     ?>
                 </h1>
             </header><!-- .page-header -->
-            <section class="alignwider">
+            <?php get_search_form(); ?>
+            <section class="alignwider mt-4">
         <?php
             /* Start the Loop */
             while (have_posts()) :

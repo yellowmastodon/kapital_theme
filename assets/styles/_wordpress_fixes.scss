@@ -15,6 +15,14 @@ _colors.scss
 	max-width: 100% !important;
 	font-size: inherit;
 }
+figcaption{
+	@extend .fs-small;
+	@extend .alignnormal;
+	@extend .mt-1;
+	@extend .ff-sans;
+	@extend .text-gray;
+	@extend .text-center;
+}
 
 //generating bg classes for wordpress from bootstrap colors
 @each $name, $color in $colors {
@@ -72,7 +80,7 @@ _colors.scss
 	&.is-vertical{
 		@extend .flex-column;
 	}
-	gap: map-get($spacers, 3);
+	gap: map-get($spacers, 4);
 	&:not(.is-nowrap){
 		@extend .flex-wrap;
 	}

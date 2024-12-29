@@ -49,7 +49,7 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
     }
 }
 /** alternative for wp_get_attachment_image with placeholder image 
- * @param int       $attachment_id 
+ * @param mixed     $attachment_id expects int, will return empty string otherwise
  * @param string    $sizes sizes attribute for img element
  * @param bool      $figure_and_caption whether to wrap the image in figure tag and display caption
  * @param string    $img_classes for img element separated by space
@@ -57,10 +57,9 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
  * @param string    $alt_text custom alt text
  * @return string   HTML figure with img element with caption or empty string on failure
  */
-function kapital_responsive_image(int $attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
-{
-    if ($attachment_id !== 0) {
-
+function kapital_responsive_image(mixed $attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
+{   
+    if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
         $attachment = get_post($attachment_id);
         if ($attachment && !is_null($attachment)) {
             $image_sizes = get_intermediate_image_sizes($attachment_id);
@@ -84,7 +83,7 @@ function kapital_responsive_image(int $attachment_id, string $sizes = "", bool $
                     $srcset .= $src[0] . ' ' . $src[1] . 'w';
                     //calculate aspect ratio for placeholder
                     if ($image_size === "full") {
-                        $aspect_ratio = $src[1] / $src[2];
+                        $aspect_ratio = (int) $src[1] / (int) $src[2];
                         //save full size to custom variable to be used as fallback
                         $full_size_img_url = $src[0];
                     }
@@ -695,11 +694,24 @@ class Nested_Menu_List extends Walker_Nav_Menu
         $attributes .= !empty($item->url)        ? ' href="' . esc_attr($item->url) . '"' : '';
 
         // Output the link
-        $item_output = $args->before;
+        if (isset($args->before)){
+            $item_output = $args->before;
+        } else {
+            $item_output = "";
+        }
+
         $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+        if (isset($args->link_before)){
+            $item_output .= $args->link_before;
+        }
+        $item_output .= apply_filters('the_title', $item->title, $item->ID);
+        if (isset($args->link_after)){
+            $item_output .= $args->link_after;
+        }
         $item_output .= '</a>';
-        $item_output .= $args->after;
+        if (isset($args->after)){
+            $item_output .= $args->after;
+        }
 
         $output .= $item_output;
     }

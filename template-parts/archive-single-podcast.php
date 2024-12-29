@@ -70,7 +70,7 @@ $article_classes .= $additional_class;
                 </div><?php
             endif; ?>
         </div>
-            <a tabindex="-1" class="archive-item-link image-wrapper" href="<?=$post_permalink?>">
+            <a aria-role="none" tabindex="-1" class="archive-item-link image-wrapper" href="<?=$post_permalink?>">
                 
                 <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
                 if ($thumbnail_image_id) {
@@ -87,7 +87,7 @@ $article_classes .= $additional_class;
         <<?= 'h' . $heading_level;?> class="mb-0 archive-item-heading red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level;?>>
         </a>
 
-        <a tabindex="-1" class="excerpt-wrapper archive-item-link text-decoration-none lh-sm" href="<?=$post_permalink?>">
+        <a aria-role="none" tabindex="-1" class="excerpt-wrapper archive-item-link text-decoration-none lh-sm" href="<?=$post_permalink?>">
             <?php echo get_the_excerpt();?>
         </a>
 

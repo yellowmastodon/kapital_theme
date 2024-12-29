@@ -17,11 +17,11 @@ export function customMetaSettings() {
 				(select) => select('core/editor').getCurrentPostType(), []
 			);
 			let postTypes;
-
-			if (typeof postTypesWithControlledRendering !== undefined) {
-				postTypes = [];
-			} else {
+			if (typeof postTypesWithControlledRendering !== 'undefined') {
 				postTypes = postTypesWithControlledRendering;
+			} else {
+				postTypes = [];
+
 			}
 				if (postTypes.includes(postType)) {
 

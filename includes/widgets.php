@@ -24,7 +24,7 @@ if ( ! function_exists( 'kapital_widgets_init' ) ) {
 				'name'          => __( 'Logá sponzorov v päte', 'kapital' ),
 				'id'            => 'footer-logos',
 				'description'   => __( 'Prihlasovanie k newslettru v päte', 'kapital' ),
-                'before_widget' => '<div id="%1$s" class="footer-widget %2$s dynamic-classes">',
+                'before_widget' => '<div id="%1$s" class="footer-logos-widget %2$s dynamic-classes">',
 				'after_widget'  => '</div><!-- .footer-widget -->',
 			)
 		);

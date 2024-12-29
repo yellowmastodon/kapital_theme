@@ -138,7 +138,9 @@ do_action('woocommerce_before_main_content');?>
             if ($book_author && !empty($book_author)) {
                 echo '<p class="book-author h4 fw-bold text-red mt-2 lh-sm">' . $book_author . '</p>';
             }
-            woocommerce_template_single_price();
+            if ($product->is_purchasable() && $product->is_in_stock()){
+                woocommerce_template_single_price();
+            }
             woocommerce_template_single_add_to_cart();
             echo apply_filters('woocommerce_short_description', $post->post_excerpt);
             ?>

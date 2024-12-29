@@ -1,0 +1,5 @@
+.search-results .archive-item{
+    &:not(:last-child){
+        margin-bottom: map-get($spacers, 5);
+    }
+}

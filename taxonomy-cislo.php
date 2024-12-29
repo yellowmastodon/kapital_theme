@@ -51,7 +51,7 @@ echo kapital_breadcrumbs(array(
     endif;
 
     $issue_cover = get_field('cover', 'cislo_' . $queried_object_id);
-    if (isset($issue_cover)):
+    if (isset($issue_cover) && $issue_cover):
         echo kapital_responsive_image($issue_cover, "(max-width: 640px) 95vw, (max-width: 1400px) 600px, 700px", true, 'rounded w-100', 'issue-cover alignnormal my-6', __('Obálka čísla: ', 'kapital') . $original_archive_title );      
     else:
         $featured_image = get_field('featured_image', 'cislo_' . $queried_object_id);

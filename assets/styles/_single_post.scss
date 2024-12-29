@@ -1,59 +1,76 @@
-
 //widths defined in default_align_max_widths.scss
 //is-root-container class for gutenberg editor
-#post-content {
-    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
+#post-content, #front-page-content {
+    &
+        > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(
+            .wp-block[data-align="full"]
+        ):not(.woocommerce) {
         @extend .alignnormal;
     }
 }
-.wp-block-group.wp-block-group__inner-container{
-    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull){
-        .wp-block-group__inner-container{
+.wp-block-group.wp-block-group__inner-container {
+    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) {
+        .wp-block-group__inner-container {
             @extend .alignnormal;
         }
     }
 }
 .wp-block-group .wp-block-group__inner-container {
     & > *:not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
-        .wp-block-group__inner-container{
+        .wp-block-group__inner-container {
             @extend .alignnormal;
         }
+    }
 }
-}
-.wp-block-group.alignfull, .wp-block[data-align="full"]{
+.wp-block-group.alignfull,
+.wp-block[data-align="full"] {
     padding-left: $spacer;
     padding-right: $spacer;
 }
 
-.wp-block-group[class*="-background-color"], .wp-block-group[class^="bg-"]{
+.wp-block-group[class*="-background-color"],
+.wp-block-group[class^="bg-"] {
     padding-top: map-get($spacers, 6);
     padding-bottom: map-get($spacers, 6);
 }
-#post-content, #podcast-content{
-    h1, h2, h3, h4, h5, h6{
-        &:not(:first-child){
+#post-content,
+#podcast-content,
+#cmplz-document,
+#post-content .wp-block-group,
+#podcast-content .wp-block-group {
+
+    & > h1,
+    & > h2,
+    & > h3,
+    & > h4,
+    & > h5,
+    & > h6 {
+        &:not(:first-child) {
             margin-top: map-get($spacers, 6);
         }
     }
-    .wp-block-heading + .wp-block-heading{
+    .wp-block-heading + .wp-block-heading {
         margin-top: map-get($spacers, 4); //two heading one after the another look wierd with too much spacing
     }
-   
 }
-.main-content{
-    .post-header + #post-content{
+.main-content {
+    .post-header + #post-content {
         margin-top: map-get($spacers, 5); //larger margin if no bottom row bellow header
     }
 }
 
-
 .main-content,
-.is-root-container, #post-content, #podcast-content, :root :where(.is-layout-constrained){
-    & > *:not(:first-child){
+.is-root-container,
+#post-content,
+#podcast-content,
+#front-page-content,
+:root :where(.is-layout-constrained) {
+    & > *:not(:first-child) {
         margin-top: map-get($spacers, 4);
         margin-bottom: 0;
     }
-    & > iframe{ //iframes not centered w/o this
+    & > iframe {
+        //iframes not centered w/o this
         display: block;
     }
 }
@@ -76,28 +93,48 @@
     line-height: $headings-line-height;
 }
 
-.perex{
+.perex {
     font-size: $h3-font-size;
     font-weight: bold;
     line-height: 1.4 !important;
 }
 
-.post-views svg{
+.post-views svg {
     fill: var(--#{$prefix}gray);
     height: 1em;
     width: 1.3em;
     vertical-align: -0.17em;
-    margin-left: .3em
+    margin-left: 0.3em;
 }
 
-img{
+img {
     height: auto;
     max-width: 100%;
 }
 
-.item-terms{
+.item-terms {
     //change marker margin
-    a::before{
-            margin-right: .4em;
+    a::before {
+        margin-right: 0.4em;
+    }
+}
+//footnote
+.wp-block-footnotes{
+    li a:last-child{
+        text-decoration: none;
+        @extend .text-red;
+        @extend .ff-grotesk;
+    }
+    li:not(:last-child){
+        margin-top: map-get($spacers, 3);
+    }
+
+} 
+
+sup.fn{
+    a{
+        @extend .text-red;
+        font-weight: bold;
+        text-decoration: none;
     }
 }

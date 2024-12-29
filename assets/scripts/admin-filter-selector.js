@@ -69,8 +69,6 @@ const selectElement = document.getElementById("filter-select");
         filterList.innerHTML += '<tr class="filter-row"><input type="hidden" name="' + optionName + '[]" value="' + value + '"/><td><div class="filter-item">' + text + '</div></td><td><a href="" class="dashicons move-down dashicons-arrow-down-alt2"></a></td><td><a href="" class="dashicons move-up dashicons-arrow-up-alt2"></a></td><td><a href="" class="item-delete">Odstrániť filter</a></td></tr>';
         selectElement.selectedIndex = 0;
         noItems = filterList.querySelector(".no-items"); //no idea why I need to do this again
-        console.log(noItems);
-        console.log(filterList.children.length);
         if(filterList.children.length > 1){
             noItems.classList.add("false");
         }

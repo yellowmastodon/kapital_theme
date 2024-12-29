@@ -175,7 +175,7 @@ function inzercia_post_type() {
 		'can_export'            => true,
 		'has_archive'           => false,
 		'exclude_from_search'   => true,
-		'publicly_queryable'    => true,
+		'publicly_queryable'    => false,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
 		'rest_base'             => 'inzercia',
@@ -314,7 +314,7 @@ function kapital_register_custom_post_types(){
     redakcia_post_type();
 	inzercia_post_type();
 	recommendation_post_type();
-	event_post_type();
+	//event_post_type();
 }
 
 add_action( 'init', 'kapital_register_custom_post_types', 1 ); 

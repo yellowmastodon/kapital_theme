@@ -220,7 +220,7 @@ if ($attributes["showMoreButton"]){
 $term_description = "";
 if ($is_term_archive && $attributes["showDescription"]){
 	if ($queried_terms[0]->description !== ""){
-		$term_description = '<div class="term-description alignwide h4 text-center ff-grotesk fw-bold lh-sm">';
+		$term_description = '<div class="term-description alignwide mb-4 mt-0 h4 text-center ff-grotesk fw-bold lh-sm">';
 		foreach ($queried_terms as $queried_term){
 			$term_description .= wpautop($queried_term->description, true);
 		}
@@ -228,15 +228,19 @@ if ($is_term_archive && $attributes["showDescription"]){
 	}
 }
 
+$heading_margin_b = 'mb-5';
+if ($attributes["queryPostType"] === "post"){
+	$heading_margin_b = $term_description === "" ? 'mb-4' : 'mb-3';
+}
 if ($attributes["isEditor"]) {
 	if ($attributes["showHeading"] === "auto") {
-		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3'); //smaller margin bottom with term description
+		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $heading_margin_b); //smaller margin bottom with term description
 	}
 } else {
 	if ($attributes["showHeading"] === "auto") {
-		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
+		echo kapital_bubble_title($auto_heading, $attributes["headingLevel"], $heading_margin_b);
 	} elseif ($attributes["showHeading"] === "manual") {
-		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], $term_description === "" ? 'mb-4' : 'mb-3');
+		echo kapital_bubble_title($attributes["headingText"], $attributes["headingLevel"], $heading_margin_b);
 	} else {
 		echo '<h' . $attributes["headingLevel"] . ' class="visually-hidden">' . $auto_heading . '</h' . $attributes["headingLevel"] .  '>';
 	}

@@ -191,9 +191,8 @@ $archive-article-img-outline-width: 5px;
         margin-top: map-get($spacers, 6);
     }
 }
-.post-query + .post-query, .post-query + .inzercia {
-    margin-top: map-get($spacers, 7) !important;
-
+.post-query + .post-query, .post-query + .inzercia, .inzercia + .post-query {
+    margin-top: map-get($spacers, 6) !important;
 }
 
 .featured-post + .post-query{

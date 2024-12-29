@@ -12,8 +12,6 @@ export default function postFilterModal() {
      * remove display none
     */
     let displayFiltersAsModal = false;
-    console.log(window.screen.height);
-    console.log(window.screen.width);
 
     if (window.screen.height > 500 && window.screen.width > 500){
         filterInstances.forEach((element) => {
@@ -54,7 +52,6 @@ export default function postFilterModal() {
     if (filterTogglerWrapperInstances.length > 0)
     filterTogglerWrapperInstances.forEach((wrapper => {
         let toggle = wrapper.querySelector('.btn-filter-toggle');
-        console.log(toggle);
         let firstClick = true;
         let modal;
         toggle.addEventListener('click', (event)=>{
@@ -67,7 +64,6 @@ export default function postFilterModal() {
                 //console.log(wrapper.parentNode.querySelector('.filters-modal'));
                 let modalElement = wrapper.parentNode.querySelector('.filters-modal');
                 modalElement.classList.remove('position-sticky');
-                console.log(modalElement);
                 modal = new Modal(modalElement, options);
                 firstClick = false;
             }

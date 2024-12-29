@@ -1,5 +1,19 @@
-#footer-menu{
-    li{
-        @extend .col-auto;
+@include media-breakpoint-up("md") {
+    #footer-menu {
+        column-count: 2;
+        column-gap: map-get($spacers, 7);
+    }
+}
+
+#footer-menu,
+#footer-social-menu {
+    a {
+        text-decoration: none;
+    }
+}
+.footer-logos-widget{
+    img{
+        max-width: 9rem;
+        max-height: 3rem;
     }
 }
