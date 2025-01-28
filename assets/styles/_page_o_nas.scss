@@ -1,0 +1,12 @@
+
+$onas-fs: clamp(1.094rem, 0.963vw + 0.845rem, 2rem);
+.page-o-nas{
+    .bubble-paragraph{
+        color: #C8C8C8;
+        font-size: $onas-fs;
+    }
+    .bubble-paragraph:not(:last-child){
+        margin-bottom: $onas-fs;
+    }
+}
+

@@ -8,7 +8,7 @@
  * @param string $string              String to be displayed in bubble 
  * @param int $heading_level          1-6 for h1-h6.
  *                                    Defaults to 2.
- *                                    0 or any other number results in div instead of heading
+ *                                    0 or any other number results in paragraph instead of heading
  * @param string $additional_classes  pass classes as string with spaces to wrapper/heading tag  
  * @return string                       html elements for heading with children spans, if $string is empty, returns empty string
  */
@@ -28,7 +28,7 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
 
         //wrapper / heading tag start
         if ($is_heading): $output .= '<h' . $heading_level . ' class="bubble-heading' . $additional_classes . '">';
-        else: $output .= '<div class="bubble-heading' . $additional_classes . '">';
+        else: $output .= '<p class="bubble-heading' . $additional_classes . '">';
         endif;
         $last_key = count($exploded_string);
         foreach ($exploded_string as $key => $span_content) {
@@ -41,11 +41,25 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
 
         //wrapper / heading tag start
         if ($is_heading): $output .= '</h' . $heading_level . '>';
-        else: $output .= '</div>';
+        else: $output .= '</p>';
         endif;
         return ($output);
     } else {
         return ('');
+    }
+}
+
+
+
+function kapital_bubble_paragraphs( $blocks ) {
+    foreach ( $blocks as $block ) {
+        if ( ! empty( $block['innerBlocks'] ) ) {
+            kapital_bubble_paragraphs( $block['innerBlocks'] );
+        } elseif ( 'core/paragraph' === $block['blockName'] ) {
+            echo kapital_bubble_title(strip_tags($block["innerHTML"]), 0, "ff-grotesk bubble-paragraph alignwider");
+        } else {
+            echo apply_filters( 'the_content', render_block( $block ) );
+        }
     }
 }
 /** alternative for wp_get_attachment_image with placeholder image 
@@ -57,7 +71,7 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
  * @param string    $alt_text custom alt text
  * @return string   HTML figure with img element with caption or empty string on failure
  */
-function kapital_responsive_image(mixed $attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
+function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
 {   
     if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
         $attachment = get_post($attachment_id);
@@ -548,8 +562,9 @@ add_action('pre_get_posts', 'kapital_post_query_mod', 1);
  */
 function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
 {
+    global $post;
     if ('' == $excerpt) {
-        $excerpt = get_the_content('');
+        $excerpt = get_the_content('', false, $post);
     }
     $excerpt = strip_shortcodes($excerpt);
     $excerpt = apply_filters('the_content', $excerpt);
@@ -625,6 +640,8 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_ads'  => $show_false ? false : true, //only used for post, podcast
         'show_support' => $show_false ? false : true, //only used for post, podcast
         'show_footer' => $show_false ? false : true, //only used for post, podcast
+        'show_footer_newsletter' => $show_false ? false : true,
+        'show_share_button' => $show_false ? false : true, //only used for post, podcast
         'show_filters' => false, //only used for page
     );
     if ($post_type === 'podcast') {
@@ -633,13 +650,14 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
     }
     if ($post_type === 'page') {
         $default_render_settings["show_featured_image"] = false;
+        $default_render_settings["show_share_button"] = false;
         $default_render_settings["show_views"] = false;
         $default_render_settings["show_date"] = false;
         $default_render_settings["show_categories"] = false;
         $default_render_settings["show_author"] = false;
+        $default_render_settings["show_share_button"] = false;
     }
 
-    //var_dump($default_render_settings);
     if (is_array($render_settings)) {
         $render_settings = array_merge($default_render_settings, $render_settings);
     } else {

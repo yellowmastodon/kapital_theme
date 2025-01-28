@@ -87,11 +87,7 @@ figcaption{
 }
 
 .wp-block-columns.is-layout-flex{
-	@extend .row;
-	.wp-block-column.is-layout-flow{
-		@extend .col;
-	}
-
+	@extend .d-flex;
 }
 
 .is-content-justification-left{

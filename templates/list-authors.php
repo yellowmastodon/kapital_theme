@@ -1,4 +1,4 @@
-<?php /* Template Name: Example Template */
+<?php /* Template Name: Template that displays lists of authors (autorstvo) */
 get_header();
 
 echo kapital_breadcrumbs(array(

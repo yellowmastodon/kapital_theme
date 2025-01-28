@@ -2,7 +2,7 @@
 //is-root-container class for gutenberg editor
 #post-content, #front-page-content {
     &
-        > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(
+        > *:not(.alignnarrow):not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(
             .wp-block[data-align="full"]
         ):not(.woocommerce) {
         @extend .alignnormal;
@@ -125,10 +125,12 @@ img {
         @extend .text-red;
         @extend .ff-grotesk;
     }
-    li:not(:last-child){
+    li:not(:first-child){
         margin-top: map-get($spacers, 3);
     }
-
+    li{
+        scroll-margin-top: 3rem;
+    }
 } 
 
 sup.fn{
@@ -136,5 +138,6 @@ sup.fn{
         @extend .text-red;
         font-weight: bold;
         text-decoration: none;
+        scroll-margin-top: 3rem;
     }
 }

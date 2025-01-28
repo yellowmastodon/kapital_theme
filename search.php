@@ -49,7 +49,6 @@ if ($is_woocommerce_site) {
             echo kapital_pagination(apply_filters( 'the_posts_pagination_args', array()));
             //the_posts_pagination();
         else:
-
             get_template_part('template-parts/content', 'none', array('search_string_empty' => $is_search_string_empty));
 
         endif;
@@ -60,4 +59,5 @@ if ($is_woocommerce_site) {
 </main><!-- #main -->
 
 <?php
+$render_settings = array('show_footer_newsletter' => false);
 get_footer();

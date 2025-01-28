@@ -19,8 +19,7 @@
         <![endif]-->
 </head>
 <?php
-$main_site_search = "";
-$eshop_site_search = "";
+$subsite_search_url = get_home_url() . '?s';
 $is_multisite = false;
 global $kptl_theme_options;
 if (is_multisite()) {
@@ -129,7 +128,7 @@ if (isset($darujme_options["campaign_active"])) {
                                 ) ?>
                             </div>
                             <div class="mt-6">
-                                <?php get_template_part('template-parts/socials', null, array('theme_options' => $kptl_theme_options));?>
+                                <?php get_template_part('template-parts/socials', null, array('theme_options' => $kptl_theme_options, 'search_url' => $subsite_search_url));?>
                             </div>
                         </div>
                     </div>

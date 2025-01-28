@@ -78,6 +78,7 @@ else:
 			if ($render_settings["show_date"]):
 			?><div class="col-auto post-date"><?php echo $post_date; ?></div>
 			<?php endif;
+			/**
 			if ($render_settings["show_views"]): ?>
 				<div class="col-auto post-views opacity-0" data-id="<?php echo $post_id ?>">
 					<svg>
@@ -86,7 +87,7 @@ else:
 					<span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
 					<span class="number"></span>
 				</div>
-			<?php endif; 
+			<?php endif;  */
 			endif;?>
 		</div>
 		<a tabindex="-1" aria-role="none" href="<?php echo $post_permalink; ?>" class="image-wrapper archive-item-link">

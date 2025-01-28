@@ -5,6 +5,7 @@
 
 body {
     overflow-x: hidden;
+    scroll-margin-top: 70px;
 } 
 
 p:last-child{
@@ -15,6 +16,7 @@ label{
 }
 //default main padding
 #main{
+    min-height: 50vh;
     padding-top: map-get($spacers, 5);
     padding-bottom: map-get($spacers, 7);
 }
@@ -127,4 +129,11 @@ blockquote{
 
 .fs-small{
     line-height: $line-height-small;
+}
+
+.is-style-rounded img{
+    border-radius: $border-radius;
+}
+a{
+	color: inherit;
 }

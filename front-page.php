@@ -13,4 +13,6 @@ get_header(); ?>
         </div>
 </main>
 
-<?php get_footer(); ?>
+<?php
+$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
+get_footer(null, array('render_settings' => $render_settings)); ?>

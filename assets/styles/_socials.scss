@@ -16,4 +16,14 @@
             fill: var(--#{$prefix}primary)
         }
     }
+    a.search{
+        padding-top: 0.63rem;
+        padding-bottom: 0.77rem;
+        padding-left: 0.7rem;
+        padding-right: 0.7rem;
+        svg{
+            width: 1rem;
+            height: 1rem;
+        }
+    }
 }

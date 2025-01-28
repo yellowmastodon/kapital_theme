@@ -23,107 +23,115 @@ export function customMetaSettings() {
 				postTypes = [];
 
 			}
-				if (postTypes.includes(postType)) {
+			if (postTypes.includes(postType)) {
 
-					const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
-					let custom_render_meta = meta['_kapital_post_render_settings'];
-					if (typeof meta['_kapital_post_render_settings'] === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
-						custom_render_meta = meta['_kapital_post_render_settings']
+				const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
+				let custom_render_meta = meta['_kapital_post_render_settings'];
+				let default_render_meta = {
+					show_featured_image: true,
+					show_breadcrumbs: true,
+					show_title: true,
+					show_author: true,
+					show_categories: true,
+					show_views: true,
+					show_date: true,
+					show_ads: true,
+					show_support: true,
+					show_footer: true,
+					show_filters: false,
+					show_footer_newsletter: true,
+					show_share_button: true
+				};
 
-					} else {
-						custom_render_meta = {
-							show_featured_image: true,
-							show_breadcrumbs: true,
-							show_title: true,
-							show_author: true,
-							show_categories: true,
-							show_views: true,
-							show_date: true,
-							show_ads: true,
-							show_support: true,
-							show_footer: true,
-							show_filters: false,
-						}
-						//hide featured image in podcast by default
-						if (postType === 'podcast') {
-							custom_render_meta.show_featured_image = false;
-							custom_render_meta.show_author = false;
+				//hide featured image in podcast by default
+				if (postType === 'podcast') {
+					default_render_meta.show_featured_image = false;
+					default_render_meta.show_author = false;
+				}
+				if (postType === 'page') {
+					default_render_meta.show_featured_image = false;
+					default_render_meta.show_author = false;
+					default_render_meta.show_views = false;
+					default_render_meta.show_date = false;
+					default_render_meta.show_categories = false;
+					default_render_meta.show_share_button = false;
+				}
 
-						}
-						if (postType === 'page') {
-							custom_render_meta.show_featured_image = false;
-							custom_render_meta.show_author = false;
-							custom_render_meta.show_views = false;
-							custom_render_meta.show_date = false;
-							custom_render_meta.show_categories = false;
-						}
+				if (typeof meta['_kapital_post_render_settings'] === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
+					custom_render_meta = { ...default_render_meta, ...custom_render_meta };
+				} else {
+					custom_render_meta = default_render_meta;
+				}
+
+				const updateMetaValue = (value, prop) => {
+					custom_render_meta = {
+						show_featured_image: true,
+						show_breadcrumbs: true,
+						show_title: true,
+						show_author: true,
+						show_categories: true,
+						show_views: true,
+						show_date: true,
+						show_ads: true,
+						show_support: true,
+						show_footer: true,
+						show_footer_newsletter: true,
+						show_share_button: true,
+						...custom_render_meta
 					}
-					const updateMetaValue = (value, prop) => {
-						custom_render_meta = {
-							show_featured_image: true,
-							show_breadcrumbs: true,
-							show_title: true,
-							show_author: true,
-							show_categories: true,
-							show_views: true,
-							show_date: true,
-							show_ads: true,
-							show_support: true,
-							show_footer: true,
-							...custom_render_meta
-						}
-						custom_render_meta[`${prop}`] = value;
-						setMeta({ ...meta, _kapital_post_render_settings: custom_render_meta });
-					};
-					return (
-						<PluginDocumentSettingPanel
-							name="kapital-post-render-panel"
-							title="Nastavenie zobrazovania"
-							className="some-css-class"
-							icon="visibility"
-						>
-							<Flex
-								direction={"column"}
-								gap={4}>
-								{postType === 'page' &&
-									<ToggleControl
-										__nextHasNoMarginBottom
-										label={__('Zobrazovať filtre', 'kapital')}
-										checked={custom_render_meta.show_filters}
-										help={__('Pri stránkach sa ako filtre zobrazia dcérske stránky.', 'kapital')}
-										onChange={() => updateMetaValue(!custom_render_meta.show_filters, 'show_filters')}
-									/>
-								}
+					custom_render_meta[`${prop}`] = value;
+					setMeta({ ...meta, _kapital_post_render_settings: custom_render_meta });
+				};
+				return (
+					<PluginDocumentSettingPanel
+						name="kapital-post-render-panel"
+						title="Nastavenie zobrazovania"
+						className="some-css-class"
+						icon="visibility"
+					>
+						<Flex
+							direction={"column"}
+							gap={4}>
+							{postType === 'page' &&
 								<ToggleControl
 									__nextHasNoMarginBottom
-									label={__('Zobrazovať ilustračný obrázok', 'kapital')}
-									checked={custom_render_meta.show_featured_image}
-									help={__('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital')}
-									onChange={() => updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image')}
+									label={__('Zobrazovať filtre', 'kapital')}
+									checked={custom_render_meta.show_filters}
+									help={__('Pri stránkach sa ako filtre zobrazia dcérske stránky.', 'kapital')}
+									onChange={() => updateMetaValue(!custom_render_meta.show_filters, 'show_filters')}
 								/>
-								<ToggleControl
-									__nextHasNoMarginBottom
-									label={__('Zobrazovať breadcrumb navigáciu', 'kapital')}
-									checked={custom_render_meta.show_breadcrumbs}
-									onChange={() => updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs')}
-								/>
-								<ToggleControl
-									__nextHasNoMarginBottom
-									label={__('Zobrazovať názov', 'kapital')}
-									checked={custom_render_meta.show_title}
-									help={__('V archívoch článkov je názov vždy viditeľný.')}
-									onChange={() => updateMetaValue(!custom_render_meta.show_title, 'show_title')}
+							}
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobrazovať ilustračný obrázok', 'kapital')}
+								checked={custom_render_meta.show_featured_image}
+								help={__('V archívoch článkov je ilustračný obrázok vždy viditeľný.', 'kapital')}
+								onChange={() => updateMetaValue(!custom_render_meta.show_featured_image, 'show_featured_image')}
+							/>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobrazovať breadcrumb navigáciu', 'kapital')}
+								checked={custom_render_meta.show_breadcrumbs}
+								onChange={() => updateMetaValue(!custom_render_meta.show_breadcrumbs, 'show_breadcrumbs')}
+							/>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobrazovať názov', 'kapital')}
+								checked={custom_render_meta.show_title}
+								help={__('V archívoch článkov je názov vždy viditeľný.')}
+								onChange={() => updateMetaValue(!custom_render_meta.show_title, 'show_title')}
 
+							/>
+							{(postType !== 'page' && postType !== 'podcast') &&
+								<ToggleControl
+									__nextHasNoMarginBottom
+									label={__('Zobrazovať autorstvo', 'kapital')}
+									checked={custom_render_meta.show_author}
+									onChange={() => updateMetaValue(!custom_render_meta.show_author, 'show_author')}
 								/>
-								{(postType !== 'page' && postType !== 'podcast') &&
-									<ToggleControl
-										__nextHasNoMarginBottom
-										label={__('Zobrazovať autorstvo', 'kapital')}
-										checked={custom_render_meta.show_author}
-										onChange={() => updateMetaValue(!custom_render_meta.show_author, 'show_author')}
-									/>
-								}
-								{postType !== 'page' &&
+							}
+							{postType !== 'page' &&
+								<>
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Zobrazovať kategórie článku', 'kapital')}
@@ -131,23 +139,38 @@ export function customMetaSettings() {
 										onChange={() => updateMetaValue(!custom_render_meta.show_categories, 'show_categories')}
 										help={__('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')}
 									/>
-								}
-								<ToggleControl
-									__nextHasNoMarginBottom
-									label={__('Zobrazovať počet zhliadnutí', 'kapital')}
-									checked={custom_render_meta.show_views}
-									onChange={() => updateMetaValue(!custom_render_meta.show_views, 'show_views')}
+									<ToggleControl
+										__nextHasNoMarginBottom
+										label={__('Zobraziť tlačidlo "zdieľať"', 'kapital')}
+										checked={custom_render_meta.show_share_button}
+										onChange={() => updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button')}
+									/>
+								</>
+							}
 
-								/>
-								<ToggleControl
-									__nextHasNoMarginBottom
-									label={__('Zobrazovať dátum publikovania', 'kapital')}
-									checked={custom_render_meta.show_date}
-									onChange={() => updateMetaValue(!custom_render_meta.show_date, 'show_date')}
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobrazovať počet zhliadnutí', 'kapital')}
+								checked={custom_render_meta.show_views}
+								onChange={() => updateMetaValue(!custom_render_meta.show_views, 'show_views')}
 
-								/>
-								{postType !== 'page' &&
+							/>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobrazovať dátum publikovania', 'kapital')}
+								checked={custom_render_meta.show_date}
+								onChange={() => updateMetaValue(!custom_render_meta.show_date, 'show_date')}
 
+							/>
+							{postType !== 'page' &&
+								<>
+									<ToggleControl
+										__nextHasNoMarginBottom
+										label={__('Automaticky vložiť podporu', 'kapital')}
+										checked={custom_render_meta.show_support}
+										onChange={() => updateMetaValue(!custom_render_meta.show_support, 'show_support')}
+										help={__('Netýka sa manuálne vložených blokov podpory.', 'kapital')}
+									/>
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Automaticky vložiť inzerciu', 'kapital')}
@@ -156,30 +179,27 @@ export function customMetaSettings() {
 										onChange={() => updateMetaValue(!custom_render_meta.show_ads, 'show_ads')}
 
 									/>
-								}
-								{postType !== 'page' &&
-									<ToggleControl
-										__nextHasNoMarginBottom
-										label={__('Automaticky vložiť podporu', 'kapital')}
-										checked={custom_render_meta.show_support}
-										onChange={() => updateMetaValue(!custom_render_meta.show_support, 'show_support')}
-										help={__('Netýka sa manuálne vložených blokov podpory.', 'kapital')}
-									/>
-								}
-								{postType !== 'page' &&
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Automaticky vložiť odporúčania ďalších článkov', 'kapital')}
 										checked={custom_render_meta.show_footer}
 										onChange={() => updateMetaValue(!custom_render_meta.show_footer, 'show_footer')}
 									/>
-								}
-							</Flex>
-						</PluginDocumentSettingPanel>
-					)
-				} else {
-					return;
-				}
+								</>
+							}
+
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobraziť prihlasovanie do newsletteru v päte', 'kapital')}
+								checked={custom_render_meta.show_footer_newsletter}
+								onChange={() => updateMetaValue(!custom_render_meta.show_footer_newsletter, 'show_footer_newsletter')}
+							/>
+						</Flex>
+					</PluginDocumentSettingPanel>
+				)
+			} else {
+				return;
+			}
 		}
 	});
 };

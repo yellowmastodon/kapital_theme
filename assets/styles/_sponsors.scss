@@ -1,6 +1,6 @@
 .wp-block-kapital-sponsors{
     p{
-        margin-bottom: map-get($spacers, 4);
+        margin-bottom: map-get($spacers, 4) !important;
     }
     img{
         max-width: 220px;

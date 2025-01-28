@@ -69,7 +69,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
         if ($render_settings["show_date"]):
             ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
         <?php endif;
-        if ($render_settings["show_views"]): ?>
+/*         if ($render_settings["show_views"]): ?>
             <div class="col-auto post-views opacity-0" data-id="<?php echo $post->ID?>">
                 <svg>
                     <use xlink:href="#icon-views"></use>
@@ -77,7 +77,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
                 <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
                 <span class="number"></span>
             </div><?php
-        endif; ?>
+        endif; */ ?>
     </div>
     <a href="<?php echo get_post_permalink($post); ?>" class="archive-item-link text-decoration-none">
         <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
@@ -93,10 +93,10 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
                 echo '<p>' . $secondary_title . '</p>';
                 //arbitrary number, when the secondary title is too short, also include excerpt but shorter
                 if (strlen($secondary_title) < 14) {
-                    echo get_the_excerpt();
+                    echo get_the_excerpt($post);
                 }
             } else {
-                echo get_the_excerpt();
+                echo get_the_excerpt($post);
             } ?>
         </div>
     </a>

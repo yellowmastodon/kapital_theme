@@ -1,0 +1,27 @@
+
+.wp-block-columns.article-author{
+	gap: map-get($spacers, 3);
+}
+
+.article-author img{
+    border-radius: $border-radius !important;
+}
+.article-author .wp-block-column:first-child{
+	flex-basis: unset !important;
+	flex-grow: 0 !important;
+	width: 7rem;
+    max-width: 25%;
+}
+.article-author .wp-block-column:last-child{
+	flex-grow: 1;
+	@extend .ff-grotesk;
+}
+
+.article-author{
+	line-height: 1.4;
+	flex-wrap: nowrap !important;
+}
+
+.post-views{
+	visibility: hidden;
+}

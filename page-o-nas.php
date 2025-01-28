@@ -43,44 +43,14 @@ if ($render_settings["show_breadcrumbs"]) {
 /** MAIN */
 ?>
 <main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
-    <?php while (have_posts()) : the_post();
+    <?php while (have_posts()) : the_post();?>
 
-        //taxonomies to display in posts, ordered by render priority
 
-        if ($post->post_type === 'post') {
-            $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
-            $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
-        } else {
-            $filtered_terms = array();
-            $custom_taxonomies = array();
-        } ?>
-
-        <article <?php post_class(["main-content"]); ?>>
+        <article <?php post_class(["main-content page-o-nas"]); ?>>
             <?php
 
-            /** render post terms */
             global $is_woocommerce_site;
-            //render_settings categories are false for page
-            if ($render_settings["show_categories"]): ?>
-                <div class="post-terms mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
-                    <?php foreach ($custom_taxonomies as $custom_taxonomy):
-                        //autorstvo rendered separately                        
-                        if (!empty($filtered_terms[$custom_taxonomy]) && $custom_taxonomy !== 'autorstvo'):
-                            foreach ($filtered_terms[$custom_taxonomy] as $term):
-                                //'tematicky' tag used for posts which are part of the printed issue
-                                if ($term->slug === 'tematicky'):
-                                    if (isset($filtered_terms['cislo'][0])): ?>
-                                        <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($filtered_terms['cislo'][0]); ?>"><?php echo $term->name ?></a></div>
-                                    <?php endif; ?>
-                                <?php else: ?>
-                                    <div class="col-auto"><a class="marker-black" href="<?php echo get_term_link($term); ?>"><?php echo $term->name ?></a></div>
-                    <?php endif;
-                            endforeach;
-                        endif;
-                    endforeach;
-                    ?>
-                </div>
-            <?php endif;
+           
             /**
              * Render article header
              * if hidden, let's keep h1 tag, so only visually-hidden
@@ -169,14 +139,13 @@ if ($render_settings["show_breadcrumbs"]) {
                  * Render post content
                  * insert ad for support by default 
                  */
-                the_content(); ?>
-            </div>
-            <?php
-            if ($render_settings["show_footer"]):
-                get_template_part('template-parts/single-post-footer', null, array('custom_taxonomies' => $custom_taxonomies, 'filtered_terms' => $filtered_terms));
-            endif; ?>
+                $blocks = parse_blocks( $post->post_content );
+                kapital_bubble_paragraphs($blocks);
+
+                //the_content(); ?>
+            </div>    
         </article>
     <?php endwhile; ?>
 </main>
 
-<?php get_footer(null, array('render_settings' => $render_settings)); ?>
+<?php get_footer(null, array("render_settings" => $render_settings)); ?>

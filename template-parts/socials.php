@@ -9,7 +9,7 @@ if (isset($args["theme_options"])){
     $kptl_theme_options = $args["theme_options"];
 }
 
-if (isset($kptl_theme_options["facebook"]) || isset($kptl_theme_options["instagram"]) || isset($kptl_theme_options["youtube"])): ?>
+if (isset($args["search_url"]) || isset($kptl_theme_options["facebook"]) || isset($kptl_theme_options["instagram"]) || isset($kptl_theme_options["youtube"])): ?>
 
     <div class="kptl-socials d-inline-block">
         <?php
@@ -42,8 +42,18 @@ if (isset($kptl_theme_options["facebook"]) || isset($kptl_theme_options["instagr
                 <span class="visually-hidden">Youtube</span>
 
             </a>
-        <?php endif; ?>
+        <?php endif;
+        
+        if (isset($args["search_url"])): ?>
 
+        <a class="btn d-inline-block d-md-none border-0 rounded-pill search" href="<?=$args["search_url"]?>">
+                <svg>
+                    <use xlink:href="#icon-search" />
+                </svg>
+                <span class="visually-hidden"><?=__("Vyhľadávanie", "kapital")?></span>
+        </a>
+
+        <?php endif; ?>
     </div>
 
 <?php endif; ?>

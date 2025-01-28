@@ -59,7 +59,7 @@ $article_classes .= $additional_class;
         <div class="archive-podcast-top row justify-content-between justify-content-sm-start ff-sans fs-small text-gray">
             <?php  if ($render_settings["show_date"]):
                 ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
-            <?php endif;
+            <?php endif;/* 
             if ($render_settings["show_views"]): ?>
                 <div class="col-auto post-views opacity-0" data-id="<?php echo $post->ID?>">
                     <svg>
@@ -68,7 +68,7 @@ $article_classes .= $additional_class;
                     <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
                     <span class="number"></span>
                 </div><?php
-            endif; ?>
+            endif;  */?>
         </div>
             <a aria-role="none" tabindex="-1" class="archive-item-link image-wrapper" href="<?=$post_permalink?>">
                 

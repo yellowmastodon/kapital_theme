@@ -1,4 +1,4 @@
-<?php /* Template Name: dadaw Template */
+<?php /* Template Name: Template that displays lists of terms (custom taxonomies) */
 
 global $kapital_taxonomies_with_list_pages;
 $current_taxonomy = array_search($post->post_name, $kapital_taxonomies_with_list_pages);

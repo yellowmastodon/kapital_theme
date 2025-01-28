@@ -191,7 +191,7 @@ $archive-article-img-outline-width: 5px;
         margin-top: map-get($spacers, 6);
     }
 }
-.post-query + .post-query, .post-query + .inzercia, .inzercia + .post-query {
+.post-query + .post-query, .post-query + .inzercia, .inzercia + .post-query,  #darujme-form-wrapper + .post-query, .post-query + #darujme-form-wrapper{
     margin-top: map-get($spacers, 6) !important;
 }
 

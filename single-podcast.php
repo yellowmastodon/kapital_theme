@@ -142,4 +142,5 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
 
         </article>
     <?php endwhile; ?>
-</main><?php get_footer(); ?>
+</main>
+<?php get_footer(null, array('render_settings' => $render_settings)); ?>

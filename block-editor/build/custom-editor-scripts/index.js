@@ -453,34 +453,39 @@ function customMetaSettings() {
           meta = _useEntityProp2[0],
           setMeta = _useEntityProp2[1];
         var custom_render_meta = meta['_kapital_post_render_settings'];
+        var default_render_meta = {
+          show_featured_image: true,
+          show_breadcrumbs: true,
+          show_title: true,
+          show_author: true,
+          show_categories: true,
+          show_views: true,
+          show_date: true,
+          show_ads: true,
+          show_support: true,
+          show_footer: true,
+          show_filters: false,
+          show_footer_newsletter: true,
+          show_share_button: true
+        };
+
+        //hide featured image in podcast by default
+        if (postType === 'podcast') {
+          default_render_meta.show_featured_image = false;
+          default_render_meta.show_author = false;
+        }
+        if (postType === 'page') {
+          default_render_meta.show_featured_image = false;
+          default_render_meta.show_author = false;
+          default_render_meta.show_views = false;
+          default_render_meta.show_date = false;
+          default_render_meta.show_categories = false;
+          default_render_meta.show_share_button = false;
+        }
         if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(meta['_kapital_post_render_settings']) === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
-          custom_render_meta = meta['_kapital_post_render_settings'];
+          custom_render_meta = _objectSpread(_objectSpread({}, default_render_meta), custom_render_meta);
         } else {
-          custom_render_meta = {
-            show_featured_image: true,
-            show_breadcrumbs: true,
-            show_title: true,
-            show_author: true,
-            show_categories: true,
-            show_views: true,
-            show_date: true,
-            show_ads: true,
-            show_support: true,
-            show_footer: true,
-            show_filters: false
-          };
-          //hide featured image in podcast by default
-          if (postType === 'podcast') {
-            custom_render_meta.show_featured_image = false;
-            custom_render_meta.show_author = false;
-          }
-          if (postType === 'page') {
-            custom_render_meta.show_featured_image = false;
-            custom_render_meta.show_author = false;
-            custom_render_meta.show_views = false;
-            custom_render_meta.show_date = false;
-            custom_render_meta.show_categories = false;
-          }
+          custom_render_meta = default_render_meta;
         }
         var updateMetaValue = function updateMetaValue(value, prop) {
           custom_render_meta = _objectSpread({
@@ -493,7 +498,9 @@ function customMetaSettings() {
             show_date: true,
             show_ads: true,
             show_support: true,
-            show_footer: true
+            show_footer: true,
+            show_footer_newsletter: true,
+            show_share_button: true
           }, custom_render_meta);
           custom_render_meta["".concat(prop)] = value;
           setMeta(_objectSpread(_objectSpread({}, meta), {}, {
@@ -546,14 +553,23 @@ function customMetaSettings() {
               onChange: function onChange() {
                 return updateMetaValue(!custom_render_meta.show_author, 'show_author');
               }
-            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-              __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
-              checked: custom_render_meta.show_categories,
-              onChange: function onChange() {
-                return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
-              },
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+                __nextHasNoMarginBottom: true,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
+                checked: custom_render_meta.show_categories,
+                onChange: function onChange() {
+                  return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
+                },
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+                __nextHasNoMarginBottom: true,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobraziť tlačidlo "zdieľať"', 'kapital'),
+                checked: custom_render_meta.show_share_button,
+                onChange: function onChange() {
+                  return updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button');
+                }
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
               __nextHasNoMarginBottom: true,
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať počet zhliadnutí', 'kapital'),
@@ -568,29 +584,38 @@ function customMetaSettings() {
               onChange: function onChange() {
                 return updateMetaValue(!custom_render_meta.show_date, 'show_date');
               }
-            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+                __nextHasNoMarginBottom: true,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť podporu', 'kapital'),
+                checked: custom_render_meta.show_support,
+                onChange: function onChange() {
+                  return updateMetaValue(!custom_render_meta.show_support, 'show_support');
+                },
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov podpory.', 'kapital')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+                __nextHasNoMarginBottom: true,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť inzerciu', 'kapital'),
+                checked: custom_render_meta.show_ads,
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov reklamy.', 'kapital'),
+                s: true,
+                onChange: function onChange() {
+                  return updateMetaValue(!custom_render_meta.show_ads, 'show_ads');
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+                __nextHasNoMarginBottom: true,
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť odporúčania ďalších článkov', 'kapital'),
+                checked: custom_render_meta.show_footer,
+                onChange: function onChange() {
+                  return updateMetaValue(!custom_render_meta.show_footer, 'show_footer');
+                }
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
               __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť inzerciu', 'kapital'),
-              checked: custom_render_meta.show_ads,
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov reklamy.', 'kapital'),
-              s: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobraziť prihlasovanie do newsletteru v päte', 'kapital'),
+              checked: custom_render_meta.show_footer_newsletter,
               onChange: function onChange() {
-                return updateMetaValue(!custom_render_meta.show_ads, 'show_ads');
-              }
-            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-              __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť podporu', 'kapital'),
-              checked: custom_render_meta.show_support,
-              onChange: function onChange() {
-                return updateMetaValue(!custom_render_meta.show_support, 'show_support');
-              },
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Netýka sa manuálne vložených blokov podpory.', 'kapital')
-            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-              __nextHasNoMarginBottom: true,
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Automaticky vložiť odporúčania ďalších článkov', 'kapital'),
-              checked: custom_render_meta.show_footer,
-              onChange: function onChange() {
-                return updateMetaValue(!custom_render_meta.show_footer, 'show_footer');
+                return updateMetaValue(!custom_render_meta.show_footer_newsletter, 'show_footer_newsletter');
               }
             })]
           })

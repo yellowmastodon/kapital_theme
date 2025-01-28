@@ -117,9 +117,11 @@ $theme-colors: map-merge($theme-colors, $colors);
 @import "post_filters";
 @import "darujme_form";
 @import "woocommerce_archive";
+@import "author_columns";
 
 .btn {
     font-size: 0.9rem !important;
+    border-radius: 9999px !important;
 }
 
 //children use negative margin, so focus is rendered wrong without this
@@ -143,5 +145,7 @@ $theme-colors: map-merge($theme-colors, $colors);
     margin-right: auto;
 
 }
-
+.is-style-rounded img{
+    border-radius: $border-radius !important;
+}
 /*! purgecss end ignore */

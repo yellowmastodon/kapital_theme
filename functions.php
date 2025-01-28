@@ -18,7 +18,6 @@ $include = array(
     '/includes/ads_post_type_functions.php',
     '/includes/custom_options.php',
     '/includes/ajax_functions.php',
-    '/includes/widgets.php',
     '/includes/customizer.php',
 );
 $include_all = array(
@@ -27,6 +26,8 @@ $include_all = array(
     '/includes/custom_taxonomies.php',
     '/templates/register-new-post-templates.php',
     '/includes/iframe_wrapper.php',
+    '/includes/widgets.php',
+
 );
 
 if (is_multisite()) {
@@ -694,3 +695,12 @@ function kapital_post_filter_page($custom_taxonomies, $option_name)
 
 /* Disable WordPress Admin Bar for all users except administrators */
 add_filter( 'show_admin_bar', 'restrict_admin_bar' );
+
+
+function kptl_prevent_empty_search_query( $query ) {
+    if ( $query->is_search() && !is_admin() && empty( $_GET['s'] ) ) {
+        // Modify the query to not retrieve any posts if the search string is empty
+        $query->set('posts_per_page', 0);
+    }
+}
+add_action( 'pre_get_posts', 'kptl_prevent_empty_search_query' );

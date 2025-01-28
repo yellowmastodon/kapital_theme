@@ -59,6 +59,14 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
                 'type' => 'boolean',
                 'default' => true
             ],
+            'show_footer_newsletter' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
+            'show_share_button' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
         ],
     );
     //set hide featured image as default for podcasts

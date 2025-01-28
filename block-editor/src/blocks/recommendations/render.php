@@ -63,7 +63,7 @@ if (!empty($recommendations)):
 	$recs_html = ob_get_clean();
 	if ($no_of_rendered_recs > 0) {
 		echo $section_start . '<div class="alignwider">' 
-		. kapital_bubble_title(__("Kapitál odporúča", "kapital"), $heading_level, "mb-5")
+		. kapital_bubble_title(__("Neprehliadnite", "kapital"), $heading_level, "mb-5")
 		. '<ul class="list-unstyled mb-0 justify-content-center row gx-3 gy-6 show-more-posts-wrapper">' 
 		. $recs_html . '</ul></div></section>';
 	} elseif ($attributes["isEditor"]) {
