@@ -148,4 +148,8 @@ $theme-colors: map-merge($theme-colors, $colors);
 .is-style-rounded img{
     border-radius: $border-radius !important;
 }
+.wp-block-pullquote{
+    padding: 0;
+}
+
 /*! purgecss end ignore */
