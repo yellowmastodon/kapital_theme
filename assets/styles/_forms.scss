@@ -45,7 +45,7 @@ form:not(#mc-embedded-subscribe-form) .btn,
 .btn-form {
     padding-bottom: $input-btn-padding-y;
     padding-top: $input-btn-padding-y;
-    line-height: $line-height-small;
+    line-height: 1;
 }
 
 legend {

@@ -26,9 +26,6 @@ function new_post_template()
 			array(
 				'placeholder' => 'Obsah článku. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id tortor dictum, condimentum eros ac, porta orci. Mauris faucibus vitae est vitae pharetra. Nunc ultrices massa ut diam rutrum congue sed et turpis. Cras egestas metus eget lectus pellentesque, egestas iaculis purus dignissim. Duis vehicula egestas massa, eleifend sodales ipsum blandit vel. Maecenas nec ex ex. Morbi euismod enim dui, quis consequat eros convallis nec. Proin ut auctor nulla. Mauris ut est eget justo vestibulum pellentesque.'
 			)
-		),
-		array(
-			'kapital/sponsors'
 		)
 	);
 	$podcast_object = get_post_type_object('podcast');
@@ -66,9 +63,6 @@ function new_post_template()
 				'placeholder' => 'Popis podcastu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id tortor dictum, condimentum eros ac, porta orci. Mauris faucibus vitae est vitae pharetra. Nunc ultrices massa ut diam rutrum congue sed et turpis. Cras egestas metus eget lectus pellentesque, egestas iaculis purus dignissim. Duis vehicula egestas massa, eleifend sodales ipsum blandit vel. Maecenas nec ex ex. Morbi euismod enim dui, quis consequat eros convallis nec. Proin ut auctor nulla. Mauris ut est eget justo vestibulum pellentesque.'
 			)
 		),
-		array(
-			'kapital/sponsors'
-		)
 	);
 	$redakcia_object = get_post_type_object('redakcia');
 	$redakcia_object->template = array(

@@ -15,7 +15,7 @@ if (isset($args['heading_level'])){
 }?>
 
 <article <?php post_class(["ff-grotesk text-center archive-item archive-item-redakcia col-12 col-sm-6 col-md-4 archive-redakcia-item"], $post) ?>>
-    <a class="archive-item-link text-decoration-none" href="<?= get_post_permalink() ?>">
+    <a class="archive-item-link text-decoration-none" href="<?= get_the_permalink() ?>">
         <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
         if ($thumbnail_image_id) {
             echo kapital_responsive_image($thumbnail_image_id, "", false, "rounded archive-item-image redakcia-portrait w-100");

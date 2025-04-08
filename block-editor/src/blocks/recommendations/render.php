@@ -23,6 +23,11 @@ if (!$attributes["isEditor"]) $section_start = '<section class="post-query align
 
 $recommendations = get_posts(array(
 	'post_type' => 'recommendation',
+	'orderby' => 'date',
+	'meta_key' => 'recommendation_start_date',
+	'orderby' => 'meta_value',
+	'meta_type' => 'DATE',
+	'order' => 'DESC',
 	'posts_per_page' => -1,
 	'date_query' => array(
 		'after' => 'yesterday'
@@ -50,7 +55,7 @@ if (!empty($recommendations)):
 
 					$post_title = $rec->post_title;
 					?>
-					<<?= 'h' . ($attributes["headingLevel"] - 1) ?> class="archive-item-heading mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . ($attributes["headingLevel"] - 1) ?>>
+					<<?= 'h' . ($attributes["headingLevel"] + 1) ?> class="archive-item-heading mt-2 mb-3 red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . ($attributes["headingLevel"] + 1) ?>>
 					<div class="item-excerpt red-color-hover lh-sm">
 						<?php 
 						echo apply_filters('the_content', $rec->post_content );  ?>

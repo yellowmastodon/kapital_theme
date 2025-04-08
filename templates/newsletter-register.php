@@ -31,7 +31,7 @@ echo kapital_breadcrumbs($breadcrumbs, "container");
                 <?php get_template_part('template-parts/newsletter-signup-form', null,
                 array(
                     'ecomail_enabled' => isset($kptl_theme_options["ecomail_enabled"]) ? $kptl_theme_options["ecomail_enabled"] : false,
-                    'ecomail_post_url' => isset($kptl_theme_options["ecomail_post_url"]) ? $kptl_theme_options["ecomail_enabled"] : "",
+                    'ecomail_post_url' => isset($kptl_theme_options["ecomail_post_url"]) ? $kptl_theme_options["ecomail_post_url"] : "",
                     'show_footer_newsletter' => true,
                     'show_heading' => false,
                     'ecomail_gdpr' => isset($kptl_theme_options["ecomail_gdpr"]) ? $kptl_theme_options["ecomail_gdpr"] : "",

@@ -75,6 +75,7 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
 {   
     if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
         $attachment = get_post($attachment_id);
+        $is_nonscalable = $attachment->post_mime_type === 'image/gif' ? true : false;
         if ($attachment && !is_null($attachment)) {
             $image_sizes = get_intermediate_image_sizes($attachment_id);
             $image_sizes = $image_sizes;
@@ -107,11 +108,12 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
             if ($figure_and_caption) {
                 $html .= '<figure class="' . $figure_classes . '">';
             }
-            $html .= '<img srcset="' . $srcset . '"';
+            $html .= '<img';
+            if (!$is_nonscalable) $html .=  ' srcset="' . $srcset . '"';
             $html .= ' class="' . $img_classes . '"';
             $html .= ' style="background-image: url(\'' .  wp_get_attachment_image_src($attachment_id, 'placeholder')[0] . '\'); aspect-ratio:' . $aspect_ratio . '"';
             $html .= ' src="' . $full_size_img_url . '"';
-            $html .= ' sizes="' . $sizes . '"';
+            if (!$is_nonscalable) $html .= ' sizes="' . $sizes . '"';
             $html .= ' loading="lazy"';
             $html .= ' alt="' . $alt_text . '"';
             $html .= '/>';
@@ -656,6 +658,7 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $default_render_settings["show_categories"] = false;
         $default_render_settings["show_author"] = false;
         $default_render_settings["show_share_button"] = false;
+        
     }
 
     if (is_array($render_settings)) {

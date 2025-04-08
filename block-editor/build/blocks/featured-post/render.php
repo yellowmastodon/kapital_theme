@@ -23,7 +23,7 @@ else:
 				'post_status' => 'publish',
 				'posts_per_page' => 1,
 				'order' => 'DESC',
-				'orderby' => 'ID'
+				'orderby' => 'date'
 			);
 		}
 
@@ -40,7 +40,7 @@ else:
 				$post_excerpt = get_the_excerpt();
 				$post_date = get_the_date();
 				$post_type = $post->post_type;
-				$post_permalink = get_post_permalink($post->ID);
+				$post_permalink = get_the_permalink($post->ID);
 			endwhile;
 		endif;
 	} else {

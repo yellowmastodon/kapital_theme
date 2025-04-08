@@ -31,7 +31,7 @@ if (isset($args['tabindex'])){
     $tab_index = false;
 }
 
-$post_permalink = get_post_permalink();
+$post_permalink = get_the_permalink();
 $post_title = get_the_title();
 $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 //get current queried object

@@ -164,6 +164,7 @@ function inzercia_post_type() {
 		'label'                 => __( 'Inzercia', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title'),
+		'post_status' => array('publish', 'draft'),
 		'hierarchical'          => false,
 		'public'                => false,
 		'show_ui'               => true,

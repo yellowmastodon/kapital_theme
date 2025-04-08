@@ -131,7 +131,6 @@ export function customMetaSettings() {
 								/>
 							}
 							{postType !== 'page' &&
-								<>
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Zobrazovať kategórie článku', 'kapital')}
@@ -139,15 +138,13 @@ export function customMetaSettings() {
 										onChange={() => updateMetaValue(!custom_render_meta.show_categories, 'show_categories')}
 										help={__('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')}
 									/>
-									<ToggleControl
-										__nextHasNoMarginBottom
-										label={__('Zobraziť tlačidlo "zdieľať"', 'kapital')}
-										checked={custom_render_meta.show_share_button}
-										onChange={() => updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button')}
-									/>
-								</>
 							}
-
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={__('Zobraziť tlačidlo "Zdieľať"', 'kapital')}
+								checked={custom_render_meta.show_share_button}
+								onChange={() => updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button')}
+							/>
 							<ToggleControl
 								__nextHasNoMarginBottom
 								label={__('Zobrazovať počet zhliadnutí', 'kapital')}

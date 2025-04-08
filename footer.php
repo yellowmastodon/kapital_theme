@@ -37,11 +37,11 @@ if (is_multisite()) {
     get_template_part('template-parts/newsletter-signup-form', null,
     array(
         'ecomail_enabled' => isset($kptl_theme_options["ecomail_enabled"]) ? $kptl_theme_options["ecomail_enabled"] : false,
-        'ecomail_post_url' => isset($kptl_theme_options["ecomail_post_url"]) ? $kptl_theme_options["ecomail_enabled"] : "",
+        'ecomail_post_url' => isset($kptl_theme_options["ecomail_post_url"]) ? $kptl_theme_options["ecomail_post_url"] : "",
         'show_footer_newsletter' => $show_footer_newsletter,
         'show_heading' => true,
         'ecomail_gdpr' => isset($kptl_theme_options["ecomail_gdpr"]) ? $kptl_theme_options["ecomail_gdpr"] : "",
-        'additional_classes' => 'mb-6'
+        'additional_classes' => 'mb-6 container'
 
      )
     );

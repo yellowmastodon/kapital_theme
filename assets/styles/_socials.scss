@@ -26,4 +26,7 @@
             height: 1rem;
         }
     }
+    a:not(:hover):not(:focus):not(:active){
+            color: $primary;
+    }
 }

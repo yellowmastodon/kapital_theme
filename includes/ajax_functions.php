@@ -26,6 +26,7 @@ function ajax_load_ads() {
             $ad_start_date = get_field('ad_start_date', $ad->ID);
             if ($ad_start_date > $today) {
                 unset($ads->posts[$key]);
+                $ads->posts = array_values($ads->posts);
             }
         }
 
@@ -46,6 +47,7 @@ function ajax_load_ads() {
                 $html .= '</a>';
 
                 $data["ads"][] = $html;
+
             }
         } else {
             // All ads
@@ -61,6 +63,7 @@ function ajax_load_ads() {
                 $ad_html .= '</a>';
 
                 $data["ads"][] = $ad_html;
+                shuffle($data["ads"]);
             }
         }
     }

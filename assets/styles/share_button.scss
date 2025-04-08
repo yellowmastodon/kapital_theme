@@ -1,0 +1,52 @@
+.post-share-button-wrapper{
+    svg{
+        vertical-align: -.15em;
+        margin-right: .5em;
+    }
+    .post-share-button{
+        padding: 0;
+        background: transparent;
+        border: none;
+        color: map-get($colors, 'gray');
+        &:hover{
+            color: $red;
+        }
+        &:active{
+            color: darken($red, 10);
+        }
+        &.main-share svg{
+            width: 1.1em;
+            height: 1.1em;
+            margin-right: .3em;
+        }
+    }
+    .share-dropdown{
+        position: relative;
+        .share-dropdown-menu{
+            position: absolute;
+            list-style: none;
+            z-index: 1000;
+            display: none; // none by default, but block on "open" of the menu
+            text-align: left;
+            top: calc($line-height-small * 1em + map-get($spacers, 1));
+            right: 0;
+            background-color: $white;
+            border-radius: .5rem;
+            border: solid 1px map-get($colors, 'secondary');
+            white-space: nowrap;
+            padding: map-get($spacers, 3) map-get($spacers, 3); 
+            li:not(:last-child){
+                margin-bottom: map-get($spacers, 2);
+            }
+        
+        }
+        .share-dropdown-menu.show {
+            display: block;
+            a{
+                text-decoration: none;
+            }
+
+        }
+    }
+   
+}

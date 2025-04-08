@@ -37,6 +37,7 @@
         }
     }
 }
+
 .btn {
     &:disabled {
         background-color: var(--#{$prefix}secondary);
@@ -44,6 +45,7 @@
         color: var(--#{$prefix}gray);
     }
 }
+
 .btn-sm {
     font-size: $small-font-size;
 }

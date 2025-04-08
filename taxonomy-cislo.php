@@ -85,7 +85,7 @@ echo kapital_breadcrumbs(array(
                 endwhile; ?>
             </div>
         </section>
-        <section class="ending-text alignnormal">
+        <section class="ending-text mt-6 alignnormal">
             <?php 
             $ending_text = get_field('ending_text', 'cislo_' . $queried_object_id);
             if (isset($ending_text)):

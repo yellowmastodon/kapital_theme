@@ -14,11 +14,11 @@ if ($render_settings["show_breadcrumbs"]) {
     if ($post->post_type === 'page') {
         if ($is_woocommerce_site) {
             $breadcrumbs[] = [__("E-shop", "kapital"), get_permalink(wc_get_page_id('shop'))];
-            if (is_checkout()){
+            if (is_checkout()) {
                 $breadcrumbs[] = [get_the_title(wc_get_page_id('cart')), get_permalink(wc_get_page_id('cart'))];
                 $breadcrumbs[] = [get_the_title(), get_the_permalink(), true];
             } else {
-                if ($post->post_parent){
+                if ($post->post_parent) {
                     //only retrieves one parent, but fuck it, lets not query again
                     $parent = get_post($post->post_parent);
                     $breadcrumbs[] = [$parent->post_title, get_the_permalink($parent)];
@@ -26,7 +26,7 @@ if ($render_settings["show_breadcrumbs"]) {
                 $breadcrumbs[] = [get_the_title(), get_the_permalink(), true];
             }
         } else {
-            if ($post->post_parent){
+            if ($post->post_parent) {
                 //only retrieves one parent, but fuck it, lets not query again
                 $parent = get_post($post->post_parent);
                 $breadcrumbs[] = [$parent->post_title, get_the_permalink($parent)];
@@ -62,7 +62,7 @@ if ($render_settings["show_breadcrumbs"]) {
             global $is_woocommerce_site;
             //render_settings categories are false for page
             if ($render_settings["show_categories"]): ?>
-                <div class="post-terms mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
+                <div class="post-terms alignwide mb-4 gy-2 row ff-grotesk text-uppercase fs-small text-center flex-wrap justify-content-center">
                     <?php foreach ($custom_taxonomies as $custom_taxonomy):
                         //autorstvo rendered separately                        
                         if (!empty($filtered_terms[$custom_taxonomy]) && $custom_taxonomy !== 'autorstvo'):
@@ -100,21 +100,21 @@ if ($render_settings["show_breadcrumbs"]) {
             /** Links to child pages
              * 
              */
-            if ($post->post_type === 'page' && $render_settings["show_filters"] === true){
-               echo kapital_post_filters(false, false, true, $post->ID, "", "", false);
+            if ($post->post_type === 'page' && $render_settings["show_filters"] === true) {
+                echo kapital_post_filters(false, false, true, $post->ID, "", "", false);
             }
 
             /** container with views, author, publish date and featured image 
              * all off by default for page
-            */
-            if ($render_settings["show_views"] || $render_settings["show_date"] || $render_settings["show_author"] || $render_settings["show_featured_image"]): ?>
+             */
+            if ($render_settings["show_share_button"] || $render_settings["show_date"] || $render_settings["show_author"] || $render_settings["show_featured_image"]): ?>
                 <div class="alignwide mb-5 header-bottom-container">
                     <?php //container with views, and publish date and author
-                    if ($render_settings["show_views"] && $render_settings["show_date"] && $render_settings["show_author"]): ?>
+                    if ($render_settings["show_share_button"] || $render_settings["show_date"] || $render_settings["show_author"]): ?>
                         <div class="row align-items-end justify-content-between mb-1">
                             <?php
                             /**
-                             * Render post views
+                             * Render post date
                              * if hidden, let's keep the empty div to not break the layout
                              */ ?>
                             <div class="post-date col-6 col-sm-2 order-2 order-sm-1 ff-sans text-gray fs-small">
@@ -136,33 +136,33 @@ if ($render_settings["show_breadcrumbs"]) {
                                         foreach ($filtered_terms['autorstvo'] as $key => $author):
                                             if ($key !== 0) echo ", "; ?>
                                             <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a><?php
-                                        endforeach; ?>
-                                        </p><?php
-                                        endif;
+                                                                                                                        endforeach; ?>
+                                    </p><?php
                                     endif;
-                                    /**
-                                     * Render post views
-                                     * if hidden, let's keep the empty div to not break the layout
-                                     */
-                                            ?><div class="post-views col-6 col-sm-2 order-3 col-2 ff-sans text-gray text-end fs-small opacity-0" data-id="<?php echo $post->ID ?>"><?php
-                                                                                                                                                                                    if ($render_settings["show_views"]): ?>
-                                    <svg>
-                                        <use xlink:href="#icon-views"></use>
-                                    </svg>
-                                    <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
-                                    <span class="number"></span>
-                                <?php endif; ?>
-                            </div><?php //end row above featured image
+                                endif;
+                                /**
+                                 * Render post share
+                                 * if hidden, let's keep the empty div to not break the layout
+                                 */
+                                    ?>
+                                    <div class="post-share-button-wrapper col-2 col-sm-2 order-3 ff-sans text-end fs-small">
+                                        
+                                    <?php if ($render_settings["show_share_button"]):
+                                     get_template_part('template-parts/share-dropdown');
+                                    endif; ?>
+                            
+
+                                    </div><?php //end sharebutton?>
+                        </div><?php //end row above featured image
                     endif; ?>
-                        </div>
-                        <?php
-                        //featured image
-                        if ($render_settings["show_featured_image"]):
+                    <?php
+                    //featured image
+                    if ($render_settings["show_featured_image"]):
                         $thumbnail_id = get_post_thumbnail_id();
                         if (is_int($thumbnail_id) && $thumbnail_id !== 0) echo kapital_responsive_image($thumbnail_id, "(max-width: 900px) 95vw, (max-width: 1649px) 800px, (max-width: 1919px) 900px, 1000px", true, 'rounded w-100');
-                        endif; ?>
+                    endif; ?>
                 </div><?php //end of container with views, author, publish date and featured image 
-            endif;       ?>
+                    endif;       ?>
             <div id="post-content">
                 <?php
                 /**

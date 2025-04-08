@@ -168,7 +168,7 @@ export default function Edit(
 									allowedTypes={["image"]}
 									value={attributes.customImageId}
 									render={({ open }) => (
-										<Button style={{position:"absolute", zIndex: 1, left: "16px", top: "16px", background: "white"}} icon={edit} onClick={open}>{__("Zmeniť obrázok", "kapital")}</Button>
+										<Button style={{position:"absolute", zIndex: 1000, left: "16px", top: "16px", background: "white"}} icon={edit} onClick={open}>{__("Zmeniť obrázok", "kapital")}</Button>
 									) }
 							/>
 							<ServerSideRender

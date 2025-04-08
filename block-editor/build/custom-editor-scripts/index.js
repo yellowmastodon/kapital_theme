@@ -553,23 +553,21 @@ function customMetaSettings() {
               onChange: function onChange() {
                 return updateMetaValue(!custom_render_meta.show_author, 'show_author');
               }
-            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-                __nextHasNoMarginBottom: true,
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
-                checked: custom_render_meta.show_categories,
-                onChange: function onChange() {
-                  return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
-                },
-                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
-                __nextHasNoMarginBottom: true,
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobraziť tlačidlo "zdieľať"', 'kapital'),
-                checked: custom_render_meta.show_share_button,
-                onChange: function onChange() {
-                  return updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button');
-                }
-              })]
+            }), postType !== 'page' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať kategórie článku', 'kapital'),
+              checked: custom_render_meta.show_categories,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_categories, 'show_categories');
+              },
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazenie čísla, série, rubriky, atď. nad názvom článku', 'kapital')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+              __nextHasNoMarginBottom: true,
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobraziť tlačidlo "Zdieľať"', 'kapital'),
+              checked: custom_render_meta.show_share_button,
+              onChange: function onChange() {
+                return updateMetaValue(!custom_render_meta.show_share_button, 'show_share_button');
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
               __nextHasNoMarginBottom: true,
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Zobrazovať počet zhliadnutí', 'kapital'),

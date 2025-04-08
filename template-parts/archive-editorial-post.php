@@ -26,7 +26,7 @@ if(is_array($render_settings)){
 } else {
     $render_settings = $default_render_settings;
 }
-$post_permalink = get_post_permalink($post);
+$post_permalink = get_the_permalink($post);
 $show_author = $render_settings["show_author"] && !empty($filtered_terms['autorstvo']) && $post->post_type !== 'podcast';
 ?>
 

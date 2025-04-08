@@ -3,26 +3,29 @@
 /**
  * Block editor (gutenberg) specific functionality
  *
- */ 
+ */
 
 
 /**
  * General (non-block-dependent) editor scripts and styles
  * script changes taxonomy selectors
  * 
- */  
+ */
 
 
-function kapital_enqueue_editor_content_assets() {
+function kapital_enqueue_editor_content_assets()
+{
     $template_directory = get_template_directory_uri();
     $block_editor_path = $template_directory . '/block-editor/build/';
     $custom_editor_scripts_assets = require dirname(__FILE__) . '/build/custom-editor-scripts/index.asset.php';
-    if ( is_admin() ) {
+    if (is_admin()) {
         wp_enqueue_script(
             'custom-editor-scripts',
-            $block_editor_path . 'custom-editor-scripts/index.js',  $custom_editor_scripts_assets['dependencies'], $custom_editor_scripts_assets['version']
+            $block_editor_path . 'custom-editor-scripts/index.js',
+            $custom_editor_scripts_assets['dependencies'],
+            $custom_editor_scripts_assets['version']
         );
-       wp_enqueue_style( 'styles', $template_directory . '/editor_styles.css?' . filemtime( get_stylesheet_directory() . '/editor_styles.css' ), [], null );
+        wp_enqueue_style('styles', $template_directory . '/editor_styles.css?' . filemtime(get_stylesheet_directory() . '/editor_styles.css'), [], null);
     }
 }
 
@@ -31,20 +34,21 @@ function kapital_enqueue_editor_content_assets() {
  * Add inline svg to gutenberg editor, so that icons are erndered correctly
  * Hook into the 'admin_notices' action to render
  */
-function kapital_block_editor_inline_svg() {
+function kapital_block_editor_inline_svg()
+{
     $screen = get_current_screen();
     // Only render this notice in the post editor.
-    if ( ! $screen || 'post' !== $screen->base ) {
+    if (! $screen || 'post' !== $screen->base) {
         return;
     }
     // Render the notice's HTML.
     // with a 'notice' class.
     get_template_part('template-parts/inline-svg-icons');
 };
-add_action( 'admin_notices', 'kapital_block_editor_inline_svg' );
+add_action('admin_notices', 'kapital_block_editor_inline_svg');
 
 
-add_action( 'enqueue_block_editor_assets', 'kapital_enqueue_editor_content_assets' );
+add_action('enqueue_block_editor_assets', 'kapital_enqueue_editor_content_assets');
 
 /**
  * Block editor (gutenberg) color palette synced from sass
@@ -64,10 +68,10 @@ function kapital_block_editor_setup()
 //defined in includes/custom_meta.php
 global $post_types_with_controlled_rendering;
 global $pagenow;
-if (is_admin() && in_array($pagenow, array('post.php', 'post-new.php'))){
-    wp_register_script( 'post-types-with-controlled-rendering', '' ); //dummy handler to be able to add inline script
-    wp_enqueue_script( 'post-types-with-controlled-rendering' );
-    wp_add_inline_script( 'post-types-with-controlled-rendering', 'var postTypesWithControlledRendering = '. json_encode($post_types_with_controlled_rendering). ';', 'before');
+if (is_admin() && in_array($pagenow, array('post.php', 'post-new.php'))) {
+    wp_register_script('post-types-with-controlled-rendering', ''); //dummy handler to be able to add inline script
+    wp_enqueue_script('post-types-with-controlled-rendering');
+    wp_add_inline_script('post-types-with-controlled-rendering', 'var postTypesWithControlledRendering = ' . json_encode($post_types_with_controlled_rendering) . ';', 'before');
 }
 
 /**
@@ -85,29 +89,30 @@ function generate_color_palette()
     if ($color_palette_json) {
         $color_palette_json = json_decode($color_palette_json, true, 512);
         foreach ($color_palette_json["variables"][0]["mapValue"] as $color) {
-                $color_palette[] = array(
-                    'name'  => $color["name"],
-                    'slug'  => $color["name"],
-                    'color' => $color["compiledValue"],
-                );
-        }  
+            $color_palette[] = array(
+                'name'  => $color["name"],
+                'slug'  => $color["name"],
+                'color' => $color["compiledValue"],
+            );
+        }
     }
     return $color_palette;
 }
 
 //add_filter( 'block_type_metadata', 'set_image_auto_wide' );
 
-function set_image_auto_wide( $metadata ) {
-  //var_dump($metadata["name"]);
-  //var_dump($metadata);
-  if ( "core/image" == $metadata['name'] ) {
-    $metadata['attributes']['className']['default'] = "alignwide";
-    $metadata['attributes']['align']['default'] = "alignwide";   
+function set_image_auto_wide($metadata)
+{
+    //var_dump($metadata["name"]);
+    //var_dump($metadata);
+    if ("core/image" == $metadata['name']) {
+        $metadata['attributes']['className']['default'] = "alignwide";
+        $metadata['attributes']['align']['default'] = "alignwide";
+        return $metadata;
+        //var_dump($metadata['attributes']);
+    }
+    //var_dump($metadata);
     return $metadata;
-    //var_dump($metadata['attributes']);
-  }
-  //var_dump($metadata);
-  return $metadata;
 }
 
 
@@ -115,30 +120,42 @@ function set_image_auto_wide( $metadata ) {
 /** Require all blocks
  */
 
- require_once(dirname(__FILE__) . '/build/blocks/secondary-title/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/perex/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/ad/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/post-query/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/featured-post/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/podcast-links/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/page-links/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/secondary-title/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/perex/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/ad/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/post-query/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/featured-post/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/podcast-links/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/page-links/index.php');
 
- require_once(dirname(__FILE__) . '/build/blocks/sponsors/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/donation-form/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/book-query/index.php');
- require_once(dirname(__FILE__) . '/build/blocks/recommendations/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/sponsors/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/donation-form/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/book-query/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/recommendations/index.php');
 
 
- require_once(dirname(__FILE__) . '/build/block-variations/button.php');
- require_once(dirname(__FILE__) . '/build/block-variations/bubble-heading.php');
+require_once(dirname(__FILE__) . '/build/block-variations/button.php');
+require_once(dirname(__FILE__) . '/build/block-variations/bubble-heading.php');
 
- add_action('admin_head', 'custom_root_font_size');
+add_action('admin_head', 'custom_root_font_size');
 /* fix for rem definitions */
- function custom_root_font_size()
- {
-     echo '<style>
+function custom_root_font_size()
+{
+    echo '<style>
      :root {
         font-size: clamp(1rem, 0.29vi + 0.94rem, 1.19rem);
      } 
    </style>';
- }
+}
+
+//register "question" - otazka paragraph block style (indent)
+if (function_exists('register_block_style')) {
+        register_block_style(
+            'core/paragraph',
+            array(
+                'name'         => 'otazka',
+                'label'        => esc_html__('Otázka', 'kapital'),
+                'inline_style' => 'p.is-style-otazka { padding-left: 1.5rem; }',
+            )
+        );
+}

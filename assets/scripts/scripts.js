@@ -26,7 +26,9 @@ import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
 import productCarousel from './product-carousel';
+import shareButton from './share-button';
 
+shareButton();
 headerFunctions();
 
 document.querySelectorAll('.dismiss-notice').forEach((element) => {

@@ -79,7 +79,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
             </div><?php
         endif; */ ?>
     </div>
-    <a href="<?php echo get_post_permalink($post); ?>" class="archive-item-link text-decoration-none">
+    <a href="<?php echo get_the_permalink($post); ?>" class="archive-item-link text-decoration-none">
         <?php $thumbnail_image_id = get_post_thumbnail_id($post->ID);
         if ($thumbnail_image_id) {
             echo kapital_responsive_image($thumbnail_image_id, "(max-width: 599px) 95vw, (max-width: 899px) 47vw, (max-width: 1199px) 32vw, (max-width: 1399px) 300px, (max-width: 1649px) 260px, 312px", false, 'rounded w-100 archive-item-image');

@@ -60,7 +60,6 @@ function checkDonationInsertingEnabled() {
 function adInserter(HTMLJson, singlePostOrPodcast = true, registerClicksCallback = null) {
 
     const data = JSON.parse(HTMLJson); // Parse the JSON string into an object.
-
     const adHTML = data.ads; // Extract ad HTML from the parsed data.
     const donationHTML = data.donation_form; // Extract donation form HTML from the parsed data.
     const donationGloballyEnabled = document.body.classList.contains("darujme-active");

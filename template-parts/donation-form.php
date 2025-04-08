@@ -236,6 +236,8 @@ if ($campaign_active):
                             <?=
                             sprintf(__("Potvrdzujem, že som bol/a informovaný/á o spracovaní Osobných údajov v systéme %s"), '<a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>')?></label>
                     </div>
+                    <p class="ff-sans ps-4 lh-sm">Potvrdením údajov súhlasíte s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a> používania <a href="https://darujme.sk/" target="_blank">DARUJME.sk</a>.</p>
+
                 </div>
                 </section>
                 <div class="px-3"><button type="submit" class="btn btn-red btn-block mt-3"><?=__("Podporiť","kapital")?></button></div>

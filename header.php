@@ -175,7 +175,8 @@ if (isset($darujme_options["campaign_active"])) {
                                 </a>
                             <?php endif;?>
                             <?php if (isset($kptl_theme_options["podpora"])):?>
-                                <a class="btn-menu btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podpora</a>
+                                <a class="btn-menu d-none d-lg-inline-block btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte nás</a>
+                                <a class="btn-menu d-inline-block d-lg-none btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte</a>
                             <?php endif;?>
 
                         </div>

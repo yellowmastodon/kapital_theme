@@ -286,7 +286,7 @@ function Edit(_ref) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
                 style: {
                   position: "absolute",
-                  zIndex: 1,
+                  zIndex: 1000,
                   left: "16px",
                   top: "16px",
                   background: "white"
