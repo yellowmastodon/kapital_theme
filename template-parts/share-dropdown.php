@@ -24,7 +24,7 @@ $encoded_share_permalink = urlencode(get_the_permalink() . '?ref=share');
         <li><a target="_blank" href="mailto:<?= '?subject=' . urlencode(get_the_title()) . '&body=' . strip_tags(get_the_excerpt()) . '%0A' . $encoded_share_permalink; ?>"><svg class="icon-square me-2">
                     <use xlink:href="#icon-mail" />
                 </svg>E-mail</a></li>
-        <li><button data-copied-text="<?=__("Skopírované.", "kapital")?>" value="<?=$share_spermalink?>" class="post-share-button link-share"><svg class="icon-square me-2">
+        <li><button data-copied-text="<?=__("Skopírované", "kapital")?>" value="<?=$share_spermalink?>" class="post-share-button link-share"><svg class="icon-square me-2">
                     <use xlink:href="#icon-link" />
                 </svg><?= __("Kopírovať odkaz", "kapital") ?></button></li>
     </ul>
