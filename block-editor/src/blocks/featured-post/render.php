@@ -128,7 +128,7 @@ else:
 					if ($render_settings["show_author"]):
 						if (!empty($filtered_terms['autorstvo']) && $post_type !== 'podcast'): ?>
 							<div class="col-auto post-authors">
-								<svg viewBox="0 0 24 24">
+								<svg class="icon-square">
 									<use xlink:href="#icon-author"></use>
 								</svg>
 								<?php foreach ($filtered_terms['autorstvo'] as $key => $author):

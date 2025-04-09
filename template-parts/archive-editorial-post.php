@@ -36,7 +36,7 @@ $show_author = $render_settings["show_author"] && !empty($filtered_terms['autors
     <?php
     if ($show_author):?>
             <div class="col-auto ff-grotesk text-uppercase fs-small post-authors">
-                <svg viewBox="0 0 24 24">
+                <svg class="icon-square">
                     <use xlink:href="#icon-author"></use>
                 </svg>
                 <?php foreach ($filtered_terms['autorstvo'] as $key => $author):

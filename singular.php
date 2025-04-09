@@ -145,7 +145,7 @@ if ($render_settings["show_breadcrumbs"]) {
                                  * if hidden, let's keep the empty div to not break the layout
                                  */
                                     ?>
-                                    <div class="post-share-button-wrapper col-2 col-sm-2 order-3 ff-sans text-end fs-small">
+                                    <div class="post-share-button-wrapper col-6 col-sm-2 order-3 ff-sans text-end fs-small">
                                         
                                     <?php if ($render_settings["show_share_button"]):
                                      get_template_part('template-parts/share-dropdown');

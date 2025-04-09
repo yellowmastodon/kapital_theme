@@ -498,7 +498,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
                 </button>
             </div>
         <?php endif; ?>
-        <div class="filters-modal alignwider <?php if ($sticky) echo ' position-sticky' ?>" tabindex="-1" <?php if ($sticky) echo 'style="display: none"' ?>>
+        <div class="filters-modal <?php if ($sticky) echo ' position-sticky' ?>" tabindex="-1" <?php if ($sticky) echo 'style="display: none"' ?>>
             <div class="modal-dialog">
                 <div class="modal-content bg-transparent">
                     <button class="btn btn-close close mb-2" data-bs-dismiss="modal" aria-label="<?= __("Skryť filtre", "kapital") ?>" style="display:none !important"><svg>
@@ -743,3 +743,9 @@ class Nested_Menu_List extends Walker_Nav_Menu
         $output .= '</li>';
     }
 }
+
+function auto_nbsp($text){
+	$text = preg_replace('/\h(\S{1,2})\h(\S)/', ' $1&nbsp;$2', $text); //replace proposition whitespace
+    $text = preg_replace('/(\h)(\S{1,2})\h*$/', '&nbsp;$2', $text); //replace 1-2 character strings at the end
+	return $text;
+};

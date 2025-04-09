@@ -41,7 +41,7 @@ if ($campaign_active):
             <div class="row align-items-center gy-4 gx-3">
                 <div class="col">
                     <?php
-                    if (isset($short_text)) if ($short_text !== "") echo '<div class="ff-grotesk fw-bold text-center text-md-start">' . wpautop($short_text) . '</div>'
+                    if (isset($short_text)) if ($short_text !== "") echo '<div class="ff-grotesk fw-bold text-center text-md-start lh-sm">' . wpautop(auto_nbsp($short_text)) . '</div>'
                     ?>
                 </div>
                 <div class="col-12 col-md-auto text-center">
@@ -53,7 +53,7 @@ if ($campaign_active):
             <?php
             $descriptive_paragraphs_classes = "ff-grotesk col-12 mb-0 lh-sm mt-4";
             if ($show_title) if (isset($title)) if ($title !== "") echo kapital_bubble_title($title, 2, 'h3 mb-3 mt-2');
-            if (isset($long_text)) if ($long_text !== "") echo '<div class="ff-grotesk py-3 pb-4">' . wpautop($long_text) . '</div>'
+            if (isset($long_text)) if ($long_text !== "") echo '<div class="ff-grotesk py-3 pb-4">' . wpautop(auto_nbsp($long_text)) . '</div>'
             ?>
             <form id="darujme-form" action="https://api.darujme.sk/v1/donations/post/" method="post" enctype="application/x-www-form-urlencoded" class="darujme-form needs-validation">
                 <input type="hidden" class="form-control" name="campaign_id" id="campaign_id" value="<?= $darujme_options["campaign_id"] ?>" required>

@@ -61,8 +61,7 @@ $archive-article-img-outline-width: 5px;
     .post-authors{
         svg{
             fill: var(--#{$prefix}red);
-            height: .8em;
-            width: .8em;
+            vertical-align: -.17em;
             overflow: visible;
         }
         a:not(:active){

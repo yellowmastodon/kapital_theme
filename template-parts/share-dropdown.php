@@ -9,8 +9,8 @@ $share_spermalink = get_the_permalink() . '?ref=share';
 $encoded_share_permalink = urlencode(get_the_permalink() . '?ref=share');
 ?>
 
-<div class="share-dropdown">
-    <button class="post-share-button main-share" aria-expanded="false">
+<div class="share-dropdown" >
+    <button class="post-share-button main-share" aria-expanded="false" value=<?=$share_spermalink?>>
         <svg class="icon-square">
             <use xlink:href="#icon-share" />
         </svg>Zdieľať</button>
