@@ -64,7 +64,7 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 				if ($render_settings["show_author"]):
 					if (!empty($filtered_terms['autorstvo']) && $post->post_type !== 'podcast'): ?>
 						<div class="col-auto post-authors">
-							<svg viewBox="0 0 24 24">
+							<svg viewBox="0 0 24 24" class="icon-square">
 								<use xlink:href="#icon-author"></use>
 							</svg>
 							<?php foreach ($filtered_terms['autorstvo'] as $key => $author):

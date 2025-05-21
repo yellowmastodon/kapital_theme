@@ -1,0 +1,27 @@
+.archive-event-calendar-icon{
+    height: 2rem;
+    width: 2.2rem;
+}
+
+
+@include media-breakpoint-up('sm'){
+    .archive-event-item{
+        .archive-item-link:not(:hover):not(:focus){
+            .text-event-gray{
+                color: #696969
+            }
+        }
+
+    }
+}
+
+.archive-event-item .archive-item-link.text-event-gray:not(:hover):not(:focus){
+    color: #696969
+}
+.archive-event-item .archive-item-link{
+    &:focus-visible, &:hover{
+        .red-outline-hover{
+            color: var(--#{$prefix}secondary) !important;
+        }
+    }
+}

@@ -120,7 +120,7 @@ img {
 }
 //footnote
 .wp-block-footnotes{
-    li a:last-child{
+    li a[href^="#"]{
         text-decoration: none;
         @extend .text-red;
         @extend .ff-grotesk;

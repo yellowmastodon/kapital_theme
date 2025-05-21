@@ -56,9 +56,8 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 /** MAIN */ ?>
 <main class="main container" role="main" id="main">
 
-    <?php /** archive title  */  ?>
+    <?php /** archive title  */ 
 
-    <?php
     $header_classes = 'archive-header alignwide mb-5" role="heading';
 
     if ($is_term_archive) {
@@ -124,13 +123,13 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
         }
 
     ?>
-        <section class="alignwider">
+        <div class="alignwider">
             <div class="row gy-6 gx-3<?php echo $justify_class ?>">
                 <?php while (have_posts()) : the_post();
                     get_template_part('template-parts/archive-single-post', null, array('queried_object_id' => $queried_object_id));
                 endwhile; ?>
             </div>
-        </section>
+        </div>
     <?php endif; ?>
     <?php echo kapital_pagination(); ?>
 </main>

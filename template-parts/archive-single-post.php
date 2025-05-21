@@ -66,9 +66,9 @@ $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
                 <svg><use xlink:href="#icon-podcast"></use></svg>
             </div>
         <?php endif;
-        if ($render_settings["show_date"]):
-            ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
-        <?php endif;
+        if ($render_settings["show_date"]){
+            echo get_publish_datetime_element($post, 'col-auto post-date');
+        }
 /*         if ($render_settings["show_views"]): ?>
             <div class="col-auto post-views opacity-0" data-id="<?php echo $post->ID?>">
                 <svg>

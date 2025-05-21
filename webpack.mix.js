@@ -89,6 +89,11 @@ mix
     'assets/scripts/cart-quantity-script.js'
 ], 'js/cart-quantity.min.js');
 
+mix
+.js([
+    'assets/scripts/admin-load-post-views.js'
+], 'js/admin-load-post-views.min.js');
+
 mix.browserSync({
     https: true,
     ui: false,

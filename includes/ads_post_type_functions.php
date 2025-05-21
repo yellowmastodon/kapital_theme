@@ -123,7 +123,7 @@ add_filter( 'post_row_actions', 'kapital_inzercia_row_actions', 10, 2 );
 
 
 
-/** Add the data to the custom columns for the inzercia (ads) post type */
+/** Make columns sortable for the inzercia (ads) post type */
 function kapital_sortable_inzercia_custom_columns( $columns ) {
     $columns['ad_start_date'] = 'ad_start_date';
     $columns['ad_end_date'] = 'ad_end_date';

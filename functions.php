@@ -3,7 +3,7 @@
 /**
  * Custom functions / External files
  */
-$post_types_with_controlled_rendering = ['post', 'podcast', 'page'];
+$post_types_with_controlled_rendering = ['post', 'podcast', 'page', 'event'];
 
 $is_woocommerce_site = class_exists('WooCommerce');
 $template_directory = get_template_directory();
@@ -16,6 +16,8 @@ $include = array(
     '/includes/author_taxonomy_functions.php',
     '/includes/custom_meta.php',
     '/includes/ads_post_type_functions.php',
+    '/includes/event_post_type_functions.php',
+    '/includes/post_post_type_functions.php',
     '/includes/custom_options.php',
     '/includes/ajax_functions.php',
     '/includes/customizer.php',

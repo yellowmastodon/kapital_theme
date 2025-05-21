@@ -65,14 +65,15 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
                          * Render post views
                          * if hidden, let's keep the empty div to not break the layout
                          */
-                        ?>
-                        <div class="post-date col-6 col-sm-2 order-2 order-sm-1 ff-sans text-gray fs-small">
-                            <?php
-                            if ($render_settings["show_date"]):
-                                the_date();
-                            endif; ?>
-                        </div>
-                        <?php /**
+
+                        $date_element_classes = 'post-date col-6 col-sm-2 order-2 order-sm-1 ff-sans text-gray fs-small';
+                        if ($render_settings["show_date"]):
+                             echo get_publish_datetime_element($post, $date_element_classes);
+                             else:?>
+                                <div class="<?=$date_element_classes?>"></div>
+                            <?php endif;
+
+                         /**
                          * Render post views
                          * if hidden, let's keep the empty div to not break the layout
                          */

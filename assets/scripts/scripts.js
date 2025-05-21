@@ -27,6 +27,7 @@ import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
 import productCarousel from './product-carousel';
 import shareButton from './share-button';
+import postViewLoader from './post-views-loader';
 
 shareButton();
 headerFunctions();
@@ -68,28 +69,5 @@ if (!document.body.classList.contains('woocommerce-active')) {
     }
 }
 
-let postViewsElements = document.querySelectorAll('article .post-views');
-let articles_id;
-addEventListener("DOMContentLoaded", () => {
-    if (typeof postViewsElements !== undefined) {
-        postViewsElements = Array.from(document.querySelectorAll('article .post-views'));
-        for (let i = 0; i < postViewsElements.length; i += 8) {
-            let postViewsBatch = postViewsElements.slice(i, i + 8);
-            let postIdsBatch = [];
-            for (let i = 0; i < postViewsBatch.length; i++) {
-                postIdsBatch[i] = postViewsBatch[i].getAttribute("data-id")
-            }
-            ajaxRequest('getviews', { ids: postIdsBatch },
-                insertPostViews,
-                [postViewsBatch]);
-        }
-    }
-});
-function insertPostViews(response, postViewsElements) {
-    response = JSON.parse(response);
-    for (let i = 0; i < response.length; i++) {
-        let numberElement = postViewsElements[i].querySelector('.number');
-        numberElement.insertAdjacentHTML('afterbegin', response[i]);
-        postViewsElements[i].classList.remove('opacity-0');
-    }
-}
+let postViewsElements = 'article .post-views';
+postViewLoader(postViewsElements);

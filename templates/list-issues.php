@@ -14,7 +14,8 @@ $last_issue = get_terms( array(
     'order' => 'DESC',
     'number' => 1,
     'paged' => true
-    ) );
+    )
+);
 
 $last_issue_year = array();
 preg_match('/[0-9]{4}/', $last_issue[0]->name, $last_issue_year);

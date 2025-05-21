@@ -8,7 +8,9 @@ import { useEntityProp } from '@wordpress/core-data';
 import { useBlockProps, URLInput } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
 
-export default function editLinks(postType, postMetaName, defaults, titleLabel, description = "") {
+export default function editLinks(postType, postMetaName, defaults, titleLabel, description = "", otherLabels = {}, includeBlockProps = true) {
+    const DEFAULT_OTHER_LABELS = {linkPlaceholder: __("Text linku", "kapital"), urlPlaceholder: __("Vložte URL, alebo začnite písať", "kapital"), removeLink: __("Odstrániť link", "kapital"), addLink: __("Pridať link", "kapital") };
+    otherLabels = {...DEFAULT_OTHER_LABELS, ...otherLabels};
     const blockProps = useBlockProps();
     const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
     let podcast_links;
@@ -42,12 +44,13 @@ export default function editLinks(postType, postMetaName, defaults, titleLabel, 
     };
 
     return (
-        <div {...blockProps}>
-
+        //some blocks use this with other components
+        <div {...(includeBlockProps ? blockProps : {})}>
             <table>
             <thead><tr><th style={{fontWeight: "normal", fontSize: '1.2rem'}} colSpan="4">{titleLabel}</th></tr></thead>
 
                 <tbody>
+
                 {description !== "" &&
                         <tr>
                             <td style={{paddingBottom: '8px', paddingTop: '8px'}} className="fs-small" colSpan="4">
@@ -60,9 +63,10 @@ export default function editLinks(postType, postMetaName, defaults, titleLabel, 
                             <tr key={key}>
                                 <td>
                                     <TextControl
+                                        style={{minWidth: '200px'}}
                                         __next40pxDefaultSize
                                         __nextHasNoMarginBottom
-                                        placeholder="Text linku"
+                                        placeholder= {otherLabels.linkPlaceholder}
                                         name="name"
                                         value={linkObject.name}
                                         onChange={(newValue) => updateMetaValue(newValue, key, "name")}
@@ -70,8 +74,10 @@ export default function editLinks(postType, postMetaName, defaults, titleLabel, 
                                 </td>
                                 <td>
                                     <URLInput
+                                        style={{minWidth: '200px'}}
                                         __next40pxDefaultSize
                                         name="url"
+                                        placeholder={otherLabels.urlPlaceholder}
                                         value={linkObject.url}
                                         onChange={(newValue) => updateMetaValue(newValue, key, "url")}
                                     />
@@ -84,7 +90,7 @@ export default function editLinks(postType, postMetaName, defaults, titleLabel, 
                                             variant="secondary"
                                             onClick={() => handleRemoveClick(key)}
                                         >
-                                            {__("Odstrániť link", "kapital")}
+                                            {otherLabels.removeLink}
                                         </Button>
                                     </td>
                                 }
@@ -95,7 +101,7 @@ export default function editLinks(postType, postMetaName, defaults, titleLabel, 
                                             variant="secondary"
                                             onClick={() => handleAddClick(key)}
                                         >
-                                            {__("Pridať link", "kapital")}
+                                            {otherLabels.addLink}
                                         </Button>
                                     </td>
                                 }

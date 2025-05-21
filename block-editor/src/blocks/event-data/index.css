@@ -1,0 +1,34 @@
+.kapital-event-date-format .components-base-control__field:last-child {
+    margin-bottom: 0px;
+}
+
+.kapital-event-date-format button {
+    color: var(--wp-admin-theme-color, #3858e9) !important;
+    font-size: .8rem !important;
+}
+
+
+
+.kapital-event-date-format select option::-moz-selection {
+    background: transparent;
+}
+
+.kapital-event-date-table td:not(:first-child) {
+    padding-left: 1rem;
+}
+
+.kapital-event-date-table td:first-child {
+    white-space: nowrap;
+    width: 1px;
+}
+
+.kapital-event-date-format:not(:focus-within) .components-input-control__backdrop{
+    border: none !important;
+}
+
+.kapital-event-date-table .components-button .kapital-event-date-format button{
+    padding-left: 8px !important;
+}
+.kapital-event-date-table .components-button {
+    padding-right: 8px !important;
+}

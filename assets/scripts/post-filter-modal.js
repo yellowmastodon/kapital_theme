@@ -7,13 +7,17 @@ export default function postFilterModal() {
     const filterTogglerWrapperInstances = document.querySelectorAll(".btn-filter-toggle-wrapper");
     //fix top position in eshop when notices present
     let horizontalNav = document.querySelector('.horizontal-nav-wrapper');
-   
-    /** arbitrary size where filters do not cover the whole screen 
+    //never show spread out filters for events archive
+    //let isEventsArchive = document.body.classList.contains('post-type-archive-event');
+    let isEventsArchive = false;
+    
+    /** 
+     * arbitrary size where filters do not cover the whole screen 
      * remove display none
     */
     let displayFiltersAsModal = false;
 
-    if (window.screen.height > 500 && window.screen.width > 500){
+    if (window.screen.height > 500 && window.screen.width > 500 && !isEventsArchive){
         filterInstances.forEach((element) => {
             element.style.display = "";
         });
@@ -49,6 +53,7 @@ export default function postFilterModal() {
         }
     });
     }
+    
     if (filterTogglerWrapperInstances.length > 0)
     filterTogglerWrapperInstances.forEach((wrapper => {
         let toggle = wrapper.querySelector('.btn-filter-toggle');
@@ -71,40 +76,4 @@ export default function postFilterModal() {
             modal.toggle();
         });
     }))
-/* 
-    filterInstances.forEach((element)=>{
-        if (element.classList.contains('position-sticky')){
-            element.querySelector('.btn-filter-toggle').addEventListener('click', toggleModal);
-            element.querySelector('.btn-close').addEventListener('click', closeModal);  
- 
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    if (document.body.classList.contains('modal-open')) {
-                        for (let i = 0; i < filterInstances.length; i++) {
-                            filterInstances[i].querySelector('.filters-modal').classList.remove('open');
-                            document.body.classList.remove('modal-open');
-                        }
-                    }
-                }
-            });
-        }
-    }); */
-/* 
-    function closeModal(event) {
-        let filterModal = event.target.closest('.filters-modal');
-        filterModal.classList.remove('open');
-        document.body.classList.remove('modal-open');
-    }
-
-    function toggleModal(event) {
-        let filterModal = event.target.closest(".post-filters").querySelector('.filters-modal');
-        if (filterModal.classList.contains('open')) {
-            filterModal.classList.remove('open');
-            document.body.classList.remove('modal-open');
-        } else {
-            filterModal.classList.add('open');
-            document.body.classList.add('modal-open');
-        }
-    } */
-
 }

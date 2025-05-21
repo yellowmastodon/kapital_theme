@@ -127,6 +127,7 @@ require_once(dirname(__FILE__) . '/build/blocks/post-query/index.php');
 require_once(dirname(__FILE__) . '/build/blocks/featured-post/index.php');
 require_once(dirname(__FILE__) . '/build/blocks/podcast-links/index.php');
 require_once(dirname(__FILE__) . '/build/blocks/page-links/index.php');
+require_once(dirname(__FILE__) . '/build/blocks/event-data/index.php');
 
 require_once(dirname(__FILE__) . '/build/blocks/sponsors/index.php');
 require_once(dirname(__FILE__) . '/build/blocks/donation-form/index.php');

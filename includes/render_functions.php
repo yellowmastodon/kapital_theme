@@ -51,14 +51,15 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
 
 
 
-function kapital_bubble_paragraphs( $blocks ) {
-    foreach ( $blocks as $block ) {
-        if ( ! empty( $block['innerBlocks'] ) ) {
-            kapital_bubble_paragraphs( $block['innerBlocks'] );
-        } elseif ( 'core/paragraph' === $block['blockName'] ) {
+function kapital_bubble_paragraphs($blocks)
+{
+    foreach ($blocks as $block) {
+        if (! empty($block['innerBlocks'])) {
+            kapital_bubble_paragraphs($block['innerBlocks']);
+        } elseif ('core/paragraph' === $block['blockName']) {
             echo kapital_bubble_title(strip_tags($block["innerHTML"]), 0, "ff-grotesk bubble-paragraph alignwider");
         } else {
-            echo apply_filters( 'the_content', render_block( $block ) );
+            echo apply_filters('the_content', render_block($block));
         }
     }
 }
@@ -72,7 +73,7 @@ function kapital_bubble_paragraphs( $blocks ) {
  * @return string   HTML figure with img element with caption or empty string on failure
  */
 function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
-{   
+{
     if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
         $attachment = get_post($attachment_id);
         $is_nonscalable = $attachment->post_mime_type === 'image/gif' ? true : false;
@@ -324,8 +325,7 @@ function kapital_pagination($args = array())
         for ($n = 1; $n <= $total; $n++) :
             if ($n == $current) :
                 $page_links[] = sprintf(
-                    '<div aria-current="%s" class="page-numbers current bg-primary rounded-pill d-inline-block mx-1">%s</div>',
-                    esc_attr(__('Aktuálna strana', 'kapital')),
+                    '<div aria-current="page" class="page-numbers current bg-primary rounded-pill d-inline-block mx-1">%s</div>',
                     number_format_i18n($n)
                 );
 
@@ -385,7 +385,7 @@ function kapital_pagination($args = array())
 
         // Make sure the nav element has an aria-label attribute: fallback to the screen reader text.
         //py-1 just to not cut the focus outline, dunno wtf
-        $html = '<nav class="pagination py-1 d-flex mt-6 ff-sans justify-content-center" aria_label="' . __('Stránkovanie archívu', 'kapital') . '">';
+        $html = '<nav class="pagination py-1 d-flex mt-6 ff-sans justify-content-center" aria-label="' . __('Stránkovanie archívu', 'kapital') . '">';
         $html .= implode("\n", $page_links);
         $html .= '</nav>';
         return $html;
@@ -485,13 +485,18 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
     else:
         $filters = array();
     endif;
+    return kapital_render_filters($filters, $sticky, $is_page);
+}
+
+function kapital_render_filters(array $filters, $sticky = true, $filters_as_associative_array = true, $custom_button_text = '')
+{
     $html = "";
     if ($filters && !empty($filters)):
         ob_start();
         if ($sticky): ?>
             <div class="btn-filter-toggle-wrapper position-sticky alignwider" style="display: none;">
                 <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="'<?= __('Zobraziť filtre', 'kapital') ?>'">
-                    <?= __('Filter', 'kapital') ?>
+                    <?= $custom_button_text === '' ? __('Filter', 'kapital') : $custom_button_text ?>
                     <svg class="ms-2 icon-square">
                         <use xlink:href="#icon-filter"></use>
                     </svg>
@@ -505,7 +510,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
                             <use xlink:href="#icon-close"></use>
                         </svg></button>
                     <?php foreach ($filters as $filter):
-                        if ($is_page) {
+                        if ($filters_as_associative_array) {
                             $name = $filter["name"];
                             $link = $filter["url"];
                         } else {
@@ -645,6 +650,8 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_footer_newsletter' => $show_false ? false : true,
         'show_share_button' => $show_false ? false : true, //only used for post, podcast
         'show_filters' => false, //only used for page
+        'show_event_location' => false, //only used for event
+
     );
     if ($post_type === 'podcast') {
         $default_render_settings["show_featured_image"] = false;
@@ -658,7 +665,12 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $default_render_settings["show_categories"] = false;
         $default_render_settings["show_author"] = false;
         $default_render_settings["show_share_button"] = false;
-        
+    }
+    if ($post_type === 'event') {
+        $default_render_settings["show_featured_image"] = false;
+        $default_render_settings["show_author"] = false;
+        $default_render_settings["show_event_location"] = true;
+        $default_render_settings["show_ads"] = false;
     }
 
     if (is_array($render_settings)) {
@@ -715,22 +727,22 @@ class Nested_Menu_List extends Walker_Nav_Menu
         $attributes .= !empty($item->url)        ? ' href="' . esc_attr($item->url) . '"' : '';
 
         // Output the link
-        if (isset($args->before)){
+        if (isset($args->before)) {
             $item_output = $args->before;
         } else {
             $item_output = "";
         }
 
         $item_output .= '<a' . $attributes . '>';
-        if (isset($args->link_before)){
+        if (isset($args->link_before)) {
             $item_output .= $args->link_before;
         }
         $item_output .= apply_filters('the_title', $item->title, $item->ID);
-        if (isset($args->link_after)){
+        if (isset($args->link_after)) {
             $item_output .= $args->link_after;
         }
         $item_output .= '</a>';
-        if (isset($args->after)){
+        if (isset($args->after)) {
             $item_output .= $args->after;
         }
 
@@ -744,8 +756,245 @@ class Nested_Menu_List extends Walker_Nav_Menu
     }
 }
 
-function auto_nbsp($text){
-	$text = preg_replace('/\h(\S{1,2})\h(\S)/', ' $1&nbsp;$2', $text); //replace proposition whitespace
+function auto_nbsp($text)
+{
+    $text = preg_replace('/\h(\S{1,2})\h(\S)/', ' $1&nbsp;$2', $text); //replace proposition whitespace
     $text = preg_replace('/(\h)(\S{1,2})\h*$/', '&nbsp;$2', $text); //replace 1-2 character strings at the end
-	return $text;
+    return $text;
 };
+/**
+ * @param string|int|WP_Post $post wordpress post object or gmt timestamp
+ * @param string $additional_classes 
+ * @param string $custom_date_string override automatic generation of human readable date string
+ * @param $format date() compatible format for datetime attribute, default 'Y-m-d\TH:iP'
+ * @param string|bool|null $aria_label optional aria label, default "Dátum publikovania", false or empty string to remove
+ * @return string html time element
+ * 
+ */
+function get_publish_datetime_element($post, string $additional_classes = '', $custom_date_string = '', $aria_label = null, $format = 'Y-m-d\TH:iP')
+{
+    $is_post = $post instanceof WP_Post;
+    if (!$aria_label) $aria_label = __("Dátum publikovania", "kapital");
+    $html = '<time';
+    $html .= $aria_label === '' || false ? '' : ' aria-label="' . $aria_label . '"';
+    $html .= ' datetime="';
+    if ($is_post) {
+        $html .= get_the_date($format, $post);
+    } else {
+        $html .= wp_date($format, $post, kapital_get_timezone());
+    }
+    $html .= '"';
+    $html .= $additional_classes !== '' ? ' class="' . $additional_classes . '"' : '';
+    $html .= '>';
+    if ($custom_date_string !== '') {
+        $html .= $custom_date_string;
+    } else {
+        if ($is_post) {
+            $html .= get_the_date(get_option('date_format'), $post);
+        } else {
+            $html .= wp_date(get_option('date_format'), $post);
+        }
+    }
+    $html .= '</time>';
+    return $html;
+}
+
+function get_publish_datetime_element_event($event_date_start, $event_date_format, $event_date_string, $date_element_classes = '')
+{
+    switch ($event_date_format):
+        case 'day':
+            echo get_publish_datetime_element($event_date_start, $date_element_classes, $event_date_string, __("Dátum konania", "kapital"), 'Y-m-d');
+            break;
+        case 'month':
+        case 'season':
+            echo get_publish_datetime_element($event_date_start, $date_element_classes, $event_date_string, __("Dátum konania", "kapital"), 'Y-m');
+            break;
+        case 'year':
+            echo get_publish_datetime_element($event_date_start, $date_element_classes, $event_date_string, __("Dátum konania", "kapital"), 'Y');
+            break;
+        default:
+            echo get_publish_datetime_element($event_date_start, $date_element_classes, $event_date_string, __("Dátum konania", "kapital"));
+    endswitch;
+}
+
+
+function kapital_get_event_location_string($meta_value, $include_links = true)
+{
+    $location_string = "";
+    if ($meta_value && $meta_value !==""){
+        $event_locations = json_decode($meta_value);
+        //filter without location name
+        if ($event_locations) {
+            $event_locations = array_filter($event_locations, function ($location) {
+                return $location->name !== "";
+            });
+        }
+        foreach ($event_locations as $key => $location) {
+            if ($key > 0) {
+            $location_string .= ',<br>';
+            }
+            $location_string .= sprintf(
+                '%s%s%s',
+                $location->url === "" || !!$include_links ? '' : '<a href="' . $location->url . '" target="_blank" class="text-decoration-none">',
+                $location->name,
+                $location->url === "" || !$include_links ? '' : '</a>'
+            );
+        }
+    }
+  
+    return $location_string;
+
+}
+
+/**
+ * just simple runtime cache of current_time
+ * @return int current UTC timestamp
+ */
+function kapital_current_utc_timestamp()
+{
+    static $kptl_current_utc_time;
+    if (isset($kptl_current_utc_time) && !is_null($kptl_current_utc_time)) {
+        return $kptl_current_utc_time;
+    }
+    $kptl_current_utc_time = current_time('timestamp', true); // 'true' ensures UTC time
+    return $kptl_current_utc_time;
+}
+/**
+ * just simple runtime cache of current timezone
+ * @return DateTimeZone current timezone
+ */
+function kapital_get_timezone()
+{
+    static $kptl_current_timezone;
+    if (isset($kptl_current_timezone) && !is_null($kptl_current_timezone)) {
+        return $kptl_current_timezone;
+    }
+    $timezone_string = get_option('timezone_string');
+    $kptl_current_timezone = new DateTimeZone($timezone_string ? $timezone_string : 'UTC');
+    return $kptl_current_timezone;
+}
+
+function kapital_event_get_remaining($event_date_start, $event_date_end, $timezone, $format, $remaining = null)
+{
+    if ($event_date_end <= kapital_current_utc_timestamp()) {
+        return __('Archív', 'kapital');
+    }
+    //if format does not display specific date return "comin soon"
+    if (!in_array($format, array('day', 'full', 'full-start'))){
+        return __('Pripravujeme', 'kapital');
+    }
+    $one_year = 31556926; //year in seconds
+    if (is_null($remaining)) {
+        $remaining = $event_date_start - kapital_current_utc_timestamp();
+    }
+    if ($remaining > $one_year) {
+        $next_year = new DateTime('first day of January midnight next year', $timezone); // January 1st at midnight in the current timezone
+        $next_year = $next_year->getTimestamp(); // Convert to UTC timestamp
+        $remaining_year_string = "";
+        if ($event_date_start < $next_year + $one_year) {
+            $remaining_year_string = __('Budúci rok' . 'kapital');
+        } else {
+            $year_number = (int)round($remaining / $one_year);
+            if ($year_number < 5) {
+                $remaining_year_string = sprintf('O&nbsp;%&nbsp;roky', $year_number);
+            } else {
+                $remaining_year_string = sprintf('O&nbsp;%&nbsp;rokov', $year_number);
+            }
+        }
+        return $remaining_year_string;
+    }
+    return kapital_event_get_remaining_month($event_date_start, $timezone, $format, $remaining = null);
+}
+
+function kapital_event_get_remaining_month($event_date_start, $timezone, $format, $remaining = null)
+{
+    $one_month = 2629743; //30.44 days in seconds
+    //approximation is enough here
+
+    if (is_null($remaining)) {
+        $remaining = $event_date_start -  kapital_current_utc_timestamp();
+    }
+    if ($remaining > $one_month) {
+        $next_month = new DateTime('first day of next month midnight', $timezone); // January 1st at midnight in the current timezone
+        $next_month = $next_month->getTimestamp(); // Convert to UTC timestamp
+        $remaining_month_string = "";
+        if ($event_date_start < $next_month + $one_month) {
+            $remaining_month_string = __('Budúci mesiac', 'kapital');
+        } else {
+            $month_number = (int)round($remaining / $one_month);
+            if ($month_number < 5) {
+                $remaining_month_string = sprintf(__('o&nbsp;%d&nbsp;mesiace', 'kapital'), $month_number);
+            } else {
+                $remaining_month_string = sprintf(__('o&nbsp;%d&nbsp;mesiacov', 'kapital'), $month_number);
+            }
+        }
+        return $remaining_month_string;
+    }
+    return kapital_event_get_remaining_day($event_date_start, $timezone, $format, $remaining = null);
+}
+/**
+ * 
+ */
+function kapital_event_get_remaining_day($event_date_start, $timezone, $format, $remaining = null)
+{
+    if (is_null($remaining)) {
+        $remaining = $event_date_start -  kapital_current_utc_timestamp();
+    }
+    static $day_strings;
+    if (!isset($day_strings) || is_null($day_strings)) {
+        $day_strings = array_map(
+            function ($number) {
+                if ($number > 4) {
+                    return sprintf(__('O&nbsp;%s&nbsp;dní', 'kapital'), (string)$number);
+                } else {
+                    return sprintf(__('O&nbsp;%s&nbsp;dni', 'kapital'), (string)$number);
+                }
+            },
+            range(3, 31)
+        );
+        array_unshift($day_strings, __('Dnes', 'kapital'), __('Zajtra', 'kapital'), __('Pozajtra', 'kapital'));
+    }
+
+    $current_midnight = new DateTime('today midnight', $timezone);
+    $current_midnight = $current_midnight->getTimestamp();
+    $oneday = 86400;
+    if ($event_date_start - $current_midnight < 0) {
+        $day_string_key = intdiv(($event_date_start - $current_midnight), $oneday);
+        return $day_strings[$day_string_key];
+    } else {
+        //if format not for specific hour return "today"
+        if (in_array($format, array('full', 'full-start'))){
+            return kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null);
+        } else {
+            return $day_strings[0];
+        }
+    }
+
+}
+
+function kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null){
+    if (is_null($remaining)) {
+        $remaining = $event_date_start -  kapital_current_utc_timestamp();
+    }
+    if ($remaining < 0){
+        return __('Práve prebieha', 'kapital');
+    }
+    $one_hour = 3600;
+    static $hour_strings;
+    if (!isset($hour_strings) || is_null($hour_strings)) {
+        $hour_strings = array_map(
+            function ($number) {
+                if ($number > 4) {
+                    return sprintf(__('O&nbsp;%s&nbsp;hodín', 'kapital'), (string)$number);
+                } else {
+                    return sprintf(__('O&nbsp;%s&nbsp;hodiny', 'kapital'), (string)$number);
+                }
+            },
+            range(2, 24)
+        );
+        array_unshift($hour_strings, __('O&nbsp;chvíľu začína', 'kapital'), __('O&nbsp;hodinu', 'kapital'));
+    }
+    $hour_string_key =  round($remaining / $one_hour);
+    return $hour_strings[$hour_string_key];
+
+}

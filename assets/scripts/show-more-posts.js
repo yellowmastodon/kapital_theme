@@ -1,6 +1,7 @@
 export default function showMorePosts(){
     const MEDIA_BREAKPOINT_XL = 1400;
-    const showMoreButtons = document.querySelectorAll('.show-more-posts');
+    const showMoreButtons = document.querySelectorAll('.show-more-posts-btn');
+    console.log(showMoreButtons);
 
     for (let i = 0; i < showMoreButtons.length; i++){
         showMoreButtons[i].addEventListener("click", unhidePosts);
@@ -33,12 +34,12 @@ export default function showMorePosts(){
             }, 10);
 
 
-            let showAllText = target.getAttribute("show-all-text");
+            let showAllText = target.getAttribute("data-show-all-text");
             target.removeEventListener("click", unhidePosts);
             let replacement = document.createElement('a');
             replacement.setAttribute("href", target.getAttribute("data-href"));
             replacement.setAttribute("class", target.getAttribute("class"));
-            replacement.innerHTML = target.getAttribute("show-all-text") + '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-right"></use></svg>';
+            replacement.innerHTML = target.getAttribute("data-show-all-text") + '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-right"></use></svg>';
             target.parentNode.replaceChild(replacement, target);
     }
 }

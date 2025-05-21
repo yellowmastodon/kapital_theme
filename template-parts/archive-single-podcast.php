@@ -57,9 +57,11 @@ $article_classes .= $additional_class;
 
 <article <?php if($tab_index) echo 'tabindex="-1"'; post_class([$article_classes], $post);?> >
         <div class="archive-podcast-top row justify-content-between justify-content-sm-start ff-sans fs-small text-gray">
-            <?php  if ($render_settings["show_date"]):
-                ?><div class="col-auto post-date"><?php echo get_the_date(); ?></div>
-            <?php endif;/* 
+            <?php  if ($render_settings["show_date"]){
+                echo get_publish_datetime_element($post, 'col-auto post-date');
+            }
+                
+            /* 
             if ($render_settings["show_views"]): ?>
                 <div class="col-auto post-views opacity-0" data-id="<?php echo $post->ID?>">
                     <svg>

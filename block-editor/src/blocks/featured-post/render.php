@@ -75,9 +75,10 @@ else:
 					</svg>
 				</div>
 			<?php endif;
-			if ($render_settings["show_date"]):
-			?><div class="col-auto post-date"><?php echo $post_date; ?></div>
-			<?php endif;
+			if ($render_settings["show_date"]){
+				echo get_publish_datetime_element($post, 'col-auto post-date');
+
+			}
 			/**
 			if ($render_settings["show_views"]): ?>
 				<div class="col-auto post-views opacity-0" data-id="<?php echo $post_id ?>">

@@ -43,7 +43,7 @@ function podcast_post_type() {
 		'label'                 => __( 'Podcast', 'kapital' ),
 		'description'           => __( 'Podcasty kapitálu', 'kapital' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'excerpt' ),
 		'taxonomies'            => array( 'podcast-seria', 'partner' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -241,7 +241,7 @@ function recommendation_post_type() {
 }
 
 
-// Register Custom Post Type
+// Register event post Type
 function event_post_type() {
 
 	$labels = array(
@@ -283,13 +283,13 @@ function event_post_type() {
 		'label'                 => __( 'Podujatie', 'kapital' ),
 		'description'           => __( 'Podujatia', 'kapital' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail' ),
+		'supports'              => array('title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'excerpt' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
 		'menu_position'         => 10,
-		'menu_icon'             => 'dashicons-align-left',
+		'menu_icon'             => 'dashicons-calendar',
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => false,
 		'can_export'            => true,
@@ -315,8 +315,7 @@ function kapital_register_custom_post_types(){
     redakcia_post_type();
 	inzercia_post_type();
 	recommendation_post_type();
-	//event_post_type();
+	event_post_type();
 }
 
 add_action( 'init', 'kapital_register_custom_post_types', 1 ); 
-

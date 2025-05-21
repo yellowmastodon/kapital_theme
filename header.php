@@ -104,13 +104,13 @@ if (isset($darujme_options["campaign_active"])) {
             <div class="row gx-4 align-items-center justify-content-between">
                 <div class="col-2 col-lg-1 col-xl-1 text-start">
                     <button class="btn-menu fw-bold main-menu-toggler w-max-content" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu-wrapper" aria-controls="main-menu">
-                        <div class="hamburger me-2 d-inline-block">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                </div><span class="text">Menu</span>
+                        <span class="hamburger me-2 d-inline-block">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                </span><span class="text">Menu</span>
                     </button>
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="main-menu-wrapper" aria-role="menu" aria-label="Hlavné menu">
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="main-menu-wrapper">
                         <div class="offcanvas-body d-flex flex-column justify-content-between p-6 p-sm-5" tabindex="-1">
                             <button type="button" class="mb-3 mb-sm-0 btn btn-close" aria-label="<?= __('Zatvoriť', 'kapital') ?>" data-bs-dismiss="offcanvas"><svg>
                                     <use xlink:href="#icon-close"></use>
@@ -123,7 +123,8 @@ if (isset($darujme_options["campaign_active"])) {
                                         'menu_id' => 'main-menu',
                                         'menu_class' => 'list-unstyled text-uppercase text-dark mb-0',
                                         'depth' => 2,
-                                        'walker' => new Nested_Menu_List()
+                                        'walker' => new Nested_Menu_List(),
+                                        'aria_label' => __('Hlavné menu', 'kapital')
                                     ) 
                                 ) ?>
                             </div>

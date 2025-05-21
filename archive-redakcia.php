@@ -42,7 +42,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 <main class="main container" role="main" id="main">
 
     <?php /** archive title  */  ?>
-    <header class="archive-header alignwide mb-6" role="heading">
+    <header class="archive-header alignwide mb-6">
         <?php echo kapital_bubble_title($archive_title, 1);?>
     </header>
 

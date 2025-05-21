@@ -10,7 +10,7 @@ $attributes;
 
 //no wrapper for editor
 $wrapper_classes = "";
-if (isset($attributes["backgroundColor"])){
+if (isset($attributes["backgroundColor"])) {
 	$wrapper_classes = ' bg-' . $attributes["backgroundColor"] . ' py-5'; //add also padding when background color is set
 }
 if (!$attributes["isEditor"]) echo '<section class="post-query alignfull px-3' . $wrapper_classes . '">';
@@ -41,6 +41,20 @@ if ($attributes["isEditor"]) {
 	$exclude_post = (int) get_post_meta($post->ID, "_kapital_featured_post", true);
 }
 
+// if newest post selected in featured post blog, it has value zero
+// TO DO - save post type to meta correctly, so that we exlcude correct 
+if ($exclude_post === 0 && $attributes["queryPostType"] === 'post') {
+	$latest_post = get_posts(array(
+		'post_type'      => 'post',
+		'posts_per_page' => 1,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'fields'         => 'ids',
+	));
+	$exclude_post = !empty($latest_post) ? $latest_post[0] : null;
+}
+
+
 /**
  * SETUP QUERY
  */
@@ -64,7 +78,7 @@ if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
 			$queried_term = get_term_by('slug', $term_slug, $attributes["taxonomy"], OBJECT);
 			if (!$queried_term) {
 				//render notice in editor
-				if ($attributes["isEditor"]){
+				if ($attributes["isEditor"]) {
 					echo '<p class="text-center">"' . $attributes["taxonomy"] . '" ' .  __('so slugom:', 'kapital') . ' ' . ' "' . $term_slug . '" ' . __("nenájdené", "kapital") . '</p>';
 				}
 			} else {
@@ -85,7 +99,7 @@ if ($attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "") {
  * EXCLUDE QUERY
  * includes two methods
  * easier method for front end without getting terms and notice
-*/
+ */
 if ($attributes["isEditor"]) {
 	if ($attributes["taxonomyExclude"] !== "none" && $attributes["termQueryExclude"] !== "") {
 		//exclude: get slugs from string
@@ -151,17 +165,29 @@ $args = array(
 	'order'   => 'DESC',
 	'post__not_in' => array($exclude_post)
 );
-// if newest post selected in featured post blog, it has value zero
-if ($exclude_post === 0){
-	unset($args['post__not_in']);
-	$args['offset'] = 1;
+
+/** SETUP META QUERY FOR EVENT */
+if ($attributes["queryPostType"] === 'event') {
+	$args['meta_key'] = '_event_date_start';
+	$args['orderby'] = 'meta_value_num';
+	$args['order'] = 'ASC';
+	$args['posts_per_page'] = -1;
+	$args['meta_query'] = array(
+								array(
+									'key'     => '_event_date_end',
+									'value'   => kapital_current_utc_timestamp(),
+									'compare' => '>=', // Include only posts where _event_date_end is greater than or equal to the current time
+									'type'    => 'NUMERIC',
+								),
+							);
 }
+
 
 //if "show-more button" -> render more posts so "show more" has something to show and we do not need ajax
 $is_term_archive = $attributes["taxonomy"] !== "none" && $attributes["termQuery"] !== "" && !empty($queried_terms);
 
 if ($attributes["queryPostType"] === 'post') {
-	if (!$is_term_archive){
+	if (!$is_term_archive) {
 		$args['posts_per_page'] = $attributes["showMoreButton"] ? 16 : 8;
 	} else {
 		$args['posts_per_page'] = $attributes["showMoreButton"] ? 8 : 4;
@@ -189,16 +215,16 @@ if ($attributes["queryPostType"] === "post") {
 	$link = get_post_type_archive_link('podcast');
 	$link_texts = [__("Ďalšie podcasty", "kapital"), __("Všetky podcasty", "kapital")];
 } elseif ($attributes["queryPostType"] === "event") {
-	$auto_heading = __("Najbližšie eventy", "kapital");
+	$auto_heading = __("Nadchádzajúce podujatia", "kapital");
 	$link = get_post_type_archive_link('event');
-	$link_texts = [__("Ďalšie podujatia", "kapital"), __("Všetky podujatia", "kapital")];
+	$link_texts = [__("Všetky podujatia", "kapital"), __("Všetky podujatia", "kapital")];
 }
 
 /**
  * setup auto heading and links for term query
  * override above settings only if terms exist
  * */
-if ($is_term_archive){
+if ($is_term_archive) {
 	foreach ($queried_terms as $key => $queried_term) {
 		if ($key !== 0) {
 			$auto_heading .= ", ";
@@ -213,15 +239,25 @@ if ($is_term_archive){
 
 //create show more button
 $link_button = "";
-if ($attributes["showMoreButton"]){
-	$link_button = '<div class="text-center"><button show-all-text="' . $link_texts[1] . '" data-href="' . $link . '" class="show-more-posts btn btn-secondary">' . $link_texts[0] . '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-down"></use></svg></button></div>';
+if ($attributes["showMoreButton"]) {
+	$show_more_button_classes = 'btn btn-secondary';
+
+	//this class adds js functionality to show more posts
+	if ($attributes["queryPostType"] !== 'event'){
+		$show_more_button_classes .= ' show-more-posts-btn';
+		$show_more_button_svg = '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-down"></use></svg>';
+		$link_button = '<div class="text-center"><button data-show-all-text="' . $link_texts[1] . '" data-href="' . $link . '" class="' . $show_more_button_classes . '">' . $link_texts[0] . $show_more_button_svg . '</button></div>';
+	} else {
+		$show_more_button_svg = '<svg class="icon-square ms-2"><use xlink:href="#icon-arrow-right"></use></svg>';
+		$link_button = '<div class="text-center"><a href="' . $link . '" class="' . $show_more_button_classes . '">' . $link_texts[0] . $show_more_button_svg . '</button></div>';
+	}
 }
 //setup term description
 $term_description = "";
-if ($is_term_archive && $attributes["showDescription"]){
-	if ($queried_terms[0]->description !== ""){
+if ($is_term_archive && $attributes["showDescription"]) {
+	if ($queried_terms[0]->description !== "") {
 		$term_description = '<div class="term-description alignwide mb-4 mt-0 h4 text-center ff-grotesk fw-bold lh-sm">';
-		foreach ($queried_terms as $queried_term){
+		foreach ($queried_terms as $queried_term) {
 			$term_description .= wpautop($queried_term->description, true);
 		}
 		$term_description .= '</div>';
@@ -229,7 +265,7 @@ if ($is_term_archive && $attributes["showDescription"]){
 }
 
 $heading_margin_b = 'mb-5';
-if ($attributes["queryPostType"] === "post"){
+if ($attributes["queryPostType"] === "post") {
 	$heading_margin_b = $term_description === "" ? 'mb-4' : 'mb-3';
 }
 if ($attributes["isEditor"]) {
@@ -251,32 +287,33 @@ echo $term_description;
 $queried_posts = new WP_Query($args);
 if ($attributes["queryPostType"] === 'post'):
 	$count = 0;
-if ($queried_posts->have_posts()):
+	if ($queried_posts->have_posts()):
 		//justify post center when too few posts
 		if ($queried_posts->post_count < 4) {
 			$justify_class = " justify-content-center";
 		} else {
 			$justify_class = " justify-content-start";
 		}
-		if (empty($queried_terms) || $attributes["taxonomy"] === "none"){
+		if (empty($queried_terms) || $attributes["taxonomy"] === "none") {
 			$show_count = array("small" => 6, 'xl' => 8);
 		} else {
 			$show_count = array("small" => 3, "xl" => 4);
 		};
-		
+
 		/** filters
 		 * only renders filters for first term, maybe fix in the future?
 		 */
-		if ($attributes["showFilters"]){
-			if ($is_term_archive){
+		if ($attributes["showFilters"]) {
+			if ($is_term_archive) {
 				echo kapital_post_filters(!$is_term_archive, $is_term_archive, false, $queried_terms[0]->term_id, $queried_terms[0]->taxonomy);
 			} else {
-				echo kapital_post_filters(!$is_term_archive, $is_term_archive, false); 
+				echo kapital_post_filters(!$is_term_archive, $is_term_archive, false);
 			}
 		}
-		?>
+?>
 		<div class="alignwider">
-			<div class="row pb-4 gx-3 gy-6 show-more-posts-wrapper<?php echo $justify_class; if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
+			<div class="row pb-4 gx-3 gy-6 show-more-posts-wrapper<?php echo $justify_class;
+																	if ($attributes["showMoreButton"]) echo " show-more-hide"; ?>">
 				<?php while ($queried_posts->have_posts()):
 					$queried_posts->the_post();
 					$count++;
@@ -290,7 +327,7 @@ if ($queried_posts->have_posts()):
 				endwhile; ?>
 			</div>
 		</div>
-		<?php if ($attributes["showMoreButton"]) echo $link_button;?>
+		<?php if ($attributes["showMoreButton"]) echo $link_button; ?>
 	<?php endif;
 elseif ($attributes["queryPostType"] === 'podcast'):
 	$count = 0;
@@ -307,8 +344,21 @@ elseif ($attributes["queryPostType"] === 'podcast'):
 				get_template_part('template-parts/archive-single-podcast', null, array('additional_class' => $additional_class, 'tabindex' => $tab_index, "heading_level" => $attributes["headingLevel"] + 1));
 			endwhile; ?>
 		</div>
-		<?php if ($attributes["showMoreButton"]) echo $link_button;?>
-<?php endif;
+<?php if ($attributes["showMoreButton"]) echo $link_button;
+	endif;
+elseif ($attributes["queryPostType"] === 'event'):
+	if ($queried_posts->have_posts()):
+		$justify_class = $queried_posts->post_count < 3 ? " justify-content-center" : " justify-content-start";
+		echo '<ul role="list" class="list-unstyled show-more-posts-wrapper alignwider row mb-5 gy-5 gx-3 ' . $justify_class . '">';
+		while ($queried_posts->have_posts()):
+			$queried_posts->the_post();
+			get_template_part('template-parts/archive-single-event', null, array("heading_level" => $attributes["headingLevel"] + 1));
+		endwhile;
+		echo '</ul>';
+	else: 
+		echo '<p class="my-6 ff-grotesk  fw-bold text-center lh-sm">' . __('Nenašli sa žiadne pripravované podujatia.', 'kapital') . '</p>';
+	endif;
+	if ($attributes["showMoreButton"]) echo $link_button;
 
 endif;
 wp_reset_postdata();

@@ -35,7 +35,7 @@ export default function Edit({
 	const queryPostType = attributes.queryPostType;
 	const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
 	//pass exclusion from featured post
-
+	console.log(attributes);
 
 	const taxonomies = useSelect((select) => {
 		const { getTaxonomies } = select(coreStore);
@@ -58,9 +58,11 @@ export default function Edit({
 							onChange={(newValue) => {
 								setAttributes({ queryPostType: newValue });
 								setAttributes({ taxonomy: "none" });
-								setAttributes({ termQuery: "" })
+								setAttributes({ termQuery: "" });
+								setAttributes({ taxonomyExclude: "none" });
+								setAttributes({ termQueryExclude: "" });							
 							}}
-							value = { attributes.queryPostType}
+							value={attributes.queryPostType}
 							options={[
 								{
 									label: __("Články", "kapital"),
@@ -76,17 +78,20 @@ export default function Edit({
 								}
 							]}
 						/>
-						<SelectControl
-							__nextHasNoMarginBottom
-							multiple={false}
-							value={attributes.taxonomy}
-							label={__("Typ filtra", "kapital")}
-							onChange={newValue => {
-								setAttributes({ taxonomy: newValue });
-								setAttributes({ termQuery: "" })
-							}}
-							options={[...taxonomyOptions, { label: __("Žiaden", "kapital"), value: "none" }]}
-						/>
+						{attributes.queryPostType !== 'event' &&
+							<SelectControl
+								__nextHasNoMarginBottom
+								multiple={false}
+								value={attributes.taxonomy}
+								label={__("Typ filtra", "kapital")}
+								onChange={newValue => {
+									setAttributes({ taxonomy: newValue });
+									setAttributes({ termQuery: "" })
+								}}
+								options={[...taxonomyOptions, { label: __("Žiaden", "kapital"), value: "none" }]}
+							/>
+						}
+
 						{attributes.taxonomy !== "none" &&
 							<TextControl
 								__nextHasNoMarginBottom
@@ -97,37 +102,41 @@ export default function Edit({
 							/>
 						}
 					</PanelBody>
-					<PanelBody 
-						title={__('Vylučovací filter', 'kapital')}
-					>	
-						<SelectControl
-							__nextHasNoMarginBottom
-							multiple={false}
-							value={attributes.taxonomyExclude}
-							label={__("Typ filtra", "kapital")}
-							onChange={newValue => {
-								setAttributes({ taxonomyExclude: newValue });
-								setAttributes({ termQueryExclude: "" })
-							}}
-							options={[...taxonomyOptions, { label: __("Žiaden", "kapital"), value: "none" }]}
-						/>
-						{attributes.taxonomyExclude !== "none" &&
-						<TextControl
-							__nextHasNoMarginBottom
-							label={__('Slug kategórie z taxonómie:', 'kapital') + ' "' + attributes.taxonomyExclude + '"'}
-							value={attributes.termQueryExclude}
-							onChange={(newValue) => { setAttributes({ termQueryExclude: newValue }) }}
-							help={__('Viacero hodnôt oddeľte čiarkou', 'kapital')}
-						/>}
+					{attributes.queryPostType !== 'event' &&
+
+						<PanelBody
+							title={__('Vylučovací filter', 'kapital')}
+						>
+							<SelectControl
+								__nextHasNoMarginBottom
+								multiple={false}
+								value={attributes.taxonomyExclude}
+								label={__("Typ filtra", "kapital")}
+								onChange={newValue => {
+									setAttributes({ taxonomyExclude: newValue });
+									setAttributes({ termQueryExclude: "" })
+								}}
+								options={[...taxonomyOptions, { label: __("Žiaden", "kapital"), value: "none" }]}
+							/>
+							{attributes.taxonomyExclude !== "none" &&
+								<TextControl
+									__nextHasNoMarginBottom
+									label={__('Slug kategórie z taxonómie:', 'kapital') + ' "' + attributes.taxonomyExclude + '"'}
+									value={attributes.termQueryExclude}
+									onChange={(newValue) => { setAttributes({ termQueryExclude: newValue }) }}
+									help={__('Viacero hodnôt oddeľte čiarkou', 'kapital')}
+								/>}
 						</PanelBody>
-						<PanelBody 
-							title={__('Nastavenia zobrazenia', 'kapital')}
-						>	
+					}
+					<PanelBody
+						title={__('Nastavenia zobrazenia', 'kapital')}
+					>
 						<ToggleControl
 							label={__('Tlačidlo "Zobraziť viac', 'kapital')}
 							checked={attributes.showMoreButton}
-							onChange={(newValue) => { setAttributes({ showMoreButton: newValue })
-						}}
+							onChange={(newValue) => {
+								setAttributes({ showMoreButton: newValue })
+							}}
 						/>
 						{attributes.queryPostType === "post" &&
 							<ToggleControl
@@ -136,7 +145,7 @@ export default function Edit({
 								help={__('Zobrazí linky na vybrané kategórie, alebo na dcérske kategórie aktuálnej materskej kategórie', 'kapital')}
 								onChange={(newValue) => { setAttributes({ showFilters: newValue }) }}
 							/>
-						
+
 						}
 						{(attributes.queryPostType === "post" && attributes.taxonomy !== "none") &&
 							<ToggleControl
@@ -145,17 +154,17 @@ export default function Edit({
 								help={__('Zobrazí linky na vybrané kategórie, alebo na dcérske kategórie aktuálnej materskej kategórie', 'kapital')}
 								onChange={(newValue) => { setAttributes({ showDescription: newValue }) }}
 							/>
-						
+
 						}
 						<SelectControl
 							label={__('Nadpis', 'kapital')}
 							checked={attributes.showHeading}
 							onChange={(newValue) => { setAttributes({ showHeading: newValue }) }}
-							value = {attributes.showHeading}
+							value={attributes.showHeading}
 							options={[
-								{ label: __("Automaticky", "kapital"), value: "auto"},
-								{ label: __("Manuálne", "kapital"), value: "manual"},
-								{ label: __("Skryť", "kapital"), value: "hide"},
+								{ label: __("Automaticky", "kapital"), value: "auto" },
+								{ label: __("Manuálne", "kapital"), value: "manual" },
+								{ label: __("Skryť", "kapital"), value: "hide" },
 							]}
 						/>
 						<SelectControl
@@ -163,14 +172,14 @@ export default function Edit({
 							label={__("Úroveň nadpisu", "kapital")}
 							help={__("Základný level je h2 (h1 je názov stránky)", "kapital")}
 							onChange={newValue => { setAttributes({ headingLevel: newValue }) }}
-							value = {attributes.headingLevel}
+							value={attributes.headingLevel}
 							options={[
-								{ label: __("h1", "kapital"), value: 1},
-								{ label: __("h2", "kapital"), value: 2},
-								{ label: __("h3", "kapital"), value: 3},
-								{ label: __("h4", "kapital"), value: 4},
-								{ label: __("h5", "kapital"), value: 5},
-								{ label: __("h6", "kapital"), value: 6},
+								{ label: __("h1", "kapital"), value: 1 },
+								{ label: __("h2", "kapital"), value: 2 },
+								{ label: __("h3", "kapital"), value: 3 },
+								{ label: __("h4", "kapital"), value: 4 },
+								{ label: __("h5", "kapital"), value: 5 },
+								{ label: __("h6", "kapital"), value: 6 },
 							]}
 						/>
 					</PanelBody>
@@ -196,7 +205,7 @@ export default function Edit({
 			<ServerSideRender
 				skipBlockSupportAttributes="true"
 				block="kapital/post-query"
-				attributes={{ ...attributes, isEditor: true, excludePost: meta._kapital_featured_post}}
+				attributes={{ ...attributes, isEditor: true, excludePost: meta._kapital_featured_post }}
 			/>
 		</section>
 	);

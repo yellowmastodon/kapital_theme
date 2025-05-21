@@ -25,10 +25,12 @@
   "homepage": "https://github.com/yellowmastodon/kapital_theme.git#readme",
   "devDependencies": {
     "@babel/core": "^7.26.0",
+    "@wordpress/date": "^5.22.0",
     "@wordpress/icons": "^10.12.0",
     "@wordpress/scripts": "^30.5.1",
     "bootstrap": "^5.3.3",
     "browser-sync-webpack-plugin": "^2.3.0",
+    "date-fns": "^4.1.0",
     "file-loader": "^6.2.0",
     "laravel-mix": "^6.0.49",
     "laravel-mix-purgecss": "^6.0.0",

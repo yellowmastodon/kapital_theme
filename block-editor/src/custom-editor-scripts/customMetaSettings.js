@@ -21,8 +21,9 @@ export function customMetaSettings() {
 				postTypes = postTypesWithControlledRendering;
 			} else {
 				postTypes = [];
-
 			}
+
+
 			if (postTypes.includes(postType)) {
 
 				const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
@@ -40,8 +41,17 @@ export function customMetaSettings() {
 					show_footer: true,
 					show_filters: false,
 					show_footer_newsletter: true,
-					show_share_button: true
+					show_share_button: true,
+					show_event_location: false,
 				};
+				let postRecommendationLabel;
+				if (postType === 'podcast'){
+					postRecommendationLabel = __('Automaticky vložiť odporúčania ďalších podcastov', 'kapital');
+				} else if (postType === 'event'){
+					postRecommendationLabel = __('Automaticky vložiť odporúčania ďalších eventov', 'kapital');
+				} else {
+					postRecommendationLabel = __('Automaticky vložiť odporúčania ďalších článkov', 'kapital');
+				}
 
 				//hide featured image in podcast by default
 				if (postType === 'podcast') {
@@ -55,6 +65,10 @@ export function customMetaSettings() {
 					default_render_meta.show_date = false;
 					default_render_meta.show_categories = false;
 					default_render_meta.show_share_button = false;
+				}
+				if (postType === 'event'){
+					default_render_meta.show_ads = false;
+					default_render_meta.show_event_location = true;
 				}
 
 				if (typeof meta['_kapital_post_render_settings'] === 'object' && !Array.isArray(meta['_kapital_post_render_settings']) && meta['_kapital_post_render_settings'] !== null) {
@@ -77,6 +91,7 @@ export function customMetaSettings() {
 						show_footer: true,
 						show_footer_newsletter: true,
 						show_share_button: true,
+						show_event_location: false,
 						...custom_render_meta
 					}
 					custom_render_meta[`${prop}`] = value;
@@ -122,7 +137,7 @@ export function customMetaSettings() {
 								onChange={() => updateMetaValue(!custom_render_meta.show_title, 'show_title')}
 
 							/>
-							{(postType !== 'page' && postType !== 'podcast') &&
+							{(postType !== 'page' && postType !== 'podcast' && postType !== 'event') &&
 								<ToggleControl
 									__nextHasNoMarginBottom
 									label={__('Zobrazovať autorstvo', 'kapital')}
@@ -130,7 +145,7 @@ export function customMetaSettings() {
 									onChange={() => updateMetaValue(!custom_render_meta.show_author, 'show_author')}
 								/>
 							}
-							{postType !== 'page' &&
+							{(postType !== 'page' && postType !== 'event') &&
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Zobrazovať kategórie článku', 'kapital')}
@@ -154,7 +169,7 @@ export function customMetaSettings() {
 							/>
 							<ToggleControl
 								__nextHasNoMarginBottom
-								label={__('Zobrazovať dátum publikovania', 'kapital')}
+								label={postType === 'event' ? __('Zobrazovať dátum podujatia', 'kapital') : __('Zobrazovať dátum publikovania', 'kapital')}
 								checked={custom_render_meta.show_date}
 								onChange={() => updateMetaValue(!custom_render_meta.show_date, 'show_date')}
 
@@ -178,7 +193,7 @@ export function customMetaSettings() {
 									/>
 									<ToggleControl
 										__nextHasNoMarginBottom
-										label={__('Automaticky vložiť odporúčania ďalších článkov', 'kapital')}
+										label={ postRecommendationLabel }
 										checked={custom_render_meta.show_footer}
 										onChange={() => updateMetaValue(!custom_render_meta.show_footer, 'show_footer')}
 									/>

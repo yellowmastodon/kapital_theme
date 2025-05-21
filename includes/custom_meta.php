@@ -67,6 +67,10 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
                 'type' => 'boolean',
                 'default' => true
             ],
+            'show_event_location' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
         ],
     );
     //set hide featured image as default for podcasts

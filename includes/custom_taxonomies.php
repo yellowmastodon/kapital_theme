@@ -623,8 +623,10 @@ function create_taxonomy_list_pages_on_theme_activation()
 	}
 }
 
-
 function kapital_add_issue_endpoint(){
-    add_rewrite_endpoint( 'rok', EP_PAGES );
+    add_rewrite_endpoint( 'rok', EP_PAGES);
+	error_log('kapital_add_issue_endpoint executed');
 }
 add_action( 'init', 'kapital_add_issue_endpoint' );
+
+

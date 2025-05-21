@@ -201,9 +201,10 @@ $menu-btn-padding-top: 0.35em;
 }
 
 .hamburger {
+    display: block;
     width: 1rem;
-    vertical-align: baseline;
     .line {
+        display: block;
         height: 2px;
         background-color: $body-color;
         transition: background-color $link-transition-speed linear;
