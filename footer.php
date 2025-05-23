@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 //check if we should render newsletter signup
 global $post_types_with_controlled_rendering;
 global $kptl_theme_options;
-if (!is_404() && in_array($post->post_type, $post_types_with_controlled_rendering) && isset($args["render_settings"]) && isset($args["render_settings"]["show_footer_newsletter"])) {
+if (!is_404() && !is_archive() && in_array($post->post_type, $post_types_with_controlled_rendering) && isset($args["render_settings"]) && isset($args["render_settings"]["show_footer_newsletter"])) {
     $show_footer_newsletter = $args["render_settings"]["show_footer_newsletter"];
 } else {
     $show_footer_newsletter = true;

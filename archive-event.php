@@ -174,8 +174,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
                     endwhile; ?>
                 </ul>
         </<?=$section_tag?>>
-    <?php else:
-    echo '<p class="my-6 ff-grotesk text-center fw-bold lh-sm">' . __('Nenašli sa žiadne podujatia.', 'kapital') . '</p>';
+    <?php 
         endif; ?>
     <?php echo kapital_pagination(); ?>
 </main>

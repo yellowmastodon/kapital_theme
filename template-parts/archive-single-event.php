@@ -50,7 +50,7 @@ if (isset($args['heading_level'])){
         <?php
         $thumbnail_image_id = get_post_thumbnail_id($post->ID);
         if ($thumbnail_image_id) {
-            echo kapital_responsive_image(get_post_thumbnail_id($post->ID), "(max-width: 599px) 95vw, (max-width: 899px) 47vw, (max-width: 1199px) 32vw, (max-width: 1399px) 300px, (max-width: 1649px) 260px, 312px", false, 'rounded w-100 archive-item-image');
+            echo kapital_responsive_image(get_post_thumbnail_id($post->ID), "(max-width: 599px) 95vw, (max-width: 899px) 47vw, (max-width: 1199px) 32vw, (max-width: 1649px) 320px, (max-width: 2099px) 390px, 480px", false, 'rounded w-100 archive-item-image');
         } else {
             echo '<div class="rounded w-100 archive-item-image placeholder bg-secondary-light"></div>';
         } ?>

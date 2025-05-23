@@ -667,7 +667,6 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         $default_render_settings["show_share_button"] = false;
     }
     if ($post_type === 'event') {
-        $default_render_settings["show_featured_image"] = false;
         $default_render_settings["show_author"] = false;
         $default_render_settings["show_event_location"] = true;
         $default_render_settings["show_ads"] = false;
@@ -835,7 +834,7 @@ function kapital_get_event_location_string($meta_value, $include_links = true)
             }
             $location_string .= sprintf(
                 '%s%s%s',
-                $location->url === "" || !!$include_links ? '' : '<a href="' . $location->url . '" target="_blank" class="text-decoration-none">',
+                $location->url === "" || !$include_links ? '' : '<a href="' . $location->url . '" target="_blank" class="text-decoration-none">',
                 $location->name,
                 $location->url === "" || !$include_links ? '' : '</a>'
             );
@@ -959,15 +958,17 @@ function kapital_event_get_remaining_day($event_date_start, $timezone, $format, 
     $current_midnight = $current_midnight->getTimestamp();
     $oneday = 86400;
     if ($event_date_start - $current_midnight < 0) {
-        $day_string_key = intdiv(($event_date_start - $current_midnight), $oneday);
-        return $day_strings[$day_string_key];
-    } else {
+
         //if format not for specific hour return "today"
         if (in_array($format, array('full', 'full-start'))){
             return kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null);
         } else {
             return $day_strings[0];
         }
+       
+    } else {
+        $day_string_key = intdiv(($event_date_start - $current_midnight), $oneday);
+        return $day_strings[$day_string_key];
     }
 
 }

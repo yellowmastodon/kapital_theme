@@ -108,7 +108,8 @@ function new_post_template()
 				'lock' => array(
 					'move'   => true,
 					'remove' => true,
-				)
+				),
+				'useAsExcerpt' => false
 			)
 		),	
 		array(

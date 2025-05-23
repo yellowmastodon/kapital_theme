@@ -26,12 +26,6 @@ function kapital_event_columns( $column, $post_id ) {
            //check if object
            if ($event_date_object && $event_date_object !== ""){
             $date_string = json_decode(get_post_meta( $post_id, '_event_date_string', true));
-            echo get_post_meta($post_id, '_event_date_start', true);
-            echo '<br>';
-            echo 'current ' . current_time( 'timestamp', true );
-            echo '<br>';
-            echo 'end ' . get_post_meta($post_id, '_event_date_end', true); 
-            echo '<br>';
             echo get_publish_datetime_element(get_post_meta($post_id ,'_event_date_start', true), '', $date_string->displayDate, __("Dátum podujatia", "kapital"));
            } else {
             echo __('Nedefinované', 'kapital');
