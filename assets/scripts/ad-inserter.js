@@ -67,30 +67,30 @@ function adInserter(HTMLJson, singlePostOrPodcast = true, registerClicksCallback
         // Select content areas for single post or podcast pages
         const content = document.querySelectorAll("#post-content, #podcast-content");
         const paragraphs = document.querySelectorAll("#post-content > p, #podcast-content > p");
-        
+
         // If there are more than 8 paragraphs, split ad and donation placement
         if (paragraphs.length > 8) {
             const adPosition = Math.floor(paragraphs.length / 3) - 1; // Position for ad (1/3 of content)
-            
+
             // Insert donation form and ad at calculated positions
-            if(donationGloballyEnabled ){
+            if (donationGloballyEnabled) {
                 const donationPosition = Math.floor(paragraphs.length * 2 / 3) - 1; // Position for donation (2/3 of content)
                 paragraphs[donationPosition].insertAdjacentHTML('afterend', donationHTML);
             }
-            if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined"){
+            if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined") {
                 paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
             }
         } else {
             // If there are less than 8 paragraphs, handle insertion differently
             if (paragraphs.length > 3) {
                 const adPosition = Math.floor(paragraphs.length / 2) - 1; // Place ad in the middle
-                if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined"){
+                if (adHTML[0] !== "" && typeof adHTML[0] !== "undefined") {
                     paragraphs[adPosition].insertAdjacentHTML('afterend', adHTML[0]);
                 }
             }
             // Insert donation form at the end of the content
-            if(donationGloballyEnabled ){
-            content[0].insertAdjacentHTML('beforeend', donationHTML);
+            if (donationGloballyEnabled) {
+                content[0].insertAdjacentHTML('beforeend', donationHTML);
             }
         }
 
@@ -98,19 +98,19 @@ function adInserter(HTMLJson, singlePostOrPodcast = true, registerClicksCallback
         if (donationHTML !== "") {
             initializeForm(document.getElementById('darujme-form-wrapper'));
         }
-    } else {
-        // Handle case for other pages where ad placeholders are manually inserted
-        document.querySelectorAll('.wp-block-kapital-ad').forEach(
-            (placeholder, key) => {
-                // If there is an ad HTML to replace the placeholder, do so
-                if (typeof adHTML[key] !== "undefined") {
-                    placeholder.insertAdjacentHTML('afterend', adHTML[key]);
-                }
-                // Remove the placeholder after replacement
-                placeholder.remove();
-            }
-        );
     }
+    // Handle case for other pages where ad placeholders are manually inserted
+    document.querySelectorAll('.wp-block-kapital-ad').forEach(
+        (placeholder, key) => {
+            // If there is an ad HTML to replace the placeholder, do so
+            if (typeof adHTML[key] !== "undefined") {
+                placeholder.insertAdjacentHTML('afterend', adHTML[key]);
+            }
+            // Remove the placeholder after replacement
+            placeholder.remove();
+        }
+    );
+
 
     // Find all ads on the page and register click event listeners for them
     const allAds = document.querySelectorAll('.inzercia');
