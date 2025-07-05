@@ -291,7 +291,7 @@ function event_post_type() {
 		'menu_position'         => 10,
 		'menu_icon'             => 'dashicons-calendar',
 		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => false,
+		'show_in_nav_menus'     => true,
 		'can_export'            => true,
 		'has_archive'           => true,
 		'exclude_from_search'   => false,
