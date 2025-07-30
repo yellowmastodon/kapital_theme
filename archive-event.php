@@ -169,7 +169,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
                             'template-parts/archive-single-event', 
                             null,
                             //no need to calculate if this is old event again
-                            isset($current_year) && $current_year !== "" ? array('is_old_event' => true, 'heading_level' => $heading_level) : array('heading_level' => $heading_level)
+                            isset($current_year) || $current_year !== "" ? array('is_old_event' => true, 'heading_level' => $heading_level) : array('heading_level' => $heading_level)
                         );
                     endwhile; ?>
                 </ul>
