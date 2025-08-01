@@ -5,8 +5,7 @@ $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 //show/hide auto inserted ads controlled by this class
 $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
-if (!$render_settings["show_support"]) $ad_rendering_class .= " show-support";
-
+if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
 
 /** render breadcrumbs */
 echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link('podcast')]], 'container')
@@ -73,20 +72,19 @@ echo kapital_breadcrumbs([[__("Podcasty", "kapital"), get_post_type_archive_link
                                 <div class="<?=$date_element_classes?>"></div>
                             <?php endif;
 
-                         /**
-                         * Render post views
+                        /**
+                         * Render post share
                          * if hidden, let's keep the empty div to not break the layout
                          */
                         ?>
-                        <div class="post-views col-6 col-sm-2 order-3 col-2 ff-sans text-gray text-end fs-small opacity-0" data-id="<?php echo $post->ID ?>"><?php
-                                                                                                                                                                if ($render_settings["show_views"]): ?>
-                                <svg>
-                                    <use xlink:href="#icon-views"></use>
-                                </svg>
-                                <span class="visually-hidden"><?php echo __('Počet zhliadnutí:', 'kapital') ?></span>
-                                <span class="number"></span>
-                            <?php endif; ?>
-                        </div>
+                        <div class="post-share-button-wrapper col-6 col-sm-2 order-3 ff-sans text-end fs-small">
+                            
+                            <?php if ($render_settings["show_share_button"]):
+                            get_template_part('template-parts/share-dropdown');
+                            endif; ?>
+                    
+
+                        </div><?php //end sharebutton?>
                     </div>
                 <?php //end row above featured image
                 endif; 

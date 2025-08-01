@@ -56,7 +56,6 @@ const selectElement = document.getElementById("filter-select");
         event.preventDefault();
         let row = event.target.closest('.filter-row');
         let next_row = event.target.closest('.filter-row').nextElementSibling;
-        //console.log(next_row);
         if (next_row){
             next_row.after(row);
         }; 

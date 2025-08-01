@@ -52,7 +52,7 @@ const donation_form_wrapper = document.getElementById("darujme-form-wrapper");
 if (donation_form_wrapper) {
     initializeForm(donation_form_wrapper);
 }
-//console.log(site_info);
+
 const isSinglePostOrPodcast = checkSinglePostOrPodcast();
 const AdInsertingEnabled = checkAdInsertingEnabled();
 const DonationInsertingEnabled = checkDonationInsertingEnabled();

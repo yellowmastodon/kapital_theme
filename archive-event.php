@@ -144,6 +144,8 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
     endif;
 
     global $wp_query;
+    //used to alternate between placeholders
+    $placeholder_post_count = 1;
     if ($wp_query->have_posts()) :
         //justify post center when too few posts
         $section_tag = $paged === 1 && $current_year === "" ? 'section' : 'div';
@@ -153,11 +155,14 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
             //only include section header on page 1 and if year (rok) not specified
             echo $paged === 1 && $current_year === "" ? '<header>' . kapital_bubble_title(__('Archív', 'kapital'), 2) . '</header>' : '' ;
             
+            ?>
+            
+            <?php 
             //render year filter
-            if (count($years_filters) && $current_year === ""){
-                echo kapital_render_filters($years_filters, true, true, __('Rok', 'kapital'));
+            if (count($years_filters)){
+                $recording_filter_html = '<a class="btn btn-outline text-center" href="#">' .  __('Záznamy', "kapital") . '</a>';
+                echo kapital_render_filters($years_filters, true, true, __('Rok', 'kapital'), $recording_filter_html);
             }?>
-
                 <ul role="list" class="list-unstyled mb-0 row gy-5 gx-3<?php echo $justify_class ?>">
                     <?php
                     /** 

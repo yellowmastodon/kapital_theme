@@ -9,6 +9,7 @@ function remove_empty_p( $content ) {
 	$content = preg_replace( '~\s?<p>(\s|&nbsp;)+</p>\s?~', '', $content );
 	return $content;
 }
+
 add_filter('the_content', 'remove_empty_p', 20, 1);
 
 //Disable the new user notification sent to the site admin

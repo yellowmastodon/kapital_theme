@@ -483,12 +483,27 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
             }
         };
     else:
-        $filters = array();
+        $filters = array(); 
     endif;
     return kapital_render_filters($filters, $sticky, $is_page);
 }
 
-function kapital_render_filters(array $filters, $sticky = true, $filters_as_associative_array = true, $custom_button_text = '')
+
+/**
+ * Renders the HTML markup for post filters, optionally as a sticky modal with a toggle button.
+ *
+ * This function outputs a filter UI for posts, terms, or pages, depending on the provided $filters array.
+ * It supports rendering as a sticky modal (with a toggle button for mobile), and can handle both associative arrays (with 'name' and 'url')
+ * or arrays of term objects. You can also customize the filter button text and inject additional HTML.
+ *
+ * @param array  $filters                    Array of filters to render. Can be associative arrays (with 'name' and 'url') or term objects.
+ * @param bool   $sticky                     Whether to render filters as sticky with a toggle button (default: true).
+ * @param bool   $filters_as_associative_array If true, expects $filters as associative arrays with 'name' and 'url'. If false, expects term objects. (default: true)
+ * @param string $custom_button_text         Custom text for the filter toggle button (default: '').
+ * @param string $additional_button_html     Additional HTML used for events as button "zaznamy" (recordings) next to "rok" (year)  (default: '').
+ * @return string                           HTML markup for the filters, or an empty string if no filters.
+ */
+function kapital_render_filters(array $filters, $sticky = true, $filters_as_associative_array = true, $custom_button_text = '', string $additional_button_html = '')
 {
     $html = "";
     if ($filters && !empty($filters)):
@@ -501,6 +516,7 @@ function kapital_render_filters(array $filters, $sticky = true, $filters_as_asso
                         <use xlink:href="#icon-filter"></use>
                     </svg>
                 </button>
+                <?= $additional_button_html ?>
             </div>
         <?php endif; ?>
         <div class="filters-modal <?php if ($sticky) echo ' position-sticky' ?>" tabindex="-1" <?php if ($sticky) echo 'style="display: none"' ?>>
@@ -872,9 +888,24 @@ function kapital_get_timezone()
     $kptl_current_timezone = new DateTimeZone($timezone_string ? $timezone_string : 'UTC');
     return $kptl_current_timezone;
 }
-
+/**
+ * Returns a human-readable string describing the time remaining until an event starts,
+ * or its status (e.g., "Archív", "Pripravujeme", "Budúci rok", "O X rokov", etc.).
+ *
+ * - If the event has ended, returns "Archív".
+ * - If the event date format is not specific (not 'day', 'full', or 'full-start'), returns "Pripravujeme".
+ * - If the event is more than a year away, returns "Budúci rok" or "O X rokov".
+ * - Otherwise, delegates to kapital_event_get_remaining_month() for finer granularity.
+ *
+ * @param int $event_date_start  UTC timestamp of the event start.
+ * @param int $event_date_end    UTC timestamp of the event end.
+ * @param DateTimeZone $timezone Timezone object for date calculations.
+ * @param string $format         Event date format ('full', 'full-start', 'day', 'month', 'season', 'year').
+ * @param int|null $remaining    (Optional) Precomputed seconds remaining until event start. If null, will be calculated.
+ * @return string                Human-readable string describing time until event or its status.
+ */
 function kapital_event_get_remaining($event_date_start, $event_date_end, $timezone, $format, $remaining = null)
-{
+{   
     if ($event_date_end <= kapital_current_utc_timestamp()) {
         return __('Archív', 'kapital');
     }
@@ -998,4 +1029,38 @@ function kapital_event_get_remaining_hour($event_date_start, $timezone, $format,
     $hour_string_key =  round($remaining / $one_hour);
     return $hour_strings[$hour_string_key];
 
+}
+
+/**
+ * Outputs an SVG definition only once, then references it with <use> for subsequent calls.
+ *
+ * This function is useful in loops where the same SVG content needs to be rendered multiple times.
+ * On the first call with a unique $svg_content_id, it outputs the full SVG with the content wrapped in a <g> element with the given ID.
+ * On subsequent calls with the same $svg_content_id, it outputs only a <use> tag referencing the previously defined <g> element.
+ *
+ * Example usage:
+ *   echo output_svg_once_then_use('<svg ...>', '<path ... />', 'my-icon');
+ *
+ * @param string $svg_def        The opening <svg> tag with all required attributes (the closing tag is added automatically).
+ * @param string $svg_content    The SVG content to be wrapped in a <g> element and referenced.
+ * @param string $svg_content_id Unique ID for the <g> element (without the '#' character).
+ * @return string                The SVG markup, either the full definition or a <use> reference.
+ */
+
+function output_svg_once_then_use(string $svg_def, string $svg_content, string $svg_content_id){
+    //holds the already outputed ids, so that they can be replaced by <use> 
+    static $outputed_ids = array();
+    $output = '';
+    $output .= $svg_def;
+
+    if (in_array($svg_content_id, $outputed_ids)){
+        $output .= "<use xlink:href=\"#{$svg_content_id}\"></use>";
+    } else {
+        $output .= "<g id=\"{$svg_content_id}\">";
+        $output .= $svg_content;
+        $output .= "</g>";
+        $outputed_ids[] = $svg_content_id;
+    }
+    $output .= "</svg>";
+    return $output;
 }

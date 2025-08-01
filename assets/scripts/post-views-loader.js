@@ -7,7 +7,6 @@ export default function postViewLoader(selector) {
     document.addEventListener("DOMContentLoaded", () => {
         if (typeof postViewsElements !== undefined && postViewsElements.length > 0) {
             postViewsElements = Array.from(postViewsElements);
-            console.log(postViewsElements);
             for (let i = 0; i < postViewsElements.length; i += 8) {
                 let postViewsBatch = postViewsElements.slice(i, i + 8);
                 let postIdsBatch = [];

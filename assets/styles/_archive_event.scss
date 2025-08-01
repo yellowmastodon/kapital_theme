@@ -25,3 +25,12 @@
         }
     }
 }
+
+.event-filter-wrapper{
+    margin-top: map-get($spacers, 5);
+    margin-bottom: map-get($spacers, 5);
+    position: sticky;
+    .btn-filter-toggle-wrapper{
+        position: unset !important;
+    }
+}

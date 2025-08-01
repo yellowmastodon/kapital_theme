@@ -1,7 +1,6 @@
 export default function showMorePosts(){
     const MEDIA_BREAKPOINT_XL = 1400;
     const showMoreButtons = document.querySelectorAll('.show-more-posts-btn');
-    console.log(showMoreButtons);
 
     for (let i = 0; i < showMoreButtons.length; i++){
         showMoreButtons[i].addEventListener("click", unhidePosts);

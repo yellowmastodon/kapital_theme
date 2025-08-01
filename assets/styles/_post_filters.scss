@@ -63,12 +63,16 @@
 }
  */
 
-.filters-modal.position-sticky, .btn-filter-toggle-wrapper{
-    z-index: 1000;
-    *[class^="btn"] {
-        outline: solid 3px $white;
+.filters-modal{
+    &.position-sticky, .btn-filter-toggle-wrapper{
+        z-index: 1000;
+        *[class^="btn"] {
+            outline: solid 3px $white;
+        }
     }
 }
+
+
 
 .filters-modal:not(.modal), .btn-filter-toggle-wrapper{
     margin-top: map-get($spacers, 5);

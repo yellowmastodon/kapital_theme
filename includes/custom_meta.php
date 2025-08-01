@@ -116,3 +116,26 @@ register_post_meta(
         'default' => 0
     ),
 );
+
+/**
+ * Meta field controlling indication whether event has recording attached
+ * string "video" "audio" "audio-video" "none"
+ */
+register_post_meta(
+    'event',
+    '_kapital_event_recording',
+    array(
+        'auth_callback' => function () {
+            return current_user_can('edit_posts');
+        },
+        'single' => true,
+        'show_in_rest'  => [
+            true,
+            'schema' => [
+                'type'       => 'string',
+            ],
+        ],
+        'type' => 'string',
+        'default' => ''
+    ),
+);

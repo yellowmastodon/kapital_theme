@@ -106,7 +106,7 @@ export function AuthorTermSelector({ slug, __nextHasNoMarginBottom }) {
 
 	let authorSearchPlaceholder = 'Vyberte autorstvo.';
 
-		/**
+	/**
 	 * Handler for checking term.
 	 *
 	 * @param {array} termId

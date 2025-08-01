@@ -6,6 +6,7 @@ import { __ } from '@wordpress/i18n';
 import { Flex } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import { update } from '@wordpress/icons';
+import EventRecordingSetting from './eventRecordingSetting';
 
 
 export function customMetaSettings() {
@@ -22,7 +23,6 @@ export function customMetaSettings() {
 			} else {
 				postTypes = [];
 			}
-
 
 			if (postTypes.includes(postType)) {
 
@@ -98,10 +98,16 @@ export function customMetaSettings() {
 					setMeta({ ...meta, _kapital_post_render_settings: custom_render_meta });
 				};
 				return (
+					<>
+					<EventRecordingSetting
+						meta={meta}
+						postType={postType}
+						setMeta={setMeta}
+						>
+					</EventRecordingSetting>
 					<PluginDocumentSettingPanel
 						name="kapital-post-render-panel"
 						title="Nastavenie zobrazovania"
-						className="some-css-class"
 						icon="visibility"
 					>
 						<Flex
@@ -208,6 +214,7 @@ export function customMetaSettings() {
 							/>
 						</Flex>
 					</PluginDocumentSettingPanel>
+					</>
 				)
 			} else {
 				return;
