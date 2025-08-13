@@ -117,12 +117,8 @@ if (isset($args['is_old_event']) && $args['is_old_event']) {
             </div>
         </div>
         <?php
-        $thumbnail_image_id = get_post_thumbnail_id($post->ID);
-        if ($thumbnail_image_id) {
-            echo kapital_responsive_image(get_post_thumbnail_id($post->ID), "(max-width: 599px) 95vw, (max-width: 899px) 47vw, (max-width: 1199px) 32vw, (max-width: 1649px) 320px, (max-width: 2099px) 390px, 480px", false, 'rounded w-100 archive-item-image');
-        } else {
-            echo '<div class="rounded w-100 archive-item-image placeholder bg-secondary-light"></div>';
-        } ?>
+        echo $args['thumbnail_img'];
+        ?>
         <?= $has_location ? '<p class="d-none d-sm-block mt-1 mb-3 item-excerpt">' . $event_locations . '</p>' : '' ?>
         <<?= 'h' . $heading_level; ?> class="mt-1 mb-3 archive-item-heading red-outline-hover" data-text="<?php echo $post_title ?>"><?php echo $post_title ?></<?= 'h' . $heading_level; ?>>
         <div class="item-excerpt red-color-hover lh-sm">

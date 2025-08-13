@@ -65,10 +65,12 @@
     background-color: var(--#{$prefix}white);
     border-color: var(--#{$prefix}body-color);
     //when btn class used for filter/page selection
-    &.active {
+    &:not(:focus):not(:hover):not(:active):not(:focus-visible).active {
         background-color: var(--#{$prefix}primary);
     }
 }
+
+
 .btn-link {
     background-color: transparent !important;
     border-color: transparent !important;

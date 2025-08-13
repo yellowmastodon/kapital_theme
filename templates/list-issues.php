@@ -72,7 +72,7 @@ if ($query_year > $last_issue_year || $query_year < $first_issue_year){
         $base_url = get_permalink();
         for ($i = $last_issue_year; $i >= $first_issue_year; $i--):
             if($i === $query_year):?>
-                <div class="col-auto mb-2"><div aria-current="page" class="btn btn-outline active"><?php echo $i ?></div></div>
+                <div class="col-auto mb-2"><div aria-current="page" class="btn-like btn-outline active"><?php echo $i ?></div></div>
             <?php else:?>
                 <div class="col-auto mb-2"><a href="<?php echo $base_url . 'rok/' . $i;?>"class="btn btn-outline"><?php echo $i ?></a></div>
             <?php endif;?>

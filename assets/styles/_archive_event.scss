@@ -34,3 +34,34 @@
         position: unset !important;
     }
 }
+
+//override display of filters on larger displays, as in events it is minimized to button even on large screens
+@include media-breakpoint-up('md'){
+    .post-type-archive-event .filters-modal{
+        .modal-dialog{
+            max-width: unset !important;
+            padding-left: map-get($spacers, 5);
+            padding-right: map-get($spacers, 5);
+            padding-bottom: 5rem; //makes filters look centered
+            .modal-content {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    body.modal-open{
+        &.post-type-archive-event{
+            .filters-modal{
+                display: flex !important;
+                justify-content: center;
+                flex-direction: column;
+            }
+        }
+        
+    }
+}
+@include media-breakpoint-down('md'){
+    .filter-row-break{
+        display: none;
+    }
+}

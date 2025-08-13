@@ -1,187 +1,225 @@
 <?php
-//get current page
+/**
+ * Archive template for displaying events.
+ *
+ * This template handles filtering events by year and whether they have recordings.
+ * It also displays upcoming events, a year filter, and renders breadcrumbs and archive titles.
+ */
+
+// Get current pagination
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-//load template for cpt manually, as WP loads archive.php by default
-if (isset($queried_object->taxonomy)) {
-    if ($taxonomy === 'podcast-seria') {
-        $load = locate_template('archive-podcast.php', true);
-        if ($load) {
-            exit(); // just exit if template was found and loaded
-        }
-    }
-}
+
+// Load the header
 get_header();
-//var_dump(get_taxonomies(array('public'=>'true'), 'objects'));
-//get current queried object
-//var_dump($wp_query);
+
+// Variables setup
 $heading_level = 2;
 $current_year = get_query_var('rok');
-$is_general_post_archive = is_home();
-$archive_title = "";
-$is_term_archive = is_tax();
-//all share these starting breadcrubms
-$archive_link = get_post_type_archive_link('event');
+$recording = get_query_var('zaznam') === '1' ? true : false;
+$is_first_nonfiltered_page = $paged === 1 && $current_year === "" && !$recording;
 $archive_title = __('Podujatia', 'kapital');
+$archive_link = get_post_type_archive_link('event');
 
+// Initial breadcrumb setup
 $breadcrumbs = array(
     [__('Podujatia', 'kapital'), $archive_link],
 );
 
-if ($current_year !== ""){
+// Adjust breadcrumbs and title based on filters
+if ($current_year !== "") {
     $archive_title = __('Podujatia', 'kapital') . ' ' . $current_year;
-    $breadcrumbs[] = [$current_year, '', true];
+    $breadcrumbs[] = [$current_year, $archive_link . 'rok/' . $current_year . '/'];
+
+    if ($recording) {
+        $archive_title = sprintf(__('Podujatia %s so&nbsp;záznamom'), $current_year);
+        $breadcrumbs[] = [__('Záznamy', 'kapital'), '', true];
+    } else {
+        $breadcrumbs[count($breadcrumbs) - 1][] = true;
+    }
 } else {
-    $breadcrumbs[0][2] = true;
-    if ($paged > 1){
-        $archive_title = __('Archív podujatí', 'kapital');
+    if (!$recording) {
+        $breadcrumbs[0][2] = true;
+
+        if ($paged > 1) {
+            $archive_title = __('Archív podujatí', 'kapital');
+        }
+    } else {
+        $breadcrumbs[] = [__('Záznamy', 'kapital'), '', true];
+        $archive_title = __('Podujatia so&nbsp;záznamom', 'kapital');
     }
 }
 
-
 /**
- * setup year filter
+ * Setup year filter based on events
+ * Generate year filters from event timestamps
  */
 $timezone_string = get_option('timezone_string');
 $timezone = new DateTimeZone($timezone_string);
-// Query for the oldest event
+
+// Fetch oldest event
 $oldest_event = get_posts(array(
     'post_type'      => 'event',
     'meta_key'       => '_event_date_start',
     'orderby'        => 'meta_value_num',
-    'order'          => 'ASC', // Oldest first
-    'posts_per_page' => 1, // Limit to 1 post
-    'fields'         => 'ids', // Only get the post ID for efficiency
+    'order'          => 'ASC',
+    'posts_per_page' => 1,
+    'fields'         => 'ids',
 ));
 
-//var_dump($oldest_event);
-// Query for the newest event
+// Fetch newest event
 $newest_event = get_posts(array(
     'post_type'      => 'event',
     'meta_key'       => '_event_date_start',
     'orderby'        => 'meta_value_num',
-    'order'          => 'DESC', // Newest first
-    'posts_per_page' => 1, // Limit to 1 post
-    'fields'         => 'ids', // Only get the post ID for efficiency
+    'order'          => 'DESC',
+    'posts_per_page' => 1,
+    'fields'         => 'ids',
 ));
 
-// Extract years from the timestamps
 $years_filters = array();
+
 if (!empty($oldest_event) && !empty($newest_event)) {
-    // Get the timestamps for the oldest and newest events
     $oldest_timestamp = get_post_meta($oldest_event[0], '_event_date_start', true);
     $newest_timestamp = get_post_meta($newest_event[0], '_event_date_start', true);
 
-    // Convert timestamps to the desired timezone
-    $oldest_date = new DateTime('@' . $oldest_timestamp); // Create DateTime from UTC timestamp
-    $oldest_date->setTimezone($timezone); // Convert to the desired timezone
-    $oldest_year = (int) $oldest_date->format('Y'); // Extract the year
+    $oldest_date = new DateTime('@' . $oldest_timestamp);
+    $oldest_date->setTimezone($timezone);
+    $oldest_year = (int) $oldest_date->format('Y');
 
-    $newest_date = new DateTime('@' . $newest_timestamp); // Create DateTime from UTC timestamp
-    $newest_date->setTimezone($timezone); // Convert to the desired timezone
-    $newest_year = (int) $newest_date->format('Y'); // Extract the year
+    $newest_date = new DateTime('@' . $newest_timestamp);
+    $newest_date->setTimezone($timezone);
+    $newest_year = (int) $newest_date->format('Y');
 
-    // Create an array of years from oldest to newest
-    $years_filters = array_map(function ($year) use ($archive_link) {
-        return array("name" => $year, "url" => $archive_link . 'rok/' . $year . '/');
+    $years_filters = array_map(function ($year) use ($archive_link, $recording, $current_year) {
+        $is_active = $year == $current_year;
+        $recording_query = $recording ? '?zaznam=1' : '';
+        $base_url = $is_active ? $archive_link : $archive_link . 'rok/' . $year . '/';
+
+        return array(
+            "name" => $year,
+            "url" => $base_url . $recording_query,
+            "additional_class" => $is_active ? 'active' : '',
+            "aria_label" => $is_active ? __("Zobraziť všetky roky", "kapital") : ''
+        );
     }, range($newest_year, $oldest_year));
 }
 
-/** render breadcrumbs */
+/**
+ * Render breadcrumbs
+ */
 echo kapital_breadcrumbs($breadcrumbs, 'container');
 
-/** MAIN */ ?>
+/**
+ * MAIN CONTENT
+ */
+?>
 <main class="main container" role="main" id="main">
 
-    <?php /** archive title  */ 
-    $header_classes = $paged === 1 && $current_year === "" ? 'visually-hidden ' : '';
+    <?php 
+    /**
+     * Archive header title
+     * hidden if also displaying upcomming events
+     */
+    $header_classes = $is_first_nonfiltered_page ? 'visually-hidden ' : '';
     $header_classes .= 'archive-header alignwide mb-5" role="heading';
     echo '<header class="' .  $header_classes . '">';
     echo kapital_bubble_title($archive_title, 1);
-    echo '</header>'; ?>
+    echo '</header>'; 
+    ?>
 
-    <?php /** filters */
-    /* if ($is_term_archive) {
-        echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, $queried_object_id, $taxonomy);
-    } else {
-        echo kapital_post_filters($is_general_post_archive, $is_term_archive, false, $queried_object_id);
-    } */
-    if ($paged === 1 && $current_year === ""):
-       $heading_level = 3;
-        //var_dump(kapital_current_utc_timestamp());
-       $upcoming_events = new WP_Query(array(
-            'post_type'      => 'event', // Only include posts of type 'event'
-            'meta_key'       => '_event_date_start', // Order by event start date
-            'orderby'        => 'meta_value_num', // Ensure numeric ordering
-            'order'          => 'ASC', // Order ascending by start date
-            'posts_per_page' => -1, // unlimited, there will never be too much planned events
+    <?php 
+    /**
+     * Show upcoming events on the first, non-filtered archive page
+     */
+    if ($is_first_nonfiltered_page):
+        $heading_level = 3;
+
+        $upcoming_events = new WP_Query(array(
+            'post_type'      => 'event',
+            'meta_key'       => '_event_date_start',
+            'orderby'        => 'meta_value_num',
+            'order'          => 'ASC',
+            'posts_per_page' => -1,
             'meta_query'     => array(
                 array(
                     'key'     => '_event_date_end',
                     'value'   => kapital_current_utc_timestamp(),
-                    'compare' => '>=', // Include only posts where _event_date_end is greater than or equal to the current time
+                    'compare' => '>=',
                     'type'    => 'NUMERIC',
                 ),
             ),
         ));
+
         echo '<section class="alignwider mb-6">';
         echo '<header class="mb-6">' . kapital_bubble_title(__('Aktuálne podujatia', 'kapital'), 2) . '</header>';      
+
         if ($upcoming_events->have_posts()):
-            $justify_class = $upcoming_events->post_count < 3 ? " justify-content-center" : " justify-content-start";?> 
-                <ul role="list" class="list-unstyled row mb-0 gy-5 gx-3<?php echo $justify_class ?>">
-                    <?php while ($upcoming_events->have_posts()) : $upcoming_events->the_post();
-                    get_template_part(
-                        'template-parts/archive-single-event',
-                        null,
-                        array('heading_level' => $heading_level)
-                    );
-                    endwhile;?>
-                </ul>
-        <?php else:
-            echo '<p class="my-6 ff-grotesk  fw-bold text-center lh-sm">' . __('Nenašli sa žiadne pripravované podujatia.', 'kapital') . '</p>';
+            get_template_part(
+                'template-parts/archive-event-list',
+                null,
+                array(
+                    'query' => $upcoming_events,
+                    'heading_level' => $heading_level
+                )
+            );
+        else:
+            echo '<p class="my-6 ff-grotesk fw-bold text-center lh-sm">' . __('Nenašli sa žiadne pripravované podujatia.', 'kapital') . '</p>';
         endif;
+
         echo '</section>';
         wp_reset_postdata();
     endif;
 
     global $wp_query;
-    //used to alternate between placeholders
-    $placeholder_post_count = 1;
+
+    /**
+     * Archive section for past events or filtered views
+     */
     if ($wp_query->have_posts()) :
-        //justify post center when too few posts
-        $section_tag = $paged === 1 && $current_year === "" ? 'section' : 'div';
-        $justify_class = $wp_query->post_count < 3 ? " justify-content-center" : " justify-content-start";
-        ?><<?=$section_tag?> class="alignwider">
+        $section_tag = $is_first_nonfiltered_page ? 'section' : 'div';
+        ?>
+        <<?= $section_tag ?> class="alignwider">
             <?php 
-            //only include section header on page 1 and if year (rok) not specified
-            echo $paged === 1 && $current_year === "" ? '<header>' . kapital_bubble_title(__('Archív', 'kapital'), 2) . '</header>' : '' ;
-            
+            echo $is_first_nonfiltered_page ? '<header>' . kapital_bubble_title(__('Archív', 'kapital'), 2) . '</header>' : '';
+
+            /**
+             * Render year and recording filters
+             */
+            if (count($years_filters)) {
+                array_unshift($years_filters, array('custom_html' => '<div class="filter-row-break w-100"></div>'));
+
+                $recording_filter_html = '<a class="btn btn-outline';
+                $recording_filter_html .= $recording ? ' active" aria-label="' . __('Zobraziť všetky podujatia', 'kapital') . '"' : '"';
+                $recording_filter_html .= ' href="' . $archive_link;
+                $recording_filter_html .= $current_year === '' ? '' : 'rok/' . $current_year . '/';
+                $recording_filter_html .= $recording ? '"' : '?zaznam=1"';
+                $recording_filter_html .= '>' . __('Záznamy', "kapital") . '</a>';
+
+                echo kapital_render_filters($years_filters, true, true, [
+                    'text' => __('Rok', 'kapital'),
+                    'aria_label' => __('', 'kapital')
+                ], $current_year !== "", $recording_filter_html);
+            }
+
+            /**
+             * Render filtered event list
+             */
+            get_template_part(
+                'template-parts/archive-event-list',
+                null,
+                isset($current_year) || $current_year !== "" 
+                    ? array('query' => $wp_query, 'are_old_events' => true, 'heading_level' => $heading_level) 
+                    : array('query' => $wp_query, 'heading_level' => $heading_level)
+            );
             ?>
-            
-            <?php 
-            //render year filter
-            if (count($years_filters)){
-                $recording_filter_html = '<a class="btn btn-outline text-center" href="#">' .  __('Záznamy', "kapital") . '</a>';
-                echo kapital_render_filters($years_filters, true, true, __('Rok', 'kapital'), $recording_filter_html);
-            }?>
-                <ul role="list" class="list-unstyled mb-0 row gy-5 gx-3<?php echo $justify_class ?>">
-                    <?php
-                    /** 
-                     * see kapital_sort_by_event_date in event_post_type_functions.php
-                     * posts are already filtered to exclude current events 
-                     */
-                    while ($wp_query->have_posts()) : $wp_query->the_post();
-                        get_template_part(
-                            'template-parts/archive-single-event', 
-                            null,
-                            //no need to calculate if this is old event again
-                            isset($current_year) || $current_year !== "" ? array('is_old_event' => true, 'heading_level' => $heading_level) : array('heading_level' => $heading_level)
-                        );
-                    endwhile; ?>
-                </ul>
-        </<?=$section_tag?>>
+        </<?= $section_tag ?>>
     <?php 
-        endif; ?>
+    else:
+        echo '<p class="my-6 ff-grotesk fw-bold text-center lh-sm">' . __('Nenašli sa žiadne podujatia.', 'kapital') . '</p>';
+    endif; 
+    ?>
+
     <?php echo kapital_pagination(); ?>
 </main>
 
-<?php get_footer();
+<?php get_footer(); ?>

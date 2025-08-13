@@ -35,10 +35,14 @@ if ($more_events_query->have_posts()) {
     echo '<footer class="event-footer alignwider mt-6">';
     echo kapital_bubble_title(__('Ďalšie podujatia', 'kaptial'), 2, 'mb-6');
     echo '<ul role="list" class="list-unstyled mb-0 row gy-5 gx-3' . $justify_class . '">';
-    while ($more_events_query->have_posts()) {
-        $more_events_query->the_post();
-        get_template_part('template-parts/archive-single-event', null, array('heading_level' => 3));
-    }
+    get_template_part(
+                    'template-parts/archive-event-list',
+                    null,
+                    array(
+                        'query' => $more_events_query,
+                        'heading_level' => 3
+                    )
+                    );
     echo '</ul>';
     echo '<div class="text-center mt-5">';
         echo '<a href="'

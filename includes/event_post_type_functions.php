@@ -50,7 +50,8 @@ add_filter( 'manage_edit-event_sortable_columns', 'kapital_sortable_event_custom
 function kapital_sort_by_event_date($query){
     global $pagenow;
     $year = get_query_var('rok');
-
+    $recording = get_query_var('zaznam');
+    
     //only do this for main query
     if (!$query->is_main_query()) 
         return;
@@ -91,9 +92,9 @@ function kapital_sort_by_event_date($query){
             // Create timestamps for the start and end of the year in the specified timezone
             $start_of_year = (new DateTime("{$year}-01-01 00:00:00", $timezone))->getTimestamp();
             $end_of_year = (new DateTime("{$year}-12-31 23:59:59", $timezone))->getTimestamp();
-
+            
             //Setup meta query, rewrite of previous is intentional
-            $query->set('meta_query', array(
+            $meta_query = array(
                 'relation' => 'AND', // Ensure both conditions are met
                 array(
                     'key'     => '_event_date_start',
@@ -107,11 +108,30 @@ function kapital_sort_by_event_date($query){
                     'compare' => '>=',
                     'type'    => 'NUMERIC',
                 ),
-            ));
-
+            );
             // Set posts_per_page to unlimited
             $query->set('posts_per_page', -1);
         }
+
+        if ($recording && $recording === "1"){
+            $meta_query['relation'] = 'AND';
+            $meta_query[] = array(
+                'relation' => 'OR',
+                array(
+                'key' => '_kapital_event_recording',
+                'value' => 'audio',
+                'compare' => 'LIKE',
+                ),
+                array(
+                'key' => '_kapital_event_recording',
+                'value' => 'video',
+                'compare' => 'LIKE',
+                ),
+            );
+        }
+
+        $query->set('meta_query', $meta_query);
+
 
 
     //order, and sort for admin interface
@@ -153,3 +173,8 @@ add_filter('excerpt_length', function($length) {
     }
     return $length;
 }, 99);
+
+add_filter('query_vars', function($vars) {
+    $vars[] = 'zaznam';
+    return $vars;
+});

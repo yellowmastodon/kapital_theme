@@ -23,4 +23,4 @@ function bubble_heading_variation($block_content, $block) {
 
     return $block_content;
 }
-add_filter('render_block_core/heading', 'bubble_heading_variation', 10, 2);
+add_filter('render_block_core/heading', 'bubble_heading_variation', 10, 2); 

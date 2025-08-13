@@ -483,7 +483,7 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
             }
         };
     else:
-        $filters = array(); 
+        $filters = array();
     endif;
     return kapital_render_filters($filters, $sticky, $is_page);
 }
@@ -493,25 +493,27 @@ function kapital_post_filters(bool $is_general_post_archive = true, bool $is_ter
  * Renders the HTML markup for post filters, optionally as a sticky modal with a toggle button.
  *
  * This function outputs a filter UI for posts, terms, or pages, depending on the provided $filters array.
- * It supports rendering as a sticky modal (with a toggle button for mobile), and can handle both associative arrays (with 'name' and 'url')
+ * It supports rendering as a sticky modal (with a toggle button for mobile), and can handle both associative arrays (with 'name', 'url' and 'class' )
  * or arrays of term objects. You can also customize the filter button text and inject additional HTML.
  *
  * @param array  $filters                    Array of filters to render. Can be associative arrays (with 'name' and 'url') or term objects.
  * @param bool   $sticky                     Whether to render filters as sticky with a toggle button (default: true).
  * @param bool   $filters_as_associative_array If true, expects $filters as associative arrays with 'name' and 'url'. If false, expects term objects. (default: true)
- * @param string $custom_button_text         Custom text for the filter toggle button (default: '').
+ * @param array $custom_button_text         Custom text for the filter toggle button array('text' => '', 'aria_label' => '') (default empty array).
  * @param string $additional_button_html     Additional HTML used for events as button "zaznamy" (recordings) next to "rok" (year)  (default: '').
+ * @param bool   $indicate_active           Whether to render filter button as active
  * @return string                           HTML markup for the filters, or an empty string if no filters.
+ * @todo Add 'isset' checks for filter name and link.
  */
-function kapital_render_filters(array $filters, $sticky = true, $filters_as_associative_array = true, $custom_button_text = '', string $additional_button_html = '')
+function kapital_render_filters(array $filters, $sticky = true, $filters_as_associative_array = true, $custom_button_text = array(), bool $indicate_active = false, string $additional_button_html = '',)
 {
     $html = "";
     if ($filters && !empty($filters)):
         ob_start();
         if ($sticky): ?>
             <div class="btn-filter-toggle-wrapper position-sticky alignwider" style="display: none;">
-                <button type="button" class="btn-filter-toggle btn btn-outline" aria-label="'<?= __('Zobraziť filtre', 'kapital') ?>'">
-                    <?= $custom_button_text === '' ? __('Filter', 'kapital') : $custom_button_text ?>
+                <button type="button" class="btn-filter-toggle btn btn-outline<?= $indicate_active ? ' active' : '' ?>" aria-label="<?= isset($custom_button_text["aria_label"]) ? $custom_button_text["aria_label"] : __('Zobraziť filtre', 'kapital') ?>">
+                    <?= isset($custom_button_text["text"]) ? $custom_button_text["text"] : __('Filter', 'kapital') ?>
                     <svg class="ms-2 icon-square">
                         <use xlink:href="#icon-filter"></use>
                     </svg>
@@ -526,22 +528,40 @@ function kapital_render_filters(array $filters, $sticky = true, $filters_as_asso
                             <use xlink:href="#icon-close"></use>
                         </svg></button>
                     <?php foreach ($filters as $filter):
+                        $additional_filter_class = '';
+                        $filter_aria_label = '';
+                        $custom_html = '';
+                        $name = '';
+                        $link = '';
                         if ($filters_as_associative_array) {
-                            $name = $filter["name"];
-                            $link = $filter["url"];
+                            if (isset($filter["custom_html"])) 
+                                $custom_html = $filter["custom_html"];
+                            if (isset($filter["additional_class"]) && $filter["additional_class"] !== '') 
+                                $additional_filter_class = ' ' . $filter["additional_class"];
+                            if (isset($filter["aria_label"]) && $filter["aria_label"] !== '') 
+                                $filter_aria_label = ' aria-label="' . $filter["aria_label"] . '" ';
+                            if (isset($filter["name"]))
+                                $name = $filter["name"];
+                            if (isset($filter["url"]))
+                                $link = $filter["url"];
                         } else {
                             $term_slug = $filter->slug;
                             $name = $filter->name;
                             $link = get_term_link($filter);
+                            $custom_html = '';
                             //shorten one specific name as it is too long for filter
                             $name = ($term_slug === "ekologia-a-polnohospodarstvo") ? __("Ekológia", "kapital") : $name;
                             $name = ($term_slug === "kniha") ? __("Knihy", "kapital") : $name;
-                        } ?>
-                        <div class="my-2 my-sm-1 mx-1">
-                            <a class="btn btn-outline text-center" href="<?= $link ?>">
-                                <?= $name ?>
-                            </a>
-                        </div>
+                        }
+                        if ($custom_html === ''): ?>
+                            <div class="my-2 my-sm-1 mx-1">
+                                <a class="btn btn-outline text-center<?= $additional_filter_class ?>" href="<?= $link ?>" <?= $filter_aria_label ?>>
+                                    <?= $name ?>
+                                </a>
+                            </div>
+                        <?php else:
+                            echo $custom_html;
+                        endif; ?>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -836,7 +856,7 @@ function get_publish_datetime_element_event($event_date_start, $event_date_forma
 function kapital_get_event_location_string($meta_value, $include_links = true)
 {
     $location_string = "";
-    if ($meta_value && $meta_value !==""){
+    if ($meta_value && $meta_value !== "") {
         $event_locations = json_decode($meta_value);
         //filter without location name
         if ($event_locations) {
@@ -846,7 +866,7 @@ function kapital_get_event_location_string($meta_value, $include_links = true)
         }
         foreach ($event_locations as $key => $location) {
             if ($key > 0) {
-            $location_string .= ',<br>';
+                $location_string .= ',<br>';
             }
             $location_string .= sprintf(
                 '%s%s%s',
@@ -856,9 +876,8 @@ function kapital_get_event_location_string($meta_value, $include_links = true)
             );
         }
     }
-  
-    return $location_string;
 
+    return $location_string;
 }
 
 /**
@@ -905,12 +924,12 @@ function kapital_get_timezone()
  * @return string                Human-readable string describing time until event or its status.
  */
 function kapital_event_get_remaining($event_date_start, $event_date_end, $timezone, $format, $remaining = null)
-{   
+{
     if ($event_date_end <= kapital_current_utc_timestamp()) {
         return __('Archív', 'kapital');
     }
     //if format does not display specific date return "comin soon"
-    if (!in_array($format, array('day', 'full', 'full-start'))){
+    if (!in_array($format, array('day', 'full', 'full-start'))) {
         return __('Pripravujeme', 'kapital');
     }
     $one_year = 31556926; //year in seconds
@@ -991,24 +1010,23 @@ function kapital_event_get_remaining_day($event_date_start, $timezone, $format, 
     if ($event_date_start - $current_midnight < 0) {
 
         //if format not for specific hour return "today"
-        if (in_array($format, array('full', 'full-start'))){
+        if (in_array($format, array('full', 'full-start'))) {
             return kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null);
         } else {
             return $day_strings[0];
         }
-       
     } else {
         $day_string_key = intdiv(($event_date_start - $current_midnight), $oneday);
         return $day_strings[$day_string_key];
     }
-
 }
 
-function kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null){
+function kapital_event_get_remaining_hour($event_date_start, $timezone, $format, $remaining = null)
+{
     if (is_null($remaining)) {
         $remaining = $event_date_start -  kapital_current_utc_timestamp();
     }
-    if ($remaining < 0){
+    if ($remaining < 0) {
         return __('Práve prebieha', 'kapital');
     }
     $one_hour = 3600;
@@ -1028,7 +1046,6 @@ function kapital_event_get_remaining_hour($event_date_start, $timezone, $format,
     }
     $hour_string_key =  round($remaining / $one_hour);
     return $hour_strings[$hour_string_key];
-
 }
 
 /**
@@ -1047,13 +1064,14 @@ function kapital_event_get_remaining_hour($event_date_start, $timezone, $format,
  * @return string                The SVG markup, either the full definition or a <use> reference.
  */
 
-function output_svg_once_then_use(string $svg_def, string $svg_content, string $svg_content_id){
+function output_svg_once_then_use(string $svg_def, string $svg_content, string $svg_content_id)
+{
     //holds the already outputed ids, so that they can be replaced by <use> 
     static $outputed_ids = array();
     $output = '';
     $output .= $svg_def;
 
-    if (in_array($svg_content_id, $outputed_ids)){
+    if (in_array($svg_content_id, $outputed_ids)) {
         $output .= "<use xlink:href=\"#{$svg_content_id}\"></use>";
     } else {
         $output .= "<g id=\"{$svg_content_id}\">";
@@ -1063,4 +1081,33 @@ function output_svg_once_then_use(string $svg_def, string $svg_content, string $
     }
     $output .= "</svg>";
     return $output;
+}
+
+/**
+ * Retrieves the event thumbnail image HTML for a given event.
+ *
+ * If the event has a featured image, returns a responsive image using kapital_responsive_image().
+ * If not, returns a placeholder SVG image, cycling through 4 variants for variety.
+ *
+ * @param int $post_id The ID of the post for which to get the event thumbnail.
+ * @return string HTML markup for the event thumbnail image or a placeholder image.
+ */
+function kapital_get_event_thumbnail(int $post_id)
+{
+    static $placeholder_count = 0;
+
+    $thumbnail_image_id = get_post_thumbnail_id($post_id);
+    //var_dump($thumbnail_image_id);
+
+    //if no image returns zero
+    if ($thumbnail_image_id) {
+        $thumbnail_image = kapital_responsive_image(get_post_thumbnail_id($post_id), "(max-width: 599px) 95vw, (max-width: 899px) 47vw, (max-width: 1199px) 32vw, (max-width: 1649px) 320px, (max-width: 2099px) 390px, 480px", false, 'rounded w-100 archive-item-image');
+    } else {
+        $placeholder_no = $placeholder_count  % 4 + 1;
+        $thumbnail_image = '<img src="' .
+            get_template_directory_uri() .
+            "/assets/images/event-placeholder-{$placeholder_no}.svg" . '" alt="" class="rounded w-100 archive-item-image placeholder bg-secondary-light"/>';
+        $placeholder_count++;
+    }
+    return $thumbnail_image;
 }

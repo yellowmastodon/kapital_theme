@@ -120,4 +120,4 @@ function new_post_template()
 		)
 	);
 }
-add_action('init', 'new_post_template');
+add_action('init', 'new_post_template', 12);
