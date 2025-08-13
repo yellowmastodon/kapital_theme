@@ -94,19 +94,22 @@ do_action('woocommerce_before_main_content');?>
             $product_id = $product->get_id();
             $product_cat = get_the_terms($product_id, 'product_cat');
             //filter helper category for display on "Vydavateľstvo" page
-            $filtered_cat = array_filter($product_cat, function ($wp_term) {
-                if ($wp_term->slug !=="kptl"){
-                    return $wp_term;
-                }
-              });
-             
+            if ($product_cat){
+                $filtered_cat = array_filter($product_cat, function ($wp_term) {
+                    if ($wp_term->slug !=="kptl"){
+                        return $wp_term;
+                    }
+                });
+            } else {
+                $filtered_cat = false;
+            }
             $sale = $product->is_on_sale();
             $is_sold_out = !$product->is_in_stock();
             //add custom variation image handler
             if ( $product->is_type( 'variable' ) ) {
                 wp_add_inline_script('scripts', "jQuery('form.variations_form').on('found_variation',function(event,variation){if(variation.image&&variation.image.src&&variation.image.srcset){jQuery('.main-image').attr('src',variation.image.srcewImageSrc);jQuery('.main-image').attr('srcset',variation.image.srcset)}});", 'after' );
             }
-            if ($product_cat || $sale || $is_sold_out) {
+            if ($filtered_cat || $sale || $is_sold_out) {
                 echo '<div><div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';
                 $cat_no = count($filtered_cat);
                 if ($sale) {
@@ -138,6 +141,11 @@ do_action('woocommerce_before_main_content');?>
             if ($book_author && !empty($book_author)) {
                 echo '<p class="book-author h4 fw-bold text-red mt-2 lh-sm">' . $book_author . '</p>';
             }
+
+            //if downloadable, render file extensions
+            echo kapital_downloadable_product_ext($product, 'my-3');
+
+            //price
             if ($product->is_purchasable() && $product->is_in_stock()){
                 woocommerce_template_single_price();
             }

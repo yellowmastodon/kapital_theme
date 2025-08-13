@@ -217,3 +217,33 @@ add_action( 'admin_menu', function () {
 	remove_menu_page( 'edit.php?post_type=inzercia' );
 	remove_menu_page( 'edit.php?post_type=recommendation' );
 }, 9999);
+
+function kapital_downloadable_product_ext($product, string $wrapper_classes = '', string $badge_classes = ''){
+	if ($wrapper_classes !== ''){
+		$wrapper_classes = ' ' . $wrapper_classes;
+	}
+	if ($badge_classes !== ''){
+		$badge_classes = ' ' . $badge_classes;
+	}
+	$html = '';
+	if ($product->is_downloadable()){
+		$file_ext = array();
+		foreach( $product->get_downloads() as $key_download_id => $download ) {
+			## Using WC_Product_Download methods (since WooCommerce 3)
+			$download_ext  = $download->get_file_extension(); // File extension
+			$file_ext[] = $download_ext;
+		}
+		if (count($file_ext)){
+			$html .= '<p class="row gx-1' . $wrapper_classes .  '"><span class="visually-hidden">' . __("Formáty", "kapital") . '</span>';
+			foreach($file_ext as $key => $ext){
+				if ($key > 0){
+						' ';
+				}
+				$html .= '<span class="col-auto"><span class="product-ext-bagde' . $badge_classes . '">' . $ext . '</span></span>';
+			}
+			$html .= '</p>';
+		}
+		
+	}
+	return $html;
+}

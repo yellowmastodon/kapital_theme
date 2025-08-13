@@ -111,3 +111,10 @@ add_filter('woocommerce_single_product_image_thumbnail_html', 'kapital_woo_singl
 function kapital_woo_single_product_image_html($html, $attachment_id){
     return '<div class="col-12">' . kapital_responsive_image($attachment_id, "400px", false, "rounded w-100") . '</div>';
 }
+
+add_filter( 'woocommerce_available_variation', 'kapital_prepend_to_variation_description', 10, 3 );
+function kapital_prepend_to_variation_description( $data, $product, $variation ) {
+    // Add your custom HTML or text here.
+    $data['variation_description'] = kapital_downloadable_product_ext($variation, 'mb-3') . $data['variation_description'];
+    return $data;
+}
