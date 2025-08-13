@@ -150,13 +150,16 @@ function custom_root_font_size()
 }
 
 //register "question" - otazka paragraph block style (indent)
-if (function_exists('register_block_style')) {
-        register_block_style(
-            'core/paragraph',
-            array(
-                'name'         => 'otazka',
-                'label'        => esc_html__('Otázka', 'kapital'),
-                'inline_style' => 'p.is-style-otazka { padding-left: 1.5rem; }',
-            )
-        );
-}
+//on init to allow translation
+add_action('init', function(){
+    if (function_exists('register_block_style')) {
+            register_block_style(
+                'core/paragraph',
+                array(
+                    'name'         => 'otazka',
+                    'label'        => esc_html__('Otázka', 'kapital'),
+                    'inline_style' => 'p.is-style-otazka { padding-left: 1.5rem; }',
+                )
+            );
+    }
+});

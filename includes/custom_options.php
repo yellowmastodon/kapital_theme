@@ -1,6 +1,9 @@
 <?php
-create_filter_option_submenu('edit.php', __('Filtre článkov', 'kapital'), 'administrator', 'post-filters', 'kapital_post_filters', ['seria', 'zaner', 'rubrika']);
-create_filter_option_submenu('edit.php', __('Tematické série v hlavičke', 'kapital'), 'administrator', 'header-series', 'kapital_header_series', ['seria']);
+//on init to load textdomain in time
+add_action('init', function(){
+    create_filter_option_submenu('edit.php', __('Filtre článkov', 'kapital'), 'administrator', 'post-filters', 'kapital_post_filters', ['seria', 'zaner', 'rubrika']);
+    create_filter_option_submenu('edit.php', __('Tematické série v hlavičke', 'kapital'), 'administrator', 'header-series', 'kapital_header_series', ['seria']);
+});
 
 
 /**

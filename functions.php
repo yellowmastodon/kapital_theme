@@ -5,6 +5,7 @@
  */
 $post_types_with_controlled_rendering = ['post', 'podcast', 'page', 'event'];
 
+
 $is_woocommerce_site = class_exists('WooCommerce');
 $template_directory = get_template_directory();
 $include = array(
@@ -12,7 +13,6 @@ $include = array(
     //'/includes/custom_import.php',
     '/includes/old-site-functions.php',
     //'includes/cmb-example-functions.php',
-    '/block-editor/block-editor-functions.php',
     '/includes/author_taxonomy_functions.php',
     '/includes/custom_meta.php',
     '/includes/ads_post_type_functions.php',
@@ -23,6 +23,7 @@ $include = array(
     '/includes/customizer.php',
 );
 $include_all = array(
+    '/block-editor/block-editor-functions.php',
     '/includes/render_functions.php',
     '/includes/custom_post_types.php',
     '/includes/custom_taxonomies.php',
@@ -33,7 +34,7 @@ $include_all = array(
 );
 
 if (is_multisite()) {
-    
+
     foreach ($include_all as $inc) {
         require_once $template_directory . $inc;
     }
@@ -49,7 +50,6 @@ if (is_multisite()) {
     foreach ($include as $inc) {
         require_once $template_directory . $inc;
     }
-
 }
 
 if (class_exists('WooCommerce')) {
@@ -59,117 +59,132 @@ if (class_exists('WooCommerce')) {
 
 
 //define months to be sure we can render them //fix for problem in localhost
-$kapital_svk_months = array(
-    __('január', 'kapital'),
-    __('február', 'kapital'),
-    __('marec', 'kapital'),
-    __('apríl', 'kapital'),
-    __('máj', 'kapital'),
-    __('jún', 'kapital'),
-    __('júl', 'kapital'),
-    __('august', 'kapital'),
-    __('september', 'kapital'),
-    __('október', 'kapital'),
-    __('november', 'kapital'),
-    __('december', 'kapital')
-);
+global $kapital_svk_months;
+$kapital_svk_months = array(); // Initialize to avoid undefined variab
 
+//populate later to avoid Early textdomain call for 'kapital'
+add_action('init', function () {
+    global $kapital_svk_months;
+    // Now it's safe to use __()
+    $kapital_svk_months = array(
+        __('január', 'kapital'),
+        __('február', 'kapital'),
+        __('marec', 'kapital'),
+        __('apríl', 'kapital'),
+        __('máj', 'kapital'),
+        __('jún', 'kapital'),
+        __('júl', 'kapital'),
+        __('august', 'kapital'),
+        __('september', 'kapital'),
+        __('október', 'kapital'),
+        __('november', 'kapital'),
+        __('december', 'kapital'),
+    );
+}, 1);
+
+
+add_action('after_setup_theme', function () {
+    load_theme_textdomain('kapital', get_template_directory() . '/languages');
+}, 0);
 
 /**
  * Add support for useful stuff and set image sizes
  */
 
 if (function_exists('add_theme_support')) {
+    add_action('after_setup_theme', function () {
+        // Add support for document title tag
+        add_theme_support('title-tag');
 
-    // Add support for document title tag
-    add_theme_support('title-tag');
+        // Add Thumbnail Theme Support
+        add_theme_support('post-thumbnails');
+        // add_image_size( 'custom-size', 700, 200, true );
+        add_theme_support('align-wide');
+        add_theme_support('align-full');
+        //add_theme_support( 'disable-layout-styles' );
+        // Add Support for post formats
+        // add_theme_support( 'post-formats', ['post'] );
+        add_post_type_support('page', 'excerpt');
 
-    // Add Thumbnail Theme Support
-    add_theme_support('post-thumbnails');
-    // add_image_size( 'custom-size', 700, 200, true );
-    add_theme_support('align-wide');
-    add_theme_support('align-full');
-    //add_theme_support( 'disable-layout-styles' );
-    // Add Support for post formats
-    // add_theme_support( 'post-formats', ['post'] );
-    add_post_type_support( 'page', 'excerpt' );
-
-    // Localisation Support
-    load_theme_textdomain('kapital', get_template_directory() . '/languages');
-    add_theme_support('appearance-tools');
-    add_theme_support( 'editor-font-sizes', array(
-        array(
-            'name' => esc_attr__( 'Small', 'kapital' ),
-            'size' => "0.8rem",
-            'slug' => 'small',
-        ),
-        array(
-            'name' => esc_attr__( 'h4', 'kapital' ),
-            'size' => '1.1rem',
-            'slug' => '4'
-        ),
-        array(
-            'name' => esc_attr__( 'h3', 'kapital' ),
-            'size' => '1.2rem',
-            'slug' => '3'
-        ),
-        array(
-            'name' => esc_attr__( 'h2', 'kapital' ),
-            'size' => '1.4rem',
-            'slug' => '2'
-        ),
-        array(
-            'name' => esc_attr__( 'h2', 'kapital' ),
-            'size' => '1.3rem',
-            'slug' => '2'
-        ),
-        array(
-            'name' => esc_attr__( 'h1', 'kapital' ),
-            'size' => 'clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem)',
-            'slug' => '1'
-        )
-    ) );
-    add_theme_support( 'editor-spacing-sizes', array(
-                    array(
-                        "name" => "0",
-                        "slug" => "none",
-                        "size" => "0px"
-                    ),
-                    array(
-                        "name" => "1/4",
-                        "slug" => "quarter",
-                        "size" => ".25rem"
-                    ),
-                    array(
-                        "name" => "1/2",
-                        "slug" => "half",
-                        "size" => ".5rem"
-                    ),
-                    array(
-                        "name" => "1",
-                        "slug" => "1",
-                        "size" => "1rem"
-                    ),  array(
-                        "name" => "1.5x",
-                        "slug" => "1-5",
-                        "size" => "1.5rem"
-                    ),  array(
-                        "name" => "2x",
-                        "slug" => "2",
-                        "size" => "2rem"
-                    ),  array(
-                        "name" => "3x",
-                        "slug" => "3",
-                        "size" => "3rem"
-                    ),  array(
-                        "name" => "5x",
-                        "slug" => "5",
-                        "size" => "5rem"
-                    )
+        add_theme_support('appearance-tools');
+        add_theme_support('editor-font-sizes', array(
+            array(
+                'name' => 'Small',
+                'size' => "0.8rem",
+                'slug' => 'small',
+            ),
+            array(
+                'name' => 'h4',
+                'size' => '1.1rem',
+                'slug' => '4'
+            ),
+            array(
+                'name' => 'h3',
+                'size' => '1.2rem',
+                'slug' => '3'
+            ),
+            array(
+                'name' => 'h2',
+                'size' => '1.4rem',
+                'slug' => '2'
+            ),
+            array(
+                'name' => 'h2',
+                'size' => '1.3rem',
+                'slug' => '2'
+            ),
+            array(
+                'name' => 'h1',
+                'size' => 'clamp(1.4rem, 0.734vw + 1.089rem, 1.6rem)',
+                'slug' => '1'
+            )
+        ));
+        add_theme_support('editor-spacing-sizes', array(
+            array(
+                "name" => "0",
+                "slug" => "none",
+                "size" => "0px"
+            ),
+            array(
+                "name" => "1/4",
+                "slug" => "quarter",
+                "size" => ".25rem"
+            ),
+            array(
+                "name" => "1/2",
+                "slug" => "half",
+                "size" => ".5rem"
+            ),
+            array(
+                "name" => "1",
+                "slug" => "1",
+                "size" => "1rem"
+            ),
+            array(
+                "name" => "1.5x",
+                "slug" => "1-5",
+                "size" => "1.5rem"
+            ),
+            array(
+                "name" => "2x",
+                "slug" => "2",
+                "size" => "2rem"
+            ),
+            array(
+                "name" => "3x",
+                "slug" => "3",
+                "size" => "3rem"
+            ),
+            array(
+                "name" => "5x",
+                "slug" => "5",
+                "size" => "5rem"
+            )
 
 
-    ) );
-    add_theme_support('custom-spacing');
+        ));
+        add_theme_support('custom-spacing');
+    }, 1);
 }
 
 /**
@@ -240,10 +255,10 @@ function kapital_enqueue_scripts()
     wp_deregister_style('wp-block-library'); // Remove WordPress core CSS
 
     //wp_dequeue_style( 'wp-block-library-theme' ); // Remove WordPress theme core CSS
-    
+
     wp_dequeue_style('classic-theme-styles'); // Remove global styles inline CSS
     //wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-   // wp_dequeue_style('global-styles'); // Remove theme.json css
+    // wp_dequeue_style('global-styles'); // Remove theme.json css
     wp_dequeue_style('wp-block-buttons'); // Remove global styles inline CSS
     wp_deregister_style('wp-block-buttons');
     //wp_dequeue_style( 'select2' );
@@ -370,7 +385,7 @@ function kapital_register_nav_menus()
     ]);
 }
 
-add_action('after_setup_theme', 'kapital_register_nav_menus', 0);
+add_action('init', 'kapital_register_nav_menus', 1);
 
 /**
  * Button Shortcode
@@ -505,6 +520,8 @@ function kapital_allow_svg_upload($mimes)
 {
     $mimes['svg'] = 'image/svg+xml';
     $mimes['svgz'] = 'image/svg+xml';
+    $mimes['mobi'] = 'application/x-mobipocket-ebook';
+    $mimes['epub'] = 'application/epub+zip';
     return $mimes;
 }
 add_filter('upload_mimes', 'kapital_allow_svg_upload');
@@ -564,8 +581,9 @@ if (!$is_woocommerce_site) {
 }
 
 
-function create_filter_option_submenu($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies ){
-    add_action('admin_menu', function() use ($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies){
+function create_filter_option_submenu($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies)
+{
+    add_action('admin_menu', function () use ($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies) {
         create_post_filter_submenu_page($menu_page, $name, $role, $menu_slug, $settings_handle, $custom_taxonomies);
     });
 }
@@ -588,7 +606,6 @@ function create_post_filter_submenu_page($menu_page, $name, $role, $menu_slug, $
         register_posts_filter_setting($settings_handle);
     });
     add_action('load-' . $my_page, 'kapital_filters_load_admin_js');
-    
 }
 
 
@@ -597,7 +614,7 @@ function kapital_filters_load_admin_js()
     // Unfortunately we can't just enqueue our scripts here - it's too early. So register against the proper action hook to do it
     add_action('admin_enqueue_scripts', 'kapital_filters_enqueue_admin_js');
 }
- 
+
 function kapital_filters_enqueue_admin_js()
 {
     // Isn't it nice to use dependencies and the already registered core js files?
@@ -626,9 +643,10 @@ function register_posts_filter_setting($handle)
     );
 }
 
- 
-function restrict_admin_bar( $show ) {
-    return current_user_can( 'administrator' ) ? true : false;
+
+function restrict_admin_bar($show)
+{
+    return current_user_can('administrator') ? true : false;
 }
 
 
@@ -696,13 +714,14 @@ function kapital_post_filter_page($custom_taxonomies, $option_name)
 }
 
 /* Disable WordPress Admin Bar for all users except administrators */
-add_filter( 'show_admin_bar', 'restrict_admin_bar' );
+add_filter('show_admin_bar', 'restrict_admin_bar');
 
 
-function kptl_prevent_empty_search_query( $query ) {
-    if ( $query->is_search() && !is_admin() && empty( $_GET['s'] ) ) {
+function kptl_prevent_empty_search_query($query)
+{
+    if ($query->is_search() && !is_admin() && empty($_GET['s'])) {
         // Modify the query to not retrieve any posts if the search string is empty
         $query->set('posts_per_page', 0);
     }
 }
-add_action( 'pre_get_posts', 'kptl_prevent_empty_search_query' );
+add_action('pre_get_posts', 'kptl_prevent_empty_search_query');
