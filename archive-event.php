@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Archive template for displaying events.
  *
  * This template handles filtering events by year and whether they have recordings.
  * It also displays upcoming events, a year filter, and renders breadcrumbs and archive titles.
+ * @todo even better filter logic. E.g. show filters even when current query has no posts, what to do when there is no recording in current year, do not show filter? redirect to page without recording filter?
  */
 
 // Get current pagination
@@ -115,7 +117,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
 ?>
 <main class="main container" role="main" id="main">
 
-    <?php 
+    <?php
     /**
      * Archive header title
      * hidden if also displaying upcomming events
@@ -124,10 +126,10 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
     $header_classes .= 'archive-header alignwide mb-5" role="heading';
     echo '<header class="' .  $header_classes . '">';
     echo kapital_bubble_title($archive_title, 1);
-    echo '</header>'; 
+    echo '</header>';
     ?>
 
-    <?php 
+    <?php
     /**
      * Show upcoming events on the first, non-filtered archive page
      */
@@ -151,7 +153,7 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
         ));
 
         echo '<section class="alignwider mb-6">';
-        echo '<header class="mb-6">' . kapital_bubble_title(__('Aktuálne podujatia', 'kapital'), 2) . '</header>';      
+        echo '<header class="mb-6">' . kapital_bubble_title(__('Aktuálne podujatia', 'kapital'), 2) . '</header>';
 
         if ($upcoming_events->have_posts()):
             get_template_part(
@@ -175,11 +177,32 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
     /**
      * Archive section for past events or filtered views
      */
+
+
+    //check if there are any posts with 
+    $temp_rec_query = new WP_Query(array(
+        'post_type'      => 'event',
+        'posts_per_page' => 1,
+        'meta_query'     => array(
+            'relation' => 'OR',
+            array(
+                'key' => '_kapital_event_recording',
+                'value' => 'audio',
+                'compare' => 'LIKE',
+            ),
+            array(
+                'key' => '_kapital_event_recording',
+                'value' => 'video',
+                'compare' => 'LIKE',
+            ),
+        )
+    ));
+
     if ($wp_query->have_posts()) :
         $section_tag = $is_first_nonfiltered_page ? 'section' : 'div';
-        ?>
+    ?>
         <<?= $section_tag ?> class="alignwider">
-            <?php 
+            <?php
             echo $is_first_nonfiltered_page ? '<header>' . kapital_bubble_title(__('Archív', 'kapital'), 2) . '</header>' : '';
 
             /**
@@ -187,14 +210,16 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
              */
             if (count($years_filters)) {
                 array_unshift($years_filters, array('custom_html' => '<div class="filter-row-break w-100"></div>'));
-
-                $recording_filter_html = '<a class="btn btn-outline';
-                $recording_filter_html .= $recording ? ' active" aria-label="' . __('Zobraziť všetky podujatia', 'kapital') . '"' : '"';
-                $recording_filter_html .= ' href="' . $archive_link;
-                $recording_filter_html .= $current_year === '' ? '' : 'rok/' . $current_year . '/';
-                $recording_filter_html .= $recording ? '"' : '?zaznam=1"';
-                $recording_filter_html .= '>' . __('Záznamy', "kapital") . '</a>';
-
+                $recording_filter_html = '';
+                if ($temp_rec_query->have_posts()){
+                    $recording_filter_html = '<a class="btn btn-outline ms-1';
+                    $recording_filter_html .= $recording ? ' active" aria-label="' . __('Zobraziť všetky podujatia', 'kapital') . '"' : '"';
+                    $recording_filter_html .= ' href="' . $archive_link;
+                    $recording_filter_html .= $current_year === '' ? '' : 'rok/' . $current_year . '/';
+                    $recording_filter_html .= $recording ? '"' : '?zaznam=1"';
+                    $recording_filter_html .= '>' . __('Záznamy', "kapital") . '</a>';
+                }
+            
                 echo kapital_render_filters($years_filters, true, true, [
                     'text' => __('Rok', 'kapital'),
                     'aria_label' => __('', 'kapital')
@@ -207,16 +232,16 @@ echo kapital_breadcrumbs($breadcrumbs, 'container');
             get_template_part(
                 'template-parts/archive-event-list',
                 null,
-                isset($current_year) || $current_year !== "" 
-                    ? array('query' => $wp_query, 'are_old_events' => true, 'heading_level' => $heading_level) 
+                isset($current_year) || $current_year !== ""
+                    ? array('query' => $wp_query, 'are_old_events' => true, 'heading_level' => $heading_level)
                     : array('query' => $wp_query, 'heading_level' => $heading_level)
             );
             ?>
         </<?= $section_tag ?>>
-    <?php 
+    <?php
     else:
         echo '<p class="my-6 ff-grotesk fw-bold text-center lh-sm">' . __('Nenašli sa žiadne podujatia.', 'kapital') . '</p>';
-    endif; 
+    endif;
     ?>
 
     <?php echo kapital_pagination(); ?>
