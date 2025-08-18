@@ -28,7 +28,7 @@
     }
 }
 
-.woocommerce-checkout{
+.woocommerce-checkout-form{
     p:not(:last-child){
         margin-bottom: 1rem;
     }
@@ -41,7 +41,7 @@
         margin-top: 0px !important;
     }
 }
-.kapital-woocommerce-checkout-wrapper, #customer_details, .woocommerce-checkout, #order_review{
+.kapital-woocommerce-checkout-wrapper, #customer_details, .woocommerce-checkout-form, #order_review{
     & > *:not(:last-child){
         margin-bottom: map-get($spacers, 5);
     } 

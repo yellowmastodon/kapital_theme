@@ -12,6 +12,12 @@
 }
 }
 
+.woocommerce-order{
+    .order-actions-button + .order-actions-button{
+        margin-left: .75rem;
+    }
+}
+
 .checkout-button{
     font-weight: bold;
     @extend .btn;

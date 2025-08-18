@@ -29,7 +29,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 
-<form style="" name="checkout" method="post" class="ff-grotesk alignwide checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__( 'Checkout', 'woocommerce' ); ?>">
+<form style="" name="checkout" method="post" class="ff-grotesk alignwide checkout woocommerce-checkout-form" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__( 'Checkout', 'woocommerce' ); ?>">
 
 	<?php if ( $checkout->get_checkout_fields() ) : ?>
 
