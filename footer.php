@@ -26,6 +26,13 @@ if (is_multisite()) {
         switch_to_blog(get_main_site_id());
     }
 }
+
+
+/**
+ * custom action for conditionally rendering gallery modal placeholder
+ */
+
+do_action('kapital-before-footer');
 ?>
 
 

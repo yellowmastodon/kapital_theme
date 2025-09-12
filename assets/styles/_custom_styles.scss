@@ -132,7 +132,7 @@ blockquote{
     line-height: $line-height-small;
 }
 
-.is-style-rounded img{
+.is-style-rounded img, img.is-style-rounded{
     border-radius: $border-radius;
 }
 a{

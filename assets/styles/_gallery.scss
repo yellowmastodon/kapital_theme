@@ -1,0 +1,71 @@
+.btn-gallery {
+    display: block;
+    &:focus,
+    &:focus-visible {
+        outline: none !important;
+    }
+    &:focus-visible {
+        img {
+            outline: solid 5px $primary;
+        }
+    }
+}
+
+#kapital-gallery-modal {
+    .close {
+        position: fixed;
+        right: map-get($spacers, 4);
+        top: map-get($spacers, 4);
+    }
+    .carousel {
+        .carousel-control-prev, .carousel-control-next{
+
+            .carousel-control-btn{
+                border-radius: 9999px;
+                background-color: var(--#{$prefix}secondary);
+                border-color: var(--#{$prefix}secondary);
+                padding: $btn-padding-y;
+                width: 1.9rem;
+                height: 1.9rem;
+                padding: .3rem;
+                svg{
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    vertical-align: 0;
+                    fill: map-get($colors, 'gray');
+                }
+            }
+            &:hover, &:focus-visible{
+                .carousel-control-btn{
+                    background-color: var(--#{$prefix}red);
+                    border-color: var(--#{$prefix}red);
+                    color: $white;
+                    outline: none !important;
+                    svg {
+                        fill: $white;
+                    }
+                }
+            }
+            &:active{
+                .carousel-control-btn{
+                    background-color: darken($red, 7);
+                    border-color: darken($red, 7);
+                }
+            }
+        }
+        .carousel-img-wrapper {
+            img {
+                max-height: calc(100vh - 10rem);
+                height: 100%;
+                display: block;
+                object-fit: contain;
+                margin: auto;
+            }
+        }
+    }
+}
+
+.blocks-gallery-caption{
+    margin-left: auto !important;
+    margin-right: auto !important;    
+}

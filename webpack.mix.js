@@ -94,6 +94,12 @@ mix
     'assets/scripts/admin-load-post-views.js'
 ], 'js/admin-load-post-views.min.js');
 
+mix
+.js([
+    'assets/scripts/masonry.js'
+], 'js/masonry.min.js');
+
+
 mix.browserSync({
     https: true,
     ui: false,

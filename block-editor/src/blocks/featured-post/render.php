@@ -65,7 +65,7 @@ else:
 		}
 	}
 ?>
-	<article class="featured-post archive-item alignwider ff-grotesk">
+	<article class="featured-post archive-item alignwider ff-grotesk<?=isset($attributes["className"]) ? " {$attributes["className"]}" : '';?>">
 		<?php if ($attributes["isPost"]):?>
 		<div class="archive-post-top row ff-sans fs-small text-gray">
 			<?php if ($post_type === 'podcast'): ?>

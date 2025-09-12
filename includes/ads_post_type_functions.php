@@ -20,10 +20,16 @@ function kapital_update_post_date_from_acf($post_id, $post) {
 	// date format must be "Y-m-d H:i:s"
     remove_action('save_post', 'kapital_update_post_date_from_acf', 20);
     if ($post->post_type === "inzercia"){
-        $post_date = get_field('ad_end_date');
-        $post = wp_update_post(array(
-            'ID' => $post_id,
-            'post_date' => $post_date));
+        
+         $ad_end_date = get_field('ad_end_date');
+        if ($ad_end_date) {
+            // Append time to set post_date to end of the day
+            $post_date = $ad_end_date . ' 23:59:59';
+            wp_update_post(array(
+                'ID' => $post_id,
+                'post_date' => $post_date,
+            ));
+        }
     } elseif ($post->post_type === "recommendation") {
         $post_date = get_field('recommendation_end_date');
         $post = wp_update_post(array(

@@ -25,7 +25,7 @@ import ajaxRequest from './ajax-request';
 import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
-import productCarousel from './product-carousel';
+import galleryCarousel from './gallery-carousel';
 import shareButton from './share-button';
 import postViewLoader from './post-views-loader';
 
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 showMorePosts();
-if (document.body.classList.contains('single-product')){
-    productCarousel();
+if (document.querySelector('.gallery-with-lightbox')){
+    galleryCarousel();
 }
 
 const donation_form_wrapper = document.getElementById("darujme-form-wrapper");

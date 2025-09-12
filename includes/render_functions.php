@@ -70,9 +70,11 @@ function kapital_bubble_paragraphs($blocks)
  * @param string    $img_classes for img element separated by space
  * @param string    $figure_classes classes for figure element separated by space
  * @param string    $alt_text custom alt text
+ * @param string|null $custom_figcaption override image's caption
  * @return string   HTML figure with img element with caption or empty string on failure
+ * @todo     '../block-editor/blocks/build/image.php' relies on this function not injecting its own classes. It adds " " to break the class declaration and insert style
  */
-function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "")
+function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "", string $html_id = "", string|null $custom_figcaption = null)
 {
     if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
         $attachment = get_post($attachment_id);
@@ -82,7 +84,11 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
             $image_sizes = $image_sizes;
             //also include full size image
             $image_sizes[] = "full";
-            $caption = $attachment->post_excerpt;
+            if (!is_null($custom_figcaption)){
+                $caption = $custom_figcaption;
+            } else {
+                $caption = $attachment->post_excerpt;
+            }
             if ($alt_text === "") {
                 $alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
             }
@@ -106,23 +112,38 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
                 }
             }
             $html = "";
+
             if ($figure_and_caption) {
-                $html .= '<figure class="' . $figure_classes . '">';
+                $html .= "<figure";
+                if ($html_id !== ''){
+                    $html .= " id=\"$html_id\"";
+                }
+                $html .= " class=\"$figure_classes\">";
             }
-            $html .= '<img';
-            if (!$is_nonscalable) $html .=  ' srcset="' . $srcset . '"';
-            $html .= ' class="' . $img_classes . '"';
-            $html .= ' style="background-image: url(\'' .  wp_get_attachment_image_src($attachment_id, 'placeholder')[0] . '\'); aspect-ratio:' . $aspect_ratio . '"';
-            $html .= ' src="' . $full_size_img_url . '"';
-            if (!$is_nonscalable) $html .= ' sizes="' . $sizes . '"';
-            $html .= ' loading="lazy"';
-            $html .= ' alt="' . $alt_text . '"';
-            $html .= '/>';
+
+            $html .= "<img";
+            
+            if (!$figure_and_caption){
+                $html .= " id=\"$html_id\"";
+                $html .= ' data-caption="' . htmlspecialchars($caption, ENT_QUOTES, 'UTF-8') . '"';
+            }
+
+            if (!$is_nonscalable) {
+                $html .= " srcset=\"$srcset\"";
+            }
+            $html .= " class=\"$img_classes\"";
+            $placeholder_src = wp_get_attachment_image_src($attachment_id, 'placeholder')[0];
+            $html .= " style=\"background-image: url('$placeholder_src'); aspect-ratio: $aspect_ratio\"";
+            $html .= " src=\"$full_size_img_url\"";
+            if (!$is_nonscalable) {
+                $html .= " sizes=\"$sizes\"";
+            }
+            $html .= " loading=\"lazy\" alt=\"$alt_text\" />";
             if ($figure_and_caption) {
                 if ($caption !== "") {
-                    $html .= '<figcaption class="fs-small alignnormal mt-1 ff-sans text-gray text-center">' . $caption . '</figcaption>';
+                    $html .= "<figcaption class=\"fs-small alignnormal mt-1 ff-sans text-gray text-center\">$caption</figcaption>";
                 }
-                $html .= '</figure>';
+                $html .= "</figure>";
             }
             return $html;
         } else {

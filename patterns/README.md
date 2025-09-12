@@ -1,0 +1,1 @@
+Only contains patterns which will not be, or rarely will be modified

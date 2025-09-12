@@ -153,24 +153,19 @@ do_action('woocommerce_before_main_content');?>
             echo apply_filters('woocommerce_short_description', $post->post_excerpt);
             ?>
         </div>
-        <div class="product-gallery woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+        <div class="gallery-with-lightbox product-gallery woocommerce-product-gallery woocommerce-product-gallery--with-images images">
             <div class="woocommerce-product-gallery__wrapper row gy-4">
                 <?php
                 $post_thumbnail_id = $product->get_image_id();
                 $post_gallery_img = $product->get_gallery_image_ids(); ?>
                 <div class="col-12">
-                    <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-12" href="<?= wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'full') ?>">
-                        <?php echo kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100 main-image');
-                        ?>
-                    </a>
+                    <?php get_template_part('template-parts/gallery-lightbox-toggle-wrap', null, ['html'=> kapital_responsive_image($post_thumbnail_id, "400px", false, 'rounded w-100 main-image')])?>
                 </div>
                 <?php
                 $img_small_col_class = count($post_gallery_img) > 2 ? "col-4" : "col-6";
                 foreach ($post_gallery_img as $img): ?>
                     <div class="woocommerce-product-gallery__image col-12">
-                        <a data-bs-toggle="modal" data-bs-target="#product-modal" class="gallery-link col-md-12 <?= $img_small_col_class ?>" href="<?= wp_get_attachment_url($img, 'full') ?>">
-                            <?= kapital_responsive_image($img, "400px", false, 'rounded w-100') ?>
-                        </a>
+                        <?php get_template_part('template-parts/gallery-lightbox-toggle-wrap', null, ['html'=> kapital_responsive_image($img, "400px", false, 'rounded w-100')])?>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -187,37 +182,20 @@ do_action('woocommerce_before_main_content');?>
         do_action('woocommerce_after_single_product_summary');
         ?>
     </div>
-    
-    <div class="modal fade modal-fullscreen" id="product-modal" tabindex="-1" aria-hidden="true" data-bs-keyboard="true">
-        <a type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <svg class="h1 mb-0 icon-square">
-                <use xlink:href="#icon-close"></use>
-            </svg><span class="visually-hidden"><?= __("Zavrieť galériu", "kapital") ?></span>
-        </a>
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content bg-transparent border-0" id="product-modal-content">
+        <?php
+        /**
+         * render lightbox placeholder
+         */
+        add_action('kapital-before-footer', function(){
+            get_template_part('template-parts/gallery-lightbox-placeholder');            
+        });
 
-                <div id="product-carousel" class="carousel slide px-sm-5" data-ride="false" data-interval="false" data-bs-keyboard="true">
-
-                    <div class="carousel-inner rounded"></div>
-                    <a class="position-absolute carousel-control-prev p-3 opacity-100" type="button" data-bs-target="#product-carousel" data-bs-slide="prev"><svg class="h1 mb-0 icon-square">
-                            <use xlink:href="#icon-page-prev"></use>
-                        </svg><span class="visually-hidden"><?= __("Predošlé", "kapital") ?></span></a>
-                    <a class="position-absolute carousel-control-next p-3 opacity-100" type="button" data-bs-target="#product-carousel" data-bs-slide="next"><svg class="h1 mb-0 icon-square">
-                            <use xlink:href="#icon-page-next"></use>
-                        </svg><span class="visually-hidden"><?= __("Ďalšie", "kapital") ?></span></a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <?php do_action('woocommerce_after_single_product'); ?>
+    do_action('woocommerce_after_single_product'); ?>
 
 <?php endwhile; // end of the loop. 
-?>
 
-<?php
+get_template_part('template-parts/lighbtbox-placeholder');
+
 /**
  * woocommerce_after_main_content hook.
  *

@@ -135,8 +135,12 @@ require_once(dirname(__FILE__) . '/build/blocks/book-query/index.php');
 require_once(dirname(__FILE__) . '/build/blocks/recommendations/index.php');
 
 
-require_once(dirname(__FILE__) . '/build/block-variations/button.php');
-require_once(dirname(__FILE__) . '/build/block-variations/bubble-heading.php');
+require_once(dirname(__FILE__) . '/build/block-mods/button.php');
+require_once(dirname(__FILE__) . '/build/block-mods/bubble-heading.php');
+require_once(dirname(__FILE__) . '/build/block-mods/image.php');
+require_once(dirname(__FILE__) . '/build/block-mods/gallery.php');
+
+
 
 add_action('admin_head', 'custom_root_font_size');
 /* fix for rem definitions */

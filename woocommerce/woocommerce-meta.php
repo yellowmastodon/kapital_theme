@@ -1,14 +1,14 @@
 <?php 
-add_action( 'admin_init', 'kapital_product_repeater_meta_boxes' );
+add_action( 'admin_init', 'kapital_book_meta' );
 
-function kapital_product_repeater_meta_boxes() {
+function kapital_book_meta() {
 	add_meta_box( 'kapital-book-author', __('Autorstvo knihy a poznámka produktu', 'kapital'), 'kapital_book_author_meta_box_callback', 'product', 'after_title', 'high' );
 }
 
 function kapital_book_author_meta_box_callback( $post ){
     $kapital_book_author = get_post_meta( $post->ID, '_kapital_book_author', true );
     $kapital_product_notice = get_post_meta( $post->ID, '_kapital_product_notice', true );
-    wp_nonce_field( 'repeater_box', 'formType' );?>
+    wp_nonce_field( 'woo_meta_action', 'wooMetaNonce' );?>
     <table style="width:100%">
         <tr>
      <th  style="text-align: left; vertical-align: top"><label for="kapital_book_author"><?=__("Autorstvo knihy", "kapital")?></th><td style="width:70%"><input style="width:100%" type="text" name="kapital_book_author"  id="kapital_book_author" value="<?=$kapital_book_author?>" placeholder="<?=__("Meno autora. Ak sa nejedná o knihu, nechajte prázdne.", "kapital")?>"></td>
@@ -21,9 +21,10 @@ function kapital_book_author_meta_box_callback( $post ){
 }
 add_action( 'save_post_product', 'kapital_book_author_meta_box_save' );
 function kapital_book_author_meta_box_save( $post_id ) {
-	if ( !isset( $_POST['formType'] ) || !wp_verify_nonce( $_POST['formType']) ){
-		return;
-	}
+    if (!isset($_POST['wooMetaNonce'])) return;
+
+    if (!wp_verify_nonce( $_POST['wooMetaNonce'], 'woo_meta_action')) return;
+
     if ( isset( $_POST['kapital_book_author'] ) ){
         update_post_meta( $post_id, '_kapital_book_author', $_POST['kapital_book_author'] );
     }

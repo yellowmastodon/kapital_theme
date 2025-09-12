@@ -114,10 +114,13 @@ $theme-colors: map-merge($theme-colors, $colors);
 @import "sponsors";
 @import "archive_podcast.scss";
 @import "single_podcast";
+@import "single_event";
 @import "post_filters";
 @import "darujme_form";
 @import "woocommerce_archive";
 @import "author_columns";
+@import "gallery";
+
 
 .btn {
     font-size: 0.9rem !important;

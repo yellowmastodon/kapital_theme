@@ -129,24 +129,7 @@
     }
 }
 
-.carousel{
-    .carousel-img-wrapper{
-        img{
-            max-height: calc(100vh - 10rem);
-            height: 100%;
-            display: block;
-            margin: auto;
-            object-fit: contain;
-        }
-    }
-}
-#product-modal{
-    .close{
-        position: fixed;
-        right: map-get($spacers, 4);
-        top: map-get($spacers, 4);
-    }
-}
+
 .variations_form, .single_variation{
     & > *:not(:first-child){
         margin-top: map-get($spacers, 3);

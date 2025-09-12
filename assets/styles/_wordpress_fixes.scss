@@ -16,6 +16,7 @@ _colors.scss
 	font-size: inherit;
 }
 figcaption{
+	@extend .d-block;
 	@extend .fs-small;
 	@extend .alignnormal;
 	@extend .mt-1;
@@ -53,7 +54,6 @@ figcaption{
 }
 
 //buttons
-
 .wp-element-button, .wp-block-button__link{
 	@extend .btn;
 	&:not(.has-background){
@@ -114,3 +114,101 @@ figcaption{
 		height: 2rem;
 	}
 }
+
+.has-border-color{
+	border-style: solid;
+}
+
+
+//embed
+//src:: https://gist.github.com/davewarfel/e5d150b0034aeb98adc64b68e85b54e6
+
+
+.wp-block-embed {
+	margin-bottom: 1em;
+
+	&.alignleft,
+	&.alignright {
+		max-width: 360px;
+		width: 100%;
+	}
+
+	figcaption {
+		margin-top: 0.5em;
+		margin-bottom: 1em;
+		color: #555d66;
+		text-align: center;
+		font-size: 13px;
+	}
+
+} // .wp-block-embed
+
+.wp-embed-responsive {
+
+	.wp-block-embed.wp-embed-aspect-21-9 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-18-9 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-9-16 .wp-block-embed__wrapper,
+	.wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper {
+		position: relative;
+	}
+
+	.wp-block-embed.wp-embed-aspect-21-9 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-18-9 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-9-16 .wp-block-embed__wrapper::before,
+	.wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper::before {
+		content: "";
+		display: block;
+		padding-top: 50%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-21-9 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-18-9 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-9-16 .wp-block-embed__wrapper iframe,
+	.wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper iframe {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-21-9 .wp-block-embed__wrapper::before {
+		padding-top: 42.85%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-18-9 .wp-block-embed__wrapper::before {
+		padding-top: 50%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before {
+		padding-top: 56.25%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-4-3 .wp-block-embed__wrapper::before {
+		padding-top: 75%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper::before {
+		padding-top: 100%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-9-6 .wp-block-embed__wrapper::before {
+		padding-top: 66.66%;
+	}
+
+	.wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper::before {
+		padding-top: 200%;
+	}
+
+} // .wp-embed-responsive

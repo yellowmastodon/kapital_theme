@@ -1,8 +1,8 @@
 /*!
 Theme Name: kapital
-Theme URI: https://benchmark.co.uk/barebones
+Theme URI: https://github.com/yellowmastodon/kapital_theme
 Author: Juraj Mydla
-Author URI: https://benchmark.co.uk/
+Author URI: https://github.com/yellowmastodon/
 Description: Téma kapitálu - redizajn 2024
 Text Domain: kapital
 */
@@ -92,6 +92,7 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "custom_styles";
 @import "single_post";
 @import "single_redakcia";
+@import "single_event";
 @import "wordpress_fixes";
 @import "bubble_heading";
 @import "header";
@@ -127,6 +128,8 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "page_o_nas";
 @import "author_columns";
 @import "share_button";
+@import "gallery";
+
 
 
 

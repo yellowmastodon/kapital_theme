@@ -1,0 +1,22 @@
+#post-content, #podcast-content, .main-content, .is-root-container{
+    .event-audio-recording{
+            iframe[src*="soundcloud"]{
+            border-radius: $border-radius  $border-radius $border-radius 0;
+        }
+        .wp-block-buttons{
+            gap: $spacer;
+            .btn {
+                min-width: 31%;
+                flex-grow: 1;
+            };
+        }
+    }
+    .event-audio-recording, .event-video-recording, .event-recording-gallery{
+        &:not(:first-child){
+            margin-top: map-get($spacers, 5);
+        }
+        &:not(:last-child){
+            margin-bottom: map-get($spacers, 5);
+        }
+    }
+}

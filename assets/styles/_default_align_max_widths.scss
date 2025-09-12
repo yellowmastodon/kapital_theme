@@ -9,12 +9,15 @@ $container_padding: map-get($spacers, 3);
     padding-left: $container_padding;
 }
 
-.container .alignfull{
+.container .alignfull:not(.kapital-gallery){
     margin-left: -$container_padding;
     margin-right: -$container_padding;
 }
-.alignfull{
+.alignfull:not(.kapital-gallery){
     max-width: calc(100% + ($container_padding * 2));
+}
+.alignfull.kapital-gallery{
+    max-width: 100%;
 }
 /* $grid-breakpoints: (
   xs: 0,

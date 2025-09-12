@@ -16,7 +16,9 @@ function ajax_load_ads() {
             'post_type' => 'inzercia',
             'posts_per_page' => -1,
             'date_query' => array(
-                'after' => current_time('Y-m-d'),
+                'after' => current_time('Y-m-d H:i:s'),
+                'inclusive' => true,
+                'column'    => 'post_date',
             )
         ));
 
