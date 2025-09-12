@@ -13,14 +13,24 @@
     }
     .event-recording-video iframe{
         border-radius: $border-radius;
-
     }
+
     .event-recording-audio, .event-recording-video, .event-recording-gallery{
         &:not(:first-child){
-            margin-top: map-get($spacers, 5);
+            margin-top: map-get($spacers, 6);
         }
         &:not(:last-child){
-            margin-bottom: map-get($spacers, 5);
+            margin-bottom: map-get($spacers, 6);
         }
+        .event-recording-caption{
+            margin-top: map-get($spacers, 2);
+            *{
+                margin-bottom: 0;
+            }
+             * + *{
+                margin-top: map-get($spacers, 2);
+             }
+        }
+
     }
 }

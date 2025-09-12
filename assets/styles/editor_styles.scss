@@ -120,6 +120,8 @@ $theme-colors: map-merge($theme-colors, $colors);
 @import "woocommerce_archive";
 @import "author_columns";
 @import "gallery";
+@import "single_event";
+
 
 
 .btn {
