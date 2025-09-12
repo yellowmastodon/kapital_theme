@@ -262,8 +262,7 @@ function kapital_enqueue_scripts()
     wp_dequeue_style('wp-block-buttons'); // Remove global styles inline CSS
     wp_deregister_style('wp-block-buttons');
     //wp_dequeue_style( 'select2' );
-        wp_enqueue_style( 'wp-block-embed' );
-
+    
 
 }
 
