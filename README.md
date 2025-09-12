@@ -1,33 +1,64 @@
-# barebones
+# Kapital Theme
 
-A lightweight and skeletal WordPress boilerplate theme for HTML5 and beyond. There's lots of these out there but most themes include lots of bloat and files which you might not necessarily need, so we thought we would create our own which is great as a starting point with powerful features to encourage rapid development for most projects.
+**Kapital Theme** is a custom WordPress theme for magazine Kapitál.
+
+---
 
 ## Features
 
-* Reset, normalisation and base font/form styles
-* Scss Boilerplate - semantically named files, organised by folders, all compiled into a single file
-* Semantic use of HTML5 elements, includes Google HTML5 shiv
-* WAI-ARIA role ready
-* jQuery plugin agnostic
-* Basic template files
-* Customised functions.php adding theme support for high customisation
-* Minimised HTTP requests for high Web Performance
-* Localised strings for multiple language support
-* Scss compiling and watching, css minification support
-* Base mobile nav out of the box
+- **Custom Post Types:**  
+  Events with date, recording, and gallery support.
+- **Custom Block Patterns:**  
+  Predefined layouts for recordings, galleries, and event content.
+- **Advanced Filtering:**  
+  Filter events by year, recordings, and more.
+- **Responsive Design:**  
+  Mobile-first, Bootstrap 5-based layout.
+- **Custom Templates:**  
+  Archive, single, and footer templates tailored for events.
+- **SVG & Image Helpers:**  
+  Functions for responsive images and SVG optimization.
+- **Editor Enhancements:**  
+  Custom block modifications and patterns for the block editor.
+- **WooCommerce Support:**  
+  Basic compatibility for shop and product pages.
+- **SCSS Boilerplate:**  
+  Semantically named files, organized by folders, all compiled into a single file.
+- **WAI-ARIA Role Ready:**  
+  Accessibility best practices included.
+- **Localised Strings:**  
+  Translation-ready with the `kapital` text domain.
 
-## Installation
+---
 
-Clone the barebones repositories into your WordPress /wp-content/themes/ directory:
+## Folder Structure
 
-    git clone https://github.com/benchmarkstudios/barebones
-    cd barebones
+```
+kapital_theme/
+│
+├── assets/                # SCSS, JS, images
+├── block-editor/          # Custom block modifications
+│   └── src/
+├── includes/              # PHP helpers and logic
+├── patterns/              # Block pattern registration
+├── template-parts/        # Template partials
+├── woocommerce/           # WooCommerce overrides
+├── functions.php
+├── style.css
+├── archive-event.php
+├── single-event.php
+└── ...
+```
 
-### Using Laravel Mix
+---
 
-Install Dependencies, you have haven't done yet:
+### Using Laravel Mix (for SCSS/JS assets)
 
-    npm install
+Install dependencies if you haven't yet:
+
+```sh
+npm install
+```
 
 Then run:
 
@@ -35,3 +66,38 @@ Then run:
 |---------------------------|--------------------------------------------------------------------|
 | `npx mix watch`           | *watch assets for changes*                                         |
 | `npx mix --production`    | *compile for production*                                           |
+
+---
+
+## Customization
+
+- **SCSS Variables:**  
+  Modify `assets/styles/_variables.scss` for colors, spacing, and breakpoints.
+- **Block Patterns:**  
+  Edit or add new patterns in `patterns/register_patterns.php`.
+- **PHP Functions:**  
+  Extend or override helpers in `includes/`.
+
+---
+
+## Translation
+
+- Theme is translation-ready.
+- Use the `kapital` text domain for all translations.
+
+---
+
+## Credits
+
+This theme is based on the [barebones](https://github.com/benchmarkstudios/barebones) WordPress boilerplate by Benchmark Studios, with significant customizations for event and cultural websites.  
+Includes code and structure inspired by the original barebones theme:
+
+> A lightweight and skeletal WordPress boilerplate theme for HTML5 and beyond. There's lots of these out there but most themes include lots of bloat and files which you might not necessarily need, so we thought we would create our own which is great as a starting point with powerful features to encourage rapid development for most projects.
+
+---
+
+## License
+
+This theme is licensed under the [MIT License](LICENSE) or WordPress GPL, as appropriate.
+
+---
