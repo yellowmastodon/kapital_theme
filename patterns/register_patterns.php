@@ -36,7 +36,7 @@ function kapital_register_patterns() {
 	) ); 
 
     register_block_pattern( 'kapital/event-recording-video', array(
-		'title'      => __( 'Galéria podujatia', 'kapital' ),
+		'title'      => __( 'Video záznam podujatia', 'kapital' ),
 		'categories' => array( 'kapital/recordings' ),
         'keywords'  => array('zaznam', 'recording', 'video', 'film', 'podujatia', 'podujatie'),
 		'content'    => file_get_contents("$template_dir/patterns/event-recording-video.html"),

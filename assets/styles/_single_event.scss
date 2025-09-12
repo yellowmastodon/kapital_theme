@@ -1,6 +1,6 @@
 #post-content, #podcast-content, .main-content, .is-root-container{
-    .event-audio-recording{
-            iframe[src*="soundcloud"]{
+    .event-recording-audio{
+        iframe[src*="soundcloud"]{
             border-radius: $border-radius  $border-radius $border-radius 0;
         }
         .wp-block-buttons{
@@ -11,7 +11,11 @@
             };
         }
     }
-    .event-audio-recording, .event-video-recording, .event-recording-gallery{
+    .event-recording-video iframe{
+        border-radius: $border-radius;
+
+    }
+    .event-recording-audio, .event-recording-video, .event-recording-gallery{
         &:not(:first-child){
             margin-top: map-get($spacers, 5);
         }
