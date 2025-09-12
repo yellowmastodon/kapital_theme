@@ -30,6 +30,7 @@ $include_all = array(
     '/templates/register-new-post-templates.php',
     '/includes/iframe_wrapper.php',
     '/includes/widgets.php',
+    '/patterns/register_patterns.php',
 
 );
 
@@ -90,9 +91,51 @@ add_action('after_setup_theme', function () {
 /**
  * Add support for useful stuff and set image sizes
  */
-
+global $kapital_spacing_sizes_arr;
+$kapital_spacing_sizes_arr = array(
+    array(
+        "name" => "0",
+        "slug" => "0",
+        "size" => "0px"
+    ),
+    array(
+        "name" => "1/4",
+        "slug" => "1",
+        "size" => ".25rem"
+    ),
+    array(
+        "name" => "1/2",
+        "slug" => "2",
+        "size" => ".5rem"
+    ),
+    array(
+        "name" => "1",
+        "slug" => "3",
+        "size" => "1rem"
+    ),
+    array(
+        "name" => "1.5x",
+        "slug" => "4",
+        "size" => "1.5rem"
+    ),
+    array(
+        "name" => "2x",
+        "slug" => "5",
+        "size" => "2rem"
+    ),
+    array(
+        "name" => "3x",
+        "slug" => "6",
+        "size" => "3rem"
+    ),
+    array(
+        "name" => "5x",
+        "slug" => "7",
+        "size" => "5rem"
+    ),
+);
 if (function_exists('add_theme_support')) {
-    add_action('after_setup_theme', function () {
+    add_action('after_setup_theme', function () use ($kapital_spacing_sizes_arr) {
         // Add support for document title tag
         add_theme_support('title-tag');
 
@@ -139,50 +182,7 @@ if (function_exists('add_theme_support')) {
                 'slug' => '1'
             )
         ));
-        add_theme_support('editor-spacing-sizes', array(
-            array(
-                "name" => "0",
-                "slug" => "none",
-                "size" => "0px"
-            ),
-            array(
-                "name" => "1/4",
-                "slug" => "quarter",
-                "size" => ".25rem"
-            ),
-            array(
-                "name" => "1/2",
-                "slug" => "half",
-                "size" => ".5rem"
-            ),
-            array(
-                "name" => "1",
-                "slug" => "1",
-                "size" => "1rem"
-            ),
-            array(
-                "name" => "1.5x",
-                "slug" => "1-5",
-                "size" => "1.5rem"
-            ),
-            array(
-                "name" => "2x",
-                "slug" => "2",
-                "size" => "2rem"
-            ),
-            array(
-                "name" => "3x",
-                "slug" => "3",
-                "size" => "3rem"
-            ),
-            array(
-                "name" => "5x",
-                "slug" => "5",
-                "size" => "5rem"
-            )
-
-
-        ));
+        add_theme_support('editor-spacing-sizes', $kapital_spacing_sizes_arr);
         add_theme_support('custom-spacing');
     }, 1);
 }
@@ -262,6 +262,8 @@ function kapital_enqueue_scripts()
     wp_dequeue_style('wp-block-buttons'); // Remove global styles inline CSS
     wp_deregister_style('wp-block-buttons');
     //wp_dequeue_style( 'select2' );
+        wp_enqueue_style( 'wp-block-embed' );
+
 
 }
 
