@@ -39,12 +39,12 @@
 #post-content .wp-block-group,
 #podcast-content .wp-block-group {
 
-    & > h1,
-    & > h2,
-    & > h3,
-    & > h4,
-    & > h5,
-    & > h6 {
+    &  h1,
+    &  h2,
+    &  h3,
+    &  h4,
+    &  h5,
+    &  h6 {
         &:not(:first-child) {
             margin-top: map-get($spacers, 6);
         }
