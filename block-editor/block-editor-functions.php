@@ -25,7 +25,7 @@ function kapital_enqueue_editor_content_assets()
             $custom_editor_scripts_assets['dependencies'],
             $custom_editor_scripts_assets['version']
         );
-        wp_enqueue_style('styles', $template_directory . '/editor_styles.css?' . filemtime(get_stylesheet_directory() . '/editor_styles.css'), [], null);
+        wp_enqueue_style('styles', $template_directory . '/editor_styles.css?mod=' . filemtime(get_stylesheet_directory() . '/editor_styles.css'), [], null);
     }
 }
 

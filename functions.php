@@ -240,8 +240,8 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 function kapital_enqueue_scripts()
 {
     // wp_enqueue_style( 'icons', '//use.fontawesome.com/releases/v5.0.10/css/all.css' )
-    wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/style.css?' . filemtime(get_stylesheet_directory() . '/style.css'), [], null);
-    wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.min.js?' . filemtime(get_stylesheet_directory() . '/js/scripts.min.js'), [], null, true);
+    wp_enqueue_style('styles', get_stylesheet_directory_uri() . '/style.css?mod=' . filemtime(get_stylesheet_directory() . '/style.css'), [], null);
+    wp_enqueue_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.min.js?mod=' . filemtime(get_stylesheet_directory() . '/js/scripts.min.js'), [], null, true);
     wp_localize_script(
         'scripts',
         'site_info',
@@ -619,7 +619,7 @@ function kapital_filters_load_admin_js()
 function kapital_filters_enqueue_admin_js()
 {
     // Isn't it nice to use dependencies and the already registered core js files?
-    wp_enqueue_style('admin-filter-selector-style', get_stylesheet_directory_uri() . '/assets/admin_styles/filter-selector.css?' . filemtime(get_stylesheet_directory() . '/assets/admin_styles/filter-selector.css'), [], null);
+    wp_enqueue_style('admin-filter-selector-style', get_stylesheet_directory_uri() . '/assets/admin_styles/filter-selector.css?mod=' . filemtime(get_stylesheet_directory() . '/assets/admin_styles/filter-selector.css'), [], null);
     wp_enqueue_script('admin-filter-selector', get_stylesheet_directory_uri() . '/js/admin-filter-selector.min.js', [], null, true);
 }
 
