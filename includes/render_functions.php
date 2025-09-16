@@ -76,80 +76,83 @@ function kapital_bubble_paragraphs($blocks)
  */
 function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "", string $html_id = "", string|null $custom_figcaption = null)
 {
-    if (isset($attachment_id) && $attachment_id && is_numeric($attachment_id) && $attachment_id !== 0) {
-        $attachment = get_post($attachment_id);
-        $is_nonscalable = $attachment->post_mime_type === 'image/gif' ? true : false;
-        if ($attachment && !is_null($attachment)) {
-            $image_sizes = get_intermediate_image_sizes($attachment_id);
-            $image_sizes = $image_sizes;
-            //also include full size image
-            $image_sizes[] = "full";
-            if (!is_null($custom_figcaption)){
-                $caption = $custom_figcaption;
-            } else {
-                $caption = $attachment->post_excerpt;
-            }
-            if ($alt_text === "") {
-                $alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
-            }
-            $srcset = "";
-            foreach ($image_sizes as $image_size) {
-                if ($image_size !== 'placeholder') {
+       
+    if (!isset($attachment_id) || !$attachment_id || !is_numeric($attachment_id) || $attachment_id === 0)
+        return '';
 
-                    //returns array of values for specific image size
-                    // https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
-                    $src = wp_get_attachment_image_src($attachment_id, $image_size);
-                    if ($srcset !== '') {
-                        $srcset .= ', ';
-                    }
-                    $srcset .= $src[0] . ' ' . $src[1] . 'w';
-                    //calculate aspect ratio for placeholder
-                    if ($image_size === "full") {
-                        $aspect_ratio = (int) $src[1] / (int) $src[2];
-                        //save full size to custom variable to be used as fallback
-                        $full_size_img_url = $src[0];
-                    }
-                }
-            }
-            $html = "";
+    $attachment = get_post($attachment_id);
+    
+    if (!$attachment || $attachment->post_type !== "attachment")
+        return '';
 
-            if ($figure_and_caption) {
-                $html .= "<figure";
-                if ($html_id !== ''){
-                    $html .= " id=\"$html_id\"";
-                }
-                $html .= " class=\"$figure_classes\">";
-            }
+    $is_nonscalable = $attachment->post_mime_type === 'image/gif' ? true : false;
+    $image_sizes = get_intermediate_image_sizes($attachment_id);
+    $image_sizes = $image_sizes;
+    //also include full size image
+    $image_sizes[] = "full";
+    if (!is_null($custom_figcaption)){
+        $caption = $custom_figcaption;
+    } else {
+        $caption = $attachment->post_excerpt;
+    }
+    if ($alt_text === "") {
+        $alt_text = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+    }
+    $srcset = "";
+    foreach ($image_sizes as $image_size) {
+        if ($image_size !== 'placeholder') {
 
-            $html .= "<img";
-            
-            if (!$figure_and_caption){
-                $html .= " id=\"$html_id\"";
-                $html .= ' data-caption="' . htmlspecialchars($caption, ENT_QUOTES, 'UTF-8') . '"';
+            //returns array of values for specific image size
+            // https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
+            $src = wp_get_attachment_image_src($attachment_id, $image_size);
+            if ($srcset !== '') {
+                $srcset .= ', ';
             }
-
-            if (!$is_nonscalable) {
-                $html .= " srcset=\"$srcset\"";
+            $srcset .= $src[0] . ' ' . $src[1] . 'w';
+            //calculate aspect ratio for placeholder
+            if ($image_size === "full") {
+                $aspect_ratio = (int) $src[1] / (int) $src[2];
+                //save full size to custom variable to be used as fallback
+                $full_size_img_url = $src[0];
             }
-            $html .= " class=\"$img_classes\"";
-            $placeholder_src = wp_get_attachment_image_src($attachment_id, 'placeholder')[0];
-            $html .= " style=\"background-image: url('$placeholder_src'); aspect-ratio: $aspect_ratio\"";
-            $html .= " src=\"$full_size_img_url\"";
-            if (!$is_nonscalable) {
-                $html .= " sizes=\"$sizes\"";
-            }
-            $html .= " loading=\"lazy\" alt=\"$alt_text\" />";
-            if ($figure_and_caption) {
-                if ($caption !== "") {
-                    $html .= "<figcaption class=\"fs-small alignnormal mt-1 ff-sans text-gray text-center\">$caption</figcaption>";
-                }
-                $html .= "</figure>";
-            }
-            return $html;
-        } else {
-            return '';
         }
     }
+    $html = "";
+
+    if ($figure_and_caption) {
+        $html .= "<figure";
+        if ($html_id !== ''){
+            $html .= " id=\"$html_id\"";
+        }
+        $html .= " class=\"$figure_classes\">";
+    }
+
+    $html .= "<img";
+    
+    if (!$figure_and_caption){
+        $html .= " id=\"$html_id\"";
+        $html .= ' data-caption="' . htmlspecialchars($caption, ENT_QUOTES, 'UTF-8') . '"';
+    }
+
+    if (!$is_nonscalable) {
+        $html .= " srcset=\"$srcset\"";
+    }
+    $html .= " class=\"$img_classes\"";
+    $placeholder_src = wp_get_attachment_image_src($attachment_id, 'placeholder')[0];
+    $html .= " style=\"background-image: url('$placeholder_src'); aspect-ratio: $aspect_ratio\"";
+    $html .= " src=\"$full_size_img_url\"";
+    if (!$is_nonscalable) {
+        $html .= " sizes=\"$sizes\"";
+    }
+    $html .= " loading=\"lazy\" alt=\"$alt_text\" />";
+    if ($figure_and_caption) {
+        if ($caption !== "") {
+            $html .= "<figcaption class=\"fs-small alignnormal mt-1 ff-sans text-gray text-center\">$caption</figcaption>";
+        }
+        $html .= "</figure>";
+    }
+    return $html;
+
 }
 
 function kapital_get_koko_stats($post_id)
