@@ -43,7 +43,7 @@ function kapital_render_gallery($block_content, $block)
     // Manipulate HTML with DOMDocument
     libxml_use_internal_errors(true); //dom document expects <DOCTYPE... so it would throw errors
     $dom = new DOMDocument();
-    $dom->loadHTML($block_content);
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $block_content);
     libxml_clear_errors();
 
     $figures = $dom->getElementsByTagName('figure');
@@ -89,7 +89,7 @@ function kapital_render_gallery($block_content, $block)
     foreach ($body->childNodes as $child) {
         $new_content .= $dom->saveHTML($child);
     }
-
+    //$new_content = mb_convert_encoding($new_content, 'HTML-ENTITIES', 'UTF-8');
     return $new_content;
 }
 
