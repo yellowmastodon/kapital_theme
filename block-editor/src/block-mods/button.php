@@ -43,12 +43,12 @@ function kapital_button_filter( $block_content, $block ) {
     $content  = '<a href="' . $link . '"' . $target . ' class="btn';
     if ($background_color === 'red'){
         $content .= ' btn-red';
-    } elseif ($background_color === 'pink'){
+    } elseif ($background_color === 'primary'){
         $content .= ' btn-primary';
     } elseif ($background_color === '' || $background_color === 'gray-light'){
         $content .= ' btn-secondary';
     } else {
-        $content .= ' has-' . $background_color . 'background-color';
+        $content .= ' btn-secondary bg-' . $background_color . ' border-' . $background_color;
     }
     $content .= '">';
     if ($icon_align === "icon-left" && $icon !== ""){
