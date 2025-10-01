@@ -636,7 +636,7 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
     $excerpt = strip_shortcodes($excerpt);
     $excerpt = apply_filters('the_content', $excerpt);
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt);
-    $excerpt = strip_tags($excerpt, ['<p>', '<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>']); /*IF you need to allow just certain tags. Delete if all tags are allowed */
+    $excerpt = strip_tags($excerpt, ['<p>', '<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>', '<br>']); /*IF you need to allow just certain tags. Delete if all tags are allowed */
     $excerpt = str_replace(['h1>', 'h2>', 'h3>', 'h4>', 'h5>', 'h6>'], 'p>', $excerpt);
     $excerpt = str_replace(['<h1', '<h2', '<h3', '<h4', '<h5', '<h6'], '<p', $excerpt);
     $excerpt = preg_replace('/class=".*?"/', '', $excerpt); //fix excerpt classes - first paragraph is perex
