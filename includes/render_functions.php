@@ -14,39 +14,40 @@
  */
 function kapital_bubble_title(string $string, int $heading_level = 2, string $additional_classes = '')
 {
-    if (!empty($string)) {
-        //add space before classes
-        if ($additional_classes !== '') {
-            $additional_classes = ' ' . $additional_classes;
-        }
-        //check if is heading (int 1-6)
-        if (is_int($heading_level) && $heading_level > 0 && $heading_level < 7): $is_heading = true;
-        else: $is_heading = false;
-        endif;
-        $output = '';
-        $exploded_string = explode(" ", $string);
 
-        //wrapper / heading tag start
-        if ($is_heading): $output .= '<h' . $heading_level . ' class="bubble-heading' . $additional_classes . '">';
-        else: $output .= '<p class="bubble-heading' . $additional_classes . '">';
-        endif;
-        $last_key = count($exploded_string);
-        foreach ($exploded_string as $key => $span_content) {
-            if ($key === $last_key - 1) {
-                $output .= '<span>' . $span_content . '</span>';
-            } else {
-                $output .= '<span>' . $span_content . ' </span>';
-            }
-        }
+    if (empty(trim($string))) return '';
 
-        //wrapper / heading tag start
-        if ($is_heading): $output .= '</h' . $heading_level . '>';
-        else: $output .= '</p>';
-        endif;
-        return ($output);
-    } else {
-        return ('');
+    //add space before classes
+    if ($additional_classes !== '') {
+        $additional_classes = ' ' . $additional_classes;
     }
+
+    //check if is heading (int 1-6)
+    if (is_int($heading_level) && $heading_level > 0 && $heading_level < 7): $is_heading = true;
+    else: $is_heading = false;
+    endif;
+    
+    $output = '';
+    $exploded_string = explode(" ", $string);
+
+    //wrapper / heading tag start
+    if ($is_heading): $output .= '<h' . $heading_level . ' class="bubble-heading' . $additional_classes . '">';
+    else: $output .= '<p class="bubble-heading' . $additional_classes . '">';
+    endif;
+    $last_key = count($exploded_string);
+    foreach ($exploded_string as $key => $span_content) {
+        if ($key === $last_key - 1) {
+            $output .= '<span>' . $span_content . '</span>';
+        } else {
+            $output .= '<span>' . $span_content . ' </span>';
+        }
+    }
+
+    //wrapper / heading tag start
+    if ($is_heading): $output .= '</h' . $heading_level . '>';
+    else: $output .= '</p>';
+    endif;
+    return ($output);
 }
 
 
@@ -636,7 +637,7 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
     $excerpt = strip_shortcodes($excerpt);
     $excerpt = apply_filters('the_content', $excerpt);
     $excerpt = str_replace(']]>', ']]&gt;', $excerpt);
-    $excerpt = strip_tags($excerpt, ['<p>', '<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>', '<br>']); /*IF you need to allow just certain tags. Delete if all tags are allowed */
+    $excerpt = strip_tags($excerpt, ['<p>', '<em>', '<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>', '<br>']); /*IF you need to allow just certain tags. Delete if all tags are allowed */
     $excerpt = str_replace(['h1>', 'h2>', 'h3>', 'h4>', 'h5>', 'h6>'], 'p>', $excerpt);
     $excerpt = str_replace(['<h1', '<h2', '<h3', '<h4', '<h5', '<h6'], '<p', $excerpt);
     $excerpt = preg_replace('/class=".*?"/', '', $excerpt); //fix excerpt classes - first paragraph is perex
