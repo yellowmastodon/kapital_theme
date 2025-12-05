@@ -64,22 +64,7 @@ function kapital_register_darujme_settings()
             'description'       => __(' ID kampane nájdete na darujme.sk v záložke darovacie stránky pri vašej kampani po klinutí na "..." -> "Upraviť kampaň" -> "Rozšírené nastavenia" -> "ID kampane"', 'kapital')
         )
     );
-    add_settings_field(
-        'campaign_title', // As of WP 4.6 this value is used only internally.
-        // Use $args' label_for to populate the id inside the callback.
-        __('Nadpis kampane', 'kapital'),
-        'kapital_darujme_input_callback',
-        'kapital_darujme',
-        'kapital_darujme_settings',
-        array(
-            'type'              => 'text',
-            'name'              => 'campaign_title',
-            'option_group'      => 'kapital_darujme_settings',
-            'value'             => (!isset(get_option('kapital_darujme_settings')['campaign_title']) ? '' : get_option('kapital_darujme_settings')['campaign_title']),
-            'label_for'         => 'campaign_title',
-            'description'       => __('Nadpis sa zobrazí v rozbalenej verzii bloku podpory.', 'kapital')
-        )
-    );
+
     add_settings_field(
         'donation_amount_onetime', // As of WP 4.6 this value is used only internally.
         // Use $args' label_for to populate the id inside the callback.
@@ -112,13 +97,55 @@ function kapital_register_darujme_settings()
             'description'       => __('Číselná hodnota v eurách. Zadávajte iba nenulové celé čísla. Jednotlivé možnosti oddeľte čiarkou.', 'kapital')
         )
     );
+
+    add_settings_section(
+        'kapital_darujme_collapsed_section',
+        __('Zbalený formulár', 'kapital'),
+        null,
+        'kapital_darujme'
+    );
+
+    add_settings_field(
+        'campaign_title_short', // As of WP 4.6 this value is used only internally.
+        // Use $args' label_for to populate the id inside the callback.
+        __('Nadpis kampane', 'kapital'),
+        'kapital_darujme_input_callback',
+        'kapital_darujme',
+        'kapital_darujme_collapsed_section',
+        array(
+            'type'              => 'text',
+            'name'              => 'campaign_title_short',
+            'option_group'      => 'kapital_darujme_settings',
+            'value'             => (!isset(get_option('kapital_darujme_settings')['campaign_title_short']) ? '' : get_option('kapital_darujme_settings')['campaign_title_short']),
+            'label_for'         => 'campaign_title',
+            'description'       => __('Nadpis sa zobrazí v zbalenej verzii bloku podpory.', 'kapital')
+        )
+    );
+
+    add_settings_field(
+        'campaign_title_short_alt', // As of WP 4.6 this value is used only internally.
+        // Use $args' label_for to populate the id inside the callback.
+        __('Alternatívny nadpis', 'kapital'),
+        'kapital_darujme_input_callback',
+        'kapital_darujme',
+        'kapital_darujme_collapsed_section',
+        array(
+            'type'              => 'text',
+            'name'              => 'campaign_title_short_alt',
+            'option_group'      => 'kapital_darujme_settings',
+            'value'             => (!isset(get_option('kapital_darujme_settings')['campaign_title_short_alt']) ? '' : get_option('kapital_darujme_settings')['campaign_title_short_alt']),
+            'label_for'         => 'campaign_title',
+            'description'       => __('Nadpis sa zobrazí v zbalenej verzii bloku podpory, mimo článku.', 'kapital')
+        )
+    );
+
     add_settings_field(
         'darujme_short_text', // As of WP 4.6 this value is used only internally.
         // Use $args' label_for to populate the id inside the callback.
-        __('Krátky text kampane', 'kapital'),
+        __('Text kampane', 'kapital'),
         'kapital_darujme_input_callback',
         'kapital_darujme',
-        'kapital_darujme_settings',
+        'kapital_darujme_collapsed_section',
         array(
             'type'              => 'textarea',
             'name'              => 'darujme_short_text',
@@ -128,13 +155,38 @@ function kapital_register_darujme_settings()
             'description'       => __('Zobrazí sa v zbalenej verzii bloku podpory.', 'kapital')
         )
     );
+
+    add_settings_section(
+        'kapital_darujme_expanded_section',
+        __('Rozbalený formulár', 'kapital'),
+        null,
+        'kapital_darujme'
+    );
+
+    add_settings_field(
+        'campaign_title', // As of WP 4.6 this value is used only internally.
+        // Use $args' label_for to populate the id inside the callback.
+        __('Nadpis kampane', 'kapital'),
+        'kapital_darujme_input_callback',
+        'kapital_darujme',
+        'kapital_darujme_expanded_section',
+        array(
+            'type'              => 'text',
+            'name'              => 'campaign_title',
+            'option_group'      => 'kapital_darujme_settings',
+            'value'             => (!isset(get_option('kapital_darujme_settings')['campaign_title']) ? '' : get_option('kapital_darujme_settings')['campaign_title']),
+            'label_for'         => 'campaign_title',
+            'description'       => __('Nadpis sa zobrazí v rozbalenej verzii bloku podpory.', 'kapital')
+        )
+    );
+
     add_settings_field(
         'darujme_long_text', // As of WP 4.6 this value is used only internally.
         // Use $args' label_for to populate the id inside the callback.
-        __('Dlhý text kampane', 'kapital'),
+        __('Rozbalený formulár: Text kampane', 'kapital'),
         'kapital_darujme_input_callback',
         'kapital_darujme',
-        'kapital_darujme_settings',
+        'kapital_darujme_expanded_section',
         array(
             'type'              => 'textarea',
             'name'              => 'darujme_long_text',
@@ -150,7 +202,7 @@ function kapital_register_darujme_settings()
         __('Url Ochrany osobných údajov Kapitálu', 'kapital'),
         'kapital_darujme_input_callback',
         'kapital_darujme',
-        'kapital_darujme_settings',
+        'kapital_darujme_expanded_section',
         array(
             'type'              => 'url',
             'name'              => 'darujme_kapital_gdpr_url',
@@ -288,9 +340,14 @@ function kapital_darujme_admin_page()
 
         </form>
     </div>
-    <script>
+    <style>
+        h2:not(:first-child){
+            margin-top: 15px;
+            padding-top: 30px;
+            border-top: solid 1px #ccc;
+        }
+    </style>
 
-    </script>
 <?php }
 
 function add_podcast_submenu_page()

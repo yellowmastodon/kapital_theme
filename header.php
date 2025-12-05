@@ -6,8 +6,8 @@
 <head>
     <meta name="theme-color" content="#ffc2fe" />
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1 maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
     <!--[if lt IE 10]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script>
@@ -71,8 +71,7 @@ if (isset($darujme_options["campaign_active"])) {
      * only shown on front page
      * expanded on other pages via javascript when users scrolls all the way to the top
      */ ?>
-    <header role="banner" id="top-header" class="ff-grotesk bg-primary p-4 px-md-5 collapse d-print-none<?php if ($is_front): echo ' show';
-                                                                                                        endif; ?>">
+    <header role="banner" id="top-header" class="ff-grotesk bg-primary p-4 px-md-5 collapse d-print-none<?= $is_front ? ' show' : ''?>">
         <div class="alignwider">
             <div class="row gx-3 align-items-center">
                 <nav class="col-auto quick-menu-container d-none d-md-block" aria-label="Rýchla">
@@ -86,16 +85,12 @@ if (isset($darujme_options["campaign_active"])) {
 
                     ) ?>
                 </nav>
-                <<?php if ($is_front): echo 'h1';
-                    else: echo 'a tabindex="-1" href="' . $homepage_link .  '"';
-                    endif; ?> class="mb-0 col-auto flex-grow-1 ps-md-7">
+                <<?= $is_front ? 'h1' :  'a tabindex="-1" href="' . $homepage_link .  '"' ?> class="mb-0 col-auto flex-grow-1 ps-md-7">
                     <svg id="main-logo" viewBox="0 0 837 216">
                         <use xlink:href="#kapital-logo"></use>
                     </svg>
-                    <div class="visually-hidden"><?php echo $site_name; ?></div>
-                </<?php if ($is_front): echo 'h1';
-                    else: echo 'a';
-                    endif; ?>>
+                    <span class="visually-hidden"><?php echo $site_name; ?></span>
+                </<?=  $is_front ? 'h1' : 'a'?>>
             </div>
         </div>
     </header>
@@ -115,7 +110,7 @@ if (isset($darujme_options["campaign_active"])) {
                             <button type="button" class="mb-3 mb-sm-0 btn btn-close" aria-label="<?= __('Zatvoriť', 'kapital') ?>" data-bs-dismiss="offcanvas"><svg>
                                     <use xlink:href="#icon-close"></use>
                                 </svg></button>
-                            <div aria-label="<?= __('Hlavné menu', 'div') ?>">
+                            <div>
                                 <?php wp_nav_menu(
                                     array(
                                         'theme_location'  => 'main',
@@ -143,7 +138,7 @@ if (isset($darujme_options["campaign_active"])) {
                          */
                         ?>
                         <div class="header-series-wrapper col-6 col-lg-4 d-none d-md-block text-start">
-                            <?php $header_series = (get_option('kapital_header_series'));
+                            <?php $header_series = get_option('kapital_header_series');
                             if (isset($header_series)):
                                 if ($header_series && !empty($header_series)):
                                     foreach($header_series as $series):
@@ -160,26 +155,26 @@ if (isset($darujme_options["campaign_active"])) {
                          * dynamically adding and removing opacity-0 on scroll
                          * default hidden on front page (expanded top header with bigger logo)                       
                          */ ?>
-                        <div id="horizontal-nav-logo" class="col-auto col-md-4 text-center <?php if ($is_front): echo ' invisible opacity-0';
-                                                                                                                endif; ?>">
+                        <div id="horizontal-nav-logo" class="col-auto col-md-4 text-center <?= $is_front ? ' invisible opacity-0': ''?>">
                             <a class="btn-menu" href="<?php echo $homepage_link ?>">
                                 <svg viewBox="0 0 500 120">
                                     <use xlink:href="#kapital-logo"></use>
                                 </svg>
-                                <div class="visually-hidden"><?php echo $site_name; ?></div>
+                                <span class="visually-hidden"><?php echo $site_name; ?></span>
                             </a>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 text-end">
+                            <div class="d-inline-flex">
                             <?php if ($is_multisite && isset($kptl_theme_options["eshop_url"])):?>
                                 <a class="btn-menu d-none d-md-inline-block text-decoration-none" href="<?=$kptl_theme_options["eshop_url"]?>">
                                     <?= __("E-shop", "kapital")?>
                                 </a>
                             <?php endif;?>
                             <?php if (isset($kptl_theme_options["podpora"])):?>
-                                <a class="btn-menu d-none d-lg-inline-block btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte nás</a>
-                                <a class="btn-menu d-inline-block d-lg-none btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte</a>
+                                <a class="btn-menu d-none d-lg-inline-block btn-podpora btn-podpora-lg default-x-margin ms-4 text-decoration-none text-center<?= $is_front ? ' btn-podpora-expanded' : '' ?>" href="<?=$kptl_theme_options["podpora"]?>">Podporte nás</a>
+                                <a class="btn-menu d-inline-block d-lg-none btn-podpora default-x-margin fs-4 ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte</a>
                             <?php endif;?>
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -188,7 +183,7 @@ if (isset($darujme_options["campaign_active"])) {
                         <div class="col-auto">
                             <button class="btn-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch" aria-label="<?= __("Zatvoriť dialóg vyhľadávania.", "kapital") ?>">
                             <svg class="icon-square" viewBox="0 0 24 24">
-                                <use xlink:href="#icon-search"/>
+                                <use xlink:href="#icon-search">
                             </svg>
                             </button>
                         </div>
@@ -232,4 +227,3 @@ if (isset($darujme_options["campaign_active"])) {
         ?>
     </div>
     <?php get_template_part('template-parts/offcanvas-search', null, array('woocommerce' => $is_woocommerce_site));
-?>

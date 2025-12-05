@@ -1,39 +1,81 @@
-
-
-#darujme-form-wrapper{
-    padding: map-get($spacers, 3);
+.darujme-form-wrapper{
     border-radius: $border-radius;
-    p:not(:last-child){
-        margin-bottom: map-get($spacers, 3);
-    }
 }
+
+.darujme-form-wrapper:not(.collapsed){
+    background: var(--#{$prefix}primary);
+    @extend .alignwide;
+}
+
+.darujme-form-wrapper.collapsed{
+    @extend .alignwider;
+    line-height: 1.15;
+
+    color: $white;
+    --#{$prefix}darujme-bkg: var(--#{$prefix}gray-dark); //fallback value
+    background: var(--#{$prefix}darujme-bkg);
+
+}
+
+
+
+.darujme-form-wrapper.animating {
+    overflow: hidden;
+    transition: height .4s ease;
+}
+
+.darujme-form-wrapper{
+    transition: background-color .2s, color .1s, max-width .2s;
+}
+
 
 @include media-breakpoint-up('md'){
-    #darujme-form-wrapper.collapsed{
+    .darujme-form-wrapper.collapsed{
         border-radius: 4rem;
-        padding-left: map-get($spacers, 6);
-        padding-right: map-get($spacers, 6);
-
+        padding-left: map-get($spacers, 5);
+        padding-right: map-get($spacers, 3);       
     }
+
 }
-#darujme-expanded-form{
+
+.darujme-expanded-form{
     opacity: 1;
     transition: opacity .2s ease;
     transition-delay: .001s; //just to be sure, that it is no longer position absolute
 }
 
-#darujme-form-wrapper.collapsed{
-    #darujme-expanded-form{
+.darujme-form-wrapper.collapsed{
+    .darujme-expanded-form{
         opacity: 0;
         position: absolute;
         left: 0;
     }
 }
-#darujme-form-wrapper:not(.collapsed){
-    #darujme-collapsed-form{
+
+.darujme-form-wrapper:not(.collapsed){
+    .darujme-collapsed-form{
             display: none;
-        }
+    }
 }
+
+.btn.darujme-form-expand-btn {
+    font-size: 1rem;
+    background-color: var(--#{$prefix}red);
+    border-color: var(--#{$prefix}red);
+    color: var(--#{$prefix}white);
+
+    &:focus-visible, &:hover{
+        color: var(--#{$prefix}black);
+        background-color: var(--#{$prefix}primary) !important;
+        border-color: var(--#{$prefix}primary) !important;
+    }
+    &:active{
+        color: var(--#{$prefix}black);
+        border-color: darken($primary, 10) !important;
+        background-color: darken($primary, 10) !important;
+    }
+}
+
 .darujme-form{
     label{
         line-height: unset;

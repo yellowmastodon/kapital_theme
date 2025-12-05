@@ -18,6 +18,7 @@ import {
     checkDarujmeActive,
     checkAdInsertingEnabled,
     checkDonationInsertingEnabled,
+    getAdPlaceholders,
     registerClicks,
 } from './ad-inserter';
 import headerFunctions from './header';
@@ -48,24 +49,26 @@ if (document.querySelector('.gallery-with-lightbox')){
     galleryCarousel();
 }
 
-const donation_form_wrapper = document.getElementById("darujme-form-wrapper");
-if (donation_form_wrapper) {
-    initializeForm(donation_form_wrapper);
-}
+document.querySelectorAll(".darujme-form-wrapper").forEach(wrapper => {
+    initializeForm(wrapper);
+});
 
 const isSinglePostOrPodcast = checkSinglePostOrPodcast();
-const AdInsertingEnabled = checkAdInsertingEnabled();
-const DonationInsertingEnabled = checkDonationInsertingEnabled();
+
 postFilterModal();
 
 //adInserter();
 if (!document.body.classList.contains('woocommerce-active')) {
+    const adPlaceholders = getAdPlaceholders();
     if (isSinglePostOrPodcast) {
-        if (AdInsertingEnabled || DonationInsertingEnabled) {
-            ajaxRequest('adinserter', { onead: true, ad: AdInsertingEnabled, donation: DonationInsertingEnabled }, adInserter, [true, ajaxRequest]);
+        const AdInsertingEnabled = checkAdInsertingEnabled();
+        const DonationInsertingEnabled = checkDonationInsertingEnabled();
+
+        if (AdInsertingEnabled || DonationInsertingEnabled || adPlaceholders.length) {
+            ajaxRequest('adinserter', { onead: false, ad: AdInsertingEnabled || adPlaceholders.length, donation: DonationInsertingEnabled }, adInserter, [true, adPlaceholders, AdInsertingEnabled, ajaxRequest]);
         }
-    } else {
-        ajaxRequest('adinserter', { onead: false, ad: true, donation: false }, adInserter, [false, ajaxRequest]);
+    } else if (adPlaceholders.length) {
+        ajaxRequest('adinserter', { onead: false, ad: true, donation: false }, adInserter, [false, adPlaceholders, false, ajaxRequest]);
     }
 }
 

@@ -256,7 +256,14 @@ $menu-btn-padding-top: 0.35em;
 
 @include media-breakpoint-up('sm'){
     .btn-podpora{
-        background-color: var(--#{$prefix}white);
+        background-color: var(--#{$prefix}red);
+        color: var(--#{$prefix}white);
+        &:hover, &:focus, &:active{
+            color: var(--#{$prefix}black);
+        }
+        &:active{
+            background-color: darken($red, 10);
+        }
     }
 }
 #offcanvasSearch .btn-close{

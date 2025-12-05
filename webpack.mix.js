@@ -9,6 +9,7 @@ let safelist = {
         /^has-/,
         /^p.-/,
         /^m.-/,
+        /^fs-/,
         /^g.-/,
         /^fw-/,
         /^col-/,
@@ -103,8 +104,10 @@ mix
 mix.browserSync({
     https: true,
     ui: false,
-    proxy: { target: 'https://localhost/kapital_new/' },
-    host: 'https://localhost/kapital_new/',
+    port: 3000,
+    open: 'external',
+    proxy: 'kapital_new.test',
+    host: 'kapital_new.test',
     files: [
         "style.css",
         "js/scripts.min.js",

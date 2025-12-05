@@ -12,7 +12,7 @@ export default function edit({
     attributes,
     setAttributes
 }) {
-    const blockProps = useBlockProps({className: "alignwide"})
+    const blockProps = useBlockProps({className: "alignwider"})
     return (
     <div {...blockProps}>
     <InspectorControls>
