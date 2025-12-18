@@ -288,7 +288,6 @@ function makeIdsUnique(form_wrapper) {
         form_wrapper.querySelectorAll(`label[for="${oldId}"]`)
             .forEach(label => label.setAttribute("for", newId));
 
-        if (el.name === oldId) el.name = newId;
     });
 
     return uid;
