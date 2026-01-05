@@ -122,16 +122,14 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
 
     if ($figure_and_caption) {
         $html .= "<figure";
-        if ($html_id !== ''){
-            $html .= " id=\"$html_id\"";
-        }
+        if ($html_id !== '') $html .= " id=\"$html_id\"";
         $html .= " class=\"$figure_classes\">";
     }
 
     $html .= "<img";
     
     if (!$figure_and_caption){
-        $html .= " id=\"$html_id\"";
+        if ($html_id !== '')  $html .= " id=\"$html_id\"";
         $html .= ' data-caption="' . htmlspecialchars($caption, ENT_QUOTES, 'UTF-8') . '"';
     }
 
@@ -235,6 +233,7 @@ function get_and_reorganize_terms($post_id, $taxonomies, $term_id_to_remove = nu
     } else {
         $post_terms = wp_get_post_terms($post_id, $taxonomies);
     }
+    
     if (!empty($post_terms)) {
         $filtered_terms = [];
         foreach ($taxonomies as $taxonomy) {
@@ -245,6 +244,16 @@ function get_and_reorganize_terms($post_id, $taxonomies, $term_id_to_remove = nu
                 array_push($filtered_terms[$post_term->taxonomy], $post_term);
             }
         }
+
+        // Sort autorstvo taxonomy by _author_last_name meta
+        if (isset($filtered_terms['autorstvo'])) {
+            usort($filtered_terms['autorstvo'], function($a, $b) {
+                $last_name_a = get_term_meta($a->term_id, '_author_last_name', true);
+                $last_name_b = get_term_meta($b->term_id, '_author_last_name', true);
+                return strcasecmp($last_name_a, $last_name_b);
+            });
+        }
+
         return $filtered_terms;
     } else {
         return array();
@@ -277,6 +286,7 @@ function kapital_pagination($args = array())
             // Find the format argument.
             $format_explode       = explode('?', str_replace('%_%', $format, $pagenum_link));
             $format_query = isset($format_explode[1]) ?  $format_explode[1] : '';
+            $format_args = array();
             wp_parse_str($format_query, $format_args);
 
             // Find the query args of the requested URL.
