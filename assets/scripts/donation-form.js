@@ -1,4 +1,5 @@
 export default function initializeForm(form_wrapper) {
+    console.log(form_wrapper);
 
     // guard: don't initialise twice
     if (form_wrapper.dataset.formInitialized === '1') return;
@@ -6,7 +7,6 @@ export default function initializeForm(form_wrapper) {
 
     //first make ids unique, to allow multiple forms
     const uid = makeIdsUnique(form_wrapper);
-
     //rotate color
     setCollapsedColor(form_wrapper);
 
@@ -211,7 +211,7 @@ export default function initializeForm(form_wrapper) {
 
     // Form submission: remove temp inputs
     form.addEventListener('submit', function (event) {
-        var elementsToRemove = form_wrapper.querySelectorAll(
+        var elementsToDisable = form_wrapper.querySelectorAll(
             fv +
             ', #custom_value' + uid +
             ', #is_company' + uid +
@@ -219,9 +219,14 @@ export default function initializeForm(form_wrapper) {
             ', input[type=radio][name=payment_method_ib_id_temp' + uid + ']'
         );
 
-        elementsToRemove.forEach(function (el) {
-            el.remove();
+        elementsToDisable.forEach(function (el) {
+            el.disabled = true;
         });
+
+        // Re-enable immediately after to preserve back-navigation
+        setTimeout(() => {
+            elementsToDisable.forEach(el => el.disabled = false);
+        }, 0);
     });
 
 
@@ -278,7 +283,16 @@ function setCollapsedColor(form_wrapper){
 
 
 function makeIdsUnique(form_wrapper) {
+    // Check if already has a UID
+    const existingUid = form_wrapper.dataset.uid;
+    if (existingUid) {
+        return existingUid;
+    }
+
     const uid = "_" + Math.random().toString(36).substring(2, 9);
+    
+    // Store the UID on the form wrapper
+    form_wrapper.dataset.uid = uid;
 
     form_wrapper.querySelectorAll('[id]').forEach(el => {
         const oldId = el.id;
