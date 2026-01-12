@@ -103,15 +103,25 @@ add_action('wp_ajax_nopriv_adclickcounter', 'ajax_click_counter');
 
 function ajax_get_views()
 {
-    //only register non admin clicks
-    $ids = explode(',', $_POST["ids"]);
-    $stats = array();
-    foreach ($ids as $id) {
-        $stats[] = kapital_get_koko_stats((int)$id);
+    if (!wp_verify_nonce($_POST['nonce'], 'ajax-nonce')) {
+        wp_send_json_error('Nonce verification failed');
+    }    
+    
+    if ( empty($_POST['ids']) ) {
+        wp_send_json_error('No IDs provided');
     }
-    echo json_encode($stats);
-    //echo $ids;
-    wp_die();
+
+    $ids = array_map('intval', array_map('trim', explode(',', $_POST['ids'])));
+    $stats = array();
+
+    foreach ($ids as $id) {
+        if ($id > 0) {
+            $stats[] = kapital_get_koko_stats($id);
+        }
+    }
+
+    wp_send_json_success($stats);
 }
+
 add_action('wp_ajax_getviews', 'ajax_get_views');
 add_action('wp_ajax_nopriv_getviews', 'ajax_get_views');
