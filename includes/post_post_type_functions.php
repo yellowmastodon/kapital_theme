@@ -3,7 +3,9 @@
 function kapital_post_edit_columns($columns) {
     unset( $columns['author'] );
     unset($columns['tags']);
+    $columns['post_visitors'] = __( 'Návštevy', 'kapital' );
     $columns['post_views'] = __( 'Zobrazenia', 'kapital' );
+
     //wp_die(var_export($columns,true));
     return $columns;
 }
@@ -16,6 +18,9 @@ function kapital_post_columns( $column, $post_id ) {
 
         case 'post_views':
             echo '<span class="post-views" data-id="' . $post_id . '"><span class="number"></span></span>';
+            break;
+        case 'post_visitors':
+            echo '<span class="post-visitors" data-id="' . $post_id . '"><span class="number"></span></span>';
             break;
         
     }
@@ -39,10 +44,8 @@ function my_custom_admin_scripts($hook) {
     wp_enqueue_script(
         'admin_load_post_views',
         get_template_directory_uri() . '/js/admin-load-post-views.min.js',
-        array('jquery'),
-        '1.0.0',
-        true
     );
+
     wp_localize_script(
         'admin_load_post_views',
         'site_info',

@@ -1,36 +1,103 @@
 import ajaxRequest from "./ajax-request";
+
 /**
- * @var string selector - post views placeholder element - should include data-id attribute with post id
- * */
-export default function postViewLoader(selector) {
-    let postViewsElements = document.querySelectorAll(selector);
+ * Load post views and visitors in batches
+ * @param {string} viewSelector - selector for post views elements (with data-id)
+ * @param {string} visitorSelector - selector for visitor elements (with data-id)
+ */
+export default function postViewLoader(viewSelector, visitorSelector) {
     document.addEventListener("DOMContentLoaded", () => {
-        if (typeof postViewsElements !== undefined && postViewsElements.length > 0) {
-            postViewsElements = Array.from(postViewsElements);
-            for (let i = 0; i < postViewsElements.length; i += 8) {
-                let postViewsBatch = postViewsElements.slice(i, i + 8);
-                let postIdsBatch = [];
-                for (let i = 0; i < postViewsBatch.length; i++) {
-                    postIdsBatch[i] = postViewsBatch[i].getAttribute("data-id");
-                }
-                ajaxRequest(
-                    'getviews',
-                    { ids: postIdsBatch },
-                    insertPostViews,
-                    [postViewsBatch]
-                );
-            }
+        let postViewsElements = Array.from(document.querySelectorAll(viewSelector));
+        let visitorElements = Array.from(document.querySelectorAll(visitorSelector));
+
+        if (postViewsElements.length < 1 && visitorElements.length < 1) return;
+
+        // Map of ID -> element for postViews and visitors
+        const postViewsMap = {};
+        postViewsElements.forEach(el => {
+            const id = el.getAttribute('data-id');
+            postViewsMap[id] = el;
+        });
+
+        const visitorMap = {};
+        visitorElements.forEach(el => {
+            const id = el.getAttribute('data-id');
+            visitorMap[id] = el;
+        });
+
+        // Collect all unique IDs from both sets
+        const allIds = Array.from(new Set([...Object.keys(postViewsMap), ...Object.keys(visitorMap)]));
+
+        // Batch size
+        const BATCH_SIZE = 8;
+
+        for (let i = 0; i < allIds.length; i += BATCH_SIZE) {
+            const batchIds = allIds.slice(i, i + BATCH_SIZE);
+
+            // Align elements per batch: if no element exists for ID, put null
+            const postViewsBatch = batchIds.map(id => postViewsMap[id] || null);
+            const visitorBatch = batchIds.map(id => visitorMap[id] || null);
+
+            // Send AJAX
+            ajaxRequest(
+                'getviews',
+                {
+                    ids: batchIds.join(','),
+                    nonce: site_info.nonce
+                },
+                insertPostViews,
+                [postViewsBatch, visitorBatch]
+            );
         }
-    });
+    }); 
 }
 
-function insertPostViews(response, postViewsElements) {
-    response = JSON.parse(response);
-    for (let i = 0; i < response.length; i++) {
-        if (typeof postViewsElements[i] !== 'undefined'){
-            let numberElement = postViewsElements[i].querySelector('.number');
-            numberElement.insertAdjacentHTML('afterbegin', response[i]);
-            postViewsElements[i].classList.remove('opacity-0');
-        }
+function insertPostViews(response, postViewsElements, visitorElements) {
+    // Parse string response if needed
+    if (typeof response === 'string') {
+        response = JSON.parse(response);
+    }
+
+    // Handle server error
+    if (!response.success) {
+        console.error(response.data?.message || 'Unknown AJAX error');
+        return;
+    }
+
+    const data = response.data;
+
+    if (!Array.isArray(data)) {
+        console.error('Invalid data format', data);
+        return;
+    }
+
+    // --- Update post views ---
+    for (let i = 0; i < data.length; i++) {
+        const el = postViewsElements[i];
+        const stat = data[i];
+
+        if (!el || !stat) continue;
+
+        const numberElement = el.querySelector('.number');
+        if (!numberElement) continue;
+
+        numberElement.textContent = stat.pageviews;
+        el.classList.remove('opacity-0');
+    }
+
+    // --- Update visitors ---
+    for (let i = 0; i < data.length; i++) {
+        const el = visitorElements[i];
+        const stat = data[i];
+
+        if (!el || !stat) continue;
+
+        const numberElement = el.querySelector('.number');
+        if (!numberElement) continue;
+
+        numberElement.textContent = stat.visitors;
+        el.classList.remove('opacity-0');
     }
 }
+
+

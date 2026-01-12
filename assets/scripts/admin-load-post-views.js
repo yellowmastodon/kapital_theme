@@ -1,5 +1,3 @@
 import postViewLoader from "./post-views-loader";
 
-let selector = '.column-post_views .post-views';
-
-postViewLoader(selector);
+postViewLoader('.column-post_views .post-views', '.column-post_visitors .post-visitors');
