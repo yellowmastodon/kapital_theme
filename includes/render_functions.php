@@ -156,24 +156,30 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
 
 function kapital_get_koko_stats($post_id)
 {
-    $cache_key = 'kptl_ka_counter_' . $post_id;
-    $count = get_transient($cache_key);
-    if (!$count) {
+    $cache_key = 'kptl_koko_stats_' . (int) $post_id;
+    $stats = get_transient($cache_key);
+
+    if ($stats === false) {
         global $wpdb;
-        $table = $wpdb->prefix . 'koko_analytics_post_stats ';
-        $sql = $wpdb->prepare("
-                    SELECT COALESCE(SUM(pageviews), 0) AS pageviews
-                    FROM {$table}
-                    WHERE `id` = %s
-        ", $post_id);
-        $result = $wpdb->get_row($sql);
-        $count = $result->pageviews;
-        if (!isset($count)) {
-            $count = 1;
-        }
-        set_transient('kptl_ka_counter_' . $post_id, $count, 120);
+
+        $table = $wpdb->prefix . 'koko_analytics_post_stats';
+
+        $sql = $wpdb->prepare(
+            "
+            SELECT
+            COALESCE(SUM(pageviews), 0) AS pageviews,
+            COALESCE(SUM(visitors), 0) AS visitors
+            FROM {$table}
+            WHERE id = %d
+            ",
+            $post_id
+        );
+
+        $stats = $wpdb->get_row($sql);
+        set_transient($cache_key, $stats, 120);
     }
-    return $count;
+
+    return $stats;
 }
 
 function kapital_support()
