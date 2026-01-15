@@ -16,7 +16,7 @@ add_action('woocommerce_before_add_to_cart_quantity', 'kapital_woo_quantity_butt
 function kapital_woo_quantity_button_plus(){
     global $product;
     if (!$product->is_sold_individually()){
-        $aria_description = sprintf(__('Zvýšiť počet produktu: %s o 1', 'kapital'), $product->get_title());
+        $aria_description = sprintf(__('Znížiť počet produktu: %s o 1', 'kapital'), $product->get_title());
         echo '<div class="col-auto">'; //quantity wrapper start
         echo '<div class="product-quantity row gx-1">'; //quantity row start
         echo '<div class="col-auto">'; //this button wrapper
@@ -32,7 +32,7 @@ add_action('woocommerce_after_add_to_cart_quantity', 'kapital_woo_quantity_butto
 function kapital_woo_quantity_button_minus(){
     global $product;
     if (!$product->is_sold_individually()){
-        $aria_description = sprintf(__('Znížiť počet produktu: %s o 1', 'kapital'), $product->get_title());
+        $aria_description = sprintf(__('Zvýšiť počet produktu: %s o 1', 'kapital'), $product->get_title());
         echo '</div>'; //end quantity input wrapper
         echo '<div class="col-auto">'; //this button wrapper
         echo '<button aria-label="' . $aria_description . '" class="kapital-woo-quantity-plus btn-menu" type="button"><svg class="icon-square"><use xlink:href="#icon-plus"></use></svg></button>';
