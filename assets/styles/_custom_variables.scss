@@ -159,3 +159,7 @@ $border-radius: 1rem;
 $link_transition_speed: .05s;
 
 $s2bs5-focus-border-color: $red;
+
+$hr-opacity: .25;
+
+$hr-border-color: map-get($colors, 'black')
