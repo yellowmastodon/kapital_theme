@@ -629,3 +629,38 @@ function kapital_add_issue_endpoint(){
 add_action( 'init', 'kapital_add_issue_endpoint' );
 
 
+add_action( 'parse_term_query', function ( WP_Term_Query $wp_term_query ) {
+
+    // Admin screens
+    if ( is_admin() ) {
+        return;
+    }
+
+    // REST API (Gutenberg, block editor, etc.)
+    if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+        return;
+    }
+
+    // WP-CLI
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
+        return;
+    }
+
+    $meta_query = (array) $wp_term_query->query_vars['meta_query'];
+
+	$meta_query['relation'] = 'OR';
+	
+    $meta_query[] = [
+        'key'     => '_kapital_term_private',
+        'value'   => '1',
+        'compare' => '!=',
+    ];
+
+	$meta_query[] = [
+            'key'     => '_kapital_term_private',
+            'compare' => 'NOT EXISTS',
+	];
+
+    $wp_term_query->query_vars['meta_query'] = $meta_query;
+
+});

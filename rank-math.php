@@ -58,3 +58,23 @@ add_filter('rank_math/json_ld', function($data) {
 
 }, 98 );
 
+/**
+ * Filter URL entry before it gets added to the sitemap.
+ *
+ * @param array  $url  Array of URL parts.
+ * @param string $type URL type. Can be user, post or term.
+ * @param object $object Data object for the URL.
+ */
+add_filter( 'rank_math/sitemap/entry', function( $url, $type, $object ){
+	
+    if ( $type !== 'term' || empty( $object->term_id ) ) {
+        return $url;
+    }
+
+    if ( get_term_meta( $object->term_id, '_kapital_term_private', true ) === '1' ) {
+        return false;
+    }
+
+    return $url;
+
+}, 10, 3 );
