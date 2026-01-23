@@ -15,7 +15,6 @@ export default function EventRecordingSetting({ meta, setMeta, postType }) {
     if (meta["_kapital_event_recording"] !== null) {
         //split to array and discard empty string
         recordingMeta = meta["_kapital_event_recording"].split('-').filter(r => r !== '');
-        console.log(recordingMeta);
     }
 
     return (

@@ -1,6 +1,5 @@
 export default function initializeForm(form_wrapper) {
-    console.log(form_wrapper);
-
+    
     // guard: don't initialise twice
     if (form_wrapper.dataset.formInitialized === '1') return;
     form_wrapper.dataset.formInitialized = '1';
