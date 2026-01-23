@@ -1,18 +1,17 @@
 <?php
 
-get_header(); ?>
+get_header(); 
+$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 
-<main role="main" <?php post_class('container main-content'); ?> id="main">
+?>
+
+<main <?php post_class('container main-content'); ?> id="main">
         <div id="front-page-content">
-        <?php while ( have_posts() ) : the_post(); ?>
-
-                <?php the_content(); ?>
-
-
-        <?php endwhile; ?>
+                <?php while (have_posts()) : the_post();
+                        the_content();
+                endwhile; ?>
         </div>
 </main>
 
 <?php
-$render_settings = kapital_get_render_settings($post->ID, $post->post_type);
-get_footer(null, array('render_settings' => $render_settings)); ?>
+get_footer(null, array('render_settings' => $render_settings));
