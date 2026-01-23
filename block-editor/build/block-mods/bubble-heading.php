@@ -1,6 +1,7 @@
 <?php 
 // Custom PHP rendering for the heading block variation
 function bubble_heading_variation($block_content, $block) {
+    
     // Check if the block is a core/heading block
     preg_match('/class="([^"]*)"/', $block_content, $classname_match);
     if (isset($classname_match[1]) && $classname_match[1]){
