@@ -8,14 +8,16 @@
 import { CustomTermSelector } from './customTermSelector';
 import { AuthorTermSelector } from './authorTermSelector';
 import { customMetaSettings } from './customMetaSettings'
+import { ButtonTTS } from './ButtonTTS';
 import { registerKapitalButtonVariation } from '../block-mods/button';
 import { registerBubbleHeadingVariation } from '../block-mods/bubble-heading';
-import { useSelect, select } from '@wordpress/data';
+
 
 //import {registerFormats } from './richTextCustomFormats';
 
 //registerFormats();
 registerKapitalButtonVariation();
+ButtonTTS();
 customMetaSettings();
 registerBubbleHeadingVariation();
 //setImageDefaultWide();

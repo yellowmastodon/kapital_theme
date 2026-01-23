@@ -21,7 +21,9 @@ $include = array(
     '/includes/custom_options.php',
     '/includes/ajax_functions.php',
     '/includes/customizer.php',
+    '/includes/tts/class-tts-loader.php'
 );
+
 $include_all = array(
     '/block-editor/block-editor-functions.php',
     '/includes/render_functions.php',
@@ -31,7 +33,6 @@ $include_all = array(
     '/includes/iframe_wrapper.php',
     '/includes/widgets.php',
     '/patterns/register_patterns.php',
-
 );
 
 if (is_multisite()) {
@@ -43,6 +44,7 @@ if (is_multisite()) {
         foreach ($include as $inc) {
             require_once $template_directory . $inc;
         }
+        TTS_Loader::init();
     }
 } else {
     foreach ($include_all as $inc) {
