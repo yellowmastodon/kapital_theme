@@ -7,26 +7,29 @@ function initializeQuantityButtons() {
         var min = input.getAttribute('min');
         var max = input.getAttribute('max');
         input.style.width = (input.value.length + 3) + 'ch';
+
         input.addEventListener('input', () => {
             input.style.width = (input.value.length + 3) + 'ch';
         });
+
         minus.addEventListener("click", function (event) {
-            if ((Number(input.value) - 1 >= Number(min)) || min === "" && Number(input.value) - 1 > 0) {
+            if ((min != null && min !== "" && Number(input.value) - 1 >= Number(min)) || ((min == null || min === "") && Number(input.value) - 1 >= 0)) {
                 input.value = Number(input.value) - 1;
                 input.dispatchEvent(new Event('input', {
                     'bubbles': true
                 }));
             }
         })
+        
         plus.addEventListener("click", function (event) {
-            if (Number(input.value) + 1 <= Number(max) || max === "") {
+            if (Number(input.value) + 1 <= Number(max) || max === "" || max === null) {
                 input.value = Number(input.value) + 1;
                 input.dispatchEvent(new Event('input', {
                     'bubbles': true
                 }));
             }
         })
-    })
+    });
 }
 window.addEventListener('load', initializeQuantityButtons);
 
