@@ -210,5 +210,12 @@ a {
 
         //            color: var(--#{$prefix}red);
     }
+}
 
+#post-content{
+    ul, ol{
+        li:not(:first-child){
+            margin-top: map-get($spacers, 3);
+        }
+    }
 }
