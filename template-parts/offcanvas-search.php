@@ -5,7 +5,7 @@ if (isset($args["woocommerce"])) {
   $is_product_search = $args["woocommerce"];
 }
 ?>
-<div class="offcanvas offcanvas-top p-3" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasTopLabel">
+<div class="offcanvas offcanvas-top p-3" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasTopLabel" aria-modal="true">
   <div class="d-flex flex-column h-100   align-items-center justify-content-center">
     <div class="alignwide">
       <div class="offcanvas-header">

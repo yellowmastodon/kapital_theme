@@ -91,7 +91,7 @@ else:
 			<?php endif;  */
 			endif;?>
 		</div>
-		<a tabindex="-1" aria-role="none" href="<?php echo $post_permalink; ?>" class="image-wrapper archive-item-link">
+		<a tabindex="-1" aria-hidden="true" href="<?php echo $post_permalink; ?>" class="image-wrapper archive-item-link">
 			<?php
 			if ($thumbnail_id !== 0) {
 				//needs proper

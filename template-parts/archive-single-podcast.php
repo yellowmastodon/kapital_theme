@@ -55,7 +55,7 @@ $article_classes .= $additional_class;
 ?>
 
 
-<article <?php if($tab_index) echo 'tabindex="-1"'; post_class([$article_classes], $post);?> >
+<article <?php if($tab_index) echo 'tabindex="-1" '; post_class([$article_classes], $post);?> >
         <div class="archive-podcast-top row justify-content-between justify-content-sm-start ff-sans fs-small text-gray">
             <?php  if ($render_settings["show_date"]){
                 echo get_publish_datetime_element($post, 'col-auto post-date');

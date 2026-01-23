@@ -42,7 +42,7 @@ if ($render_settings["show_breadcrumbs"]) {
 
 /** MAIN */
 ?>
-<main class="main container<?php echo $ad_rendering_class ?>" role="main" id="main">
+<main class="main container<?php echo $ad_rendering_class ?>" id="main">
     <?php while (have_posts()) : the_post();
 
         //taxonomies to display in posts, ordered by render priority
@@ -135,7 +135,7 @@ if ($render_settings["show_breadcrumbs"]) {
                                         foreach ($filtered_terms['autorstvo'] as $key => $author):
                                             if ($key !== 0) echo ", "; ?>
                                             <a href="<?php echo get_term_link($author); ?>"><?php echo $author->name; ?></a><?php
-                                                                                                                        endforeach; ?>
+                                        endforeach; ?>
                                     </p><?php
                                     endif;
                                 endif;
