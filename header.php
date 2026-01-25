@@ -221,7 +221,7 @@ if (isset($darujme_options["campaign_active"])) {
                         </span>
                     </a>
                 </div>
-                <?php wp_add_inline_script('scripts', 'jQuery(document.body).on("added_to_cart",function(){updateCartCount()});jQuery(updateCartCount());function updateCartCount(){jQuery.ajax({url:wc_add_to_cart_params.ajax_url,type:"GET",data:{action:"get_cart_item_count"},success:function(t){t.data.cart_count>0?jQuery(".kapital-cart-quantity-mini-badge").css("display","inline-block"):jQuery(".kapital-cart-quantity-mini-badge").css("display","none"),jQuery(".kapital-cart-quantity-mini-badge").text(t.data.cart_count)},})}', 'after' )?>
+                <?php wp_add_inline_script('kptl-woo-cart-script', 'jQuery(document.body).on("added_to_cart",function(){updateCartCount()});jQuery(updateCartCount());function updateCartCount(){jQuery.ajax({url:wc_add_to_cart_params.ajax_url,type:"GET",data:{action:"get_cart_item_count"},success:function(t){t.data.cart_count>0?jQuery(".kapital-cart-quantity-mini-badge").css("display","inline-block"):jQuery(".kapital-cart-quantity-mini-badge").css("display","none"),jQuery(".kapital-cart-quantity-mini-badge").text(t.data.cart_count)},})}', 'after' )?>
             <?php endif;
         }
         ?>

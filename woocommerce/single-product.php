@@ -107,7 +107,7 @@ do_action('woocommerce_before_main_content');?>
             $is_sold_out = !$product->is_in_stock();
             //add custom variation image handler
             if ( $product->is_type( 'variable' ) ) {
-                wp_add_inline_script('scripts', "jQuery('form.variations_form').on('found_variation',function(event,variation){if(variation.image&&variation.image.src&&variation.image.srcset){jQuery('.main-image').attr('src',variation.image.srcewImageSrc);jQuery('.main-image').attr('srcset',variation.image.srcset)}});", 'after' );
+                wp_add_inline_script('kptl-woo-variations-script', "jQuery('form.variations_form').on('found_variation',function(event,variation){if(variation.image&&variation.image.src&&variation.image.srcset){jQuery('.main-image').attr('src',variation.image.srcewImageSrc);jQuery('.main-image').attr('srcset',variation.image.srcset)}});", 'after' );
             }
             if ($filtered_cat || $sale || $is_sold_out) {
                 echo '<div><div class="row gx-2 product-cat-row gy-3 align-items-center fs-small">';

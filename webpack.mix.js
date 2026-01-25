@@ -48,7 +48,7 @@ mix.webpackConfig({
 // CSS
 
 mix.
-    sass('assets/styles/style.scss', 'style.css')
+    sass('assets/styles/style.scss', 'css/style.css')
     .options({
         processCssUrls: false,
     })
@@ -60,8 +60,9 @@ mix.
         ],
         safelist: safelist
     });
+
 mix.
-    sass('assets/styles/editor_styles.scss', 'editor_styles.css')
+    sass('assets/styles/editor_styles.scss', 'css/editor_styles.css')
     .options({
         processCssUrls: false,
     })
@@ -109,7 +110,7 @@ mix.browserSync({
     proxy: 'kapital_new.test',
     host: 'kapital_new.test',
     files: [
-        "style.css",
+        "css/style.css",
         "js/scripts.min.js",
         "*.php"
     ]

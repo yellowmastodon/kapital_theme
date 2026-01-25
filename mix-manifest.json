@@ -4,6 +4,6 @@
     "/js/cart-quantity.min.js": "/js/cart-quantity.min.js",
     "/js/admin-load-post-views.min.js": "/js/admin-load-post-views.min.js",
     "/js/masonry.min.js": "/js/masonry.min.js",
-    "/editor_styles.css": "/editor_styles.css",
-    "/style.css": "/style.css"
+    "/css/editor_styles.css": "/css/editor_styles.css",
+    "/css/style.css": "/css/style.css"
 }
