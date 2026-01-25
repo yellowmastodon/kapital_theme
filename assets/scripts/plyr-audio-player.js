@@ -3,8 +3,6 @@
 const plyrAudio = document.querySelectorAll('.plyr-audio');
 let plyrAudioPlayers = [];
 
-console.log(plyrAudio);
-
 const player_i18n = {
     en:
     {
