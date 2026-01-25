@@ -75,6 +75,21 @@ mix.
         safelist: safelist
     });
 
+mix.
+    sass('assets/styles/plyr/plyr.scss', 'css/plyr-custom.min.css')
+    .options({
+        processCssUrls: false,
+    })
+    .purgeCss({
+        content: [
+            '**/*.php',
+            '**/*.js',
+            '../../plugins/woocommerce/**/*.php'
+        ],
+        safelist: safelist
+    });
+
+
 // JS
 
 mix
@@ -101,6 +116,10 @@ mix
     'assets/scripts/masonry.js'
 ], 'js/masonry.min.js');
 
+mix
+.js([
+    'assets/scripts/plyr-audio-player.js'
+], 'js/plyr-init.min.js');
 
 mix.browserSync({
     https: true,
@@ -110,7 +129,9 @@ mix.browserSync({
     proxy: 'kapital_new.test',
     host: 'kapital_new.test',
     files: [
+        
         "css/style.css",
+        "css/plyr-custom.min.css",
         "js/scripts.min.js",
         "*.php"
     ]

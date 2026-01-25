@@ -1,0 +1,13 @@
+// ==========================================================================
+// Menus
+// ==========================================================================
+
+$plyr-menu-background: var(--#{$prefix}white) !default;
+$plyr-menu-radius: .5rem !default;
+$plyr-menu-color: map-get($colors, 'gray') !default;
+$plyr-menu-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2)  !default;
+$plyr-menu-arrow-size: .25rem !default;
+$plyr-menu-item-arrow-size: $plyr-menu-arrow-size !default;
+$plyr-menu-item-arrow-color: var(--#{$prefix}white) !default;
+$plyr-menu-back-border-color: var(--#{$prefix}secondary-light) !default;
+$plyr-menu-back-border-shadow-color: var(--plyr-menu-back-border-shadow-color, #fff) !default;

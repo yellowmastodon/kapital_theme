@@ -1,0 +1,10 @@
+// ==========================================================================
+// Tooltips
+// ==========================================================================
+
+$plyr-tooltip-background: var(--#{$prefix}white) !default;
+$plyr-tooltip-color: var(--#{$prefix}gray) !default;
+$plyr-tooltip-padding: map-get($spacers, 1);
+$plyr-tooltip-arrow-size: $plyr-menu-arrow-size !default;
+$plyr-tooltip-radius: $plyr-menu-radius;
+$plyr-tooltip-shadow: $plyr-menu-shadow !default;

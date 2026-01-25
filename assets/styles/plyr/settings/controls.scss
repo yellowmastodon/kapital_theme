@@ -1,0 +1,17 @@
+// ==========================================================================
+// Controls
+// ==========================================================================
+
+$plyr-control-icon-size: 1.4rem !default;
+$plyr-control-spacing: map-get($spacers, 3) !default;
+$plyr-control-padding:  map-get($spacers, 1);
+$plyr-control-radius: $border-radius !default;
+$plyr-control-toggle-checked-background: $form-check-input-checked-color !default;
+$plyr-video-controls-background: var(--#{$prefix}secondary)!default;
+$plyr-video-control-color: var(--#{$prefix}black) !default;
+$plyr-video-control-color-hover:var(--#{$prefix}red) !default;
+$plyr-video-control-background-hover: null !default;
+$plyr-audio-controls-background: var(--#{$prefix}primary) !default;
+$plyr-audio-control-color: var(--#{$prefix}black) !default;
+$plyr-audio-control-color-hover: var(--#{$prefix}red) !default;
+$plyr-audio-control-background-hover: null !default;

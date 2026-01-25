@@ -4,6 +4,8 @@
     "/js/cart-quantity.min.js": "/js/cart-quantity.min.js",
     "/js/admin-load-post-views.min.js": "/js/admin-load-post-views.min.js",
     "/js/masonry.min.js": "/js/masonry.min.js",
+    "/js/plyr-init.min.js": "/js/plyr-init.min.js",
+    "/css/plyr-custom.min.css": "/css/plyr-custom.min.css",
     "/css/editor_styles.css": "/css/editor_styles.css",
     "/css/style.css": "/css/style.css"
 }

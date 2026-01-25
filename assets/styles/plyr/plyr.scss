@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+// ==========================================================================
+// Plyr styles
+// https://github.com/sampotts/plyr
+// TODO: Review use of BEM classnames
+// ==========================================================================
+
+
+// custom imports
+@import "bootstrap/scss/functions";
+@import "../custom_colors";
+@import "../custom_variables";
+@import "bootstrap/scss/variables";
+$theme-colors: map-merge($theme-colors, $colors);
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+//end custom imports
+
+
+@import 'lib/css-vars';
+
+$css-vars-use-native: true;
+
+
+@import 'settings/breakpoints';
+@import 'settings/colors';
+@import 'settings/cosmetics';
+@import 'settings/type'; 
+
+@import 'settings/badges';
+@import 'settings/captions';
+@import 'settings/controls';
+@import 'settings/helpers';
+@import 'settings/menus';
+@import 'settings/progress';
+@import 'settings/sliders';
+@import 'settings/tooltips';
+
+
+
+
+@import 'lib/animation';
+@import 'lib/functions';
+@import 'lib/mixins';
+@import 'base';
+@import 'components/badges';
+@import 'components/captions';
+@import 'components/control';
+@import 'components/controls';
+@import 'components/menus';
+@import 'components/sliders';
+@import 'components/poster';
+@import 'components/times';
+@import 'components/tooltips';
+@import 'components/progress';
+@import 'components/volume';
+@import 'types/audio';
+@import 'types/video';
+@import 'states/fullscreen';
+//@import 'plugins/ads';
+@import 'plugins/preview-thumbnails/index';
+@import 'utils/animation';
+@import 'utils/hidden';
+
+
+.plyr--audio{
+    .plyr__controls{
+        border-radius: $border-radius;
+    }
+    .plyr__time + .plyr__progress__container {
+        padding-left: 0;
+        margin-left: .25rem;
+    }
+    .plyr__progress__container + .plyr__time {
+        margin-left: .25rem;
+    }
+
+    .plyr__mute + .plyr__volume {
+        margin-left: .25rem;
+
+        input{
+            margin-left: 0;
+        }
+        padding-left: 0;
+    }
+} 
+
+//hide volume button on mobile
+@media (max-width: 768px) {
+  .plyr__volume {
+    display: none !important;
+  }
+}
+
+//larger screen tablet
+@media  (pointer: coarse) and (max-width: 1024px) {
+  .plyr__volume {
+    display: none !important;
+  }
+}
+
+@media (max-width: 430px) {
+    .plyr--audio{
+        .plyr__progress__container {
+            display: none !important;
+        }
+        .plyr__fast-forward{
+            margin-right: auto;
+        }
+        .plyr__time--duration{
+            margin-right: auto;
+            padding-left: 0 !important;
+            &::before{
+                content: "/";
+                display: inline-block;
+                padding-right: calc(#{$plyr-control-spacing} / 2);
+            }
+        }
+    }
+}

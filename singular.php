@@ -6,6 +6,10 @@ global $is_woocommerce_site;
 $ad_rendering_class = "";
 if ($render_settings["show_ads"]) $ad_rendering_class = " show-ads";
 if ($render_settings["show_support"]) $ad_rendering_class .= " show-support";
+$audio_version_id = 0;
+if ($post->post_type === 'post'){
+    $audio_version_id = (int) get_post_meta($post->ID, '_kptl_tts_audio_id', true);
+}
 
 
 /** render breadcrumbs */
@@ -46,14 +50,31 @@ if ($render_settings["show_breadcrumbs"]) {
     <?php while (have_posts()) : the_post();
 
         //taxonomies to display in posts, ordered by render priority
+        //also setup lang from taxonomies
+
+        $lang = 'sk';
 
         if ($post->post_type === 'post') {
             $custom_taxonomies = ['cislo', 'seria', 'jazyk', 'partner', 'zaner', 'rubrika', 'autorstvo'];
             $filtered_terms = get_and_reorganize_terms($post->ID, $custom_taxonomies);
+
+            if (isset($filtered_terms['jazyk']) && count($filtered_terms['jazyk'])) {
+
+                $lang_strings_arr = array_map(function ($term,) {
+                    return strtolower($term->slug);
+                }, $filtered_terms['jazyk']);
+
+                if (in_array('english', $lang_strings_arr) || in_array('en', $lang_strings_arr)) {
+                    $lang = 'en';
+                }
+            }
+
         } else {
             $filtered_terms = array();
             $custom_taxonomies = array();
-        } ?>
+        } 
+
+        ?>
 
         <article <?php post_class(["main-content"]); ?>>
             <?php
@@ -165,8 +186,14 @@ if ($render_settings["show_breadcrumbs"]) {
             <div id="post-content">
                 <?php
                 /**
+                 * render audio version
+                 */
+                if($audio_version_id !== 0){
+                    get_template_part('template-parts/post-audio-version', null, array('audio_id' => $audio_version_id, 'lang' => $lang));
+                }
+
+                /**
                  * Render post content
-                 * insert ad for support by default 
                  */
                 the_content(); ?>
             </div>

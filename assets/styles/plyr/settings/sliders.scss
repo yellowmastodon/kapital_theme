@@ -1,0 +1,27 @@
+// ==========================================================================
+// Sliders
+// ==========================================================================
+
+// Thumb
+$plyr-range-thumb-height: .8rem !default;
+$plyr-range-thumb-background: var(--#{$prefix}white) !default;
+$plyr-range-thumb-shadow: var(
+  --plyr-range-thumb-shadow,
+  0 1px 1px rgba(map-get($colors, 'gray'), 0.2),
+  0 0 0 1px rgba(map-get($colors, 'gray'), 0.2)
+) !default;
+
+// Active state
+$plyr-range-thumb-active-shadow-width: .2rem !default;
+
+// Track
+$plyr-range-track-height: .3rem !default;
+
+// Fill
+$plyr-range-fill-background: var(--#{$prefix}gray) !default;
+
+// Type specific
+$plyr-video-range-track-background: var(--#{$prefix}white) !default;
+$plyr-video-range-thumb-active-shadow-color: rgba(map-get($colors, 'gray'), 0.5);
+$plyr-audio-range-track-background: var(--#{$prefix}white) !default;
+$plyr-audio-range-thumb-active-shadow-color: $plyr-video-range-thumb-active-shadow-color;

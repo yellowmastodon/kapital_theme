@@ -37,7 +37,7 @@ document.querySelectorAll('.dismiss-notice').forEach((element) => {
     element.addEventListener("click", (event) => {
         event.target.closest('.woocommerce-message').remove();
     })
-})
+});
 
 //stop images with max height from resizing on mobile
 document.addEventListener('DOMContentLoaded', ()=>{
