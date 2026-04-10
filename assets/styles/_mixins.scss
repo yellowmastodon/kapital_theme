@@ -1,0 +1,60 @@
+$xxxl-breakpoint: (xxxl: 2100px);
+
+@mixin make-sizes($name, $config) {
+    $grid-breakpoints-ext: map-merge($grid-breakpoints, $xxxl-breakpoint);
+    $sizes-list: map-get($config, sizes);
+    $make-columns: map-get($config, make-columns);
+
+    .align#{$name} {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    @if $make-columns {
+        .col-align#{$name} {
+            width: 100%;
+        }
+    }
+
+    @each $breakpoint, $max-width in $sizes-list {
+        @include media-breakpoint-up($breakpoint, $grid-breakpoints-ext) {
+            .align#{$name} {
+                max-width: $max-width;
+            }
+            @if $name == 'wide' {
+                .wp-block[data-align="wide"] {
+                    max-width: $max-width;
+                    & * { max-width: 100%; }
+                }
+            }
+            @if $make-columns {
+                .col-align#{$name} {
+                    max-width: $max-width !important;
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                    margin-left: math.div($grid-gutter-width, 2);
+                    margin-right: math.div($grid-gutter-width, 2);
+                }
+            }
+        }
+    }
+}
+
+@mixin set-size($name, $important: false) {
+    $grid-breakpoints-ext: map-merge($grid-breakpoints, $xxxl-breakpoint);
+    $config: map-get($align-sizes, $name);
+    $sizes-list: map-get($config, sizes);
+    $imp: if($important, !important, null);
+
+    width: 100%;
+    max-width: 100% $imp;
+    margin-right: auto;
+    margin-left: auto;
+
+    @each $breakpoint, $max-width in $sizes-list {
+        @include media-breakpoint-up($breakpoint, $grid-breakpoints-ext) {
+            max-width: $max-width $imp;
+        }
+    }
+}

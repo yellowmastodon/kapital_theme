@@ -1,15 +1,18 @@
+@import "mixins";
+
 .darujme-form-wrapper{
     border-radius: $border-radius;
 }
 
 .darujme-form-wrapper:not(.collapsed){
     background: var(--#{$prefix}primary);
-    @extend .alignwide;
+    @include set-size('wide', true);
 }
 
-.darujme-form-wrapper.collapsed{
-    @extend .alignwider;
+.darujme-form-wrapper.collapsed {
+    @include set-size('wider', true);
     line-height: 1.15;
+}
 
 .darujme-form-wrapper.darujme-form-wrapper--default.collapsed{
     color: $white;

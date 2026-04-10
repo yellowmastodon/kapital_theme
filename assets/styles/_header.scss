@@ -1,4 +1,3 @@
-
 body.admin-bar {
     & > .horizontal-nav-wrapper {
         top: 32px;
@@ -6,8 +5,16 @@ body.admin-bar {
     & .offcanvas {
         padding-top: 32px;
     }
-}
 
+    @media (max-width: 782px) {
+        & > .horizontal-nav-wrapper {
+            top: 0;
+        }
+        & .offcanvas {
+            padding-top: 0;
+        }
+    }
+}
 #top-header {
     margin-bottom: -2px; //fix rendering issues
 }

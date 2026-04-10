@@ -1,27 +1,29 @@
-//widths defined in default_align_max_widths.scss
+//widths defined in custom_variables.scss
 //is-root-container class for gutenberg editor
-#post-content, #front-page-content {
-    &
-        > *:not(.alignnarrow):not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(
-            .wp-block[data-align="full"]
-        ):not(.woocommerce) {
-        @extend .alignnormal;
+
+#post-content,
+#front-page-content {
+    > *:not(.alignnarrow):not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull):not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
+        @include set-size('normal');
     }
 }
+
 .wp-block-group.wp-block-group__inner-container {
-    & > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) {
+    > *:not(.alignwide):not(.alignwider):not(.alignwidest):not(.alignfull) {
         .wp-block-group__inner-container {
-            @extend .alignnormal;
+            @include set-size('normal');
         }
     }
 }
+
 .wp-block-group .wp-block-group__inner-container {
-    & > *:not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
+    > *:not(.wp-block[data-align="wide"]):not(.wp-block[data-align="full"]):not(.woocommerce) {
         .wp-block-group__inner-container {
-            @extend .alignnormal;
+            @include set-size('normal');
         }
     }
 }
+
 .wp-block-group.alignfull,
 .wp-block[data-align="full"] {
     padding-left: $spacer;

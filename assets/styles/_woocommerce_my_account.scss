@@ -41,7 +41,7 @@
 }
 .woocommerce-account .woocommerce{
     @extend .rounded;
-    @extend .alignnormal;
+    @include set-size('normal');
     button[type="submit"]{
         @extend .btn;
         @extend .btn-block;
@@ -60,7 +60,7 @@
         }
     }
     .lost_reset_password, #customer_login{
-        @extend .alignnormal;
+        @include set-size('normal');
         @extend .ff-grotesk;
     }
 }

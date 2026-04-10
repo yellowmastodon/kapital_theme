@@ -1,7 +1,10 @@
-//replaces containers with content max width and margin auto
+
 
 
 //redefine container, as we are not using default bootstrap;
+
+//replaces containers with content max width and margin auto
+
 $container_padding: map-get($spacers, 3);
 .container {
     width: 100%;
@@ -19,97 +22,10 @@ $container_padding: map-get($spacers, 3);
 .alignfull.kapital-gallery{
     max-width: 100%;
 }
-/* $grid-breakpoints: (
-  xs: 0,
-  sm: 600px,
-  md: 900px,
-  lg: 1200px,
-  xl: 1400px,
-  xxl: 1650px,
-); */
 
 
-$xxxl-breakpoint: ( xxxl: 2100px);
-$grid-breakpoints: map-merge($grid-breakpoints, $xxxl-breakpoint);
-
-
-//narrow for picture in redakcia post type
-$align-narrow-sizes: (
-    xs: 400px,
-    xxxl: 500px
-);
-
-
-//600px on 1440px display, for body text in single post
-$align-normal-sizes: (
-    sm: 100%,
-    xs: 600px,
-    xxl: 700px,
-    xxxl: 800px
-);
-
-//800px on 1440px display, for featured images, perex, etc. in single post
-$align-wide-sizes: (
-    xs: 800px,
-    xxl: 900px,
-    xxxl: 1050px
-);
-
-//post archives
-$align-wider-sizes: (
-    md: 1100px,
-    xxl: 1320px,
-    xxxl: 1600px
-
-);
-
-$align-widest-sizes: (
-    lg: 1260px,
-    xxl: 1550px,
-    xxxl: 1800px
-);
-
-@mixin make-sizes($class-name, $sizes-list, $make-columns: false){
-    .align#{$class-name}{
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    //columns that can be aligned with specific size by adding one column to the left and one to the right, in .row.justify-content-center
-    @if $make-columns{
-        .col-align#{$class-name}{
-            width: 100%;
-        }
-    }
-    @each $breakpoint, $max-width in $sizes-list{
-        @include media-breakpoint-up($breakpoint, $grid-breakpoints){
-            .align#{$class-name}{
-                max-width: $max-width;
-            }
-            //for block editor
-            @if $class-name == 'wide'{
-                .wp-block[data-align="wide"]{
-                    max-width: $max-width;
-                    & *{
-                        max-width: 100%;
-                    }
-                }
-            }
-            @if $make-columns{
-                .col-align#{$class-name}{
-                    max-width: $max-width !important;
-                    padding-left: 0px !important;
-                    padding-right: 0px !important;
-                    margin-left: math.div($grid-gutter-width, 2);
-                    margin-right:  math.div($grid-gutter-width, 2);
-                }
-            }
-        }
-    }
+//main loop
+@each $name, $config in $align-sizes {
+    @include make-sizes($name, $config);
 }
-@include make-sizes('narrow', $align-narrow-sizes);
-@include make-sizes('normal', $align-normal-sizes);
-@include make-sizes('wide', $align-wide-sizes);
-@include make-sizes('wider', $align-wider-sizes, true);
-@include make-sizes('widest', $align-widest-sizes, true);
-$grid-breakpoints: map-remove($grid-breakpoints, xxxl)
+

@@ -77,8 +77,10 @@ $grid-breakpoints: $temporary-breakpoints;
 //replaces containers with content max width and margin auto
 
 /*! purgecss start ignore */
-
+@import "mixins";
 @import "default_align_max_widths";
+
+
 @import "focus";
 @import "custom_styles";
 @import "single_post";

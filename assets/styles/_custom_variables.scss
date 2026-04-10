@@ -33,6 +33,57 @@ $grid-breakpoints: (
 );
 
 
+$align-sizes: (
+    //narrow for picture in redakcia post type
+    'narrow': (
+        sizes: (
+            xs: 400px,
+            xxxl: 500px
+        ),
+        make-columns: false
+    ),
+
+    //600px on 1440px display, for body text in single post
+    'normal': (
+        sizes: (
+            xs: 600px,
+            xxl: 700px,
+            xxxl: 800px
+        ),
+        make-columns: false
+    ),
+
+    //800px on 1440px display, for featured images, perex, etc. in single post
+    'wide': (
+        sizes: (
+            xs: 800px,
+            xxl: 900px,
+            xxxl: 1050px
+        ),
+        make-columns: false
+    ),
+
+    //post archives
+    'wider': (
+        sizes: (
+            md: 1100px,
+            xxl: 1320px,
+            xxxl: 1600px
+        ),
+        make-columns: true
+    ),
+    'widest': (
+        sizes: (
+            lg: 1260px,
+            xxl: 1550px,
+            xxxl: 1800px
+        ),
+        make-columns: true
+    ),
+);
+
+
+
 //font
 $font-family-sans-serif: "Kontrast Grotesk", sans-serif;
 //$font-family-base: 'Roboto Serif', 'sans-serif';

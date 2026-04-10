@@ -48,6 +48,6 @@
 }
 .woocommerce-active.search-no-results{
     h1, .woocommerce-no-products-found{
-        @extend .alignwide;
+        @include set-size('wide');
     }
 }
