@@ -111,6 +111,7 @@ $css-vars-use-native: true;
         }
         .plyr__time--duration{
             margin-right: auto;
+            margin-left: 0px !important;
             padding-left: 0 !important;
             &::before{
                 content: "/";
@@ -118,5 +119,31 @@ $css-vars-use-native: true;
                 padding-right: calc(#{$plyr-control-spacing} / 2);
             }
         }
+    }
+}
+
+#post-content .plyr-audio-container:first-child{
+    margin-top: -.5rem;
+}
+.plyr-audio-container{
+
+     .tts-audio-description{
+        width: fit-content;
+     }
+    .tts-audio-description.short{
+        .tts-audio-description-long{
+            display: none;
+        }
+    }
+    .tts-audio-description:not(.short){
+        .tts-audio-description-short{
+            display: none;
+        }
+        .tts-audio-description-more{
+            display: block;
+        }
+    }
+    .tts-audio-description-more{
+            white-space: nowrap;
     }
 }

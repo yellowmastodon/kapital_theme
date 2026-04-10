@@ -64,15 +64,28 @@ else:
 			$filtered_terms = [];
 		}
 	}
-?>
+
+	//audio version
+	$audio_version_id = 0;
+	if ($post->post_type === 'post'){
+		$audio_version_id = (int) get_post_meta($post->ID, '_kptl_tts_audio_id', true);
+	}
+	?>
 	<article class="featured-post archive-item alignwider ff-grotesk<?=isset($attributes["className"]) ? " {$attributes["className"]}" : '';?>">
 		<?php if ($attributes["isPost"]):?>
 		<div class="archive-post-top row ff-sans fs-small text-gray">
-			<?php if ($post_type === 'podcast'): ?>
-				<div class="col-auto icon-podcast text-end">
-					<svg>
-						<use xlink:href="#icon-podcast"></use>
-					</svg>
+			<?php if ($post->post_type === 'podcast'): ?>
+				<div class="col-auto icon-podcast text-end" title="<?= esc_attr(__('Podcast', 'kapital')) ?>">
+					<svg><use xlink:href="#icon-podcast"></use></svg>
+					<span class="visually-hidden"><?= __('Podcast', 'kapital') ?></span>
+
+				</div>
+			<?php endif;
+
+			if ($audio_version_id !== 0): ?>
+				<div class="col-auto icon-audio-version" title="<?= esc_attr(__('Obsahuje audio verziu', 'kapital')) ?>">
+					<svg class="icon-square"><use xlink:href="#icon-audio-version"></use></svg>
+					<span class="visually-hidden"><?= __('Obsahuje audio verziu', 'kapital') ?></span>
 				</div>
 			<?php endif;
 			if ($render_settings["show_date"]){

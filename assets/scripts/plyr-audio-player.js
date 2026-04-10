@@ -1,9 +1,7 @@
 //init plyr audio player, dependency injection handled by includes/tts/class-tts-loader.php
 
-const plyrAudio = document.querySelectorAll('.plyr-audio');
+const plyrAudioContainer = document.querySelectorAll('.plyr-audio-container');
 let plyrAudioPlayers = [];
-
-console.log(plyrAudio);
 
 const player_i18n = {
     en:
@@ -38,6 +36,8 @@ const player_i18n = {
         reset: 'Reset',
         disabled: 'Disabled',
         advertisement: 'Ad',
+        ariaLabel: 'Audio version of the article'
+
     },
     sk: {
         restart: 'Reštart',
@@ -70,14 +70,16 @@ const player_i18n = {
         reset: 'Obnoviť',
         disabled: 'Vypnuté',
         advertisement: 'Reklama',
+        ariaLabel: 'Audio verzia článku'
     }
 }
 
-if (plyrAudio.length > 0) {
-    plyrAudio.forEach((element) => {
-        const lang = element.getAttribute('data-lang');
+if (plyrAudioContainer.length > 0) {
+    plyrAudioContainer.forEach((element) => {
+        const plyrAudio = element.querySelector('.plyr-audio');
+        const lang = plyrAudio.getAttribute('data-lang');
 
-        plyrAudioPlayers.push(new Plyr(element,
+        plyrAudioPlayers.push(new Plyr(plyrAudio,
             {
                 controls: `
                 <div class="plyr__controls">
@@ -116,8 +118,31 @@ if (plyrAudio.length > 0) {
 
                 </div>
                 `,
-                i18n: player_i18n[lang]
+                i18n: player_i18n[lang],
+                attributes: {
+                    ariaLabel: player_i18n[lang].ariaLabel
+                },
+                loadSprite: false,
             }
-        )); // push() instead of plyrAudioPlayers[]
+        )); 
+        //expand description
+
+        const button = element.querySelector('.tts-audio-description-more');
+        const desc = element.querySelector('.tts-audio-description');
+        button.addEventListener('click', () => {
+            const prevText = button.innerHTML;
+            const isExpanded = desc.classList.contains('short');
+
+            if (isExpanded) {
+                desc.classList.remove('short');
+                button.setAttribute('aria-expanded', 'true');
+            } else {
+                desc.classList.add('short');
+                button.setAttribute('aria-expanded', 'false');
+            }
+
+            button.innerHTML = button.getAttribute('data-alt-text');
+            button.setAttribute('data-alt-text', prevText);
+        });
     });
 }

@@ -2,6 +2,9 @@
 
 let mix = require('laravel-mix');
 require('laravel-mix-purgecss');
+
+let options = [];
+
 let safelist = {
     standard: [
         /^text/,
@@ -16,7 +19,7 @@ let safelist = {
         /^d-/,
         /^offcanvas/,
         /visible$/,
-        /^lh-sm/, 
+        /^lh-sm/,
         /^border-/,
         /button/,
         /^pwgc/
@@ -31,9 +34,9 @@ let safelist = {
         /^h[1-6]/,
         /menu-item/,
         /rounded-pill/,
-        /^text-decoration/, 
+        /^text-decoration/,
         /button/,
-        /^input/
+        /^input/,
     ]
 }
 
@@ -51,43 +54,45 @@ mix.
     sass('assets/styles/style.scss', 'css/style.css')
     .options({
         processCssUrls: false,
-    })
-    .purgeCss({
-        content: [
-            '**/*.php',
-            '**/*.js',
-            '../../plugins/woocommerce/**/*.php'
-        ],
-        safelist: safelist
     });
 
 mix.
     sass('assets/styles/editor_styles.scss', 'css/editor_styles.css')
     .options({
         processCssUrls: false,
-    })
-    .purgeCss({
-        content: [
-            '**/*.php',
-            '**/*.js',
-            '../../plugins/woocommerce/**/*.php'
-        ],
-        safelist: safelist
+                logger: {
+            debug(message) {
+                console.log(`DEBUG: ${message}`);
+            },
+            warn(message) {
+                console.warn(`WARN: ${message}`);
+            }
+        }
     });
 
-mix.
+
+mix.purgeCss({
+    content: [
+        '**/*.php',
+        '**/*.js',
+        '../../plugins/woocommerce/**/*.php',
+        'js/plyr.min.js'
+    ],
+    safelist: safelist,
+});
+
+/* !!!
+compile separately without purgecss
+simplest to mix these files just with watch
+*/
+/* mix.
     sass('assets/styles/plyr/plyr.scss', 'css/plyr-custom.min.css')
     .options({
         processCssUrls: false,
-    })
-    .purgeCss({
-        content: [
-            '**/*.php',
-            '**/*.js',
-            '../../plugins/woocommerce/**/*.php'
-        ],
-        safelist: safelist
-    });
+    }).purgeCss({
+       enabled: false,
+   });;
+ */
 
 
 // JS
@@ -98,28 +103,28 @@ mix
     ], 'js/scripts.min.js');
 
 mix
-.js([
-    'assets/scripts/admin-filter-selector.js'
-], 'js/admin-filter-selector.min.js');
+    .js([
+        'assets/scripts/admin-filter-selector.js'
+    ], 'js/admin-filter-selector.min.js');
 mix
-.js([
-    'assets/scripts/cart-quantity-script.js'
-], 'js/cart-quantity.min.js');
+    .js([
+        'assets/scripts/cart-quantity-script.js'
+    ], 'js/cart-quantity.min.js');
 
 mix
-.js([
-    'assets/scripts/admin-load-post-views.js'
-], 'js/admin-load-post-views.min.js');
+    .js([
+        'assets/scripts/admin-load-post-views.js'
+    ], 'js/admin-load-post-views.min.js');
 
 mix
-.js([
-    'assets/scripts/masonry.js'
-], 'js/masonry.min.js');
+    .js([
+        'assets/scripts/masonry.js'
+    ], 'js/masonry.min.js');
 
 mix
-.js([
-    'assets/scripts/plyr-audio-player.js'
-], 'js/plyr-init.min.js');
+    .js([
+        'assets/scripts/plyr-audio-player.js'
+    ], 'js/plyr-init.min.js');
 
 mix.browserSync({
     https: true,
@@ -129,7 +134,6 @@ mix.browserSync({
     proxy: 'kapital_new.test',
     host: 'kapital_new.test',
     files: [
-        
         "css/style.css",
         "css/plyr-custom.min.css",
         "js/scripts.min.js",

@@ -129,7 +129,7 @@ if ($render_settings["show_breadcrumbs"]) {
              * all off by default for page
              */
             if ($render_settings["show_share_button"] || $render_settings["show_date"] || $render_settings["show_author"] || $render_settings["show_featured_image"]): ?>
-                <div class="alignwide mb-5 header-bottom-container">
+                <div class="alignwide mb-4 header-bottom-container">
                     <?php //container with views, and publish date and author
                     if ($render_settings["show_share_button"] || $render_settings["show_date"] || $render_settings["show_author"]): ?>
                         <div class="row align-items-end justify-content-between mb-1">

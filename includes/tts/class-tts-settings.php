@@ -58,7 +58,7 @@ class TTS_Settings
     public static function register_settings()
     {
 
-        self::$text_fields  = array(
+        self::$text_fields = array(
             'api_key' => [
                 'title' => __('ElevenLabs API key', 'kapital'),
                 'placeholder' => __('Vložte API kľúč', 'kapital'),
@@ -76,8 +76,27 @@ class TTS_Settings
                 'placeholder' => __('Vlože ID hlasu', 'kapital'),
                 'description' => __('Voice clone môže byť nespoľahlivý pre iné jazyky. Nechajte prázdne ak sa nepoužíva.', 'kapital'),
                 'verify' => 'voice_id'
-
-            ]
+            ],
+            'player_text_sk_short' => [
+                'title' => __('Krátky text (SK)', 'kapital'),
+                'placeholder' => __('Vložte krátky text', 'kapital'),
+                'description' => __('Krátka verzia textu pod prehraváčom v slovenčine.', 'kapital'),
+            ],     
+            'player_text_sk' => [
+                'title' => __('Dlhý text (SK)', 'kapital'),
+                'placeholder' => __('Vložte dlhý text', 'kapital'),
+                'description' => __('Dlhšia verzia textu pod prehraváčom v slovenčine.', 'kapital'),
+            ],
+            'player_text_en_short' => [
+                'title' => __('Krátky text (EN)', 'kapital'),
+                'placeholder' => __('Insert short text', 'kapital'),
+                'description' => __('Krátka verzia textu pod prehraváčom v angličtine.', 'kapital'),
+            ],
+            'player_text_en' => [
+                'title' => __('Dlhý text (EN)', 'kapital'),
+                'placeholder' => __('Insert long text', 'kapital'),
+                'description' => __('Dlhšia verzia textu pod prehraváčom v angličtine.', 'kapital'),
+            ],             
         );
 
         register_setting(
@@ -93,8 +112,27 @@ class TTS_Settings
             self::$option_group
         );
 
-        foreach (self::$text_fields as $field_id => $value) {
+        // Add API key field first
+        $api_key_field = 'api_key';
+        $value = self::$text_fields[$api_key_field];
+        add_settings_field(
+            $api_key_field,
+            $value['title'],
+            array(__CLASS__, 'text_field_callback'),
+            self::$option_group,
+            'general_section',
+            array(
+                'id' => $api_key_field,
+                'placeholder' => $value['placeholder'],
+                'description' => $value['description'],
+                'verify' =>  $value['verify'] ?? null
+            )
+        );
 
+        // Add voice ID fields
+        $voice_fields = ['voice_id', 'voice_id_fallback'];
+        foreach ($voice_fields as $field_id) {
+            $value = self::$text_fields[$field_id];
             add_settings_field(
                 $field_id,
                 $value['title'],
@@ -105,12 +143,13 @@ class TTS_Settings
                     'id' => $field_id,
                     'placeholder' => $value['placeholder'],
                     'description' => $value['description'],
-                    'verify' => $value['verify']
+                    'verify' =>  $value['verify'] ?? null
                 )
             );
         }
 
-         add_settings_field(
+        // Add credits display before player text fields
+        add_settings_field(
             'credits_display',
             __('Počet kreditov', 'kapital'),
             array(__CLASS__, 'credits_field_callback'),
@@ -120,6 +159,25 @@ class TTS_Settings
                 'id' => 'credits_display'
             )
         );
+
+        // Add remaining text fields as textareas
+        $remaining_fields = ['player_text_sk_short', 'player_text_sk', 'player_text_en_short', 'player_text_en'];
+        foreach ($remaining_fields as $field_id) {
+            $value = self::$text_fields[$field_id];
+            add_settings_field(
+                $field_id,
+                $value['title'],
+                array(__CLASS__, 'textarea_field_callback'),
+                self::$option_group,
+                'general_section',
+                array(
+                    'id' => $field_id,
+                    'placeholder' => $value['placeholder'],
+                    'description' => $value['description'],
+                    'verify' =>  $value['verify'] ?? null
+                )
+            );
+        }
     }
 
     public static function section_callback($args){
@@ -176,6 +234,28 @@ class TTS_Settings
                     esc_html($check['message'] ?? __('OK', 'kapital'))
                 );
             }
+        }
+    }
+
+    /**
+     * Textarea field callback
+     */
+    public static function textarea_field_callback($args)
+    {
+        $value = self::get_option($args['id']);
+        $placeholder = isset($args['placeholder']) ? $args['placeholder'] : '';
+
+        printf(
+            '<textarea id="%s" name="%s[%s]" placeholder="%s" rows="4" cols="60">%s</textarea>',
+            esc_attr($args['id']),
+            esc_attr(self::$option_name),
+            esc_attr($args['id']),
+            esc_attr($placeholder),
+            esc_textarea($value)
+        );
+        
+        if (isset($args['description'])) {
+            echo '<p class="description">' . $args['description'] . '</p>';
         }
     }
 

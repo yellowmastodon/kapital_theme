@@ -57,15 +57,31 @@ $article_classes .= $additional_class;
 $post_title = get_the_title($post);
 $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 
+//audio version
+$audio_version_id = 0;
+if ($post->post_type === 'post'){
+    $audio_version_id = (int) get_post_meta($post->ID, '_kptl_tts_audio_id', true);
+}
+
 ?>
 <article <?php if($tab_index) echo 'tabindex="-1"'; post_class([$article_classes], $post); ?>>
     <div class="archive-post-top row mb-1 ff-sans fs-small text-gray">
         <?php
-        if ($post->post_type === 'podcast'):?>
-            <div class="col-auto icon-podcast text-end">
+        if ($post->post_type === 'podcast'): ?>
+            <div class="col-auto icon-podcast text-end" title="<?= esc_attr(__('Podcast', 'kapital')) ?>">
                 <svg><use xlink:href="#icon-podcast"></use></svg>
+                <span class="visually-hidden"><?= __('Podcast', 'kapital') ?></span>
+
             </div>
         <?php endif;
+
+        if ($audio_version_id !== 0): ?>
+            <div class="col-auto icon-audio-version" title="<?= esc_attr(__('Obsahuje audio verziu', 'kapital')) ?>">
+                <svg class="icon-square"><use xlink:href="#icon-audio-version"></use></svg>
+                <span class="visually-hidden"><?= __('Obsahuje audio verziu', 'kapital') ?></span>
+            </div>
+        <?php endif;
+
         if ($render_settings["show_date"]){
             echo get_publish_datetime_element($post, 'col-auto post-date');
         }
