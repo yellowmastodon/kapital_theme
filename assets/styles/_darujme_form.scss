@@ -11,13 +11,78 @@
     @extend .alignwider;
     line-height: 1.15;
 
+.darujme-form-wrapper.darujme-form-wrapper--default.collapsed{
     color: $white;
     --#{$prefix}darujme-bkg: var(--#{$prefix}gray-dark); //fallback value
     background: var(--#{$prefix}darujme-bkg);
-
 }
 
 
+@media (max-width: 350px){
+    .darujme-form-wrapper.darujme-form-wrapper--yesno{
+        .short-text{
+            width: 30px;
+            flex-grow: 1;
+            br{
+                display: none;
+            }
+        } 
+    }
+}
+
+@media (max-width: 370px){
+    .darujme-form-wrapper.darujme-form-wrapper--yesno{
+        .yesno-row{
+            .col-auto{
+                text-align: center;
+                width: 100%;
+            }
+            br{
+                display: none;
+            }
+        } 
+    }
+
+}
+
+.darujme-form-wrapper.darujme-form-wrapper--yesno.collapsed{
+    color: $white;
+    background-color: var(--#{$prefix}red);
+
+   
+    .btn{
+        border-radius: $border-radius;
+        text-transform: lowercase;
+        background-color: var(--#{$prefix}black);
+        border-color: var(--#{$prefix}black);
+        color: $white;
+        &.btn--yes{
+            background-color: var(--#{$prefix}primary);
+            border-color: var(--#{$prefix}primary);
+            color: var(--#{$prefix}black);
+        }
+
+        &.btn--no{
+            background-color: var(--#{$prefix}white);
+            border-color: var(--#{$prefix}white);
+            color: var(--#{$prefix}red);
+
+        }
+        &{
+            &:hover, &:focus, &:active{
+                background-color: var(--#{$prefix}white) !important;
+                border-color: var(--#{$prefix}white) !important;
+                color: var(--#{$prefix}red) !important;
+                outline: solid 5px $primary !important;
+            }
+            &:active{
+                outline: solid 5px darken($primary, .5) !important;
+
+            }
+        }
+    }       
+
+}
 
 .darujme-form-wrapper.animating {
     overflow: hidden;
@@ -31,11 +96,12 @@
 
 @include media-breakpoint-up('md'){
     .darujme-form-wrapper.collapsed{
-        border-radius: 4rem;
         padding-left: map-get($spacers, 5);
         padding-right: map-get($spacers, 3);       
     }
-
+    .darujme-form-wrapper.darujme-form-wrapper--default.collapsed{
+        border-radius: 4rem;
+    }
 }
 
 .darujme-expanded-form{
@@ -57,22 +123,23 @@
             display: none;
     }
 }
+.darujme-form-wrapper.darujme-form-wrapper--default{
+    .btn.darujme-form-expand-btn {
+        font-size: 1rem;
+        background-color: var(--#{$prefix}red);
+        border-color: var(--#{$prefix}red);
+        color: var(--#{$prefix}white);
 
-.btn.darujme-form-expand-btn {
-    font-size: 1rem;
-    background-color: var(--#{$prefix}red);
-    border-color: var(--#{$prefix}red);
-    color: var(--#{$prefix}white);
-
-    &:focus-visible, &:hover{
-        color: var(--#{$prefix}black);
-        background-color: var(--#{$prefix}primary) !important;
-        border-color: var(--#{$prefix}primary) !important;
-    }
-    &:active{
-        color: var(--#{$prefix}black);
-        border-color: darken($primary, 10) !important;
-        background-color: darken($primary, 10) !important;
+        &:focus-visible, &:hover{
+            color: var(--#{$prefix}black);
+            background-color: var(--#{$prefix}primary) !important;
+            border-color: var(--#{$prefix}primary) !important;
+        }
+        &:active{
+            color: var(--#{$prefix}black);
+            border-color: darken($primary, 10) !important;
+            background-color: darken($primary, 10) !important;
+        }
     }
 }
 

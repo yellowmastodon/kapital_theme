@@ -172,7 +172,7 @@ if (isset($darujme_options["campaign_active"])) {
                             <?php endif;?>
                             <?php if (isset($kptl_theme_options["podpora"])):?>
                                 <a class="btn-menu d-none d-lg-inline-block btn-podpora btn-podpora-lg default-x-margin ms-4 text-decoration-none text-center<?= $is_front ? ' btn-podpora-expanded' : '' ?>" href="<?=$kptl_theme_options["podpora"]?>">Podporte nás</a>
-                                <a class="btn-menu d-inline-block d-lg-none btn-podpora default-x-margin fs-4 ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte</a>
+                                <a class="btn-menu d-inline-block d-lg-none btn-podpora default-x-margin ms-4 text-decoration-none" href="<?=$kptl_theme_options["podpora"]?>">Podporte</a>
                             <?php endif;?>
                             </div>
                         </div>

@@ -4,20 +4,64 @@ export default function initializeForm(form_wrapper) {
     if (form_wrapper.dataset.formInitialized === '1') return;
     form_wrapper.dataset.formInitialized = '1';
 
+    const bannerMode = form_wrapper.dataset.bannerMode;
+
     //first make ids unique, to allow multiple forms
     const uid = makeIdsUnique(form_wrapper);
     //rotate color
-    setCollapsedColor(form_wrapper);
+
+    if (bannerMode === 'default'){
+        setCollapsedColor(form_wrapper);
+    }
+
+    //rotate questions on load
+    if (bannerMode === 'yesno'){
+        const yesBtnWrappers = [...form_wrapper.querySelectorAll('.btn-wrapper--yes')];
+        const noBtnWrappers = [...form_wrapper.querySelectorAll('.btn-wrapper--no')];
+
+        const randomIndex = Math.floor(Math.random() * yesBtnWrappers.length);
+
+        yesBtnWrappers.forEach((wrap, i) => {
+            wrap.style.visibility = '';
+            wrap.style.display = i === randomIndex ? '' : 'none';
+        });
+        noBtnWrappers.forEach((wrap, i) => {
+            wrap.style.visibility = '';
+            wrap.style.display = i === randomIndex ? '' : 'none';
+        });
+    }
 
     //click to expand form  
-    form_wrapper.querySelector('.darujme-form-expand-btn').addEventListener("click", () => {
+    form_wrapper.querySelectorAll('.darujme-form-expand-btn').forEach(el=>{
+        el.addEventListener("click", () => {
+
+
         const inner = form_wrapper.querySelector(".darujme-form-inner");
-        const collapsedHeight = inner.querySelector('.darujme-collapsed-form').offsetHeight;
+        const collapsedForm = inner.querySelector('.darujme-collapsed-form')
+        const expandedForm = form_wrapper.querySelector('.darujme-expanded-form');
+
+        if (bannerMode === 'yesno'){
+
+            let response = "";
+            if (el.dataset.yesno === 'no'){
+                response = collapsedForm.dataset.responseNo;
+            } else {
+                response = collapsedForm.dataset.responseYes;
+            }
+            expandedForm.querySelector('.bubble-heading').outerHTML = response;
+        }
+
+        const collapsedHeight = collapsedForm.offsetHeight;
+
+
         inner.style.height = collapsedHeight + "px";
         form_wrapper.classList.remove("collapsed");
-        form_wrapper.querySelector('.darujme-expanded-form').style.display = "";
+        expandedForm.style.display = "";
+
         animateExpand(inner);
+
     });
+    })
 
 
     //radio inputs of fixed values
@@ -262,22 +306,30 @@ function animateExpand(element) {
     }, 200);
 }
 
-function setCollapsedColor(form_wrapper){
-    if (!setCollapsedColor.color) {
-        const colorArray = JSON.parse(form_wrapper.getAttribute('data-colors'));
-        if (colorArray.length){
-            const index = Math.floor(Math.random() * colorArray.length);
-            setCollapsedColor.color =  colorArray[index];
-        } else {
-            //fallback
-            setCollapsedColor.color = '#212529'
-        }
+function setCollapsedColor(form_wrapper, bannerMode = 'default'){
+
+    const collapsedForm = form_wrapper.querySelector('.darujme-collapsed-form');
+    const hasColors = collapsedForm.hasAttribute('data-colors');
+
+    if (hasColors){
+        if (!setCollapsedColor.color) {
+                const colorArray = JSON.parse(form_wrapper.querySelector('.darujme-collapsed-form').getAttribute('data-colors'));
+                if (colorArray.length){
+                    const index = Math.floor(Math.random() * colorArray.length);
+                    setCollapsedColor.color =  colorArray[index];
+                } else {
+                    //fallback
+                    setCollapsedColor.color = '#212529'
+                }
+            }
+            form_wrapper.style.transition = 'none'; //remove bg transition
+            form_wrapper.style.setProperty('--kptl-darujme-bkg', setCollapsedColor.color);
+
+            requestAnimationFrame(()=>{
+                form_wrapper.style.transition = ''; //reset bg transition
+            });
     }
-    form_wrapper.style.transition = 'none'; //remove bg transition
-    form_wrapper.style.setProperty('--kptl-darujme-bkg', setCollapsedColor.color);
-    form_wrapper.style.transition = ''; //reset bg transition
-
-
+   
 }
 
 

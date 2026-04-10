@@ -1,23 +1,15 @@
 <?php
 defined('ABSPATH') || exit;
 //whether to render form as collapsed
-$collapsed_class = "";
-$show_title = true;
-$collapsed = false;
-if (isset($args["collapsed"])) {
-    if ($args["collapsed"]) {
-        $collapsed_class = " collapsed";
-        $collapsed = true;
-    }
-}
-if (isset($args["show_title"])) {
-    if (!$args["show_title"]) {
-        $show_title = false;
-    }
-}
+$collapsed = !empty($args['collapsed']);
+$collapsed_class = $collapsed ? ' collapsed' : '';
+
+$show_title = $args['show_title'] ?? true;
+
 $darujme_options = get_option('kapital_darujme_settings');
 $darujme_onetime_amounts = $darujme_options['donation_amount_onetime'];
 $campaign_active = false;
+
 if (isset($darujme_options["campaign_active"])) if ($darujme_options["campaign_active"]) $campaign_active = true;
 if ($campaign_active):
     $darujme_onetime_amounts = explode(",", $darujme_onetime_amounts);
@@ -33,40 +25,29 @@ if ($campaign_active):
     }, $darujme_periodical_amounts);
     $title = $darujme_options["campaign_title"];
     $short_title = $darujme_options["campaign_title_short"];
-    $short_title_alt = $darujme_options["campaign_title_short_alt"];
 
-    /**
-     * when ajax, there is no post context, and ajax insertion only happens on post
-     * alt title text is used on non post pages
-     */
-    if ($post){
-        if ($post->post_type !== 'post' && $short_title_alt !== ''){
-            $short_title = $short_title_alt;
-        }
-    }
 
     $long_text = $darujme_options["darujme_long_text"];
-    $short_text = $darujme_options["darujme_short_text"];
 
     $gdpr_link = $darujme_options["darujme_kapital_gdpr_url"];
 
-    //setup alternating colors per request, handled by js, so that we can cache the page
-    $darujme_collapsed_colors = htmlentities(json_encode(array('#7065d6', '#000bdf', '#212529', '#008914')), ENT_QUOTES);
+    $collapsed_version =  $darujme_options["banner_mode"] ?? 'default';
+
 
 ?>
-    <div class="darujme-form-wrapper p-3 ps-md-5 pe-md-3 my-5<?= $collapsed_class ?>" data-colors="<?= $darujme_collapsed_colors ?>">
+    <div class="darujme-form-wrapper darujme-form-wrapper--<?= $collapsed_version ?> p-3 ps-md-5 pe-md-3 my-5<?= $collapsed_class ?>" data-banner-mode="<?= $collapsed_version ?>">
         <div class="darujme-form-inner">
-            <div class="darujme-collapsed-form" <?php if (!$collapsed) echo 'style="display: none"'; ?>>
-                <div class="row align-items-center justify-content-between gy-2 gx-5 fw-bold ff-grotesk">
-                        <?php
-                        if (isset($short_title)) if ($short_title !== "") echo '<div class="col-12 col-md-4 col-lg-3 darujme-form-heading fs-3">' . wpautop(auto_nbsp($short_title)) . '</div>';
-                        if (isset($short_text)) if ($short_text !== "") echo '<div class="col-12 col-md-5 col-lg-6 darujme-form-text me-auto">' . wpautop(auto_nbsp($short_text)) . '</div>'
-                        ?>
-                    <div class="col-12 col-md-3 text-md-end">
-                        <button class="darujme-form-expand-btn btn fw-bold whitespace-normal" style="text-transform: unset"><?= __("Podporte nás", "kapital") ?></btn>
-                    </div>
-                </div>
-            </div>
+            <?php get_template_part(
+                        'template-parts/donation-form-collapsed--' . $collapsed_version,
+                        null,
+                        array_merge(
+                            $darujme_options,
+                            [
+                                'collapsed' => $collapsed
+                            ]
+                            )
+                    );        ?>
+
             <div class="darujme-expanded-form" <?php if ($collapsed) echo 'style="display: none"'; ?>>
                 <?php
                 $descriptive_paragraphs_classes = "ff-grotesk col-12 mb-0 lh-sm mt-4";
@@ -80,13 +61,13 @@ if ($campaign_active):
                     <input name="payment_method_id" id="darujme_payment_method_id" type="hidden" value="">
 
                     <div id="periodicity" class="row gx-1 gy-1 mb-2">
-                        <p class="ff-grotesk col-12 mb-0 lh-sm">Ako často chcete prispievať?</p>
+                        <p class="ff-grotesk col-12 mb-0 lh-sm">Ako často chceš prispievať?</p>
                         <div class="col-12 col-sm-6"><input class="darujme-radio-input-btn" name="periodicity" type="radio" id="onetime" value="onetime"><label class="btn btn-outline btn-block" for="onetime"><?php echo __("Jednorazovo", "kapital") ?></label></div>
                         <div class="col-12 col-sm-6"><input class="darujme-radio-input-btn" name="periodicity" type="radio" id="periodical" value="periodical" checked><label class="btn btn-outline btn-block" for="periodical"><?php echo __("Mesačne", "kapital") ?></label></div>
                     </div>
                     <section id="onetime_fixed_values" class="mb-2">
                         <div class="row gx-1 gy-1">
-                            <p class="ff-grotesk col-12 mb-0 lh-sm">Koľko chcete prispieť?</p>
+                            <p class="<?= $descriptive_paragraphs_classes ?>">Koľko chceš prispieť?</p>
                             <?php foreach ($darujme_onetime_amounts as $key => $amount):
                                 if ($amount !== "" && $amount !== "0"):
                                     if ($key === 1) {
@@ -104,7 +85,7 @@ if ($campaign_active):
                     ?>
                     <section id="periodical_fixed_values" class="mb-2">
                         <div class="row gx-1 gy-1">
-                            <p class="<?= $descriptive_paragraphs_classes ?>">Koľko chcete prispievať?</p>
+                            <p class="<?= $descriptive_paragraphs_classes ?>">Koľko chceš prispievať?</p>
                             <?php foreach ($darujme_periodical_amounts as $key => $amount):
                                 if ($amount !== "" && $amount !== "0"):
                                     if ($key === 1) {
@@ -119,8 +100,8 @@ if ($campaign_active):
                         </div>
                     </section>
                     <section class="mb-2 form-floating ff-sans" id="custom_value_row">
-                        <input type="number" name="custom_value" class="form-control" placeholder="<?= __("Zadajte vlastnú sumu *", "kapital") ?>" min="1" step="any" id="custom_value">
-                        <label for="custom_value"><?= __("Zadajte vlastnú sumu *", "kapital") ?></label>
+                        <input type="number" name="custom_value" class="form-control" placeholder="<?= __("Zadaj vlastnú sumu *", "kapital") ?>" min="1" step="any" id="custom_value">
+                        <label for="custom_value"><?= __("Zadaj vlastnú sumu *", "kapital") ?></label>
 
                     </section>
                     <section id="onetime_payment_methods" class="mb-2">
@@ -254,7 +235,7 @@ if ($campaign_active):
                                     <?=
                                     sprintf(__("Potvrdzujem, že som bol/a informovaný/á o spracovaní Osobných údajov v systéme %s"), '<a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>') ?></label>
                             </div>
-                            <p class="ff-sans ps-4 lh-sm">Potvrdením údajov súhlasíte s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a> používania <a href="https://darujme.sk/" target="_blank">DARUJME.sk</a>.</p>
+                            <p class="ff-sans ps-4 lh-sm">Potvrdením údajov súhlasíš s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a> používania <a href="https://darujme.sk/" target="_blank">DARUJME.sk</a>.</p>
 
                         </div>
                     </section>
