@@ -3,8 +3,6 @@
 let mix = require('laravel-mix');
 require('laravel-mix-purgecss');
 
-let options = [];
-
 let safelist = {
     standard: [
         /^text/,
@@ -60,26 +58,15 @@ mix.
     sass('assets/styles/editor_styles.scss', 'css/editor_styles.css')
     .options({
         processCssUrls: false,
-                logger: {
-            debug(message) {
-                console.log(`DEBUG: ${message}`);
-            },
-            warn(message) {
-                console.warn(`WARN: ${message}`);
-            }
-        }
+    })
+    .purgeCss({
+        content: [
+            '**/*.php',
+            '**/*.js',
+            '../../plugins/woocommerce/**/*.php'
+        ],
+        safelist: safelist
     });
-
-
-mix.purgeCss({
-    content: [
-        '**/*.php',
-        '**/*.js',
-        '../../plugins/woocommerce/**/*.php',
-        'js/plyr.min.js'
-    ],
-    safelist: safelist,
-});
 
 /* !!!
 compile separately without purgecss
