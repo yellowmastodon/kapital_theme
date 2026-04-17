@@ -145,7 +145,7 @@ a {
 }
 
 #post-content{
-    details {
+    details:not([class^="cmplz-"]) {
         padding: 0 map-get($spacers, 3);
         border-radius: $border-radius;
         background-color: var(--#{$prefix}secondary-light);
