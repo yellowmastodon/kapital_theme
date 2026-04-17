@@ -1,4 +1,6 @@
 <?php
+defined( 'ABSPATH' ) || exit;
+
     //setup alternating colors per request, handled by js, so that we can cache the page
     $darujme_collapsed_colors = htmlentities(json_encode(array('#7065d6', '#000bdf', '#212529', '#008914')), ENT_QUOTES);
 
