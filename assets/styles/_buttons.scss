@@ -79,11 +79,13 @@
     background-color: var(--#{$prefix}red);
     border-color: var(--#{$prefix}red);
     color: $white;
+}
 .btn-black {
     background-color: var(--#{$prefix}black);
     border-color: var(--#{$prefix}black);
     color: $white;
 }
+
 .btn {
     &:hover:not(:disabled),
     &:focus-visible,
@@ -92,9 +94,6 @@
         border-color: var(--#{$prefix}red) !important;
         color: $white;
         outline: none !important;
-        svg {
-            fill: $white;
-        }
     }
     &:active:not(:disabled) {
         color: $white;
@@ -133,16 +132,7 @@
         outline: none !important;
         background: transparent !important;
         border: transparent !important;
-
-        svg {
-            fill: var(--#{$prefix}red);
-        }
-    }
-    &:active:not(:disabled) {
-
-        svg{
-            fill: darken($red, 10);
-        }
+        color: var(--#{$prefix}red)
     }
 }
 
@@ -155,6 +145,12 @@
             &:focus-visible {
                 background-color: var(--#{$prefix}white) !important;
                 border-color: var(--#{$prefix}body-color) !important;
+                color: var(--#{$prefix}body-color);
+            }
+        }
+    }
+}
+
 .bg-red,
 .has-red-background-color {
     button,

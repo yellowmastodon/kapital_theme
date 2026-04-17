@@ -20,7 +20,7 @@ body.admin-bar {
 }
 
 #main-logo {
-    fill: var(--#{$prefix}red);
+    color: var(--#{$prefix}red) !important;
 }
 
 //use default collapse for hiding top header but override
