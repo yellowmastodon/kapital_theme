@@ -32,8 +32,6 @@ if ($lang === 'en'){
     $less_text = 'Menej o audioverzii';
 }
 
-do_action('qm/debug', $tts_options);
-
 ?>
 <section class="alignwide plyr-audio-container">
     <h2 class="visually-hidden"><?= $lang === 'en' ? 'Audio version of the article' : 'Audio verzia článku' ?></h2>
