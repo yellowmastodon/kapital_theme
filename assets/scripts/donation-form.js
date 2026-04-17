@@ -1,3 +1,5 @@
+import { setOffcanvasBannerCookie } from "./donation-offcanvas-banner";
+
 export default function initializeForm(form_wrapper) {
     
     // guard: don't initialise twice
@@ -254,6 +256,8 @@ export default function initializeForm(form_wrapper) {
 
     // Form submission: remove temp inputs
     form.addEventListener('submit', function (event) {
+
+        
         var elementsToDisable = form_wrapper.querySelectorAll(
             fv +
             ', #custom_value' + uid +
@@ -265,6 +269,16 @@ export default function initializeForm(form_wrapper) {
         elementsToDisable.forEach(function (el) {
             el.disabled = true;
         });
+
+        //set cookie based on periodicity
+        const periodicity = form.querySelector('input[name="periodicity"]:checked').value;
+        let days = 31;
+
+        if (periodicity === 'periodical'){
+            days = 183;
+        }
+
+        setOffcanvasBannerCookie(days);
 
         // Re-enable immediately after to preserve back-navigation
         setTimeout(() => {

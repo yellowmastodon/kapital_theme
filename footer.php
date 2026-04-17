@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 //check if we should render newsletter signup
 global $post_types_with_controlled_rendering;
 global $kptl_theme_options;
+
 if (!is_404() && !is_archive() && in_array($post->post_type, $post_types_with_controlled_rendering) && isset($args["render_settings"]) && isset($args["render_settings"]["show_footer_newsletter"])) {
     $show_footer_newsletter = $args["render_settings"]["show_footer_newsletter"];
 } else {
@@ -111,7 +112,16 @@ do_action('kapital-before-footer');
 </footer>
 
 
-<?php wp_footer(); ?>
+<?php wp_footer(); 
+
+//pass args, so that it receives render settings
+
+if ($post->post_type === 'post' ){
+    get_template_part('template-parts/donation-offcanvas-banner', null, $args["render_settings"]);
+
+}
+
+?>
 </body>
 
 </html>

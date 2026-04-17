@@ -6,7 +6,7 @@ import 'bootstrap/js/dist/carousel';
 import Collapse from 'bootstrap/js/dist/collapse';
 //import 'bootstrap/js/dist/dropdown';
 import Modal from 'bootstrap/js/dist/modal';
-import 'bootstrap/js/dist/offcanvas';
+import Offcanvas from 'bootstrap/js/dist/offcanvas';
 // import 'bootstrap/js/dist/popover';
 // import 'bootstrap/js/dist/scrollspy';
 // import 'bootstrap/js/dist/tab';
@@ -26,12 +26,14 @@ import ajaxRequest from './ajax-request';
 import postFilterModal from './post-filter-modal';
 import showMorePosts from './show-more-posts';
 import initializeForm from './donation-form';
+import {darujmeOffcanvas} from './donation-offcanvas-banner';
 import galleryCarousel from './gallery-carousel';
 import shareButton from './share-button';
 import postViewLoader from './post-views-loader';
 
 shareButton();
 headerFunctions();
+darujmeOffcanvas();
 
 document.querySelectorAll('.dismiss-notice').forEach((element) => {
     element.addEventListener("click", (event) => {
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 showMorePosts();
+
 if (document.querySelector('.gallery-with-lightbox')){
     galleryCarousel();
 }

@@ -38,6 +38,7 @@ export function customMetaSettings() {
 					show_date: true,
 					show_ads: true,
 					show_support: true,
+					show_modal_banner: postType === 'post' ? true : false,
 					show_footer: true,
 					show_filters: false,
 					show_footer_newsletter: true,
@@ -88,6 +89,7 @@ export function customMetaSettings() {
 						show_date: true,
 						show_ads: true,
 						show_support: true,
+						show_modal_banner: true,
 						show_footer: true,
 						show_footer_newsletter: true,
 						show_share_button: true,
@@ -189,6 +191,14 @@ export function customMetaSettings() {
 										onChange={() => updateMetaValue(!custom_render_meta.show_support, 'show_support')}
 										help={__('Netýka sa manuálne vložených blokov podpory.', 'kapital')}
 									/>
+									{postType === 'post' &&
+									<ToggleControl
+										__nextHasNoMarginBottom
+										label={__('Povoliť vyskakovací banner', 'kapital')}
+										checked={custom_render_meta.show_modal_banner}
+										onChange={() => updateMetaValue(!custom_render_meta.show_modal_banner, 'show_modal_banner')}
+									/>
+									}
 									<ToggleControl
 										__nextHasNoMarginBottom
 										label={__('Automaticky vložiť inzerciu', 'kapital')}

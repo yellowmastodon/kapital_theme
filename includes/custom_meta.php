@@ -59,6 +59,10 @@ foreach ($post_types_with_controlled_rendering as $post_type) {
                 'type' => 'boolean',
                 'default' => true
             ],
+            'show_modal_banner' => [
+                'type' => 'boolean',
+                'default' => true
+            ],
             'show_footer_newsletter' => [
                 'type' => 'boolean',
                 'default' => true

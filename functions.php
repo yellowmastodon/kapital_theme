@@ -256,6 +256,7 @@ function kapital_enqueue_scripts()
             'root' => get_bloginfo('url'),
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('ajax-nonce'),
+            'complianz_active' => class_exists('Complianz')
         )
     );
 

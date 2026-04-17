@@ -106,6 +106,7 @@ $grid-breakpoints: $temporary-breakpoints;
 @import "bootstrap/scss/forms";
 @import "forms";
 @import "darujme_form";
+@import "darujme_offcanvas";
 @import "woocommerce_archive";
 @import "woocommerce_single_product";
 @import "woocommerce_notices";

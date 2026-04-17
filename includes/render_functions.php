@@ -725,11 +725,16 @@ function kapital_get_render_settings(int $post_id, string $post_type, bool $show
         'show_support' => $show_false ? false : true, //only used for post, podcast
         'show_footer' => $show_false ? false : true, //only used for post, podcast
         'show_footer_newsletter' => $show_false ? false : true,
+        'show_modal_banner' => false,
         'show_share_button' => $show_false ? false : true, //only used for post, podcast
         'show_filters' => false, //only used for page
         'show_event_location' => false, //only used for event
-
     );
+
+    if ($post_type === 'post'){
+        $default_render_settings["show_modal_banner"] = true;
+    }
+
     if ($post_type === 'podcast') {
         $default_render_settings["show_featured_image"] = false;
         $default_render_settings["show_author"] = false;

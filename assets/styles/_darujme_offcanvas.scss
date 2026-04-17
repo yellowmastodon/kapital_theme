@@ -1,0 +1,108 @@
+.offcanvas.darujme-offcanvas {
+    height: unset !important;
+    max-height: clamp(0px, 25rem, 60vh);
+
+    .offcanvas-body {
+        //height: 100%;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+            //gradient to indicate scrollable
+        &::after, &::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: map-get($spacers, 5);
+            pointer-events: none;
+            z-index: 1;
+        }
+        &::after{
+            bottom: 0;
+            background: linear-gradient(to top, var(--#{$prefix}red), transparent);
+
+        }
+        &::before{
+            top: 0;
+            background: linear-gradient(to bottom, var(--#{$prefix}red), transparent);
+        }
+
+
+    .darujme-offcanvas__version{
+        position: relative
+    }
+
+    .darujme-offcanvas__logo {
+        display: none;
+    }
+    .btn {
+        text-transform: unset !important;
+        font-weight: bold;
+    }
+    .darujme-offcanvas__content-wrapper {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: map-get($spacers, 5);
+        align-items: center;
+        grid-auto-rows: max-content;
+        flex: 1;
+    }
+    h2 {
+        font-size: 1.5rem;
+        line-height: 1;
+
+    }
+    .btn-link{
+        &:focus-visible, &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+@include media-breakpoint-down("sm") {
+    .darujme-offcanvas__actions {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-up("sm") {
+    .offcanvas.darujme-offcanvas {
+        max-height: 60vh;
+
+        .darujme-offcanvas__version {
+            gap: 2rem;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+        .darujme-offcanvas__logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            max-width: 100%;
+            aspect-ratio: 125/162;
+
+            svg {
+                height: 100%;
+                width: auto;
+                max-width: 100%;
+                position: relative;
+                top: -0.2rem;
+            }
+        }
+    }
+}
+@include media-breakpoint-up("md") {
+    .offcanvas.darujme-offcanvas {
+        max-height: 50vh;
+    }
+}
