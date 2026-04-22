@@ -41,7 +41,7 @@ if ($darujme_options['campaign_active'] && $args['show_modal_banner'] && $darujm
         <div class="darujme-offcanvas__actions d-inline-flex flex-column flex-sm-row flex-md-column flex-wrap gap-2">
             <a class="btn btn-black fs-2" href="<?= $btns_support_url[$c] ?>"><?= nl2br(esc_html($btns_support[$c])) ?></a>
             <button class="btn btn-black" data-darujme-d="3" data-bs-dismiss="offcanvas"><?= nl2br(esc_html($btns_later[$c])) ?></button>
-            <button class="btn-link fw-bold underscore" data-darujme-d="183" data-bs-dismiss="offcanvas"><?= nl2br(esc_html($btns_supporting[$c])) ?></button>
+            <button class="btn-link text-black fw-bold underscore" data-darujme-d="183" data-bs-dismiss="offcanvas"><?= nl2br(esc_html($btns_supporting[$c])) ?></button>
         </div>
     </div>
     <?php endfor; ?>
