@@ -104,8 +104,8 @@ do_action('kapital-before-footer');
         </div>
 
     </div>
-    <div class="p-4 p-md-5 px-lg-6 px-xxl-7 bg-red">
-        <svg style="fill: var(--kptl-primary)" viewBox="0 0 837 216">
+    <div class="p-4 p-md-5 px-lg-6 px-xxl-7 bg-red text-primary">
+        <svg viewBox="0 0 837 216">
             <use xlink:href="#kapital-logo" />
         </svg>
     </div>
