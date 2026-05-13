@@ -93,21 +93,11 @@ blockquote {
 .btn-menu,
 a {
     transition: color $link_transition_speed linear;
-    svg {
-        transition: $link_transition_speed linear;
-        fill: var(--#{$prefix}body-color);
-    }
     &:hover {
         color: var(--#{$prefix}red);
-        svg {
-            fill: var(--#{$prefix}red);
-        }
     }
     &:active {
         color: darken($red, 10);
-        svg {
-            fill: darken($red, 10);
-        }
     }
     &.text-red {
         &:hover {

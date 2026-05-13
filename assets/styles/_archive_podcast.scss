@@ -114,9 +114,6 @@
             opacity: 1;
         }
     }
-    svg{
-        fill: var(--#{$prefix}red);
-    }
 
     &.podcast-title-wrapper{
         .red-outline-hover{
@@ -130,9 +127,6 @@
 
     .archive-item-image{
         outline: solid 5px darken($primary, 7);
-    }
-    svg{
-        fill: darken($red, 10);
     }
 
     .red-outline-hover {
