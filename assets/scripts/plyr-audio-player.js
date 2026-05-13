@@ -79,6 +79,35 @@ if (plyrAudioContainer.length > 0) {
         const plyrAudio = element.querySelector('.plyr-audio');
         const lang = plyrAudio.getAttribute('data-lang');
 
+        const navigatorMetaStr = plyrAudio.getAttribute('data-navigator-meta');
+        const navigatorMeta = navigatorMetaStr ? JSON.parse(navigatorMetaStr) : {};
+
+
+        if ('mediaSession' in navigator && navigatorMeta.title && navigatorMeta.thumb && navigatorMeta.site) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: navigatorMeta.title || 'Audio',
+                artist: navigatorMeta.author,
+                album: navigatorMeta.site,
+                artwork: Object.keys(navigatorMeta.thumb || {}).map(size => ({
+                    src: navigatorMeta.thumb[size],
+                    sizes: `${size}x${size}`,
+                    type: navigatorMeta.thumb_mime || 'image/jpeg'
+                    }))
+            });
+            
+/*             // Optional: Add playback controls
+            navigator.mediaSession.setActionHandler('play', () => {
+                const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
+                if (player) player.play();
+            });
+            
+            navigator.mediaSession.setActionHandler('pause', () => {
+                const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
+                if (player) player.pause();
+            }); */
+        }
+
+
         plyrAudioPlayers.push(new Plyr(plyrAudio,
             {
                 controls: `

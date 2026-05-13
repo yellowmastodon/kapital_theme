@@ -189,7 +189,7 @@ if ($render_settings["show_breadcrumbs"]) {
                  * render audio version
                  */
                 if($audio_version_id !== 0){
-                    get_template_part('template-parts/post-audio-version', null, array('audio_id' => $audio_version_id, 'lang' => $lang));
+                    get_template_part('template-parts/post-audio-version', null, array('audio_id' => $audio_version_id, 'lang' => $lang, 'autorstvo' => $filtered_terms['autorstvo']));
                 }
 
                 /**

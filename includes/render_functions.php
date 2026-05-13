@@ -101,7 +101,7 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
     }
     $srcset = "";
     foreach ($image_sizes as $image_size) {
-        if ($image_size !== 'placeholder') {
+        if ($image_size !== 'placeholder' && !str_starts_with($image_size, 'tts_audio_thumb_')) {
 
             //returns array of values for specific image size
             // https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/
@@ -136,6 +136,7 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
     if (!$is_nonscalable) {
         $html .= " srcset=\"$srcset\"";
     }
+
     $html .= " class=\"$img_classes\"";
     $placeholder_src = wp_get_attachment_image_src($attachment_id, 'placeholder')[0];
     $html .= " style=\"background-image: url('$placeholder_src'); aspect-ratio: $aspect_ratio\"";
@@ -1156,4 +1157,18 @@ function kapital_get_event_thumbnail(int $post_id)
         $placeholder_count++;
     }
     return $thumbnail_image;
+}
+
+
+add_filter('woocommerce_add_to_cart_fragments', 'update_cart_count_fragment');
+
+/**
+ * cart fragment
+ */
+function update_cart_count_fragment($fragments) {
+    $cart_count = WC()->cart->get_cart_contents_count();
+    
+    $fragments['.kapital-cart-quantity-mini-badge'] = '<span class="kapital-cart-quantity-mini-badge rounded-pill text-white bg-red position-absolute" style="display: ' . ($cart_count > 0 ? 'inline-block' : 'none') . '">' . $cart_count . '</span>';
+      
+    return $fragments;
 }
