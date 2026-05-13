@@ -83,29 +83,46 @@ if (plyrAudioContainer.length > 0) {
         const navigatorMeta = navigatorMetaStr ? JSON.parse(navigatorMetaStr) : {};
 
 
-        if ('mediaSession' in navigator && navigatorMeta.title && navigatorMeta.thumb && navigatorMeta.site) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-                title: navigatorMeta.title || 'Audio',
-                artist: navigatorMeta.author,
-                album: navigatorMeta.site,
-                artwork: Object.keys(navigatorMeta.thumb || {}).map(size => ({
-                    src: navigatorMeta.thumb[size],
-                    sizes: `${size}x${size}`,
-                    type: navigatorMeta.thumb_mime || 'image/jpeg'
-                    }))
-            });
-            
-/*             // Optional: Add playback controls
-            navigator.mediaSession.setActionHandler('play', () => {
-                const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
-                if (player) player.play();
-            });
-            
-            navigator.mediaSession.setActionHandler('pause', () => {
-                const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
-                if (player) player.pause();
-            }); */
-        }
+
+
+        plyrAudio.addEventListener('play', () => {
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.playbackState = 'playing';
+
+                if (navigatorMeta.title && navigatorMeta.thumb && navigatorMeta.site) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: navigatorMeta.title || 'Audio',
+                        artist: navigatorMeta.author,
+                        album: navigatorMeta.site,
+                        artwork: Object.keys(navigatorMeta.thumb || {}).map(size => ({
+                            src: navigatorMeta.thumb[size],
+                            sizes: `${size}x${size}`,
+                            type: navigatorMeta.thumb_mime || 'image/jpeg'
+                        }))
+                    });
+                }
+            }
+        });
+
+        plyrAudio.addEventListener('pause', () => {
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.playbackState = 'paused';
+            }
+        });
+
+
+
+        /*             // Optional: Add playback controls
+                    navigator.mediaSession.setActionHandler('play', () => {
+                        const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
+                        if (player) player.play();
+                    });
+                    
+                    navigator.mediaSession.setActionHandler('pause', () => {
+                        const player = plyrAudioPlayers[plyrAudioPlayers.length - 1];
+                        if (player) player.pause();
+                    }); */
+
 
 
         plyrAudioPlayers.push(new Plyr(plyrAudio,
@@ -153,25 +170,28 @@ if (plyrAudioContainer.length > 0) {
                 },
                 loadSprite: false,
             }
-        )); 
+        ));
         //expand description
 
         const button = element.querySelector('.tts-audio-description-more');
         const desc = element.querySelector('.tts-audio-description');
-        button.addEventListener('click', () => {
-            const prevText = button.innerHTML;
-            const isExpanded = desc.classList.contains('short');
+        if (button) {
+            button.addEventListener('click', () => {
+                const prevText = button.innerHTML;
+                const isExpanded = desc.classList.contains('short');
 
-            if (isExpanded) {
-                desc.classList.remove('short');
-                button.setAttribute('aria-expanded', 'true');
-            } else {
-                desc.classList.add('short');
-                button.setAttribute('aria-expanded', 'false');
-            }
+                if (isExpanded) {
+                    desc.classList.remove('short');
+                    button.setAttribute('aria-expanded', 'true');
+                } else {
+                    desc.classList.add('short');
+                    button.setAttribute('aria-expanded', 'false');
+                }
 
-            button.innerHTML = button.getAttribute('data-alt-text');
-            button.setAttribute('data-alt-text', prevText);
-        });
+                button.innerHTML = button.getAttribute('data-alt-text');
+                button.setAttribute('data-alt-text', prevText);
+            });
+        }
+
     });
 }
