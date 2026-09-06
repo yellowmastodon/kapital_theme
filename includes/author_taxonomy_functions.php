@@ -311,6 +311,16 @@ add_filter('bulk_actions-autorstvo', 'remove_bulk_actions');
 add_filter('pre_insert_term', 'autorstvo_insert_term', 10, 3);
 
 
+/** pre_insert_term only fires on create, not on wp_update_term() - this is the update equivalent */
+function autorstvo_update_term_data($data, $term_id, $taxonomy, $args)
+{
+    if ($taxonomy == 'autorstvo' && !empty($args['full_name'])) {
+        $data['name'] = sanitize_text_field($args['full_name']);
+    }
+    return $data;
+}
+add_filter('wp_update_term_data', 'autorstvo_update_term_data', 10, 4);
+
 //add_filter( 'ajax_term_search_results', 'meta_search_authors' );
 //add_action( 'pre_get_terms', 'autorstvo_pre_get_terms' );
 //add_action( 'pre_get_terms', 'autorstvo_pre_get_terms');
@@ -354,4 +364,20 @@ function remove_default_author_support()
         remove_post_type_support("{$post_type}", 'author');
     }
 }
+
+
 add_action('init', 'remove_default_author_support');
+
+add_filter( 'the_author', function( $author ) {
+    if ( is_feed() ){
+        $author = '';
+        global $post;
+        $terms = get_and_reorganize_terms( $post->ID, ['autorstvo'] );
+        if ( isset( $terms['autorstvo'] ) && ! empty( $terms['autorstvo'] ) ) {
+            $names = wp_list_pluck($terms['autorstvo'], 'name');
+            $author = esc_html(implode(', ', $names));
+        }
+        return $author;
+    };
+    return $author;
+} );
