@@ -275,7 +275,7 @@ export default function initializeForm(form_wrapper) {
         let days = 31;
 
         if (periodicity === 'periodical'){
-            days = 183;
+            days = 31;
         }
 
         setOffcanvasBannerCookie(days);
