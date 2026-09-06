@@ -26,7 +26,7 @@ function kapital_bubble_title(string $string, int $heading_level = 2, string $ad
     if (is_int($heading_level) && $heading_level > 0 && $heading_level < 7): $is_heading = true;
     else: $is_heading = false;
     endif;
-    
+
     $output = '';
     $exploded_string = explode(" ", $string);
 
@@ -77,12 +77,12 @@ function kapital_bubble_paragraphs($blocks)
  */
 function kapital_responsive_image($attachment_id, string $sizes = "", bool $figure_and_caption = true, string $img_classes = '', string $figure_classes = '', string $alt_text = "", string $html_id = "", string|null $custom_figcaption = null)
 {
-       
+
     if (!isset($attachment_id) || !$attachment_id || !is_numeric($attachment_id) || $attachment_id === 0)
         return '';
 
     $attachment = get_post($attachment_id);
-    
+
     if (!$attachment || $attachment->post_type !== "attachment")
         return '';
 
@@ -91,7 +91,7 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
     $image_sizes = $image_sizes;
     //also include full size image
     $image_sizes[] = "full";
-    if (!is_null($custom_figcaption)){
+    if (!is_null($custom_figcaption)) {
         $caption = $custom_figcaption;
     } else {
         $caption = $attachment->post_excerpt;
@@ -127,8 +127,8 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
     }
 
     $html .= "<img";
-    
-    if (!$figure_and_caption){
+
+    if (!$figure_and_caption) {
         if ($html_id !== '')  $html .= " id=\"$html_id\"";
         $html .= ' data-caption="' . htmlspecialchars($caption, ENT_QUOTES, 'UTF-8') . '"';
     }
@@ -139,6 +139,7 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
 
     $html .= " class=\"$img_classes\"";
     $placeholder_src = wp_get_attachment_image_src($attachment_id, 'placeholder')[0];
+
     $html .= " style=\"background-image: url('$placeholder_src'); aspect-ratio: $aspect_ratio\"";
     $html .= " src=\"$full_size_img_url\"";
     if (!$is_nonscalable) {
@@ -152,7 +153,6 @@ function kapital_responsive_image($attachment_id, string $sizes = "", bool $figu
         $html .= "</figure>";
     }
     return $html;
-
 }
 
 function kapital_get_koko_stats($post_id)
@@ -240,7 +240,7 @@ function get_and_reorganize_terms($post_id, $taxonomies, $term_id_to_remove = nu
     } else {
         $post_terms = wp_get_post_terms($post_id, $taxonomies);
     }
-    
+
     if (!empty($post_terms)) {
         $filtered_terms = [];
         foreach ($taxonomies as $taxonomy) {
@@ -254,7 +254,7 @@ function get_and_reorganize_terms($post_id, $taxonomies, $term_id_to_remove = nu
 
         // Sort autorstvo taxonomy by _author_last_name meta
         if (isset($filtered_terms['autorstvo'])) {
-            usort($filtered_terms['autorstvo'], function($a, $b) {
+            usort($filtered_terms['autorstvo'], function ($a, $b) {
                 $last_name_a = get_term_meta($a->term_id, '_author_last_name', true);
                 $last_name_b = get_term_meta($b->term_id, '_author_last_name', true);
                 return strcasecmp($last_name_a, $last_name_b);
@@ -576,11 +576,11 @@ function kapital_render_filters(array $filters, $sticky = true, $filters_as_asso
                         $name = '';
                         $link = '';
                         if ($filters_as_associative_array) {
-                            if (isset($filter["custom_html"])) 
+                            if (isset($filter["custom_html"]))
                                 $custom_html = $filter["custom_html"];
-                            if (isset($filter["additional_class"]) && $filter["additional_class"] !== '') 
+                            if (isset($filter["additional_class"]) && $filter["additional_class"] !== '')
                                 $additional_filter_class = ' ' . $filter["additional_class"];
-                            if (isset($filter["aria_label"]) && $filter["aria_label"] !== '') 
+                            if (isset($filter["aria_label"]) && $filter["aria_label"] !== '')
                                 $filter_aria_label = ' aria-label="' . $filter["aria_label"] . '" ';
                             if (isset($filter["name"]))
                                 $name = $filter["name"];
@@ -1110,7 +1110,7 @@ function kapital_event_get_remaining_hour($event_date_start, $timezone, $format,
         );
         array_unshift($hour_strings, __('O&nbsp;chvíľu začína', 'kapital'), __('O&nbsp;hodinu', 'kapital'));
     }
-    $hour_string_key =  round($remaining / $one_hour);
+    $hour_string_key = (int) round($remaining / $one_hour);
     return $hour_strings[$hour_string_key];
 }
 
@@ -1184,10 +1184,11 @@ add_filter('woocommerce_add_to_cart_fragments', 'update_cart_count_fragment');
 /**
  * cart fragment
  */
-function update_cart_count_fragment($fragments) {
+function update_cart_count_fragment($fragments)
+{
     $cart_count = WC()->cart->get_cart_contents_count();
-    
+
     $fragments['.kapital-cart-quantity-mini-badge'] = '<span class="kapital-cart-quantity-mini-badge rounded-pill text-white bg-red position-absolute" style="display: ' . ($cart_count > 0 ? 'inline-block' : 'none') . '">' . $cart_count . '</span>';
-      
+
     return $fragments;
 }
