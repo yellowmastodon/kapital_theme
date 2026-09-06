@@ -35,51 +35,59 @@ if ($author_str === ''){
 global $post;
 $image_id = get_post_thumbnail_id( $post->ID );
 
-// Define your custom sizes
-$tts_sizes = [
-    'tts_audio_thumb_64' => ['width' => 64, 'height' => 64, 'crop' => true],
-    'tts_audio_thumb_128' => ['width' => 128, 'height' => 128, 'crop' => true],
-    'tts_audio_thumb_256' => ['width' => 256, 'height' => 256, 'crop' => true],
-    'tts_audio_thumb_512' => ['width' => 512, 'height' => 512, 'crop' => true],
-];
-
-// Check if subsizes already exist
-$metadata = wp_get_attachment_metadata( $image_id );
-$subsizes_exist = isset( $metadata['sizes'] ) && array_key_exists( 'tts_audio_thumb_64', $metadata['sizes'] );
-
-if ( ! $subsizes_exist ) {
-    if ( ! function_exists( 'wp_create_image_subsizes' ) ) {
-        require_once( ABSPATH . 'wp-admin/includes/image.php' );
-    }
-    
-    // Save original registered sizes and temporarily replace with custom sizes
-    global $_wp_additional_image_sizes;
-    $original_sizes = $_wp_additional_image_sizes;
-    $_wp_additional_image_sizes = $tts_sizes;
-    
-    $file = get_attached_file( $image_id );
-    wp_create_image_subsizes( $file, $image_id );
-    
-    $_wp_additional_image_sizes = $original_sizes;
-}
-
-// Get the generated images
 $image_arr = [];
-foreach ( $tts_sizes as $key => $size ) {
-    $img = wp_get_attachment_image_src( $image_id, $key );
-    if ( $img ) {
-        $image_arr[ $size['width'] ] = $img[0];
+$thumb_mime = null;
+
+if ( $image_id ) {
+
+    // Define your custom sizes
+    $tts_sizes = [
+        'tts_audio_thumb_64'  => ['width' => 64,  'height' => 64,  'crop' => true],
+        'tts_audio_thumb_128' => ['width' => 128, 'height' => 128, 'crop' => true],
+        'tts_audio_thumb_256' => ['width' => 256, 'height' => 256, 'crop' => true],
+        'tts_audio_thumb_512' => ['width' => 512, 'height' => 512, 'crop' => true],
+    ];
+
+    // Check if subsizes already exist
+    $metadata = wp_get_attachment_metadata( $image_id );
+    $subsizes_exist = isset( $metadata['sizes'] ) && array_key_exists( 'tts_audio_thumb_64', $metadata['sizes'] );
+
+    if ( ! $subsizes_exist ) {
+        if ( ! function_exists( 'wp_create_image_subsizes' ) ) {
+            require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        }
+
+        // Save original registered sizes and temporarily replace with custom sizes
+        global $_wp_additional_image_sizes;
+        $original_sizes = $_wp_additional_image_sizes;
+        $_wp_additional_image_sizes = array_merge( $original_sizes, $tts_sizes );
+
+        $file = get_attached_file( $image_id );
+        if ( $file ) {
+            wp_create_image_subsizes( $file, $image_id );
+        }
+
+        $_wp_additional_image_sizes = $original_sizes;
     }
+
+    // Get the generated images
+    foreach ( $tts_sizes as $key => $size ) {
+        $img = wp_get_attachment_image_src( $image_id, $key );
+        if ( $img ) {
+            $image_arr[ $size['width'] ] = $img[0];
+        }
+    }
+
+    $thumb_mime = get_post_mime_type( $image_id );
 }
 
 $navigator_data = array(
-    'title' => trim( strip_tags( $post->post_title ) ),
-    'author' => $author_str,
-    'thumb' => $image_arr,
-    'site' => get_bloginfo( 'name' ),
-    'thumb_mime' => get_post_mime_type( $image_id )
+    'title'      => trim( strip_tags( $post->post_title ) ),
+    'author'     => $author_str,
+    'thumb'      => $image_arr,
+    'site'       => get_bloginfo( 'name' ),
+    'thumb_mime' => $thumb_mime,
 );
-
 
 $audio_attachment = get_post($audio_id);
 $tts_options = get_option('kptl_tts_settings');
