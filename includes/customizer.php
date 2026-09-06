@@ -50,14 +50,13 @@ function kapital_customizer_settings($wp_customize)
             'podpora',
             array(
                 'label'       => __('Podpora', 'kapital'),
-                'description' => __('Link na stránku podpory'),
+                'description' => __('Stránka podpory'),
                 'section'     => 'header_settings',
                 'settings'    => 'podpora',
-                'type'        => 'url',
+                'type'        => 'dropdown-pages',
             )
         )
     );
-
 
     $wp_customize->add_setting(
         'english',
@@ -309,6 +308,5 @@ function kapital_customizer_settings($wp_customize)
             )
         )
     );
-
 }
 add_action('customize_register', 'kapital_customizer_settings');

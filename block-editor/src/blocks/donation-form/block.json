@@ -8,7 +8,7 @@
 	"description": "Darovací formulár Darujme.sk",
 	"example": {},
 	"supports": {
-		"multiple": false,
+		"multiple": true,
 		"html": false
 	},
 	"attributes": {

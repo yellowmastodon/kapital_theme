@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<div class="darujme-collapsed-form" <?= $args['collapsed'] ?? 'style="display: none"'; ?> data-colors="<?= $darujme_collapsed_colors ?>">
+<div class="darujme-collapsed-form p-3 ps-md-5 pe-md-3" <?= $args['collapsed'] ?? 'style="display: none"'; ?> data-colors="<?= $darujme_collapsed_colors ?>">
     <div class="row align-items-center justify-content-between gy-2 gx-5 fw-bold ff-grotesk">
             <?php
             if (isset($args["campaign_title_short"])) if ($args["campaign_title_short"] !== "") echo '<div class="col-12 col-md-4 col-lg-3 darujme-form-heading fs-3">' . wpautop($args["campaign_title_short"]) . '</div>';

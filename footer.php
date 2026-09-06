@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 //check if we should render newsletter signup
 global $post_types_with_controlled_rendering;
 global $kptl_theme_options;
+global $post;
 
 if (!is_404() && !is_archive() && in_array($post->post_type, $post_types_with_controlled_rendering) && isset($args["render_settings"]) && isset($args["render_settings"]["show_footer_newsletter"])) {
     $show_footer_newsletter = $args["render_settings"]["show_footer_newsletter"];
@@ -115,11 +116,22 @@ do_action('kapital-before-footer');
 <?php wp_footer(); 
 
 //pass args, so that it receives render settings
+//fixed bottom banner only shows in posts, fullscreen everywhere except donation page and eshop
+//
 
-if ($post->post_type === 'post' ){
+$darujme_options = get_option('kapital_darujme_settings');
+$banner_type = $darujme_options['modal_banner_type'] ?? 'bottom';
+$podpora_id = (int) ($kptl_theme_options['podpora'] ?? 0);
+$args['render_settings']['banner_type'] = $banner_type;
+
+if (
+    ($banner_type === 'bottom' && is_singular('post'))
+    || 
+    ($banner_type === 'fullscreen' && !$is_woocommerce_site && $post->ID !== $podpora_id)
+    ){
     get_template_part('template-parts/donation-offcanvas-banner', null, $args["render_settings"]);
-
 }
+
 
 ?>
 </body>

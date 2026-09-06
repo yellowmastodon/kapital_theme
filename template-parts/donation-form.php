@@ -6,6 +6,8 @@ $collapsed_class = $collapsed ? ' collapsed' : '';
 
 $show_title = $args['show_title'] ?? true;
 
+$is_editor = $args['is_editor'] ?? false;
+
 $darujme_options = get_option('kapital_darujme_settings');
 $darujme_onetime_amounts = $darujme_options['donation_amount_onetime'];
 $campaign_active = false;
@@ -35,7 +37,7 @@ if ($campaign_active):
 
 
 ?>
-    <div class="darujme-form-wrapper darujme-form-wrapper--<?= $collapsed_version ?> p-3 ps-md-5 pe-md-3 my-5<?= $collapsed_class ?>" data-banner-mode="<?= $collapsed_version ?>">
+    <div class="darujme-form-wrapper darujme-form-wrapper--<?= $collapsed_version ?> my-5<?= $collapsed_class ?>" data-banner-mode="<?= $collapsed_version ?>">
         <div class="darujme-form-inner">
             <?php get_template_part(
                         'template-parts/donation-form-collapsed--' . $collapsed_version,
@@ -43,12 +45,13 @@ if ($campaign_active):
                         array_merge(
                             $darujme_options,
                             [
-                                'collapsed' => $collapsed
+                                'collapsed' => $collapsed,
+                                'is_editor' => $is_editor
                             ]
                             )
                     );        ?>
 
-            <div class="darujme-expanded-form" <?php if ($collapsed) echo 'style="display: none"'; ?>>
+            <div class="darujme-expanded-form mx-auto alignwide p-3 ps-md-5 pe-md-3" <?php if ($collapsed) echo 'style="display: none"'; ?>>
                 <?php
                 $descriptive_paragraphs_classes = "ff-grotesk col-12 mb-0 lh-sm mt-4";
                 if ($show_title) if (isset($title)) if ($title !== "") echo kapital_bubble_title($title, 2, 'h3 mb-3 mt-2');

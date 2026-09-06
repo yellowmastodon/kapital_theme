@@ -47,7 +47,7 @@ function kapital_register_darujme_settings()
             'option_group' => 'kapital_darujme_settings',
             'value'        => (empty(get_option('kapital_darujme_settings')['campaign_active'])),
             'checked'      => (!isset(get_option('kapital_darujme_settings')['campaign_active']))
-                                ? 0 : get_option('kapital_darujme_settings')['campaign_active'],
+                ? 0 : get_option('kapital_darujme_settings')['campaign_active'],
             'label_for'    => 'campaign_active',
         ]
     );
@@ -202,7 +202,7 @@ function kapital_register_darujme_settings()
         ]
     );
 
-        add_settings_field(
+    add_settings_field(
         'darujme_short_text',
         __('Text kampane', 'kapital'),
         'kapital_darujme_input_callback',
@@ -390,7 +390,7 @@ function kapital_darujme_answers_repeater_callback($args)
         '<span class="kapital-row-marker" data-row-class="%s"></span>',
         esc_attr($args['row_class'] ?? '')
     );
-    ?>
+?>
     <div id="kapital-answers-repeater">
         <table class="widefat">
             <thead>
@@ -427,7 +427,7 @@ function kapital_darujme_answers_repeater_callback($args)
             <?php esc_html_e('+ Pridať odpovede', 'kapital'); ?>
         </button>
     </div>
-    <?php
+<?php
 }
 
 
@@ -447,6 +447,7 @@ function kapital_darujme_modal_repeater_callback($section_id = '')
     $option_group = 'kapital_darujme_settings';
     $options = get_option($option_group, []);
     $modal_active = $options['modal_banner_active'] ?? false;
+    $modal_type = $options['modal_banner_type'] ?? 'bottom';
     $titles = $options['modal_banner_title'] ?? [];
     $texts = $options['modal_banner_text'] ?? [];
     $btns_support = $options['modal_banner_btn_support'] ?? [];
@@ -455,12 +456,21 @@ function kapital_darujme_modal_repeater_callback($section_id = '')
     $btns_supporting = $options['modal_banner_btn_supporting'] ?? [];
     $count = max(count($titles), count($texts), count($btns_support), count($btns_support_url), count($btns_later), count($btns_supporting), 1);
     $og = esc_attr($option_group);
-    ?>
+?>
     <table class="form-table kapital-modal-banner-active-toggle" role="presentation">
         <tbody>
             <tr>
                 <th scope="row"><label class="kapital-modal-banner-active-label" for="modal_banner_active"><?php esc_html_e('Aktivovať vyskakovací banner', 'kapital'); ?></label></th>
-                <td><input type="checkbox" id="modal_banner_active" name="<?php echo $og; ?>[modal_banner_active]"<?= $modal_active ? ' checked="checked"' : '' ?> /></td>
+                <td><input type="checkbox" id="modal_banner_active" name="<?php echo $og; ?>[modal_banner_active]" <?= $modal_active ? ' checked="checked"' : '' ?> /></td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="modal_banner_type"><?php esc_html_e('Typ banneru', 'kapital'); ?></label></th>
+                <td>
+                    <select id="modal_banner_type" name="<?php echo $og; ?>[modal_banner_type]">
+                        <option value="fullscreen" <?php selected($modal_type, 'fullscreen'); ?>><?php esc_html_e('Celá obrazovka', 'kapital'); ?></option>
+                        <option value="bottom" <?php selected($modal_type, 'bottom'); ?>><?php esc_html_e('Fixný banner v spodnej časti', 'kapital'); ?></option>
+                    </select>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -510,7 +520,7 @@ function kapital_darujme_modal_repeater_callback($section_id = '')
     <button type="button" id="kapital-add-modal-banner-row" class="button button-secondary">
         <?php esc_html_e('+ Pridať verziu vyskakovacieho banneru', 'kapital'); ?>
     </button>
-    <?php
+<?php
 }
 
 
@@ -623,7 +633,7 @@ function kapital_admin_notices()
 
 function kapital_darujme_admin_page()
 {
-    ?>
+?>
     <div class="wrap">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         <form action="options.php" method="post">
@@ -641,10 +651,12 @@ function kapital_darujme_admin_page()
             padding-top: 30px;
             border-top: solid 1px #ccc;
         }
+
         /* Applied by JS to rows that should be hidden in the current banner mode */
         .kapital-row-hidden {
             display: none !important;
         }
+
         #kapital-answers-repeater .widefat {
             border-collapse: collapse;
         }
@@ -654,12 +666,14 @@ function kapital_darujme_admin_page()
             padding: 8px;
             text-align: left;
         }
-        #kapital-answers-repeater table, .kapital-modal-banner-item{
+
+        #kapital-answers-repeater table,
+        .kapital-modal-banner-item {
             margin-bottom: 12px;
             width: fit-content;
         }
 
-        .kapital-modal-banner-version-label{
+        .kapital-modal-banner-version-label {
             font-weight: bold;
             font-size: 14px;
             border-bottom: 1px solid #c3c4c7;
@@ -667,7 +681,7 @@ function kapital_darujme_admin_page()
             margin-bottom: 8px;
         }
 
-        .kapital-modal-banner-item{
+        .kapital-modal-banner-item {
             background: white;
             padding: 8px;
             border: solid 1px #ccc;
@@ -678,10 +692,11 @@ function kapital_darujme_admin_page()
 
 
 
-        #kapital-modal-banners-repeater label{
+        #kapital-modal-banners-repeater label {
             display: table-row !important;
         }
-        #kapital-modal-banners-repeater label span{
+
+        #kapital-modal-banners-repeater label span {
             display: table-cell;
             vertical-align: top;
             text-align: left;
@@ -691,130 +706,127 @@ function kapital_darujme_admin_page()
             font-weight: 600;
         }
 
-        #kapital-modal-banners-repeater label textarea, #kapital-modal-banners-repeater label input[type="text"], #kapital-modal-banners-repeater label input[type="url"]{
+        #kapital-modal-banners-repeater label textarea,
+        #kapital-modal-banners-repeater label input[type="text"],
+        #kapital-modal-banners-repeater label input[type="url"] {
             display: table-cell;
             margin: 8px
         }
-
-        
-        
-
-
     </style>
 
     <script>
-    (function ($) {
+        (function($) {
 
-        // ----------------------------------------------------------
-        // On load: read the hidden marker spans and push row-class
-        // and label-swap data up onto the parent <tr>
-        // ----------------------------------------------------------
-        $('.kapital-row-marker').each(function () {
-            var $tr = $(this).closest('tr');
-            var rc  = $(this).data('row-class');
-            var ld  = $(this).data('label-default');
-            var ly  = $(this).data('label-yesno');
-            if (rc) $tr.addClass(rc);
-            if (ld) $tr.attr('data-label-default', ld);
-            if (ly) $tr.attr('data-label-yesno',   ly);
-        });
+            // ----------------------------------------------------------
+            // On load: read the hidden marker spans and push row-class
+            // and label-swap data up onto the parent <tr>
+            // ----------------------------------------------------------
+            $('.kapital-row-marker').each(function() {
+                var $tr = $(this).closest('tr');
+                var rc = $(this).data('row-class');
+                var ld = $(this).data('label-default');
+                var ly = $(this).data('label-yesno');
+                if (rc) $tr.addClass(rc);
+                if (ld) $tr.attr('data-label-default', ld);
+                if (ly) $tr.attr('data-label-yesno', ly);
+            });
 
-        // ----------------------------------------------------------
-        // Show/hide rows and swap <th> labels based on banner mode
-        // ----------------------------------------------------------
-        function applyBannerMode(mode) {
-            var isYesNo = (mode === 'yesno');
+            // ----------------------------------------------------------
+            // Show/hide rows and swap <th> labels based on banner mode
+            // ----------------------------------------------------------
+            function applyBannerMode(mode) {
+                var isYesNo = (mode === 'yesno');
 
-            // Fields only relevant to yes/no mode
-            $('.kapital-field-yesno-only')
-                .toggleClass('kapital-row-hidden', !isYesNo);
+                // Fields only relevant to yes/no mode
+                $('.kapital-field-yesno-only')
+                    .toggleClass('kapital-row-hidden', !isYesNo);
 
-            // Alt title is replaced by campaign_title_short_no in yes/no mode
-            $('.kapital-field-campaign-title-short-alt')
-                .toggleClass('kapital-row-hidden', isYesNo);
+                // Alt title is replaced by campaign_title_short_no in yes/no mode
+                $('.kapital-field-campaign-title-short-alt')
+                    .toggleClass('kapital-row-hidden', isYesNo);
 
-            // Swap <th> text for fields whose label changes meaning
-            var labelAttr = isYesNo ? 'data-label-yesno' : 'data-label-default';
-            $('.kapital-field-campaign-title-short, .kapital-field-darujme-short-text')
-                .each(function () {
-                    var newLabel = $(this).attr(labelAttr);
-                    if (!newLabel) return;
-                    var $lbl = $(this).find('th label');
-                    if ($lbl.length) {
-                        $lbl.text(newLabel);
-                    } else {
-                        $(this).find('th').text(newLabel);
-                    }
-                });
-        }
+                // Swap <th> text for fields whose label changes meaning
+                var labelAttr = isYesNo ? 'data-label-yesno' : 'data-label-default';
+                $('.kapital-field-campaign-title-short, .kapital-field-darujme-short-text')
+                    .each(function() {
+                        var newLabel = $(this).attr(labelAttr);
+                        if (!newLabel) return;
+                        var $lbl = $(this).find('th label');
+                        if ($lbl.length) {
+                            $lbl.text(newLabel);
+                        } else {
+                            $(this).find('th').text(newLabel);
+                        }
+                    });
+            }
 
-        $('#banner_mode').on('change', function () {
-            applyBannerMode($(this).val());
-        });
+            $('#banner_mode').on('change', function() {
+                applyBannerMode($(this).val());
+            });
 
-        // Run once on page load to reflect saved value
-        applyBannerMode($('#banner_mode').val());
+            // Run once on page load to reflect saved value
+            applyBannerMode($('#banner_mode').val());
 
-        // ----------------------------------------------------------
-        // Repeater: add / remove yes/no answer pairs
-        // ----------------------------------------------------------
-        var og = 'kapital_darujme_settings';
+            // ----------------------------------------------------------
+            // Repeater: add / remove yes/no answer pairs
+            // ----------------------------------------------------------
+            var og = 'kapital_darujme_settings';
 
-        function syncRemoveButtons() {
-            var rows = $('#kapital-answers-rows .kapital-answer-row');
-            rows.find('.kapital-remove-row').prop('disabled', rows.length === 1);
-        }
+            function syncRemoveButtons() {
+                var rows = $('#kapital-answers-rows .kapital-answer-row');
+                rows.find('.kapital-remove-row').prop('disabled', rows.length === 1);
+            }
 
-        $('#kapital-add-answer-row').on('click', function () {
-            $('#kapital-answers-rows').append(
-                '<tr class="kapital-answer-row">' +
+            $('#kapital-add-answer-row').on('click', function() {
+                $('#kapital-answers-rows').append(
+                    '<tr class="kapital-answer-row">' +
                     '<td><input type="text" name="' + og + '[answer_yes][]" value=""/></td>' +
                     '<td><input type="text" name="' + og + '[answer_no][]"  value=""/></td>' +
                     '<td><button type="button" class="button kapital-remove-row">&times;</button></td>' +
-                '</tr>'
-            );
+                    '</tr>'
+                );
+                syncRemoveButtons();
+            });
+
+            $(document).on('click', '.kapital-remove-row', function() {
+                $(this).closest('.kapital-answer-row').remove();
+                syncRemoveButtons();
+            });
+
             syncRemoveButtons();
-        });
 
-        $(document).on('click', '.kapital-remove-row', function () {
-            $(this).closest('.kapital-answer-row').remove();
-            syncRemoveButtons();
-        });
-
-        syncRemoveButtons();
-
-        // ----------------------------------------------------------
-        // Repeater: add / remove modal banner versions
-        // ----------------------------------------------------------
-        function syncRemoveModalButtons() {
-            var rows = $('#kapital-modal-banners-repeater .kapital-modal-banner-item');
-            rows.find('.kapital-remove-modal-row').prop('disabled', rows.length === 1);
-        }
-
-        $('#kapital-add-modal-banner-row').on('click', function () {
-            var $first = $('#kapital-modal-banners-repeater .kapital-modal-banner-item').first();
-            if (!$first.length) {
-                return;
+            // ----------------------------------------------------------
+            // Repeater: add / remove modal banner versions
+            // ----------------------------------------------------------
+            function syncRemoveModalButtons() {
+                var rows = $('#kapital-modal-banners-repeater .kapital-modal-banner-item');
+                rows.find('.kapital-remove-modal-row').prop('disabled', rows.length === 1);
             }
 
-            var $clone = $first.clone(false);
-            $clone.find('textarea').val('');
-            $clone.find('[id]').removeAttr('id');
-            $clone.find('.kapital-remove-modal-row').prop('disabled', false);
-            $('#kapital-modal-banners-repeater').append($clone);
+            $('#kapital-add-modal-banner-row').on('click', function() {
+                var $first = $('#kapital-modal-banners-repeater .kapital-modal-banner-item').first();
+                if (!$first.length) {
+                    return;
+                }
+
+                var $clone = $first.clone(false);
+                $clone.find('textarea').val('');
+                $clone.find('[id]').removeAttr('id');
+                $clone.find('.kapital-remove-modal-row').prop('disabled', false);
+                $('#kapital-modal-banners-repeater').append($clone);
+                syncRemoveModalButtons();
+            });
+
+            $(document).on('click', '.kapital-remove-modal-row', function() {
+                $(this).closest('.kapital-modal-banner-item').remove();
+                syncRemoveModalButtons();
+            });
+
             syncRemoveModalButtons();
-        });
 
-        $(document).on('click', '.kapital-remove-modal-row', function () {
-            $(this).closest('.kapital-modal-banner-item').remove();
-            syncRemoveModalButtons();
-        });
-
-        syncRemoveModalButtons();
-
-    })(jQuery);
+        })(jQuery);
     </script>
-    <?php
+<?php
 }
 
 
@@ -845,7 +857,7 @@ add_action('admin_init', function () {
 
 function render_podcast_description_page()
 {
-    ?>
+?>
     <div class="wrap">
         <h1><?php echo __('Popiska podcastov', 'kapital'); ?></h1>
         <form method="post" action="options.php">
@@ -868,7 +880,7 @@ function render_podcast_description_page()
         </form>
     </div>
     <script id="term_description_tinymce">
-        jQuery(document).ready(function ($) {
+        jQuery(document).ready(function($) {
             wp.editor.initialize('podcast_description_textarea', {
                 tinymce: {
                     toolbar1: 'formatselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
@@ -881,5 +893,5 @@ function render_podcast_description_page()
             });
         });
     </script>
-    <?php
+<?php
 }

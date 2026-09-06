@@ -9,4 +9,5 @@ if (!$attributes["showCollapsed"]){
 if (!$attributes["showTitle"]){
     $show_title = false;
 }
-get_template_part('template-parts/donation-form', null, array("collapsed" => $show_collapsed, "show_title" => $show_title));
+
+get_template_part('template-parts/donation-form', null, array("collapsed" => $show_collapsed, "show_title" => $show_title, 'is_editor' => true));

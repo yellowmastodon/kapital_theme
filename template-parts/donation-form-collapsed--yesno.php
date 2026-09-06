@@ -29,7 +29,7 @@ if (!function_exists('darujme_form_whitespace')) {
 
 ?>
 
-<div class="darujme-collapsed-form" <?= !$args['collapsed'] ? 'style="display: none"' : '' ?>
+<div class="darujme-collapsed-form p-3 ps-md-5 pe-md-3" <?= !$args['collapsed'] ? 'style="display: none"' : '' ?>
     data-response-yes="<?= esc_attr(kapital_bubble_title($args['campaign_title_short'], 2, 'h3 mb-3 mt-2')) ?>"
     data-response-no="<?= esc_attr(kapital_bubble_title($args['campaign_title_short_no'], 2, 'h3 mb-3 mt-2')) ?>">
     <div class="row align-items-center justify-content-center gy-4 gy-md-5 gx-3 gx-sm-5 fw-bold ff-grotesk">
@@ -42,11 +42,14 @@ if (!function_exists('darujme_form_whitespace')) {
             <?php
             $yesno_btn_classes = 'btn darujme-form-expand-btn rounded whitespace-normal fw-bold fs-4 fs-sm-3 px-2 py-1';
             
-            if (count($args['answer_yes'])): ?>
+            if (count($args['answer_yes'])): 
+            
+                $first_btn_visiblity = $args['is_editor'] ? '' : 'visibility:hidden'; ?>
+                
                 <div class="col-12 col-md-auto yesno-row">
                     <div class="row gx-2 gy-2 gx-sm-4 align-items-center justify-content-center">
                         <?php foreach ($args['answer_yes'] as $key => $yes): ?>
-                            <span class="col-auto btn-wrapper--yes" style="<?= $key === 0 ? 'visibility:hidden' : 'display:none' ?>">
+                            <span class="col-auto btn-wrapper--yes" style="<?= $key === 0 ? $first_btn_visiblity : 'display:none' ?>">
                                 <button class="<?= $yesno_btn_classes ?> btn--yes" data-yesno="yes"><?= darujme_form_whitespace($yes) ?></button>
                             </span>
                         <?php endforeach; ?>
@@ -54,7 +57,7 @@ if (!function_exists('darujme_form_whitespace')) {
                         <span class="col-auto fs-4 fs-sm-3 fw-bold"><?= __('alebo', 'kapital') ?></span>
 
                         <?php foreach ($args['answer_yes'] as $key => $yes): ?>
-                            <span class="col-auto btn-wrapper--no" style="<?= $key === 0 ? 'visibility:hidden' : 'display:none' ?>">
+                            <span class="col-auto btn-wrapper--no" style="<?= $key === 0 ? $first_btn_visiblity : 'display:none' ?>">
                                 <button class="<?= $yesno_btn_classes ?> btn--no" data-yesno="no"><?= darujme_form_whitespace($args['answer_no'][$key]) ?></button>
                             </span>
                         <?php endforeach; ?>
