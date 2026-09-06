@@ -54,7 +54,7 @@ $render_settings = kapital_get_render_settings($post->ID, $post->post_type);
 
 $article_classes = "col-12 col-sm-6 col-md-4 col-xl-3 archive-item ff-grotesk";
 $article_classes .= $additional_class;
-$post_title = get_the_title($post);
+$post_title = strip_tags(get_the_title($post));
 $secondary_title = get_post_meta($post->ID, '_secondary_title', true);
 
 //audio version
