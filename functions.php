@@ -30,6 +30,7 @@ $include_all = array(
     '/includes/custom_post_types.php',
     '/includes/custom_taxonomies.php',
     '/templates/register-new-post-templates.php',
+    '/includes/rss.php',
     '/includes/iframe_wrapper.php',
     '/includes/widgets.php',
     '/patterns/register_patterns.php',

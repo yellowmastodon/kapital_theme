@@ -685,11 +685,14 @@ function kapital_wp_trim_excerpt($excerpt, $excerpt_word_count = 10)
     $excerpt = trim(force_balance_tags($excerptOutput));
 
     return $excerpt;
-
-    return apply_filters('kapital_wp_trim_excerpt', $excerpt);
 }
+
 remove_filter('get_the_excerpt', 'wp_trim_excerpt');
-add_filter('get_the_excerpt', 'kapital_wp_trim_excerpt');
+
+add_filter('get_the_excerpt', function ($excerpt) {
+    $word_count = is_feed() ? 80 : 10;
+    return kapital_wp_trim_excerpt($excerpt, $word_count);
+});
 
 /** change pagination base */
 function kapital_custom_pagination_base()
@@ -925,6 +928,26 @@ function kapital_get_event_location_string($meta_value, $include_links = true)
     }
 
     return $location_string;
+}
+
+
+function kapital_ensure_sentence_end(string $text): string
+{
+    $text = trim($text);
+
+    if ($text === '') {
+        return '';
+    }
+
+    // List of common single, double, curly, angular
+    $quotes = '"\'”’“‘„‚»«›';
+
+    // Check if the text ends with punctuation, optionally followed by quotation marks
+    if (!preg_match('/(\.\.\.|…|[.!?])[' . preg_quote($quotes, '/') . ']*$/u', $text)) {
+        $text .= '.';
+    }
+
+    return $text;
 }
 
 /**
